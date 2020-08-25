@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">VirusSafeAgro</string>
+    <string name="app_name">virusSafe Agro</string>
+    <string name="menu_ic_virus_info">Virus Info</string>
+    <string name="menu_ic_virus_identification">Identification</string>
+    <string name="menu_ic_virus_quiz">Quiz</string>
 </resources>
