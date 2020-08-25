@@ -37,4 +37,7 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$androidx_test"
     androidTestImplementation "androidx.test:core:$androidx_test"
     androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+
+    // material
+    implementation 'com.google.android.material:material:1.2.0'
 }
