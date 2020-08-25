@@ -1,33 +1,33 @@
 package com.example.virussafeagro.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.virussafeagro.R;
 
 /**
- * Fragment with virus list for showing virus details
+ * Fragment with virus list for quiz
  * @author Haoyu Yang
  */
-public class VirusInfoFragment extends Fragment {
+public class VirusQuizFragment extends Fragment {
     private View view;
 
-    public VirusInfoFragment() {
+    public VirusQuizFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
-        this.view = inflater.inflate(R.layout.fragment_virus_info, container, false);
+        this.view = inflater.inflate(R.layout.fragment_virus_quiz, container, false);
         return this.view;
     }
 
 }
+
