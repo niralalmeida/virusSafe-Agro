@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/img_virus_picture_virus_quiz_list"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
