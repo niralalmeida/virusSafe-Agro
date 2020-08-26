@@ -14,13 +14,36 @@
         card_view:cardBackgroundColor="#000"
         card_view:cardCornerRadius="10dp">
 
-        <TextView
-            android:id="@+id/tv_virus_full_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="virus full name"
-            android:textColor="#fff"
-            android:textSize="20sp" />
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/img_virus_picture_info_list"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:adjustViewBounds="true"
+                android:maxWidth="170dp"
+                android:maxHeight="170dp"
+                android:src=""/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="bottom">
+                <TextView
+                    android:id="@+id/tv_virus_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:text="virus full name"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </androidx.cardview.widget.CardView>
 
