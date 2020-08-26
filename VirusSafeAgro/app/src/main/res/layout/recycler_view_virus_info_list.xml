@@ -15,10 +15,10 @@
         card_view:cardCornerRadius="4dp">
 
         <TextView
-            android:id="@+id/tv_text_try"
+            android:id="@+id/tv_virus_full_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="card view text try"
+            android:text="virus full name"
             android:textColor="#fff"
             android:textSize="20sp" />
 

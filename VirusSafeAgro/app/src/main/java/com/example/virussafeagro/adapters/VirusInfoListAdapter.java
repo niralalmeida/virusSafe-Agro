@@ -25,11 +25,11 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView tv;
+        public TextView virusFullName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv = itemView.findViewById(R.id.tv_text_try);
+            this.virusFullName = itemView.findViewById(R.id.tv_virus_full_name);
         }
     }
 
@@ -44,10 +44,10 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final VirusModel virus = this.virusList.get(position);
+    public void onBindViewHolder(@NonNull VirusInfoListAdapter.ViewHolder viewHolder, int position) {
+        final VirusModel currentVirus = this.virusList.get(position);
 
-
+        viewHolder.virusFullName.setText(currentVirus.getVirusFullName());
     }
 
     @Override
