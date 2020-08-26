@@ -11,23 +11,17 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        card_view:cardBackgroundColor="#000"
         card_view:cardCornerRadius="4dp">
 
-        <ImageView
-            android:id="@+id/img_movie_picture_watch_list"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:adjustViewBounds="true"
-            android:maxWidth="100dp"
-            android:maxHeight="100dp"
-            android:src="@mipmap/ic_launcher"/>
-
         <TextView
-            android:id="@+id/tv_each_item_virus_info_list"
+            android:id="@+id/tv_text_try"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:text="card view text try"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
     </android.support.v7.widget.CardView>
 
 </LinearLayout>
