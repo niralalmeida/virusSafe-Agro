@@ -17,6 +17,17 @@ public class Virus implements Parcelable {
     public Virus() {
     }
 
+    public Virus(int virusId, String virusFullName, String virusAbbreviation, String symptoms, String spread, String prevention, String distribution, Bitmap virusPicture) {
+        this.virusId = virusId;
+        this.virusFullName = virusFullName;
+        this.virusAbbreviation = virusAbbreviation;
+        this.symptoms = symptoms;
+        this.spread = spread;
+        this.prevention = prevention;
+        this.distribution = distribution;
+        this.virusPicture = virusPicture;
+    }
+
     protected Virus(Parcel in) {
         virusId = in.readInt();
         virusFullName = in.readString();

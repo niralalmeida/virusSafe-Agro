@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.entities.Virus;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
+import com.example.virussafeagro.uitilities.JsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class VirusInfoViewModel extends ViewModel {
             List<Virus> virusInfoList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToTomatoVirusDB.getAllVirus();
-
+                virusInfoList = JsonParser.virusInfoListJsonParser(resultText);
             } catch (Exception e) {
                 e.printStackTrace();
             }
