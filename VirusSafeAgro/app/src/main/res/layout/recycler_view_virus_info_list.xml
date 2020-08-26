@@ -22,10 +22,10 @@
                 android:id="@+id/img_virus_picture_info_list"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:adjustViewBounds="true"
-                android:maxWidth="170dp"
+                android:adjustViewBounds="false"
+                android:maxWidth="200dp"
                 android:maxHeight="170dp"
-                android:src=""/>
+                android:src="@drawable/tylcv_demo"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
