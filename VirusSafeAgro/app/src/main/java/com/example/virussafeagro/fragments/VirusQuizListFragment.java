@@ -29,5 +29,10 @@ public class VirusQuizListFragment extends Fragment {
         return this.view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
 }
 
