@@ -47,12 +47,4 @@
 
     </androidx.cardview.widget.CardView>
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_virus_full_name"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:text="virus full name"-->
-<!--        android:textColor="#000"-->
-<!--        android:textSize="20sp" />-->
-
 </LinearLayout>

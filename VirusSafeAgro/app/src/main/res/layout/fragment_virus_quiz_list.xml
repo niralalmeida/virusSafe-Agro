@@ -6,10 +6,18 @@
     android:orientation="vertical"
     tools:context=".fragments.VirusQuizListFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/menu_ic_virus_quiz" />
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_virus_quiz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>
