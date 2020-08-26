@@ -38,8 +38,8 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
     public VirusInfoListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View moviesView = inflater.inflate(R.layout.recycler_view_virus_info_list, parent, false);
-        VirusInfoListAdapter.ViewHolder viewHolder = new VirusInfoListAdapter.ViewHolder(moviesView);
+        View virusInfoView = inflater.inflate(R.layout.recycler_view_virus_info_list, parent, false);
+        VirusInfoListAdapter.ViewHolder viewHolder = new VirusInfoListAdapter.ViewHolder(virusInfoView);
         return viewHolder;
     }
 
@@ -52,7 +52,7 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.virusList.size();
     }
 
 }
