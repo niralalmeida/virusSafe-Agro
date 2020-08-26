@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import tovrestws.Choicequestion;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-08-23T20:26:39")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-08-26T15:41:42")
 @StaticMetamodel(Virus.class)
 public class Virus_ { 
 
