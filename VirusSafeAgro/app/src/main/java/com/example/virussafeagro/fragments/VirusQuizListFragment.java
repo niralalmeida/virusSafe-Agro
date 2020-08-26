@@ -25,7 +25,7 @@ public class VirusQuizListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
-        this.view = inflater.inflate(R.layout.fragment_virus_quiz, container, false);
+        this.view = inflater.inflate(R.layout.fragment_virus_quiz_list, container, false);
         return this.view;
     }
 
