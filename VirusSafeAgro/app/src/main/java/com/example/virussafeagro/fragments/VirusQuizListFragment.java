@@ -15,10 +15,10 @@ import com.example.virussafeagro.R;
  * Fragment with virus list for quiz
  * @author Haoyu Yang
  */
-public class VirusQuizFragment extends Fragment {
+public class VirusQuizListFragment extends Fragment {
     private View view;
 
-    public VirusQuizFragment() {
+    public VirusQuizListFragment() {
     }
 
     @Nullable

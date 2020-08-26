@@ -14,13 +14,13 @@ import com.example.virussafeagro.uitilities.JsonParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VirusInfoViewModel extends ViewModel {
+public class VirusInfoListViewModel extends ViewModel {
     private Context context;
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
 
     private MutableLiveData<List<Virus>> virusInfoListLD;
 
-    public VirusInfoViewModel() {
+    public VirusInfoListViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
         this.virusInfoListLD = new MutableLiveData<>();
     }

@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.virussafeagro.fragments.VirusIdentificationFragment;
-import com.example.virussafeagro.fragments.VirusInfoFragment;
-import com.example.virussafeagro.fragments.VirusQuizFragment;
+import com.example.virussafeagro.fragments.VirusInfoListFragment;
+import com.example.virussafeagro.fragments.VirusQuizListFragment;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         int id = item.getItemId();
         switch (id) {
             case R.id.ic_virus_info:
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoFragment());
+                FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoListFragment());
                 break;
             case R.id.ic_virus_identification:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusIdentificationFragment());
                 break;
             case R.id.ic_virus_quiz:
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizFragment());
+                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment());
                 break;
         }
         return true;

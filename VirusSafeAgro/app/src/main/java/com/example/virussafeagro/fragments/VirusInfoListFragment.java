@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.entities.Virus;
-import com.example.virussafeagro.viewModel.VirusInfoViewModel;
+import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,17 +26,17 @@ import java.util.List;
  * Fragment with virus list for showing virus details
  * @author Haoyu Yang
  */
-public class VirusInfoFragment extends Fragment {
+public class VirusInfoListFragment extends Fragment {
     private View view;
 
-    private VirusInfoViewModel virusInfoViewModel;
+    private VirusInfoListViewModel virusInfoListViewModel;
 
     private RecyclerView.LayoutManager layoutManager;
     private VirusInfoListAdapter virusInfoListAdapter;
     private RecyclerView recyclerViewForVirusInfoList;
     private List<Virus> virusInfoList = new ArrayList<>();
 
-    public VirusInfoFragment() {
+    public VirusInfoListFragment() {
     }
 
     @Nullable
@@ -60,16 +60,16 @@ public class VirusInfoFragment extends Fragment {
     }
 
     private void initializeVirusInfoViewModel() {
-        this.virusInfoViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoViewModel.class);
-        this.virusInfoViewModel.initiateTheContext(requireActivity());
+        this.virusInfoListViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoListViewModel.class);
+        this.virusInfoListViewModel.initiateTheContext(requireActivity());
     }
 
     private void findVirusInfoListFromDB() {
-        this.virusInfoViewModel.processFindingVirusInfoList();
+        this.virusInfoListViewModel.processFindingVirusInfoList();
     }
 
     private void observeVirusInfoListLD() {
-        this.virusInfoViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
+        this.virusInfoListViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
             if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
                 virusInfoList.clear();
                 virusInfoList = resultVirusInfoList;
