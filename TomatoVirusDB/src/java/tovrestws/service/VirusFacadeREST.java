@@ -64,7 +64,7 @@ public class VirusFacadeREST extends AbstractFacade<Virus> {
 
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Virus> findAll() {
         return super.findAll();
     }
