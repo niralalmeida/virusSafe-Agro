@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 
 }
 
@@ -41,6 +45,9 @@ dependencies {
 
     // material
     implementation 'com.google.android.material:material:1.2.0'
+    // view model and live data
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.2.0'
 
     // RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.1.0'

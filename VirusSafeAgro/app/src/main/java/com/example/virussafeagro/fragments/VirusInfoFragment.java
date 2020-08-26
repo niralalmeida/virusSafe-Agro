@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.model.VirusModel;
+import com.example.virussafeagro.viewModel.VirusInfoViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +28,13 @@ import java.util.List;
  */
 public class VirusInfoFragment extends Fragment {
     private View view;
+
+    private VirusInfoViewModel virusInfoViewModel;
+
     private RecyclerView.LayoutManager layoutManager;
     private VirusInfoListAdapter virusInfoListAdapter;
     private RecyclerView recyclerViewForVirusInfoList;
-    private List<VirusModel> virusInfoList;
+    private List<VirusModel> virusInfoList = new ArrayList<>();
 
     public VirusInfoFragment() {
     }
@@ -46,8 +51,33 @@ public class VirusInfoFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        this.setVirusDataTest();
-        this.showVirusInfoListRecyclerView();
+        // initialize view model
+        this.initializeVirusInfoViewModel();
+        // find virus info list in new Thread
+        this.findVirusInfoListFromDB();
+        // observe Virus Info List Live Data
+        this.observeVirusInfoListLD();
+    }
+
+    private void initializeVirusInfoViewModel() {
+        this.virusInfoViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoViewModel.class);
+        this.virusInfoViewModel.initiateTheContext(requireActivity());
+    }
+
+    private void findVirusInfoListFromDB() {
+        this.virusInfoViewModel.processFindingVirusInfoList();
+    }
+
+    private void observeVirusInfoListLD() {
+        this.virusInfoViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
+            if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
+                virusInfoList.clear();
+                virusInfoList = resultVirusInfoList;
+
+                // show RecyclerView
+                showVirusInfoListRecyclerView();
+            }
+        });
     }
 
     private void showVirusInfoListRecyclerView() {
@@ -57,25 +87,6 @@ public class VirusInfoFragment extends Fragment {
         recyclerViewForVirusInfoList.setAdapter(virusInfoListAdapter);
         layoutManager = new LinearLayoutManager(requireActivity());
         recyclerViewForVirusInfoList.setLayoutManager(layoutManager);
-    }
-
-    // test
-    public void setVirusDataTest() {
-        this.virusInfoList = new ArrayList<>();
-        VirusModel vm1 = new VirusModel();
-        VirusModel vm2 = new VirusModel();
-        VirusModel vm3 = new VirusModel();
-        vm1.setVirusId(1);
-        vm1.setVirusFullName("virus no 1");
-        vm2.setVirusId(2);
-        vm2.setVirusFullName("virus no 2");
-        vm3.setVirusId(3);
-        vm3.setVirusFullName("virus no 3");
-        this.virusInfoList.add(vm1);
-        this.virusInfoList.add(vm2);
-        this.virusInfoList.add(vm3);
-
-
     }
 
 }
