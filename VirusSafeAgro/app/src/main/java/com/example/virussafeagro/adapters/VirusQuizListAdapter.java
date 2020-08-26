@@ -34,7 +34,7 @@ public class VirusQuizListAdapter extends RecyclerView.Adapter<VirusQuizListAdap
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.virusFullName = itemView.findViewById(R.id.tv_virus_full_name);
+            this.virusFullName = itemView.findViewById(R.id.tv_virus_full_name_virus_quiz_list);
             this.takeQuizButton = itemView.findViewById(R.id.btn_take_quiz_virus_quiz_list);
             this.viewContentButton = itemView.findViewById(R.id.btn_view_content_virus_quiz_list);
         }

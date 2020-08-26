@@ -33,7 +33,7 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.virusCardView = itemView.findViewById(R.id.cv_each_virus_info_list);
-            this.virusFullName = itemView.findViewById(R.id.tv_virus_full_name);
+            this.virusFullName = itemView.findViewById(R.id.tv_virus_full_name_virus_info_list);
         }
     }
 

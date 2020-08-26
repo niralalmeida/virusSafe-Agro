@@ -27,7 +27,7 @@
         android:layout_marginEnd="10dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/tv_rv_virus_full_name_virus_quiz_list"
+            android:id="@+id/tv_virus_full_name_virus_quiz_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
