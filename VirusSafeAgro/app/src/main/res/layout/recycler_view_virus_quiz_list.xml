@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/img_movie_picture_search"
+        android:id="@+id/img_virus_picture_virus_quiz_list"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_vertical"
@@ -18,5 +18,54 @@
         android:maxWidth="100dp"
         android:maxHeight="100dp"
         android:src="@drawable/tylcv_item" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_rv_virus_full_name_virus_quiz_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:typeface="sans"
+            android:textColor="#000"
+            android:text="XXXX XXXX" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_take_quiz_virus_quiz_list"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="#000"
+                android:text="@string/recycler_view_quiz_button"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_view_content_virus_quiz_list"
+                android:layout_width="105dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="18dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/recycler_view_content_button"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                android:layout_marginStart="18dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </LinearLayout>
