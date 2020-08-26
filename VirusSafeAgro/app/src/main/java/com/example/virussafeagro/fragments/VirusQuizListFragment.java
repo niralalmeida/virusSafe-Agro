@@ -8,15 +8,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.adapters.VirusQuizListAdapter;
 import com.example.virussafeagro.entities.Virus;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
+import com.example.virussafeagro.viewModel.VirusQuizListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,8 @@ import java.util.List;
  */
 public class VirusQuizListFragment extends Fragment {
     private View view;
+
+    private VirusQuizListViewModel virusQuizListViewModel;
 
     private RecyclerView.LayoutManager layoutManager;
     private VirusQuizListAdapter virusQuizListAdapter;
@@ -47,6 +51,38 @@ public class VirusQuizListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        // initialize view model
+        this.initializeVirusQuizViewModel();
+        // find virus quiz list in new Thread
+        this.findVirusQuizListFromDB();
+        // observe Virus Quiz List Live Data
+        this.observeVirusQuizListLD();
+    }
+
+    private void initializeVirusQuizViewModel() {
+        this.virusQuizListViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizListViewModel.class);
+        this.virusQuizListViewModel.initiateTheContext(requireActivity());
+    }
+
+    private void findVirusQuizListFromDB() {
+        this.virusQuizListViewModel.processFindingVirusQuizList();
+    }
+
+    private void observeVirusQuizListLD() {
+        this.virusQuizListViewModel.getVirusQuizListLD().observe(getViewLifecycleOwner(), resultVirusQuizList -> {
+            if ((resultVirusQuizList != null) && (resultVirusQuizList.size() != 0)) {
+                virusQuizList.clear();
+                virusQuizList = resultVirusQuizList;
+
+                // show RecyclerView
+                showVirusQuizListRecyclerView();
+                // set RecyclerView item take quiz button click listener
+                setRecyclerViewItemTakeQuizButtonClickListener();
+                // set RecyclerView item view content button click listener
+                setRecyclerViewItemViewContentButtonClickListener();
+            }
+        });
     }
 
     private void showVirusQuizListRecyclerView() {
