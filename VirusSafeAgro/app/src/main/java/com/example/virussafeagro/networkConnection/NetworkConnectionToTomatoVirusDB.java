@@ -6,7 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class NetworkConnectionToTomatoVirusDB {
-    private static final String BASE_URL = "http://10.0.2.2:46834/TomatoVirusDB/webresources/";
+    private static final String BASE_URL = "http://10.0.2.2:9642/TomatoVirusDB/webresources/";
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private OkHttpClient okHttpClient;
