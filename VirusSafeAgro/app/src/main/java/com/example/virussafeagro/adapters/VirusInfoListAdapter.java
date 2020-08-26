@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdapter.ViewHolder> {
     private List<Virus> virusList;
     private FragmentActivity fragmentActivity;
+    private VirusInfoListAdapter.VirusCardViewClickListener virusCardViewClickListener;
 
     public VirusInfoListAdapter(List<Virus> virusList, FragmentActivity fragmentActivity) {
         this.virusList = virusList;
@@ -25,12 +27,21 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        public CardView virusCardView;
         public TextView virusFullName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.virusCardView = itemView.findViewById(R.id.cv_each_virus_info_list);
             this.virusFullName = itemView.findViewById(R.id.tv_virus_full_name);
         }
+    }
+
+    public interface VirusCardViewClickListener{
+        void onVirusCardViewClick(int position);
+    }
+    public void setOnVirusCardViewClickListener(VirusInfoListAdapter.VirusCardViewClickListener virusCardViewClickListener){
+        this.virusCardViewClickListener = virusCardViewClickListener;
     }
 
     @NonNull
@@ -48,6 +59,10 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
         final Virus currentVirus = this.virusList.get(position);
 
         viewHolder.virusFullName.setText(currentVirus.getVirusFullName());
+
+        viewHolder.virusCardView.setOnClickListener(v ->{
+            virusCardViewClickListener.onVirusCardViewClick(position);
+        });
     }
 
     @Override

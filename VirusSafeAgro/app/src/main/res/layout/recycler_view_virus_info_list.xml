@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/cv_each_item_virus_info_list"
+        android:id="@+id/cv_each_virus_info_list"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="200dp"

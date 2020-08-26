@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.entities.Virus;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
 import java.util.ArrayList;
@@ -76,6 +77,8 @@ public class VirusInfoListFragment extends Fragment {
 
                 // show RecyclerView
                 showVirusInfoListRecyclerView();
+                // set RecyclerView item virus CardView click listener
+                setRecyclerViewItemVirusCardViewClickListener();
             }
         });
     }
@@ -87,6 +90,17 @@ public class VirusInfoListFragment extends Fragment {
         recyclerViewForVirusInfoList.setAdapter(virusInfoListAdapter);
         layoutManager = new LinearLayoutManager(requireActivity());
         recyclerViewForVirusInfoList.setLayoutManager(layoutManager);
+    }
+
+    private void setRecyclerViewItemVirusCardViewClickListener(){
+        virusInfoListAdapter.setOnVirusCardViewClickListener(position -> {
+            Bundle bundle = new Bundle();
+            Virus currentVirus = virusInfoList.get(position);
+            bundle.putParcelable("currentVirus", currentVirus);
+            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
+            virusDetailFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusDetailFragment);
+        });
     }
 
 }
