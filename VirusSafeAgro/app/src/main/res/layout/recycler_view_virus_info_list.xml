@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         card_view:cardBackgroundColor="#000"
-        card_view:cardCornerRadius="4dp">
+        card_view:cardCornerRadius="10dp">
 
         <TextView
             android:id="@+id/tv_virus_full_name"
