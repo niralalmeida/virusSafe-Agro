@@ -1,10 +1,10 @@
-package com.example.virussafeagro.model;
+package com.example.virussafeagro.entities;
 
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class VirusModel implements Parcelable {
+public class Virus implements Parcelable {
     private int virusId;
     private String virusFullName;
     private String virusAbbreviation;
@@ -14,10 +14,10 @@ public class VirusModel implements Parcelable {
     private String distribution;
     private Bitmap virusPicture;
 
-    public VirusModel() {
+    public Virus() {
     }
 
-    protected VirusModel(Parcel in) {
+    protected Virus(Parcel in) {
         virusId = in.readInt();
         virusFullName = in.readString();
         virusAbbreviation = in.readString();
@@ -45,15 +45,15 @@ public class VirusModel implements Parcelable {
         return 0;
     }
 
-    public static final Creator<VirusModel> CREATOR = new Creator<VirusModel>() {
+    public static final Creator<Virus> CREATOR = new Creator<Virus>() {
         @Override
-        public VirusModel createFromParcel(Parcel in) {
-            return new VirusModel(in);
+        public Virus createFromParcel(Parcel in) {
+            return new Virus(in);
         }
 
         @Override
-        public VirusModel[] newArray(int size) {
-            return new VirusModel[size];
+        public Virus[] newArray(int size) {
+            return new Virus[size];
         }
     };
 

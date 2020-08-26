@@ -11,15 +11,15 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.model.VirusModel;
+import com.example.virussafeagro.entities.Virus;
 
 import java.util.List;
 
 public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdapter.ViewHolder> {
-    private List<VirusModel> virusList;
+    private List<Virus> virusList;
     private FragmentActivity fragmentActivity;
 
-    public VirusInfoListAdapter(List<VirusModel> virusList, FragmentActivity fragmentActivity) {
+    public VirusInfoListAdapter(List<Virus> virusList, FragmentActivity fragmentActivity) {
         this.virusList = virusList;
         this.fragmentActivity = fragmentActivity;
     }
@@ -45,7 +45,7 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
 
     @Override
     public void onBindViewHolder(@NonNull VirusInfoListAdapter.ViewHolder viewHolder, int position) {
-        final VirusModel currentVirus = this.virusList.get(position);
+        final Virus currentVirus = this.virusList.get(position);
 
         viewHolder.virusFullName.setText(currentVirus.getVirusFullName());
     }

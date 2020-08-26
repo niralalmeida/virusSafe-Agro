@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusInfoListAdapter;
-import com.example.virussafeagro.model.VirusModel;
+import com.example.virussafeagro.entities.Virus;
 import com.example.virussafeagro.viewModel.VirusInfoViewModel;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class VirusInfoFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private VirusInfoListAdapter virusInfoListAdapter;
     private RecyclerView recyclerViewForVirusInfoList;
-    private List<VirusModel> virusInfoList = new ArrayList<>();
+    private List<Virus> virusInfoList = new ArrayList<>();
 
     public VirusInfoFragment() {
     }
