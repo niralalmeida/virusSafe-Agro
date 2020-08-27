@@ -49,8 +49,6 @@ public class VirusQuizQuestionViewModel extends ViewModel {
         @Override
         protected List[] doInBackground(Integer... integers) {
             List[] virusTwoTypeQuestionArray = new List[2];
-//            List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
-//            List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
             int virusId = integers[0];
             try {
                 String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);

@@ -1,5 +1,7 @@
 package com.example.virussafeagro.uitilities;
 
+import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
+import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
 
 import org.json.JSONArray;
@@ -36,9 +38,32 @@ public class JsonParser {
 
     public static List[] virusTwoTypeQuestionArrayJsonParser(String resultText) throws JSONException{
         List[] virusTwoTypeQuestionArray = new List[2];
+        List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
+        List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
         if(!resultText.equals("[]")){
+            JSONArray questionListJsonArray = new JSONArray(resultText);
+            int arrayLength = questionListJsonArray.length();
+            for (int i = 0; i < arrayLength; i++) {
+                JSONObject questionJsonObject = questionListJsonArray.getJSONObject(i);
 
+                int choiceQuestionId = questionJsonObject.getInt("choiceQuestionId");
+                String choiceQuestionContent = questionJsonObject.getString("choiceQuestionContent");
+                int choiceQuestionTypeNo = questionJsonObject.getInt("choiceQuestionType");
+                if (choiceQuestionTypeNo == 115){ // single choice
+                    SingleChoiceQuestionModel singleChoiceQuestionModel = new SingleChoiceQuestionModel();
+                    singleChoiceQuestionModel.setChoiceQuestionId(choiceQuestionId);
+                    singleChoiceQuestionModel.setSingleChoiceQuestionContent(choiceQuestionContent);
+                    singleChoiceQuestionModelList.add(singleChoiceQuestionModel);
+                } else { // multiple choice
+                    MultipleChoiceQuestionModel multipleChoiceQuestionModel = new MultipleChoiceQuestionModel();
+                    multipleChoiceQuestionModel.setChoiceQuestionId(choiceQuestionId);
+                    multipleChoiceQuestionModel.setMultipleChoiceQuestionContent(choiceQuestionContent);
+                    multipleChoiceQuestionModelList.add(multipleChoiceQuestionModel);
+                }
+            }
         }
+        virusTwoTypeQuestionArray[0] = singleChoiceQuestionModelList;
+        virusTwoTypeQuestionArray[1] = multipleChoiceQuestionModelList;
         return virusTwoTypeQuestionArray;
     }
 
