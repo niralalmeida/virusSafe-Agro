@@ -70,8 +70,6 @@ public class VirusQuizQuestionViewModel extends ViewModel {
     private List[] testViewModel(List[] virusTwoTypeQuestionArray) {
         List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
         List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
-        virusTwoTypeQuestionArray[0] = singleChoiceQuestionModelList;
-        virusTwoTypeQuestionArray[1] = multipleChoiceQuestionModelList;
 
         List<String> options1 = new ArrayList<>();
         options1.add("A. o1a");
@@ -84,25 +82,27 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                 options1,
                 "B",
                 2);
+
         List<String> options2 = new ArrayList<>();
-        options1.add("A. o2a");
-        options1.add("B. o2b");
-        options1.add("C. o2c ++");
+        options2.add("A. o2a");
+        options2.add("B. o2b");
+        options2.add("C. o2c ++");
         SingleChoiceQuestionModel s2 = new SingleChoiceQuestionModel(
                 2,
                 "s question content 2 : ",
-                options1,
+                options2,
                 "C",
                 2);
         singleChoiceQuestionModelList.add(s1);
         singleChoiceQuestionModelList.add(s2);
 
+
         List<String> m_options1 = new ArrayList<>();
-        options1.add("A. m1oa ++");
-        options1.add("B. m1ob ++");
-        options1.add("C. m1oc");
-        options1.add("D. m1od");
-        options1.add("E. m1oae ++");
+        m_options1.add("A. m1oa ++");
+        m_options1.add("B. m1ob ++");
+        m_options1.add("C. m1oc");
+        m_options1.add("D. m1od");
+        m_options1.add("E. m1oae ++");
         List<String> ans1 = new ArrayList<>();
         ans1.add("A");
         ans1.add("B");
@@ -113,10 +113,11 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                 m_options1,
                 ans1,
                 2);
+
         List<String> m_options2 = new ArrayList<>();
-        options1.add("A. m1oa");
-        options1.add("B. m1ob ++");
-        options1.add("C. m1oc ++");
+        m_options2.add("A. m1oa");
+        m_options2.add("B. m1ob ++");
+        m_options2.add("C. m1oc ++");
         List<String> ans2 = new ArrayList<>();
         ans1.add("B");
         ans1.add("C");
@@ -126,8 +127,11 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                 m_options2,
                 ans2,
                 2);
-        singleChoiceQuestionModelList.add(s1);
-        singleChoiceQuestionModelList.add(s2);
+        multipleChoiceQuestionModelList.add(m1);
+        multipleChoiceQuestionModelList.add(m2);
+
+        virusTwoTypeQuestionArray[0] = singleChoiceQuestionModelList;
+        virusTwoTypeQuestionArray[1] = multipleChoiceQuestionModelList;
 
         return virusTwoTypeQuestionArray;
     }

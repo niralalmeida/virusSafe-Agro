@@ -119,11 +119,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="#000"
                     android:text="@string/button_submit_quiz"
                     android:textColor="#fff"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
+                    android:layout_marginBottom="10dp"
                     android:visibility="invisible"/>
             </LinearLayout>
 

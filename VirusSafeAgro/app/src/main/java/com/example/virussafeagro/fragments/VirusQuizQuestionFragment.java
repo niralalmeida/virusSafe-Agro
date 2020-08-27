@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,15 +21,20 @@ import com.example.virussafeagro.adapters.SingleChoiceQuestionAdapter;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.viewModel.VirusQuizListViewModel;
+import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VirusQuizQuestionFragment extends Fragment {
     private View view;
     private VirusModel currentVirusModel;
 
-    private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList;
-    private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList;
+    private VirusQuizQuestionViewModel virusQuizQuestionViewModel;
+
+    private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
+    private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
 
     private TextView virusFullNameTitleTextView;
     private Button submitAnswerButton;
@@ -53,12 +59,48 @@ public class VirusQuizQuestionFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // initialize view model
+        this.initializeVirusQuizQuestionViewModel();
+        // find virus quiz list in new Thread
+        this.findVirusQuizQuestionsFromDB();
+        // observe VirusModel Quiz List Live Data
+        this.observeVirusTwoTypeQuestionArrayLD();
     }
 
     // bind virus full name to the title
     private void initializeViews() {
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
+        this.submitAnswerButton = view.findViewById(R.id.btn_submit_answer_virus_quiz_question);
+    }
+
+    private void initializeVirusQuizQuestionViewModel() {
+        this.virusQuizQuestionViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizQuestionViewModel.class);
+        this.virusQuizQuestionViewModel.initiateTheContext(requireActivity());
+    }
+
+    private void findVirusQuizQuestionsFromDB() {
+        this.virusQuizQuestionViewModel.processFindingVirusQuizQuestions();
+    }
+
+    private void observeVirusTwoTypeQuestionArrayLD() {
+        this.virusQuizQuestionViewModel.getVirusTwoTypeQuestionArrayLD().observe(getViewLifecycleOwner(), resultVirusTwoTypeQuestionArray -> {
+            if (resultVirusTwoTypeQuestionArray[0] != null){
+                singleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[0];
+
+                showVirusQuizSingleChoiceQuestions();
+
+            }
+            if (resultVirusTwoTypeQuestionArray[1] != null){
+                multipleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[1];
+
+                showVirusQuizMultipleChoiceQuestions();
+            }
+            if (singleChoiceQuestionModelList.size() != 0 || multipleChoiceQuestionModelList.size() != 0) {
+                submitAnswerButton.setVisibility(View.VISIBLE);
+            }
+
+        });
     }
 
     private void showVirusQuizSingleChoiceQuestions() {

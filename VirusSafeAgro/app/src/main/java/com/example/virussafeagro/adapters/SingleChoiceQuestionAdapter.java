@@ -56,7 +56,7 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
 
         // bind view holder for single question options
         List<String> options = singleChoiceQuestionModel.getSingleChoiceQuestionOptionList();
-        for(int i = 0; i < options.size(); i++){
+        for(int i = 0; i < options.size(); i++) {
             // get option
             String option = options.get(i);
             // create new RadioButton
@@ -75,8 +75,10 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
             radioButton.setOnClickListener(view -> {
 
             });
+
             // add RadioButton into RadioGroup
             viewHolder.singleChoiceQuestionOptionsRadioGroup.addView(radioButton);
+
         }
     }
 
