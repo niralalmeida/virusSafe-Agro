@@ -79,7 +79,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
 
     private void findVirusQuizQuestionsFromDB() {
-        this.virusQuizQuestionViewModel.processFindingVirusQuizQuestions();
+        this.virusQuizQuestionViewModel.processFindingVirusQuizQuestions(this.currentVirusModel.getVirusId());
     }
 
     private void observeVirusTwoTypeQuestionArrayLD() {

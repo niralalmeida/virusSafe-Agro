@@ -36,18 +36,19 @@ public class VirusQuizQuestionViewModel extends ViewModel {
         return this.virusTwoTypeQuestionArrayLD;
     }
 
-    public void processFindingVirusQuizQuestions() {
+    public void processFindingVirusQuizQuestions(int virusId) {
         try {
             FindVirusQuizQuestionsAsyncTask findVirusQuizQuestionsAsyncTask = new FindVirusQuizQuestionsAsyncTask();
-            findVirusQuizQuestionsAsyncTask.execute();
+            findVirusQuizQuestionsAsyncTask.execute(virusId);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private class FindVirusQuizQuestionsAsyncTask extends AsyncTask<Void, Void, List[]> {
+    private class FindVirusQuizQuestionsAsyncTask extends AsyncTask<Integer, Void, List[]> {
         @Override
-        protected List[] doInBackground(Void... voids) {
+        protected List[] doInBackground(Integer... integers) {
             List[] virusTwoTypeQuestionArray = new List[2];
+            int virusId = integers[0];
             // test
             virusTwoTypeQuestionArray = testViewModel(virusTwoTypeQuestionArray);
             try {
@@ -67,6 +68,7 @@ public class VirusQuizQuestionViewModel extends ViewModel {
         }
     }
 
+    // test
     private List[] testViewModel(List[] virusTwoTypeQuestionArray) {
         List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
         List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
