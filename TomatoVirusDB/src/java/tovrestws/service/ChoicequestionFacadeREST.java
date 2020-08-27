@@ -100,8 +100,8 @@ public class ChoicequestionFacadeREST extends AbstractFacade<Choicequestion> {
             @PathParam("virusId") Integer virusId){
         TypedQuery dquery = 
                 em.createQuery(
-                        "SELECT cq.choiceQuestionId, cq.choiceQuestionContent, cq.choiceQuestionType"
-                        + "FROM Choicequestion cq"
+                        "SELECT cq.choiceQuestionId, cq.choiceQuestionContent, cq.choiceQuestionType "
+                        + "FROM Choicequestion cq "
                         + "WHERE cq.choiceQuestionVirusId = :virusId",
                         Object.class);
         dquery.setParameter("virusId", virusId);
