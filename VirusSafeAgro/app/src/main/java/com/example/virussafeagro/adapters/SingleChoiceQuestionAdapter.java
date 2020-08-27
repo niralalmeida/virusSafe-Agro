@@ -61,10 +61,12 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
             String option = options.get(i);
             // create new RadioButton
             RadioButton radioButton = new RadioButton(fragmentActivity);
+
             // Create a LayoutParams from RadioGroup
             RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
             // set margins
             layoutParams.setMargins(5, 0, 0, 0);
+
             // set button padding
             radioButton.setPadding(10, 0, 0, 0);
             // set button text
@@ -73,6 +75,8 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
             radioButton.setOnClickListener(view -> {
 
             });
+            // add RadioButton into RadioGroup
+            viewHolder.singleChoiceQuestionOptionsRadioGroup.addView(radioButton);
         }
     }
 
