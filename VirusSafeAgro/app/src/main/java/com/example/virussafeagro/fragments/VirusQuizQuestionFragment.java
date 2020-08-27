@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.adapters.MultipleChoiceQuestionAdapter;
 import com.example.virussafeagro.adapters.SingleChoiceQuestionAdapter;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
@@ -67,5 +68,14 @@ public class VirusQuizQuestionFragment extends Fragment {
         recyclerViewForSingleChoiceQuestionModelList.setAdapter(singleChoiceQuestionAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity());
         recyclerViewForSingleChoiceQuestionModelList.setLayoutManager(layoutManager);
+    }
+
+    private void showVirusQuizMultipleChoiceQuestions() {
+        MultipleChoiceQuestionAdapter multipleChoiceQuestionAdapter = new MultipleChoiceQuestionAdapter(multipleChoiceQuestionModelList, requireActivity());
+        RecyclerView recyclerViewForMultipleChoiceQuestionModelList = view.findViewById(R.id.rv_virus_multiple_choice_quiz_question);
+        recyclerViewForMultipleChoiceQuestionModelList.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
+        recyclerViewForMultipleChoiceQuestionModelList.setAdapter(multipleChoiceQuestionAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity());
+        recyclerViewForMultipleChoiceQuestionModelList.setLayoutManager(layoutManager);
     }
 }
