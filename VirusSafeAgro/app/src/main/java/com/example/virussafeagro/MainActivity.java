@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.virussafeagro.fragments.VirusIdentificationFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        hideHomePagePicture();
         switch (id) {
             case R.id.ic_virus_info:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoListFragment());
@@ -44,5 +47,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
         }
         return true;
+    }
+
+    private void hideHomePagePicture(){
+        LinearLayout homeLinearLayout = findViewById(R.id.ll_home_picture);
+        homeLinearLayout.setVisibility(View.INVISIBLE);
     }
 }
