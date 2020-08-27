@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
+import com.example.virussafeagro.uitilities.JsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,14 +49,12 @@ public class VirusQuizQuestionViewModel extends ViewModel {
         @Override
         protected List[] doInBackground(Integer... integers) {
             List[] virusTwoTypeQuestionArray = new List[2];
+//            List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
+//            List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
             int virusId = integers[0];
-            // test
-            virusTwoTypeQuestionArray = testViewModel(virusTwoTypeQuestionArray);
             try {
-//                String resultText = networkConnectionToTomatoVirusDB.getAllQuestions();
-//                List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
-//                List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
-//                virusTwoTypeQuestionArray = JsonParser.virusInfoListJsonParser(resultText);
+                String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
+                virusTwoTypeQuestionArray = JsonParser.virusTwoTypeQuestionArrayJsonParser(resultTextForQuestions);
             } catch (Exception e) {
                 e.printStackTrace();
             }

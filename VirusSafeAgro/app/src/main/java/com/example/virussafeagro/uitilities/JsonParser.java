@@ -34,4 +34,12 @@ public class JsonParser {
         return virusModelInfoList;
     }
 
+    public static List[] virusTwoTypeQuestionArrayJsonParser(String resultText) throws JSONException{
+        List[] virusTwoTypeQuestionArray = new List[2];
+        if(!resultText.equals("[]")){
+
+        }
+        return virusTwoTypeQuestionArray;
+    }
+
 }

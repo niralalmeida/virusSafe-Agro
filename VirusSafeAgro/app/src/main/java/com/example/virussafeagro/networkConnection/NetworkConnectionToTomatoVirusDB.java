@@ -27,4 +27,17 @@ public class NetworkConnectionToTomatoVirusDB {
         }
         return resultText;
     }
+
+    public String getAllQuestions(int virusId) {
+        String resultText = "";
+        String searchURL = BASE_URL + "tovrestws.choicequestion/quizQuestion/findAllQuestionsByVirusId/" + virusId;
+        Request request = new Request.Builder().url(searchURL).build();
+        try {
+            Response response = this.okHttpClient.newCall(request).execute();
+            resultText = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultText;
+    }
 }
