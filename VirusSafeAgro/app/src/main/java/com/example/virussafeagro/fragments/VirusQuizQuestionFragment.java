@@ -21,7 +21,6 @@ import com.example.virussafeagro.adapters.SingleChoiceQuestionAdapter;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
-import com.example.virussafeagro.viewModel.VirusQuizListViewModel;
 import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 
 import java.util.ArrayList;
