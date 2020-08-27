@@ -12,17 +12,17 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.entities.Virus;
+import com.example.virussafeagro.models.VirusModel;
 
 import java.util.List;
 
 public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdapter.ViewHolder> {
-    private List<Virus> virusList;
+    private List<VirusModel> virusModelList;
     private FragmentActivity fragmentActivity;
     private VirusInfoListAdapter.VirusCardViewClickListener virusCardViewClickListener;
 
-    public VirusInfoListAdapter(List<Virus> virusList, FragmentActivity fragmentActivity) {
-        this.virusList = virusList;
+    public VirusInfoListAdapter(List<VirusModel> virusModelList, FragmentActivity fragmentActivity) {
+        this.virusModelList = virusModelList;
         this.fragmentActivity = fragmentActivity;
     }
 
@@ -56,9 +56,9 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
 
     @Override
     public void onBindViewHolder(@NonNull VirusInfoListAdapter.ViewHolder viewHolder, int position) {
-        final Virus currentVirus = this.virusList.get(position);
+        final VirusModel currentVirusModel = this.virusModelList.get(position);
 
-        viewHolder.virusFullName.setText(currentVirus.getVirusFullName());
+        viewHolder.virusFullName.setText(currentVirusModel.getVirusFullName());
 
         viewHolder.virusCardView.setOnClickListener(v ->{
             virusCardViewClickListener.onVirusCardViewClick(position);
@@ -67,7 +67,7 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
 
     @Override
     public int getItemCount() {
-        return this.virusList.size();
+        return this.virusModelList.size();
     }
 
 }

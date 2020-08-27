@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/fragment_virus_single_choice" />
+                android:text="@string/fragment_virus_multiple_choice" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_virus_multiple_choice_quiz_question"
                 android:layout_width="match_parent"

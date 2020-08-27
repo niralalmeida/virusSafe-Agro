@@ -1,10 +1,10 @@
-package com.example.virussafeagro.entities;
+package com.example.virussafeagro.models;
 
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Virus implements Parcelable {
+public class VirusModel implements Parcelable {
     private int virusId;
     private String virusFullName;
     private String virusAbbreviation;
@@ -14,10 +14,10 @@ public class Virus implements Parcelable {
     private String distribution;
     private Bitmap virusPicture;
 
-    public Virus() {
+    public VirusModel() {
     }
 
-    public Virus(int virusId, String virusFullName, String virusAbbreviation, String symptoms, String spread, String prevention, String distribution, Bitmap virusPicture) {
+    public VirusModel(int virusId, String virusFullName, String virusAbbreviation, String symptoms, String spread, String prevention, String distribution, Bitmap virusPicture) {
         this.virusId = virusId;
         this.virusFullName = virusFullName;
         this.virusAbbreviation = virusAbbreviation;
@@ -28,7 +28,7 @@ public class Virus implements Parcelable {
         this.virusPicture = virusPicture;
     }
 
-    protected Virus(Parcel in) {
+    protected VirusModel(Parcel in) {
         virusId = in.readInt();
         virusFullName = in.readString();
         virusAbbreviation = in.readString();
@@ -56,15 +56,15 @@ public class Virus implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Virus> CREATOR = new Creator<Virus>() {
+    public static final Creator<VirusModel> CREATOR = new Creator<VirusModel>() {
         @Override
-        public Virus createFromParcel(Parcel in) {
-            return new Virus(in);
+        public VirusModel createFromParcel(Parcel in) {
+            return new VirusModel(in);
         }
 
         @Override
-        public Virus[] newArray(int size) {
-            return new Virus[size];
+        public VirusModel[] newArray(int size) {
+            return new VirusModel[size];
         }
     };
 

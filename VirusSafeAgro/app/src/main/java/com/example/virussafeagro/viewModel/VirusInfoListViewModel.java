@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.virussafeagro.entities.Virus;
+import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
 import com.example.virussafeagro.uitilities.JsonParser;
 
@@ -18,7 +18,7 @@ public class VirusInfoListViewModel extends ViewModel {
     private Context context;
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
 
-    private MutableLiveData<List<Virus>> virusInfoListLD;
+    private MutableLiveData<List<VirusModel>> virusInfoListLD;
 
     public VirusInfoListViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
@@ -29,10 +29,10 @@ public class VirusInfoListViewModel extends ViewModel {
         this.context = context;
     }
 
-    public void setVirusInfoListLD(List<Virus> virusInfoList){
-        this.virusInfoListLD.setValue(virusInfoList);
+    public void setVirusInfoListLD(List<VirusModel> virusModelInfoList){
+        this.virusInfoListLD.setValue(virusModelInfoList);
     }
-    public LiveData<List<Virus>> getVirusInfoListLD(){
+    public LiveData<List<VirusModel>> getVirusInfoListLD(){
         return this.virusInfoListLD;
     }
 
@@ -44,22 +44,22 @@ public class VirusInfoListViewModel extends ViewModel {
             e.printStackTrace();
         }
     }
-    private class FindVirusInfoListAsyncTask extends AsyncTask<Void, Void, List<Virus>> {
+    private class FindVirusInfoListAsyncTask extends AsyncTask<Void, Void, List<VirusModel>> {
         @Override
-        protected List<Virus> doInBackground(Void... voids) {
-            List<Virus> virusInfoList = new ArrayList<>();
+        protected List<VirusModel> doInBackground(Void... voids) {
+            List<VirusModel> virusModelInfoList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToTomatoVirusDB.getAllVirus();
-                virusInfoList = JsonParser.virusInfoListJsonParser(resultText);
+                virusModelInfoList = JsonParser.virusInfoListJsonParser(resultText);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return virusInfoList;
+            return virusModelInfoList;
         }
 
         @Override
-        protected void onPostExecute(List<Virus> resultVirusInfoList) {
-            setVirusInfoListLD(resultVirusInfoList);
+        protected void onPostExecute(List<VirusModel> resultVirusModelInfoList) {
+            setVirusInfoListLD(resultVirusModelInfoList);
         }
     }
 }

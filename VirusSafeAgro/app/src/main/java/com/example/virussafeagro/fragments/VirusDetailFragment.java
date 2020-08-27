@@ -12,11 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.entities.Virus;
+import com.example.virussafeagro.models.VirusModel;
 
 public class VirusDetailFragment extends Fragment {
     private View view;
-    private Virus currentVirus;
+    private VirusModel currentVirusModel;
 
     private TextView virusFullNameTextView;
     private TextView virusAbbreviationTextView;
@@ -34,10 +34,10 @@ public class VirusDetailFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_virus_detail, container, false);
         this.initializeViews();
 
-        // get passed bundle and the Virus within it
+        // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();
         assert bundle != null;
-        this.currentVirus = bundle.getParcelable("currentVirus");
+        this.currentVirusModel = bundle.getParcelable("currentVirusModel");
 
         return this.view;
     }
@@ -60,12 +60,12 @@ public class VirusDetailFragment extends Fragment {
     }
 
     private void showVirusDetails() {
-        this.virusFullNameTextView.setText(this.currentVirus.getVirusFullName());
-        this.virusAbbreviationTextView.setText(this.currentVirus.getVirusAbbreviation());
-        this.symptomsTextView.setText(this.currentVirus.getSymptoms());
-        this.spreadTextView.setText(this.currentVirus.getSpread());
-        this.preventionTextView.setText(this.currentVirus.getPrevention());
-        this.distributionTextView.setText(this.currentVirus.getDistribution());
+        this.virusFullNameTextView.setText(this.currentVirusModel.getVirusFullName());
+        this.virusAbbreviationTextView.setText(this.currentVirusModel.getVirusAbbreviation());
+        this.symptomsTextView.setText(this.currentVirusModel.getSymptoms());
+        this.spreadTextView.setText(this.currentVirusModel.getSpread());
+        this.preventionTextView.setText(this.currentVirusModel.getPrevention());
+        this.distributionTextView.setText(this.currentVirusModel.getDistribution());
 
 //        this.virusPictureImageView.setImageBitmap();
     }

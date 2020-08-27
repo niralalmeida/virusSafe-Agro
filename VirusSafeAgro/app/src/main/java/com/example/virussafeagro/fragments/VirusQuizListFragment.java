@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusQuizListAdapter;
-import com.example.virussafeagro.entities.Virus;
+import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusQuizListViewModel;
 
@@ -34,7 +34,7 @@ public class VirusQuizListFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private VirusQuizListAdapter virusQuizListAdapter;
     private RecyclerView recyclerViewForVirusQuizList;
-    private List<Virus> virusQuizList = new ArrayList<>();
+    private List<VirusModel> virusModelQuizList = new ArrayList<>();
 
     public VirusQuizListFragment() {
     }
@@ -55,7 +55,7 @@ public class VirusQuizListFragment extends Fragment {
         this.initializeVirusQuizViewModel();
         // find virus quiz list in new Thread
         this.findVirusQuizListFromDB();
-        // observe Virus Quiz List Live Data
+        // observe VirusModel Quiz List Live Data
         this.observeVirusQuizListLD();
     }
 
@@ -71,8 +71,8 @@ public class VirusQuizListFragment extends Fragment {
     private void observeVirusQuizListLD() {
         this.virusQuizListViewModel.getVirusQuizListLD().observe(getViewLifecycleOwner(), resultVirusQuizList -> {
             if ((resultVirusQuizList != null) && (resultVirusQuizList.size() != 0)) {
-                virusQuizList.clear();
-                virusQuizList = resultVirusQuizList;
+                virusModelQuizList.clear();
+                virusModelQuizList = resultVirusQuizList;
 
                 // show RecyclerView
                 showVirusQuizListRecyclerView();
@@ -85,7 +85,7 @@ public class VirusQuizListFragment extends Fragment {
     }
 
     private void showVirusQuizListRecyclerView() {
-        virusQuizListAdapter = new VirusQuizListAdapter(virusQuizList, requireActivity());
+        virusQuizListAdapter = new VirusQuizListAdapter(virusModelQuizList, requireActivity());
         recyclerViewForVirusQuizList = view.findViewById(R.id.rv_virus_quiz);
         recyclerViewForVirusQuizList.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         recyclerViewForVirusQuizList.setAdapter(virusQuizListAdapter);
@@ -96,8 +96,8 @@ public class VirusQuizListFragment extends Fragment {
     private void setRecyclerViewItemTakeQuizButtonClickListener(){
         virusQuizListAdapter.setOnVirusQuizButtonClickListener(position -> {
             Bundle bundle = new Bundle();
-            Virus currentVirus = virusQuizList.get(position);
-            bundle.putParcelable("currentVirus", currentVirus);
+            VirusModel currentVirusModel = virusModelQuizList.get(position);
+            bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
             virusQuizQuestionFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizQuestionFragment);
@@ -107,8 +107,8 @@ public class VirusQuizListFragment extends Fragment {
     private void setRecyclerViewItemViewContentButtonClickListener(){
         virusQuizListAdapter.setOnVirusViewContentButtonClickListener(position -> {
             Bundle bundle = new Bundle();
-            Virus currentVirus = virusQuizList.get(position);
-            bundle.putParcelable("currentVirus", currentVirus);
+            VirusModel currentVirusModel = virusModelQuizList.get(position);
+            bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
             virusDetailFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusDetailFragment);

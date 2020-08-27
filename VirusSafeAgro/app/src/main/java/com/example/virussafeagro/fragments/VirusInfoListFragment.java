@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusInfoListAdapter;
-import com.example.virussafeagro.entities.Virus;
+import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
@@ -35,7 +35,7 @@ public class VirusInfoListFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private VirusInfoListAdapter virusInfoListAdapter;
     private RecyclerView recyclerViewForVirusInfoList;
-    private List<Virus> virusInfoList = new ArrayList<>();
+    private List<VirusModel> virusModelInfoList = new ArrayList<>();
 
     public VirusInfoListFragment() {
     }
@@ -56,7 +56,7 @@ public class VirusInfoListFragment extends Fragment {
         this.initializeVirusInfoViewModel();
         // find virus info list in new Thread
         this.findVirusInfoListFromDB();
-        // observe Virus Info List Live Data
+        // observe VirusModel Info List Live Data
         this.observeVirusInfoListLD();
     }
 
@@ -72,8 +72,8 @@ public class VirusInfoListFragment extends Fragment {
     private void observeVirusInfoListLD() {
         this.virusInfoListViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
             if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
-                virusInfoList.clear();
-                virusInfoList = resultVirusInfoList;
+                virusModelInfoList.clear();
+                virusModelInfoList = resultVirusInfoList;
 
                 // show RecyclerView
                 showVirusInfoListRecyclerView();
@@ -84,7 +84,7 @@ public class VirusInfoListFragment extends Fragment {
     }
 
     private void showVirusInfoListRecyclerView() {
-        virusInfoListAdapter = new VirusInfoListAdapter(virusInfoList, requireActivity());
+        virusInfoListAdapter = new VirusInfoListAdapter(virusModelInfoList, requireActivity());
         recyclerViewForVirusInfoList = view.findViewById(R.id.rv_virus_info);
         recyclerViewForVirusInfoList.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         recyclerViewForVirusInfoList.setAdapter(virusInfoListAdapter);
@@ -95,8 +95,8 @@ public class VirusInfoListFragment extends Fragment {
     private void setRecyclerViewItemVirusCardViewClickListener(){
         virusInfoListAdapter.setOnVirusCardViewClickListener(position -> {
             Bundle bundle = new Bundle();
-            Virus currentVirus = virusInfoList.get(position);
-            bundle.putParcelable("currentVirus", currentVirus);
+            VirusModel currentVirusModel = virusModelInfoList.get(position);
+            bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
             virusDetailFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusDetailFragment);

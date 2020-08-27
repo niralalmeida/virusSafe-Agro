@@ -12,18 +12,18 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.entities.Virus;
+import com.example.virussafeagro.models.VirusModel;
 
 import java.util.List;
 
 public class VirusQuizListAdapter extends RecyclerView.Adapter<VirusQuizListAdapter.ViewHolder> {
-    private List<Virus> virusList;
+    private List<VirusModel> virusModelList;
     private FragmentActivity fragmentActivity;
     private VirusQuizListAdapter.VirusQuizButtonClickListener virusQuizButtonClickListener;
     private VirusQuizListAdapter.VirusViewContentButtonClickListener virusViewContentButtonClickListener;
 
-    public VirusQuizListAdapter(List<Virus> virusList, FragmentActivity fragmentActivity) {
-        this.virusList = virusList;
+    public VirusQuizListAdapter(List<VirusModel> virusModelList, FragmentActivity fragmentActivity) {
+        this.virusModelList = virusModelList;
         this.fragmentActivity = fragmentActivity;
     }
 
@@ -66,9 +66,9 @@ public class VirusQuizListAdapter extends RecyclerView.Adapter<VirusQuizListAdap
 
     @Override
     public void onBindViewHolder(@NonNull VirusQuizListAdapter.ViewHolder viewHolder, int position) {
-        final Virus currentVirus = this.virusList.get(position);
+        final VirusModel currentVirusModel = this.virusModelList.get(position);
 
-        viewHolder.virusFullName.setText(currentVirus.getVirusFullName());
+        viewHolder.virusFullName.setText(currentVirusModel.getVirusFullName());
 
         viewHolder.takeQuizButton.setOnClickListener(v ->{
             virusQuizButtonClickListener.onVirusQuizButtonClick(position);
@@ -81,6 +81,6 @@ public class VirusQuizListAdapter extends RecyclerView.Adapter<VirusQuizListAdap
 
     @Override
     public int getItemCount() {
-        return this.virusList.size();
+        return this.virusModelList.size();
     }
 }

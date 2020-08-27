@@ -10,11 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.entities.Virus;
+import com.example.virussafeagro.models.VirusModel;
 
 public class VirusQuizQuestionFragment extends Fragment {
     private View view;
-    private Virus currentVirus;
+    private VirusModel currentVirusModel;
 
     @Nullable
     @Override
@@ -23,10 +23,10 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_virus_quiz_question, container, false);
         this.initializeViews();
 
-        // get passed bundle and the Virus within it
+        // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();
         assert bundle != null;
-        this.currentVirus = bundle.getParcelable("currentVirus");
+        this.currentVirusModel = bundle.getParcelable("currentVirusModel");
 
         return this.view;
     }

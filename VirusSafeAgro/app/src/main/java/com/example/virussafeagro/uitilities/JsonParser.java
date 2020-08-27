@@ -1,6 +1,6 @@
 package com.example.virussafeagro.uitilities;
 
-import com.example.virussafeagro.entities.Virus;
+import com.example.virussafeagro.models.VirusModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,8 +11,8 @@ import java.util.List;
 
 public class JsonParser {
 
-    public static List<Virus> virusInfoListJsonParser(String resultText) throws JSONException {
-        List<Virus> virusInfoList = new ArrayList<>();
+    public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
+        List<VirusModel> virusModelInfoList = new ArrayList<>();
         if(!resultText.equals("[]")){
             JSONArray virusInfoListJsonArray = new JSONArray(resultText);
             int listSize = virusInfoListJsonArray.length();
@@ -27,11 +27,11 @@ public class JsonParser {
                 String prevention = virusJsonObject.getString("prevention");
                 String distribution = virusJsonObject.getString("distribution");
 
-                Virus virus = new Virus(virusId, virusFullName, virusAbbreviation, symptoms, spread, prevention, distribution, null);
-                virusInfoList.add(virus);
+                VirusModel virusModel = new VirusModel(virusId, virusFullName, virusAbbreviation, symptoms, spread, prevention, distribution, null);
+                virusModelInfoList.add(virusModel);
             }
         }
-        return virusInfoList;
+        return virusModelInfoList;
     }
 
 }
