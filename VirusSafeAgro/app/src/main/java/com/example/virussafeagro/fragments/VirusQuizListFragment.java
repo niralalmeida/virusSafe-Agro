@@ -17,7 +17,6 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusQuizListAdapter;
 import com.example.virussafeagro.entities.Virus;
 import com.example.virussafeagro.uitilities.FragmentOperator;
-import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 import com.example.virussafeagro.viewModel.VirusQuizListViewModel;
 
 import java.util.ArrayList;
@@ -99,9 +98,9 @@ public class VirusQuizListFragment extends Fragment {
             Bundle bundle = new Bundle();
             Virus currentVirus = virusQuizList.get(position);
             bundle.putParcelable("currentVirus", currentVirus);
-//            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
-//            virusDetailFragment.setArguments(bundle);
-//            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusDetailFragment);
+            VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
+            virusQuizQuestionFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizQuestionFragment);
         });
     }
 
