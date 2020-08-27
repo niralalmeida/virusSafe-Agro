@@ -22,6 +22,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="20sp"
                 android:text="@string/fragment_virus_single_choice" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_virus_single_choice_quiz_question"
@@ -29,18 +32,12 @@
                 android:layout_height="match_parent"
                 android:scrollbars="vertical" />
 
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/ll_virus_multiple_choice_quiz_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="20sp"
                 android:text="@string/fragment_virus_multiple_choice" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_virus_multiple_choice_quiz_question"
