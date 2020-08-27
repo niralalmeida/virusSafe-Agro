@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.List;
 
 public class SingleChoiceQuestionModel implements Parcelable {
-    private int singleChoiceQuestionId;
+    private int choiceQuestionId;
     private String singleChoiceQuestionContent;
     private List<String> singleChoiceQuestionOptionList;
     private String singleChoiceQuestionAnswer;
@@ -15,8 +15,8 @@ public class SingleChoiceQuestionModel implements Parcelable {
     public SingleChoiceQuestionModel() {
     }
 
-    public SingleChoiceQuestionModel(int singleChoiceQuestionId, String singleChoiceQuestionContent, List<String> singleChoiceQuestionOptionList, String singleChoiceQuestionAnswer, int singleChoiceQuestionVirusId) {
-        this.singleChoiceQuestionId = singleChoiceQuestionId;
+    public SingleChoiceQuestionModel(int choiceQuestionId, String singleChoiceQuestionContent, List<String> singleChoiceQuestionOptionList, String singleChoiceQuestionAnswer, int singleChoiceQuestionVirusId) {
+        this.choiceQuestionId = choiceQuestionId;
         this.singleChoiceQuestionContent = singleChoiceQuestionContent;
         this.singleChoiceQuestionOptionList = singleChoiceQuestionOptionList;
         this.singleChoiceQuestionAnswer = singleChoiceQuestionAnswer;
@@ -24,7 +24,7 @@ public class SingleChoiceQuestionModel implements Parcelable {
     }
 
     protected SingleChoiceQuestionModel(Parcel in) {
-        singleChoiceQuestionId = in.readInt();
+        choiceQuestionId = in.readInt();
         singleChoiceQuestionContent = in.readString();
         singleChoiceQuestionOptionList = in.createStringArrayList();
         singleChoiceQuestionAnswer = in.readString();
@@ -33,7 +33,7 @@ public class SingleChoiceQuestionModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(singleChoiceQuestionId);
+        dest.writeInt(choiceQuestionId);
         dest.writeString(singleChoiceQuestionContent);
         dest.writeStringList(singleChoiceQuestionOptionList);
         dest.writeString(singleChoiceQuestionAnswer);
@@ -57,12 +57,12 @@ public class SingleChoiceQuestionModel implements Parcelable {
         }
     };
 
-    public int getSingleChoiceQuestionId() {
-        return singleChoiceQuestionId;
+    public int getChoiceQuestionId() {
+        return choiceQuestionId;
     }
 
-    public void setSingleChoiceQuestionId(int singleChoiceQuestionId) {
-        this.singleChoiceQuestionId = singleChoiceQuestionId;
+    public void setChoiceQuestionId(int choiceQuestionId) {
+        this.choiceQuestionId = choiceQuestionId;
     }
 
     public String getSingleChoiceQuestionContent() {

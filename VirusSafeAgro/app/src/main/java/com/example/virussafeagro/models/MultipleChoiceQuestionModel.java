@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.List;
 
 public class MultipleChoiceQuestionModel implements Parcelable {
-    private int multipleChoiceQuestionId;
+    private int choiceQuestionId;
     private String multipleChoiceQuestionContent;
     private List<String> multipleChoiceQuestionOptionList;
     private List<String> multipleChoiceQuestionAnswerList;
@@ -15,8 +15,8 @@ public class MultipleChoiceQuestionModel implements Parcelable {
     public MultipleChoiceQuestionModel() {
     }
 
-    public MultipleChoiceQuestionModel(int multipleChoiceQuestionId, String multipleChoiceQuestionContent, List<String> multipleChoiceQuestionOptionList, List<String> multipleChoiceQuestionAnswerList, int multipleChoiceQuestionVirusId) {
-        this.multipleChoiceQuestionId = multipleChoiceQuestionId;
+    public MultipleChoiceQuestionModel(int choiceQuestionId, String multipleChoiceQuestionContent, List<String> multipleChoiceQuestionOptionList, List<String> multipleChoiceQuestionAnswerList, int multipleChoiceQuestionVirusId) {
+        this.choiceQuestionId = choiceQuestionId;
         this.multipleChoiceQuestionContent = multipleChoiceQuestionContent;
         this.multipleChoiceQuestionOptionList = multipleChoiceQuestionOptionList;
         this.multipleChoiceQuestionAnswerList = multipleChoiceQuestionAnswerList;
@@ -24,7 +24,7 @@ public class MultipleChoiceQuestionModel implements Parcelable {
     }
 
     protected MultipleChoiceQuestionModel(Parcel in) {
-        multipleChoiceQuestionId = in.readInt();
+        choiceQuestionId = in.readInt();
         multipleChoiceQuestionContent = in.readString();
         multipleChoiceQuestionOptionList = in.createStringArrayList();
         multipleChoiceQuestionAnswerList = in.createStringArrayList();
@@ -33,7 +33,7 @@ public class MultipleChoiceQuestionModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(multipleChoiceQuestionId);
+        dest.writeInt(choiceQuestionId);
         dest.writeString(multipleChoiceQuestionContent);
         dest.writeStringList(multipleChoiceQuestionOptionList);
         dest.writeStringList(multipleChoiceQuestionAnswerList);
@@ -57,12 +57,12 @@ public class MultipleChoiceQuestionModel implements Parcelable {
         }
     };
 
-    public int getMultipleChoiceQuestionId() {
-        return multipleChoiceQuestionId;
+    public int getChoiceQuestionId() {
+        return choiceQuestionId;
     }
 
-    public void setMultipleChoiceQuestionId(int multipleChoiceQuestionId) {
-        this.multipleChoiceQuestionId = multipleChoiceQuestionId;
+    public void setChoiceQuestionId(int choiceQuestionId) {
+        this.choiceQuestionId = choiceQuestionId;
     }
 
     public String getMultipleChoiceQuestionContent() {
