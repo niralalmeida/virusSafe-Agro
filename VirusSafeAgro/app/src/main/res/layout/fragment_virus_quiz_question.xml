@@ -6,6 +6,52 @@
     android:orientation="vertical"
     tools:context=".fragments.VirusQuizQuestionFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@android:style/TextAppearance.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:textColor="#FAFAFA"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:text="Quiz - "/>
+
+                <TextView
+                    android:id="@+id/tv_title_virus_full_name_quiz_question"
+                    style="@android:style/TextAppearance.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:textColor="#FAFAFA"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:text="XXXX XXXX"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,26 +65,44 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:text="@string/fragment_virus_single_choice" />
+                android:orientation="horizontal"
+                android:background="#E5E8E8">
+
+                <TextView
+                    android:id="@+id/tv_single_question_title_quiz_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:text="@string/fragment_virus_single_choice" />
+
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_virus_single_choice_quiz_question"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:text="@string/fragment_virus_multiple_choice" />
+                android:orientation="horizontal"
+                android:background="#E5E8E8">
+                <TextView
+                    android:id="@+id/tv_multiple_question_title_quiz_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:text="@string/fragment_virus_multiple_choice" />
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_virus_multiple_choice_quiz_question"
                 android:layout_width="match_parent"
@@ -59,7 +123,8 @@
                     android:text="@string/button_submit_quiz"
                     android:textColor="#fff"
                     android:paddingStart="20dp"
-                    android:paddingEnd="20dp"/>
+                    android:paddingEnd="20dp"
+                    android:visibility="invisible"/>
             </LinearLayout>
 
 
