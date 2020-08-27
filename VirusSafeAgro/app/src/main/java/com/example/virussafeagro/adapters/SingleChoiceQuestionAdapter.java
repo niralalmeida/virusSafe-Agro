@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -13,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
-import com.example.virussafeagro.models.VirusModel;
 
 import java.util.List;
 
@@ -54,6 +54,26 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
 
         viewHolder.singleChoiceQuestionContentTextView.setText(singleChoiceQuestionModel.getSingleChoiceQuestionContent());
 
+        // bind view holder for single question options
+        List<String> options = singleChoiceQuestionModel.getSingleChoiceQuestionOptionList();
+        for(int i = 0; i < options.size(); i++){
+            // get option
+            String option = options.get(i);
+            // create new RadioButton
+            RadioButton radioButton = new RadioButton(fragmentActivity);
+            // Create a LayoutParams from RadioGroup
+            RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
+            // set margins
+            layoutParams.setMargins(5, 0, 0, 0);
+            // set button padding
+            radioButton.setPadding(10, 0, 0, 0);
+            // set button text
+            radioButton.setText(option);
+            // set radioButton click listener
+            radioButton.setOnClickListener(view -> {
+
+            });
+        }
     }
 
     @Override
