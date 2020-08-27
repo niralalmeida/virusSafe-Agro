@@ -45,9 +45,25 @@
                 android:layout_height="match_parent"
                 android:scrollbars="vertical" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <Button
+                    android:id="@+id/btn_submit_answer_virus_quiz_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="@string/button_submit_quiz"
+                    android:textColor="#fff"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"/>
+            </LinearLayout>
+
+
         </LinearLayout>
-
-
     </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
