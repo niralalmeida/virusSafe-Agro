@@ -36,10 +36,8 @@ public class JsonParser {
         return virusModelInfoList;
     }
 
-    public static List[] virusTwoTypeQuestionArrayJsonParser(String resultText) throws JSONException{
-        List[] virusTwoTypeQuestionArray = new List[2];
+    public static List<SingleChoiceQuestionModel>  singleChoiceQuestionModelListJsonParser(String resultText) throws JSONException{
         List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
-        List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
         if(!resultText.equals("[]")){
             JSONArray questionListJsonArray = new JSONArray(resultText);
             int arrayLength = questionListJsonArray.length();
@@ -54,7 +52,24 @@ public class JsonParser {
                     singleChoiceQuestionModel.setChoiceQuestionId(choiceQuestionId);
                     singleChoiceQuestionModel.setSingleChoiceQuestionContent(choiceQuestionContent);
                     singleChoiceQuestionModelList.add(singleChoiceQuestionModel);
-                } else { // multiple choice
+                }
+            }
+        }
+        return singleChoiceQuestionModelList;
+    }
+
+    public static List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelListJsonParser(String resultText) throws JSONException{
+        List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
+        if(!resultText.equals("[]")){
+            JSONArray questionListJsonArray = new JSONArray(resultText);
+            int arrayLength = questionListJsonArray.length();
+            for (int i = 0; i < arrayLength; i++) {
+                JSONObject questionJsonObject = questionListJsonArray.getJSONObject(i);
+
+                int choiceQuestionId = questionJsonObject.getInt("choiceQuestionId");
+                String choiceQuestionContent = questionJsonObject.getString("choiceQuestionContent");
+                int choiceQuestionTypeNo = questionJsonObject.getInt("choiceQuestionType");
+                if (choiceQuestionTypeNo == 109){ // single choice
                     MultipleChoiceQuestionModel multipleChoiceQuestionModel = new MultipleChoiceQuestionModel();
                     multipleChoiceQuestionModel.setChoiceQuestionId(choiceQuestionId);
                     multipleChoiceQuestionModel.setMultipleChoiceQuestionContent(choiceQuestionContent);
@@ -62,9 +77,66 @@ public class JsonParser {
                 }
             }
         }
-        virusTwoTypeQuestionArray[0] = singleChoiceQuestionModelList;
-        virusTwoTypeQuestionArray[1] = multipleChoiceQuestionModelList;
-        return virusTwoTypeQuestionArray;
+        return multipleChoiceQuestionModelList;
+    }
+
+    public static List<String> singleChoiceOptionListJsonParser(String resultText) throws JSONException{
+        List<String> singleOptionList = new ArrayList<>();
+        if(!resultText.equals("[]")){
+            JSONArray optionListJsonArray = new JSONArray(resultText);
+            int arrayLength = optionListJsonArray.length();
+            for (int i = 0; i < arrayLength; i++) {
+                JSONObject optionJsonObject = optionListJsonArray.getJSONObject(i);
+
+                String choiceOptionContent = optionJsonObject.getString("choiceOptionContent");
+                String choiceOptionLabel = convertUnicodeToString(optionJsonObject.getInt("choiceOptionLabel"));
+                String choiceOption = choiceOptionLabel + ". " + choiceOptionContent;
+                singleOptionList.add(choiceOption);
+            }
+        }
+        return singleOptionList;
+    }
+
+    public static List<String> multipleChoiceOptionListJsonParser(String resultText) throws JSONException{
+        List<String> multipleOptionList = new ArrayList<>();
+        if(!resultText.equals("[]")){
+            JSONArray optionListJsonArray = new JSONArray(resultText);
+            int arrayLength = optionListJsonArray.length();
+            for (int i = 0; i < arrayLength; i++) {
+                JSONObject optionJsonObject = optionListJsonArray.getJSONObject(i);
+
+                String choiceOptionContent = optionJsonObject.getString("choiceOptionContent");
+                String choiceOptionLabel = convertUnicodeToString(optionJsonObject.getInt("choiceOptionLabel"));
+                String choiceOption = choiceOptionLabel + ". " + choiceOptionContent;
+                multipleOptionList.add(choiceOption);
+            }
+        }
+        return multipleOptionList;
+    }
+
+    public static String convertUnicodeToString(int unicode) {
+        String label = "";
+        switch (unicode){
+            case 97:
+                label = "A";
+                break;
+            case 98:
+                label = "B";
+                break;
+            case 99:
+                label = "C";
+                break;
+            case 100:
+                label = "D";
+                break;
+            case 101:
+                label = "E";
+                break;
+            case 102:
+                label = "F";
+                break;
+        }
+        return label;
     }
 
 }

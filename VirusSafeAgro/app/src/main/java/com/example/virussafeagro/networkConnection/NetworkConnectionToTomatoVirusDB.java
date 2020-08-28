@@ -43,7 +43,7 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllOptions(int choiceQuestionId) {
         String resultText = "";
-        String searchURL = BASE_URL + "tovrestws.choicequestion/quizQuestion/findAllOptionsByChoiceQuestionId/" + choiceQuestionId;
+        String searchURL = BASE_URL + "tovrestws.choiceoption/quizQuestion/findAllOptionsByChoiceQuestionId/" + choiceQuestionId;
         Request request = new Request.Builder().url(searchURL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();
