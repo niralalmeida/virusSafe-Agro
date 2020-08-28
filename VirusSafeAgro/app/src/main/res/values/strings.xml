@@ -8,4 +8,5 @@
     <string name="fragment_virus_single_choice">Single Choice Questions</string>
     <string name="fragment_virus_multiple_choice">Multiple Choice Questions</string>
     <string name="button_submit_quiz">Submit Your Answer</string>
+    <string name="button_review_quiz">Review the knowledge of virus</string>
 </resources>
