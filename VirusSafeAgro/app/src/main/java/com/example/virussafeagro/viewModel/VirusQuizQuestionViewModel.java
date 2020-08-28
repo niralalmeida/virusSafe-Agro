@@ -53,6 +53,8 @@ public class VirusQuizQuestionViewModel extends ViewModel {
             try {
                 String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
                 virusTwoTypeQuestionArray = JsonParser.virusTwoTypeQuestionArrayJsonParser(resultTextForQuestions);
+                // test
+                System.out.println(networkConnectionToTomatoVirusDB.getAllOptions(2));
             } catch (Exception e) {
                 e.printStackTrace();
             }
