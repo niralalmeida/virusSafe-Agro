@@ -38,7 +38,12 @@ public class VirusQuizResultFragment extends Fragment {
         this.multipleChoiceQuestionModelList = (List<MultipleChoiceQuestionModel>) bundle.getSerializable("multipleChoiceQuestionModelList");
 //        this.initializeViews();
 
-
         return this.view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
 }

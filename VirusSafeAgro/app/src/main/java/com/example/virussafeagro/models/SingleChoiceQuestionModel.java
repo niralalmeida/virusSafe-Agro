@@ -9,7 +9,7 @@ public class SingleChoiceQuestionModel implements Parcelable {
     private int choiceQuestionId;
     private String singleChoiceQuestionContent;
     private List<String> singleChoiceQuestionOptionList;
-    private String singleChoiceQuestionAnswer;
+    private String singleChoiceQuestionAnswer; // store user's answer
     private int singleChoiceQuestionVirusId;
 
     public SingleChoiceQuestionModel() {

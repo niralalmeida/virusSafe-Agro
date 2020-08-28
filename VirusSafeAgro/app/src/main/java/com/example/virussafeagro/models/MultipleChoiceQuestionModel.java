@@ -9,7 +9,7 @@ public class MultipleChoiceQuestionModel implements Parcelable {
     private int choiceQuestionId;
     private String multipleChoiceQuestionContent;
     private List<String> multipleChoiceQuestionOptionList;
-    private List<String> multipleChoiceQuestionAnswerList;
+    private List<String> multipleChoiceQuestionAnswerList; // store user's answers
     private int multipleChoiceQuestionVirusId;
 
     public MultipleChoiceQuestionModel() {
