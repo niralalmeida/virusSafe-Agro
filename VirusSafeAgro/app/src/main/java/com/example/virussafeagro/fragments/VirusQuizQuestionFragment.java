@@ -1,6 +1,7 @@
 package com.example.virussafeagro.fragments;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +23,10 @@ import com.example.virussafeagro.adapters.SingleChoiceQuestionAdapter;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +106,7 @@ public class VirusQuizQuestionFragment extends Fragment {
             }
             if (singleChoiceQuestionModelList.size() != 0 || multipleChoiceQuestionModelList.size() != 0) {
                 submitAnswerButton.setVisibility(View.VISIBLE);
+                setSubmitAnswerButtonOnClickListener();
             }
 
         });
@@ -124,5 +128,17 @@ public class VirusQuizQuestionFragment extends Fragment {
         recyclerViewForMultipleChoiceQuestionModelList.setAdapter(multipleChoiceQuestionAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity());
         recyclerViewForMultipleChoiceQuestionModelList.setLayoutManager(layoutManager);
+    }
+
+    private void setSubmitAnswerButtonOnClickListener() {
+        submitAnswerButton.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("currentVirusModel", currentVirusModel);
+            bundle.putSerializable("singleChoiceQuestionModelList", (Serializable) singleChoiceQuestionModelList);
+            bundle.putSerializable("multipleChoiceQuestionModelList", (Serializable) multipleChoiceQuestionModelList);
+            VirusQuizResultFragment virusQuizResultFragment = new VirusQuizResultFragment();
+            virusQuizResultFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizResultFragment);
+        });
     }
 }
