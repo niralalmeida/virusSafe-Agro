@@ -35,7 +35,7 @@ public class MultipleChoiceQuestionAdapter extends RecyclerView.Adapter<Multiple
             super(itemView);
 
             this.multipleChoiceQuestionContentTextView = itemView.findViewById(R.id.tv_multiple_question_content_virus_quiz_question);
-            this.multipleChoiceQuestionOptionsLinearLayout = itemView.findViewById(R.id.ll_single_question_options_virus_quiz_question);
+            this.multipleChoiceQuestionOptionsLinearLayout = itemView.findViewById(R.id.ll_multiple_question_options_virus_quiz_question);
         }
     }
 

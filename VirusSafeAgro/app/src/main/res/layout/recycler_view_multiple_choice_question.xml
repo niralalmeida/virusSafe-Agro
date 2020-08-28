@@ -14,7 +14,7 @@
         android:text="Q1. Xxxx xxxx xxxx xxxx xxxx"/>
 
     <LinearLayout
-        android:id="@+id/ll_single_question_options_virus_quiz_question"
+        android:id="@+id/ll_multiple_question_options_virus_quiz_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
