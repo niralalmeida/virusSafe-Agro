@@ -7,8 +7,13 @@ package tovrestws.service;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -88,4 +93,28 @@ public class ChoiceoptionFacadeREST extends AbstractFacade<Choiceoption> {
         return em;
     }
     
+    @GET
+    @Path("quizQuestion/findAllOptionsByChoiceQuestionId/{choiceQuestionId}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Object findAllOptionsByChoiceQuestionId(
+            @PathParam("choiceQuestionId") Integer choiceQuestionId){
+        TypedQuery dquery = 
+                em.createQuery(
+                        "SELECT co.choiceOptionId, co.choiceOptionLabel, co.choiceOptionContent "
+                        + "FROM Choiceoption AS co "
+                        + "WHERE co.choiceOptionQuestionId.choiceQuestionId = :choiceQuestionId",
+                        Object.class);
+        dquery.setParameter("choiceQuestionId", choiceQuestionId);
+        List<Object[]> queryList = dquery.getResultList();
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        for(Object[] row : queryList){
+            JsonObject choiceOptionObject = Json.createObjectBuilder()
+                    .add("choiceOptionId", (Integer)row[0])
+                    .add("choiceOptionLabel", (Character)row[1])
+                    .add("choiceOptionContent", (String)row[2]).build();
+            arrayBuilder.add(choiceOptionObject);
+        }
+        JsonArray jArray = arrayBuilder.build();
+        return jArray;
+    }
 }
