@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,8 @@ public class VirusQuizQuestionFragment extends Fragment {
     private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
 
     private TextView virusFullNameTitleTextView;
+    private LinearLayout singleChoiceQuestionTitleLinearLayout;
+    private LinearLayout multipleChoiceQuestionTitleLinearLayout;
     private Button submitAnswerButton;
 
 
@@ -70,6 +73,8 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void initializeViews() {
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
+        this.singleChoiceQuestionTitleLinearLayout = view.findViewById(R.id.ll_virus_single_choice_quiz_question);
+        this.multipleChoiceQuestionTitleLinearLayout = view.findViewById(R.id.ll_virus_multiple_choice_quiz_question);
         this.submitAnswerButton = view.findViewById(R.id.btn_submit_answer_virus_quiz_question);
     }
 
@@ -87,12 +92,13 @@ public class VirusQuizQuestionFragment extends Fragment {
             if (resultVirusTwoTypeQuestionArray[0] != null){
                 singleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[0];
 
+                singleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
                 showVirusQuizSingleChoiceQuestions();
-
             }
             if (resultVirusTwoTypeQuestionArray[1] != null){
                 multipleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[1];
 
+                multipleChoiceQuestionTitleLinearLayout.setVisibility(View.INVISIBLE);
                 showVirusQuizMultipleChoiceQuestions();
             }
             if (singleChoiceQuestionModelList.size() != 0 || multipleChoiceQuestionModelList.size() != 0) {
