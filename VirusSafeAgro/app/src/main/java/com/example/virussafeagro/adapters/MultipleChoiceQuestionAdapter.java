@@ -72,11 +72,37 @@ public class MultipleChoiceQuestionAdapter extends RecyclerView.Adapter<Multiple
             checkBox.setText(option);
             // set checkbox padding
             checkBox.setPadding(10, 0, 0, 0);
+            // set id
+            checkBox.setId(getCheckBoxId(i));
 
             // add checkbox into LinearLayout
             viewHolder.multipleChoiceQuestionOptionsLinearLayout.addView(checkBox);
-
         }
+    }
+
+    private int getCheckBoxId(int index){
+        int checkBoxId = 0;
+        switch (index){
+            case 1:
+                checkBoxId = R.id.checkBox_view_id_1;
+                break;
+            case 2:
+                checkBoxId = R.id.checkBox_view_id_2;
+                break;
+            case 3:
+                checkBoxId = R.id.checkBox_view_id_3;
+                break;
+            case 4:
+                checkBoxId = R.id.checkBox_view_id_4;
+                break;
+            case 5:
+                checkBoxId = R.id.checkBox_view_id_5;
+                break;
+            case 6:
+                checkBoxId = R.id.checkBox_view_id_6;
+                break;
+        }
+        return checkBoxId;
     }
 
     @Override
