@@ -34,7 +34,7 @@ public class MultipleChoiceResultAdapter extends RecyclerView.Adapter<MultipleCh
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            this.multipleChoiceQuestionContentTextView = itemView.findViewById(R.id.tv_multiple_question_content_virus_quiz_question);
+            this.multipleChoiceQuestionContentTextView = itemView.findViewById(R.id.tv_multiple_question_content_virus_quiz_result);
             this.multipleChoiceQuestionOptionsLinearLayout = itemView.findViewById(R.id.ll_multiple_question_options_virus_quiz_result);
         }
     }

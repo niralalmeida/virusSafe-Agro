@@ -80,7 +80,6 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.observeVirusTwoTypeQuestionArrayLD();
     }
 
-    // bind virus full name to the title
     private void initializeViews() {
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
