@@ -146,7 +146,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         });
     }
 
-    private void checkAllQuestionsAreAnswered() {
+    private boolean checkAllQuestionsAreAnswered() {
         int singleChoiceQuestionCount = this.singleChoiceQuestionModelList.size();
         int multipleChoiceQuestionCount = this.multipleChoiceQuestionModelList.size();
         int questionCount = singleChoiceQuestionCount + multipleChoiceQuestionCount;
@@ -174,6 +174,7 @@ public class VirusQuizQuestionFragment extends Fragment {
                 }
             }
         }
+        return questionCount == answeredQuestionCount;
     }
 
     private void toQuizResultFragmentWithBundle() {
