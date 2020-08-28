@@ -89,16 +89,16 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     private void observeVirusTwoTypeQuestionArrayLD() {
         this.virusQuizQuestionViewModel.getVirusTwoTypeQuestionArrayLD().observe(getViewLifecycleOwner(), resultVirusTwoTypeQuestionArray -> {
-            if (resultVirusTwoTypeQuestionArray[0] != null){
+            if (resultVirusTwoTypeQuestionArray[0] != null && resultVirusTwoTypeQuestionArray[0].size() != 0){
                 singleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[0];
 
                 singleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
                 showVirusQuizSingleChoiceQuestions();
             }
-            if (resultVirusTwoTypeQuestionArray[1] != null){
+            if (resultVirusTwoTypeQuestionArray[1] != null && resultVirusTwoTypeQuestionArray[1].size() != 0){
                 multipleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[1];
 
-                multipleChoiceQuestionTitleLinearLayout.setVisibility(View.INVISIBLE);
+                multipleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
                 showVirusQuizMultipleChoiceQuestions();
             }
             if (singleChoiceQuestionModelList.size() != 0 || multipleChoiceQuestionModelList.size() != 0) {
