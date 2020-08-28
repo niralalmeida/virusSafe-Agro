@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,7 +36,6 @@ public class VirusQuizQuestionFragment extends Fragment {
     private VirusModel currentVirusModel;
 
     private VirusQuizQuestionViewModel virusQuizQuestionViewModel;
-
     private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
     private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
 
@@ -43,6 +44,13 @@ public class VirusQuizQuestionFragment extends Fragment {
     private LinearLayout multipleChoiceQuestionTitleLinearLayout;
     private Button submitAnswerButton;
 
+    private SingleChoiceQuestionAdapter singleChoiceQuestionAdapter;
+    private RecyclerView recyclerViewForSingleChoiceQuestionModelList;
+    private RecyclerView.LayoutManager layoutManagerForSingleChoiceQuestion;
+
+    private MultipleChoiceQuestionAdapter multipleChoiceQuestionAdapter;
+    private RecyclerView recyclerViewForMultipleChoiceQuestionModelList;
+    private RecyclerView.LayoutManager layoutManagerForMultipleChoiceQuestion;
 
     @Nullable
     @Override
@@ -112,32 +120,71 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
 
     private void showVirusQuizSingleChoiceQuestions() {
-        SingleChoiceQuestionAdapter singleChoiceQuestionAdapter = new SingleChoiceQuestionAdapter(singleChoiceQuestionModelList, requireActivity());
-        RecyclerView recyclerViewForSingleChoiceQuestionModelList = view.findViewById(R.id.rv_virus_single_choice_quiz_question);
+        singleChoiceQuestionAdapter = new SingleChoiceQuestionAdapter(singleChoiceQuestionModelList, requireActivity());
+        recyclerViewForSingleChoiceQuestionModelList = view.findViewById(R.id.rv_virus_single_choice_quiz_question);
         recyclerViewForSingleChoiceQuestionModelList.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         recyclerViewForSingleChoiceQuestionModelList.setAdapter(singleChoiceQuestionAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity());
-        recyclerViewForSingleChoiceQuestionModelList.setLayoutManager(layoutManager);
+        layoutManagerForSingleChoiceQuestion = new LinearLayoutManager(requireActivity());
+        recyclerViewForSingleChoiceQuestionModelList.setLayoutManager(layoutManagerForSingleChoiceQuestion);
     }
 
     private void showVirusQuizMultipleChoiceQuestions() {
-        MultipleChoiceQuestionAdapter multipleChoiceQuestionAdapter = new MultipleChoiceQuestionAdapter(multipleChoiceQuestionModelList, requireActivity());
-        RecyclerView recyclerViewForMultipleChoiceQuestionModelList = view.findViewById(R.id.rv_virus_multiple_choice_quiz_question);
+        multipleChoiceQuestionAdapter = new MultipleChoiceQuestionAdapter(multipleChoiceQuestionModelList, requireActivity());
+        recyclerViewForMultipleChoiceQuestionModelList = view.findViewById(R.id.rv_virus_multiple_choice_quiz_question);
         recyclerViewForMultipleChoiceQuestionModelList.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         recyclerViewForMultipleChoiceQuestionModelList.setAdapter(multipleChoiceQuestionAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity());
-        recyclerViewForMultipleChoiceQuestionModelList.setLayoutManager(layoutManager);
+        layoutManagerForMultipleChoiceQuestion = new LinearLayoutManager(requireActivity());
+        recyclerViewForMultipleChoiceQuestionModelList.setLayoutManager(layoutManagerForMultipleChoiceQuestion);
     }
 
     private void setSubmitAnswerButtonOnClickListener() {
         submitAnswerButton.setOnClickListener(view -> {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("currentVirusModel", currentVirusModel);
-            bundle.putSerializable("singleChoiceQuestionModelList", (Serializable) singleChoiceQuestionModelList);
-            bundle.putSerializable("multipleChoiceQuestionModelList", (Serializable) multipleChoiceQuestionModelList);
-            VirusQuizResultFragment virusQuizResultFragment = new VirusQuizResultFragment();
-            virusQuizResultFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizResultFragment);
+            checkAllQuestionsAreAnswered();
+
+            toQuizResultFragmentWithBundle();
         });
+    }
+
+    private void checkAllQuestionsAreAnswered() {
+        int singleChoiceQuestionCount = this.singleChoiceQuestionModelList.size();
+        int multipleChoiceQuestionCount = this.multipleChoiceQuestionModelList.size();
+        int questionCount = singleChoiceQuestionCount + multipleChoiceQuestionCount;
+        int answeredQuestionCount = 0;
+        for(int i = 0; i < singleChoiceQuestionCount; i++){
+            SingleChoiceQuestionAdapter.ViewHolder singleChoiceViewHolder = (SingleChoiceQuestionAdapter.ViewHolder)recyclerViewForSingleChoiceQuestionModelList.findViewHolderForAdapterPosition(i);
+
+            // find checked radio button
+            RadioGroup genderRadioGroup = singleChoiceViewHolder.singleChoiceQuestionOptionsRadioGroup;
+            int checkedRadioButtonId = genderRadioGroup.getCheckedRadioButtonId();
+            if (checkedRadioButtonId != -1){
+                answeredQuestionCount++;
+            }
+        }
+        for (int i = 0; i < multipleChoiceQuestionCount; i++) {
+            MultipleChoiceQuestionAdapter.ViewHolder multipleChoiceViewHolder = (MultipleChoiceQuestionAdapter.ViewHolder)recyclerViewForMultipleChoiceQuestionModelList.findViewHolderForAdapterPosition(i);
+
+            LinearLayout multipleChoiceQuestionOptionsLinearLayout = multipleChoiceViewHolder.multipleChoiceQuestionOptionsLinearLayout;
+            int checkboxCount = multipleChoiceQuestionOptionsLinearLayout.getChildCount();
+            // test
+            System.out.println("checkbox count : " + checkboxCount);
+            for (int j = 0; j < checkboxCount; j++){
+//                if (multipleChoiceQuestionOptionsLinearLayout.getChildAt(j).isChecked)
+            }
+        }
+
+        // test
+        System.out.println("singleChoiceQuestionCount : "+ singleChoiceQuestionCount);
+        // test
+        System.out.println("multipleChoiceQuestionCount : " + multipleChoiceQuestionCount);
+    }
+
+    private void toQuizResultFragmentWithBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("currentVirusModel", currentVirusModel);
+        bundle.putSerializable("singleChoiceQuestionModelList", (Serializable) singleChoiceQuestionModelList);
+        bundle.putSerializable("multipleChoiceQuestionModelList", (Serializable) multipleChoiceQuestionModelList);
+        VirusQuizResultFragment virusQuizResultFragment = new VirusQuizResultFragment();
+        virusQuizResultFragment.setArguments(bundle);
+        FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizResultFragment);
     }
 }
