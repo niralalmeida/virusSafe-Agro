@@ -60,15 +60,16 @@
         android:layout_marginEnd="10dp">
 
         <LinearLayout
-            android:id="@+id/ll_virus_single_choice_quiz_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_virus_single_choice_quiz_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="invisible"
                 android:background="#E5E8E8">
 
                 <TextView
@@ -89,9 +90,11 @@
                 android:scrollbars="vertical" />
 
             <LinearLayout
+                android:id="@+id/ll_virus_multiple_choice_quiz_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="invisible"
                 android:background="#E5E8E8">
                 <TextView
                     android:id="@+id/tv_multiple_question_title_quiz_question"
