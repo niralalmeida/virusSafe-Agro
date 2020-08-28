@@ -16,10 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.adapters.MultipleChoiceQuestionAdapter;
 import com.example.virussafeagro.adapters.MultipleChoiceResultAdapter;
-import com.example.virussafeagro.adapters.SingleChoiceQuestionAdapter;
 import com.example.virussafeagro.adapters.SingleChoiceResultAdapter;
+import com.example.virussafeagro.models.ChoiceQuestionCorrectAnswerModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
@@ -34,6 +33,7 @@ public class VirusQuizResultFragment extends Fragment {
 
     private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
     private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
+    private List<ChoiceQuestionCorrectAnswerModel> choiceQuestionCorrectAnswerModelList = new ArrayList<>();
 
     private TextView virusFullNameTitleTextView;
     private LinearLayout singleChoiceQuestionTitleLinearLayout;
@@ -70,8 +70,6 @@ public class VirusQuizResultFragment extends Fragment {
         super.onResume();
 
         setReviewButtonOnClickListener();
-
-
     }
 
     private void initializeViews() {
@@ -90,6 +88,16 @@ public class VirusQuizResultFragment extends Fragment {
         }
     }
 
+    private void setReviewButtonOnClickListener() {
+        this.reviewButton.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("currentVirusModel", currentVirusModel);
+            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
+            virusDetailFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusDetailFragment);
+        });
+    }
+
     private void showVirusQuizSingleChoiceQuestions() {
         singleChoiceResultAdapter = new SingleChoiceResultAdapter(singleChoiceQuestionModelList, requireActivity());
         recyclerViewForSingleChoiceQuestionModelList = view.findViewById(R.id.rv_virus_single_choice_quiz_result);
@@ -106,15 +114,5 @@ public class VirusQuizResultFragment extends Fragment {
         recyclerViewForMultipleChoiceQuestionModelList.setAdapter(multipleChoiceResultAdapter);
         layoutManagerForMultipleChoiceQuestion = new LinearLayoutManager(requireActivity());
         recyclerViewForMultipleChoiceQuestionModelList.setLayoutManager(layoutManagerForMultipleChoiceQuestion);
-    }
-
-    private void setReviewButtonOnClickListener() {
-        this.reviewButton.setOnClickListener(view -> {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("currentVirusModel", currentVirusModel);
-            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
-            virusDetailFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusDetailFragment);
-        });
     }
 }
