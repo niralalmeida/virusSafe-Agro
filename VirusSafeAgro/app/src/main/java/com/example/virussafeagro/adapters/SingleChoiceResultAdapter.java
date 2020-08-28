@@ -68,7 +68,7 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
             // set TextView text
             optionTextView.setText(option);
 
-            // add TextView into RadioGroup
+            // add TextView into LinearLayout
             viewHolder.singleChoiceQuestionOptionsLinearLayout.addView(optionTextView);
 
         }
@@ -78,5 +78,5 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
     public int getItemCount() {
         return this.singleChoiceQuestionModelList.size();
     }
-    
+
 }
