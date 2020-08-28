@@ -158,8 +158,6 @@ public class VirusQuizQuestionFragment extends Fragment {
             RadioGroup genderRadioGroup = singleChoiceViewHolder.singleChoiceQuestionOptionsRadioGroup;
             int checkedRadioButtonId = genderRadioGroup.getCheckedRadioButtonId();
             if (checkedRadioButtonId != -1){
-                // test
-                System.out.println("s click !");
                 answeredQuestionCount++;
             }
         }
@@ -169,19 +167,13 @@ public class VirusQuizQuestionFragment extends Fragment {
             LinearLayout multipleChoiceQuestionOptionsLinearLayout = multipleChoiceViewHolder.multipleChoiceQuestionOptionsLinearLayout;
             int checkboxCount = multipleChoiceQuestionOptionsLinearLayout.getChildCount();
             for (int k = 0; k < checkboxCount; k++){
-                int checkBoxId = MultipleChoiceQuestionAdapter.getCheckBoxId(k);
-                CheckBox checkBox = view.findViewById(checkBoxId);
+                CheckBox checkBox = (CheckBox)multipleChoiceQuestionOptionsLinearLayout.getChildAt(k);
                 if (checkBox.isChecked()){
-                    // test
-                    System.out.println("m 1 box click !");
                     answeredQuestionCount++;
                     break;
                 }
             }
         }
-
-        // test
-        System.out.println("answered question count : " + answeredQuestionCount);
     }
 
     private void toQuizResultFragmentWithBundle() {
