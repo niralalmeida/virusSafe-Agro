@@ -80,7 +80,7 @@ public class MultipleChoiceQuestionAdapter extends RecyclerView.Adapter<Multiple
         }
     }
 
-    private int getCheckBoxId(int index){
+    public static int getCheckBoxId(int index){
         int checkBoxId = 0;
         switch (index){
             case 0:

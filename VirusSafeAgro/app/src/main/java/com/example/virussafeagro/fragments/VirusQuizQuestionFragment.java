@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -157,6 +158,8 @@ public class VirusQuizQuestionFragment extends Fragment {
             RadioGroup genderRadioGroup = singleChoiceViewHolder.singleChoiceQuestionOptionsRadioGroup;
             int checkedRadioButtonId = genderRadioGroup.getCheckedRadioButtonId();
             if (checkedRadioButtonId != -1){
+                // test
+                System.out.println("s click !");
                 answeredQuestionCount++;
             }
         }
@@ -165,17 +168,20 @@ public class VirusQuizQuestionFragment extends Fragment {
 
             LinearLayout multipleChoiceQuestionOptionsLinearLayout = multipleChoiceViewHolder.multipleChoiceQuestionOptionsLinearLayout;
             int checkboxCount = multipleChoiceQuestionOptionsLinearLayout.getChildCount();
-            // test
-            System.out.println("checkbox count : " + checkboxCount);
-            for (int j = 0; j < checkboxCount; j++){
-//                if (multipleChoiceQuestionOptionsLinearLayout.getChildAt(j).isChecked)
+            for (int k = 0; k < checkboxCount; k++){
+                int checkBoxId = MultipleChoiceQuestionAdapter.getCheckBoxId(k);
+                CheckBox checkBox = view.findViewById(checkBoxId);
+                if (checkBox.isChecked()){
+                    // test
+                    System.out.println("m 1 box click !");
+                    answeredQuestionCount++;
+                    break;
+                }
             }
         }
 
         // test
-        System.out.println("singleChoiceQuestionCount : "+ singleChoiceQuestionCount);
-        // test
-        System.out.println("multipleChoiceQuestionCount : " + multipleChoiceQuestionCount);
+        System.out.println("answered question count : " + answeredQuestionCount);
     }
 
     private void toQuizResultFragmentWithBundle() {
