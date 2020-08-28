@@ -140,9 +140,9 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     private void setSubmitAnswerButtonOnClickListener() {
         submitAnswerButton.setOnClickListener(view -> {
-            checkAllQuestionsAreAnswered();
-
-            toQuizResultFragmentWithBundle();
+            if (checkAllQuestionsAreAnswered()){
+                toQuizResultFragmentWithBundle();
+            }
         });
     }
 
@@ -178,6 +178,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
 
     private void toQuizResultFragmentWithBundle() {
+        storeUserAnswerIntoLists();
         Bundle bundle = new Bundle();
         bundle.putParcelable("currentVirusModel", currentVirusModel);
         bundle.putSerializable("singleChoiceQuestionModelList", (Serializable) singleChoiceQuestionModelList);
@@ -185,5 +186,33 @@ public class VirusQuizQuestionFragment extends Fragment {
         VirusQuizResultFragment virusQuizResultFragment = new VirusQuizResultFragment();
         virusQuizResultFragment.setArguments(bundle);
         FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizResultFragment);
+    }
+
+    private void storeUserAnswerIntoLists() {
+        for(int i = 0; i < singleChoiceQuestionModelList.size(); i++){
+            SingleChoiceQuestionAdapter.ViewHolder singleChoiceViewHolder = (SingleChoiceQuestionAdapter.ViewHolder)recyclerViewForSingleChoiceQuestionModelList.findViewHolderForAdapterPosition(i);
+
+            // find checked radio button and get answer label
+            RadioGroup genderRadioGroup = singleChoiceViewHolder.singleChoiceQuestionOptionsRadioGroup;
+            int checkedRadioButtonId = genderRadioGroup.getCheckedRadioButtonId();
+            RadioButton radioButton = view.findViewById(checkedRadioButtonId);
+            String answerOption = (String) radioButton.getText();
+            String answerLabel = answerOption.substring(0, 1);
+            singleChoiceQuestionModelList.get(i).setSingleChoiceQuestionAnswer(answerLabel);
+        }
+        for (int i = 0; i < multipleChoiceQuestionModelList.size(); i++) {
+            MultipleChoiceQuestionAdapter.ViewHolder multipleChoiceViewHolder = (MultipleChoiceQuestionAdapter.ViewHolder)recyclerViewForMultipleChoiceQuestionModelList.findViewHolderForAdapterPosition(i);
+
+            LinearLayout multipleChoiceQuestionOptionsLinearLayout = multipleChoiceViewHolder.multipleChoiceQuestionOptionsLinearLayout;
+            int checkboxCount = multipleChoiceQuestionOptionsLinearLayout.getChildCount();
+            for (int k = 0; k < checkboxCount; k++){
+                CheckBox checkBox = (CheckBox)multipleChoiceQuestionOptionsLinearLayout.getChildAt(k);
+                if (checkBox.isChecked()){
+                    String answerOption = (String) checkBox.getText();
+                    String answerLabel = answerOption.substring(0, 1);
+                    multipleChoiceQuestionModelList.get(i).getMultipleChoiceQuestionAnswerList().add(answerLabel);
+                }
+            }
+        }
     }
 }

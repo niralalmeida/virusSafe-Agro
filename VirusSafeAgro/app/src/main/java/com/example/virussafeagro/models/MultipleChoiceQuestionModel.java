@@ -3,6 +3,7 @@ package com.example.virussafeagro.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MultipleChoiceQuestionModel implements Parcelable {
@@ -13,6 +14,7 @@ public class MultipleChoiceQuestionModel implements Parcelable {
     private int multipleChoiceQuestionVirusId;
 
     public MultipleChoiceQuestionModel() {
+        this.multipleChoiceQuestionAnswerList = new ArrayList<>();
     }
 
     public MultipleChoiceQuestionModel(int choiceQuestionId, String multipleChoiceQuestionContent, List<String> multipleChoiceQuestionOptionList, List<String> multipleChoiceQuestionAnswerList, int multipleChoiceQuestionVirusId) {
