@@ -1,6 +1,5 @@
 package com.example.virussafeagro.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -53,7 +52,6 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
         return viewHolder;
     }
 
-    @SuppressLint({"ResourceAsColor", "SetTextI18n"})
     @Override
     public void onBindViewHolder(@NonNull SingleChoiceResultAdapter.ViewHolder viewHolder, int position) {
         final SingleChoiceQuestionModel singleChoiceQuestionModel = this.singleChoiceQuestionModelList.get(position);
@@ -70,8 +68,6 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
             }
         }
         boolean isRight = userAnswer.equals(correctAnswer);
-        // test
-        System.out.println("q " + singleChoiceQuestionModel.getChoiceQuestionId() + " -> is right : " + isRight);
         // set background
         if (isRight) {
             viewHolder.singleChoiceQuestionOptionsLinearLayout.setBackgroundColor(Resources.COlOR_RESULT_ITEM_RIGHT_BG);

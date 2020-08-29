@@ -1,10 +1,10 @@
 package com.example.virussafeagro.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -14,16 +14,21 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.ChoiceQuestionCorrectAnswerModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
+import com.example.virussafeagro.uitilities.Resources;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MultipleChoiceResultAdapter extends RecyclerView.Adapter<MultipleChoiceResultAdapter.ViewHolder>{
     private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList;
+    private List<ChoiceQuestionCorrectAnswerModel> choiceQuestionCorrectAnswerModelList;
     private FragmentActivity fragmentActivity;
 
-    public MultipleChoiceResultAdapter(List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList, FragmentActivity fragmentActivity) {
+    public MultipleChoiceResultAdapter(List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList, List<ChoiceQuestionCorrectAnswerModel> choiceQuestionCorrectAnswerModelList, FragmentActivity fragmentActivity) {
         this.multipleChoiceQuestionModelList = multipleChoiceQuestionModelList;
+        this.choiceQuestionCorrectAnswerModelList = choiceQuestionCorrectAnswerModelList;
         this.fragmentActivity = fragmentActivity;
     }
 
@@ -55,6 +60,22 @@ public class MultipleChoiceResultAdapter extends RecyclerView.Adapter<MultipleCh
 
         viewHolder.multipleChoiceQuestionContentTextView.setText(multipleChoiceQuestionModel.getMultipleChoiceQuestionContent());
 
+        // check answer is right or not
+        List<String> userAnswerList = multipleChoiceQuestionModel.getMultipleChoiceQuestionAnswerList();
+        List<String> correctAnswerList = new ArrayList<>();
+        for (ChoiceQuestionCorrectAnswerModel a : choiceQuestionCorrectAnswerModelList) {
+            if (a.getChoiceQuestionId() == multipleChoiceQuestionModel.getChoiceQuestionId()) {
+                correctAnswerList = a.getCorrectAnswerList();
+            }
+        }
+        boolean isRight = checkTwoListHaveSameItems(userAnswerList, correctAnswerList);
+        // set background
+        if (isRight) {
+            viewHolder.multipleChoiceQuestionOptionsLinearLayout.setBackgroundColor(Resources.COlOR_RESULT_ITEM_RIGHT_BG);
+        } else {
+            viewHolder.multipleChoiceQuestionOptionsLinearLayout.setBackgroundColor(Resources.COlOR_RESULT_ITEM_WRONG_BG);
+        }
+
         // bind view holder for multiple-question options
         List<String> options = multipleChoiceQuestionModel.getMultipleChoiceQuestionOptionList();
         for(int i = 0; i < options.size(); i++){
@@ -73,9 +94,73 @@ public class MultipleChoiceResultAdapter extends RecyclerView.Adapter<MultipleCh
             // set TextView padding
             optionTextView.setPadding(10, 0, 0, 0);
 
+            String optionLabel = option.substring(0, 1);
+            // set if right
+            if (isRight && correctAnswerList.contains(optionLabel)) {
+                optionTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
+                optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            }
+
+            // set if wrong
+                // when user select wrong item
+            if (!isRight && userAnswerList.contains(optionLabel) && (!correctAnswerList.contains(optionLabel))){
+                optionTextView.setTextColor(Resources.COlOR_WRONG_ANSWER);
+            }
+                // when user select right item
+            if(!isRight && userAnswerList.contains(optionLabel) && correctAnswerList.contains(optionLabel)){
+                optionTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
+                optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            }
+                // show correct item
+            if(!isRight && (!userAnswerList.contains(optionLabel)) && correctAnswerList.contains(optionLabel)){
+                optionTextView.setTextColor(Resources.COlOR_CORRECT_ANSWER);
+                optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            }
+
             // add TextView into LinearLayout
             viewHolder.multipleChoiceQuestionOptionsLinearLayout.addView(optionTextView);
         }
+
+        // set if wrong
+        // create new TextView
+        TextView correctAnswerTextView = new TextView(fragmentActivity);
+        String correctAnswer = "";
+        for (String ans : correctAnswerList) {
+            correctAnswer += (ans + " ");
+        }
+        correctAnswerTextView.setText("--> The correct answer is:" + correctAnswer);
+        if (isRight){
+            correctAnswerTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
+        } else {
+            correctAnswerTextView.setTextColor(Resources.COlOR_CORRECT_ANSWER);
+        }
+        correctAnswerTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        // add TextView into LinearLayout
+        viewHolder.multipleChoiceQuestionOptionsLinearLayout.addView(correctAnswerTextView);
+    }
+
+    private boolean checkTwoListHaveSameItems(List<String> list1, List<String> list2) {
+        boolean isSame = true;
+        if (list1 == list2) {
+            return false;
+        }
+        if (list1 == null || list2 == null) {
+            return false;
+        }
+        if (list1.size() != list2.size()) {
+            return false;
+        }
+        List<Integer> checkedList1IndexList = new ArrayList<>();
+        List<Integer> checkedList2IndexList = new ArrayList<>();
+        for (int i1 = 0; i1 < list1.size(); i1++) {
+            for(int i2 = 0; i2 < list2.size(); i2++) {
+                if (list1.get(i1).equals(list2.get(i2)) && (!checkedList1IndexList.contains(i1) || !checkedList2IndexList.contains(i2))) {
+                    checkedList1IndexList.add(i1);
+                    checkedList2IndexList.add(i2);
+                }
+            }
+        }
+        return (checkedList1IndexList.size() == list1.size()) && (checkedList2IndexList.size() == list2.size());
     }
 
     @Override

@@ -137,7 +137,7 @@ public class VirusQuizResultFragment extends Fragment {
     }
 
     private void showVirusQuizMultipleChoiceQuestions() {
-        multipleChoiceResultAdapter = new MultipleChoiceResultAdapter(multipleChoiceQuestionModelList, requireActivity());
+        multipleChoiceResultAdapter = new MultipleChoiceResultAdapter(multipleChoiceQuestionModelList, choiceQuestionCorrectAnswerModelList, requireActivity());
         recyclerViewForMultipleChoiceQuestionModelList = view.findViewById(R.id.rv_virus_multiple_choice_quiz_result);
         recyclerViewForMultipleChoiceQuestionModelList.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         recyclerViewForMultipleChoiceQuestionModelList.setAdapter(multipleChoiceResultAdapter);
