@@ -117,4 +117,28 @@ public class ChoicequestionFacadeREST extends AbstractFacade<Choicequestion> {
         JsonArray jArray = arrayBuilder.build();
         return jArray;
     }
+    
+    @GET
+    @Path("quizQuestion/findAllAnswersByVirusId/{virusId}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Object findAllAnswersByVirusId(
+            @PathParam("virusId") Integer virusId){
+        TypedQuery dquery = 
+                em.createQuery(
+                        "SELECT cq.choiceQuestionId, cq.answer "
+                        + "FROM Choicequestion AS cq "
+                        + "WHERE cq.choiceQuestionVirusId.virusId = :virusId",
+                        Object.class);
+        dquery.setParameter("virusId", virusId);
+        List<Object[]> queryList = dquery.getResultList();
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        for(Object[] row : queryList){
+            JsonObject choiceQuestionAnswerObject = Json.createObjectBuilder()
+                    .add("choiceQuestionId", (Integer)row[0])
+                    .add("answer", (String)row[1]).build();
+            arrayBuilder.add(choiceQuestionAnswerObject);
+        }
+        JsonArray jArray = arrayBuilder.build();
+        return jArray;
+    }
 }
