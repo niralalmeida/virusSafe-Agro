@@ -75,9 +75,9 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
         System.out.println("q " + singleChoiceQuestionModel.getChoiceQuestionId() + " -> is right : " + isRight);
         // set background
         if (isRight) {
-            viewHolder.singleChoiceQuestionOptionsLinearLayout.setBackgroundColor(Resources.RESULT_ITEM_RIGHT_BG);
+            viewHolder.singleChoiceQuestionOptionsLinearLayout.setBackgroundColor(Resources.COlOR_RESULT_ITEM_RIGHT_BG);
         } else {
-            viewHolder.singleChoiceQuestionOptionsLinearLayout.setBackgroundColor(Resources.RESULT_ITEM_WRONG_BG);
+            viewHolder.singleChoiceQuestionOptionsLinearLayout.setBackgroundColor(Resources.COlOR_RESULT_ITEM_WRONG_BG);
         }
 
         // bind view holder for single question options
@@ -96,16 +96,16 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
             String optionLabel = option.substring(0, 1);
             // set if right
             if (optionLabel.equals(correctAnswer)) {
-                optionTextView.setTextColor(Resources.RIGHT_ANSWER);
+                optionTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
                 optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 
             }
             // set if wrong
             if (!isRight && optionLabel.equals(userAnswer)){
-                optionTextView.setTextColor(Resources.WRONG_ANSWER);
+                optionTextView.setTextColor(Resources.COlOR_WRONG_ANSWER);
             }
             if(!isRight && optionLabel.equals(correctAnswer)){
-                optionTextView.setTextColor(Resources.CORRECT_ANSWER);
+                optionTextView.setTextColor(Resources.COlOR_CORRECT_ANSWER);
                 optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             }
 
@@ -118,9 +118,9 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
         TextView correctAnswerTextView = new TextView(fragmentActivity);
         correctAnswerTextView.setText("--> The correct answer is:" + correctAnswer);
         if (isRight){
-            correctAnswerTextView.setTextColor(Resources.RIGHT_ANSWER);
+            correctAnswerTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
         } else {
-            correctAnswerTextView.setTextColor(Resources.CORRECT_ANSWER);
+            correctAnswerTextView.setTextColor(Resources.COlOR_CORRECT_ANSWER);
         }
         correctAnswerTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             // add TextView into LinearLayout
