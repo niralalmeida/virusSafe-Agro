@@ -1,8 +1,13 @@
 package com.example.virussafeagro.fragments;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +22,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.viewModel.VirusIdentificationViewModel;
 
+import java.io.FileNotFoundException;
+
 /**
  * Fragment for uploading tomato pictures to identify whether they are infected by some viruses
  * @author Haoyu Yang
@@ -29,6 +36,8 @@ public class VirusIdentificationFragment extends Fragment {
     private Button selectImageButton;
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
+
+    private final int RESULT_OK = -1;
 
     public VirusIdentificationFragment() {
     }
@@ -49,7 +58,8 @@ public class VirusIdentificationFragment extends Fragment {
         // initialize VirusIdentificationViewModel
         this.initializeVirusIdentificationViewModel();
 
-
+        // set selectImageButton on click listener
+        this.setSelectImageButtonOnClickListener();
     }
 
     private void initializeViews() {
@@ -61,6 +71,33 @@ public class VirusIdentificationFragment extends Fragment {
     private void initializeVirusIdentificationViewModel() {
         this.virusIdentificationViewModel = new ViewModelProvider(requireActivity()).get(VirusIdentificationViewModel.class);
         this.virusIdentificationViewModel.initiateTheContext(requireActivity());
+    }
+
+    private void setSelectImageButtonOnClickListener() {
+        this.selectImageButton.setOnClickListener(view -> {
+            Intent intent=new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(intent, 1);
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            Uri uri = data.getData();
+            Log.e("uri", uri.toString());
+            ContentResolver cr = requireActivity().getContentResolver();
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                this.uploadImageImageView.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                Log.e("Exception", e.getMessage(),e);
+            }
+        }else{
+            Log.i("MainActivtiy", "operation error");
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }
