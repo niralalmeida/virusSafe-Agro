@@ -91,6 +91,7 @@ public class VirusIdentificationFragment extends Fragment {
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
                 this.uploadImageImageView.setImageBitmap(bitmap);
+                this.uploadImageButton.setVisibility(View.VISIBLE);
             } catch (FileNotFoundException e) {
                 Log.e("Exception", e.getMessage(),e);
             }
