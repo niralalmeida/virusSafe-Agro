@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +38,8 @@ public class VirusIdentificationFragment extends Fragment {
     private Button selectImageButton;
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
+    private LinearLayout imageIdentificationFeedbackLinearLayout;
+    private TextView imageIdentificationFeedbackTextView;
 
     private final int RESULT_OK = -1;
 
@@ -60,16 +64,16 @@ public class VirusIdentificationFragment extends Fragment {
 
         // set selectImageButton on click listener
         this.setSelectImageButtonOnClickListener();
-        // upload Tomato Image
-        this.uploadTomatoImage();
-        // observe identificationFeedback live data
-        this.observeIdentificationFeedbackLD();
+        // set uploadImageButton on click listener
+        this.setUploadImageButtonOnClickListener();
     }
 
     private void initializeViews() {
         this.selectImageButton = view.findViewById(R.id.btn_select_image);
         this.uploadImageImageView = view.findViewById(R.id.img_upload_identification);
         this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
+        this.imageIdentificationFeedbackLinearLayout = view.findViewById(R.id.ll_feedback_image_identification);
+        this.imageIdentificationFeedbackTextView = view.findViewById(R.id.tv_feedback_image_identification);
     }
 
     private void initializeVirusIdentificationViewModel() {
@@ -105,6 +109,15 @@ public class VirusIdentificationFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private void setUploadImageButtonOnClickListener() {
+        this.uploadImageButton.setOnClickListener(view -> {
+            // upload Tomato Image
+            this.uploadTomatoImage();
+            // observe identificationFeedback live data
+            this.observeIdentificationFeedbackLD();
+        });
+    }
+
     private void uploadTomatoImage() {
         Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
         this.virusIdentificationViewModel.processUploadingTomatoImage(uploadImageBitmap);
@@ -113,7 +126,8 @@ public class VirusIdentificationFragment extends Fragment {
     private void observeIdentificationFeedbackLD() {
         this.virusIdentificationViewModel.getIdentificationFeedbackLD().observe(getViewLifecycleOwner(), resultIdentificationFeedback -> {
             if (!resultIdentificationFeedback.isEmpty()){
-
+                imageIdentificationFeedbackLinearLayout.setVisibility(View.VISIBLE);
+                imageIdentificationFeedbackTextView.setText(resultIdentificationFeedback);
             }
         });
     }

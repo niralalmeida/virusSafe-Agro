@@ -7,6 +7,9 @@
     <color name="rightAnswer">#1E8449</color>
     <color name="wrongAnswer">#C0392B</color>
     <color name="correctAnswer">#2E86C1</color>
-    <color name="resultItemRightBackground">#A9DFBF</color>
-    <color name="resultItemWrongBackground">#E6B0AA</color>
+    <color name="resultItemRightBG">#A9DFBF</color>
+    <color name="resultItemWrongBG">#E6B0AA</color>
+
+    <color name="feedbackBG">#D5D8DC</color>
+
 </resources>
