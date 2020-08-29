@@ -2,6 +2,8 @@ package com.example.virussafeagro.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,12 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
     private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList;
     private List<ChoiceQuestionCorrectAnswerModel> choiceQuestionCorrectAnswerModelList;
     private FragmentActivity fragmentActivity;
+
+    private final int RIGHT_ANSWER = Color.rgb(30,132,73);
+    private final int WRONG_ANSWER = Color.rgb(192,57,43);
+    private final int CORRECT_ANSWER = Color.rgb(46,134,193);
+    private final int RESULT_ITEM_RIGHT_BG = Color.rgb(212, 239, 223 );
+    private final int RESULT_ITEM_WRONG_BG = Color.rgb(250, 219, 216);
 
     public SingleChoiceResultAdapter(List<SingleChoiceQuestionModel> singleChoiceQuestionModelList, List<ChoiceQuestionCorrectAnswerModel> choiceQuestionCorrectAnswerModelList, FragmentActivity fragmentActivity) {
         this.singleChoiceQuestionModelList = singleChoiceQuestionModelList;
@@ -72,9 +80,9 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
         System.out.println("q " + singleChoiceQuestionModel.getChoiceQuestionId() + " -> is right : " + isRight);
         // set background
         if (isRight) {
-            viewHolder.singleChoiceQuestionOptionsLinearLayout.setBackgroundColor(R.color.resultItemRightBackground);
+            viewHolder.singleChoiceQuestionOptionsLinearLayout.setBackgroundColor(RESULT_ITEM_RIGHT_BG);
         } else {
-            viewHolder.singleChoiceQuestionOptionsLinearLayout.setBackgroundColor(R.color.resultItemWrongBackground);
+            viewHolder.singleChoiceQuestionOptionsLinearLayout.setBackgroundColor(RESULT_ITEM_WRONG_BG);
         }
 
         // bind view holder for single question options
@@ -93,14 +101,17 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
             String optionLabel = option.substring(0, 1);
             // set if right
             if (optionLabel.equals(correctAnswer)) {
-                optionTextView.setTextColor(R.color.rightAnswer);
+                optionTextView.setTextColor(RIGHT_ANSWER);
+                optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+
             }
             // set if wrong
             if (!isRight && optionLabel.equals(userAnswer)){
-                optionTextView.setTextColor(R.color.wrongAnswer);
+                optionTextView.setTextColor(WRONG_ANSWER);
             }
             if(!isRight && optionLabel.equals(correctAnswer)){
-                optionTextView.setTextColor(R.color.correctAnswer);
+                optionTextView.setTextColor(CORRECT_ANSWER);
+                optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             }
 
             // add TextView into LinearLayout
@@ -110,7 +121,15 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
         // set if wrong
             // create new TextView
         TextView correctAnswerTextView = new TextView(fragmentActivity);
-        correctAnswerTextView.setText("The correct answer is:" + correctAnswer);
+        correctAnswerTextView.setText("--> The correct answer is:" + correctAnswer);
+        if (isRight){
+            correctAnswerTextView.setTextColor(RIGHT_ANSWER);
+        } else {
+            correctAnswerTextView.setTextColor(CORRECT_ANSWER);
+        }
+        correctAnswerTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            // add TextView into LinearLayout
+        viewHolder.singleChoiceQuestionOptionsLinearLayout.addView(correctAnswerTextView);
     }
 
     @Override
