@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.networkConnection.NetworkConnectionToMLModel;
+import com.example.virussafeagro.uitilities.DataConverter;
 
 public class VirusIdentificationViewModel extends ViewModel {
     private Context context;
@@ -44,8 +45,10 @@ public class VirusIdentificationViewModel extends ViewModel {
         @Override
         protected String doInBackground(Bitmap... bitmaps) {
             String feedback = "";
+            Bitmap uploadImageBitmap = bitmaps[0];
+            String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
             try {
-                
+                feedback = networkConnectionToMLModel.getImageIdentificationFeedback(uploadImageBitmapString);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -2,9 +2,9 @@ package com.example.virussafeagro.fragments;
 
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -60,6 +60,10 @@ public class VirusIdentificationFragment extends Fragment {
 
         // set selectImageButton on click listener
         this.setSelectImageButtonOnClickListener();
+        // upload Tomato Image
+        this.uploadTomatoImage();
+        // observe identificationFeedback live data
+        this.observeIdentificationFeedbackLD();
     }
 
     private void initializeViews() {
@@ -96,9 +100,22 @@ public class VirusIdentificationFragment extends Fragment {
                 Log.e("Exception", e.getMessage(),e);
             }
         }else{
-            Log.i("MainActivtiy", "operation error");
+            Log.i("VirusIdentification", "operation error");
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void uploadTomatoImage() {
+        Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
+        this.virusIdentificationViewModel.processUploadingTomatoImage(uploadImageBitmap);
+    }
+
+    private void observeIdentificationFeedbackLD() {
+        this.virusIdentificationViewModel.getIdentificationFeedbackLD().observe(getViewLifecycleOwner(), resultIdentificationFeedback -> {
+            if (!resultIdentificationFeedback.isEmpty()){
+
+            }
+        });
     }
 
 }

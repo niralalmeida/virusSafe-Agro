@@ -27,4 +27,20 @@
         android:visibility="invisible"
         android:textColor="#fff"
         android:text="Upload Image"/>
+
+    <LinearLayout
+        android:id="@+id/ll_feedback_image_identification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:id="@+id/tv_feedback_image_identification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 </LinearLayout>
