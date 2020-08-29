@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="285dp"
         android:paddingBottom="5dp"
         android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
@@ -77,6 +77,34 @@
                 android:maxWidth="200dp"
                 android:maxHeight="170dp"
                 android:src="@drawable/tylcv_demo"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_take_quiz_virus_detail"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:background="#000"
+                    android:text="@string/recycler_view_quiz_button"
+                    android:textColor="#fff" />
+
+                <Button
+                    android:id="@+id/btn_back_virus_detail"
+                    android:layout_width="105dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:background="@color/backButton"
+                    android:text="@string/button_back"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:layout_marginStart="18dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

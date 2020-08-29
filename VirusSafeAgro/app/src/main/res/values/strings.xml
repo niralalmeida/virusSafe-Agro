@@ -10,4 +10,5 @@
     <string name="button_submit_quiz">Submit Your Answer</string>
     <string name="button_review_quiz">Review Virus Knowledge</string>
     <string name="button_retake_quiz">Retake Quiz</string>
+    <string name="button_back">Back</string>
 </resources>

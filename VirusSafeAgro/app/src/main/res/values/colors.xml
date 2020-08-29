@@ -11,5 +11,6 @@
     <color name="resultItemWrongBG">#E6B0AA</color>
 
     <color name="feedbackBG">#D5D8DC</color>
+    <color name="backButton">#808B96</color>
 
 </resources>
