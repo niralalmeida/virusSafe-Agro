@@ -7,24 +7,28 @@ import java.util.List;
 
 public class ChoiceQuestionCorrectAnswerModel implements Parcelable {
     private int choiceQuestionId;
+    private String choiceQuestionType;
     private List<String> correctAnswerList;
 
     public ChoiceQuestionCorrectAnswerModel() {
     }
 
-    public ChoiceQuestionCorrectAnswerModel(int choiceQuestionId, List<String> correctAnswerList) {
+    public ChoiceQuestionCorrectAnswerModel(int choiceQuestionId, String choiceQuestionType, List<String> correctAnswerList) {
         this.choiceQuestionId = choiceQuestionId;
+        this.choiceQuestionType = choiceQuestionType;
         this.correctAnswerList = correctAnswerList;
     }
 
     protected ChoiceQuestionCorrectAnswerModel(Parcel in) {
         choiceQuestionId = in.readInt();
+        choiceQuestionType = in.readString();
         correctAnswerList = in.createStringArrayList();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(choiceQuestionId);
+        dest.writeString(choiceQuestionType);
         dest.writeStringList(correctAnswerList);
     }
 
@@ -51,6 +55,14 @@ public class ChoiceQuestionCorrectAnswerModel implements Parcelable {
 
     public void setChoiceQuestionId(int choiceQuestionId) {
         this.choiceQuestionId = choiceQuestionId;
+    }
+
+    public String getChoiceQuestionType() {
+        return choiceQuestionType;
+    }
+
+    public void setChoiceQuestionType(String choiceQuestionType) {
+        this.choiceQuestionType = choiceQuestionType;
     }
 
     public List<String> getCorrectAnswerList() {

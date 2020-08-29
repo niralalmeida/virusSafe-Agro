@@ -70,7 +70,7 @@ public class JsonParser {
                 int choiceQuestionId = questionJsonObject.getInt("choiceQuestionId");
                 String choiceQuestionContent = questionJsonObject.getString("choiceQuestionContent");
                 int choiceQuestionTypeNo = questionJsonObject.getInt("choiceQuestionType");
-                if (choiceQuestionTypeNo == 109){ // single choice
+                if (choiceQuestionTypeNo == 109){ // multiple choice
                     MultipleChoiceQuestionModel multipleChoiceQuestionModel = new MultipleChoiceQuestionModel();
                     multipleChoiceQuestionModel.setChoiceQuestionId(choiceQuestionId);
                     multipleChoiceQuestionModel.setMultipleChoiceQuestionContent(choiceQuestionContent);
@@ -148,7 +148,18 @@ public class JsonParser {
             for (int i = 0; i < arrayLength; i++) {
                 JSONObject answerJsonObject = answerListJsonArray.getJSONObject(i);
 
+                // question id
                 int choiceQuestionId = answerJsonObject.getInt("choiceQuestionId");
+                // question type
+                int choiceQuestionTypeNo = answerJsonObject.getInt("choiceQuestionType");
+                String choiceQuestionType = "";
+                if (choiceQuestionTypeNo == 115){ // single choice
+                    choiceQuestionType = "single";
+                } else { // multiple
+                    choiceQuestionType = "multiple";
+                }
+
+                // answer
                 String answer = answerJsonObject.getString("answer");
                 List<String> answerList = new ArrayList<>();
                 for (int k = 0; k < answer.length(); k++) {
@@ -157,6 +168,7 @@ public class JsonParser {
                 }
                 ChoiceQuestionCorrectAnswerModel choiceQuestionCorrectAnswerModel = new ChoiceQuestionCorrectAnswerModel();
                 choiceQuestionCorrectAnswerModel.setChoiceQuestionId(choiceQuestionId);
+                choiceQuestionCorrectAnswerModel.setChoiceQuestionType(choiceQuestionType);
                 choiceQuestionCorrectAnswerModel.setCorrectAnswerList(answerList);
                 correctAnswersList.add(choiceQuestionCorrectAnswerModel);
             }

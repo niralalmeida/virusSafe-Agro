@@ -125,7 +125,7 @@ public class ChoicequestionFacadeREST extends AbstractFacade<Choicequestion> {
             @PathParam("virusId") Integer virusId){
         TypedQuery dquery = 
                 em.createQuery(
-                        "SELECT cq.choiceQuestionId, cq.answer "
+                        "SELECT cq.choiceQuestionId, cq.choiceQuestionType, cq.answer "
                         + "FROM Choicequestion AS cq "
                         + "WHERE cq.choiceQuestionVirusId.virusId = :virusId",
                         Object.class);
@@ -135,7 +135,8 @@ public class ChoicequestionFacadeREST extends AbstractFacade<Choicequestion> {
         for(Object[] row : queryList){
             JsonObject choiceQuestionAnswerObject = Json.createObjectBuilder()
                     .add("choiceQuestionId", (Integer)row[0])
-                    .add("answer", (String)row[1]).build();
+                    .add("choiceQuestionType", (String)row[1])
+                    .add("answer", (String)row[2]).build();
             arrayBuilder.add(choiceQuestionAnswerObject);
         }
         JsonArray jArray = arrayBuilder.build();
