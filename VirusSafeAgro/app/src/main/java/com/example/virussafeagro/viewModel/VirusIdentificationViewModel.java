@@ -60,4 +60,5 @@ public class VirusIdentificationViewModel extends ViewModel {
             setIdentificationFeedbackLD(resultIdentificationFeedback);
         }
     }
+
 }
