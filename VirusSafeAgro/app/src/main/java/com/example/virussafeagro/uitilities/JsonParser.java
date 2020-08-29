@@ -1,5 +1,6 @@
 package com.example.virussafeagro.uitilities;
 
+import com.example.virussafeagro.models.ChoiceQuestionCorrectAnswerModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
@@ -137,6 +138,13 @@ public class JsonParser {
                 break;
         }
         return label;
+    }
+
+    public static List<ChoiceQuestionCorrectAnswerModel> choiceQuestionAnswerListJsonParser(String resultText) throws JSONException{
+        List<ChoiceQuestionCorrectAnswerModel> correctAnswersList = new ArrayList<>();
+
+
+        return correctAnswersList;
     }
 
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.ChoiceQuestionCorrectAnswerModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
+import com.example.virussafeagro.uitilities.JsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,22 +36,24 @@ public class VirusQuizResultViewModel extends ViewModel {
         return this.correctAnswerListLD;
     }
 
-    public void processFindingCorrectAnswers() {
+    public void processFindingCorrectAnswers(int virusId) {
         try {
             VirusQuizResultViewModel.FindingCorrectAnswersAsyncTask findingCorrectAnswersAsyncTask = new VirusQuizResultViewModel.FindingCorrectAnswersAsyncTask();
-            findingCorrectAnswersAsyncTask.execute();
+            findingCorrectAnswersAsyncTask.execute(virusId);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private class FindingCorrectAnswersAsyncTask extends AsyncTask<Void, Void, List<ChoiceQuestionCorrectAnswerModel>> {
+    private class FindingCorrectAnswersAsyncTask extends AsyncTask<Integer, Void, List<ChoiceQuestionCorrectAnswerModel>> {
         @Override
-        protected List<ChoiceQuestionCorrectAnswerModel> doInBackground(Void... voids) {
+        protected List<ChoiceQuestionCorrectAnswerModel> doInBackground(Integer... integers) {
             List<ChoiceQuestionCorrectAnswerModel> correctAnswersList = new ArrayList<>();
+            int virusId = integers[0];
             try {
-
+                String resultTextForAnswers = networkConnectionToTomatoVirusDB.getAllAnswers(virusId);
+                correctAnswersList = JsonParser.choiceQuestionAnswerListJsonParser(resultTextForAnswers);
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
             return correctAnswersList;
         }
