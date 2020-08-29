@@ -57,17 +57,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
-        <Button
-            android:id="@+id/btn_review_virus_quiz_result"
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimaryDark"
-            android:text="@string/button_review_quiz"
-            android:textColor="#fff"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:layout_marginBottom="10dp"/>
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_retake_quiz_result"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="#000"
+                android:text="@string/button_retake_quiz"
+                android:textColor="#fff"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginBottom="10dp"/>
+            <Button
+                android:id="@+id/btn_review_virus_quiz_result"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/button_review_quiz"
+                android:textColor="#fff"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView

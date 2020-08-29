@@ -42,6 +42,7 @@ public class VirusQuizResultFragment extends Fragment {
     private TextView virusFullNameTitleTextView;
     private LinearLayout singleChoiceQuestionTitleLinearLayout;
     private LinearLayout multipleChoiceQuestionTitleLinearLayout;
+    private Button retakeQuizButton;
     private Button reviewButton;
 
     private SingleChoiceResultAdapter singleChoiceResultAdapter;
@@ -73,8 +74,11 @@ public class VirusQuizResultFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // add retake quiz button on click listener
+        this.setRetakeQuizButtonOnClickListener();
         // add review button on click listener
-        setReviewButtonOnClickListener();
+        this.setReviewButtonOnClickListener();
+        
         // initialize view model
         this.initializeVirusQuizResultViewModel();
         // find virus answers list in new Thread
@@ -88,6 +92,7 @@ public class VirusQuizResultFragment extends Fragment {
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.singleChoiceQuestionTitleLinearLayout = view.findViewById(R.id.ll_virus_single_choice_quiz_result);
         this.multipleChoiceQuestionTitleLinearLayout = view.findViewById(R.id.ll_virus_multiple_choice_quiz_result);
+        this.retakeQuizButton = view.findViewById(R.id.btn_retake_quiz_result);
         this.reviewButton = view.findViewById(R.id.btn_review_virus_quiz_result);
     }
 
@@ -114,6 +119,16 @@ public class VirusQuizResultFragment extends Fragment {
                     showVirusQuizMultipleChoiceQuestions();
                 }
             }
+        });
+    }
+
+    private void setRetakeQuizButtonOnClickListener() {
+        this.retakeQuizButton.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("currentVirusModel", currentVirusModel);
+            VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
+            virusQuizQuestionFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizQuestionFragment);
         });
     }
 
