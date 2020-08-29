@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,7 @@ import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,7 @@ public class VirusQuizResultFragment extends Fragment {
     private View view;
     private VirusModel currentVirusModel;
 
+    private VirusQuizResultViewModel virusQuizResultViewModel;
     private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
     private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
     private List<ChoiceQuestionCorrectAnswerModel> choiceQuestionCorrectAnswerModelList = new ArrayList<>();
@@ -69,7 +73,14 @@ public class VirusQuizResultFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // add review button on click listener
         setReviewButtonOnClickListener();
+        // initialize view model
+        this.initializeVirusQuizResultViewModel();
+        // find virus answers list in new Thread
+        this.findCorrectAnswersFromDB();
+        // observe VirusModel answers Live Data
+        this.observeCorrectAnswerListLD();
     }
 
     private void initializeViews() {
@@ -78,14 +89,32 @@ public class VirusQuizResultFragment extends Fragment {
         this.singleChoiceQuestionTitleLinearLayout = view.findViewById(R.id.ll_virus_single_choice_quiz_result);
         this.multipleChoiceQuestionTitleLinearLayout = view.findViewById(R.id.ll_virus_multiple_choice_quiz_result);
         this.reviewButton = view.findViewById(R.id.btn_review_virus_quiz_result);
-        if (this.singleChoiceQuestionModelList.size() != 0) {
-            singleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
-            showVirusQuizSingleChoiceQuestions();
-        }
-        if (this.multipleChoiceQuestionModelList.size() != 0) {
-            multipleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
-            showVirusQuizMultipleChoiceQuestions();
-        }
+    }
+
+    private void initializeVirusQuizResultViewModel() {
+        this.virusQuizResultViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizResultViewModel.class);
+        this.virusQuizResultViewModel.initiateTheContext(requireActivity());
+    }
+
+    private void findCorrectAnswersFromDB() {
+        this.virusQuizResultViewModel.processFindingCorrectAnswers(this.currentVirusModel.getVirusId());
+    }
+
+    private void observeCorrectAnswerListLD() {
+        this.virusQuizResultViewModel.getCorrectAnswerListLD().observe(getViewLifecycleOwner(), resultCorrectAnswerList -> {
+            if (resultCorrectAnswerList != null && resultCorrectAnswerList.size() != 0) {
+                this.choiceQuestionCorrectAnswerModelList = resultCorrectAnswerList;
+
+                if (this.singleChoiceQuestionModelList.size() != 0) {
+                    singleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
+                    showVirusQuizSingleChoiceQuestions();
+                }
+                if (this.multipleChoiceQuestionModelList.size() != 0) {
+                    multipleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
+                    showVirusQuizMultipleChoiceQuestions();
+                }
+            }
+        });
     }
 
     private void setReviewButtonOnClickListener() {
