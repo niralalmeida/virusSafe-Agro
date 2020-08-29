@@ -142,8 +142,25 @@ public class JsonParser {
 
     public static List<ChoiceQuestionCorrectAnswerModel> choiceQuestionAnswerListJsonParser(String resultText) throws JSONException{
         List<ChoiceQuestionCorrectAnswerModel> correctAnswersList = new ArrayList<>();
+        if(!resultText.equals("[]")){
+            JSONArray answerListJsonArray = new JSONArray(resultText);
+            int arrayLength = answerListJsonArray.length();
+            for (int i = 0; i < arrayLength; i++) {
+                JSONObject answerJsonObject = answerListJsonArray.getJSONObject(i);
 
-
+                int choiceQuestionId = answerJsonObject.getInt("choiceQuestionId");
+                String answer = answerJsonObject.getString("answer");
+                List<String> answerList = new ArrayList<>();
+                for (int k = 0; k < answer.length(); k++) {
+                    String answerItem = answer.substring(k, k + 1);
+                    answerList.add(answerItem);
+                }
+                ChoiceQuestionCorrectAnswerModel choiceQuestionCorrectAnswerModel = new ChoiceQuestionCorrectAnswerModel();
+                choiceQuestionCorrectAnswerModel.setChoiceQuestionId(choiceQuestionId);
+                choiceQuestionCorrectAnswerModel.setCorrectAnswerList(answerList);
+                correctAnswersList.add(choiceQuestionCorrectAnswerModel);
+            }
+        }
         return correctAnswersList;
     }
 
