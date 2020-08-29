@@ -78,7 +78,7 @@ public class VirusQuizResultFragment extends Fragment {
         this.setRetakeQuizButtonOnClickListener();
         // add review button on click listener
         this.setReviewButtonOnClickListener();
-        
+
         // initialize view model
         this.initializeVirusQuizResultViewModel();
         // find virus answers list in new Thread
