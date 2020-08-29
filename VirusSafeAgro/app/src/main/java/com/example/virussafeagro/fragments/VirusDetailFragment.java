@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 
 public class VirusDetailFragment extends Fragment {
     private View view;
@@ -25,6 +27,8 @@ public class VirusDetailFragment extends Fragment {
     private TextView spreadTextView;
     private TextView preventionTextView;
     private TextView distributionTextView;
+    private Button takeQuizButton;
+    private Button backButton;
 
 
     @Nullable
@@ -46,6 +50,11 @@ public class VirusDetailFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // set take quiz button on click listener
+        this.setTakeQuizButtonOnClickListener();
+        // set back button on click listener
+        this.setBackButtonOnClickListener();
+
         showVirusDetails();
     }
 
@@ -57,6 +66,8 @@ public class VirusDetailFragment extends Fragment {
         this.spreadTextView = view.findViewById(R.id.tv_spread_virus_detail);
         this.preventionTextView = view.findViewById(R.id.tv_prevention_virus_detail);
         this.distributionTextView = view.findViewById(R.id.tv_distribution_virus_detail);
+        this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
+        this.backButton = view.findViewById(R.id.btn_back_virus_detail);
     }
 
     private void showVirusDetails() {
@@ -68,5 +79,21 @@ public class VirusDetailFragment extends Fragment {
         this.distributionTextView.setText(this.currentVirusModel.getDistribution());
 
 //        this.virusPictureImageView.setImageBitmap();
+    }
+
+    private void setTakeQuizButtonOnClickListener() {
+        this.takeQuizButton.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("currentVirusModel", currentVirusModel);
+            VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
+            virusQuizQuestionFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizQuestionFragment);
+        });
+    }
+
+    private void setBackButtonOnClickListener() {
+        this.backButton.setOnClickListener(view -> {
+            FragmentOperator.backToLastFragment(requireActivity());
+        });
     }
 }
