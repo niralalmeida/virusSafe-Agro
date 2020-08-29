@@ -28,8 +28,6 @@ public class VirusDetailFragment extends Fragment {
     private TextView preventionTextView;
     private TextView distributionTextView;
     private Button takeQuizButton;
-    private Button backButton;
-
 
     @Nullable
     @Override
@@ -52,8 +50,6 @@ public class VirusDetailFragment extends Fragment {
 
         // set take quiz button on click listener
         this.setTakeQuizButtonOnClickListener();
-        // set back button on click listener
-        this.setBackButtonOnClickListener();
 
         showVirusDetails();
     }
@@ -67,7 +63,6 @@ public class VirusDetailFragment extends Fragment {
         this.preventionTextView = view.findViewById(R.id.tv_prevention_virus_detail);
         this.distributionTextView = view.findViewById(R.id.tv_distribution_virus_detail);
         this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
-        this.backButton = view.findViewById(R.id.btn_back_virus_detail);
     }
 
     private void showVirusDetails() {
@@ -88,12 +83,6 @@ public class VirusDetailFragment extends Fragment {
             VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
             virusQuizQuestionFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizQuestionFragment);
-        });
-    }
-
-    private void setBackButtonOnClickListener() {
-        this.backButton.setOnClickListener(view -> {
-            FragmentOperator.backToLastFragment(requireActivity());
         });
     }
 }

@@ -93,17 +93,6 @@
                     android:text="@string/recycler_view_quiz_button"
                     android:textColor="#fff" />
 
-                <Button
-                    android:id="@+id/btn_back_virus_detail"
-                    android:layout_width="105dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="18dp"
-                    android:background="@color/backButton"
-                    android:text="@string/button_back"
-                    android:textColor="#fff"
-                    android:textSize="12sp"
-                    android:layout_marginStart="18dp" />
-
             </LinearLayout>
 
         </LinearLayout>
