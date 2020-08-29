@@ -8,19 +8,16 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.virussafeagro.models.ChoiceQuestionCorrectAnswerModel;
-import com.example.virussafeagro.uitilities.JsonParser;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.virussafeagro.networkConnection.NetworkConnectionToMLModel;
 
 public class VirusIdentificationViewModel extends ViewModel {
     private Context context;
+    private NetworkConnectionToMLModel networkConnectionToMLModel;
 
     private MutableLiveData<String> identificationFeedbackLD;
 
     public VirusIdentificationViewModel() {
-//        this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
+        this.networkConnectionToMLModel = new NetworkConnectionToMLModel();
         this.identificationFeedbackLD = new MutableLiveData<>();
     }
 
