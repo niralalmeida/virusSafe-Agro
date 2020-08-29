@@ -132,6 +132,17 @@ public class MultipleChoiceResultAdapter extends RecyclerView.Adapter<MultipleCh
         if (isRight){
             correctAnswerTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
         } else {
+            // add text view for user selected answer
+            String userAnswer = "";
+            for (String user_ans : userAnswerList) {
+                userAnswer += (user_ans + " ");
+            }
+            TextView userAnswerTextView = new TextView(fragmentActivity);
+            userAnswerTextView.setText("--> You selected: " + userAnswer);
+            userAnswerTextView.setTextColor(Resources.COlOR_WRONG_ANSWER);
+            userAnswerTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            viewHolder.multipleChoiceQuestionOptionsLinearLayout.addView(userAnswerTextView);
+
             correctAnswerTextView.setTextColor(Resources.COlOR_CORRECT_ANSWER);
         }
         correctAnswerTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));

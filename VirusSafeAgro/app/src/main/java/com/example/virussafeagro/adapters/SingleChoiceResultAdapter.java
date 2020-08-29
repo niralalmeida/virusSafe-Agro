@@ -115,6 +115,13 @@ public class SingleChoiceResultAdapter extends RecyclerView.Adapter<SingleChoice
         if (isRight){
             correctAnswerTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
         } else {
+            // add text view for user selected answer
+            TextView userAnswerTextView = new TextView(fragmentActivity);
+            userAnswerTextView.setText("--> You selected: " + userAnswer);
+            userAnswerTextView.setTextColor(Resources.COlOR_WRONG_ANSWER);
+            userAnswerTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            viewHolder.singleChoiceQuestionOptionsLinearLayout.addView(userAnswerTextView);
+
             correctAnswerTextView.setTextColor(Resources.COlOR_CORRECT_ANSWER);
         }
         correctAnswerTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
