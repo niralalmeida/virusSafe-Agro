@@ -135,7 +135,7 @@ public class ChoicequestionFacadeREST extends AbstractFacade<Choicequestion> {
         for(Object[] row : queryList){
             JsonObject choiceQuestionAnswerObject = Json.createObjectBuilder()
                     .add("choiceQuestionId", (Integer)row[0])
-                    .add("choiceQuestionType", (String)row[1])
+                    .add("choiceQuestionType", (Character)row[1])
                     .add("answer", (String)row[2]).build();
             arrayBuilder.add(choiceQuestionAnswerObject);
         }
