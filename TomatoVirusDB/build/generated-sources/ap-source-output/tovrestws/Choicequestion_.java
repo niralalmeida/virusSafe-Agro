@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import tovrestws.Choiceoption;
 import tovrestws.Virus;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-08-26T15:41:42")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-08-29T08:55:36")
 @StaticMetamodel(Choicequestion.class)
 public class Choicequestion_ { 
 

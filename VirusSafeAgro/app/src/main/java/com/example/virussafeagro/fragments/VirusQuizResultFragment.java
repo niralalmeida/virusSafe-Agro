@@ -128,7 +128,7 @@ public class VirusQuizResultFragment extends Fragment {
     }
 
     private void showVirusQuizSingleChoiceQuestions() {
-        singleChoiceResultAdapter = new SingleChoiceResultAdapter(singleChoiceQuestionModelList, requireActivity());
+        singleChoiceResultAdapter = new SingleChoiceResultAdapter(singleChoiceQuestionModelList, choiceQuestionCorrectAnswerModelList, requireActivity());
         recyclerViewForSingleChoiceQuestionModelList = view.findViewById(R.id.rv_virus_single_choice_quiz_result);
         recyclerViewForSingleChoiceQuestionModelList.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         recyclerViewForSingleChoiceQuestionModelList.setAdapter(singleChoiceResultAdapter);
