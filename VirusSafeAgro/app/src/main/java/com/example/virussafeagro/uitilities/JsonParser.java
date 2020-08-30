@@ -179,7 +179,7 @@ public class JsonParser {
 
     public static String imageIdentificationFeedbackJsonParser(String resultText) throws JSONException {
         String feedBack = "";
-        if(!resultText.equals("[]")){
+        if(!resultText.equals("{}")){
             JSONObject predictionJsonObject = new JSONObject(resultText);
             Iterator<String> keysIterator = predictionJsonObject.keys();
             if (keysIterator.next().equals("prediction")) {

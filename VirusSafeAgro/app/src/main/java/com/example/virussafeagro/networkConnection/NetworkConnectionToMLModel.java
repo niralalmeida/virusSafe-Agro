@@ -1,7 +1,21 @@
 package com.example.virussafeagro.networkConnection;
 
-import com.google.gson.Gson;
+import android.os.Looper;
 
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.client.methods.RequestBuilder;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -13,10 +27,17 @@ public class NetworkConnectionToMLModel {
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private OkHttpClient okHttpClient;
-//    private AsyncHttpClient asyncHttpClient;
+
+    private AsyncHttpClient asyncHttpClient;
+    private RequestParams params;
+    private String resultText;
 
     public NetworkConnectionToMLModel() {
         this.okHttpClient = new OkHttpClient();
+
+        this.asyncHttpClient = new AsyncHttpClient();
+        this.params = new RequestParams();
+        this.resultText = "";
     }
 
 //    public String getImageIdentificationFeedback(String uploadImageBitmapString) {
@@ -41,6 +62,27 @@ public class NetworkConnectionToMLModel {
 //    }
 
     public String getImageIdentificationFeedback(String uploadImageBitmapString) {
-        return "";
+        String searchURL = BASE_URL + "Image";
+
+        this.params.put("image", uploadImageBitmapString);
+        Looper.prepare();
+//        this.asyncHttpClient.get(searchURL, params, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                // Root JSON in response is an dictionary i.e { "data : [ ... ] }
+//                // Handle resulting parsed JSON response here
+//                try {
+//                    resultText = response.getString("prediction");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+//                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+//            }
+//        });
+        return this.resultText;
     }
 }
