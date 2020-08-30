@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class JsonParser {
@@ -176,4 +177,17 @@ public class JsonParser {
         return correctAnswersList;
     }
 
+    public static String imageIdentificationFeedbackJsonParser(String resultText) throws JSONException {
+        String feedBack = "";
+        if(!resultText.equals("[]")){
+            JSONObject predictionJsonObject = new JSONObject(resultText);
+            Iterator<String> keysIterator = predictionJsonObject.keys();
+            if (keysIterator.next().equals("prediction")) {
+                feedBack = predictionJsonObject.getString("prediction");
+            } else {
+                feedBack = "error";
+            }
+        }
+        return feedBack;
+    }
 }

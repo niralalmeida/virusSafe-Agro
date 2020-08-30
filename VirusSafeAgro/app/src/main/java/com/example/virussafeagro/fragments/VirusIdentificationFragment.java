@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -125,9 +126,15 @@ public class VirusIdentificationFragment extends Fragment {
 
     private void observeIdentificationFeedbackLD() {
         this.virusIdentificationViewModel.getIdentificationFeedbackLD().observe(getViewLifecycleOwner(), resultIdentificationFeedback -> {
+            // test
+            System.out.println("feedback ---> :" + resultIdentificationFeedback);
             if (!resultIdentificationFeedback.isEmpty()){
                 imageIdentificationFeedbackLinearLayout.setVisibility(View.VISIBLE);
-                imageIdentificationFeedbackTextView.setText(resultIdentificationFeedback);
+                if (resultIdentificationFeedback.equals("error")){
+                    Toast.makeText(requireActivity(), "Your image should include tomato leaf!! Please select image again!!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    imageIdentificationFeedbackTextView.setText(resultIdentificationFeedback);
+                }
             }
         });
     }

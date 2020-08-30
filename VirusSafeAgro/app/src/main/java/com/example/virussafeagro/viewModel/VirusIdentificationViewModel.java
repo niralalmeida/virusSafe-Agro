@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.networkConnection.NetworkConnectionToMLModel;
 import com.example.virussafeagro.uitilities.DataConverter;
+import com.example.virussafeagro.uitilities.JsonParser;
 
 public class VirusIdentificationViewModel extends ViewModel {
     private Context context;
@@ -47,12 +48,11 @@ public class VirusIdentificationViewModel extends ViewModel {
             String feedback = "";
             Bitmap uploadImageBitmap = bitmaps[0];
             String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
-            // test
-            System.out.println("---->> "  + uploadImageBitmapString);
-            // test
-            feedback = "Your tomato is healthy!!";
             try {
-//                feedback = networkConnectionToMLModel.getImageIdentificationFeedback(uploadImageBitmapString);
+                String rawFeedback = networkConnectionToMLModel.getImageIdentificationFeedback(uploadImageBitmapString);
+                // test
+                System.out.println("raw feed back: " + rawFeedback);
+                feedback = JsonParser.imageIdentificationFeedbackJsonParser(rawFeedback);
             } catch (Exception e) {
                 e.printStackTrace();
             }
