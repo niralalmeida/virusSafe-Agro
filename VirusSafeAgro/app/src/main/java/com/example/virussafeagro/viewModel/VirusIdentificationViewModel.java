@@ -50,7 +50,7 @@ public class VirusIdentificationViewModel extends ViewModel {
             // test
             System.out.println("---->> "  + uploadImageBitmapString);
             // test
-            feedback = uploadImageBitmapString;
+            feedback = "Your tomato is healthy!!";
             try {
 //                feedback = networkConnectionToMLModel.getImageIdentificationFeedback(uploadImageBitmapString);
             } catch (Exception e) {
