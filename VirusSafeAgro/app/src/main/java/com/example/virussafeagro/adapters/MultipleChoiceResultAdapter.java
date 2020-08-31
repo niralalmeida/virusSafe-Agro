@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ChoiceQuestionCorrectAnswerModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
-import com.example.virussafeagro.uitilities.Resources;
+import com.example.virussafeagro.uitilities.AppResources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,9 +71,9 @@ public class MultipleChoiceResultAdapter extends RecyclerView.Adapter<MultipleCh
         boolean isRight = checkTwoListHaveSameItems(userAnswerList, correctAnswerList);
         // set background
         if (isRight) {
-            viewHolder.multipleChoiceQuestionOptionsLinearLayout.setBackgroundColor(Resources.COlOR_RESULT_ITEM_RIGHT_BG);
+            viewHolder.multipleChoiceQuestionOptionsLinearLayout.setBackgroundColor(AppResources.COlOR_RESULT_ITEM_RIGHT_BG);
         } else {
-            viewHolder.multipleChoiceQuestionOptionsLinearLayout.setBackgroundColor(Resources.COlOR_RESULT_ITEM_WRONG_BG);
+            viewHolder.multipleChoiceQuestionOptionsLinearLayout.setBackgroundColor(AppResources.COlOR_RESULT_ITEM_WRONG_BG);
         }
 
         // bind view holder for multiple-question options
@@ -97,23 +97,23 @@ public class MultipleChoiceResultAdapter extends RecyclerView.Adapter<MultipleCh
             String optionLabel = option.substring(0, 1);
             // set if right
             if (isRight && correctAnswerList.contains(optionLabel)) {
-                optionTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
+                optionTextView.setTextColor(AppResources.COlOR_RIGHT_ANSWER);
                 optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             }
 
             // set if wrong
                 // when user select wrong item
             if (!isRight && userAnswerList.contains(optionLabel) && (!correctAnswerList.contains(optionLabel))){
-                optionTextView.setTextColor(Resources.COlOR_WRONG_ANSWER);
+                optionTextView.setTextColor(AppResources.COlOR_WRONG_ANSWER);
             }
                 // when user select right item
             if(!isRight && userAnswerList.contains(optionLabel) && correctAnswerList.contains(optionLabel)){
-                optionTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
+                optionTextView.setTextColor(AppResources.COlOR_RIGHT_ANSWER);
                 optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             }
                 // show correct item
             if(!isRight && (!userAnswerList.contains(optionLabel)) && correctAnswerList.contains(optionLabel)){
-                optionTextView.setTextColor(Resources.COlOR_CORRECT_ANSWER);
+                optionTextView.setTextColor(AppResources.COlOR_CORRECT_ANSWER);
                 optionTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             }
 
@@ -130,7 +130,7 @@ public class MultipleChoiceResultAdapter extends RecyclerView.Adapter<MultipleCh
         }
         correctAnswerTextView.setText("--> The correct answer is:" + correctAnswer);
         if (isRight){
-            correctAnswerTextView.setTextColor(Resources.COlOR_RIGHT_ANSWER);
+            correctAnswerTextView.setTextColor(AppResources.COlOR_RIGHT_ANSWER);
         } else {
             // add text view for user selected answer
             String userAnswer = "";
@@ -139,11 +139,11 @@ public class MultipleChoiceResultAdapter extends RecyclerView.Adapter<MultipleCh
             }
             TextView userAnswerTextView = new TextView(fragmentActivity);
             userAnswerTextView.setText("--> You selected: " + userAnswer);
-            userAnswerTextView.setTextColor(Resources.COlOR_WRONG_ANSWER);
+            userAnswerTextView.setTextColor(AppResources.COlOR_WRONG_ANSWER);
             userAnswerTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             viewHolder.multipleChoiceQuestionOptionsLinearLayout.addView(userAnswerTextView);
 
-            correctAnswerTextView.setTextColor(Resources.COlOR_CORRECT_ANSWER);
+            correctAnswerTextView.setTextColor(AppResources.COlOR_CORRECT_ANSWER);
         }
         correctAnswerTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         // add TextView into LinearLayout

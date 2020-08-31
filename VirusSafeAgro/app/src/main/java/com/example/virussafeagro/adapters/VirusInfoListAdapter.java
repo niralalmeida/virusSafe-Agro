@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.AppResources;
 
 import java.util.List;
 
@@ -65,8 +66,9 @@ public class VirusInfoListAdapter extends RecyclerView.Adapter<VirusInfoListAdap
 
         viewHolder.virusFullName.setText(currentVirusModel.getVirusFullName());
 
-        Bitmap bitmap = BitmapFactory.decodeResource(fragmentActivity.getResources(), R.drawable.);
-        viewHolder.virusPictureImageView.setImageBitmap();
+        int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(currentVirusModel.getVirusId());
+        Bitmap virusPictureBitmap = BitmapFactory.decodeResource(fragmentActivity.getResources(), virusPictureDrawableId);
+        viewHolder.virusPictureImageView.setImageBitmap(virusPictureBitmap);
 
         viewHolder.virusCardView.setOnClickListener(v ->{
             virusCardViewClickListener.onVirusCardViewClick(position);
