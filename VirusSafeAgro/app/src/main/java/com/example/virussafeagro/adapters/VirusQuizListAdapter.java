@@ -1,10 +1,13 @@
 package com.example.virussafeagro.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.AppResources;
 
 import java.util.List;
 
@@ -29,12 +33,14 @@ public class VirusQuizListAdapter extends RecyclerView.Adapter<VirusQuizListAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView virusFullName;
+        public ImageView virusPictureImageView;
         public Button takeQuizButton;
         public Button viewContentButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.virusFullName = itemView.findViewById(R.id.tv_virus_full_name_virus_quiz_list);
+            this.virusPictureImageView = itemView.findViewById(R.id.img_virus_picture_virus_quiz_list);
             this.takeQuizButton = itemView.findViewById(R.id.btn_take_quiz_virus_quiz_list);
             this.viewContentButton = itemView.findViewById(R.id.btn_view_content_virus_quiz_list);
         }
@@ -69,6 +75,10 @@ public class VirusQuizListAdapter extends RecyclerView.Adapter<VirusQuizListAdap
         final VirusModel currentVirusModel = this.virusModelList.get(position);
 
         viewHolder.virusFullName.setText(currentVirusModel.getVirusFullName());
+        
+        int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(currentVirusModel.getVirusId());
+        Bitmap virusPictureBitmap = BitmapFactory.decodeResource(fragmentActivity.getResources(), virusPictureDrawableId);
+        viewHolder.virusPictureImageView.setImageBitmap(virusPictureBitmap);
 
         viewHolder.takeQuizButton.setOnClickListener(v ->{
             virusQuizButtonClickListener.onVirusQuizButtonClick(position);
