@@ -2,14 +2,12 @@ package com.example.virussafeagro.viewModel;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ImageObject;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToMLModel;
 import com.example.virussafeagro.uitilities.DataConverter;
