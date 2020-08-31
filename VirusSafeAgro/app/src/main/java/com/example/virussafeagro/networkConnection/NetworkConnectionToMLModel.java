@@ -3,6 +3,7 @@ package com.example.virussafeagro.networkConnection;
 import android.os.Looper;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.ImageObject;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -41,13 +42,12 @@ public class NetworkConnectionToMLModel {
         this.resultText = "";
     }
 
-    public String getImageIdentificationFeedback(String uploadImageBitmapString) {
+    public String getImageIdentificationFeedback(ImageObject imageObject) {
         String resultText = "";
         final String methodPathForImageMLModel = BASE_URL + "Image";
 
-//        String uploadImageJson = "{\"image\":\"" + uploadImageBitmapString + "\"}";
         Gson gson = new Gson();
-        String uploadImageJson = gson.toJson(uploadImageBitmapString);
+        String uploadImageJson = gson.toJson(imageObject);
 
         RequestBody bodyForImage = RequestBody.create(uploadImageJson, JSON);
         Request requestForImage = new Request.Builder()
