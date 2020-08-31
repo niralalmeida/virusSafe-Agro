@@ -54,8 +54,6 @@ public class VirusIdentificationViewModel extends ViewModel {
             ImageObject imageObject = new ImageObject(uploadImageBitmapString);
             try {
                 String rawFeedback = networkConnectionToMLModel.getImageIdentificationFeedback(imageObject);
-                // test
-                System.out.println("raw feed back: " + rawFeedback);
                 feedback = JsonParser.imageIdentificationFeedbackJsonParser(rawFeedback);
             } catch (Exception e) {
                 e.printStackTrace();

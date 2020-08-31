@@ -128,8 +128,6 @@ public class VirusIdentificationFragment extends Fragment {
 
     private void observeIdentificationFeedbackLD() {
         this.virusIdentificationViewModel.getIdentificationFeedbackLD().observe(getViewLifecycleOwner(), resultIdentificationFeedback -> {
-            // test
-            System.out.println("feedback ---> :" + resultIdentificationFeedback);
             if (!resultIdentificationFeedback.isEmpty()){
                 imageIdentificationFeedbackLinearLayout.setVisibility(View.VISIBLE);
                 if (resultIdentificationFeedback.equals("error")){
