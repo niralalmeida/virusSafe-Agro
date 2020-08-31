@@ -18,9 +18,9 @@ public class AppResources {
     public final static int COlOR_RESULT_ITEM_RIGHT_BG = Color.rgb(212, 239, 223 );
     public final static int COlOR_RESULT_ITEM_WRONG_BG = Color.rgb(250, 219, 216);
 
-    private static List<VirusModel> virusModelListBackup = new ArrayList<>();
-    private static List<List[]> choiceQuestionListBackup = new ArrayList<>();
-    private static List<List<ChoiceQuestionCorrectAnswerModel>> choiceQuestionCorrectAnswerModelListBackup = new ArrayList<>();
+    public static List<VirusModel> virusModelListBackup = new ArrayList<>();
+    public static List<List[]> choiceQuestionListBackup = new ArrayList<>();
+    public static List<List<ChoiceQuestionCorrectAnswerModel>> choiceQuestionCorrectAnswerModelListBackup = new ArrayList<>();
 
     public static int getVirusPictureDrawableId(int virusId) {
         int virusDrawablePictureResource = -1;
@@ -745,7 +745,9 @@ public class AppResources {
         ans11.setCorrectAnswerList(oans11);
         ans11.setChoiceQuestionType("single");
         List<String> oans12 = new ArrayList<>();
-        oans12.add("ABC");
+        oans12.add("A");
+        oans12.add("B");
+        oans12.add("C");
         ans12.setCorrectAnswerList(oans12);
         ans12.setChoiceQuestionType("multiple");
         List<String> oans13 = new ArrayList<>();
@@ -775,11 +777,14 @@ public class AppResources {
         ChoiceQuestionCorrectAnswerModel ans25 = new ChoiceQuestionCorrectAnswerModel(10);
 
         List<String> oans21 = new ArrayList<>();
-        oans21.add("ABC");
+        oans21.add("A");
+        oans21.add("B");
+        oans21.add("C");
         ans21.setCorrectAnswerList(oans21);
         ans21.setChoiceQuestionType("multiple");
         List<String> oans22 = new ArrayList<>();
-        oans22.add("AB");
+        oans22.add("A");
+        oans22.add("B");
         ans22.setCorrectAnswerList(oans22);
         ans22.setChoiceQuestionType("multiple");
         List<String> oans23 = new ArrayList<>();
@@ -791,7 +796,8 @@ public class AppResources {
         ans24.setCorrectAnswerList(oans24);
         ans24.setChoiceQuestionType("single");
         List<String> oans25 = new ArrayList<>();
-        oans25.add("AB");
+        oans25.add("A");
+        oans25.add("B");
         ans25.setCorrectAnswerList(oans25);
         ans25.setChoiceQuestionType("multiple");
 
@@ -809,7 +815,8 @@ public class AppResources {
         ChoiceQuestionCorrectAnswerModel ans35 = new ChoiceQuestionCorrectAnswerModel(11);
 
         List<String> oans31 = new ArrayList<>();
-        oans31.add("AB");
+        oans31.add("A");
+        oans31.add("B");
         ans31.setCorrectAnswerList(oans31);
         ans31.setChoiceQuestionType("multiple");
         List<String> oans32 = new ArrayList<>();
@@ -1017,7 +1024,8 @@ public class AppResources {
         ans91.setCorrectAnswerList(oans91);
         ans91.setChoiceQuestionType("single");
         List<String> oans92 = new ArrayList<>();
-        oans92.add("CD");
+        oans92.add("C");
+        oans92.add("D");
         ans92.setCorrectAnswerList(oans92);
         ans92.setChoiceQuestionType("multiple");
         List<String> oans93 = new ArrayList<>();

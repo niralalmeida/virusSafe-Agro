@@ -56,7 +56,12 @@ public class VirusQuizResultViewModel extends ViewModel {
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
-            correctAnswersList = AppResources.getChoiceQuestionCorrectAnswerModelListBackup(virusId - 1);
+            if (AppResources.choiceQuestionCorrectAnswerModelListBackup.size() == 0){
+                correctAnswersList = AppResources.getChoiceQuestionCorrectAnswerModelListBackup(virusId - 1);
+            } else {
+                correctAnswersList = AppResources.choiceQuestionCorrectAnswerModelListBackup.get(virusId - 1);
+            }
+
             return correctAnswersList;
         }
 

@@ -55,7 +55,12 @@ public class VirusQuizListViewModel extends ViewModel {
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
-            virusModelQuizList = AppResources.getVirusModelListBackup();
+            if (AppResources.virusModelListBackup.size() == 0){
+                virusModelQuizList = AppResources.getVirusModelListBackup();
+            } else {
+                virusModelQuizList = AppResources.virusModelListBackup;
+            }
+
             return virusModelQuizList;
         }
 

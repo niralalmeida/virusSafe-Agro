@@ -72,7 +72,12 @@ public class VirusQuizQuestionViewModel extends ViewModel {
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
-            virusTwoTypeQuestionArray = AppResources.getVirusChoiceQuestionModelListBackup(virusId - 1);
+            if (AppResources.choiceQuestionListBackup.size() == 0){
+                virusTwoTypeQuestionArray = AppResources.getVirusChoiceQuestionModelListBackup(virusId - 1);
+            } else {
+                virusTwoTypeQuestionArray = AppResources.choiceQuestionListBackup.get(virusId - 1);
+            }
+
             return virusTwoTypeQuestionArray;
         }
 

@@ -55,7 +55,11 @@ public class VirusInfoListViewModel extends ViewModel {
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
-            virusModelInfoList = AppResources.getVirusModelListBackup();
+            if (AppResources.virusModelListBackup.size() == 0){
+                virusModelInfoList = AppResources.getVirusModelListBackup();
+            } else {
+                virusModelInfoList = AppResources.virusModelListBackup;
+            }
             return virusModelInfoList;
         }
 
