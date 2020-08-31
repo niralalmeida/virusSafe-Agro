@@ -152,7 +152,7 @@ public class AppResources {
         return virusModelListBackup;
     }
 
-    public static List<List[]> getVirus1SingleChoiceQuestionModelListBackup() {
+    public static List[] getVirusChoiceQuestionModelListBackup(int virusId) {
         List<SingleChoiceQuestionModel> singleChoiceQuestionModelListBackup1 = new ArrayList<>();
         List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelListBackup1 = new ArrayList<>();
         List<SingleChoiceQuestionModel> singleChoiceQuestionModelListBackup2 = new ArrayList<>();
@@ -180,7 +180,7 @@ public class AppResources {
         MultipleChoiceQuestionModel m15 = new MultipleChoiceQuestionModel();
 
         s11.setChoiceQuestionId(1);
-        s11.setSingleChoiceQuestionContent("Are there chemical control strategies available to control the spread of tomato Mosaic Virus (ToMV) ?");
+        s11.setSingleChoiceQuestionContent("Q1. Are there chemical control strategies available to control the spread of tomato Mosaic Virus (ToMV) ?");
         List<String> so11 = new ArrayList<>();
         so11.add("A. YES");
         so11.add("B. NO");
@@ -188,7 +188,7 @@ public class AppResources {
         s11.setSingleChoiceQuestionVirusId(1);
 
         s12.setChoiceQuestionId(2);
-        s12.setSingleChoiceQuestionContent("Which disinfectant should be used to sterilise tools after handling infected plants?");
+        s12.setSingleChoiceQuestionContent("Q2. Which disinfectant should be used to sterilise tools after handling infected plants?");
         List<String> so12 = new ArrayList<>();
         so12.add("A. Virkon S");
         so12.add("B. Virkon N");
@@ -198,7 +198,7 @@ public class AppResources {
         s12.setSingleChoiceQuestionVirusId(1);
 
         s13.setChoiceQuestionId(3);
-        s13.setSingleChoiceQuestionContent("What are the means of infection for Tomato Mosaic Virus (T oMV)?");
+        s13.setSingleChoiceQuestionContent("Q3. What are the means of infection for Tomato Mosaic Virus (T oMV)?");
         List<String> so13 = new ArrayList<>();
         so13.add("A. INFECTED SEED");
         so13.add("B. CONTAMINATED TOOLS");
@@ -207,8 +207,8 @@ public class AppResources {
         s13.setSingleChoiceQuestionOptionList(so13);
         s13.setSingleChoiceQuestionVirusId(1);
 
-        s14.setChoiceQuestionId(3);
-        s14.setSingleChoiceQuestionContent("Which of the following environmental conditions influence the symptoms of Tomato Mosaic Virus (ToMV)?");
+        s14.setChoiceQuestionId(4);
+        s14.setSingleChoiceQuestionContent("Q4. Which of the following environmental conditions influence the symptoms of Tomato Mosaic Virus (ToMV)?");
         List<String> so14 = new ArrayList<>();
         so14.add("A. Temperature");
         so14.add("B. Day length");
@@ -218,8 +218,8 @@ public class AppResources {
         s14.setSingleChoiceQuestionOptionList(so14);
         s14.setSingleChoiceQuestionVirusId(1);
 
-        m15.setChoiceQuestionId(3);
-        m15.setMultipleChoiceQuestionContent("What are the common symptoms observed in tomato (fruit)?");
+        m15.setChoiceQuestionId(5);
+        m15.setMultipleChoiceQuestionContent("Q1. What are the common symptoms observed in tomato (fruit)?");
         List<String> mo15 = new ArrayList<>();
         mo15.add("A. BRONZE AND PATCH APPEARANCE");
         mo15.add("B. DISTORTED");
@@ -241,33 +241,61 @@ public class AppResources {
         MultipleChoiceQuestionModel m24 = new MultipleChoiceQuestionModel();
         MultipleChoiceQuestionModel m25 = new MultipleChoiceQuestionModel();
 
-        s21.setChoiceQuestionId(1);
-        s21.setSingleChoiceQuestionContent("Are there chemical control strategies available to control the spread of tomato Mosaic Virus (ToMV) ?");
+        s21.setChoiceQuestionId(6);
+        s21.setSingleChoiceQuestionContent("Q1. The target spots grow up to");
         List<String> so21 = new ArrayList<>();
-        so21.add("A. YES");
-        so21.add("B. NO");
+        so21.add("A. 10-12 mm");
+        so21.add("B. 12-13 mm");
+        so21.add("C. 11-12 mm");
+        so21.add("D. 07- 09 mm");
         s21.setSingleChoiceQuestionOptionList(so21);
-        s21.setSingleChoiceQuestionVirusId(1);
+        s21.setSingleChoiceQuestionVirusId(2);
         
-        s22.setChoiceQuestionId(1);
-        s22.setSingleChoiceQuestionContent("Are there chemical control strategies available to control the spread of tomato Mosaic Virus (ToMV) ?");
+        s22.setChoiceQuestionId(7);
+        s22.setSingleChoiceQuestionContent("Q2. What are the means of infection for target spots in tomato plants?");
         List<String> so22 = new ArrayList<>();
-        so22.add("A. YES");
-        so22.add("B. NO");
+        so22.add("A. Infected seed");
+        so22.add("B. Remains of earlier infected plants or host species");
+        so22.add("C. ALL OF THE ABOVE");
         s22.setSingleChoiceQuestionOptionList(so22);
-        s22.setSingleChoiceQuestionVirusId(1);
+        s22.setSingleChoiceQuestionVirusId(2);
 
-        m23.setChoiceQuestionId(3);
-        m23.setMultipleChoiceQuestionContent("What are the common symptoms observed in tomato (fruit)?");
+        m23.setChoiceQuestionId(8);
+        m23.setMultipleChoiceQuestionContent("Q1. Which of the following chemical products can be used to control spread target spots in tomato plants ?");
         List<String> mo23 = new ArrayList<>();
-        mo23.add("A. BRONZE AND PATCH APPEARANCE");
-        mo23.add("B. DISTORTED");
-        mo23.add("C. YELLOW BLOTCHES AND NECROTIC SPOTS");
-        mo23.add("D. BLUE PATCHES");
+        mo23.add("A. Mancozeb");
+        mo23.add("B. copper oxychloride");
+        mo23.add("C. chlorothalonil");
+        mo23.add("D. Virkon S");
         m23.setMultipleChoiceQuestionOptionList(mo23);
-        m23.setMultipleChoiceQuestionVirusId(1);
-        
-        
+        m23.setMultipleChoiceQuestionVirusId(2);
+
+        m24.setChoiceQuestionId(9);
+        m24.setMultipleChoiceQuestionContent("Q2. What are the common symptoms observed in tomato (fruit)?");
+        List<String> mo24 = new ArrayList<>();
+        mo24.add("A. Brown and black spots");
+        mo24.add("B. series of concentric circles");
+        mo24.add("C. Blotches and necrotic spots");
+        mo24.add("D. All of the above");
+        m24.setMultipleChoiceQuestionOptionList(mo24);
+        m24.setMultipleChoiceQuestionVirusId(2);
+
+        m25.setChoiceQuestionId(10);
+        m25.setMultipleChoiceQuestionContent("Q3. Target spot attacks which area of the plant first?");
+        List<String> mo25 = new ArrayList<>();
+        mo25.add("A. Leaves");
+        mo25.add("B. Stems");
+        mo25.add("C. Roots");
+        mo25.add("D. Fruit");
+        m25.setMultipleChoiceQuestionOptionList(mo25);
+        m25.setMultipleChoiceQuestionVirusId(2);
+
+        singleChoiceQuestionModelListBackup1.add(s21);
+        singleChoiceQuestionModelListBackup1.add(s22);
+        multipleChoiceQuestionModelListBackup1.add(m23);
+        multipleChoiceQuestionModelListBackup1.add(m24);
+        multipleChoiceQuestionModelListBackup1.add(m25);
+
         // v3
 
         // v4
@@ -322,7 +350,7 @@ public class AppResources {
         choiceQuestionListBackup.add(choiceQuestionArray8);
         choiceQuestionListBackup.add(choiceQuestionArray9);
 
-        return choiceQuestionListBackup;
+        return choiceQuestionListBackup.get(virusId);
     }
 
     public static List<ChoiceQuestionCorrectAnswerModel> getChoiceQuestionCorrectAnswerModelListBackup() {

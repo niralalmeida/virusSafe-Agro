@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.JsonParser;
 
 import java.util.List;
@@ -71,6 +72,7 @@ public class VirusQuizQuestionViewModel extends ViewModel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            virusTwoTypeQuestionArray = AppResources.getVirusChoiceQuestionModelListBackup(virusId);
             return virusTwoTypeQuestionArray;
         }
 
