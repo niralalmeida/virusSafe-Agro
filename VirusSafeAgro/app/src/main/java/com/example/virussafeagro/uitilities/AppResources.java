@@ -12,11 +12,36 @@ public class AppResources {
     public final static int COlOR_RESULT_ITEM_WRONG_BG = Color.rgb(250, 219, 216);
 
     public static int getVirusPictureDrawableId(int virusId) {
-        int virusDrawablePictureResource;
+        int virusDrawablePictureResource = -1;
         switch (virusId){
-//            case 1:
-//                virusDrawablePictureResource = ;
+            case 1:
+                virusDrawablePictureResource = R.drawable.one;
+                break;
+            case 2:
+                virusDrawablePictureResource = R.drawable.two;
+                break;
+            case 3:
+                virusDrawablePictureResource = R.drawable.three;
+                break;
+            case 4:
+                virusDrawablePictureResource = R.drawable.four;
+                break;
+            case 5:
+                virusDrawablePictureResource = R.drawable.five;
+                break;
+            case 6:
+                virusDrawablePictureResource = R.drawable.six;
+                break;
+            case 7:
+                virusDrawablePictureResource = R.drawable.seven;
+                break;
+            case 8:
+                virusDrawablePictureResource = R.drawable.eight;
+                break;
+            case 9:
+                virusDrawablePictureResource = R.drawable.nine;
+                break;
         }
-        return 0;
+        return virusDrawablePictureResource;
     }
 }
