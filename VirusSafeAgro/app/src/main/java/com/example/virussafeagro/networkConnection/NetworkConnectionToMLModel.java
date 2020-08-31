@@ -1,23 +1,8 @@
 package com.example.virussafeagro.networkConnection;
 
-import android.os.Looper;
-
-import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ImageObject;
 import com.google.gson.Gson;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.client.methods.RequestBuilder;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -30,16 +15,8 @@ public class NetworkConnectionToMLModel {
 
     private OkHttpClient okHttpClient;
 
-    private AsyncHttpClient asyncHttpClient;
-    private RequestParams params;
-    private String resultText;
-
     public NetworkConnectionToMLModel() {
         this.okHttpClient = new OkHttpClient();
-
-        this.asyncHttpClient = new AsyncHttpClient();
-        this.params = new RequestParams();
-        this.resultText = "";
     }
 
     public String getImageIdentificationFeedback(ImageObject imageObject) {
