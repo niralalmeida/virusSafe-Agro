@@ -84,6 +84,8 @@ public class VirusIdentificationFragment extends Fragment {
 
     private void setSelectImageButtonOnClickListener() {
         this.selectImageButton.setOnClickListener(view -> {
+            imageIdentificationFeedbackLinearLayout.setVisibility(View.INVISIBLE);
+            imageIdentificationFeedbackTextView.setText("");
             Intent intent=new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
