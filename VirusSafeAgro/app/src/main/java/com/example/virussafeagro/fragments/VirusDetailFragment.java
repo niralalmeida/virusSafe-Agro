@@ -109,7 +109,7 @@ public class VirusDetailFragment extends Fragment {
     }
 
     private void hideLinearLayoutIfItemIsEmpty(LinearLayout linearLayout, TextView textView, String itemContent) {
-        if (itemContent.isEmpty()){
+        if (itemContent != null && itemContent.isEmpty()){
             ViewGroup.LayoutParams lp = linearLayout.getLayoutParams();
             lp.width=0;
             lp.height=0;

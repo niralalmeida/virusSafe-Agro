@@ -31,7 +31,7 @@ public class JsonParser {
                 String prevention = virusJsonObject.getString("prevention");
                 String distribution = virusJsonObject.getString("distribution");
 
-                VirusModel virusModel = new VirusModel(virusId, virusFullName, virusAbbreviation, symptoms, spread, prevention, distribution, null);
+                VirusModel virusModel = new VirusModel(virusId, virusFullName, virusAbbreviation, "", symptoms, "", spread, prevention, distribution, null);
                 virusModelInfoList.add(virusModel);
             }
         }

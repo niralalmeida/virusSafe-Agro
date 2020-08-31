@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.JsonParser;
 
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class VirusInfoListViewModel extends ViewModel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            virusModelInfoList = AppResources.getVirusModelListBackup();
             return virusModelInfoList;
         }
 
