@@ -75,7 +75,7 @@ public class VirusQuizListAdapter extends RecyclerView.Adapter<VirusQuizListAdap
         final VirusModel currentVirusModel = this.virusModelList.get(position);
 
         viewHolder.virusFullName.setText(currentVirusModel.getVirusFullName());
-        
+
         int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(currentVirusModel.getVirusId());
         Bitmap virusPictureBitmap = BitmapFactory.decodeResource(fragmentActivity.getResources(), virusPictureDrawableId);
         viewHolder.virusPictureImageView.setImageBitmap(virusPictureBitmap);

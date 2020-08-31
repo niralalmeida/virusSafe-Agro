@@ -1,5 +1,7 @@
 package com.example.virussafeagro.fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 
 public class VirusDetailFragment extends Fragment {
@@ -51,7 +54,7 @@ public class VirusDetailFragment extends Fragment {
         // set take quiz button on click listener
         this.setTakeQuizButtonOnClickListener();
 
-        showVirusDetails();
+        this.showVirusDetails();
     }
 
     private void initializeViews() {
@@ -73,7 +76,9 @@ public class VirusDetailFragment extends Fragment {
         this.preventionTextView.setText(this.currentVirusModel.getPrevention());
         this.distributionTextView.setText(this.currentVirusModel.getDistribution());
 
-//        this.virusPictureImageView.setImageBitmap();
+        int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(this.currentVirusModel.getVirusId());
+        Bitmap virusPictureBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), virusPictureDrawableId);
+        this.virusPictureImageView.setImageBitmap(virusPictureBitmap);
     }
 
     private void setTakeQuizButtonOnClickListener() {
