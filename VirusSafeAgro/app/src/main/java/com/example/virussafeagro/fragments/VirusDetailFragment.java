@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -70,11 +71,27 @@ public class VirusDetailFragment extends Fragment {
 
     private void showVirusDetails() {
         this.virusFullNameTextView.setText(this.currentVirusModel.getVirusFullName());
-        this.virusAbbreviationTextView.setText(this.currentVirusModel.getVirusAbbreviation());
-        this.symptomsTextView.setText(this.currentVirusModel.getSymptoms());
-        this.spreadTextView.setText(this.currentVirusModel.getSpread());
-        this.preventionTextView.setText(this.currentVirusModel.getPrevention());
-        this.distributionTextView.setText(this.currentVirusModel.getDistribution());
+        // abbreviation
+        if (!this.currentVirusModel.getVirusAbbreviation().isEmpty()) {
+            LinearLayout linearLayoutForSubtitle = view.findViewById(R.id.ll_sub_title_abbreviation_virus_detail);
+            linearLayoutForSubtitle.setVisibility(View.VISIBLE);
+            this.virusAbbreviationTextView.setText(this.currentVirusModel.getVirusAbbreviation());
+        }
+        // symptom
+        LinearLayout linearLayoutForSymptom = view.findViewById(R.id.ll_symptoms_virus_detail);
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForSymptom, this.symptomsTextView, this.currentVirusModel.getSymptoms());
+
+        // spread
+        LinearLayout linearLayoutForSpread = view.findViewById(R.id.ll_spread_virus_detail);
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForSpread, this.spreadTextView, this.currentVirusModel.getSpread());
+
+        // prevention
+        LinearLayout linearLayoutForPrevention = view.findViewById(R.id.ll_prevention_virus_detail);
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForPrevention, this.preventionTextView, this.currentVirusModel.getPrevention());
+
+        // distribution
+        LinearLayout linearLayoutForDistribution = view.findViewById(R.id.ll_distribution_virus_detail);
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForDistribution, this.distributionTextView, this.currentVirusModel.getDistribution());
 
         int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(this.currentVirusModel.getVirusId());
         Bitmap virusPictureBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), virusPictureDrawableId);
@@ -89,5 +106,16 @@ public class VirusDetailFragment extends Fragment {
             virusQuizQuestionFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizQuestionFragment);
         });
+    }
+
+    private void hideLinearLayoutIfItemIsEmpty(LinearLayout linearLayout, TextView textView, String itemContent) {
+        if (itemContent.isEmpty()){
+            ViewGroup.LayoutParams lp = linearLayout.getLayoutParams();
+            lp.width=0;
+            lp.height=0;
+            linearLayout.setLayoutParams(lp);
+        } else {
+            textView.setText(itemContent);
+        }
     }
 }

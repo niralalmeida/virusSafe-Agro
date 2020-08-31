@@ -39,8 +39,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_sub_title_abbreviation_virus_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:orientation="horizontal">
                 <TextView
                     style="@android:style/TextAppearance.Large"
@@ -111,57 +113,94 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_symptoms_virus_detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:text="Symptoms:"/>
-            <TextView
-                android:id="@+id/tv_symptoms_virus_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:text="Spread:"/>
-            <TextView
-                android:id="@+id/tv_spread_virus_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:text="Symptoms:"/>
+                <TextView
+                    android:id="@+id/tv_symptoms_virus_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:text="Prevention:"/>
-            <TextView
-                android:id="@+id/tv_prevention_virus_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+
+
+            <LinearLayout
+                android:id="@+id/ll_spread_virus_detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:text="Distribution:"/>
-            <TextView
-                android:id="@+id/tv_distribution_virus_detail"
-                android:layout_width="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:text="Spread:"/>
+                <TextView
+                    android:id="@+id/tv_spread_virus_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_prevention_virus_detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:text="Prevention:"/>
+                <TextView
+                    android:id="@+id/tv_prevention_virus_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_distribution_virus_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:text="Distribution:"/>
+                <TextView
+                    android:id="@+id/tv_distribution_virus_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
