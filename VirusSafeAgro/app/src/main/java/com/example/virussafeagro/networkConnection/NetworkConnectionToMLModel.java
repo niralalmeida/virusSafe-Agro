@@ -10,7 +10,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class NetworkConnectionToMLModel {
-    private static final String BASE_URL = "http://6ee3f0c6903e.ngrok.io/";
+    private static final String API_URL = "http://4856d2a22bd5.ngrok.io/";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private OkHttpClient okHttpClient;
@@ -21,14 +21,13 @@ public class NetworkConnectionToMLModel {
 
     public String getImageIdentificationFeedback(ImageObject imageObject) {
         String resultText = "";
-        final String methodPathForImageMLModel = BASE_URL + "Image";
 
         Gson gson = new Gson();
         String uploadImageJson = gson.toJson(imageObject);
 
         RequestBody bodyForImage = RequestBody.create(uploadImageJson, JSON);
         Request requestForImage = new Request.Builder()
-                .url(methodPathForImageMLModel)
+                .url(API_URL)
                 .post(bodyForImage)
                 .build();
         try {
