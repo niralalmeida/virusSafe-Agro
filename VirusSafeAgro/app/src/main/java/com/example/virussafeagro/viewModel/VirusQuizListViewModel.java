@@ -49,12 +49,12 @@ public class VirusQuizListViewModel extends ViewModel {
         @Override
         protected List<VirusModel> doInBackground(Void... voids) {
             List<VirusModel> virusModelQuizList = new ArrayList<>();
-            try {
-                String resultText = networkConnectionToTomatoVirusDB.getAllVirus();
-                virusModelQuizList = JsonParser.virusInfoListJsonParser(resultText);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                String resultText = networkConnectionToTomatoVirusDB.getAllVirus();
+//                virusModelQuizList = JsonParser.virusInfoListJsonParser(resultText);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             virusModelQuizList = AppResources.getVirusModelListBackup();
             return virusModelQuizList;
         }

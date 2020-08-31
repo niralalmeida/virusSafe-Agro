@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.ChoiceQuestionCorrectAnswerModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.JsonParser;
 
 import java.util.ArrayList;
@@ -49,12 +50,13 @@ public class VirusQuizResultViewModel extends ViewModel {
         protected List<ChoiceQuestionCorrectAnswerModel> doInBackground(Integer... integers) {
             List<ChoiceQuestionCorrectAnswerModel> correctAnswersList = new ArrayList<>();
             int virusId = integers[0];
-            try {
-                String resultTextForAnswers = networkConnectionToTomatoVirusDB.getAllAnswers(virusId);
-                correctAnswersList = JsonParser.choiceQuestionAnswerListJsonParser(resultTextForAnswers);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                String resultTextForAnswers = networkConnectionToTomatoVirusDB.getAllAnswers(virusId);
+//                correctAnswersList = JsonParser.choiceQuestionAnswerListJsonParser(resultTextForAnswers);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+            correctAnswersList = AppResources.getChoiceQuestionCorrectAnswerModelListBackup(virusId - 1);
             return correctAnswersList;
         }
 
