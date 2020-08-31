@@ -8,7 +8,9 @@ public class VirusModel implements Parcelable {
     private int virusId;
     private String virusFullName;
     private String virusAbbreviation;
+    private String virusDescription;
     private String symptoms;
+    private String causes;
     private String spread;
     private String prevention;
     private String distribution;
@@ -17,11 +19,13 @@ public class VirusModel implements Parcelable {
     public VirusModel() {
     }
 
-    public VirusModel(int virusId, String virusFullName, String virusAbbreviation, String symptoms, String spread, String prevention, String distribution, Bitmap virusPicture) {
+    public VirusModel(int virusId, String virusFullName, String virusAbbreviation, String virusDescription, String symptoms, String causes, String spread, String prevention, String distribution, Bitmap virusPicture) {
         this.virusId = virusId;
         this.virusFullName = virusFullName;
         this.virusAbbreviation = virusAbbreviation;
+        this.virusDescription = virusDescription;
         this.symptoms = symptoms;
+        this.causes = causes;
         this.spread = spread;
         this.prevention = prevention;
         this.distribution = distribution;
@@ -32,28 +36,13 @@ public class VirusModel implements Parcelable {
         virusId = in.readInt();
         virusFullName = in.readString();
         virusAbbreviation = in.readString();
+        virusDescription = in.readString();
         symptoms = in.readString();
+        causes = in.readString();
         spread = in.readString();
         prevention = in.readString();
         distribution = in.readString();
         virusPicture = in.readParcelable(Bitmap.class.getClassLoader());
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(virusId);
-        dest.writeString(virusFullName);
-        dest.writeString(virusAbbreviation);
-        dest.writeString(symptoms);
-        dest.writeString(spread);
-        dest.writeString(prevention);
-        dest.writeString(distribution);
-        dest.writeParcelable(virusPicture, flags);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     public static final Creator<VirusModel> CREATOR = new Creator<VirusModel>() {
@@ -92,12 +81,28 @@ public class VirusModel implements Parcelable {
         this.virusAbbreviation = virusAbbreviation;
     }
 
+    public String getVirusDescription() {
+        return virusDescription;
+    }
+
+    public void setVirusDescription(String virusDescription) {
+        this.virusDescription = virusDescription;
+    }
+
     public String getSymptoms() {
         return symptoms;
     }
 
     public void setSymptoms(String symptoms) {
         this.symptoms = symptoms;
+    }
+
+    public String getCauses() {
+        return causes;
+    }
+
+    public void setCauses(String causes) {
+        this.causes = causes;
     }
 
     public String getSpread() {
@@ -130,5 +135,24 @@ public class VirusModel implements Parcelable {
 
     public void setVirusPicture(Bitmap virusPicture) {
         this.virusPicture = virusPicture;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(virusId);
+        dest.writeString(virusFullName);
+        dest.writeString(virusAbbreviation);
+        dest.writeString(virusDescription);
+        dest.writeString(symptoms);
+        dest.writeString(causes);
+        dest.writeString(spread);
+        dest.writeString(prevention);
+        dest.writeString(distribution);
+        dest.writeParcelable(virusPicture, flags);
     }
 }
