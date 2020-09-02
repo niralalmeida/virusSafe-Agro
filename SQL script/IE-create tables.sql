@@ -3,10 +3,12 @@ CREATE TABLE virus
     virus_id INTEGER NOT NULL,
     virus_full_name VARCHAR(255) NOT NULL,
     virus_abbreviation VARCHAR(255),
+    virus_description VARCHAR(1500),
     symptoms VARCHAR(1500),
+    causes VARCHAR(1500),
     spread VARCHAR(1500),
     prevention VARCHAR(1500),
-    distribution VARCHAR(1500),
+    virus_distribution VARCHAR(1500),
 
     PRIMARY KEY(virus_id),
     UNIQUE(virus_full_name)
