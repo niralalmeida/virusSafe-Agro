@@ -22,7 +22,6 @@ CREATE TABLE choicequestion
 
     PRIMARY KEY(choice_question_id),
     FOREIGN KEY(choice_question_virus_id) REFERENCES virus(virus_id),
-    UNIQUE(choice_question_content),
     CHECK(choice_question_type='s' OR choice_question_type='m')
 );
 
