@@ -59,7 +59,7 @@ INSERT INTO choicequestion (choice_question_id, choice_question_content, choice_
     'Which of the following chemical products can be used to control spread target spots in tomato plants?',
     'm',
     'ABC',
-    1
+    2
 );
 
 --VIRUS 2: QUESTION 2--
@@ -69,7 +69,7 @@ INSERT INTO choicequestion (choice_question_id, choice_question_content, choice_
     'What are the common symptoms observed in tomato (fruit)?',
     'm',
     'AB',
-    1
+    2
 );
 
 --VIRUS 2: QUESTION 3--
