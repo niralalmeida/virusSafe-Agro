@@ -68,7 +68,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         this.hideHomePagePicture();
-        switch (id) {
+
+        // open fragment according to id
+        this.switchFragments(id);
+
+        return true;
+    }
+
+    private void switchFragments(int itemId) {
+        switch (itemId) {
             case R.id.ic_virus_info:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoListFragment());
                 break;
@@ -79,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment());
                 break;
         }
-        return true;
     }
 
     private void hideHomePagePicture(){
