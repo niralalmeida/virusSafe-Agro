@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.MultipleChoiceResultAdapter;
 import com.example.virussafeagro.adapters.SingleChoiceResultAdapter;
@@ -58,6 +59,9 @@ public class VirusQuizResultFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_quiz_result, container, false);
+
+        // show back button
+        MainActivity.showTopActionBar((MainActivity)requireActivity());
 
         // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();

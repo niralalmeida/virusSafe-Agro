@@ -2,6 +2,8 @@ package com.example.virussafeagro;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,6 +16,8 @@ import com.example.virussafeagro.fragments.VirusQuizListFragment;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     private BottomNavigationView bottomNavigationView;
 
@@ -22,7 +26,36 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // show or not top action bar (back button + title)
+        showTopActionBar(this);
+
+        // initialize bottom navigation bar
         this.initializeBottomNavigationView();
+    }
+
+    // show or not top action bar
+    public static void showTopActionBar(MainActivity mainActivity) {
+        FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
+//        Fragment currentVisibleFragment = FragmentOperator.getVisibleFragment(fragmentManager);
+        Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+
+        boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
+        boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusIdentificationFragment;
+        boolean isVirusQuizListFragment = currentVisibleFragment instanceof VirusQuizListFragment;
+        if ((currentVisibleFragment == null) || isVirusInfoListFragment || isVirusIdentificationFragment || isVirusQuizListFragment){
+            Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+            Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
+        } else {
+            // add back button
+            Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+            Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(true);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        FragmentOperator.backToLastFragment(this);
     }
 
     // initialize BottomNavigationView and set OnNavigationItemSelectedListener
@@ -34,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        hideHomePagePicture();
+        this.hideHomePagePicture();
         switch (id) {
             case R.id.ic_virus_info:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoListFragment());

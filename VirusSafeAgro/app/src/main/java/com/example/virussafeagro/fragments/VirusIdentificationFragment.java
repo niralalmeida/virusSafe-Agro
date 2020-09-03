@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.viewModel.VirusIdentificationViewModel;
 
@@ -52,6 +53,11 @@ public class VirusIdentificationFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_identification, container, false);
+
+        // show back button
+        MainActivity.showTopActionBar((MainActivity)requireActivity());
+
+        // initialize views
         this.initializeViews();
         return this.view;
     }
