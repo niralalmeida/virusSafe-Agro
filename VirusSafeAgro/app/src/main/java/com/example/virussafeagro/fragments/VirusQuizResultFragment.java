@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +30,7 @@ import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class VirusQuizResultFragment extends Fragment {
     private View view;
@@ -59,6 +60,10 @@ public class VirusQuizResultFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_quiz_result, container, false);
+
+        // set title
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Quiz Result");
+
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());

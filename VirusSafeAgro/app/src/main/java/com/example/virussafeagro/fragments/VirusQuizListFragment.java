@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -22,6 +23,7 @@ import com.example.virussafeagro.viewModel.VirusQuizListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Fragment with virus list for quiz
@@ -45,6 +47,9 @@ public class VirusQuizListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_quiz_list, container, false);
+
+        // set title
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Quiz List");
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());

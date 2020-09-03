@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -20,9 +21,11 @@ import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Fragment with virus list for showing virus details
@@ -46,6 +49,9 @@ public class VirusInfoListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_info_list, container, false);
+
+        // set title
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus List");
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());

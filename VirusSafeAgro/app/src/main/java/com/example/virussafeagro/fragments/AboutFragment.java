@@ -9,11 +9,14 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+
+import java.util.Objects;
 
 public class AboutFragment extends Fragment {
     private View view;
@@ -39,6 +42,9 @@ public class AboutFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_about, container, false);
+
+        // set title
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("About");
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());

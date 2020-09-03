@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
@@ -20,6 +21,8 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+
+import java.util.Objects;
 
 public class VirusDetailFragment extends Fragment {
     private View view;
@@ -42,6 +45,9 @@ public class VirusDetailFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_detail, container, false);
         this.initializeViews();
+
+        // set title
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus Details");
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -27,6 +28,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
 
 import java.io.FileNotFoundException;
+import java.util.Objects;
 
 /**
  * Fragment for uploading tomato pictures to identify whether they are infected by some viruses
@@ -53,6 +55,9 @@ public class VirusCheckFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_check, container, false);
+
+        // set title
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Check Image");
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
