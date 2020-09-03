@@ -11,7 +11,8 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        card_view:cardBackgroundColor="#000"
+        android:layout_marginBottom="8dp"
+        card_view:cardBackgroundColor="#D5D8DC"
         card_view:cardCornerRadius="10dp">
 
         <LinearLayout
@@ -23,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
                 android:adjustViewBounds="false"
+                android:scaleType="centerCrop"
                 android:maxWidth="200dp"
                 android:maxHeight="170dp"
                 android:src="@drawable/tylcv_demo"/>
@@ -38,7 +40,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:text="virusModel full name"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textSize="20sp" />
             </LinearLayout>
 
