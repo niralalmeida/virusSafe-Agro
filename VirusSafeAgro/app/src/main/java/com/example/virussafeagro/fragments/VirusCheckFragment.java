@@ -24,7 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.viewModel.VirusIdentificationViewModel;
+import com.example.virussafeagro.viewModel.VirusCheckViewModel;
 
 import java.io.FileNotFoundException;
 
@@ -32,27 +32,27 @@ import java.io.FileNotFoundException;
  * Fragment for uploading tomato pictures to identify whether they are infected by some viruses
  * @author Haoyu Yang
  */
-public class VirusIdentificationFragment extends Fragment {
+public class VirusCheckFragment extends Fragment {
     private View view;
 
-    private VirusIdentificationViewModel virusIdentificationViewModel;
+    private VirusCheckViewModel virusCheckViewModel;
 
     private Button selectImageButton;
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
-    private LinearLayout imageIdentificationFeedbackLinearLayout;
-    private TextView imageIdentificationFeedbackTextView;
+    private LinearLayout imageCheckFeedbackLinearLayout;
+    private TextView imageCheckFeedbackTextView;
 
     private final int RESULT_OK = -1;
 
-    public VirusIdentificationFragment() {
+    public VirusCheckFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
-        this.view = inflater.inflate(R.layout.fragment_virus_identification, container, false);
+        this.view = inflater.inflate(R.layout.fragment_virus_check, container, false);
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
@@ -66,8 +66,8 @@ public class VirusIdentificationFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // initialize VirusIdentificationViewModel
-        this.initializeVirusIdentificationViewModel();
+        // initialize VirusCheckViewModel
+        this.initializeVirusCheckViewModel();
 
         // set selectImageButton on click listener
         this.setSelectImageButtonOnClickListener();
@@ -77,21 +77,21 @@ public class VirusIdentificationFragment extends Fragment {
 
     private void initializeViews() {
         this.selectImageButton = view.findViewById(R.id.btn_select_image);
-        this.uploadImageImageView = view.findViewById(R.id.img_upload_identification);
+        this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
         this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
-        this.imageIdentificationFeedbackLinearLayout = view.findViewById(R.id.ll_feedback_image_identification);
-        this.imageIdentificationFeedbackTextView = view.findViewById(R.id.tv_feedback_image_identification);
+        this.imageCheckFeedbackLinearLayout = view.findViewById(R.id.ll_feedback_image_check);
+        this.imageCheckFeedbackTextView = view.findViewById(R.id.tv_feedback_image_check);
     }
 
-    private void initializeVirusIdentificationViewModel() {
-        this.virusIdentificationViewModel = new ViewModelProvider(requireActivity()).get(VirusIdentificationViewModel.class);
-        this.virusIdentificationViewModel.initiateTheContext(requireActivity());
+    private void initializeVirusCheckViewModel() {
+        this.virusCheckViewModel = new ViewModelProvider(requireActivity()).get(VirusCheckViewModel.class);
+        this.virusCheckViewModel.initiateTheContext(requireActivity());
     }
 
     private void setSelectImageButtonOnClickListener() {
         this.selectImageButton.setOnClickListener(view -> {
-            imageIdentificationFeedbackLinearLayout.setVisibility(View.INVISIBLE);
-            imageIdentificationFeedbackTextView.setText("");
+            imageCheckFeedbackLinearLayout.setVisibility(View.INVISIBLE);
+            imageCheckFeedbackTextView.setText("");
             Intent intent=new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -113,7 +113,7 @@ public class VirusIdentificationFragment extends Fragment {
                 Log.e("Exception", e.getMessage(),e);
             }
         }else{
-            Log.i("VirusIdentification", "operation error");
+            Log.i("VirusCheck", "operation error");
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -122,24 +122,24 @@ public class VirusIdentificationFragment extends Fragment {
         this.uploadImageButton.setOnClickListener(view -> {
             // upload Tomato Image
             this.uploadTomatoImage();
-            // observe identificationFeedback live data
-            this.observeIdentificationFeedbackLD();
+            // observe checkFeedback live data
+            this.observeCheckFeedbackLD();
         });
     }
 
     private void uploadTomatoImage() {
         Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
-        this.virusIdentificationViewModel.processUploadingTomatoImage(uploadImageBitmap);
+        this.virusCheckViewModel.processUploadingTomatoImage(uploadImageBitmap);
     }
 
-    private void observeIdentificationFeedbackLD() {
-        this.virusIdentificationViewModel.getIdentificationFeedbackLD().observe(getViewLifecycleOwner(), resultIdentificationFeedback -> {
-            if (!resultIdentificationFeedback.isEmpty()){
-                imageIdentificationFeedbackLinearLayout.setVisibility(View.VISIBLE);
-                if (resultIdentificationFeedback.equals("error")){
+    private void observeCheckFeedbackLD() {
+        this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
+            if (!resultCheckFeedback.isEmpty()){
+                imageCheckFeedbackLinearLayout.setVisibility(View.VISIBLE);
+                if (resultCheckFeedback.equals("error")){
                     Toast.makeText(requireActivity(), "Your image should include tomato leaf!! Please select image again!!!", Toast.LENGTH_SHORT).show();
                 } else {
-                    imageIdentificationFeedbackTextView.setText(resultIdentificationFeedback);
+                    imageCheckFeedbackTextView.setText(resultCheckFeedback);
                 }
             }
         });

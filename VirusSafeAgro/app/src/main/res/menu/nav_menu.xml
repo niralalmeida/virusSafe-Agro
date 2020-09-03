@@ -2,14 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/ic_home"
+        android:icon="@drawable/ic_book"
+        android:title="@string/menu_ic_home" />
+
+    <item
         android:id="@+id/ic_virus_info"
         android:icon="@drawable/ic_book"
         android:title="@string/menu_ic_virus_info" />
 
     <item
-        android:id="@+id/ic_virus_identification"
+        android:id="@+id/ic_virus_check"
         android:icon="@drawable/ic_photo_camera"
-        android:title="@string/menu_ic_virus_identification" />
+        android:title="@string/menu_ic_virus_check" />
 
     <item
         android:id="@+id/ic_virus_quiz"

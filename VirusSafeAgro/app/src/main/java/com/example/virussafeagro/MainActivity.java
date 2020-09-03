@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.virussafeagro.fragments.VirusIdentificationFragment;
+import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizListFragment;
 import com.example.virussafeagro.uitilities.FragmentOperator;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
 
         boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
-        boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusIdentificationFragment;
+        boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusCheckFragment;
         boolean isVirusQuizListFragment = currentVisibleFragment instanceof VirusQuizListFragment;
         if ((currentVisibleFragment == null) || isVirusInfoListFragment || isVirusIdentificationFragment || isVirusQuizListFragment){
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.ic_virus_info:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoListFragment());
                 break;
-            case R.id.ic_virus_identification:
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusIdentificationFragment());
+            case R.id.ic_virus_check:
+                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment());
                 break;
             case R.id.ic_virus_quiz:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment());

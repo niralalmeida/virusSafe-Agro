@@ -13,37 +13,37 @@ import com.example.virussafeagro.networkConnection.NetworkConnectionToMLModel;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.JsonParser;
 
-public class VirusIdentificationViewModel extends ViewModel {
+public class VirusCheckViewModel extends ViewModel {
     private Context context;
     private NetworkConnectionToMLModel networkConnectionToMLModel;
 
-    private MutableLiveData<String> identificationFeedbackLD;
+    private MutableLiveData<String> checkFeedbackLD;
 
-    public VirusIdentificationViewModel() {
+    public VirusCheckViewModel() {
         this.networkConnectionToMLModel = new NetworkConnectionToMLModel();
-        this.identificationFeedbackLD = new MutableLiveData<>();
+        this.checkFeedbackLD = new MutableLiveData<>();
     }
 
     public void initiateTheContext(Context context){
         this.context = context;
     }
 
-    public void setIdentificationFeedbackLD(String identificationFeedback){
-        this.identificationFeedbackLD.setValue(identificationFeedback);
+    public void setCheckFeedbackLD(String checkFeedback){
+        this.checkFeedbackLD.setValue(checkFeedback);
     }
-    public LiveData<String> getIdentificationFeedbackLD(){
-        return this.identificationFeedbackLD;
+    public LiveData<String> getCheckFeedbackLD(){
+        return this.checkFeedbackLD;
     }
 
     public void processUploadingTomatoImage(Bitmap tomatoImage) {
         try {
-            GettingTomatoImageIdentificationFeedbackAsyncTask gettingTomatoImageIdentificationFeedbackAsyncTask = new GettingTomatoImageIdentificationFeedbackAsyncTask();
-            gettingTomatoImageIdentificationFeedbackAsyncTask.execute(tomatoImage);
+            GettingTomatoImageCheckFeedbackAsyncTask gettingTomatoImageCheckFeedbackAsyncTask = new GettingTomatoImageCheckFeedbackAsyncTask();
+            gettingTomatoImageCheckFeedbackAsyncTask.execute(tomatoImage);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private class GettingTomatoImageIdentificationFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
+    private class GettingTomatoImageCheckFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
         @Override
         protected String doInBackground(Bitmap... bitmaps) {
             String feedback = "";
@@ -51,8 +51,8 @@ public class VirusIdentificationViewModel extends ViewModel {
             String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
             ImageObject imageObject = new ImageObject(uploadImageBitmapString);
             try {
-                String rawFeedback = networkConnectionToMLModel.getImageIdentificationFeedback(imageObject);
-                feedback = JsonParser.imageIdentificationFeedbackJsonParser(rawFeedback);
+                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
+                feedback = JsonParser.imageCheckFeedbackJsonParser(rawFeedback);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -60,8 +60,8 @@ public class VirusIdentificationViewModel extends ViewModel {
         }
 
         @Override
-        protected void onPostExecute(String resultIdentificationFeedback) {
-            setIdentificationFeedbackLD(resultIdentificationFeedback);
+        protected void onPostExecute(String resultCheckFeedback) {
+            setCheckFeedbackLD(resultCheckFeedback);
         }
     }
 

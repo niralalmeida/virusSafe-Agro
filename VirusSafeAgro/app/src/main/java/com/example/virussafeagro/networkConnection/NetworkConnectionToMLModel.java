@@ -19,7 +19,7 @@ public class NetworkConnectionToMLModel {
         this.okHttpClient = new OkHttpClient();
     }
 
-    public String getImageIdentificationFeedback(ImageObject imageObject) {
+    public String getImageCheckFeedback(ImageObject imageObject) {
         String resultText = "";
 
         Gson gson = new Gson();

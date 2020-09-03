@@ -1,12 +1,21 @@
 <resources>
+    <!--  title  -->
     <string name="app_name">virusSafe Agro</string>
-    <string name="menu_ic_virus_info">Virus</string>
-    <string name="menu_ic_virus_identification">Identification</string>
-    <string name="menu_ic_virus_quiz">Quiz</string>
-    <string name="recycler_view_quiz_button">Take Quiz</string>
-    <string name="recycler_view_content_button">View Content</string>
+
+    <!--  subtitles  -->
     <string name="fragment_virus_single_choice">Single Choice Questions</string>
     <string name="fragment_virus_multiple_choice">Multiple Choice Questions</string>
+
+    <!--  menu items  -->
+    <string name="menu_ic_home">HOME</string>
+    <string name="menu_ic_virus_info">VIRUS</string>
+    <string name="menu_ic_virus_check">CHECK</string>
+    <string name="menu_ic_virus_quiz">QUIZ</string>
+    <string name="menu_ic_about">ABOUT</string>
+
+    <!--  buttons  -->
+    <string name="recycler_view_quiz_button">Take Quiz</string>
+    <string name="recycler_view_content_button">View Content</string>
     <string name="button_submit_quiz">Submit Your Answer</string>
     <string name="button_review_quiz">Review Virus Knowledge</string>
     <string name="button_retake_quiz">Retake Quiz</string>

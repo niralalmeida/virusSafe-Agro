@@ -154,7 +154,7 @@ public class JsonParser {
         return correctAnswersList;
     }
 
-    public static String imageIdentificationFeedbackJsonParser(String resultText) throws JSONException {
+    public static String imageCheckFeedbackJsonParser(String resultText) throws JSONException {
         String feedBack = "";
         if(!resultText.equals("[]")){
             JSONObject predictionJsonObject = new JSONObject(resultText);
