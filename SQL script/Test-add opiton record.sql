@@ -1,161 +1,175 @@
--- add for virus 1
+---------------------------VIRUS 1: TOMATO MOSAIC VIRUS----------------------
+
+
+---------VIRUS 1: QUESTION 1----------
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     1,
-    'a',
-    's option 1',
+    'A',
+    'YES',
     1
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     2,
-    'b',
-    's option 2',
+    'B',
+    'NO',
     1
 );
+
+---------VIRUS 1: QUESTION 2----------
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     3,
-    'c',
-    's option 3',
-    1
+    'A',
+    'Bronze and patch appearance',
+    2
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     4,
-    'd',
-    's option 4',
-    1
+    'B',
+    'Distorted shape',
+    2
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     5,
-    'a',
-    's option 1',
+    'C',
+    'Yellow blotches and necrotic spots',
     2
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     6,
-    'b',
-    's option 2',
+    'D',
+    'Blue patches',
     2
 );
 
+
+---------VIRUS 1: QUESTION 3----------
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     7,
-    'c',
-    's option 3',
-    2
+    'A',
+    'Virkon S',
+    3
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     8,
-    'a',
-    's option 1',
+    'B',
+    'Virkon N',
     3
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     9,
-    'b',
-    's option 2',
+    'C',
+    'Virkon X',
     3
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     10,
-    'c',
-    's option 3',
+    'D',
+    'Virkon R',
     3
 );
 
+
+---------VIRUS 1: QUESTION 4----------
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     11,
-    'a',
-    's option 1',
+    'A',
+    'Infected seed',
     4
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     12,
-    'b',
-    's option 2',
+    'B',
+    'Contaminated tools',
     4
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     13,
-    'c',
-    's option 3',
+    'C',
+    'Contaminated hands and clothes of workers',
     4
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     14,
-    'd',
-    's option 4',
+    'D',
+    'All of the above',
     4
 );
 
+
+---------VIRUS 1: QUESTION 5----------
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     15,
-    'a',
-    'm option 1',
+    'A',
+    'Temperature',
     5
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     16,
-    'b',
-    'm option 2',
+    'B',
+    'Day length',
     5
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     17,
-    'c',
-    'm option 3',
+    'C',
+    'Intensity of light',
     5
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     18,
-    'd',
-    'm option 4',
+    'D',
+    'All of the Above',
     5
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     19,
-    'a',
-    'm option 1',
-    6
+    'E',
+    'None',
+    5
 );
 
+
+-------------------------------------------------VIRUS 2: TARGET SPOT------------------------------------------------------------
+---------VIRUS 2: QUESTION 1----------
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     20,
-    'b',
-    'm option 2',
+    'A',
+    'Mancozeb',
     6
 );
 
@@ -163,7 +177,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
 (
     21,
     'c',
-    'm option 3',
+    'Copper oxychloride',
     6
 );
 
@@ -171,7 +185,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
 (
     22,
     'd',
-    'm option 4',
+    'Chlorothalonil',
     6
 );
 
@@ -179,307 +193,323 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
 (
     23,
     'e',
-    'm option 5',
+    'Virkon S',
     6
 );
+
+---------VIRUS 2: QUESTION 2----------
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     24,
-    'a',
-    'm option 1',
+    'A',
+    'Brown and black spots ',
     7
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     25,
-    'b',
-    'm option 2',
+    'B',
+    'Series of concentric circles',
     7
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     26,
-    'c',
-    'm option 3',
+    'C',
+    'Blotches and necrotic spots',
     7
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     27,
-    'd',
-    'm option 4',
+    'D',
+    'All of the above',
     7
 );
 
+---------VIRUS 2: QUESTION 3----------
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     28,
-    'e',
-    'm option 5',
-    7
+    'A',
+    '10-12 mm',
+    8
 );
 
--- add for virus 2
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     29,
-    'a',
-    's option 1',
+    'B',
+    '12-13 mm',
     8
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     30,
-    'b',
-    's option 2',
+    'C',
+    '11-12 mm',
     8
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     31,
-    'c',
-    's option 3',
+    'D',
+    '07-09 mm',
     8
 );
 
+---------VIRUS 2: QUESTION 4----------
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     32,
-    'd',
-    's option 4',
-    8
+    'A',
+    'Infected seed',
+    9
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     33,
-    'a',
-    's option 1',
+    'B',
+    'Remains of earlier infected plants or host species',
     9
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     34,
-    'b',
-    's option 2',
+    'C',
+    'All of the above',
     9
 );
 
+---------VIRUS 2: QUESTION 5----------
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     35,
-    'c',
-    's option 3',
-    9
+    'A',
+    'Leaves',
+    10
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     36,
-    'a',
-    's option 1',
+    'B',
+    'Stems',
     10
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     37,
-    'b',
-    's option 2',
+    'C',
+    'Roots',
     10
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     38,
-    'c',
-    's option 3',
+    'D',
+    'Fruit',
     10
 );
+
+----------------VIRUS 3: BACTERIAL SPOT--------------
+-------VIRUS 3: QUESTION 1------
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     39,
-    'a',
-    's option 1',
+    'A',
+    'Copper plus mancozeb',
     11
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     40,
-    'b',
-    's option 2',
+    'B',
+    'Copper fungicides',
     11
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     41,
-    'c',
-    's option 3',
+    'C',
+    'Chlorothalonil',
     11
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     42,
-    'd',
-    's option 4',
+    'D',
+    'Virkon S',
     11
 );
 
+
+-------VIRUS 3: QUESTION 2------
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     43,
-    'a',
-    'm option 1',
+    'A',
+    'Fruit has waxy white halo surrounding ',
     12
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     44,
-    'b',
-    'm option 2',
+    'B',
+    'Yellow blotches and necrotic spots',
     12
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     45,
-    'c',
-    'm option 3',
+    'C',
+    'Blue patches',
     12
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     46,
-    'd',
-    'm option 4',
+    'D',
+    'All of the above',
     12
 );
+
+-------VIRUS 3: QUESTION 3------
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     47,
-    'a',
-    'm option 1',
+    'A',
+    '3 mm',
     13
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     48,
-    'b',
-    'm option 2',
+    'B',
+    '7 mm',
     13
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     49,
-    'c',
-    'm option 3',
+    'C',
+    '4 mm',
     13
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     50,
-    'd',
-    'm option 4',
+    'D',
+    '2 mm',
     13
 );
+
+-------VIRUS 3: QUESTION 4------
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     51,
-    'e',
-    'm option 5',
-    13
+    'A',
+    'High temperatures',
+    14
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     52,
-    'a',
-    'm option 1',
+    'B',
+    'High humidity',
     14
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     53,
-    'b',
-    'm option 2',
+    'C',
+    'Overhead irrigation ',
     14
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     54,
-    'c',
-    'm option 3',
+    'D',
+    'Frequent rainfall',
     14
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     55,
-    'd',
-    'm option 4',
+    'E',
+    'All of the above',
     14
 );
+
+-----------------VIRUS 3: QUESTION 5------------
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     56,
-    'e',
-    'm option 5',
-    14
+    'A',
+    'Fruits',
+    15
 );
 
--- add for virus 3
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     57,
-    'a',
-    's option 1',
+    'B',
+    'Stems',
     15
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     58,
-    'b',
-    's option 2',
+    'C',
+    'Leaves',
     15
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     59,
-    'c',
-    's option 3',
+    'D',
+    'Petioles',
     15
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
     60,
-    'd',
-    's option 4',
+    'E',
+    'All of the above',
     15
 );
+
+-----------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
 (
