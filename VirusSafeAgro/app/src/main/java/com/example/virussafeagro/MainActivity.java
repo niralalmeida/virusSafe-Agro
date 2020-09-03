@@ -7,8 +7,6 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import com.example.virussafeagro.fragments.AboutFragment;
 import com.example.virussafeagro.fragments.HomeFragment;
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         showTopActionBar(this);
 
         // show home fragment
-        FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment());
+        FragmentOperator.replaceFragment(this, new HomeFragment());
 
         // initialize bottom navigation bar
         this.initializeBottomNavigationView();
@@ -63,11 +61,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        FragmentOperator.backToLastFragment(this);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        super.onOptionsItemSelected(item);
+        FragmentOperator.backToLastFragment(this);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if (count == 0) {
+            super.onBackPressed();
+        } else {
+            FragmentOperator.backToLastFragment(this);
+        }
+    }
 
     // initialize BottomNavigationView and set OnNavigationItemSelectedListener
     private void initializeBottomNavigationView(){
@@ -88,19 +97,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void switchFragments(int itemId) {
         switch (itemId) {
             case R.id.ic_home:
-                FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment());
+                FragmentOperator.replaceFragment(this, new HomeFragment());
                 break;
             case R.id.ic_virus_info:
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoListFragment());
+                FragmentOperator.replaceFragment(this, new VirusInfoListFragment());
                 break;
             case R.id.ic_virus_check:
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment());
+                FragmentOperator.replaceFragment(this, new VirusCheckFragment());
                 break;
             case R.id.ic_virus_quiz:
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment());
+                FragmentOperator.replaceFragment(this, new VirusQuizListFragment());
                 break;
             case R.id.ic_about:
-                FragmentOperator.replaceFragmentNoBackStack(this, new AboutFragment());
+                FragmentOperator.replaceFragment(this, new AboutFragment());
                 break;
         }
     }

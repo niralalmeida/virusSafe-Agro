@@ -191,7 +191,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         bundle.putSerializable("multipleChoiceQuestionModelList", (Serializable) multipleChoiceQuestionModelList);
         VirusQuizResultFragment virusQuizResultFragment = new VirusQuizResultFragment();
         virusQuizResultFragment.setArguments(bundle);
-        FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizResultFragment);
+        FragmentOperator.replaceFragment(requireActivity(), virusQuizResultFragment);
     }
 
     private void storeUserAnswerIntoLists() {

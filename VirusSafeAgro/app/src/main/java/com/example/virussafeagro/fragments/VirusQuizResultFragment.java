@@ -132,7 +132,7 @@ public class VirusQuizResultFragment extends Fragment {
             bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
             virusQuizQuestionFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusQuizQuestionFragment);
+            FragmentOperator.replaceFragment(requireActivity(), virusQuizQuestionFragment);
         });
     }
 
@@ -142,7 +142,7 @@ public class VirusQuizResultFragment extends Fragment {
             bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
             virusDetailFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusDetailFragment);
+            FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment);
         });
     }
 

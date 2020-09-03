@@ -14,7 +14,7 @@
     <string name="fragment_c1_app_description_about">
         <p>Viruses in tomato plants cause humongous damages in Victoria, which results in massive losses. virusSafe Agro aims to inculcate awareness among the farmers at an earlier age by providing an educational platform and ways to mitigate the risk of loss of their cultivation from viruses.</p>
         <p>&#x000A;&#x000A;virusSafe Agro is designed for people who are new to farming and wish to take tomato cultivation as their profession. It serves as an educational platform by providing information about the nine types of viruses in tomato plants, their description, symptoms, causes, prevention strategies. The user also has an option to check his knowledge about the content related to viruses.</p>
-        <p>&#x000A;&#x000A;This app offers you a new way of uploading a picture of a tomato plant to check if it&#39;s infected or not. On uploading the picture, the user gets instant feedback on whether the plant is infected or not.</p>
+        <p>&#x000A;&#x000A;This app offers you a new way of uploading a picture of a tomato plant to check if it is infected or not. On uploading the picture, the user gets instant feedback on whether the plant is infected or not.</p>
     </string>
     <string name="fragment_c2_updates_about">The app will contain a feature to check nutrient deficiency in tomato plants and way to tackle it, and revisions based on user feedback.</string>
     <string name="fragment_c3_contact_about">We are open to feedback about this application.&#x000A;E-mail: </string>

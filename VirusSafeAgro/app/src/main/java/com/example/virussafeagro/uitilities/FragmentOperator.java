@@ -13,6 +13,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 
 public class FragmentOperator {
+    // replace the fragment view with back stack
+    public static void replaceFragment(FragmentActivity fragmentActivity, Fragment nextFragment){
+        fragmentActivity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_fragments, nextFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
     // replace the fragment view
     public static void replaceFragmentNoBackStack(FragmentActivity fragmentActivity, Fragment nextFragment){
         fragmentActivity.getSupportFragmentManager()
