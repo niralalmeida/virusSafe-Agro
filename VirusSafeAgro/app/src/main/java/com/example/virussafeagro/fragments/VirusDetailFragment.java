@@ -94,7 +94,7 @@ public class VirusDetailFragment extends Fragment {
 
         // description
         LinearLayout linearLayoutForDescription = view.findViewById(R.id.ll_description_virus_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForDescription, this.descriptionTextView, this.currentVirusModel.getDistribution());
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForDescription, this.descriptionTextView, this.currentVirusModel.getVirusDescription());
 
         // symptom
         LinearLayout linearLayoutForSymptom = view.findViewById(R.id.ll_symptoms_virus_detail);
@@ -132,7 +132,7 @@ public class VirusDetailFragment extends Fragment {
     }
 
     private void hideLinearLayoutIfItemIsEmpty(LinearLayout linearLayout, TextView textView, String itemContent) {
-        if (itemContent == null || itemContent.isEmpty()){
+        if (itemContent == null || itemContent.isEmpty() || itemContent.trim().equals("")){
             ViewGroup.LayoutParams lp = linearLayout.getLayoutParams();
             lp.width=0;
             lp.height=0;
