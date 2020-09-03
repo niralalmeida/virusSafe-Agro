@@ -6,7 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class NetworkConnectionToTomatoVirusDB {
-    private static final String BASE_URL = "http://10.0.2.2:9642/TomatoVirusDB/webresources/";
+    private static final String BASE_URL = "https://jjc8sxzno2.execute-api.us-east-1.amazonaws.com/virusStage/";
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private OkHttpClient okHttpClient;
@@ -17,7 +17,7 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllVirus() {
         String resultText = "";
-        String searchURL = BASE_URL + "tovrestws.virus";
+        String searchURL = BASE_URL + "virusresource";
         Request request = new Request.Builder().url(searchURL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();

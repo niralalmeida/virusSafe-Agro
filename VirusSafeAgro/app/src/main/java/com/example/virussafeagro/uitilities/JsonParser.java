@@ -26,12 +26,14 @@ public class JsonParser {
                 int virusId = virusJsonObject.getInt("virusId");
                 String virusFullName = virusJsonObject.getString("virusFullName");
                 String virusAbbreviation = virusJsonObject.getString("virusAbbreviation");
+                String virusDescription = virusJsonObject.getString("virusDescription");
                 String symptoms = virusJsonObject.getString("symptoms");
+                String causes = virusJsonObject.getString("causes");
                 String spread = virusJsonObject.getString("spread");
                 String prevention = virusJsonObject.getString("prevention");
-                String distribution = virusJsonObject.getString("distribution");
+                String virusDistribution = virusJsonObject.getString("virusDistribution");
 
-                VirusModel virusModel = new VirusModel(virusId, virusFullName, virusAbbreviation, "", symptoms, "", spread, prevention, distribution, null);
+                VirusModel virusModel = new VirusModel(virusId, virusFullName, virusAbbreviation, virusDescription, symptoms, causes, spread, prevention, virusDistribution, null);
                 virusModelInfoList.add(virusModel);
             }
         }
