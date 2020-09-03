@@ -6,7 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class NetworkConnectionToTomatoVirusDB {
-    private static final String BASE_URL = "https://jjc8sxzno2.execute-api.us-east-1.amazonaws.com/virusStage/";
+//    private static final String BASE_URL = "https://jjc8sxzno2.execute-api.us-east-1.amazonaws.com/virusStage/";
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private OkHttpClient okHttpClient;
@@ -17,8 +17,8 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllVirus() {
         String resultText = "";
-        String searchURL = BASE_URL + "virusresource";
-        Request request = new Request.Builder().url(searchURL).build();
+        final String API_URL = "https://5cu3hhvh8d.execute-api.us-east-1.amazonaws.com/virusStage/virusresource";
+        Request request = new Request.Builder().url(API_URL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();
             resultText = response.body().string();
@@ -30,7 +30,8 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllQuestions(int virusId) {
         String resultText = "";
-        String searchURL = BASE_URL + "tovrestws.choicequestion/quizQuestion/findAllQuestionsByVirusId/" + virusId;
+        final String API_URL = "https://my077qg7q1.execute-api.us-east-1.amazonaws.com/choiceQuestionStage/choicequestionresource?virusId=";
+        String searchURL = API_URL + virusId;
         Request request = new Request.Builder().url(searchURL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();
@@ -43,7 +44,8 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllOptions(int choiceQuestionId) {
         String resultText = "";
-        String searchURL = BASE_URL + "tovrestws.choiceoption/quizQuestion/findAllOptionsByChoiceQuestionId/" + choiceQuestionId;
+        final String API_URL = "https://vhknvesdne.execute-api.us-east-1.amazonaws.com/choiceOptionStage/choiceoptionresource/?choiceQuestionId=";
+        String searchURL = API_URL + choiceQuestionId;
         Request request = new Request.Builder().url(searchURL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();
@@ -56,7 +58,7 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllAnswers(int virusId) {
         String resultText = "";
-        String searchURL = BASE_URL + "tovrestws.choicequestion/quizQuestion/findAllAnswersByVirusId/" + virusId;
+        String searchURL = "tovrestws.choicequestion/quizQuestion/findAllAnswersByVirusId/" + virusId;
         Request request = new Request.Builder().url(searchURL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();

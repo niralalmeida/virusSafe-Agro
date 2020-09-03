@@ -50,33 +50,33 @@ public class VirusQuizQuestionViewModel extends ViewModel {
         protected List[] doInBackground(Integer... integers) {
             List[] virusTwoTypeQuestionArray = new List[2];
             int virusId = integers[0];
-//            try {
-//                String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
-//                List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = JsonParser.singleChoiceQuestionModelListJsonParser(resultTextForQuestions);
-//                List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = JsonParser.multipleChoiceQuestionModelListJsonParser(resultTextForQuestions);
-//                // find options for single choice questions
-//                for (SingleChoiceQuestionModel singleChoiceQuestionModel : singleChoiceQuestionModelList) {
-//                    String resultTextForSingleOptions = networkConnectionToTomatoVirusDB.getAllOptions(singleChoiceQuestionModel.getChoiceQuestionId());
-//                    List<String> singleOptionList = JsonParser.singleChoiceOptionListJsonParser(resultTextForSingleOptions);
-//                    singleChoiceQuestionModel.setSingleChoiceQuestionOptionList(singleOptionList);
-//                }
-//                // find options for multiple choice questions
-//                for (MultipleChoiceQuestionModel multipleChoiceQuestionModel : multipleChoiceQuestionModelList) {
-//                    String resultTextForMultipleOptions = networkConnectionToTomatoVirusDB.getAllOptions(multipleChoiceQuestionModel.getChoiceQuestionId());
-//                    List<String> multipleOptionList = JsonParser.multipleChoiceOptionListJsonParser(resultTextForMultipleOptions);
-//                    multipleChoiceQuestionModel.setMultipleChoiceQuestionOptionList(multipleOptionList);
-//                }
-//                virusTwoTypeQuestionArray[0] = singleChoiceQuestionModelList;
-//                virusTwoTypeQuestionArray[1] = multipleChoiceQuestionModelList;
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-            if (AppResources.choiceQuestionListBackup.size() == 0){
-                virusTwoTypeQuestionArray = AppResources.getVirusChoiceQuestionModelListBackup(virusId - 1);
-            } else {
-                virusTwoTypeQuestionArray = AppResources.choiceQuestionListBackup.get(virusId - 1);
+            try {
+                String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
+                List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = JsonParser.singleChoiceQuestionModelListJsonParser(resultTextForQuestions);
+                List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = JsonParser.multipleChoiceQuestionModelListJsonParser(resultTextForQuestions);
+                // find options for single choice questions
+                for (SingleChoiceQuestionModel singleChoiceQuestionModel : singleChoiceQuestionModelList) {
+                    String resultTextForSingleOptions = networkConnectionToTomatoVirusDB.getAllOptions(singleChoiceQuestionModel.getChoiceQuestionId());
+                    List<String> singleOptionList = JsonParser.singleChoiceOptionListJsonParser(resultTextForSingleOptions);
+                    singleChoiceQuestionModel.setSingleChoiceQuestionOptionList(singleOptionList);
+                }
+                // find options for multiple choice questions
+                for (MultipleChoiceQuestionModel multipleChoiceQuestionModel : multipleChoiceQuestionModelList) {
+                    String resultTextForMultipleOptions = networkConnectionToTomatoVirusDB.getAllOptions(multipleChoiceQuestionModel.getChoiceQuestionId());
+                    List<String> multipleOptionList = JsonParser.multipleChoiceOptionListJsonParser(resultTextForMultipleOptions);
+                    multipleChoiceQuestionModel.setMultipleChoiceQuestionOptionList(multipleOptionList);
+                }
+                virusTwoTypeQuestionArray[0] = singleChoiceQuestionModelList;
+                virusTwoTypeQuestionArray[1] = multipleChoiceQuestionModelList;
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+//            if (AppResources.choiceQuestionListBackup.size() == 0){
+//                virusTwoTypeQuestionArray = AppResources.getVirusChoiceQuestionModelListBackup(virusId - 1);
+//            } else {
+//                virusTwoTypeQuestionArray = AppResources.choiceQuestionListBackup.get(virusId - 1);
+//            }
 
             return virusTwoTypeQuestionArray;
         }
