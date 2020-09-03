@@ -58,7 +58,8 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllAnswers(int virusId) {
         String resultText = "";
-        String searchURL = "tovrestws.choicequestion/quizQuestion/findAllAnswersByVirusId/" + virusId;
+        String API_URL = "https://0ft54nygc2.execute-api.us-east-1.amazonaws.com/choiceAnswerStage/choiceanswerresource?virusId=";
+        String searchURL = API_URL + virusId;
         Request request = new Request.Builder().url(searchURL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();

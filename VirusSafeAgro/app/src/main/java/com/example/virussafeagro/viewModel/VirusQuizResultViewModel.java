@@ -50,17 +50,17 @@ public class VirusQuizResultViewModel extends ViewModel {
         protected List<ChoiceQuestionCorrectAnswerModel> doInBackground(Integer... integers) {
             List<ChoiceQuestionCorrectAnswerModel> correctAnswersList = new ArrayList<>();
             int virusId = integers[0];
-//            try {
-//                String resultTextForAnswers = networkConnectionToTomatoVirusDB.getAllAnswers(virusId);
-//                correctAnswersList = JsonParser.choiceQuestionAnswerListJsonParser(resultTextForAnswers);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-            if (AppResources.choiceQuestionCorrectAnswerModelListBackup.size() == 0){
-                correctAnswersList = AppResources.getChoiceQuestionCorrectAnswerModelListBackup(virusId - 1);
-            } else {
-                correctAnswersList = AppResources.choiceQuestionCorrectAnswerModelListBackup.get(virusId - 1);
+            try {
+                String resultTextForAnswers = networkConnectionToTomatoVirusDB.getAllAnswers(virusId);
+                correctAnswersList = JsonParser.choiceQuestionAnswerListJsonParser(resultTextForAnswers);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+//            if (AppResources.choiceQuestionCorrectAnswerModelListBackup.size() == 0){
+//                correctAnswersList = AppResources.getChoiceQuestionCorrectAnswerModelListBackup(virusId - 1);
+//            } else {
+//                correctAnswersList = AppResources.choiceQuestionCorrectAnswerModelListBackup.get(virusId - 1);
+//            }
 
             return correctAnswersList;
         }
