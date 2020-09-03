@@ -38,8 +38,8 @@
         app:labelVisibilityMode="labeled"
         android:background="?android:attr/windowBackground"
         app:itemBackground="@color/colorPrimaryDark"
-        app:itemIconTint="#fff"
-        app:itemTextColor="#fff"
+        app:itemIconTint="@color/color_selector_bottom_bar_items"
+        app:itemTextColor="@color/color_selector_bottom_bar_items"
         app:menu="@menu/nav_menu" />
 
 </RelativeLayout>
