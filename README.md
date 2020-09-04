@@ -1,10 +1,8 @@
 # Android App Project - VirusSafe Agro
 **VirusSafe** Afro is an Android App for learning and checking the common tomato viruses in Victoria.
-***
+
 ## Project Mahara Page Link:  
 [![Mahara page](https://mahara.org/artefact/file/download.php?file=432674&view=133484&embedded=1&text=575322)](https://mahara.infotech.monash.edu.au/mahara/view/view.php?id=49981)
-***
-## Brief Description
 
 ***
 ## Installation
@@ -12,14 +10,14 @@ Clone this repository and import into **Android Studio**
 ```bash
 git clone https://github.com/hoyyang/virusSafe-Agro.git
 ```
-***
+
 ## Generating signed APK
 From Android Studio:
 1. **Build** menu
 2. **Generate Signed APK...**
 3. Fill in the keystore information *(you only need to do this once manually and then let Android Studio remember it)*
 
-***
+
 ## Architecture
 ### Whole System Architecture diagram
 ![System Architecture](https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/TA24-system%20architecture.png?token=ANAMHQUP7GHZC2FMDCCHMU27LN3EKe)
@@ -32,7 +30,7 @@ The whole distributed system architecture for this Android App project is a **cl
 ![App Architecture](https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/App%20-%20android%20system%20structure.png?token=ANAMHQRGXKOOONDKS4HQTTC7LOLLG)
 Within the client endpoint(Android App),  there are different widgets for different pages and functions.  For our project, there is **one activity**(current version) holding several **fragments**.  One fragment holds one page.  And each fragment has a **ViewModel**, holding **live data**, mapping with it individually, which is for controlling the data interact with the remote server or other data storage tool.  The interaction way for ViewModel and remote servers is **API**.
 
-***
+
 ## Technology
 ### Image Classification
 One of the functionalities of our application is to provide novice farmers with the capability to check the infection in tomato plants. For this purpose, we have built an image classification model using the following technology stack.
@@ -61,7 +59,7 @@ Model is trained on 10,000 images belonging to following **10 classes**:
 - Tomato healthy
 - Septoria spot
 
-***
+
 # About Our Team 
 ### Team No.
 TA24
@@ -72,4 +70,4 @@ TA24
 |Yao Chen (Cindy)|yche0193@student.monash.edu|Network Security|
 |Niral Almeida|nalm0004@student.monash.edu|Business Information System|
 |Haoyu Yang (Hoy)|hyan0050@student.monash.edu|Information Technology|
-***
+
