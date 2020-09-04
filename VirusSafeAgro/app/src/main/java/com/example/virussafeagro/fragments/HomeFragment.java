@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
 
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Home - Welcome to virusSafe Agro!");
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("virusSafe Agro");
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
