@@ -17,14 +17,30 @@
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="300dp" />
-            <Button
-                android:id="@+id/btn_select_image"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Select a Image"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/btn_camera"
+                    android:layout_width="210dp"
+                    android:layout_height="70dp"
+                    android:background="#000"
+                    android:src="@drawable/ic_add_a_photo_white"/>
+
+                <ImageButton
+                    android:id="@+id/btn_select_image"
+                    android:layout_width="210dp"
+                    android:layout_height="70dp"
+                    android:background="@color/correctAnswer"
+                    android:src="@drawable/ic_photo_library_white" />
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
