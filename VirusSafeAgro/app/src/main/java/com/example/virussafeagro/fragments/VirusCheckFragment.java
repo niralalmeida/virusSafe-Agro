@@ -39,6 +39,7 @@ public class VirusCheckFragment extends Fragment {
 
     private VirusCheckViewModel virusCheckViewModel;
 
+    private Button cameraButton;
     private Button selectImageButton;
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
@@ -81,6 +82,7 @@ public class VirusCheckFragment extends Fragment {
     }
 
     private void initializeViews() {
+        this.cameraButton = view.findViewById(R.id.btn_camera);
         this.selectImageButton = view.findViewById(R.id.btn_select_image);
         this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
         this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
@@ -91,6 +93,12 @@ public class VirusCheckFragment extends Fragment {
     private void initializeVirusCheckViewModel() {
         this.virusCheckViewModel = new ViewModelProvider(requireActivity()).get(VirusCheckViewModel.class);
         this.virusCheckViewModel.initiateTheContext(requireActivity());
+    }
+
+    private void setCameraButtonOnClickListener() {
+        this.cameraButton.setOnClickListener(view -> {
+
+        });
     }
 
     private void setSelectImageButtonOnClickListener() {
