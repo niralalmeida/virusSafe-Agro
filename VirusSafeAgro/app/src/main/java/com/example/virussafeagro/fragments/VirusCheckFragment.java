@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
+import com.mindorks.paracamera.Camera;
 
 import java.io.FileNotFoundException;
 import java.util.Objects;
@@ -36,11 +38,12 @@ import java.util.Objects;
  */
 public class VirusCheckFragment extends Fragment {
     private View view;
+    private Camera camera;
 
     private VirusCheckViewModel virusCheckViewModel;
 
-    private Button cameraButton;
-    private Button selectImageButton;
+    private ImageButton cameraButton;
+    private ImageButton selectImageButton;
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
     private LinearLayout imageCheckFeedbackLinearLayout;
@@ -75,6 +78,8 @@ public class VirusCheckFragment extends Fragment {
         // initialize VirusCheckViewModel
         this.initializeVirusCheckViewModel();
 
+        // set camera button
+        this.setCameraButtonOnClickListener();
         // set selectImageButton on click listener
         this.setSelectImageButtonOnClickListener();
         // set uploadImageButton on click listener
@@ -97,8 +102,23 @@ public class VirusCheckFragment extends Fragment {
 
     private void setCameraButtonOnClickListener() {
         this.cameraButton.setOnClickListener(view -> {
-
+            openCamera();
         });
+    }
+
+    private void openCamera() {
+        camera = new Camera.Builder()
+                .setDirectory("pics")
+                .setName("ali_" + System.currentTimeMillis())
+                .setImageFormat(Camera.IMAGE_JPEG)
+                .setCompression(75)
+                .setImageHeight(1000)
+                .build(this);
+        try {
+            camera.takePicture();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setSelectImageButtonOnClickListener() {
@@ -114,7 +134,26 @@ public class VirusCheckFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK){
+        // test
+        System.out.println("----->   result code :" + resultCode);
+
+        // test
+        System.out.println("----->   requestCode : " + requestCode);
+
+        // test
+        System.out.println("----->   data: " + data.toString());
+
+        // for camera result
+        if (requestCode == Camera.REQUEST_TAKE_PHOTO) {
+            Bitmap bitmap = camera.getCameraBitmap();
+            if (bitmap != null) {
+                this.uploadImageImageView.setImageBitmap(bitmap);
+            } else {
+                Toast.makeText(requireActivity(), "Picture not taken!", Toast.LENGTH_SHORT).show();
+            }
+        }
+        // for album result
+        if(!data.toString().equals("Intent {  }") && resultCode == RESULT_OK){
             Uri uri = data.getData();
             Log.e("uri", uri.toString());
             ContentResolver cr = requireActivity().getContentResolver();
