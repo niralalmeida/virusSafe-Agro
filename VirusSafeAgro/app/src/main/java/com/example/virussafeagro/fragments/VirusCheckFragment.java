@@ -1,6 +1,5 @@
 package com.example.virussafeagro.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,8 +15,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,7 +25,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
@@ -46,6 +42,7 @@ public class VirusCheckFragment extends Fragment {
     private View view;
     private Camera camera;
 
+    private SharedPreferenceProcess spp;
     private VirusCheckViewModel virusCheckViewModel;
 
     private ImageButton cameraButton;
@@ -74,12 +71,16 @@ public class VirusCheckFragment extends Fragment {
 
         // initialize views
         this.initializeViews();
+
         return this.view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        // initialize SharedPreference
+        this.initializeSharedPreference();
 
         // initialize VirusCheckViewModel
         this.initializeVirusCheckViewModel();
@@ -101,9 +102,22 @@ public class VirusCheckFragment extends Fragment {
         this.uploadingProgressBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_check);
     }
 
+    private void initializeSharedPreference() {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireActivity());
+    }
+
+//    private void showUploadImageViewFromSP() {
+//        Bitmap currentVirusCheckImageBitmap = spp.getCurrentVirusCheckImage();
+//        if (currentVirusCheckImageBitmap == null) {
+//            Bitmap defaultLeafBitmap = DataConverter.drawableImageToBitmap(requireActivity(), R.drawable.default_leaf);
+//            this.uploadImageImageView.setImageBitmap(defaultLeafBitmap);
+//        } else {
+//            this.uploadImageImageView.setImageBitmap(currentVirusCheckImageBitmap);
+//        }
+//    }
+
     private void initializeVirusCheckViewModel() {
         this.virusCheckViewModel = new ViewModelProvider(requireActivity()).get(VirusCheckViewModel.class);
-        this.virusCheckViewModel.initiateTheContext(requireActivity());
     }
 
     private void setCameraButtonOnClickListener() {
@@ -138,6 +152,7 @@ public class VirusCheckFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
         // for camera result
         if (requestCode == Camera.REQUEST_TAKE_PHOTO) {
@@ -159,6 +174,7 @@ public class VirusCheckFragment extends Fragment {
                     this.uploadImageImageView.setImageBitmap(bitmap);
                     this.uploadImageButton.setVisibility(View.VISIBLE);
                 } catch (FileNotFoundException e) {
+                    Toast.makeText(requireActivity(), "The image you select is broken! Please choose another one!!", Toast.LENGTH_SHORT).show();
                     Log.e("Exception", e.getMessage(),e);
                 }
             }else{
@@ -167,7 +183,6 @@ public class VirusCheckFragment extends Fragment {
         }
 
 
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void setUploadImageButtonOnClickListener() {

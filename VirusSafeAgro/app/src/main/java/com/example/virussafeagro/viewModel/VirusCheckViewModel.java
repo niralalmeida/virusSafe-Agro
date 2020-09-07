@@ -14,7 +14,6 @@ import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.JsonParser;
 
 public class VirusCheckViewModel extends ViewModel {
-    private Context context;
     private NetworkConnectionToMLModel networkConnectionToMLModel;
 
     private MutableLiveData<String> checkFeedbackLD;
@@ -22,10 +21,6 @@ public class VirusCheckViewModel extends ViewModel {
     public VirusCheckViewModel() {
         this.networkConnectionToMLModel = new NetworkConnectionToMLModel();
         this.checkFeedbackLD = new MutableLiveData<>();
-    }
-
-    public void initiateTheContext(Context context){
-        this.context = context;
     }
 
     public void setCheckFeedbackLD(String checkFeedback){
@@ -53,9 +48,25 @@ public class VirusCheckViewModel extends ViewModel {
             try {
                 String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
                 feedback = JsonParser.imageCheckFeedbackJsonParser(rawFeedback);
+
+                // test
+                System.out.println("---->>> virus result: " + feedback);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            // test
+//            try {
+//                Thread.sleep(3000);
+//
+//                // test
+//                System.out.println("reach here!------->>>> ");
+//
+//                feedback = "healthy";
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             return feedback;
         }
 

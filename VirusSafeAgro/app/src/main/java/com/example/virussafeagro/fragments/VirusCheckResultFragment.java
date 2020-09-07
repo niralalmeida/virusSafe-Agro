@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 import java.util.Objects;
@@ -90,9 +89,6 @@ public class VirusCheckResultFragment extends Fragment {
     }
 
     private void controlResultCheckFeedback() {
-        // test
-        System.out.println("[ result string: ]" + this.resultCheckFeedback);
-
         if (resultCheckFeedback.equals("json error")){
             this.imageCheckErrorFeedbackLinearLayout.setVisibility(View.VISIBLE);
         } else if (resultCheckFeedback.equals("healthy")){

@@ -35,4 +35,8 @@ public class SharedPreferenceProcess {
         Bitmap virusCheckImageBitmapBitmap = DataConverter.stringToBitmapConverter(virusCheckImageBitmapString);
         return virusCheckImageBitmapBitmap;
     }
+
+    public void clearCurrentVirusCheckImage() {
+        virusCheckSP.edit().putString(KEY_VIRUS_CHECK_IMAGE, "").apply();
+    }
 }
