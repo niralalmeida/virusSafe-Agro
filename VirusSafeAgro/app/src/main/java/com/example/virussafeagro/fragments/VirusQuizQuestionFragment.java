@@ -118,10 +118,12 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     private void observeVirusTwoTypeQuestionArrayLD() {
         this.virusQuizQuestionViewModel.getVirusTwoTypeQuestionArrayLD().observe(getViewLifecycleOwner(), resultVirusTwoTypeQuestionArray -> {
-            if ((resultVirusTwoTypeQuestionArray[0].size() != 0) || (resultVirusTwoTypeQuestionArray[1].size() != 0)){
-                // set recycler view linear layout visible and process bar invisible
-                processBarLinearLayout.setVisibility(View.INVISIBLE);
-                recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
+            if ((resultVirusTwoTypeQuestionArray[0] != null) && (resultVirusTwoTypeQuestionArray[1] != null)){
+                if ((resultVirusTwoTypeQuestionArray[0].size() != 0) || (resultVirusTwoTypeQuestionArray[1].size() != 0)){
+                    // set recycler view linear layout visible and process bar invisible
+                    processBarLinearLayout.setVisibility(View.INVISIBLE);
+                    recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
+                }
             }
 
             if (resultVirusTwoTypeQuestionArray[0] != null && resultVirusTwoTypeQuestionArray[0].size() != 0){
