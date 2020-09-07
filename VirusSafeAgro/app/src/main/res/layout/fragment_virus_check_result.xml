@@ -6,7 +6,6 @@
 
     <ImageView
         android:id="@+id/img_upload_check_result"
-        android:src="@drawable/two"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="300dp" />

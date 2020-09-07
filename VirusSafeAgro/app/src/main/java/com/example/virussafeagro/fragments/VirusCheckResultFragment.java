@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.DataConverter;
 
 import java.util.Objects;
 
@@ -24,6 +26,7 @@ public class VirusCheckResultFragment extends Fragment {
 
     private String resultCheckFeedback;
 
+    private ImageView uploadedImageImageView;
     private LinearLayout imageCheckErrorFeedbackLinearLayout;
     private LinearLayout imageCheckHealthyFeedbackLinearLayout;
     private LinearLayout imageCheckIllFeedbackLinearLayout;
@@ -45,6 +48,9 @@ public class VirusCheckResultFragment extends Fragment {
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
 
+        // initialize views
+        this.initializeViews();
+
         return view;
     }
 
@@ -56,15 +62,14 @@ public class VirusCheckResultFragment extends Fragment {
         Bundle bundle = getArguments();
         assert bundle != null;
         this.resultCheckFeedback = bundle.getString("resultCheckFeedback");
-
-        // initialize views
-        this.initializeViews();
+        this.uploadedImageImageView.setImageBitmap(DataConverter.stringToBitmapConverter(bundle.getString("uploadImageString")));
 
         // control the resultCheckFeedback display
         this.controlResultCheckFeedback();
     }
 
     private void initializeViews() {
+        this.uploadedImageImageView = view.findViewById(R.id.img_upload_check_result);
         this.imageCheckErrorFeedbackLinearLayout = view.findViewById(R.id.ll_error_feedback_image_check);
         this.imageCheckHealthyFeedbackLinearLayout = view.findViewById(R.id.ll_healthy_feedback_image_check);
         this.imageCheckIllFeedbackLinearLayout = view.findViewById(R.id.ll_ill_feedback_image_check);
@@ -72,6 +77,9 @@ public class VirusCheckResultFragment extends Fragment {
     }
 
     private void controlResultCheckFeedback() {
+        // test
+        System.out.println("[ result string: ]" + this.resultCheckFeedback);
+
         if (resultCheckFeedback.equals("json error")){
             this.imageCheckErrorFeedbackLinearLayout.setVisibility(View.VISIBLE);
         } else if (resultCheckFeedback.equals("healthy")){

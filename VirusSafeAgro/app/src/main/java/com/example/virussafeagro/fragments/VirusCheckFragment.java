@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
 import com.mindorks.paracamera.Camera;
@@ -161,17 +162,17 @@ public class VirusCheckFragment extends Fragment {
     private void setUploadImageButtonOnClickListener() {
         this.uploadImageButton.setOnClickListener(view -> {
             // test
-            Bundle bundle = new Bundle();
-            String resultCheckFeedback = "json error";
-            bundle.putString("resultCheckFeedback", resultCheckFeedback);
-            VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
-            virusCheckResultFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
+//            Bundle bundle = new Bundle();
+//            String resultCheckFeedback = "json error";
+//            bundle.putString("resultCheckFeedback", resultCheckFeedback);
+//            VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
+//            virusCheckResultFragment.setArguments(bundle);
+//            FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
 
-//            // upload Tomato Image
-//            this.uploadTomatoImage();
-//            // observe checkFeedback live data
-//            this.observeCheckFeedbackLD();
+            // upload Tomato Image
+            this.uploadTomatoImage();
+            // observe checkFeedback live data
+            this.observeCheckFeedbackLD();
         });
     }
 
@@ -183,8 +184,11 @@ public class VirusCheckFragment extends Fragment {
     private void observeCheckFeedbackLD() {
         this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
             if (!resultCheckFeedback.isEmpty()){
+                Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
+                String uploadImageString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
                 Bundle bundle = new Bundle();
                 bundle.putString("resultCheckFeedback", resultCheckFeedback);
+                bundle.putString("uploadImageString", uploadImageString);
                 VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
                 virusCheckResultFragment.setArguments(bundle);
                 FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
