@@ -1,5 +1,6 @@
 package com.example.virussafeagro.fragments;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.uitilities.DataConverter;
+import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 import java.util.Objects;
 
@@ -25,6 +27,7 @@ public class VirusCheckResultFragment extends Fragment {
     private View view;
 
     private String resultCheckFeedback;
+    private SharedPreferenceProcess spp;
 
     private ImageView uploadedImageImageView;
     private LinearLayout imageCheckErrorFeedbackLinearLayout;
@@ -51,6 +54,9 @@ public class VirusCheckResultFragment extends Fragment {
         // initialize views
         this.initializeViews();
 
+        // initialize SharedPreference
+        this.initializeSharedPreference();
+
         return view;
     }
 
@@ -62,7 +68,10 @@ public class VirusCheckResultFragment extends Fragment {
         Bundle bundle = getArguments();
         assert bundle != null;
         this.resultCheckFeedback = bundle.getString("resultCheckFeedback");
-        this.uploadedImageImageView.setImageBitmap(DataConverter.stringToBitmapConverter(bundle.getString("uploadImageString")));
+
+        // get the image data from SharedPreference and set ImageView
+        Bitmap uploadedImageBitmap = spp.getCurrentVirusCheckImage();
+        this.uploadedImageImageView.setImageBitmap(uploadedImageBitmap);
 
         // control the resultCheckFeedback display
         this.controlResultCheckFeedback();
@@ -74,6 +83,10 @@ public class VirusCheckResultFragment extends Fragment {
         this.imageCheckHealthyFeedbackLinearLayout = view.findViewById(R.id.ll_healthy_feedback_image_check);
         this.imageCheckIllFeedbackLinearLayout = view.findViewById(R.id.ll_ill_feedback_image_check);
         this.imageCheckIllFeedbackTextView = view.findViewById(R.id.tv_ill_feedback_image_check);
+    }
+
+    private void initializeSharedPreference() {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireActivity());
     }
 
     private void controlResultCheckFeedback() {

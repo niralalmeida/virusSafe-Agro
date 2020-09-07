@@ -1,5 +1,6 @@
 package com.example.virussafeagro.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -29,6 +30,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
 import com.mindorks.paracamera.Camera;
 
@@ -142,37 +144,46 @@ public class VirusCheckFragment extends Fragment {
             }
         }
         // for album result
-        if(!data.toString().equals("Intent {  }") && resultCode == RESULT_OK){
-            Uri uri = data.getData();
-            Log.e("uri", uri.toString());
-            ContentResolver cr = requireActivity().getContentResolver();
-            try {
-                Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
-                this.uploadImageImageView.setImageBitmap(bitmap);
-                this.uploadImageButton.setVisibility(View.VISIBLE);
-            } catch (FileNotFoundException e) {
-                Log.e("Exception", e.getMessage(),e);
+        if(data != null){
+            if(!data.toString().equals("Intent {  }") && resultCode == RESULT_OK){
+                Uri uri = data.getData();
+                Log.e("uri", uri.toString());
+                ContentResolver cr = requireActivity().getContentResolver();
+                try {
+                    Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                    this.uploadImageImageView.setImageBitmap(bitmap);
+                    this.uploadImageButton.setVisibility(View.VISIBLE);
+                } catch (FileNotFoundException e) {
+                    Log.e("Exception", e.getMessage(),e);
+                }
+            }else{
+                Log.i("VirusCheck", "operation error");
             }
-        }else{
-            Log.i("VirusCheck", "operation error");
         }
+
+
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void setUploadImageButtonOnClickListener() {
         this.uploadImageButton.setOnClickListener(view -> {
-            // test
-//            Bundle bundle = new Bundle();
-//            String resultCheckFeedback = "json error";
-//            bundle.putString("resultCheckFeedback", resultCheckFeedback);
-//            VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
-//            virusCheckResultFragment.setArguments(bundle);
-//            FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
+            // get uploadImageImageView BitmapDrawable
+            BitmapDrawable uploadImageImageViewBitmapDrawable = (BitmapDrawable) this.uploadImageImageView.getDrawable();
+            // check the uploadImageImageView is same as the default leaf image
+            if (!DataConverter.isSameImage(uploadImageImageViewBitmapDrawable, requireActivity(), R.drawable.default_leaf)) {
+                // save the image into SharedPreference
+                Bitmap uploadImageBitmap = uploadImageImageViewBitmapDrawable.getBitmap();
+                SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireActivity());
+                spp.putCurrentVirusCheckImage(uploadImageBitmap);
 
-            // upload Tomato Image
-            this.uploadTomatoImage();
-            // observe checkFeedback live data
-            this.observeCheckFeedbackLD();
+                // upload Tomato Image
+                this.uploadTomatoImage();
+                // observe checkFeedback live data
+                this.observeCheckFeedbackLD();
+
+            } else {
+                Toast.makeText(requireActivity(), "Please take a photo or select a tomato leaf image by album", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -184,11 +195,11 @@ public class VirusCheckFragment extends Fragment {
     private void observeCheckFeedbackLD() {
         this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
             if (!resultCheckFeedback.isEmpty()){
-                Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
-                String uploadImageString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
+//                Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
+//                String uploadImageString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
                 Bundle bundle = new Bundle();
                 bundle.putString("resultCheckFeedback", resultCheckFeedback);
-                bundle.putString("uploadImageString", uploadImageString);
+//                bundle.putString("uploadImageString", uploadImageString);
                 VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
                 virusCheckResultFragment.setArguments(bundle);
                 FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
