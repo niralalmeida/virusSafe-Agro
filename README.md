@@ -1,15 +1,15 @@
 # ANDROIOD APPLICATION - VirusSafe Agro
 ### About virusSafe Agro
-####Viruses in tomato plants cause humongous damages in Victoria, which results in massive losses. virusSafe Agro aims to inculcate awareness among farmers by providing an educational platform and ways to mitigate the risk of loss of their cultivation from viruses. 
+#### Viruses in tomato plants cause humongous damages in Victoria, which results in massive losses. virusSafe Agro aims to inculcate awareness among farmers by providing an educational platform and ways to mitigate the risk of loss of their cultivation from viruses. 
 
 ### virusSafe Agro Specifications
 #### virusSafe Agro is your one-stop shop for a smorgasbord of learning about viruses in tomato plants. It is designed specifically for farmers who are new to farming or who wish to take farming as a profession in near future. 
 
--[x] This resource gives farmers an option to check whether their tomato plants are infected or not by clicking and uploading a picture of their plant.
--[x] On uploading the picture, the user gets instant feedback on whether the plant is infected or not. 
--[x] The learnings involve content related to nine types of viral diseases in tomato plants.
--[] The application includes description, causes, chemical and non-chemical control strategies, as well as a quiz which helps the farmer to check their knowledge on tomato virus.
--[] Further update will include information related to nutrient deficiencies in tomato plants.
+- [x] This resource gives farmers an option to check whether their tomato plants are infected or not by clicking and uploading a picture of their plant.
+- [x] On uploading the picture, the user gets instant feedback on whether the plant is infected or not. 
+- [x] The learnings involve content related to nine types of viral diseases in tomato plants.
+- [] The application includes description, causes, chemical and non-chemical control strategies, as well as a quiz which helps the farmer to check their knowledge on tomato virus.
+- [] Further update will include information related to nutrient deficiencies in tomato plants.
 
 ### What does *virusSafe Agro* application help you for?
 #### virusSafe Agro helps in checking if the plant is infected or not and provides preventive measures such as chemical and non-chemical control strategies that can be taken to avoid the spread of virus. However, the farmers should not solely rely on virusSafe Agro recommendations and should take professional advice for further guidance. virusSafe Agro does not guarantee the completeness or accuracy of information.
