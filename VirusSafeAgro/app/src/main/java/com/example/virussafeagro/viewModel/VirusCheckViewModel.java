@@ -55,9 +55,6 @@ public class VirusCheckViewModel extends ViewModel {
 
         @Override
         protected void onPostExecute(String resultCheckFeedback) {
-            // test
-            System.out.println("###### onPostExecute virus result: " + resultCheckFeedback);
-
             setCheckFeedbackLD(resultCheckFeedback);
         }
     }
