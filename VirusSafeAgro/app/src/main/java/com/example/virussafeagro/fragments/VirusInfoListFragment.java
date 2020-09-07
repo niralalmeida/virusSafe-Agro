@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
@@ -36,6 +37,9 @@ public class VirusInfoListFragment extends Fragment {
 
     private VirusInfoListViewModel virusInfoListViewModel;
 
+    private LinearLayout processBarLinearLayout;
+    private LinearLayout recyclerViewLinearLayout;
+
     private RecyclerView.LayoutManager layoutManager;
     private VirusInfoListAdapter virusInfoListAdapter;
     private RecyclerView recyclerViewForVirusInfoList;
@@ -56,6 +60,9 @@ public class VirusInfoListFragment extends Fragment {
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
 
+        // initialize views
+        this.initializeViews();
+
         return this.view;
     }
 
@@ -69,6 +76,11 @@ public class VirusInfoListFragment extends Fragment {
         this.findVirusInfoListFromDB();
         // observe VirusModel Info List Live Data
         this.observeVirusInfoListLD();
+    }
+
+    private void initializeViews() {
+        this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
+        this.recyclerViewLinearLayout = view.findViewById(R.id.ll_list_virus_info);
     }
 
     private void initializeVirusInfoViewModel() {
@@ -85,6 +97,10 @@ public class VirusInfoListFragment extends Fragment {
             if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
                 virusModelInfoList.clear();
                 virusModelInfoList = resultVirusInfoList;
+
+                // set recycler view linear layout visible and process bar invisible
+                processBarLinearLayout.setVisibility(View.INVISIBLE);
+                recyclerViewLinearLayout.setVisibility(View.VISIBLE);
 
                 // show RecyclerView
                 showVirusInfoListRecyclerView();
@@ -113,5 +129,4 @@ public class VirusInfoListFragment extends Fragment {
             FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment);
         });
     }
-
 }
