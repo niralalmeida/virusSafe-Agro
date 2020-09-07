@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -34,6 +36,9 @@ public class VirusQuizListFragment extends Fragment {
 
     private VirusQuizListViewModel virusQuizListViewModel;
 
+    private LinearLayout processBarLinearLayout;
+    private NestedScrollView recyclerViewNestedScrollView;
+
     private RecyclerView.LayoutManager layoutManager;
     private VirusQuizListAdapter virusQuizListAdapter;
     private RecyclerView recyclerViewForVirusQuizList;
@@ -54,6 +59,11 @@ public class VirusQuizListFragment extends Fragment {
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
 
+        // initialize views
+        this.initializeViews();
+        this.processBarLinearLayout.setVisibility(View.VISIBLE);
+        this.recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
+
         return this.view;
     }
 
@@ -67,6 +77,11 @@ public class VirusQuizListFragment extends Fragment {
         this.findVirusQuizListFromDB();
         // observe VirusModel Quiz List Live Data
         this.observeVirusQuizListLD();
+    }
+
+    private void initializeViews() {
+        this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_quiz);
+        this.recyclerViewNestedScrollView = view.findViewById(R.id.nsv_list_virus_quiz);
     }
 
     private void initializeVirusQuizViewModel() {
@@ -83,6 +98,10 @@ public class VirusQuizListFragment extends Fragment {
             if ((resultVirusQuizList != null) && (resultVirusQuizList.size() != 0)) {
                 virusModelQuizList.clear();
                 virusModelQuizList = resultVirusQuizList;
+
+                // set recycler view linear layout visible and process bar invisible
+                processBarLinearLayout.setVisibility(View.INVISIBLE);
+                recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
 
                 // show RecyclerView
                 showVirusQuizListRecyclerView();
@@ -123,6 +142,13 @@ public class VirusQuizListFragment extends Fragment {
             virusDetailFragment.setArguments(bundle);
             FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment);
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.virusQuizListViewModel.getVirusQuizListLD().removeObservers(requireActivity());
+        this.virusQuizListViewModel.setVirusQuizListLD(new ArrayList<>());
     }
 
 }

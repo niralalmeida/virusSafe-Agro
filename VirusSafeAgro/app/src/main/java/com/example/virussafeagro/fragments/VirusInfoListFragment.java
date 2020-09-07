@@ -62,8 +62,8 @@ public class VirusInfoListFragment extends Fragment {
 
         // initialize views
         this.initializeViews();
-        processBarLinearLayout.setVisibility(View.VISIBLE);
-        recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
+        this.processBarLinearLayout.setVisibility(View.VISIBLE);
+        this.recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
 
         return this.view;
     }
@@ -98,7 +98,6 @@ public class VirusInfoListFragment extends Fragment {
 
     private void observeVirusInfoListLD() {
         this.virusInfoListViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
-
             if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
 
                 virusModelInfoList.clear();
