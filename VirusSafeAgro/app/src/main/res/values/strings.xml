@@ -35,4 +35,8 @@
     <string name="button_review_quiz">Review Virus Knowledge</string>
     <string name="button_retake_quiz">Retake Quiz</string>
     <string name="button_back">Back</string>
+
+    <!--  error message  -->
+    <string name="text_healthy_virus_check_result" >Your tomato is healthy!</string>
+    <string name="text_error_virus_check_result" >Something wrong with the server! Please try again!</string>
 </resources>

@@ -26,6 +26,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
 import com.mindorks.paracamera.Camera;
 
@@ -46,8 +48,6 @@ public class VirusCheckFragment extends Fragment {
     private ImageButton selectImageButton;
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
-    private LinearLayout imageCheckFeedbackLinearLayout;
-    private TextView imageCheckFeedbackTextView;
 
     private final int RESULT_OK = -1;
 
@@ -61,7 +61,7 @@ public class VirusCheckFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_virus_check, container, false);
 
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Check Image");
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus Check");
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
@@ -91,8 +91,6 @@ public class VirusCheckFragment extends Fragment {
         this.selectImageButton = view.findViewById(R.id.btn_select_image);
         this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
         this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
-        this.imageCheckFeedbackLinearLayout = view.findViewById(R.id.ll_feedback_image_check);
-        this.imageCheckFeedbackTextView = view.findViewById(R.id.tv_feedback_image_check);
     }
 
     private void initializeVirusCheckViewModel() {
@@ -123,8 +121,6 @@ public class VirusCheckFragment extends Fragment {
 
     private void setSelectImageButtonOnClickListener() {
         this.selectImageButton.setOnClickListener(view -> {
-            imageCheckFeedbackLinearLayout.setVisibility(View.INVISIBLE);
-            imageCheckFeedbackTextView.setText("");
             Intent intent=new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -134,14 +130,6 @@ public class VirusCheckFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // test
-        System.out.println("----->   result code :" + resultCode);
-
-        // test
-        System.out.println("----->   requestCode : " + requestCode);
-
-        // test
-        System.out.println("----->   data: " + data.toString());
 
         // for camera result
         if (requestCode == Camera.REQUEST_TAKE_PHOTO) {
@@ -172,10 +160,18 @@ public class VirusCheckFragment extends Fragment {
 
     private void setUploadImageButtonOnClickListener() {
         this.uploadImageButton.setOnClickListener(view -> {
-            // upload Tomato Image
-            this.uploadTomatoImage();
-            // observe checkFeedback live data
-            this.observeCheckFeedbackLD();
+            // test
+            Bundle bundle = new Bundle();
+            String resultCheckFeedback = "json error";
+            bundle.putString("resultCheckFeedback", resultCheckFeedback);
+            VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
+            virusCheckResultFragment.setArguments(bundle);
+            FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
+
+//            // upload Tomato Image
+//            this.uploadTomatoImage();
+//            // observe checkFeedback live data
+//            this.observeCheckFeedbackLD();
         });
     }
 
@@ -187,12 +183,11 @@ public class VirusCheckFragment extends Fragment {
     private void observeCheckFeedbackLD() {
         this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
             if (!resultCheckFeedback.isEmpty()){
-                imageCheckFeedbackLinearLayout.setVisibility(View.VISIBLE);
-                if (resultCheckFeedback.equals("error")){
-                    Toast.makeText(requireActivity(), "Your image should include tomato leaf!! Please select image again!!!", Toast.LENGTH_SHORT).show();
-                } else {
-                    imageCheckFeedbackTextView.setText(resultCheckFeedback);
-                }
+                Bundle bundle = new Bundle();
+                bundle.putString("resultCheckFeedback", resultCheckFeedback);
+                VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
+                virusCheckResultFragment.setArguments(bundle);
+                FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
             }
         });
     }

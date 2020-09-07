@@ -162,7 +162,7 @@ public class JsonParser {
             if (keysIterator.next().equals("prediction")) {
                 feedBack = predictionJsonObject.getString("prediction");
             } else {
-                feedBack = "error";
+                feedBack = "json error";
             }
         }
         return feedBack;
