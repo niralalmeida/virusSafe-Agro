@@ -23,7 +23,7 @@ public class VirusCheckViewModel extends ViewModel {
         this.checkFeedbackLD = new MutableLiveData<>();
     }
 
-    public void setCheckFeedbackLD(String checkFeedback){
+    private void setCheckFeedbackLD(String checkFeedback){
         this.checkFeedbackLD.setValue(checkFeedback);
     }
     public LiveData<String> getCheckFeedbackLD(){
@@ -42,36 +42,36 @@ public class VirusCheckViewModel extends ViewModel {
         @Override
         protected String doInBackground(Bitmap... bitmaps) {
             String feedback = "";
-            Bitmap uploadImageBitmap = bitmaps[0];
-            String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
-            ImageObject imageObject = new ImageObject(uploadImageBitmapString);
+//            Bitmap uploadImageBitmap = bitmaps[0];
+//            String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
+//            ImageObject imageObject = new ImageObject(uploadImageBitmapString);
+//            try {
+//                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
+//                feedback = JsonParser.imageCheckFeedbackJsonParser(rawFeedback);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+
+            // test
             try {
-                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
-                feedback = JsonParser.imageCheckFeedbackJsonParser(rawFeedback);
+                Thread.sleep(3000);
 
                 // test
-                System.out.println("---->>> virus result: " + feedback);
+                System.out.println("DOing it !------->>>> ");
 
-            } catch (Exception e) {
+                feedback = "healthy";
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            // test
-//            try {
-//                Thread.sleep(3000);
-//
-//                // test
-//                System.out.println("reach here!------->>>> ");
-//
-//                feedback = "healthy";
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
             return feedback;
         }
 
         @Override
         protected void onPostExecute(String resultCheckFeedback) {
+            // test
+            System.out.println("###### onPostExecute virus result: " + resultCheckFeedback);
+
             setCheckFeedbackLD(resultCheckFeedback);
         }
     }

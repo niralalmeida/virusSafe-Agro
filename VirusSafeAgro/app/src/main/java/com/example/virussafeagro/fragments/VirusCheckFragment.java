@@ -52,6 +52,8 @@ public class VirusCheckFragment extends Fragment {
     private LinearLayout allVirusCheckLinearLayout;
     private LinearLayout uploadingProgressBarLinearLayout;
 
+    private boolean isUploadImageButtonClicked;
+
     private final int RESULT_OK = -1;
 
     public VirusCheckFragment() {
@@ -91,9 +93,13 @@ public class VirusCheckFragment extends Fragment {
         this.setSelectImageButtonOnClickListener();
         // set uploadImageButton on click listener
         this.setUploadImageButtonOnClickListener();
+
+        // observe checkFeedback live data
+        this.observeCheckFeedbackLD();
     }
 
     private void initializeViews() {
+        this.isUploadImageButtonClicked = false;
         this.cameraButton = view.findViewById(R.id.btn_camera);
         this.selectImageButton = view.findViewById(R.id.btn_select_image);
         this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
@@ -172,21 +178,20 @@ public class VirusCheckFragment extends Fragment {
                 try {
                     Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
                     this.uploadImageImageView.setImageBitmap(bitmap);
-                    this.uploadImageButton.setVisibility(View.VISIBLE);
                 } catch (FileNotFoundException e) {
-                    Toast.makeText(requireActivity(), "The image you select is broken! Please choose another one!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), "The image file you select is corrupted! Please choose another one!!", Toast.LENGTH_SHORT).show();
                     Log.e("Exception", e.getMessage(),e);
                 }
             }else{
                 Log.i("VirusCheck", "operation error");
             }
         }
-
-
     }
 
     private void setUploadImageButtonOnClickListener() {
         this.uploadImageButton.setOnClickListener(view -> {
+            // set isUploadImageButtonClicked true
+            isUploadImageButtonClicked = true;
             // get uploadImageImageView BitmapDrawable
             BitmapDrawable uploadImageImageViewBitmapDrawable = (BitmapDrawable) this.uploadImageImageView.getDrawable();
             // check the uploadImageImageView is same as the default leaf image
@@ -198,8 +203,6 @@ public class VirusCheckFragment extends Fragment {
 
                 // upload Tomato Image
                 this.uploadTomatoImage();
-                // observe checkFeedback live data
-                this.observeCheckFeedbackLD();
 
             } else {
                 Toast.makeText(requireActivity(), "Please take a photo or select a tomato leaf image by album", Toast.LENGTH_SHORT).show();
@@ -219,17 +222,25 @@ public class VirusCheckFragment extends Fragment {
 
     private void observeCheckFeedbackLD() {
         this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
-            if (!resultCheckFeedback.isEmpty()){
-                Bundle bundle = new Bundle();
-                bundle.putString("resultCheckFeedback", resultCheckFeedback);
-                VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
-                virusCheckResultFragment.setArguments(bundle);
-                FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
-            } else {
-                // hide this virus check page and show the process bar
-                this.allVirusCheckLinearLayout.setVisibility(View.VISIBLE);
-                this.uploadingProgressBarLinearLayout.setVisibility(View.INVISIBLE);
-                Toast.makeText(requireActivity(), "The remote service stop working!!!", Toast.LENGTH_LONG).show();
+            // test
+            System.out.println("----->>> observeCheckFeedbackLD result: " + resultCheckFeedback);
+
+            if (isUploadImageButtonClicked) {
+                if (!resultCheckFeedback.isEmpty()){
+                    // test
+                    System.out.println("=====>>> Open fragment observeCheckFeedbackLD result: " + resultCheckFeedback);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("resultCheckFeedback", resultCheckFeedback);
+                    VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
+                    virusCheckResultFragment.setArguments(bundle);
+                    FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
+                } else {
+                    // hide this virus check page and show the process bar
+                    this.allVirusCheckLinearLayout.setVisibility(View.VISIBLE);
+                    this.uploadingProgressBarLinearLayout.setVisibility(View.INVISIBLE);
+                    Toast.makeText(requireActivity(), "The remote service stop working!!!", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
