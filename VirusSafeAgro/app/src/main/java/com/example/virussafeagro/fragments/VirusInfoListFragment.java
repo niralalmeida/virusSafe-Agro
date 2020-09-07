@@ -1,6 +1,5 @@
 package com.example.virussafeagro.fragments;
 
-import android.app.DownloadManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,8 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +23,6 @@ import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
