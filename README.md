@@ -75,7 +75,7 @@ Model is trained on 10,000 images belonging to following **10 classes**:
 - Septoria spot
 
 ##### REQUIREMENTS:
-absl-py==0.9.0
+* absl-py==0.9.0
 aniso8601==8.0.0
 astor==0.8.1
 astroid==2.4.0
