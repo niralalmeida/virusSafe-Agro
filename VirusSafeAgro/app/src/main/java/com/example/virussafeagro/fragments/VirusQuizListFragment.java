@@ -86,7 +86,6 @@ public class VirusQuizListFragment extends Fragment {
 
     private void initializeVirusQuizViewModel() {
         this.virusQuizListViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizListViewModel.class);
-        this.virusQuizListViewModel.initiateTheContext(requireActivity());
     }
 
     private void findVirusQuizListFromDB() {
@@ -147,9 +146,8 @@ public class VirusQuizListFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        this.virusQuizListViewModel.getVirusQuizListLD().removeObservers(requireActivity());
+        this.virusQuizListViewModel.getVirusQuizListLD().removeObservers(getViewLifecycleOwner());
         this.virusQuizListViewModel.setVirusQuizListLD(new ArrayList<>());
     }
-
 }
 

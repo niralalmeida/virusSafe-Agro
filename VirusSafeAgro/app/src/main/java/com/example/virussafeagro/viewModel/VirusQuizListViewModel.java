@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VirusQuizListViewModel extends ViewModel {
-    private Context context;
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
 
     private MutableLiveData<List<VirusModel>> virusQuizListLD;
@@ -24,10 +23,6 @@ public class VirusQuizListViewModel extends ViewModel {
     public VirusQuizListViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
         this.virusQuizListLD = new MutableLiveData<>();
-    }
-
-    public void initiateTheContext(Context context){
-        this.context = context;
     }
 
     public void setVirusQuizListLD(List<VirusModel> virusModelQuizList){

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -44,6 +45,9 @@ public class VirusQuizQuestionFragment extends Fragment {
     private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
     private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
 
+    private LinearLayout processBarLinearLayout;
+    private NestedScrollView recyclerViewNestedScrollView;
+
     private TextView virusFullNameTitleTextView;
     private LinearLayout singleChoiceQuestionTitleLinearLayout;
     private LinearLayout multipleChoiceQuestionTitleLinearLayout;
@@ -66,7 +70,6 @@ public class VirusQuizQuestionFragment extends Fragment {
         // set title
         Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Take Quiz");
 
-
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
 
@@ -74,7 +77,11 @@ public class VirusQuizQuestionFragment extends Fragment {
         Bundle bundle = getArguments();
         assert bundle != null;
         this.currentVirusModel = bundle.getParcelable("currentVirusModel");
+
+        // initialize views
         this.initializeViews();
+        this.processBarLinearLayout.setVisibility(View.VISIBLE);
+        this.recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
 
         return this.view;
     }
@@ -92,6 +99,8 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
 
     private void initializeViews() {
+        this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_quiz_question);
+        this.recyclerViewNestedScrollView = view.findViewById(R.id.nsv_virus_quiz_question);
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.singleChoiceQuestionTitleLinearLayout = view.findViewById(R.id.ll_virus_single_choice_quiz_question);
@@ -101,7 +110,6 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     private void initializeVirusQuizQuestionViewModel() {
         this.virusQuizQuestionViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizQuestionViewModel.class);
-        this.virusQuizQuestionViewModel.initiateTheContext(requireActivity());
     }
 
     private void findVirusQuizQuestionsFromDB() {
@@ -110,13 +118,21 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     private void observeVirusTwoTypeQuestionArrayLD() {
         this.virusQuizQuestionViewModel.getVirusTwoTypeQuestionArrayLD().observe(getViewLifecycleOwner(), resultVirusTwoTypeQuestionArray -> {
+            if ((resultVirusTwoTypeQuestionArray[0].size() != 0) || (resultVirusTwoTypeQuestionArray[1].size() != 0)){
+                // set recycler view linear layout visible and process bar invisible
+                processBarLinearLayout.setVisibility(View.INVISIBLE);
+                recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
+            }
+
             if (resultVirusTwoTypeQuestionArray[0] != null && resultVirusTwoTypeQuestionArray[0].size() != 0){
+                singleChoiceQuestionModelList.clear();
                 singleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[0];
 
                 singleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
                 showVirusQuizSingleChoiceQuestions();
             }
             if (resultVirusTwoTypeQuestionArray[1] != null && resultVirusTwoTypeQuestionArray[1].size() != 0){
+                multipleChoiceQuestionModelList.clear();
                 multipleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[1];
 
                 multipleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
@@ -226,5 +242,15 @@ public class VirusQuizQuestionFragment extends Fragment {
                 }
             }
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.virusQuizQuestionViewModel.getVirusTwoTypeQuestionArrayLD().removeObservers(getViewLifecycleOwner());
+        List<SingleChoiceQuestionModel> singleList = new ArrayList<>();
+        List<MultipleChoiceQuestionModel> multipleList = new ArrayList<>();
+        List[] listArray = new List[]{singleList, multipleList};
+        this.virusQuizQuestionViewModel.setVirusTwoTypeQuestionArrayLD(listArray);
     }
 }

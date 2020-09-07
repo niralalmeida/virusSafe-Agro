@@ -16,7 +16,6 @@ import com.example.virussafeagro.uitilities.JsonParser;
 import java.util.List;
 
 public class VirusQuizQuestionViewModel extends ViewModel {
-    private Context context;
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
 
     private MutableLiveData<List[]> virusTwoTypeQuestionArrayLD;
@@ -24,10 +23,6 @@ public class VirusQuizQuestionViewModel extends ViewModel {
     public VirusQuizQuestionViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
         this.virusTwoTypeQuestionArrayLD = new MutableLiveData<>();
-    }
-
-    public void initiateTheContext(Context context){
-        this.context = context;
     }
 
     public void setVirusTwoTypeQuestionArrayLD(List[] virusTwoTypeQuestionArray){
