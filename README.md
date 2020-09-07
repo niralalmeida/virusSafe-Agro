@@ -1,8 +1,8 @@
-## ANDROIOD APPLICATION - VirusSafe Agro
-### ABOUT virusSafe Agro:
+## Android application - VirusSafe Agro
+### About virusSafe Agro:
 Viruses in tomato plants cause humongous damages in Victoria, which results in massive losses. virusSafe Agro aims to inculcate awareness among farmers by providing an educational platform and ways to mitigate the risk of loss of their cultivation from viruses. 
 
-### virusSafe Agro SPECIFICATIONS
+### virusSafe Agro specifications:
 virusSafe Agro is your one-stop shop for a smorgasbord of learning about viruses in tomato plants. It is designed specifically for farmers who are new to farming or who wish to take farming as a profession in near future. 
 
 - [x] This resource gives farmers an option to check whether their tomato plants are infected or not by clicking and uploading a picture of their plant.
@@ -14,38 +14,39 @@ virusSafe Agro is your one-stop shop for a smorgasbord of learning about viruses
 ### What does *virusSafe Agro* application help you for?
 virusSafe Agro helps in checking if the plant is infected or not and provides preventive measures such as chemical and non-chemical control strategies that can be taken to avoid the spread of virus. However, the farmers should not solely rely on virusSafe Agro recommendations and should take professional advice for further guidance. virusSafe Agro does not guarantee the completeness or accuracy of information.
 
-## MAHARA PAGE LINK:  
+## Mahara page link:  
+Follow the link to check our Mahara e-portfolio:
 [![Mahara page](https://mahara.org/artefact/file/download.php?file=432674&view=133484&embedded=1&text=575322)](https://mahara.infotech.monash.edu.au/mahara/view/view.php?id=49981)
 
 ***
-## INSTALLATION:
+## Installation:
 Clone this repository and import into **Android Studio**
 ```bash
 git clone https://github.com/hoyyang/virusSafe-Agro.git
 ```
 
-## GENERATING SIGNED APK:
+## Generating signed APK:
 From Android Studio:
 1. **Build** menu
 2. **Generate Signed APK...**
 3. Fill in the keystore information *(you only need to do this once manually and then let Android Studio remember it)*
 
-## ARCHITECTURE
-### SYSTEM ARCHITECTURE:
+## Architecture
+### System architecture:
 ![System Architecture](https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/TA24-system%20architecture.png?token=ANAMHQUP7GHZC2FMDCCHMU27LN3EKe)
 The whole distributed system architecture for this Android App project is a **client-server architecture**.  The client endpoint, the App in an Android phone, holds all views and logic for handling data of displaying.  In this distributed system, there are several servers for holding persistent data and resources or calculating model.  And the client and servers deliver data by open API created by ourselves.  We build this application by using the following web services:
 1. **Machine Learning Model** - deployed on AWS with EC2
 2. **MySql Database** - deployed on AWS with RDS (APIs are built by Lambda function and API Gateway in AWS)
 3. other **Web Service**
 
-### ANDROID APPLICATION ARCHITECTURE
+### AAndroid application architecture
 ![App Architecture](https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/App%20-%20android%20system%20structure.png?token=ANAMHQRGXKOOONDKS4HQTTC7LOLLG)
 
 Within the client endpoint(Android App), there are different widgets for different pages and functions. For our project, there is **one activity**(current version) holding several **fragments**. One fragment holds one page.  And each fragment has a **ViewModel**, holding **live data**, mapping with it individually, which is for controlling the data interact with the remote server or other data storage tool. The interaction way for ViewModel and remote servers is **API**.
 
 
-## TECHNOLOGY
-### IMAGE CLASSIFICATION:
+## Technology
+### Image classification:
 One of the functionalities of our application is to provide novice farmers with the capability to check the infection in tomato plants. For this purpose, we have built an image classification model using the following technology stack.
 - Tensorflow
 - Keras
@@ -53,16 +54,16 @@ One of the functionalities of our application is to provide novice farmers with 
 - Flask Web Application Framework to create a flask application of model so that it can be deployed on AWS
 - AWS EC2 for model deployment
 
-##### MODEL BUILDING PROCESS: 
+##### Model building process: 
 There are 3 key phases of Model building mentioned below:
 1. The model is trained using **Keras** and **Tensorflow** deep learning framework and using **CNN architecture**.
 2. **Flask** has been used to create Restful API which can be deployed on cloud.
 3. Flask application is deployed on **AWS EC2**.
 
-##### MODEL ACCURACY: 
+##### Model accuracy: 
 Model is currently approximately **89% accurate**.
 
-##### DATASET:
+##### Dataset:
 Model is trained on 10,000 images belonging to following **10 classes**:
 - Tomato mosaic virus
 - Target Spot
@@ -75,7 +76,7 @@ Model is trained on 10,000 images belonging to following **10 classes**:
 - Tomato healthy
 - Septoria spot
 
-##### REQUIREMENTS:
+##### Requirements:
 * absl-py==0.9.0
 * aniso8601==8.0.0
 * astor==0.8.1
@@ -132,7 +133,7 @@ Model is trained on 10,000 images belonging to following **10 classes**:
 * Werkzeug==1.0.1
 * wrapt==1.12.1
 
-## ABOUT OUR TEAM
+## About our team
 ### TEAM NO.|TEAM NAME: TA24 | VIRUS DETECTORS
 ### TEAM MEMBERS
 |Name|Email Id|Major
