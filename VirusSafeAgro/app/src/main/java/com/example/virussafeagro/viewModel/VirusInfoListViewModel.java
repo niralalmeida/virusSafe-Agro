@@ -34,8 +34,6 @@ public class VirusInfoListViewModel extends ViewModel {
 
     public void processFindingVirusInfoList() {
         try {
-            // test
-            System.out.println("[Do]-> doInBackground");
             FindVirusInfoListAsyncTask findVirusInfoListAsyncTask = new FindVirusInfoListAsyncTask();
             findVirusInfoListAsyncTask.execute();
         } catch (Exception e) {
@@ -57,8 +55,6 @@ public class VirusInfoListViewModel extends ViewModel {
 
         @Override
         protected void onPostExecute(List<VirusModel> resultVirusModelInfoList) {
-            // test
-            System.out.println("[Do] onPostExecute size: "  + resultVirusModelInfoList.size());
             setVirusInfoListLD(resultVirusModelInfoList);
         }
     }

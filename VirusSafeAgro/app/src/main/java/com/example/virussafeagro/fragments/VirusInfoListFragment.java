@@ -1,5 +1,6 @@
 package com.example.virussafeagro.fragments;
 
+import android.app.DownloadManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -78,6 +80,7 @@ public class VirusInfoListFragment extends Fragment {
         virusModelInfoList = new ArrayList<>();
         // initialize view model
         this.initializeVirusInfoViewModel();
+
         // find virus info list in new Thread
         this.findVirusInfoListFromDB();
         // observe VirusModel Info List Live Data
@@ -94,19 +97,13 @@ public class VirusInfoListFragment extends Fragment {
     }
 
     private void findVirusInfoListFromDB() {
-        // test
-        System.out.println("[ Do it !!! ]");
         this.virusInfoListViewModel.processFindingVirusInfoList();
     }
 
     private void observeVirusInfoListLD() {
         this.virusInfoListViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
-            // test
-            System.out.println("===>>>  result size" +  resultVirusInfoList.size());
 
             if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
-                // test
-                System.out.println("---> change something");
 
                 virusModelInfoList.clear();
                 virusModelInfoList = resultVirusInfoList;
@@ -147,5 +144,6 @@ public class VirusInfoListFragment extends Fragment {
     public void onPause() {
         super.onPause();
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
+        this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
     }
 }
