@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VirusInfoListViewModel extends ViewModel {
-    private Context context;
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
 
     private MutableLiveData<List<VirusModel>> virusInfoListLD;
@@ -24,10 +23,6 @@ public class VirusInfoListViewModel extends ViewModel {
     public VirusInfoListViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
         this.virusInfoListLD = new MutableLiveData<>();
-    }
-
-    public void initiateTheContext(Context context){
-        this.context = context;
     }
 
     public void setVirusInfoListLD(List<VirusModel> virusModelInfoList){
@@ -39,6 +34,8 @@ public class VirusInfoListViewModel extends ViewModel {
 
     public void processFindingVirusInfoList() {
         try {
+            // test
+            System.out.println("[Do]-> doInBackground");
             FindVirusInfoListAsyncTask findVirusInfoListAsyncTask = new FindVirusInfoListAsyncTask();
             findVirusInfoListAsyncTask.execute();
         } catch (Exception e) {
@@ -60,6 +57,8 @@ public class VirusInfoListViewModel extends ViewModel {
 
         @Override
         protected void onPostExecute(List<VirusModel> resultVirusModelInfoList) {
+            // test
+            System.out.println("[Do] onPostExecute size: "  + resultVirusModelInfoList.size());
             setVirusInfoListLD(resultVirusModelInfoList);
         }
     }

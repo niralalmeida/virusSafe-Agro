@@ -5,7 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,12 +40,12 @@ public class VirusInfoListFragment extends Fragment {
     private VirusInfoListViewModel virusInfoListViewModel;
 
     private LinearLayout processBarLinearLayout;
-    private LinearLayout recyclerViewLinearLayout;
+    private NestedScrollView recyclerViewNestedScrollView;
 
     private RecyclerView.LayoutManager layoutManager;
     private VirusInfoListAdapter virusInfoListAdapter;
     private RecyclerView recyclerViewForVirusInfoList;
-    private List<VirusModel> virusModelInfoList = new ArrayList<>();
+    private List<VirusModel> virusModelInfoList;
 
     public VirusInfoListFragment() {
     }
@@ -62,6 +64,8 @@ public class VirusInfoListFragment extends Fragment {
 
         // initialize views
         this.initializeViews();
+        processBarLinearLayout.setVisibility(View.VISIBLE);
+        recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
 
         return this.view;
     }
@@ -70,6 +74,8 @@ public class VirusInfoListFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // initialize virus list
+        virusModelInfoList = new ArrayList<>();
         // initialize view model
         this.initializeVirusInfoViewModel();
         // find virus info list in new Thread
@@ -80,27 +86,34 @@ public class VirusInfoListFragment extends Fragment {
 
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
-        this.recyclerViewLinearLayout = view.findViewById(R.id.ll_list_virus_info);
+        this.recyclerViewNestedScrollView = view.findViewById(R.id.nsv_list_virus_info);
     }
 
     private void initializeVirusInfoViewModel() {
         this.virusInfoListViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoListViewModel.class);
-        this.virusInfoListViewModel.initiateTheContext(requireActivity());
     }
 
     private void findVirusInfoListFromDB() {
+        // test
+        System.out.println("[ Do it !!! ]");
         this.virusInfoListViewModel.processFindingVirusInfoList();
     }
 
     private void observeVirusInfoListLD() {
         this.virusInfoListViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
+            // test
+            System.out.println("===>>>  result size" +  resultVirusInfoList.size());
+
             if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
+                // test
+                System.out.println("---> change something");
+
                 virusModelInfoList.clear();
                 virusModelInfoList = resultVirusInfoList;
 
                 // set recycler view linear layout visible and process bar invisible
                 processBarLinearLayout.setVisibility(View.INVISIBLE);
-                recyclerViewLinearLayout.setVisibility(View.VISIBLE);
+                recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
 
                 // show RecyclerView
                 showVirusInfoListRecyclerView();
@@ -128,5 +141,11 @@ public class VirusInfoListFragment extends Fragment {
             virusDetailFragment.setArguments(bundle);
             FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment);
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
     }
 }
