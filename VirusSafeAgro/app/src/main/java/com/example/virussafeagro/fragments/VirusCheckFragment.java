@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,8 @@ public class VirusCheckFragment extends Fragment {
     private ImageButton selectImageButton;
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
+    private LinearLayout allVirusCheckLinearLayout;
+    private LinearLayout uploadingProgressBarLinearLayout;
 
     private final int RESULT_OK = -1;
 
@@ -94,6 +97,8 @@ public class VirusCheckFragment extends Fragment {
         this.selectImageButton = view.findViewById(R.id.btn_select_image);
         this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
         this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
+        this.allVirusCheckLinearLayout = view.findViewById(R.id.ll_all_virus_check);
+        this.uploadingProgressBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_check);
     }
 
     private void initializeVirusCheckViewModel() {
@@ -188,6 +193,11 @@ public class VirusCheckFragment extends Fragment {
     }
 
     private void uploadTomatoImage() {
+        // hide this virus check page and show the process bar
+        this.allVirusCheckLinearLayout.setVisibility(View.INVISIBLE);
+        this.uploadingProgressBarLinearLayout.setVisibility(View.VISIBLE);
+
+        // get the bitmap of the image and start to upload it to waiting for the ML model result
         Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
         this.virusCheckViewModel.processUploadingTomatoImage(uploadImageBitmap);
     }
@@ -195,14 +205,16 @@ public class VirusCheckFragment extends Fragment {
     private void observeCheckFeedbackLD() {
         this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
             if (!resultCheckFeedback.isEmpty()){
-//                Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
-//                String uploadImageString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
                 Bundle bundle = new Bundle();
                 bundle.putString("resultCheckFeedback", resultCheckFeedback);
-//                bundle.putString("uploadImageString", uploadImageString);
                 VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
                 virusCheckResultFragment.setArguments(bundle);
                 FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
+            } else {
+                // hide this virus check page and show the process bar
+                this.allVirusCheckLinearLayout.setVisibility(View.VISIBLE);
+                this.uploadingProgressBarLinearLayout.setVisibility(View.INVISIBLE);
+                Toast.makeText(requireActivity(), "The remote service stop working!!!", Toast.LENGTH_LONG).show();
             }
         });
     }

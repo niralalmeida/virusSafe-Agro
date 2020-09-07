@@ -36,7 +36,9 @@
     <string name="button_retake_quiz">Retake Quiz</string>
     <string name="button_back">Back</string>
 
-    <!--  error message  -->
+    <!--  message  -->
+    <string name="process_bar_text_virus_info" >Loading Virus List &#8230;</string>
+    <string name="process_bar_text_virus_check" >Analysing the Image &#8230;</string>
     <string name="text_healthy_virus_check_result" >Your tomato is healthy!</string>
     <string name="text_error_virus_check_result" >Something wrong with the server! Please try again!</string>
 </resources>
