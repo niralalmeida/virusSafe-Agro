@@ -1,4 +1,4 @@
-# ANDROIOD APPLICATION - VirusSafe Agro
+## ANDROIOD APPLICATION - VirusSafe Agro
 ### ABOUT virusSafe Agro:
 Viruses in tomato plants cause humongous damages in Victoria, which results in massive losses. virusSafe Agro aims to inculcate awareness among farmers by providing an educational platform and ways to mitigate the risk of loss of their cultivation from viruses. 
 
@@ -132,7 +132,7 @@ Model is trained on 10,000 images belonging to following **10 classes**:
 * Werkzeug==1.0.1
 * wrapt==1.12.1
 
-# ABOUT OUR TEAM
+## ABOUT OUR TEAM
 ### TEAM NO.|TEAM NAME: TA24 | VIRUS DETECTORS
 ### TEAM MEMBERS
 |Name|Email Id|Major
