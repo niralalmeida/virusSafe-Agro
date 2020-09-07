@@ -40,7 +40,7 @@ The whole distributed system architecture for this Android App project is a **cl
 2. **MySql Database** - deployed on AWS with RDS (APIs are built by Lambda function and API Gateway in AWS)
 3. other **Web Service**
 
-### AAndroid application architecture
+### Android application architecture
 ![App Architecture](https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/App%20-%20android%20system%20structure.png?token=ANAMHQRGXKOOONDKS4HQTTC7LOLLG)
 
 Within the client endpoint(Android App), there are different widgets for different pages and functions. For our project, there is **one activity**(current version) holding several **fragments**. One fragment holds one page.  And each fragment has a **ViewModel**, holding **live data**, mapping with it individually, which is for controlling the data interact with the remote server or other data storage tool. The interaction way for ViewModel and remote servers is **API**.
