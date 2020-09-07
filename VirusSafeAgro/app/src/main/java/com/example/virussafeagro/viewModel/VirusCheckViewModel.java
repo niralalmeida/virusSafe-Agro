@@ -1,6 +1,5 @@
 package com.example.virussafeagro.viewModel;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
@@ -42,28 +41,15 @@ public class VirusCheckViewModel extends ViewModel {
         @Override
         protected String doInBackground(Bitmap... bitmaps) {
             String feedback = "";
-//            Bitmap uploadImageBitmap = bitmaps[0];
-//            String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
-//            ImageObject imageObject = new ImageObject(uploadImageBitmapString);
-//            try {
-//                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
-//                feedback = JsonParser.imageCheckFeedbackJsonParser(rawFeedback);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-
-            // test
+            Bitmap uploadImageBitmap = bitmaps[0];
+            String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
+            ImageObject imageObject = new ImageObject(uploadImageBitmapString);
             try {
-                Thread.sleep(3000);
-
-                // test
-                System.out.println("DOing it !------->>>> ");
-
-                feedback = "healthy";
-            } catch (InterruptedException e) {
+                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
+                feedback = JsonParser.imageCheckFeedbackJsonParser(rawFeedback);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return feedback;
         }
 

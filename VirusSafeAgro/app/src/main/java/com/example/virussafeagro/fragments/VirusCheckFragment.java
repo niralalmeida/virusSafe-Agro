@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.MainActivity;
@@ -222,14 +223,9 @@ public class VirusCheckFragment extends Fragment {
 
     private void observeCheckFeedbackLD() {
         this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
-            // test
-            System.out.println("----->>> observeCheckFeedbackLD result: " + resultCheckFeedback);
-
             if (isUploadImageButtonClicked) {
                 if (!resultCheckFeedback.isEmpty()){
-                    // test
-                    System.out.println("=====>>> Open fragment observeCheckFeedbackLD result: " + resultCheckFeedback);
-
+                    // save the feedback into bundle and send it to the result fragment
                     Bundle bundle = new Bundle();
                     bundle.putString("resultCheckFeedback", resultCheckFeedback);
                     VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
@@ -245,4 +241,11 @@ public class VirusCheckFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        // clear all the observer for the LiveData
+        LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
+        this.virusCheckViewModel.getCheckFeedbackLD().removeObservers(lifecycleOwner);
+    }
 }
