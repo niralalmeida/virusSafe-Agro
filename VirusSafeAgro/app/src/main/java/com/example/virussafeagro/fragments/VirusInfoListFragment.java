@@ -22,6 +22,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class VirusInfoListFragment extends Fragment {
     private View view;
 
     private VirusInfoListViewModel virusInfoListViewModel;
+    private SharedPreferenceProcess spp;
 
     private LinearLayout processBarLinearLayout;
     private NestedScrollView recyclerViewNestedScrollView;
@@ -76,6 +78,8 @@ public class VirusInfoListFragment extends Fragment {
         virusModelInfoList = new ArrayList<>();
         // initialize view model
         this.initializeVirusInfoViewModel();
+        // initialize SharedPreferenceProcess
+        this.initializeSharedPreference();
 
         // find virus info list in new Thread
         this.findVirusInfoListFromDB();
@@ -92,6 +96,10 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoListViewModel.class);
     }
 
+    private void initializeSharedPreference() {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireActivity());
+    }
+
     private void findVirusInfoListFromDB() {
         this.virusInfoListViewModel.processFindingVirusInfoList();
     }
@@ -102,6 +110,7 @@ public class VirusInfoListFragment extends Fragment {
 
                 virusModelInfoList.clear();
                 virusModelInfoList = resultVirusInfoList;
+                spp.saveVirusInfoList(virusModelInfoList);
 
                 // set recycler view linear layout visible and process bar invisible
                 processBarLinearLayout.setVisibility(View.INVISIBLE);
