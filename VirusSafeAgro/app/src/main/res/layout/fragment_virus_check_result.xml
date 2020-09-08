@@ -100,8 +100,27 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btn_virus_details_check_result"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/button_virus_details_check_result"
+                android:textColor="#fff"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="30dp"/>
+
+        </LinearLayout>
+
     </RelativeLayout>
-
-
 
 </LinearLayout>

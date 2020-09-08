@@ -3,13 +3,12 @@ package com.example.virussafeagro.fragments;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +32,7 @@ public class VirusCheckResultFragment extends Fragment {
     private LinearLayout imageCheckHealthyFeedbackLinearLayout;
     private LinearLayout imageCheckIllFeedbackLinearLayout;
     private TextView imageCheckIllFeedbackTextView;
+    private Button virusDetailsButton;
 
 
     public VirusCheckResultFragment() {
@@ -82,6 +82,7 @@ public class VirusCheckResultFragment extends Fragment {
         this.imageCheckHealthyFeedbackLinearLayout = view.findViewById(R.id.ll_healthy_feedback_image_check);
         this.imageCheckIllFeedbackLinearLayout = view.findViewById(R.id.ll_ill_feedback_image_check);
         this.imageCheckIllFeedbackTextView = view.findViewById(R.id.tv_ill_feedback_image_check);
+        this.virusDetailsButton = view.findViewById(R.id.btn_virus_details_check_result);
     }
 
     private void initializeSharedPreference() {
