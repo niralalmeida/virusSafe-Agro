@@ -1,5 +1,6 @@
 package com.example.virussafeagro.viewModel;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
@@ -9,12 +10,14 @@ import androidx.lifecycle.ViewModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
 import com.example.virussafeagro.uitilities.JsonParser;
+import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VirusInfoListViewModel extends ViewModel {
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
+    private SharedPreferenceProcess spp;
 
     private MutableLiveData<List<VirusModel>> virusInfoListLD;
 
@@ -23,6 +26,11 @@ public class VirusInfoListViewModel extends ViewModel {
         this.virusInfoListLD = new MutableLiveData<>();
     }
 
+    public void initiateSharedPreferenceProcess(Context context) {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(context);
+    }
+
+    // for live data
     public void setVirusInfoListLD(List<VirusModel> virusModelInfoList){
         this.virusInfoListLD.setValue(virusModelInfoList);
     }
@@ -30,6 +38,7 @@ public class VirusInfoListViewModel extends ViewModel {
         return this.virusInfoListLD;
     }
 
+    // for find all virus by AsyncTask
     public void processFindingVirusInfoList() {
         try {
             FindVirusInfoListAsyncTask findVirusInfoListAsyncTask = new FindVirusInfoListAsyncTask();
@@ -48,6 +57,8 @@ public class VirusInfoListViewModel extends ViewModel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            // save virus list into spp
+            spp.saveVirusInfoList(virusModelInfoList);
             return virusModelInfoList;
         }
 

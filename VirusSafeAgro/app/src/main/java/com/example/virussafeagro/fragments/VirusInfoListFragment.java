@@ -79,10 +79,18 @@ public class VirusInfoListFragment extends Fragment {
         // initialize view model
         this.initializeVirusInfoViewModel();
         // initialize SharedPreferenceProcess
-        this.initializeSharedPreference();
+        this.initializeSharedPreferenceProcess();
 
-        // find virus info list in new Thread
-        this.findVirusInfoListFromDB();
+        if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
+            // find virus info list in new Thread
+            this.findVirusInfoListFromDB();
+        } else {
+            // get the virus list from spp
+            this.virusModelInfoList = spp.getVirusModelListFromSP();
+            // show the virus list
+            this.displayVirusCardList();
+        }
+
         // observe VirusModel Info List Live Data
         this.observeVirusInfoListLD();
     }
@@ -94,10 +102,11 @@ public class VirusInfoListFragment extends Fragment {
 
     private void initializeVirusInfoViewModel() {
         this.virusInfoListViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoListViewModel.class);
+        this.virusInfoListViewModel.initiateSharedPreferenceProcess(requireContext());
     }
 
-    private void initializeSharedPreference() {
-        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireActivity());
+    private void initializeSharedPreferenceProcess() {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireContext());
     }
 
     private void findVirusInfoListFromDB() {
@@ -110,18 +119,22 @@ public class VirusInfoListFragment extends Fragment {
 
                 virusModelInfoList.clear();
                 virusModelInfoList = resultVirusInfoList;
-                spp.saveVirusInfoList(virusModelInfoList);
 
-                // set recycler view linear layout visible and process bar invisible
-                processBarLinearLayout.setVisibility(View.INVISIBLE);
-                recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
-
-                // show RecyclerView
-                showVirusInfoListRecyclerView();
-                // set RecyclerView item virus CardView click listener
-                setRecyclerViewItemVirusCardViewClickListener();
+                // show the virus list
+                displayVirusCardList();
             }
         });
+    }
+
+    private void displayVirusCardList() {
+        // set recycler view linear layout visible and process bar invisible
+        processBarLinearLayout.setVisibility(View.INVISIBLE);
+        recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
+
+        // show RecyclerView
+        showVirusInfoListRecyclerView();
+        // set RecyclerView item virus CardView click listener
+        setRecyclerViewItemVirusCardViewClickListener();
     }
 
     private void showVirusInfoListRecyclerView() {
