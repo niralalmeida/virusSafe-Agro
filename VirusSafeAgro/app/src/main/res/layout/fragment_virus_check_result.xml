@@ -117,7 +117,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:textStyle="bold"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="200dp"
                 android:visibility="invisible"/>
 
         </LinearLayout>
