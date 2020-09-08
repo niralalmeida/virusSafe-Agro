@@ -128,10 +128,6 @@ public class VirusCheckResultFragment extends Fragment {
         String processedResultName = DataConverter.checkResultVirusRawNameToUpperCaseWithSpace(resultVirusRawFullName);
         int virusId = AppResources.getVirusIdByVirusFullName(processedResultName);
 
-        // test
-        System.out.println("---->  processedResultName: " + processedResultName);
-        System.out.println("----> virus id : " + virusId);
-
         virusModel.setVirusId(virusId);
         virusModel.setVirusFullName(spp.getSPVirusFullName(virusId));
         virusModel.setVirusAbbreviation(spp.getSPVirusAbbreviation(virusId));
