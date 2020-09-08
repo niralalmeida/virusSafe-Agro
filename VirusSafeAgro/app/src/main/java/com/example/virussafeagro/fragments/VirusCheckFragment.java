@@ -113,16 +113,6 @@ public class VirusCheckFragment extends Fragment {
         this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireActivity());
     }
 
-//    private void showUploadImageViewFromSP() {
-//        Bitmap currentVirusCheckImageBitmap = spp.getCurrentVirusCheckImage();
-//        if (currentVirusCheckImageBitmap == null) {
-//            Bitmap defaultLeafBitmap = DataConverter.drawableImageToBitmap(requireActivity(), R.drawable.default_leaf);
-//            this.uploadImageImageView.setImageBitmap(defaultLeafBitmap);
-//        } else {
-//            this.uploadImageImageView.setImageBitmap(currentVirusCheckImageBitmap);
-//        }
-//    }
-
     private void initializeVirusCheckViewModel() {
         this.virusCheckViewModel = new ViewModelProvider(requireActivity()).get(VirusCheckViewModel.class);
     }
