@@ -52,7 +52,7 @@ public class VirusCheckViewModel extends ViewModel {
 //            }
 
             // test
-            feedback = "Leaf_Mode";
+            feedback = "Target_spot";
             return feedback;
         }
 

@@ -23,6 +23,7 @@ import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
+import java.util.List;
 import java.util.Objects;
 
 public class VirusCheckResultFragment extends Fragment {
@@ -123,21 +124,13 @@ public class VirusCheckResultFragment extends Fragment {
     }
 
     private VirusModel getResultVirusModelFromSP(String resultVirusRawFullName){
-        VirusModel virusModel = new VirusModel();
-        // change the name : eg. TARGET SPOT
+        // parse the name to standard: eg. TARGET SPOT
         String processedResultName = DataConverter.checkResultVirusRawNameToUpperCaseWithSpace(resultVirusRawFullName);
+        // get result virus id
         int virusId = AppResources.getVirusIdByVirusFullName(processedResultName);
-
-        virusModel.setVirusId(virusId);
-        virusModel.setVirusFullName(spp.getSPVirusFullName(virusId));
-        virusModel.setVirusAbbreviation(spp.getSPVirusAbbreviation(virusId));
-        virusModel.setVirusDescription(spp.getSPVirusDescription(virusId));
-        virusModel.setSymptoms(spp.getSPVirusSymptoms(virusId));
-        virusModel.setCauses(spp.getSPVirusCauses(virusId));
-        virusModel.setSpread(spp.getSPVirusSpread(virusId));
-        virusModel.setPrevention(spp.getSPVirusPrevention(virusId));
-        virusModel.setDistribution(spp.getSPDistribution(virusId));
-        return virusModel;
+        // get the virus list
+        List<VirusModel> virusModelList = spp.getVirusModelListFromSP();
+        return virusModelList.get(virusId - 1);
     }
 
     @Override
