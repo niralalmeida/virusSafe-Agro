@@ -199,7 +199,6 @@ public class VirusCheckFragment extends Fragment {
             if (!DataConverter.isSameImage(uploadImageImageViewBitmapDrawable, requireActivity(), R.drawable.default_leaf)) {
                 // save the image into SharedPreference
                 Bitmap uploadImageBitmap = uploadImageImageViewBitmapDrawable.getBitmap();
-                SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireActivity());
                 spp.putCurrentVirusCheckImage(uploadImageBitmap);
 
                 // upload Tomato Image
