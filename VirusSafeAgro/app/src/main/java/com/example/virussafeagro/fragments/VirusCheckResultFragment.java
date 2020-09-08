@@ -24,7 +24,6 @@ import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckResultViewModel;
-import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +44,7 @@ public class VirusCheckResultFragment extends Fragment {
     private LinearLayout imageCheckIllFeedbackLinearLayout;
     private TextView imageCheckIllFeedbackTextView;
     private Button virusDetailsButton;
+    private LinearLayout buttonProcessBarLinearLayout;
 
     private boolean isInfected = false;
 
@@ -88,18 +88,9 @@ public class VirusCheckResultFragment extends Fragment {
         Bitmap uploadedImageBitmap = spp.getCurrentVirusCheckImage();
         this.uploadedImageImageView.setImageBitmap(uploadedImageBitmap);
 
-        if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
-            // find virus info list in new Thread
-            this.findVirusInfoListFromDB();
-        } else {
-            // set virus detail button visible
-            this.virusDetailsButton.setVisibility(View.VISIBLE);
-            // get result virus id
-            this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
-        }
-
         // control the resultCheckFeedback display
         this.controlResultCheckFeedback();
+
         // set VirusDetailsButton On Click Listener
         this.setVirusDetailsButtonOnClickListener();
         // observe Virus List live data
@@ -113,6 +104,7 @@ public class VirusCheckResultFragment extends Fragment {
         this.imageCheckIllFeedbackLinearLayout = view.findViewById(R.id.ll_ill_feedback_image_check);
         this.imageCheckIllFeedbackTextView = view.findViewById(R.id.tv_ill_feedback_image_check);
         this.virusDetailsButton = view.findViewById(R.id.btn_virus_details_check_result);
+        this.buttonProcessBarLinearLayout = view.findViewById(R.id.ll_btn_progress_bar_check_result);
     }
 
     private void initializeSharedPreference() {
@@ -137,6 +129,18 @@ public class VirusCheckResultFragment extends Fragment {
             this.imageCheckIllFeedbackLinearLayout.setVisibility(View.VISIBLE);
             this.imageCheckIllFeedbackTextView.setText(this.resultCheckFeedback);
             this.isInfected = true;
+            this.buttonProcessBarLinearLayout.setVisibility(View.VISIBLE);
+
+            if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
+                // find virus info list in new Thread
+                this.findVirusInfoListFromDB();
+            } else {
+                // set virus detail button visible
+                this.virusDetailsButton.setVisibility(View.VISIBLE);
+                this.buttonProcessBarLinearLayout.setVisibility(View.INVISIBLE);
+                // get result virus id
+                this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
+            }
         }
     }
 
@@ -145,8 +149,11 @@ public class VirusCheckResultFragment extends Fragment {
             if (resultVirusList != null && resultVirusList.size() == 9 && isInfected ){
                 // set virus detail button visible
                 this.virusDetailsButton.setVisibility(View.VISIBLE);
+                this.buttonProcessBarLinearLayout.setVisibility(View.INVISIBLE);
                 // get result virus id
-                this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
+                if ((!this.resultCheckFeedback.equals("json error")) && (!this.resultCheckFeedback.equals("healthy"))){
+                    this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
+                }
             }
         });
     }

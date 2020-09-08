@@ -122,6 +122,23 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/ll_btn_progress_bar_check_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
     </RelativeLayout>
 
 </LinearLayout>
