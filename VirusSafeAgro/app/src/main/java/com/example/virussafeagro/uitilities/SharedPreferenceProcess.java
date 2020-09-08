@@ -91,6 +91,23 @@ public class SharedPreferenceProcess {
 
 
     // for all virus info
+    public List<VirusModel> getVirusModelListFromSP() {
+        virusModelList = new ArrayList<>();
+        for (int id = 1; id < 9; id++) {
+            VirusModel virusModel = new VirusModel();
+            virusModel.setVirusId(id);
+            virusModel.setVirusFullName(getSPVirusFullName(id));
+            virusModel.setVirusAbbreviation(getSPVirusAbbreviation(id));
+            virusModel.setVirusDescription(getSPVirusDescription(id));
+            virusModel.setSymptoms(getSPVirusSymptoms(id));
+            virusModel.setCauses(getSPVirusCauses(id));
+            virusModel.setSpread(getSPVirusSpread(id));
+            virusModel.setPrevention(getSPVirusPrevention(id));
+            virusModel.setDistribution(getSPDistribution(id));
+            virusModelList.add(virusModel);
+        }
+        return virusModelList;
+    }
     public void saveVirusInfoList(List<VirusModel> virusModelListInput) {
         // set the virus model list
         virusModelList = virusModelListInput;
