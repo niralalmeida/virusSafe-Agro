@@ -17,6 +17,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DataConverter;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 import java.util.Objects;
@@ -26,6 +30,7 @@ public class VirusCheckResultFragment extends Fragment {
 
     private String resultCheckFeedback;
     private SharedPreferenceProcess spp;
+    private VirusModel resultVirusModel;
 
     private ImageView uploadedImageImageView;
     private LinearLayout imageCheckErrorFeedbackLinearLayout;
@@ -74,6 +79,9 @@ public class VirusCheckResultFragment extends Fragment {
 
         // control the resultCheckFeedback display
         this.controlResultCheckFeedback();
+
+        // set VirusDetailsButton On Click Listener
+        this.setVirusDetailsButtonOnClickListener();
     }
 
     private void initializeViews() {
@@ -97,7 +105,43 @@ public class VirusCheckResultFragment extends Fragment {
         } else {
             this.imageCheckIllFeedbackLinearLayout.setVisibility(View.VISIBLE);
             this.imageCheckIllFeedbackTextView.setText(this.resultCheckFeedback);
+            // set virus detail button visible
+            this.virusDetailsButton.setVisibility(View.VISIBLE);
+            // get result virus id
+            this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
         }
+    }
+
+    private void setVirusDetailsButtonOnClickListener() {
+        this.virusDetailsButton.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("currentVirusModel", resultVirusModel);
+            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
+            virusDetailFragment.setArguments(bundle);
+            FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment);
+        });
+    }
+
+    private VirusModel getResultVirusModelFromSP(String resultVirusRawFullName){
+        VirusModel virusModel = new VirusModel();
+        // change the name : eg. TARGET SPOT
+        String processedResultName = DataConverter.checkResultVirusRawNameToUpperCaseWithSpace(resultVirusRawFullName);
+        int virusId = AppResources.getVirusIdByVirusFullName(processedResultName);
+
+        // test
+        System.out.println("---->  processedResultName: " + processedResultName);
+        System.out.println("----> virus id : " + virusId);
+
+        virusModel.setVirusId(virusId);
+        virusModel.setVirusFullName(spp.getSPVirusFullName(virusId));
+        virusModel.setVirusAbbreviation(spp.getSPVirusAbbreviation(virusId));
+        virusModel.setVirusDescription(spp.getSPVirusDescription(virusId));
+        virusModel.setSymptoms(spp.getSPVirusSymptoms(virusId));
+        virusModel.setCauses(spp.getSPVirusCauses(virusId));
+        virusModel.setSpread(spp.getSPVirusSpread(virusId));
+        virusModel.setPrevention(spp.getSPVirusPrevention(virusId));
+        virusModel.setDistribution(spp.getSPDistribution(virusId));
+        return virusModel;
     }
 
     @Override

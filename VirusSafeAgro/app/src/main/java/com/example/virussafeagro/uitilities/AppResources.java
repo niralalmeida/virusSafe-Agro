@@ -44,4 +44,38 @@ public class AppResources {
         }
         return virusDrawablePictureResource;
     }
+
+    public static int getVirusIdByVirusFullName(String virusFullName) {
+        int virusId = 0;
+        switch (virusFullName) {
+            case "TOMATO MOSAIC VIRUS":
+                virusId = 1;
+                break;
+            case "TARGET SPOT":
+                virusId = 2;
+                break;
+            case "BACTERIAL SPOT":
+                virusId = 3;
+                break;
+            case "TOMATO YELLOW LEAF CURL VIRUS":
+                virusId = 4;
+                break;
+            case "TOMATO LATE BLIGHT":
+                virusId = 5;
+                break;
+            case "LEAF MOLD":
+                virusId = 6;
+                break;
+            case "EARLY BLIGHT":
+                virusId = 7;
+                break;
+            case "TWO-SPOTTED SPIDER MITE":
+                virusId = 8;
+                break;
+            case "SEPTORIA LEAF SPOT":
+                virusId = 9;
+                break;
+        }
+        return virusId;
+    }
 }

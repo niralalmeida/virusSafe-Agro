@@ -45,4 +45,9 @@ public class DataConverter {
         Drawable.ConstantState drawableCs = fragmentActivity.getResources().getDrawable(drawableId).getConstantState();
         return imageViewDrawable.getConstantState().equals(drawableCs);
     }
+
+    public static String checkResultVirusRawNameToUpperCaseWithSpace(String resultVirusRawFullName) {
+        String processedNameWithNoUnderline = resultVirusRawFullName.trim().replace('_', ' ');
+        return processedNameWithNoUnderline.toUpperCase();
+    }
 }
