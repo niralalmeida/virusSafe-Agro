@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
@@ -22,15 +23,20 @@ import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
+import com.example.virussafeagro.viewModel.VirusCheckResultViewModel;
+import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class VirusCheckResultFragment extends Fragment {
     private View view;
 
-    private String resultCheckFeedback;
     private SharedPreferenceProcess spp;
+    private VirusCheckResultViewModel virusCheckResultViewModel;
+
+    private String resultCheckFeedback;
     private VirusModel resultVirusModel;
 
     private ImageView uploadedImageImageView;
@@ -39,6 +45,8 @@ public class VirusCheckResultFragment extends Fragment {
     private LinearLayout imageCheckIllFeedbackLinearLayout;
     private TextView imageCheckIllFeedbackTextView;
     private Button virusDetailsButton;
+
+    private boolean isInfected = false;
 
 
     public VirusCheckResultFragment() {
@@ -61,6 +69,8 @@ public class VirusCheckResultFragment extends Fragment {
 
         // initialize SharedPreference
         this.initializeSharedPreference();
+        // initialize view model
+        this.initializeVirusCheckResultViewModel();
 
         return view;
     }
@@ -78,11 +88,22 @@ public class VirusCheckResultFragment extends Fragment {
         Bitmap uploadedImageBitmap = spp.getCurrentVirusCheckImage();
         this.uploadedImageImageView.setImageBitmap(uploadedImageBitmap);
 
+        if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
+            // find virus info list in new Thread
+            this.findVirusInfoListFromDB();
+        } else {
+            // set virus detail button visible
+            this.virusDetailsButton.setVisibility(View.VISIBLE);
+            // get result virus id
+            this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
+        }
+
         // control the resultCheckFeedback display
         this.controlResultCheckFeedback();
-
         // set VirusDetailsButton On Click Listener
         this.setVirusDetailsButtonOnClickListener();
+        // observe Virus List live data
+        this.observeVirusListLD();
     }
 
     private void initializeViews() {
@@ -98,6 +119,15 @@ public class VirusCheckResultFragment extends Fragment {
         this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireActivity());
     }
 
+    private void initializeVirusCheckResultViewModel() {
+        this.virusCheckResultViewModel = new ViewModelProvider(requireActivity()).get(VirusCheckResultViewModel.class);
+        this.virusCheckResultViewModel.initiateSharedPreferenceProcess(requireContext());
+    }
+
+    private void findVirusInfoListFromDB() {
+        this.virusCheckResultViewModel.processFindingVirusList();
+    }
+
     private void controlResultCheckFeedback() {
         if (resultCheckFeedback.equals("json error")){
             this.imageCheckErrorFeedbackLinearLayout.setVisibility(View.VISIBLE);
@@ -106,11 +136,19 @@ public class VirusCheckResultFragment extends Fragment {
         } else {
             this.imageCheckIllFeedbackLinearLayout.setVisibility(View.VISIBLE);
             this.imageCheckIllFeedbackTextView.setText(this.resultCheckFeedback);
-            // set virus detail button visible
-            this.virusDetailsButton.setVisibility(View.VISIBLE);
-            // get result virus id
-            this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
+            this.isInfected = true;
         }
+    }
+
+    private void observeVirusListLD() {
+        this.virusCheckResultViewModel.getVirusListLD().observe(getViewLifecycleOwner(), resultVirusList -> {
+            if (resultVirusList != null && resultVirusList.size() == 9 && isInfected ){
+                // set virus detail button visible
+                this.virusDetailsButton.setVisibility(View.VISIBLE);
+                // get result virus id
+                this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
+            }
+        });
     }
 
     private void setVirusDetailsButtonOnClickListener() {
@@ -131,6 +169,13 @@ public class VirusCheckResultFragment extends Fragment {
         // get the virus list
         List<VirusModel> virusModelList = spp.getVirusModelListFromSP();
         return virusModelList.get(virusId - 1);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.virusCheckResultViewModel.getVirusListLD().removeObservers(requireActivity());
+        this.virusCheckResultViewModel.setVirusListLD(new ArrayList<>());
     }
 
     @Override
