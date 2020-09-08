@@ -21,6 +21,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusQuizListAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusQuizListViewModel;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class VirusQuizListFragment extends Fragment {
     private View view;
 
     private VirusQuizListViewModel virusQuizListViewModel;
+    private SharedPreferenceProcess spp;
 
     private LinearLayout processBarLinearLayout;
     private NestedScrollView recyclerViewNestedScrollView;
@@ -73,8 +75,19 @@ public class VirusQuizListFragment extends Fragment {
 
         // initialize view model
         this.initializeVirusQuizViewModel();
-        // find virus quiz list in new Thread
-        this.findVirusQuizListFromDB();
+        // initialize SharedPreferenceProcess
+        this.initializeSharedPreferenceProcess();
+
+        if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
+            // find virus quiz list in new Thread
+            this.findVirusQuizListFromDB();
+        } else {
+            // get the virus list from spp
+            this.virusModelQuizList = spp.getVirusModelListFromSP();
+            // show the virus list
+            this.displayVirusQuizList();
+        }
+
         // observe VirusModel Quiz List Live Data
         this.observeVirusQuizListLD();
     }
@@ -86,6 +99,11 @@ public class VirusQuizListFragment extends Fragment {
 
     private void initializeVirusQuizViewModel() {
         this.virusQuizListViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizListViewModel.class);
+        this.virusQuizListViewModel.initiateSharedPreferenceProcess(requireContext());
+    }
+
+    private void initializeSharedPreferenceProcess() {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireContext());
     }
 
     private void findVirusQuizListFromDB() {
@@ -98,18 +116,23 @@ public class VirusQuizListFragment extends Fragment {
                 virusModelQuizList.clear();
                 virusModelQuizList = resultVirusQuizList;
 
-                // set recycler view linear layout visible and process bar invisible
-                processBarLinearLayout.setVisibility(View.INVISIBLE);
-                recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
-
-                // show RecyclerView
-                showVirusQuizListRecyclerView();
-                // set RecyclerView item take quiz button click listener
-                setRecyclerViewItemTakeQuizButtonClickListener();
-                // set RecyclerView item view content button click listener
-                setRecyclerViewItemViewContentButtonClickListener();
+                // show the virus quiz list
+                displayVirusQuizList();
             }
         });
+    }
+
+    private void displayVirusQuizList() {
+        // set recycler view linear layout visible and process bar invisible
+        processBarLinearLayout.setVisibility(View.INVISIBLE);
+        recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
+
+        // show RecyclerView
+        showVirusQuizListRecyclerView();
+        // set RecyclerView item take quiz button click listener
+        setRecyclerViewItemTakeQuizButtonClickListener();
+        // set RecyclerView item view content button click listener
+        setRecyclerViewItemViewContentButtonClickListener();
     }
 
     private void showVirusQuizListRecyclerView() {

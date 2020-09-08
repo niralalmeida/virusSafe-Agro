@@ -11,12 +11,14 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.JsonParser;
+import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VirusQuizListViewModel extends ViewModel {
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
+    private SharedPreferenceProcess spp;
 
     private MutableLiveData<List<VirusModel>> virusQuizListLD;
 
@@ -25,6 +27,11 @@ public class VirusQuizListViewModel extends ViewModel {
         this.virusQuizListLD = new MutableLiveData<>();
     }
 
+    public void initiateSharedPreferenceProcess(Context context) {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(context);
+    }
+
+    // for live data
     public void setVirusQuizListLD(List<VirusModel> virusModelQuizList){
         this.virusQuizListLD.setValue(virusModelQuizList);
     }
@@ -32,6 +39,7 @@ public class VirusQuizListViewModel extends ViewModel {
         return this.virusQuizListLD;
     }
 
+    // for find all virus by AsyncTask
     public void processFindingVirusQuizList() {
         try {
             VirusQuizListViewModel.FindVirusQuizListAsyncTask findVirusQuizListAsyncTask = new VirusQuizListViewModel.FindVirusQuizListAsyncTask();
@@ -50,6 +58,8 @@ public class VirusQuizListViewModel extends ViewModel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            // save virus list into spp
+            spp.saveVirusInfoList(virusModelQuizList);
             return virusModelQuizList;
         }
 
