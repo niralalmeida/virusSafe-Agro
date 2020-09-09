@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.example.virussafeagro.fragments.AboutFragment;
 import com.example.virussafeagro.fragments.HomeFragment;
+import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizListFragment;
@@ -47,13 +48,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
         boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusCheckFragment;
         boolean isVirusQuizListFragment = currentVisibleFragment instanceof VirusQuizListFragment;
-        boolean isAboutFragment = currentVisibleFragment instanceof AboutFragment;
+        boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
         if ((currentVisibleFragment == null)
                 || isHomeFragment
                 || isVirusInfoListFragment
                 || isVirusIdentificationFragment
                 || isVirusQuizListFragment
-                || isAboutFragment){
+                || isMoreFragment){
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
         } else {
@@ -110,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.ic_virus_quiz:
                 FragmentOperator.replaceFragment(this, new VirusQuizListFragment());
                 break;
-            case R.id.ic_about:
-                FragmentOperator.replaceFragment(this, new AboutFragment());
+            case R.id.ic_more:
+                FragmentOperator.replaceFragment(this, new MoreFragment());
                 break;
         }
     }

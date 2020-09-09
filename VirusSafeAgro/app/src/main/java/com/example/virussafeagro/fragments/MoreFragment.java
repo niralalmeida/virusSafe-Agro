@@ -8,9 +8,14 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.FragmentOperator;
+
+import java.util.Objects;
 
 public class MoreFragment extends Fragment {
     private View view;
@@ -24,7 +29,13 @@ public class MoreFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
-        this.view = inflater.inflate(R.layout.fragment_about, container, false);
+        this.view = inflater.inflate(R.layout.fragment_more, container, false);
+
+        // set title
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("More");
+
+        // show back button
+        MainActivity.showTopActionBar((MainActivity)requireActivity());
 
         // initialize Views
         this.initializeViews();
@@ -35,6 +46,9 @@ public class MoreFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        // set AboutLinearLayout On Click Listener
+        this.setAboutLinearLayoutOnClickListener();
     }
 
     private void initializeViews() {
@@ -43,7 +57,7 @@ public class MoreFragment extends Fragment {
 
     private void setAboutLinearLayoutOnClickListener() {
         this.aboutLinearLayout.setOnClickListener(view -> {
-
+            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment());
         });
     }
 

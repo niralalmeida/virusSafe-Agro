@@ -22,7 +22,7 @@
         android:title="@string/menu_ic_virus_quiz" />
 
     <item
-        android:id="@+id/ic_about"
+        android:id="@+id/ic_more"
         android:icon="@drawable/ic_more"
         android:title="@string/menu_ic_more" />
 
