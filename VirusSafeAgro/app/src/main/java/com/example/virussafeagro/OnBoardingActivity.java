@@ -3,9 +3,11 @@ package com.example.virussafeagro;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +32,9 @@ public class OnBoardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
 
+        // hide action bar
+//        this.hideActionBar();
+
         // initialize Views
         this.initializeViews();
 
@@ -48,6 +53,10 @@ public class OnBoardingActivity extends AppCompatActivity {
         this.setBackButtonOnClickListener();
         this.setNextButtonOnClickListener();
     }
+
+//    private void hideActionBar() {
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//    }
 
     private void initializeViews() {
         this.slideViewPager = findViewById(R.id.slide_view_pager_boarding);
@@ -118,6 +127,7 @@ public class OnBoardingActivity extends AppCompatActivity {
                         .alpha(1f)
                         .setDuration(1000)
                         .setListener(null);
+                setLaunchAppButtonOnClickListener();
 
             } else {
                 backButton.setEnabled(true);
@@ -148,6 +158,13 @@ public class OnBoardingActivity extends AppCompatActivity {
     private void setNextButtonOnClickListener() {
         this.nextButton.setOnClickListener(view -> {
             slideViewPager.setCurrentItem(currentPagePosition + 1);
+        });
+    }
+
+    private void setLaunchAppButtonOnClickListener() {
+        this.launchAppButton.setOnClickListener(view -> {
+            Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 }
