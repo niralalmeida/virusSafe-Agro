@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.virussafeagro.adapters.OnBoardingSlideAdapter;
 
+import java.util.Objects;
+
 public class OnBoardingActivity extends AppCompatActivity {
 
     private ViewPager slideViewPager;
@@ -32,8 +34,10 @@ public class OnBoardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
 
+        // hide top status bar
+        this.hideTopStatusBar();
         // hide action bar
-//        this.hideActionBar();
+        this.hideActionBar();
 
         // initialize Views
         this.initializeViews();
@@ -54,9 +58,14 @@ public class OnBoardingActivity extends AppCompatActivity {
         this.setNextButtonOnClickListener();
     }
 
-//    private void hideActionBar() {
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//    }
+    private void hideTopStatusBar() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+    private void hideActionBar() {
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayShowHomeEnabled(false);
+//        getSupportActionBar().
+    }
 
     private void initializeViews() {
         this.slideViewPager = findViewById(R.id.slide_view_pager_boarding);
