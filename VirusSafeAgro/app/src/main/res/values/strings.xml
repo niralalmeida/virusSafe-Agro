@@ -5,6 +5,7 @@
     <!--  subtitles  -->
     <string name="fragment_virus_single_choice">Single Choice Questions</string>
     <string name="fragment_virus_multiple_choice">Multiple Choice Questions</string>
+    <string name="fragment_more_about">About</string>
     <!--  subtitles - About  -->
     <string name="fragment_t1_app_description_about">About virusSafe Phone App</string>
     <string name="fragment_t2_updates_about">Future Updates</string>
@@ -26,7 +27,7 @@
     <string name="menu_ic_virus_info">VIRUS</string>
     <string name="menu_ic_virus_check">CHECK</string>
     <string name="menu_ic_virus_quiz">QUIZ</string>
-    <string name="menu_ic_about">ABOUT</string>
+    <string name="menu_ic_more">MORE</string>
 
     <!--  buttons  -->
     <string name="recycler_view_quiz_button">Take Quiz</string>
