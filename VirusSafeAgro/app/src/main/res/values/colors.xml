@@ -4,6 +4,12 @@
     <color name="colorPrimaryDark">#BF373C</color>
     <color name="colorAccent">#03DAC5</color>
 
+    // for OnBoarding Screen
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorTransparentWhiteForText">#cccccc</color>
+    <color name="colorGreyForDots">#909497</color>
+    <color name="colorLaunchApp">#C0392B</color>
+
     <color name="moreTitleLane">#BFC9CA</color>
 
     <color name="rightAnswer">#1E8449</color>
