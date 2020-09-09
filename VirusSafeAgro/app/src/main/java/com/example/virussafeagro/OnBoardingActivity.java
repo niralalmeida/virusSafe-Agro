@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -36,8 +37,6 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         // hide top status bar
         this.hideTopStatusBar();
-        // hide action bar
-        this.hideActionBar();
 
         // initialize Views
         this.initializeViews();
@@ -60,11 +59,6 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     private void hideTopStatusBar() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-    private void hideActionBar() {
-//        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-//        getSupportActionBar().setDisplayShowHomeEnabled(false);
-//        getSupportActionBar().
     }
 
     private void initializeViews() {
@@ -174,6 +168,17 @@ public class OnBoardingActivity extends AppCompatActivity {
         this.launchAppButton.setOnClickListener(view -> {
             Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
             startActivity(intent);
+//            overridePendingTransition();
         });
     }
+
+//    private void closeActivityAnimation() {
+//        // Check if we're running on Android 5.0 or higher
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            // Apply activity transition
+//        } else {
+//            // Swap without transition
+//        }
+//    }
+    
 }
