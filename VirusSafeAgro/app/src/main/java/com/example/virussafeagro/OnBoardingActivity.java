@@ -168,17 +168,8 @@ public class OnBoardingActivity extends AppCompatActivity {
         this.launchAppButton.setOnClickListener(view -> {
             Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
             startActivity(intent);
-//            overridePendingTransition();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 
-//    private void closeActivityAnimation() {
-//        // Check if we're running on Android 5.0 or higher
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            // Apply activity transition
-//        } else {
-//            // Swap without transition
-//        }
-//    }
-    
 }
