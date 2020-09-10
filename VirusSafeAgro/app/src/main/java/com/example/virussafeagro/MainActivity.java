@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         // set app password
         AppAuthentication.setAppPassword(this);
 
+        // initialize Views
+        this.initializeViews();
         // initialize SharedPreferenceProcess
         this.initializeSharedPreferenceProcess();
         // check whether OnBoardingActivity is first show
@@ -55,9 +57,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             // show OnBoarding Screen
             this.showOnBoardingScreen();
         } else {
-            // show all views in main activity
-            this.displayAllMainActivityViews();
+
         }
+    }
+
+    private void initializeViews() {
+        // initialize background image
+        this.backgroundLinearLayout = findViewById(R.id.ll_image_main);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -74,14 +80,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onResume() {
         super.onResume();
 
-        if (!this.spp.getOnBoardingIsFirstShow()) {
-            // show all views in main activity
-            this.displayAllMainActivityViews();
-        }
+        this.displayAllMainActivityViews();
+
+        // test
+//        System.out.println("=== isFromPasswordActivity ===> [" + isFromPasswordActivity + "]");
+//        System.out.println("=== isFromOnBoardingActivity ===> [" + isFromOnBoardingActivity + "]");
+//        System.out.println("=== this.spp.getOnBoardingIsFirstShow() ===> [" + this.spp.getOnBoardingIsFirstShow() + "]");
 
         // check authentication
         if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())){
+            // set authentication as "no"
             AppAuthentication.setAuthenticationAsNo(this);
+            // check the authentication
             new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity),200);
         }
     }
@@ -90,11 +100,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         // show or not top action bar (back button + title)
         showTopActionBar(this);
 
-        // show home fragment
-        FragmentOperator.replaceFragment(this, new HomeFragment());
-
-        // initialize background image
-        this.backgroundLinearLayout = findViewById(R.id.ll_image_main);
         // initialize bottom navigation bar
         this.initializeBottomNavigationView();
     }
@@ -105,11 +110,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if(requestCode == PASSWORD_REQUEST_CODE){
             if (resultCode == PASSWORD_RESULT_OK) {
                 isFromPasswordActivity = true;
+                this.setMainBackgroundImageVisibility(true);
             }
         }
         if(requestCode == ON_BOARDING_REQUEST_CODE){
             if (resultCode == ON_BOARDING_RESULT_OK) {
                 isFromOnBoardingActivity = true;
+                this.setMainBackgroundImageVisibility(true);
             }
         }
     }
@@ -153,6 +160,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             super.onBackPressed();
         } else {
             FragmentOperator.backToLastFragment(this);
+            if (count == 1){
+                this.setMainBackgroundImageVisibility(true);
+                // set title
+                Objects.requireNonNull(getSupportActionBar()).setTitle("virusSafe Agro");
+            }
         }
     }
 
@@ -165,12 +177,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        this.backgroundLinearLayout.setVisibility(View.INVISIBLE);
+        this.setMainBackgroundImageVisibility(false);
 
         // open fragment according to id
         this.switchFragments(id);
 
         return true;
+    }
+
+    public void setMainBackgroundImageVisibility(boolean isVisible) {
+        if (isVisible) {
+            // show tha main background image
+            this.backgroundLinearLayout.setVisibility(View.VISIBLE);
+        } else {
+            // hide tha main background image
+            this.backgroundLinearLayout.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void switchFragments(int itemId) {

@@ -119,6 +119,9 @@ public class VirusCheckFragment extends Fragment {
 
     private void setCameraButtonOnClickListener() {
         this.cameraButton.setOnClickListener(view -> {
+            // set for main activity resume()
+//            MainActivity.isFromInnerFunctionPause = true;
+            // open camera
             openCamera();
         });
     }
@@ -140,6 +143,9 @@ public class VirusCheckFragment extends Fragment {
 
     private void setSelectImageButtonOnClickListener() {
         this.selectImageButton.setOnClickListener(view -> {
+            // set for main activity resume()
+//            MainActivity.isFromInnerFunctionPause = true;
+            // open album
             Intent intent=new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
