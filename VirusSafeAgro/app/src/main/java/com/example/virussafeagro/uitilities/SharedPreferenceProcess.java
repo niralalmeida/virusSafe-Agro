@@ -172,7 +172,7 @@ public class SharedPreferenceProcess {
         }
         return true;
     }
-    private boolean findFileByNameInSPDirectory(String fileNameForSearch) {
+    public boolean findFileByNameInSPDirectory(String fileNameForSearch) {
         String path = "/data/data/" + context.getPackageName() +"/shared_prefs";
         File directory = new File(path);
         File[] files = directory.listFiles();

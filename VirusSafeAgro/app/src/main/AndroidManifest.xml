@@ -19,8 +19,6 @@
             android:name=".PasswordActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <!-- <activity android:name=".OnBoardingActivity" /> -->
-        <!-- <activity android:name=".MainActivity" /> -->
         <activity
             android:name=".OnBoardingActivity"
             android:screenOrientation="fullSensor"

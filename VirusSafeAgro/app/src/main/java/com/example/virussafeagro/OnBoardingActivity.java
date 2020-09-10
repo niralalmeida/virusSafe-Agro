@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
@@ -40,10 +41,6 @@ public class OnBoardingActivity extends AppCompatActivity {
         // hide top status bar
         this.hideTopStatusBar();
 
-        // check authentication
-        this.initializeSharedPreferenceProcess();
-        this.checkAuthentication();
-
         // initialize Views
         this.initializeViews();
 
@@ -61,6 +58,11 @@ public class OnBoardingActivity extends AppCompatActivity {
         // set buttons' listeners
         this.setBackButtonOnClickListener();
         this.setNextButtonOnClickListener();
+
+        // check authentication
+        this.initializeSharedPreferenceProcess();
+        new Handler().postDelayed(this::checkAuthentication, 700);
+
     }
 
     private void hideTopStatusBar() {
@@ -68,7 +70,13 @@ public class OnBoardingActivity extends AppCompatActivity {
     }
 
     private void checkAuthentication() {
-
+        boolean hasPasswordFile = spp.findFileByNameInSPDirectory("sp_app_password");
+        String authenticationString = spp.getHasAuthentication();
+        if (!hasPasswordFile || authenticationString.equals("no")) {
+            Intent intent = new Intent(OnBoardingActivity.this, PasswordActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
+        }
     }
 
     private void initializeSharedPreferenceProcess() {
