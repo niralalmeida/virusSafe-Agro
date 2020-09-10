@@ -1,5 +1,6 @@
 package com.example.virussafeagro;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -35,6 +36,9 @@ public class OnBoardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
 
+        // set app password
+        AppAuthentication.setAppPassword(this);
+
         // hide top status bar
         this.hideTopStatusBar();
 
@@ -49,6 +53,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         // add dots listener
         this.slideViewPager.addOnPageChangeListener(this.viewPagerListener);
 
+        // initialize next button
         this.nextButton.setVisibility(View.VISIBLE);
         this.nextButton.setText("Next");
 
@@ -58,8 +63,16 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         // check authentication
         new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(onBoardingActivity),1000);
-
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == AppAuthentication.PASSWORD_REQUEST_CODE){
+//            if (resultCode == AppAuthentication.PASSWORD_RESULT_OK){
+//            }
+//        }
+//    }
 
     private void hideTopStatusBar() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
