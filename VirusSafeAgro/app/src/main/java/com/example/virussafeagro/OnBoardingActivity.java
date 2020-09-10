@@ -14,10 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.virussafeagro.adapters.OnBoardingSlideAdapter;
+import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 import java.util.Objects;
 
 public class OnBoardingActivity extends AppCompatActivity {
+    private SharedPreferenceProcess spp;
 
     private ViewPager slideViewPager;
     private LinearLayout dotButtonsLinearLayout;
@@ -37,6 +39,10 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         // hide top status bar
         this.hideTopStatusBar();
+
+        // check authentication
+        this.initializeSharedPreferenceProcess();
+        this.checkAuthentication();
 
         // initialize Views
         this.initializeViews();
@@ -59,6 +65,14 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     private void hideTopStatusBar() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    private void checkAuthentication() {
+
+    }
+
+    private void initializeSharedPreferenceProcess() {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(this);
     }
 
     private void initializeViews() {
@@ -168,8 +182,9 @@ public class OnBoardingActivity extends AppCompatActivity {
         this.launchAppButton.setOnClickListener(view -> {
             Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
             startActivity(intent);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            overridePendingTransition(0, android.R.anim.fade_out);
         });
     }
+
 
 }

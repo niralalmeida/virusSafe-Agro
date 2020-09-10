@@ -14,6 +14,13 @@ public class SharedPreferenceProcess {
     private Context context;
     private static SharedPreferenceProcess sharedPreferenceProcess;
 
+    // for app password
+    private static SharedPreferences appPasswordSP;
+
+    private static final String FILE_NAME_APP_PASSWORD = "sp_app_password";
+
+    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_HAS_AUTHENTICATION = "has_authentication";
 
     // for virus check
     private static SharedPreferences virusCheckSP;
@@ -57,6 +64,7 @@ public class SharedPreferenceProcess {
 
     private SharedPreferenceProcess(Context context){
         this.context = context;
+        appPasswordSP = context.getSharedPreferences(FILE_NAME_APP_PASSWORD, Context.MODE_PRIVATE);
         virusCheckSP = context.getSharedPreferences(FILE_NAME_VIRUS_CHECK_INFO, Context.MODE_PRIVATE);
         virusModelList = new ArrayList<>();
         virusSP1 = context.getSharedPreferences(FILE_NAME_VIRUS_1, Context.MODE_PRIVATE);
@@ -76,6 +84,20 @@ public class SharedPreferenceProcess {
             sharedPreferenceProcess = new SharedPreferenceProcess(context);
         }
         return sharedPreferenceProcess;
+    }
+
+    // for app password check
+    public void putHasAuthentication(String yesOrNo) {
+        appPasswordSP.edit().putString(KEY_HAS_AUTHENTICATION, yesOrNo).apply();
+    }
+    public String getHasAuthentication() {
+        return appPasswordSP.getString(KEY_HAS_AUTHENTICATION, "");
+    }
+    public void putAppPassword(String password) {
+        appPasswordSP.edit().putString(KEY_PASSWORD, password).apply();
+    }
+    public String getAppPassword() {
+        return appPasswordSP.getString(KEY_PASSWORD, "");
     }
 
     // for virus image check
