@@ -18,10 +18,10 @@ public class FragmentOperator {
     }
 
     // replace the fragment view
-    public static void replaceFragmentNoBackStack(FragmentActivity fragmentActivity, Fragment nextFragment){
+    public static void replaceFragmentNoBackStack(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
         fragmentActivity.getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fl_fragments, nextFragment)
+                .replace(R.id.fl_fragments, nextFragment, fragmentTag)
                 .commit();
     }
 

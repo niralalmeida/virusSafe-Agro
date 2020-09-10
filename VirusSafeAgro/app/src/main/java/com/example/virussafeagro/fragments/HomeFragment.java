@@ -35,9 +35,4 @@ public class HomeFragment extends Fragment {
 
         return this.view;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 }

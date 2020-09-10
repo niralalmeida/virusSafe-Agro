@@ -193,19 +193,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void switchFragments(int itemId) {
         switch (itemId) {
             case R.id.ic_home:
-                FragmentOperator.replaceFragment(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
+                FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
                 break;
             case R.id.ic_virus_info:
-                FragmentOperator.replaceFragment(this, new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
+                FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
                 break;
             case R.id.ic_virus_check:
-                FragmentOperator.replaceFragment(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
                 break;
             case R.id.ic_virus_quiz:
-                FragmentOperator.replaceFragment(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
+                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
                 break;
             case R.id.ic_more:
-                FragmentOperator.replaceFragment(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+                FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
                 break;
         }
     }
