@@ -60,19 +60,15 @@ public class OnBoardingActivity extends AppCompatActivity {
         // set buttons' listeners
         this.setBackButtonOnClickListener();
         this.setNextButtonOnClickListener();
-
-        // check authentication
-        new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(onBoardingActivity),1000);
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == AppAuthentication.PASSWORD_REQUEST_CODE){
-//            if (resultCode == AppAuthentication.PASSWORD_RESULT_OK){
-//            }
-//        }
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // check authentication
+        new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(onBoardingActivity),200);
+    }
 
     private void hideTopStatusBar() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -188,6 +184,5 @@ public class OnBoardingActivity extends AppCompatActivity {
             overridePendingTransition(0, android.R.anim.fade_out);
         });
     }
-
 
 }

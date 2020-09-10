@@ -21,6 +21,9 @@ public class PasswordActivity extends AppCompatActivity {
         // initialize views
         this.initializeViews();
 
+        // set authentication
+        AppAuthentication.serAuthentication(this);
+
         // set Password Button On Click Listener
         this.setPasswordButtonOnClickListener();
     }
@@ -31,7 +34,7 @@ public class PasswordActivity extends AppCompatActivity {
     }
 
     private void setPasswordButtonOnClickListener() {
-        this.passwordButton.setOnClickListener(view ->{
+        this.passwordButton.setOnClickListener(view -> {
             // check input password
             AppAuthentication.checkPassword(this, this.passwordEditText.getText().toString());
         });

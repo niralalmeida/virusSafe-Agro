@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.example.virussafeagro.OnBoardingActivity;
 import com.example.virussafeagro.PasswordActivity;
 import com.example.virussafeagro.R;
 
@@ -16,6 +15,11 @@ public class AppAuthentication {
     public static void setAppPassword(Activity currentActivity) {
         SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(currentActivity);
         spp.putAppPassword("ta24app");
+    }
+
+    public static void serAuthentication(Activity currentActivity) {
+        SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(currentActivity);
+        spp.putHasAuthentication("entered");
     }
 
     // onBoarding activity
@@ -36,7 +40,7 @@ public class AppAuthentication {
         SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(currentActivity);
         String appPassword = spp.getAppPassword();
         if (inputPassword.equals(appPassword)) {
-            spp.putHasAuthentication("entered");
+            spp.putHasAuthentication("has");
             Intent returnIntent = currentActivity.getIntent();
             currentActivity.setResult(PASSWORD_RESULT_OK, returnIntent);
             currentActivity.finish();
