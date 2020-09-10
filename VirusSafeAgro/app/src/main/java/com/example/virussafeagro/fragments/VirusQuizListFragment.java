@@ -1,5 +1,6 @@
 package com.example.virussafeagro.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,14 +83,27 @@ public class VirusQuizListFragment extends Fragment {
             // find virus quiz list in new Thread
             this.findVirusQuizListFromDB();
         } else {
-            // get the virus list from spp
-            this.virusModelQuizList = spp.getVirusModelListFromSP();
-            // show the virus list
-            this.displayVirusQuizList();
+            GetVirusModelListFromSPAsyncTask getVirusModelListFromSPAsyncTask = new GetVirusModelListFromSPAsyncTask();
+            getVirusModelListFromSPAsyncTask.execute();
         }
 
         // observe VirusModel Quiz List Live Data
         this.observeVirusQuizListLD();
+    }
+
+    private class GetVirusModelListFromSPAsyncTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // get the virus list from spp
+            virusModelQuizList = spp.getVirusModelListFromSP();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            // show the virus list
+            displayVirusQuizList();
+        }
     }
 
     private void initializeViews() {

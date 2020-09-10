@@ -147,6 +147,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        FragmentOperator.backToLastFragment(this);
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (count == 0) {

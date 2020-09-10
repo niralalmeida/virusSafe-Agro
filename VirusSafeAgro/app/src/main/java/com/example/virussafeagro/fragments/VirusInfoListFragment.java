@@ -65,17 +65,17 @@ public class VirusInfoListFragment extends Fragment {
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
 
+        // initialize views
+        this.initializeViews();
+        this.processBarLinearLayout.setVisibility(View.VISIBLE);
+        this.recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
+
         return this.view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        // initialize views
-        this.initializeViews();
-        this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
 
         // initialize virus list
         virusModelInfoList = new ArrayList<>();
