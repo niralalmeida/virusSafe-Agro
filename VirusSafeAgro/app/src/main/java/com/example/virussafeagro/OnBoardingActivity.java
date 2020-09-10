@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -15,12 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.virussafeagro.adapters.OnBoardingSlideAdapter;
-import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
-
-import java.util.Objects;
+import com.example.virussafeagro.uitilities.AppAuthentication;
 
 public class OnBoardingActivity extends AppCompatActivity {
-    private SharedPreferenceProcess spp;
+    private AppCompatActivity onBoardingActivity = this;
 
     private ViewPager slideViewPager;
     private LinearLayout dotButtonsLinearLayout;
@@ -60,27 +57,12 @@ public class OnBoardingActivity extends AppCompatActivity {
         this.setNextButtonOnClickListener();
 
         // check authentication
-        this.initializeSharedPreferenceProcess();
-        new Handler().postDelayed(this::checkAuthentication, 700);
+        new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(onBoardingActivity),1000);
 
     }
 
     private void hideTopStatusBar() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-
-    private void checkAuthentication() {
-        boolean hasPasswordFile = spp.findFileByNameInSPDirectory("sp_app_password");
-        String authenticationString = spp.getHasAuthentication();
-        if (!hasPasswordFile || authenticationString.equals("no")) {
-            Intent intent = new Intent(OnBoardingActivity.this, PasswordActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
-        }
-    }
-
-    private void initializeSharedPreferenceProcess() {
-        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(this);
     }
 
     private void initializeViews() {
