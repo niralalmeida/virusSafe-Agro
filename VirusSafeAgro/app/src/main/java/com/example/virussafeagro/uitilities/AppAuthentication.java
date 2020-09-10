@@ -1,9 +1,10 @@
 package com.example.virussafeagro.uitilities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.virussafeagro.OnBoardingActivity;
 import com.example.virussafeagro.PasswordActivity;
@@ -11,18 +12,19 @@ import com.example.virussafeagro.R;
 
 public class AppAuthentication {
 
+    private static final String APP_PASSWORD = "ta24app";
     public static final int PASSWORD_REQUEST_CODE = 9;
     public static final int PASSWORD_RESULT_OK = 24;
 
     public static void setAppPassword(OnBoardingActivity onBoardingActivity) {
         SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(onBoardingActivity);
-        spp.putAppPassword("ta24app");
+        spp.putAppPassword(APP_PASSWORD);
     }
 
     // password activity
-    public static void serAuthentication(PasswordActivity passwordActivity) {
-        SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(passwordActivity);
-        spp.putHasAuthentication("entered");
+    public static void serAuthenticationAsNo(AppCompatActivity activity) {
+        SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(activity);
+        spp.putHasAuthentication("no");
     }
 
     // onBoarding activity
@@ -31,11 +33,15 @@ public class AppAuthentication {
         boolean hasPasswordFile = spp.findFileByNameInSPDirectory("sp_app_password");
         String authenticationString = spp.getHasAuthentication();
 
-        if (hasPasswordFile || authenticationString.equals("") || authenticationString.equals("entered")) {
+        // test
+        System.out.println("authenticationString ==>[" + authenticationString + "]");
+
+        if (hasPasswordFile || authenticationString.equals("") || authenticationString.equals("no")) {
             Intent intent = new Intent(onBoardingActivity, PasswordActivity.class);
             onBoardingActivity.startActivityForResult(intent, PASSWORD_REQUEST_CODE);
             onBoardingActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
         }
+
     }
 
     // password activity
@@ -43,13 +49,14 @@ public class AppAuthentication {
         SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(passwordActivity);
         String appPassword = spp.getAppPassword();
         if (inputPassword.equals(appPassword)) {
-            spp.putHasAuthentication("has");
+            spp.putHasAuthentication("yes");
 
             // change the lock image
             passwordActivity.changeLockImage();
 
             new Handler().postDelayed(() -> {
                 Intent returnIntent = passwordActivity.getIntent();
+                returnIntent.putExtra("isFromPasswordActivity", true);
                 passwordActivity.setResult(PASSWORD_RESULT_OK, returnIntent);
                 passwordActivity.finish();
                 passwordActivity.overridePendingTransition(0, R.anim.activity_slide_out_bottom);

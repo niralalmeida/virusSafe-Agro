@@ -19,6 +19,7 @@ import com.example.virussafeagro.uitilities.AppAuthentication;
 
 public class OnBoardingActivity extends AppCompatActivity {
     private OnBoardingActivity onBoardingActivity = this;
+    private boolean isFromPasswordActivity;
 
     private ViewPager slideViewPager;
     private LinearLayout dotButtonsLinearLayout;
@@ -67,7 +68,19 @@ public class OnBoardingActivity extends AppCompatActivity {
         super.onResume();
 
         // check authentication
-        new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(onBoardingActivity),200);
+        if (!this.isFromPasswordActivity){
+            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(onBoardingActivity),200);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == AppAuthentication.PASSWORD_REQUEST_CODE){
+            if (resultCode == AppAuthentication.PASSWORD_RESULT_OK) {
+                isFromPasswordActivity = true;
+            }
+        }
     }
 
     private void hideTopStatusBar() {
@@ -186,4 +199,9 @@ public class OnBoardingActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppAuthentication.serAuthenticationAsNo(this);
+    }
 }

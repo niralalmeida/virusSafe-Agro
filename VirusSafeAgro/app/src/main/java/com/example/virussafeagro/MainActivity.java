@@ -14,6 +14,7 @@ import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizListFragment;
+import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -115,5 +116,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FragmentOperator.replaceFragment(this, new MoreFragment());
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppAuthentication.serAuthenticationAsNo(this);
     }
 }

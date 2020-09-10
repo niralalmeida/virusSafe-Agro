@@ -23,9 +23,6 @@ public class PasswordActivity extends AppCompatActivity {
         // initialize views
         this.initializeViews();
 
-        // set authentication
-        AppAuthentication.serAuthentication(this);
-
         // set Password Button On Click Listener
         this.setPasswordButtonOnClickListener();
     }
