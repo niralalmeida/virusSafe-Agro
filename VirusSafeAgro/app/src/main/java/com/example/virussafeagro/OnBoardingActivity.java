@@ -1,6 +1,5 @@
 package com.example.virussafeagro;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -16,8 +15,10 @@ import android.widget.TextView;
 
 import com.example.virussafeagro.adapters.OnBoardingSlideAdapter;
 import com.example.virussafeagro.uitilities.AppAuthentication;
+import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 public class OnBoardingActivity extends AppCompatActivity {
+    private SharedPreferenceProcess spp;
 
     private ViewPager slideViewPager;
     private LinearLayout dotButtonsLinearLayout;
@@ -56,6 +57,19 @@ public class OnBoardingActivity extends AppCompatActivity {
         // set buttons' listeners
         this.setBackButtonOnClickListener();
         this.setNextButtonOnClickListener();
+
+        // show password activity
+        new Handler().postDelayed(this::showPasswordActivity,200);
+    }
+
+    private void showPasswordActivity() {
+        Intent returnIntent = getIntent();
+        String whereFromString = returnIntent.getStringExtra("whereFrom");
+        if (whereFromString.equals("main")){
+            Intent intent = new Intent(OnBoardingActivity.this, PasswordActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
+        }
     }
 
     private void hideTopStatusBar() {
@@ -167,11 +181,19 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     private void setLaunchAppButtonOnClickListener() {
         this.launchAppButton.setOnClickListener(view -> {
-            Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
-            startActivity(intent);
+            // save on boarding show status
+            initializeSharedPreferenceProcess();
+            spp.putOnBoardingIsFirstShow(false);
+
+            Intent returnIntent = getIntent();
+            setResult(MainActivity.ON_BOARDING_RESULT_OK, returnIntent);
             finish();
             overridePendingTransition(0, android.R.anim.fade_out);
         });
+    }
+
+    private void initializeSharedPreferenceProcess() {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(this);
     }
 
     @Override

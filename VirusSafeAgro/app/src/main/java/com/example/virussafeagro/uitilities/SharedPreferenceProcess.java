@@ -14,6 +14,13 @@ public class SharedPreferenceProcess {
     private Context context;
     private static SharedPreferenceProcess sharedPreferenceProcess;
 
+    // for showing On Boarding Screen
+    private static SharedPreferences onBoardingSP;
+
+    private static final String FILE_NAME_OnBoarding = "sp_on_boarding";
+
+    private static final String KEY_IS_FIRST_SHOW = "is_first_show";
+
     // for app password
     private static SharedPreferences appPasswordSP;
 
@@ -64,6 +71,7 @@ public class SharedPreferenceProcess {
 
     private SharedPreferenceProcess(Context context){
         this.context = context;
+        onBoardingSP = context.getSharedPreferences(FILE_NAME_OnBoarding, Context.MODE_PRIVATE);
         appPasswordSP = context.getSharedPreferences(FILE_NAME_APP_PASSWORD, Context.MODE_PRIVATE);
         virusCheckSP = context.getSharedPreferences(FILE_NAME_VIRUS_CHECK_INFO, Context.MODE_PRIVATE);
         virusModelList = new ArrayList<>();
@@ -84,6 +92,14 @@ public class SharedPreferenceProcess {
             sharedPreferenceProcess = new SharedPreferenceProcess(context);
         }
         return sharedPreferenceProcess;
+    }
+
+    // for on boarding screen show
+    public void putOnBoardingIsFirstShow(boolean isFirstShow) {
+        onBoardingSP.edit().putBoolean(KEY_IS_FIRST_SHOW, isFirstShow).apply();
+    }
+    public boolean getOnBoardingIsFirstShow() {
+        return onBoardingSP.getBoolean(KEY_IS_FIRST_SHOW, true);
     }
 
     // for app password check

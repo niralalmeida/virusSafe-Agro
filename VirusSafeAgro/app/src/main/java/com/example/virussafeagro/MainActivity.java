@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.virussafeagro.fragments.HomeFragment;
@@ -21,6 +20,7 @@ import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
@@ -28,10 +28,17 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     private MainActivity mainActivity = this;
     private boolean isFromPasswordActivity;
+    private boolean isFromOnBoardingActivity;
+    private SharedPreferenceProcess spp;
 
     private LinearLayout backgroundLinearLayout;
     private BottomNavigationView bottomNavigationView;
 
+    public static final int PASSWORD_REQUEST_CODE = 9;
+    public static final int PASSWORD_RESULT_OK = 24;
+
+    public static final int ON_BOARDING_REQUEST_CODE = 6;
+    public static final int ON_BOARDING_RESULT_OK = 42;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,45 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         // set app password
         AppAuthentication.setAppPassword(this);
 
+        // initialize SharedPreferenceProcess
+        this.initializeSharedPreferenceProcess();
+        // check whether OnBoardingActivity is first show
+        if (this.spp.getOnBoardingIsFirstShow()) {
+            // show OnBoarding Screen
+            this.showOnBoardingScreen();
+        } else {
+            // show all views in main activity
+            this.displayAllMainActivityViews();
+        }
+    }
+
+    private void initializeSharedPreferenceProcess() {
+        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(this);
+    }
+
+    private void showOnBoardingScreen() {
+        Intent intent = new Intent(MainActivity.this, OnBoardingActivity.class);
+        intent.putExtra("whereFrom", "main");
+        mainActivity.startActivityForResult(intent, MainActivity.ON_BOARDING_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!this.spp.getOnBoardingIsFirstShow()) {
+            // show all views in main activity
+            this.displayAllMainActivityViews();
+        }
+
+        // check authentication
+        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())){
+            AppAuthentication.setAuthenticationAsNo(this);
+            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity),200);
+        }
+    }
+
+    private void displayAllMainActivityViews() {
         // show or not top action bar (back button + title)
         showTopActionBar(this);
 
@@ -54,24 +100,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        // check authentication
-        if (!this.isFromPasswordActivity){
-            AppAuthentication.setAuthenticationAsNo(this);
-            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity),200);
-        }
-
-
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == AppAuthentication.PASSWORD_REQUEST_CODE){
-            if (resultCode == AppAuthentication.PASSWORD_RESULT_OK) {
+        if(requestCode == PASSWORD_REQUEST_CODE){
+            if (resultCode == PASSWORD_RESULT_OK) {
                 isFromPasswordActivity = true;
+            }
+        }
+        if(requestCode == ON_BOARDING_REQUEST_CODE){
+            if (resultCode == ON_BOARDING_RESULT_OK) {
+                isFromOnBoardingActivity = true;
             }
         }
     }
@@ -155,27 +193,4 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        AppAuthentication.setAuthenticationAsNo(this);
-//    }
-
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        AppAuthentication.setAuthenticationAsNo(this);
-//    }
-
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        AppAuthentication.setAuthenticationAsNo(this);
-//    }
-//
-//    @Override
-//    protected void onRestart() {
-//        super.onRestart();
-//        AppAuthentication.setAuthenticationAsNo(this);
-//    }
 }

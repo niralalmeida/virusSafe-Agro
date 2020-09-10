@@ -13,8 +13,6 @@ import com.example.virussafeagro.R;
 public class AppAuthentication {
 
     private static final String APP_PASSWORD = "ta24app";
-    public static final int PASSWORD_REQUEST_CODE = 9;
-    public static final int PASSWORD_RESULT_OK = 24;
 
     public static void setAppPassword(MainActivity mainActivity) {
         SharedPreferenceProcess spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(mainActivity);
@@ -33,12 +31,9 @@ public class AppAuthentication {
         boolean hasPasswordFile = spp.findFileByNameInSPDirectory("sp_app_password");
         String authenticationString = spp.getHasAuthentication();
 
-        // test
-        System.out.println("authenticationString ==>[" + authenticationString + "]");
-
         if (hasPasswordFile || authenticationString.equals("") || authenticationString.equals("no")) {
             Intent intent = new Intent(mainActivity, PasswordActivity.class);
-            mainActivity.startActivityForResult(intent, PASSWORD_REQUEST_CODE);
+            mainActivity.startActivityForResult(intent, MainActivity.PASSWORD_REQUEST_CODE);
             mainActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
         }
 
@@ -56,8 +51,8 @@ public class AppAuthentication {
 
             new Handler().postDelayed(() -> {
                 Intent returnIntent = passwordActivity.getIntent();
-                returnIntent.putExtra("isFromPasswordActivity", true);
-                passwordActivity.setResult(PASSWORD_RESULT_OK, returnIntent);
+                returnIntent.putExtra("whereFrom", "password");
+                passwordActivity.setResult(MainActivity.PASSWORD_RESULT_OK, returnIntent);
                 passwordActivity.finish();
                 passwordActivity.overridePendingTransition(0, R.anim.activity_slide_out_bottom);
             },800);
