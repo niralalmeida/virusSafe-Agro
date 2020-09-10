@@ -18,7 +18,7 @@ import com.example.virussafeagro.adapters.OnBoardingSlideAdapter;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 
 public class OnBoardingActivity extends AppCompatActivity {
-    private AppCompatActivity onBoardingActivity = this;
+    private OnBoardingActivity onBoardingActivity = this;
 
     private ViewPager slideViewPager;
     private LinearLayout dotButtonsLinearLayout;
