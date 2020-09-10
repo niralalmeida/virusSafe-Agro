@@ -1,6 +1,7 @@
 package com.example.virussafeagro.fragments;
 
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -84,17 +86,31 @@ public class VirusCheckResultFragment extends Fragment {
         assert bundle != null;
         this.resultCheckFeedback = bundle.getString("resultCheckFeedback");
 
-        // get the image data from SharedPreference and set ImageView
-        Bitmap uploadedImageBitmap = spp.getCurrentVirusCheckImage();
-        this.uploadedImageImageView.setImageBitmap(uploadedImageBitmap);
+        GetCurrentVirusCheckImageAsyncTask getCurrentVirusCheckImageAsyncTask = new GetCurrentVirusCheckImageAsyncTask();
+        getCurrentVirusCheckImageAsyncTask.execute();
+    }
 
-        // control the resultCheckFeedback display
-        this.controlResultCheckFeedback();
+    private class GetCurrentVirusCheckImageAsyncTask extends AsyncTask<Void, Void, Bitmap> {
 
-        // set VirusDetailsButton On Click Listener
-        this.setVirusDetailsButtonOnClickListener();
-        // observe Virus List live data
-        this.observeVirusListLD();
+        @Override
+        protected Bitmap doInBackground(Void... voids) {
+            // get the image data from SharedPreference and set ImageView
+            Bitmap uploadedImageBitmap = spp.getCurrentVirusCheckImage();
+            return uploadedImageBitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap uploadedImageBitmap) {
+            uploadedImageImageView.setImageBitmap(uploadedImageBitmap);
+
+            // control the resultCheckFeedback display
+            controlResultCheckFeedback();
+
+            // set VirusDetailsButton On Click Listener
+            setVirusDetailsButtonOnClickListener();
+            // observe Virus List live data
+            observeVirusListLD();
+        }
     }
 
     private void initializeViews() {
@@ -114,10 +130,6 @@ public class VirusCheckResultFragment extends Fragment {
     private void initializeVirusCheckResultViewModel() {
         this.virusCheckResultViewModel = new ViewModelProvider(requireActivity()).get(VirusCheckResultViewModel.class);
         this.virusCheckResultViewModel.initiateSharedPreferenceProcess(requireContext());
-    }
-
-    private void findVirusInfoListFromDB() {
-        this.virusCheckResultViewModel.processFindingVirusList();
     }
 
     private void controlResultCheckFeedback() {
@@ -144,6 +156,10 @@ public class VirusCheckResultFragment extends Fragment {
         }
     }
 
+    private void findVirusInfoListFromDB() {
+        this.virusCheckResultViewModel.processFindingVirusList();
+    }
+
     private void observeVirusListLD() {
         this.virusCheckResultViewModel.getVirusListLD().observe(getViewLifecycleOwner(), resultVirusList -> {
             if (resultVirusList != null && resultVirusList.size() == 9 && isInfected ){
@@ -160,11 +176,16 @@ public class VirusCheckResultFragment extends Fragment {
 
     private void setVirusDetailsButtonOnClickListener() {
         this.virusDetailsButton.setOnClickListener(view -> {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("currentVirusModel", resultVirusModel);
-            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
-            virusDetailFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment);
+            if (resultVirusModel != null){
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("currentVirusModel", resultVirusModel);
+                VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
+                virusDetailFragment.setArguments(bundle);
+                FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment);
+            } else {
+                String errorMessage = "The result virus is not in the virus list! Something wrong with the model!";
+                Toast.makeText(requireActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -175,7 +196,7 @@ public class VirusCheckResultFragment extends Fragment {
         int virusId = AppResources.getVirusIdByVirusFullName(processedResultName);
         // get the virus list
         List<VirusModel> virusModelList = spp.getVirusModelListFromSP();
-        return virusModelList.get(virusId - 1);
+        return (virusId == 0) ? null : virusModelList.get(virusId - 1);
     }
 
     @Override

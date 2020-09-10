@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -119,8 +120,6 @@ public class VirusCheckFragment extends Fragment {
 
     private void setCameraButtonOnClickListener() {
         this.cameraButton.setOnClickListener(view -> {
-            // set for main activity resume()
-//            MainActivity.isFromInnerFunctionPause = true;
             // open camera
             openCamera();
         });
@@ -143,8 +142,6 @@ public class VirusCheckFragment extends Fragment {
 
     private void setSelectImageButtonOnClickListener() {
         this.selectImageButton.setOnClickListener(view -> {
-            // set for main activity resume()
-//            MainActivity.isFromInnerFunctionPause = true;
             // open album
             Intent intent=new Intent();
             intent.setType("image/*");
@@ -193,24 +190,35 @@ public class VirusCheckFragment extends Fragment {
             BitmapDrawable uploadImageImageViewBitmapDrawable = (BitmapDrawable) this.uploadImageImageView.getDrawable();
             // check the uploadImageImageView is same as the default leaf image
             if (!DataConverter.isSameImage(uploadImageImageViewBitmapDrawable, requireActivity(), R.drawable.default_leaf)) {
+                // hide this virus check page and show the process bar
+                this.allVirusCheckLinearLayout.setVisibility(View.INVISIBLE);
+                this.uploadingProgressBarLinearLayout.setVisibility(View.VISIBLE);
                 // save the image into SharedPreference
                 Bitmap uploadImageBitmap = uploadImageImageViewBitmapDrawable.getBitmap();
-                spp.putCurrentVirusCheckImage(uploadImageBitmap);
-
-                // upload Tomato Image
-                this.uploadTomatoImage();
-
+                PutCurrentVirusCheckImageAsyncTask putCurrentVirusCheckImageAsyncTask = new PutCurrentVirusCheckImageAsyncTask();
+                putCurrentVirusCheckImageAsyncTask.execute(uploadImageBitmap);
             } else {
                 Toast.makeText(requireActivity(), "Please take a photo or select a tomato leaf image by album", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void uploadTomatoImage() {
-        // hide this virus check page and show the process bar
-        this.allVirusCheckLinearLayout.setVisibility(View.INVISIBLE);
-        this.uploadingProgressBarLinearLayout.setVisibility(View.VISIBLE);
+    private class PutCurrentVirusCheckImageAsyncTask extends AsyncTask<Bitmap, Void, Void> {
 
+        @Override
+        protected Void doInBackground(Bitmap... bitmaps) {
+            spp.putCurrentVirusCheckImage(bitmaps[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            // upload Tomato Image
+            uploadTomatoImage();
+        }
+    }
+
+    private void uploadTomatoImage() {
         // get the bitmap of the image and start to upload it to waiting for the ML model result
         Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
         this.virusCheckViewModel.processUploadingTomatoImage(uploadImageBitmap);
