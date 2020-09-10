@@ -5,6 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".fragments.VirusInfoListFragment">
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_list_virus_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_virus_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+    </androidx.core.widget.NestedScrollView>
+
     <LinearLayout
         android:id="@+id/ll_process_bar_virus_info"
         android:layout_width="wrap_content"
@@ -29,22 +45,6 @@
             android:text="@string/process_bar_text_virus_info" />
 
     </LinearLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsv_list_virus_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_virus_info"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />
-
-    </androidx.core.widget.NestedScrollView>
 
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.example.virussafeagro.fragments;
 
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
@@ -62,17 +65,17 @@ public class VirusInfoListFragment extends Fragment {
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
 
-        // initialize views
-        this.initializeViews();
-        this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
-
         return this.view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        // initialize views
+        this.initializeViews();
+        this.processBarLinearLayout.setVisibility(View.VISIBLE);
+        this.recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
 
         // initialize virus list
         virusModelInfoList = new ArrayList<>();
@@ -85,14 +88,27 @@ public class VirusInfoListFragment extends Fragment {
             // find virus info list in new Thread
             this.findVirusInfoListFromDB();
         } else {
-            // get the virus list from spp
-            this.virusModelInfoList = spp.getVirusModelListFromSP();
-            // show the virus list
-            this.displayVirusCardList();
+            GetVirusModelListFromSPAsyncTask getVirusModelListFromSPAsyncTask = new GetVirusModelListFromSPAsyncTask();
+            getVirusModelListFromSPAsyncTask.execute();
         }
 
         // observe VirusModel Info List Live Data
         this.observeVirusInfoListLD();
+    }
+
+    private class GetVirusModelListFromSPAsyncTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // get the virus list from spp
+            virusModelInfoList = spp.getVirusModelListFromSP();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            // show the virus list
+            displayVirusCardList();
+        }
     }
 
     private void initializeViews() {
