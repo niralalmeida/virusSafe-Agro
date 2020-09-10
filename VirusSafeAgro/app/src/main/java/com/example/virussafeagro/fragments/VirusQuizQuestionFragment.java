@@ -29,6 +29,7 @@ import com.example.virussafeagro.adapters.SingleChoiceQuestionAdapter;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 
@@ -215,7 +216,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         bundle.putSerializable("multipleChoiceQuestionModelList", (Serializable) multipleChoiceQuestionModelList);
         VirusQuizResultFragment virusQuizResultFragment = new VirusQuizResultFragment();
         virusQuizResultFragment.setArguments(bundle);
-        FragmentOperator.replaceFragment(requireActivity(), virusQuizResultFragment);
+        FragmentOperator.replaceFragment(requireActivity(), virusQuizResultFragment, AppResources.FRAGMENT_TAG_VIRUS_QUIZ_RESULT);
     }
 
     private void storeUserAnswerIntoLists() {

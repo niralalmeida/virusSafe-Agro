@@ -127,7 +127,7 @@ public class VirusDetailFragment extends Fragment {
             bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
             virusQuizQuestionFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), virusQuizQuestionFragment);
+            FragmentOperator.replaceFragment(requireActivity(), virusQuizQuestionFragment, AppResources.FRAGMENT_TAG_VIRUS_QUIZ_QUESTION);
         });
     }
 

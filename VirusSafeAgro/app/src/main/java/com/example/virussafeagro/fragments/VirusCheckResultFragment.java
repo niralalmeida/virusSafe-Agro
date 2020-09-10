@@ -181,7 +181,7 @@ public class VirusCheckResultFragment extends Fragment {
                 bundle.putParcelable("currentVirusModel", resultVirusModel);
                 VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
                 virusDetailFragment.setArguments(bundle);
-                FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment);
+                FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
             } else {
                 String errorMessage = "The result virus is not in the virus list! Something wrong with the model!";
                 Toast.makeText(requireActivity(), errorMessage, Toast.LENGTH_SHORT).show();

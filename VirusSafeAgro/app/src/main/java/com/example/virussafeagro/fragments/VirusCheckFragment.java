@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
@@ -233,7 +234,7 @@ public class VirusCheckFragment extends Fragment {
                     bundle.putString("resultCheckFeedback", resultCheckFeedback);
                     VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
                     virusCheckResultFragment.setArguments(bundle);
-                    FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment);
+                    FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment, AppResources.FRAGMENT_TAG_VIRUS_CHECK_RESULT);
                 } else {
                     // hide this virus check page and show the process bar
                     this.allVirusCheckLinearLayout.setVisibility(View.VISIBLE);

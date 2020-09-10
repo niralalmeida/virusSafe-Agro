@@ -9,10 +9,10 @@ import com.example.virussafeagro.R;
 
 public class FragmentOperator {
     // replace the fragment view with back stack
-    public static void replaceFragment(FragmentActivity fragmentActivity, Fragment nextFragment){
+    public static void replaceFragment(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
         fragmentActivity.getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fl_fragments, nextFragment)
+                .replace(R.id.fl_fragments, nextFragment, fragmentTag)
                 .addToBackStack(null)
                 .commit();
     }

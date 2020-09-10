@@ -19,6 +19,7 @@ import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -81,11 +82,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onResume();
 
         this.displayAllMainActivityViews();
-
-        // test
-//        System.out.println("=== isFromPasswordActivity ===> [" + isFromPasswordActivity + "]");
-//        System.out.println("=== isFromOnBoardingActivity ===> [" + isFromOnBoardingActivity + "]");
-//        System.out.println("=== this.spp.getOnBoardingIsFirstShow() ===> [" + this.spp.getOnBoardingIsFirstShow() + "]");
 
         // check authentication
         if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())){
@@ -197,19 +193,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void switchFragments(int itemId) {
         switch (itemId) {
             case R.id.ic_home:
-                FragmentOperator.replaceFragment(this, new HomeFragment());
+                FragmentOperator.replaceFragment(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
                 break;
             case R.id.ic_virus_info:
-                FragmentOperator.replaceFragment(this, new VirusInfoListFragment());
+                FragmentOperator.replaceFragment(this, new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
                 break;
             case R.id.ic_virus_check:
-                FragmentOperator.replaceFragment(this, new VirusCheckFragment());
+                FragmentOperator.replaceFragment(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
                 break;
             case R.id.ic_virus_quiz:
-                FragmentOperator.replaceFragment(this, new VirusQuizListFragment());
+                FragmentOperator.replaceFragment(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
                 break;
             case R.id.ic_more:
-                FragmentOperator.replaceFragment(this, new MoreFragment());
+                FragmentOperator.replaceFragment(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
                 break;
         }
     }

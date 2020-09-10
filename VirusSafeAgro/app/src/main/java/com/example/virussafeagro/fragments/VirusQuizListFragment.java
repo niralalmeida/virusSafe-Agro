@@ -21,6 +21,7 @@ import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.VirusQuizListAdapter;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusQuizListViewModel;
@@ -165,7 +166,7 @@ public class VirusQuizListFragment extends Fragment {
             bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
             virusQuizQuestionFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), virusQuizQuestionFragment);
+            FragmentOperator.replaceFragment(requireActivity(), virusQuizQuestionFragment, AppResources.FRAGMENT_TAG_VIRUS_QUIZ_QUESTION);
         });
     }
 
@@ -176,7 +177,7 @@ public class VirusQuizListFragment extends Fragment {
             bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
             virusDetailFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment);
+            FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
         });
     }
 

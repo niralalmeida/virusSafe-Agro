@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 
 import java.util.Objects;
@@ -57,7 +58,7 @@ public class MoreFragment extends Fragment {
 
     private void setAboutLinearLayoutOnClickListener() {
         this.aboutLinearLayout.setOnClickListener(view -> {
-            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment());
+            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
         });
     }
 
