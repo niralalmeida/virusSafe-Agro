@@ -1,5 +1,6 @@
 package com.example.virussafeagro.models;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -9,6 +10,7 @@ import java.util.List;
 public class MultipleChoiceQuestionModel implements Parcelable {
     private int choiceQuestionId;
     private String multipleChoiceQuestionContent;
+    private Bitmap multipleChoiceQuestionImage;
     private List<String> multipleChoiceQuestionOptionList;
     private List<String> multipleChoiceQuestionAnswerList; // store user's answers
     private int multipleChoiceQuestionVirusId;
@@ -17,9 +19,10 @@ public class MultipleChoiceQuestionModel implements Parcelable {
         this.multipleChoiceQuestionAnswerList = new ArrayList<>();
     }
 
-    public MultipleChoiceQuestionModel(int choiceQuestionId, String multipleChoiceQuestionContent, List<String> multipleChoiceQuestionOptionList, List<String> multipleChoiceQuestionAnswerList, int multipleChoiceQuestionVirusId) {
+    public MultipleChoiceQuestionModel(int choiceQuestionId, String multipleChoiceQuestionContent, Bitmap multipleChoiceQuestionImage, List<String> multipleChoiceQuestionOptionList, List<String> multipleChoiceQuestionAnswerList, int multipleChoiceQuestionVirusId) {
         this.choiceQuestionId = choiceQuestionId;
         this.multipleChoiceQuestionContent = multipleChoiceQuestionContent;
+        this.multipleChoiceQuestionImage = multipleChoiceQuestionImage;
         this.multipleChoiceQuestionOptionList = multipleChoiceQuestionOptionList;
         this.multipleChoiceQuestionAnswerList = multipleChoiceQuestionAnswerList;
         this.multipleChoiceQuestionVirusId = multipleChoiceQuestionVirusId;
@@ -28,6 +31,7 @@ public class MultipleChoiceQuestionModel implements Parcelable {
     protected MultipleChoiceQuestionModel(Parcel in) {
         choiceQuestionId = in.readInt();
         multipleChoiceQuestionContent = in.readString();
+        multipleChoiceQuestionImage = in.readParcelable(Bitmap.class.getClassLoader());
         multipleChoiceQuestionOptionList = in.createStringArrayList();
         multipleChoiceQuestionAnswerList = in.createStringArrayList();
         multipleChoiceQuestionVirusId = in.readInt();
@@ -37,6 +41,7 @@ public class MultipleChoiceQuestionModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(choiceQuestionId);
         dest.writeString(multipleChoiceQuestionContent);
+        dest.writeParcelable(multipleChoiceQuestionImage, flags);
         dest.writeStringList(multipleChoiceQuestionOptionList);
         dest.writeStringList(multipleChoiceQuestionAnswerList);
         dest.writeInt(multipleChoiceQuestionVirusId);
@@ -73,6 +78,14 @@ public class MultipleChoiceQuestionModel implements Parcelable {
 
     public void setMultipleChoiceQuestionContent(String multipleChoiceQuestionContent) {
         this.multipleChoiceQuestionContent = multipleChoiceQuestionContent;
+    }
+
+    public Bitmap getMultipleChoiceQuestionImage() {
+        return multipleChoiceQuestionImage;
+    }
+
+    public void setMultipleChoiceQuestionImage(Bitmap multipleChoiceQuestionImage) {
+        this.multipleChoiceQuestionImage = multipleChoiceQuestionImage;
     }
 
     public List<String> getMultipleChoiceQuestionOptionList() {
