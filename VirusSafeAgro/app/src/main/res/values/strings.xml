@@ -3,7 +3,7 @@
     <string name="app_name">virusSafe Agro</string>
 
     <!-- for on boarding  -->
-    <string name="button_launch_app">Enter irusSafe-Agro</string>
+    <string name="button_launch_app">Enter</string>
 
     <!--  subtitles  -->
     <string name="fragment_virus_single_choice">Single Choice Questions</string>
