@@ -26,6 +26,7 @@ import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.MultipleChoiceQuestionAdapter;
 import com.example.virussafeagro.adapters.SingleChoiceQuestionAdapter;
+import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
@@ -106,30 +107,30 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
 
     private void observeVirusTwoTypeQuestionArrayLD() {
-        this.virusQuizQuestionViewModel.getVirusTwoTypeQuestionArrayLD().observe(getViewLifecycleOwner(), resultVirusTwoTypeQuestionArray -> {
-            if ((resultVirusTwoTypeQuestionArray[0] != null) && (resultVirusTwoTypeQuestionArray[1] != null)){
-                if ((resultVirusTwoTypeQuestionArray[0].size() != 0) || (resultVirusTwoTypeQuestionArray[1].size() != 0)){
-                    // set recycler view linear layout visible and process bar invisible
-                    processBarLinearLayout.setVisibility(View.INVISIBLE);
-                    recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
-                }
-            }
-
-            if (resultVirusTwoTypeQuestionArray[0] != null && resultVirusTwoTypeQuestionArray[0].size() != 0){
-                singleChoiceQuestionModelList.clear();
-                singleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[0];
-
-                singleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
-            }
-            if (resultVirusTwoTypeQuestionArray[1] != null && resultVirusTwoTypeQuestionArray[1].size() != 0){
-                multipleChoiceQuestionModelList.clear();
-                multipleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[1];
-
-                multipleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
-            }
-            if (singleChoiceQuestionModelList.size() != 0 || multipleChoiceQuestionModelList.size() != 0) {
-                submitAnswerButton.setVisibility(View.VISIBLE);
-            }
+        this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultVirusTwoTypeQuestionArray -> {
+//            if ((resultVirusTwoTypeQuestionArray[0] != null) && (resultVirusTwoTypeQuestionArray[1] != null)){
+//                if ((resultVirusTwoTypeQuestionArray[0].size() != 0) || (resultVirusTwoTypeQuestionArray[1].size() != 0)){
+//                    // set recycler view linear layout visible and process bar invisible
+//                    processBarLinearLayout.setVisibility(View.INVISIBLE);
+//                    recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
+//                }
+//            }
+//
+//            if (resultVirusTwoTypeQuestionArray[0] != null && resultVirusTwoTypeQuestionArray[0].size() != 0){
+//                singleChoiceQuestionModelList.clear();
+//                singleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[0];
+//
+//                singleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
+//            }
+//            if (resultVirusTwoTypeQuestionArray[1] != null && resultVirusTwoTypeQuestionArray[1].size() != 0){
+//                multipleChoiceQuestionModelList.clear();
+//                multipleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[1];
+//
+//                multipleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
+//            }
+//            if (singleChoiceQuestionModelList.size() != 0 || multipleChoiceQuestionModelList.size() != 0) {
+//                submitAnswerButton.setVisibility(View.VISIBLE);
+//            }
 
         });
     }
@@ -137,10 +138,8 @@ public class VirusQuizQuestionFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        this.virusQuizQuestionViewModel.getVirusTwoTypeQuestionArrayLD().removeObservers(getViewLifecycleOwner());
-        List<SingleChoiceQuestionModel> singleList = new ArrayList<>();
-        List<MultipleChoiceQuestionModel> multipleList = new ArrayList<>();
-        List[] listArray = new List[]{singleList, multipleList};
-        this.virusQuizQuestionViewModel.setVirusTwoTypeQuestionArrayLD(listArray);
+        this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().removeObservers(getViewLifecycleOwner());
+        List<ChoiceQuestionModel> choiceQuestionModelList = new ArrayList<>();
+        this.virusQuizQuestionViewModel.setQuizQuestionModelListLD(choiceQuestionModelList);
     }
 }

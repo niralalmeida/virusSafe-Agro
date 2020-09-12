@@ -54,8 +54,8 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                 // find options for choice questions
                 for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
                     String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
-                    List<ChoiceOptionModel> optionList = JsonParser.choiceOptionListJsonParser(resultTextForOptions);
-                    choiceQuestionModel.setChoiceQuestionOptionList(optionList);
+                    List<ChoiceOptionModel> optionModelList = JsonParser.choiceOptionListJsonParser(resultTextForOptions);
+                    choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

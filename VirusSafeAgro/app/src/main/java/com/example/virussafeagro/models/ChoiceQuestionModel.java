@@ -19,6 +19,13 @@ public class ChoiceQuestionModel implements Parcelable {
     public ChoiceQuestionModel() {
     }
 
+    public ChoiceQuestionModel(int choiceQuestionId, String choiceQuestionType, String choiceQuestionContent, List<String> correctAnswerList) {
+        this.choiceQuestionId = choiceQuestionId;
+        this.choiceQuestionType = choiceQuestionType;
+        this.choiceQuestionContent = choiceQuestionContent;
+        this.correctAnswerList = correctAnswerList;
+    }
+
     public ChoiceQuestionModel(int choiceQuestionId, String choiceQuestionType, String choiceQuestionContent, Bitmap choiceQuestionImage, List<ChoiceOptionModel> choiceQuestionOptionList, List<String> userAnswerList, List<String> correctAnswerList, int choiceQuestionVirusId) {
         this.choiceQuestionId = choiceQuestionId;
         this.choiceQuestionType = choiceQuestionType;
