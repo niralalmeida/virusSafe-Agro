@@ -7,29 +7,32 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.virussafeagro.models.ChoiceOptionModel;
+import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.JsonParser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VirusQuizQuestionViewModel extends ViewModel {
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
 
-    private MutableLiveData<List[]> virusTwoTypeQuestionArrayLD;
+    private MutableLiveData<List<ChoiceQuestionModel>> quizQuestionModelListLD;
 
     public VirusQuizQuestionViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
-        this.virusTwoTypeQuestionArrayLD = new MutableLiveData<>();
+        this.quizQuestionModelListLD = new MutableLiveData<>();
     }
 
-    public void setVirusTwoTypeQuestionArrayLD(List[] virusTwoTypeQuestionArray){
-        this.virusTwoTypeQuestionArrayLD.setValue(virusTwoTypeQuestionArray);
+    public void setQuizQuestionModelListLD(List<ChoiceQuestionModel> quizQuestionModelList){
+        this.quizQuestionModelListLD.setValue(quizQuestionModelList);
     }
-    public LiveData<List[]> getVirusTwoTypeQuestionArrayLD(){
-        return this.virusTwoTypeQuestionArrayLD;
+    public LiveData<List<ChoiceQuestionModel>> getQuizQuestionModelListLD(){
+        return this.quizQuestionModelListLD;
     }
 
     public void processFindingVirusQuizQuestions(int virusId) {
@@ -40,39 +43,29 @@ public class VirusQuizQuestionViewModel extends ViewModel {
             e.printStackTrace();
         }
     }
-    private class FindVirusQuizQuestionsAsyncTask extends AsyncTask<Integer, Void, List[]> {
+    private class FindVirusQuizQuestionsAsyncTask extends AsyncTask<Integer, Void, List<ChoiceQuestionModel>> {
         @Override
-        protected List[] doInBackground(Integer... integers) {
-            List[] virusTwoTypeQuestionArray = new List[2];
+        protected List<ChoiceQuestionModel> doInBackground(Integer... integers) {
+            List<ChoiceQuestionModel> quizQuestionModelList = new ArrayList<>();
             int virusId = integers[0];
             try {
                 String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
-                List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = JsonParser.singleChoiceQuestionModelListJsonParser(resultTextForQuestions);
-                List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = JsonParser.multipleChoiceQuestionModelListJsonParser(resultTextForQuestions);
-                // find options for single choice questions
-                for (SingleChoiceQuestionModel singleChoiceQuestionModel : singleChoiceQuestionModelList) {
-                    String resultTextForSingleOptions = networkConnectionToTomatoVirusDB.getAllOptions(singleChoiceQuestionModel.getChoiceQuestionId());
-                    List<String> singleOptionList = JsonParser.singleChoiceOptionListJsonParser(resultTextForSingleOptions);
-                    singleChoiceQuestionModel.setSingleChoiceQuestionOptionList(singleOptionList);
+                quizQuestionModelList = JsonParser.choiceQuestionModelListJsonParser(resultTextForQuestions);
+                // find options for choice questions
+                for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
+                    String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
+                    List<ChoiceOptionModel> optionList = JsonParser.choiceOptionListJsonParser(resultTextForOptions);
+                    choiceQuestionModel.setChoiceQuestionOptionList(optionList);
                 }
-                // find options for multiple choice questions
-                for (MultipleChoiceQuestionModel multipleChoiceQuestionModel : multipleChoiceQuestionModelList) {
-                    String resultTextForMultipleOptions = networkConnectionToTomatoVirusDB.getAllOptions(multipleChoiceQuestionModel.getChoiceQuestionId());
-                    List<String> multipleOptionList = JsonParser.multipleChoiceOptionListJsonParser(resultTextForMultipleOptions);
-                    multipleChoiceQuestionModel.setMultipleChoiceQuestionOptionList(multipleOptionList);
-                }
-                virusTwoTypeQuestionArray[0] = singleChoiceQuestionModelList;
-                virusTwoTypeQuestionArray[1] = multipleChoiceQuestionModelList;
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return virusTwoTypeQuestionArray;
+            return quizQuestionModelList;
         }
 
         @Override
-        protected void onPostExecute(List[] resultVirusTwoTypeQuestionArray) {
-            setVirusTwoTypeQuestionArrayLD(resultVirusTwoTypeQuestionArray);
+        protected void onPostExecute(List<ChoiceQuestionModel> resultQuizQuestionModelList) {
+            setQuizQuestionModelListLD(resultQuizQuestionModelList);
         }
     }
 

@@ -6,7 +6,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class NetworkConnectionToTomatoVirusDB {
-//    private static final String BASE_URL = "https://jjc8sxzno2.execute-api.us-east-1.amazonaws.com/virusStage/";
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private OkHttpClient okHttpClient;
