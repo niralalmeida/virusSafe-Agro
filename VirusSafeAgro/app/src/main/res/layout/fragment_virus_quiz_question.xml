@@ -40,10 +40,22 @@
         android:layout_height="match_parent"
         android:background="@drawable/quiz_bg">
 
+        <LinearLayout
+            android:id="@+id/ll_question_process_quiz_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal" >
+
+        </LinearLayout>
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/slide_virus_quiz_question"
+            android:layout_below="@id/ll_question_process_quiz_question"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
 
         </androidx.viewpager.widget.ViewPager>
 
@@ -67,7 +79,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="30sp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/correctAnswer"
                 android:text="@string/process_bar_text_virus_quiz_question" />
 
         </LinearLayout>
