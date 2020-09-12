@@ -5,10 +5,12 @@
 
     <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="350dp"
-        android:layout_height="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         card_view:cardCornerRadius="10dp"
         android:background="#fff">
 
@@ -46,6 +48,14 @@
                 android:layout_marginBottom="10dp"
                 android:background="@color/colorTransparentWhiteForText"
                 android:layout_gravity="center_horizontal" />
+
+            <GridView
+                android:id="@+id/gv_options_quiz_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="5dp"
+                android:numColumns="2" />
 
             <TextView
                 android:id="@+id/tv_description_slide_quiz_question"
