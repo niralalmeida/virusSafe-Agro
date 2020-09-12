@@ -40,6 +40,13 @@
         android:layout_height="match_parent"
         android:background="@drawable/quiz_bg">
 
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/slide_virus_quiz_question"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.viewpager.widget.ViewPager>
+
         <LinearLayout
             android:id="@+id/ll_process_bar_virus_quiz_question"
             android:layout_width="wrap_content"
@@ -64,13 +71,6 @@
                 android:text="@string/process_bar_text_virus_quiz_question" />
 
         </LinearLayout>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/slide_virus_quiz_question"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.viewpager.widget.ViewPager>
 
     </RelativeLayout>
 

@@ -21,15 +21,18 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.MultipleChoiceQuestionAdapter;
+import com.example.virussafeagro.adapters.QuizQuestionSlideAdapter;
 import com.example.virussafeagro.adapters.SingleChoiceQuestionAdapter;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
@@ -44,16 +47,13 @@ public class VirusQuizQuestionFragment extends Fragment {
     private VirusModel currentVirusModel;
 
     private VirusQuizQuestionViewModel virusQuizQuestionViewModel;
-    private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
-    private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
+    private List<ChoiceQuestionModel> choiceQuestionModelList;
 
     private LinearLayout processBarLinearLayout;
-    private NestedScrollView recyclerViewNestedScrollView;
-
     private TextView virusFullNameTitleTextView;
-    private LinearLayout singleChoiceQuestionTitleLinearLayout;
-    private LinearLayout multipleChoiceQuestionTitleLinearLayout;
-    private Button submitAnswerButton;
+    private ViewPager questionViewPager;
+
+    private QuizQuestionSlideAdapter quizQuestionSlideAdapter;
 
     @Nullable
     @Override
@@ -75,7 +75,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         // initialize views
         this.initializeViews();
         this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
+        this.questionViewPager.setVisibility(View.INVISIBLE);
 
         return this.view;
     }
@@ -96,6 +96,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_quiz_question);
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
+        this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
     }
 
     private void initializeVirusQuizQuestionViewModel() {
@@ -107,31 +108,17 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
 
     private void observeVirusTwoTypeQuestionArrayLD() {
-        this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultVirusTwoTypeQuestionArray -> {
-//            if ((resultVirusTwoTypeQuestionArray[0] != null) && (resultVirusTwoTypeQuestionArray[1] != null)){
-//                if ((resultVirusTwoTypeQuestionArray[0].size() != 0) || (resultVirusTwoTypeQuestionArray[1].size() != 0)){
-//                    // set recycler view linear layout visible and process bar invisible
-//                    processBarLinearLayout.setVisibility(View.INVISIBLE);
-//                    recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
-//                }
-//            }
-//
-//            if (resultVirusTwoTypeQuestionArray[0] != null && resultVirusTwoTypeQuestionArray[0].size() != 0){
-//                singleChoiceQuestionModelList.clear();
-//                singleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[0];
-//
-//                singleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
-//            }
-//            if (resultVirusTwoTypeQuestionArray[1] != null && resultVirusTwoTypeQuestionArray[1].size() != 0){
-//                multipleChoiceQuestionModelList.clear();
-//                multipleChoiceQuestionModelList = resultVirusTwoTypeQuestionArray[1];
-//
-//                multipleChoiceQuestionTitleLinearLayout.setVisibility(View.VISIBLE);
-//            }
-//            if (singleChoiceQuestionModelList.size() != 0 || multipleChoiceQuestionModelList.size() != 0) {
-//                submitAnswerButton.setVisibility(View.VISIBLE);
-//            }
-
+        this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultQuizQuestionModelList -> {
+            if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
+                // set recycler view linear layout visible and process bar invisible
+                processBarLinearLayout.setVisibility(View.INVISIBLE);
+                this.questionViewPager.setVisibility(View.VISIBLE);
+                // set question list
+                choiceQuestionModelList = resultQuizQuestionModelList;
+                // initialize the QuizQuestionSlideAdapter and ViewPager
+                quizQuestionSlideAdapter = new QuizQuestionSlideAdapter(requireActivity(), choiceQuestionModelList);
+                questionViewPager.setAdapter(quizQuestionSlideAdapter);
+            }
         });
     }
 
@@ -141,5 +128,11 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().removeObservers(getViewLifecycleOwner());
         List<ChoiceQuestionModel> choiceQuestionModelList = new ArrayList<>();
         this.virusQuizQuestionViewModel.setQuizQuestionModelListLD(choiceQuestionModelList);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        AppAuthentication.setAuthenticationAsNo((AppCompatActivity)requireActivity());
     }
 }

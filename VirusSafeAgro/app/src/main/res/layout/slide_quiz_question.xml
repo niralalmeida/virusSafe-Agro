@@ -19,27 +19,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/tv_question_content_slide_quiz_question"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="15sp"
-                android:textColor="#000"
-                android:textStyle="bold"
-                android:text="question 1: this is the question content" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_question_no_slide_quiz_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:text="Q# - " />
+
+                <TextView
+                    android:id="@+id/tv_question_content_slide_quiz_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:text="This is the question content. This is the question content" />
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/img_question_slide_quiz_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/icon1" />
+                android:src="@drawable/default_leaf" />
 
             <View
                 android:id="@+id/v_line_slide_quiz_question"
@@ -66,7 +85,9 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:layout_marginTop="15dp"
+                android:background="#000"
                 android:textStyle="bold"
+                android:textColor="#fff"
                 android:text="submit answer"/>
 
             <LinearLayout

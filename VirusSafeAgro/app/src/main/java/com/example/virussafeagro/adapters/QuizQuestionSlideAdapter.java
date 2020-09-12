@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 
@@ -27,19 +28,20 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private View view;
 
     private CardView quizQuestionCardView;
+    private TextView quizQuestionNoTextView;
     private TextView quizQuestionContentTextView;
     private ImageView quizQuestionImageView;
     private GridView quizOptionGridView;
     private Button submitAnswerButton;
     private TextView quizQuestionResultTextView;
 
-    private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
-    private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
+    private List<ChoiceQuestionModel> choiceQuestionModelList;
 
     private static final int QUESTION_COUNT = 5;
 
-    public QuizQuestionSlideAdapter(Context context) {
+    public QuizQuestionSlideAdapter(Context context, List<ChoiceQuestionModel> choiceQuestionModelList) {
         this.context = context;
+        this.choiceQuestionModelList = choiceQuestionModelList;
     }
 
     @NonNull
@@ -58,6 +60,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
     private void initiateViews() {
         this.quizQuestionCardView = view.findViewById(R.id.cv_quiz_question);
+        this.quizQuestionNoTextView = view.findViewById(R.id.tv_question_no_slide_quiz_question);
         this.quizQuestionContentTextView = view.findViewById(R.id.tv_question_content_slide_quiz_question);
         this.quizQuestionImageView = view.findViewById(R.id.img_question_slide_quiz_question);
         this.quizOptionGridView = view.findViewById(R.id.gv_options_quiz_question);
@@ -66,7 +69,8 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     }
 
     private void setContentOfViewsByPosition(int position) {
-//        this.quizQuestionContentTextView.setText();
+        this.quizQuestionNoTextView.setText("Q" + (position + 1) + " - ");
+        this.quizQuestionContentTextView.setText(this.choiceQuestionModelList.get(position).getChoiceQuestionContent());
     }
 
     @Override
