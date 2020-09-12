@@ -36,6 +36,8 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private List<SingleChoiceQuestionModel> singleChoiceQuestionModelList = new ArrayList<>();
     private List<MultipleChoiceQuestionModel> multipleChoiceQuestionModelList = new ArrayList<>();
 
+    private static final int QUESTION_COUNT = 5;
+
     public QuizQuestionSlideAdapter(Context context) {
         this.context = context;
     }
@@ -64,7 +66,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     }
 
     private void setContentOfViewsByPosition(int position) {
-
+//        this.quizQuestionContentTextView.setText();
     }
 
     @Override
@@ -74,7 +76,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return QUESTION_COUNT;
     }
 
     @Override
