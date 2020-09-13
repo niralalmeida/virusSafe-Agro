@@ -73,8 +73,23 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private void setContentOfViewsByPosition(int slidePosition) {
         ChoiceQuestionModel currentChoiceQuestionModel = choiceQuestionModelList.get(slidePosition);
 
+        // question title
         this.quizQuestionNoTextView.setText("Q" + (slidePosition + 1) + " - ");
-        this.quizQuestionContentTextView.setText(currentChoiceQuestionModel.getChoiceQuestionContent());
+        // question content
+        String questionContent = "";
+        if (currentChoiceQuestionModel.getChoiceQuestionType().equals("single")){
+            questionContent = currentChoiceQuestionModel.getChoiceQuestionContent() + " - [ single choice ]";
+        } else {
+            questionContent = currentChoiceQuestionModel.getChoiceQuestionContent() + " - [ multiple choice ]";
+        }
+        this.quizQuestionContentTextView.setText(questionContent);
+        // question image
+        if (currentChoiceQuestionModel.getChoiceQuestionImage() != null){
+            this.quizQuestionImageView.setImageBitmap(currentChoiceQuestionModel.getChoiceQuestionImage());
+            ViewGroup.LayoutParams layoutParams = this.quizQuestionImageView.getLayoutParams();
+            layoutParams.height = 150;
+            this.quizQuestionImageView.setLayoutParams(layoutParams);
+        }
 
         // get options
         List<ChoiceOptionModel> optionList = currentChoiceQuestionModel.getChoiceQuestionOptionList();

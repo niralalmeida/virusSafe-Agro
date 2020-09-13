@@ -72,6 +72,7 @@ public class MyOptionGridAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.grid_item_option_slide_question, parent, false);
+
             // set option image
             if (optionList.get(position).getChoiceOptionImage() != null){
                 optionImageView = convertView.findViewById(R.id.img_option_grid_item);
