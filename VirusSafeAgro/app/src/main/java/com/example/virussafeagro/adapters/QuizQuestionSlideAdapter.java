@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -15,11 +16,9 @@ import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
-import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
-import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class QuizQuestionSlideAdapter extends PagerAdapter {

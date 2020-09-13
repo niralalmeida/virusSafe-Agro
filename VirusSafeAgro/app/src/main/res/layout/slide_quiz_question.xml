@@ -76,7 +76,14 @@
                 android:layout_height="wrap_content"
                 android:horizontalSpacing="5dp"
                 android:verticalSpacing="5dp"
-                android:numColumns="2" />
+                android:numColumns="2" >
+
+                <RadioGroup
+                    android:id="@+id/rg_options_virus_quiz_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </GridView>
 
             <Button
                 android:id="@+id/btn_submit_answer_slide_quiz_question"
