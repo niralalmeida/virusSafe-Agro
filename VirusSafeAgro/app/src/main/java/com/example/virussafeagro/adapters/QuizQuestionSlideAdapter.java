@@ -34,7 +34,8 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private ImageView quizQuestionImageView;
     private GridView quizOptionGridView;
     private Button submitAnswerButton;
-    private TextView quizQuestionResultTextView;
+    private CardView resultCardView;
+
 
     private List<ChoiceQuestionModel> choiceQuestionModelList;
     private MyOptionGridAdapter myOptionGridAdapter;
@@ -53,10 +54,14 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         assert layoutInflater != null;
         this.questionView = layoutInflater.inflate(R.layout.slide_quiz_question, container, false);
 
+        // initiate Question Views
         this.initiateQuestionViews();
-        this.setContentOfViewsByPosition(position);
-        container.addView(this.questionView);
 
+        // setup all the views within the slides
+        this.setContentOfViewsByPosition(position);
+
+
+        container.addView(this.questionView);
         return this.questionView;
     }
 
@@ -67,7 +72,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         this.quizQuestionImageView = questionView.findViewById(R.id.img_question_slide_quiz_question);
         this.quizOptionGridView = questionView.findViewById(R.id.gv_options_quiz_question);
         this.submitAnswerButton = questionView.findViewById(R.id.btn_submit_answer_slide_quiz_question);
-        this.quizQuestionResultTextView = questionView.findViewById(R.id.tv_result_slide_quiz_question);
     }
 
     private void setContentOfViewsByPosition(int slidePosition) {
@@ -93,10 +97,11 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
         // get options
         List<ChoiceOptionModel> optionList = currentChoiceQuestionModel.getChoiceQuestionOptionList();
-        // initialize GridView
+        // initialize GridView for options
         showGrid(currentChoiceQuestionModel, optionList);
     }
 
+    // initialize GridView for options
     private void showGrid(ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
         myOptionGridAdapter = new MyOptionGridAdapter(fragmentActivity, currentChoiceQuestionModel, optionList);
         quizOptionGridView.setAdapter(myOptionGridAdapter);
