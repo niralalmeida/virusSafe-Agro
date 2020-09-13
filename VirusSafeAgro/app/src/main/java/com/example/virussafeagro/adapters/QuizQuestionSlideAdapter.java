@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.virussafeagro.R;
@@ -23,9 +24,9 @@ import com.example.virussafeagro.models.ChoiceQuestionModel;
 import java.util.List;
 
 public class QuizQuestionSlideAdapter extends PagerAdapter {
-    private Context context;
+    private FragmentActivity fragmentActivity;
     private LayoutInflater layoutInflater;
-    private View view;
+    private View questionView;
 
     private CardView quizQuestionCardView;
     private TextView quizQuestionNoTextView;
@@ -36,54 +37,53 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private TextView quizQuestionResultTextView;
 
     private List<ChoiceQuestionModel> choiceQuestionModelList;
-    private ChoiceQuestionModel currentChoiceQuestionModel;
     private MyOptionGridAdapter myOptionGridAdapter;
 
     private static final int QUESTION_COUNT = 5;
 
-    public QuizQuestionSlideAdapter(Context context, List<ChoiceQuestionModel> choiceQuestionModelList) {
-        this.context = context;
+    public QuizQuestionSlideAdapter(FragmentActivity fragmentActivity, List<ChoiceQuestionModel> choiceQuestionModelList) {
+        this.fragmentActivity = fragmentActivity;
         this.choiceQuestionModelList = choiceQuestionModelList;
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layoutInflater = (LayoutInflater)fragmentActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         assert layoutInflater != null;
-        this.view = layoutInflater.inflate(R.layout.slide_quiz_question, container, false);
+        this.questionView = layoutInflater.inflate(R.layout.slide_quiz_question, container, false);
 
-        this.initiateViews(position);
+        this.initiateQuestionViews();
         this.setContentOfViewsByPosition(position);
-        container.addView(this.view);
+        container.addView(this.questionView);
 
-        return this.view;
+        return this.questionView;
     }
 
-    private void initiateViews(int position) {
-        this.quizQuestionCardView = view.findViewById(R.id.cv_quiz_question);
-        this.quizQuestionNoTextView = view.findViewById(R.id.tv_question_no_slide_quiz_question);
-        this.quizQuestionContentTextView = view.findViewById(R.id.tv_question_content_slide_quiz_question);
-        this.quizQuestionImageView = view.findViewById(R.id.img_question_slide_quiz_question);
-        this.quizOptionGridView = view.findViewById(R.id.gv_options_quiz_question);
-        this.submitAnswerButton = view.findViewById(R.id.btn_submit_answer_slide_quiz_question);
-        this.quizQuestionResultTextView = view.findViewById(R.id.tv_result_slide_quiz_question);
-
-        this.currentChoiceQuestionModel = choiceQuestionModelList.get(position);
+    private void initiateQuestionViews() {
+        this.quizQuestionCardView = questionView.findViewById(R.id.cv_quiz_question);
+        this.quizQuestionNoTextView = questionView.findViewById(R.id.tv_question_no_slide_quiz_question);
+        this.quizQuestionContentTextView = questionView.findViewById(R.id.tv_question_content_slide_quiz_question);
+        this.quizQuestionImageView = questionView.findViewById(R.id.img_question_slide_quiz_question);
+        this.quizOptionGridView = questionView.findViewById(R.id.gv_options_quiz_question);
+        this.submitAnswerButton = questionView.findViewById(R.id.btn_submit_answer_slide_quiz_question);
+        this.quizQuestionResultTextView = questionView.findViewById(R.id.tv_result_slide_quiz_question);
     }
 
     private void setContentOfViewsByPosition(int slidePosition) {
+        ChoiceQuestionModel currentChoiceQuestionModel = choiceQuestionModelList.get(slidePosition);
+
         this.quizQuestionNoTextView.setText("Q" + (slidePosition + 1) + " - ");
-        this.quizQuestionContentTextView.setText(this.currentChoiceQuestionModel.getChoiceQuestionContent());
+        this.quizQuestionContentTextView.setText(currentChoiceQuestionModel.getChoiceQuestionContent());
 
         // get options
-        List<ChoiceOptionModel> optionList = this.currentChoiceQuestionModel.getChoiceQuestionOptionList();
+        List<ChoiceOptionModel> optionList = currentChoiceQuestionModel.getChoiceQuestionOptionList();
         // initialize GridView
-        showGrid(optionList);
+        showGrid(currentChoiceQuestionModel, optionList);
     }
 
-    private void showGrid(List<ChoiceOptionModel> optionList) {
-        myOptionGridAdapter = new MyOptionGridAdapter(context, currentChoiceQuestionModel, optionList);
+    private void showGrid(ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
+        myOptionGridAdapter = new MyOptionGridAdapter(fragmentActivity, currentChoiceQuestionModel, optionList);
         quizOptionGridView.setAdapter(myOptionGridAdapter);
     }
 
