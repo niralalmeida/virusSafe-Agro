@@ -6,21 +6,19 @@
 
     <ImageView
         android:id="@+id/img_option_grid_item"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/tylcv_item" />
 
-    <TextView
-        android:id="@+id/tv_option_grid_item"
+    <LinearLayout
+        android:id="@+id/ll_option_grid_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="3dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/img_option_grid_item"
-        android:text="This is option"
-        android:textSize="25sp" />
+        android:orientation="horizontal" />
 
 </RelativeLayout>

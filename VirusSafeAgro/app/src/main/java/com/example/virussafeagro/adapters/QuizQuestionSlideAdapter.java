@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private TextView quizQuestionResultTextView;
 
     private List<ChoiceQuestionModel> choiceQuestionModelList;
+    private MyOptionGridAdapter myOptionGridAdapter;
 
     private static final int QUESTION_COUNT = 5;
 
@@ -67,9 +69,19 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         this.quizQuestionResultTextView = view.findViewById(R.id.tv_result_slide_quiz_question);
     }
 
-    private void setContentOfViewsByPosition(int position) {
-        this.quizQuestionNoTextView.setText("Q" + (position + 1) + " - ");
-        this.quizQuestionContentTextView.setText(this.choiceQuestionModelList.get(position).getChoiceQuestionContent());
+    private void setContentOfViewsByPosition(int slidePosition) {
+        this.quizQuestionNoTextView.setText("Q" + (slidePosition + 1) + " - ");
+        this.quizQuestionContentTextView.setText(this.choiceQuestionModelList.get(slidePosition).getChoiceQuestionContent());
+
+        // get options
+        List<ChoiceOptionModel> optionList = this.choiceQuestionModelList.get(slidePosition).getChoiceQuestionOptionList();
+        // initialize GridView
+        showGrid(optionList);
+    }
+
+    private void showGrid(List<ChoiceOptionModel> optionList) {
+        myOptionGridAdapter = new MyOptionGridAdapter(context, optionList);
+        quizOptionGridView.setAdapter(myOptionGridAdapter);
     }
 
     @Override
