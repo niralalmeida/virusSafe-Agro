@@ -36,6 +36,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private TextView quizQuestionResultTextView;
 
     private List<ChoiceQuestionModel> choiceQuestionModelList;
+    private ChoiceQuestionModel currentChoiceQuestionModel;
     private MyOptionGridAdapter myOptionGridAdapter;
 
     private static final int QUESTION_COUNT = 5;
@@ -52,14 +53,14 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         assert layoutInflater != null;
         this.view = layoutInflater.inflate(R.layout.slide_quiz_question, container, false);
 
-        this.initiateViews();
+        this.initiateViews(position);
         this.setContentOfViewsByPosition(position);
         container.addView(this.view);
 
         return this.view;
     }
 
-    private void initiateViews() {
+    private void initiateViews(int position) {
         this.quizQuestionCardView = view.findViewById(R.id.cv_quiz_question);
         this.quizQuestionNoTextView = view.findViewById(R.id.tv_question_no_slide_quiz_question);
         this.quizQuestionContentTextView = view.findViewById(R.id.tv_question_content_slide_quiz_question);
@@ -67,20 +68,22 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         this.quizOptionGridView = view.findViewById(R.id.gv_options_quiz_question);
         this.submitAnswerButton = view.findViewById(R.id.btn_submit_answer_slide_quiz_question);
         this.quizQuestionResultTextView = view.findViewById(R.id.tv_result_slide_quiz_question);
+
+        this.currentChoiceQuestionModel = choiceQuestionModelList.get(position);
     }
 
     private void setContentOfViewsByPosition(int slidePosition) {
         this.quizQuestionNoTextView.setText("Q" + (slidePosition + 1) + " - ");
-        this.quizQuestionContentTextView.setText(this.choiceQuestionModelList.get(slidePosition).getChoiceQuestionContent());
+        this.quizQuestionContentTextView.setText(this.currentChoiceQuestionModel.getChoiceQuestionContent());
 
         // get options
-        List<ChoiceOptionModel> optionList = this.choiceQuestionModelList.get(slidePosition).getChoiceQuestionOptionList();
+        List<ChoiceOptionModel> optionList = this.currentChoiceQuestionModel.getChoiceQuestionOptionList();
         // initialize GridView
         showGrid(optionList);
     }
 
     private void showGrid(List<ChoiceOptionModel> optionList) {
-        myOptionGridAdapter = new MyOptionGridAdapter(context, optionList);
+        myOptionGridAdapter = new MyOptionGridAdapter(context, currentChoiceQuestionModel, optionList);
         quizOptionGridView.setAdapter(myOptionGridAdapter);
     }
 

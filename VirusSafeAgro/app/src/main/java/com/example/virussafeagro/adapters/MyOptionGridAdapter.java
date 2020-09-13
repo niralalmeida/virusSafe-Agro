@@ -9,8 +9,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ChoiceOptionModel;
+import com.example.virussafeagro.models.ChoiceQuestionModel;
+import com.example.virussafeagro.uitilities.DataConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +24,10 @@ public class MyOptionGridAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
 
+    private ChoiceQuestionModel currentChoiceQuestionModel;
     private List<ChoiceOptionModel> optionList;
 
-    private ImageView imageView;
+    private ImageView optionImageView;
     private LinearLayout choiceButtonsLinearLayout;
 
     private MyOptionGridAdapter.SingleButtonOnClickListener singleButtonOnClickListener;
@@ -30,8 +35,9 @@ public class MyOptionGridAdapter extends BaseAdapter {
     // test
     private List<RadioButton> itemRadioButtonList;
 
-    public MyOptionGridAdapter(Context context, List<ChoiceOptionModel> optionList) {
+    public MyOptionGridAdapter(Context context, ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
         this.context = context;
+        this.currentChoiceQuestionModel = currentChoiceQuestionModel;
         this.optionList = optionList;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.itemRadioButtonList = new ArrayList<>();
@@ -68,18 +74,29 @@ public class MyOptionGridAdapter extends BaseAdapter {
 
         // set option image
         if (optionList.get(position).getChoiceOptionImage() != null){
-            imageView = convertView.findViewById(R.id.img_option_grid_item);
-            imageView.setImageBitmap(optionList.get(position).getChoiceOptionImage());
+            optionImageView = convertView.findViewById(R.id.img_option_grid_item);
+            ViewGroup.LayoutParams layoutParams = optionImageView.getLayoutParams();
+            layoutParams.height = 50;
+            optionImageView.setLayoutParams(layoutParams);
+            optionImageView.setImageBitmap(optionList.get(position).getChoiceOptionImage());
         }
 
-        // set radio Button
+        // initialize choiceButtons LinearLayout
         choiceButtonsLinearLayout = convertView.findViewById(R.id.ll_option_grid_item);
-        RadioButton radioButton = new RadioButton(context);
-        radioButton.setText(optionList.get(position).getChoiceOptionContent());
-        choiceButtonsLinearLayout.addView(radioButton);
-        radioButton.setOnClickListener(v -> singleButtonOnClickListener.onSingleButtonClick(position));
-        if ((position != 0) || itemRadioButtonList.isEmpty()){
-            itemRadioButtonList.add(radioButton);
+        // get option model
+        ChoiceOptionModel optionModel = optionList.get(position);
+
+        if (currentChoiceQuestionModel.getChoiceQuestionType().equals("single")){
+            // set radio Button
+            RadioButton radioButton = new RadioButton(context);
+            radioButton.setText(optionList.get(position).getChoiceOptionContent());
+            choiceButtonsLinearLayout.addView(radioButton);
+//        radioButton.setOnClickListener(v -> singleButtonOnClickListener.onSingleButtonClick(position));
+            if ((position != 0) || itemRadioButtonList.isEmpty()){
+                itemRadioButtonList.add(radioButton);
+            }
+        } else if(currentChoiceQuestionModel.getChoiceQuestionType().equals("multiple")) {
+
         }
 
         return convertView;
