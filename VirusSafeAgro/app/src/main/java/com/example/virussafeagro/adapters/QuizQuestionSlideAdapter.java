@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -34,8 +35,10 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private ImageView quizQuestionImageView;
     private GridView quizOptionGridView;
     private Button submitAnswerButton;
-    private CardView resultCardView;
+    private LinearLayout resultLinearLayout;
+//    private CardView resultCardView;
 
+    private boolean isResultCardViewUp;
 
     private List<ChoiceQuestionModel> choiceQuestionModelList;
     private MyOptionGridAdapter myOptionGridAdapter;
@@ -60,6 +63,8 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         // setup all the views within the slides
         this.setContentOfViewsByPosition(position);
 
+        // set submitAnswerButton OnClickListener
+        this.setSubmitAnswerButtonOnClickListener();
 
         container.addView(this.questionView);
         return this.questionView;
@@ -72,6 +77,8 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         this.quizQuestionImageView = questionView.findViewById(R.id.img_question_slide_quiz_question);
         this.quizOptionGridView = questionView.findViewById(R.id.gv_options_quiz_question);
         this.submitAnswerButton = questionView.findViewById(R.id.btn_submit_answer_slide_quiz_question);
+        this.resultLinearLayout = questionView.findViewById(R.id.ll_result_slide_quiz_question);
+//        this.resultCardView = questionView.findViewById(R.id.cv_result_slide_quiz_question);
     }
 
     private void setContentOfViewsByPosition(int slidePosition) {
@@ -105,6 +112,12 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private void showGrid(ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
         myOptionGridAdapter = new MyOptionGridAdapter(fragmentActivity, currentChoiceQuestionModel, optionList);
         quizOptionGridView.setAdapter(myOptionGridAdapter);
+    }
+
+    private void setSubmitAnswerButtonOnClickListener() {
+        this.submitAnswerButton.setOnClickListener(view -> {
+
+        });
     }
 
     @Override
