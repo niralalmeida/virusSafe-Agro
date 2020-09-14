@@ -203,6 +203,20 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         return currentRadioButtonList;
     }
 
+    // get all checkbox of this slide (if not exist, return an empty list)
+    private List<CheckBox> getAllCurrentSlideCheckBox() {
+        List<CheckBox> currentCheckBoxList = new ArrayList<>();
+        for (List<Map<Integer, CheckBox>> mapList : allCheckBoxMapList) {
+            if (mapList.get(0).containsKey(currentChoiceQuestionModel.getChoiceQuestionId())){
+                for (Map<Integer, CheckBox> map : mapList) {
+                    CheckBox checkBox = map.get(currentChoiceQuestionModel.getChoiceQuestionId());
+                    currentCheckBoxList.add(checkBox);
+                }
+            }
+        }
+        return currentCheckBoxList;
+    }
+
     // when click, open the result view
     private void setSubmitAnswerButtonOnClickListener() {
         this.submitAnswerButton.setOnClickListener(view -> {
@@ -215,9 +229,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                     System.out.println("    - checkbox text" + Objects.requireNonNull(map.get(map.keySet().iterator().next())).getText().toString());
                 }
             }
-            // test
-            System.out.println("!!!! answer: =========>>>>>>" + currentChoiceQuestionModel.getCorrectAnswerList().get(0));
-
 
             // check the question type
             if (currentChoiceQuestionModel.getChoiceQuestionType().equals("single")){
@@ -229,8 +240,12 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                     openBottomSheetDialogForResult();
                 }
             } else if (currentChoiceQuestionModel.getChoiceQuestionType().equals("multiple")){
-                // open the bottom sheet dialog for result
-                openBottomSheetDialogForResult();
+                if (!checkHasUserAnsweredMultipleChoiceQuestion()){
+                    Toast.makeText(fragmentActivity, "Please make a choice!", Toast.LENGTH_SHORT).show();
+                } else {
+                    // open the bottom sheet dialog for result
+                    openBottomSheetDialogForResult();
+                }
             }
         });
     }
@@ -253,6 +268,54 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             }
         }
         return false;
+    }
+
+    private boolean checkHasUserAnsweredMultipleChoiceQuestion() {
+        // set true if there is checked checkbox
+        boolean isSelected = false;
+        // create a list for user answers
+        List<String> userAnswerList = new ArrayList<>();
+        // traverse the checkbox list
+        for (CheckBox checkBox : getAllCurrentSlideCheckBox()){
+            if (checkBox.isChecked()) {
+                isSelected = true;
+                String userAnswer = checkBox.getText().toString().substring(0, 1);
+                // store one user's answer
+                userAnswerList.add(userAnswer);
+            }
+        }
+        // store all the answers of user
+        currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
+        // check the answer
+        if (checkTwoListHaveSameItems(currentChoiceQuestionModel.getCorrectAnswerList(), userAnswerList)) {
+            isCorrect = true;
+        } else {
+            isCorrect = false;
+        }
+        return isSelected;
+    }
+
+    private boolean checkTwoListHaveSameItems(List<String> list1, List<String> list2) {
+        if (list1 == list2) {
+            return false;
+        }
+        if (list1 == null || list2 == null) {
+            return false;
+        }
+        if (list1.size() != list2.size()) {
+            return false;
+        }
+        List<Integer> checkedList1IndexList = new ArrayList<>();
+        List<Integer> checkedList2IndexList = new ArrayList<>();
+        for (int i1 = 0; i1 < list1.size(); i1++) {
+            for(int i2 = 0; i2 < list2.size(); i2++) {
+                if (list1.get(i1).equals(list2.get(i2)) && (!checkedList1IndexList.contains(i1) || !checkedList2IndexList.contains(i2))) {
+                    checkedList1IndexList.add(i1);
+                    checkedList2IndexList.add(i2);
+                }
+            }
+        }
+        return (checkedList1IndexList.size() == list1.size()) && (checkedList2IndexList.size() == list2.size());
     }
 
     private void openBottomSheetDialogForResult() {
