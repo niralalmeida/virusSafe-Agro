@@ -4,22 +4,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
@@ -120,7 +115,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             View bottomSheetView = LayoutInflater
                     .from(fragmentActivity.getApplicationContext())
                     .inflate(
-                            R.layout.layout_bottom_sheet_quiz_result,
+                            R.layout.bottom_sheet_quiz_result,
                             fragmentActivity.findViewById(R.id.container_bottom_sheet_quiz_result)
                     );
             // close button
@@ -133,7 +128,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                 bottomSheetDialog.dismiss();
                 // slide to next page if it is correct
                 if (true) {
-                    
+
                 }
             });
 
