@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -182,35 +183,84 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         return checkedRadioButton;
     }
 
+    // get all radio buttons of this slide (if not exist, return an empty list)
+    private List<RadioButton> getAllCurrentSlideRadioButton() {
+        List<RadioButton> currentRadioButtonList = new ArrayList<>();
+        for (List<Map<Integer, RadioButton>> mapList : allRadioButtonMapList) {
+            if (mapList.get(0).containsKey(currentChoiceQuestionModel.getChoiceQuestionId())){
+                for (Map<Integer, RadioButton> map : mapList) {
+                    RadioButton radioButton = map.get(currentChoiceQuestionModel.getChoiceQuestionId());
+                    currentRadioButtonList.add(radioButton);
+                }
+            }
+        }
+        return currentRadioButtonList;
+    }
+
     // when click, open the result view
     private void setSubmitAnswerButtonOnClickListener() {
         this.submitAnswerButton.setOnClickListener(view -> {
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
-                    fragmentActivity, R.style.BottomSheetDialogTheme
-            );
-            View bottomSheetView = LayoutInflater
-                    .from(fragmentActivity.getApplicationContext())
-                    .inflate(
-                            R.layout.bottom_sheet_quiz_result,
-                            fragmentActivity.findViewById(R.id.container_bottom_sheet_quiz_result)
-                    );
-            // close button
-            bottomSheetView.findViewById(R.id.btn_close_quiz_result).setOnClickListener(closeButtonView -> {
-                bottomSheetDialog.dismiss();
-            });
-            // next step button
-            bottomSheetView.findViewById(R.id.btn_next_step_quiz_result).setOnClickListener(nextStepView -> {
-                // slide to next page if it is correct
-                if (isCorrect) {
-                    virusQuizResultViewModel.setIsCorrectLD(true);
-                }
-                // just close the result view bottomSheetDialog
-                bottomSheetDialog.dismiss();
-            });
+            currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
 
-            bottomSheetDialog.setContentView(bottomSheetView);
-            bottomSheetDialog.show();
+            // check the question type
+            if (currentChoiceQuestionModel.getChoiceQuestionType().equals("single")){
+                // check whether user select an option
+                if (!checkHasUserAnsweredSingleChoiceQuestion()) {
+                    Toast.makeText(fragmentActivity, "Please make a choice!", Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
+            }
+
+            // open the bottom sheet dialog for result
+            openBottomSheetDialogForResult();
         });
+    }
+
+    private boolean checkHasUserAnsweredSingleChoiceQuestion() {
+        for (RadioButton radioButton : getAllCurrentSlideRadioButton()){
+            if (radioButton.isChecked()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkSingleChoiceQuestionAnswer() {
+        for (RadioButton radioButton : getAllCurrentSlideRadioButton()){
+            if (radioButton.isChecked()) {
+//                if (currentChoiceQuestionModel.getCorrectAnswerList().get(0))
+            }
+        }
+        return false;
+    }
+
+    private void openBottomSheetDialogForResult() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                fragmentActivity, R.style.BottomSheetDialogTheme
+        );
+        View bottomSheetView = LayoutInflater
+                .from(fragmentActivity.getApplicationContext())
+                .inflate(
+                        R.layout.bottom_sheet_quiz_result,
+                        fragmentActivity.findViewById(R.id.container_bottom_sheet_quiz_result)
+                );
+        // close button
+        bottomSheetView.findViewById(R.id.btn_close_quiz_result).setOnClickListener(closeButtonView -> {
+            bottomSheetDialog.dismiss();
+        });
+        // next step button
+        bottomSheetView.findViewById(R.id.btn_next_step_quiz_result).setOnClickListener(nextStepView -> {
+            // slide to next page if it is correct
+            if (isCorrect) {
+                virusQuizResultViewModel.setIsCorrectLD(true);
+            }
+            // just close the result view bottomSheetDialog
+            bottomSheetDialog.dismiss();
+        });
+
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
     }
 
     @Override

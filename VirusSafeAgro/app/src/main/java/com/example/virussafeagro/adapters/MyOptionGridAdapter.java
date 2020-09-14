@@ -70,26 +70,27 @@ public class MyOptionGridAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.grid_item_option_slide_question, parent, false);
 
+            // get option model
+            ChoiceOptionModel optionModel = optionList.get(position);
+
             // set option image
-            if (optionList.get(position).getChoiceOptionImage() != null){
+            if (optionModel.getChoiceOptionImage() != null){
                 optionImageView = convertView.findViewById(R.id.img_option_grid_item);
                 ViewGroup.LayoutParams layoutParams = optionImageView.getLayoutParams();
                 layoutParams.height = 50;
                 optionImageView.setLayoutParams(layoutParams);
-                optionImageView.setImageBitmap(optionList.get(position).getChoiceOptionImage());
+                optionImageView.setImageBitmap(optionModel.getChoiceOptionImage());
             }
 
             // initialize choiceButtons LinearLayout
             choiceButtonsLinearLayout = convertView.findViewById(R.id.ll_option_grid_item);
-            // get option model
-            ChoiceOptionModel optionModel = optionList.get(position);
 
             // setup all option views
             if (currentChoiceQuestionModel.getChoiceQuestionType().equals("single")){
                 // set radio Button
                 RadioButton radioButton = new RadioButton(fragmentActivity);
                 // set radio Button text
-                radioButton.setText(optionList.get(position).getChoiceOptionContent());
+                radioButton.setText(optionModel.getChoiceOptionContent());
                 // add radio Button into the linear layout
                 choiceButtonsLinearLayout.addView(radioButton);
                 // set radio Button OnClickListener
@@ -156,7 +157,7 @@ public class MyOptionGridAdapter extends BaseAdapter {
                 // set checkbox
                 CheckBox checkBox = new CheckBox(fragmentActivity);
                 // set checkbox text
-                checkBox.setText(optionList.get(position).getChoiceOptionContent());
+                checkBox.setText(optionModel.getChoiceOptionContent());
                 // add checkbox into the linear layout
                 choiceButtonsLinearLayout.addView(checkBox);
 
