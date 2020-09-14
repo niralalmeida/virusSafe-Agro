@@ -9,8 +9,7 @@
     <RelativeLayout
         android:id="@+id/rl_on_boarding"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/slide_bg">
+        android:layout_height="match_parent">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/slide_view_pager_boarding"
@@ -23,55 +22,76 @@
             android:id="@+id/ll_dot_button_boarding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:layout_marginBottom="25dp"
-            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/btn_skip_boarding"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentStart="true">
 
         </LinearLayout>
 
+<!--        <Button-->
+<!--            android:id="@+id/btn_launch_app_boarding"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginBottom="100dp"-->
+<!--            android:paddingStart="20dp"-->
+<!--            android:paddingEnd="20dp"-->
+<!--            android:text="@string/button_launch_app"-->
+<!--            android:textStyle="bold"-->
+<!--            android:alpha="0"-->
+<!--            android:visibility="visible"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:background="@color/colorLaunchApp"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_back_boarding"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_toLeftOf="@id/ll_dot_button_boarding"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:visibility="invisible"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:layout_toStartOf="@id/ll_dot_button_boarding" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_next_boarding"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_toRightOf="@id/ll_dot_button_boarding"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:layout_toEndOf="@id/ll_dot_button_boarding" />-->
+
         <Button
-            android:id="@+id/btn_launch_app_boarding"
+            android:id="@+id/btn_skip_boarding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="100dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/button_launch_app"
-            android:textStyle="bold"
-            android:alpha="0"
-            android:visibility="visible"
-            android:textColor="@color/colorWhite"
-            android:background="@color/colorLaunchApp"/>
-
-        <Button
-            android:id="@+id/btn_back_boarding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@id/ll_dot_button_boarding"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:textColor="@color/colorWhite"
-            android:visibility="invisible"
-            android:background="@android:color/transparent"
-            android:layout_toStartOf="@id/ll_dot_button_boarding" />
-
-        <Button
-            android:id="@+id/btn_next_boarding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/ll_dot_button_boarding"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:textColor="@color/colorWhite"
-            android:background="@android:color/transparent"
-            android:layout_toEndOf="@id/ll_dot_button_boarding" />
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:text="skip"
+            android:textSize="30dp"
+            android:background="@android:color/transparent"/>
 
     </RelativeLayout>
 

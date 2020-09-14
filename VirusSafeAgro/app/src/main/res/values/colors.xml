@@ -8,6 +8,7 @@
 
     // for OnBoarding Screen
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
     <color name="colorTransparentWhiteForText">#cccccc</color>
     <color name="colorGreyForDots">#909497</color>
     <color name="colorLaunchApp">#C0392B</color>

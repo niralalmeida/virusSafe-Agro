@@ -23,13 +23,14 @@ public class OnBoardingActivity extends AppCompatActivity {
     private ViewPager slideViewPager;
     private LinearLayout dotButtonsLinearLayout;
     private TextView[] bottomDotsTextViewArray;
-    private Button backButton;
-    private Button nextButton;
+    private Button skipButton;
+//    private Button backButton;
+//    private Button nextButton;
 
     private OnBoardingSlideAdapter onBoardingSlideAdapter;
     private int currentPagePosition;
 
-    private Button launchAppButton;
+//    private Button launchAppButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,13 @@ public class OnBoardingActivity extends AppCompatActivity {
         this.slideViewPager.addOnPageChangeListener(this.viewPagerListener);
 
         // initialize next button
-        this.nextButton.setVisibility(View.VISIBLE);
-        this.nextButton.setText("Next");
+//        this.nextButton.setVisibility(View.VISIBLE);
+//        this.nextButton.setText("Next");
 
         // set buttons' listeners
-        this.setBackButtonOnClickListener();
-        this.setNextButtonOnClickListener();
+//        this.setBackButtonOnClickListener();
+//        this.setNextButtonOnClickListener();
+        this.setSkipButtonOnClickListener();
 
         // show password activity
         new Handler().postDelayed(this::showPasswordActivity,200);
@@ -79,9 +81,10 @@ public class OnBoardingActivity extends AppCompatActivity {
     private void initializeViews() {
         this.slideViewPager = findViewById(R.id.slide_view_pager_boarding);
         this.dotButtonsLinearLayout = findViewById(R.id.ll_dot_button_boarding);
-        this.backButton = findViewById(R.id.btn_back_boarding);
-        this.nextButton = findViewById(R.id.btn_next_boarding);
-        this.launchAppButton = findViewById(R.id.btn_launch_app_boarding);
+        this.skipButton = findViewById(R.id.btn_skip_boarding);
+//        this.backButton = findViewById(R.id.btn_back_boarding);
+//        this.nextButton = findViewById(R.id.btn_next_boarding);
+//        this.launchAppButton = findViewById(R.id.btn_launch_app_boarding);
     }
 
     private void initializeSlideAdapterAndViewPager() {
@@ -96,15 +99,15 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         for (int i = 0; i < this.bottomDotsTextViewArray.length; i++) {
             this.bottomDotsTextViewArray[i] = new TextView(this);
-            this.bottomDotsTextViewArray[i].setText(Html.fromHtml("&#8226"));
-            this.bottomDotsTextViewArray[i].setTextSize(35);
+            this.bottomDotsTextViewArray[i].setText(Html.fromHtml("&#8226&nbsp"));
+            this.bottomDotsTextViewArray[i].setTextSize(50);
             this.bottomDotsTextViewArray[i].setTextColor(getResources().getColor(R.color.colorGreyForDots));
 
             dotButtonsLinearLayout.addView(this.bottomDotsTextViewArray[i]);
         }
 
         if (this.bottomDotsTextViewArray.length > 0) {
-            bottomDotsTextViewArray[position].setTextColor(getResources().getColor(R.color.colorWhite));
+            bottomDotsTextViewArray[position].setTextColor(getResources().getColor(R.color.colorBlack));
         }
     }
 
@@ -121,44 +124,44 @@ public class OnBoardingActivity extends AppCompatActivity {
             currentPagePosition = position;
 
             // control the buttons
-            if (position == 0) {
-                backButton.setEnabled(false);
-                backButton.setVisibility(View.INVISIBLE);
-                backButton.setText("");
-
-                nextButton.setEnabled(true);
-                nextButton.setVisibility(View.VISIBLE);
-                nextButton.setText("Next");
-
-                launchAppButton.setVisibility(View.VISIBLE);
-                launchAppButton.setAlpha(0);
-            } else if (position == bottomDotsTextViewArray.length - 1) {
-                backButton.setEnabled(true);
-                backButton.setVisibility(View.VISIBLE);
-                backButton.setText("BACK");
-
-                nextButton.setEnabled(false);
-                nextButton.setVisibility(View.INVISIBLE);
-                nextButton.setText("");
-
-                launchAppButton.animate()
-                        .alpha(1f)
-                        .setDuration(1000)
-                        .setListener(null);
-                setLaunchAppButtonOnClickListener();
-
-            } else {
-                backButton.setEnabled(true);
-                backButton.setVisibility(View.VISIBLE);
-                backButton.setText("BACK");
-
-                nextButton.setEnabled(true);
-                nextButton.setVisibility(View.VISIBLE);
-                nextButton.setText("NEXT");
-
-                launchAppButton.setVisibility(View.VISIBLE);
-                launchAppButton.setAlpha(0);
-            }
+//            if (position == 0) {
+//                backButton.setEnabled(false);
+//                backButton.setVisibility(View.INVISIBLE);
+//                backButton.setText("");
+//
+//                nextButton.setEnabled(true);
+//                nextButton.setVisibility(View.VISIBLE);
+//                nextButton.setText("Next");
+//
+//                launchAppButton.setVisibility(View.VISIBLE);
+//                launchAppButton.setAlpha(0);
+//            } else if (position == bottomDotsTextViewArray.length - 1) {
+//                backButton.setEnabled(true);
+//                backButton.setVisibility(View.VISIBLE);
+//                backButton.setText("BACK");
+//
+//                nextButton.setEnabled(false);
+//                nextButton.setVisibility(View.INVISIBLE);
+//                nextButton.setText("");
+//
+//                launchAppButton.animate()
+//                        .alpha(1f)
+//                        .setDuration(1000)
+//                        .setListener(null);
+//                setLaunchAppButtonOnClickListener();
+//
+//            } else {
+//                backButton.setEnabled(true);
+//                backButton.setVisibility(View.VISIBLE);
+//                backButton.setText("BACK");
+//
+//                nextButton.setEnabled(true);
+//                nextButton.setVisibility(View.VISIBLE);
+//                nextButton.setText("NEXT");
+//
+//                launchAppButton.setVisibility(View.VISIBLE);
+//                launchAppButton.setAlpha(0);
+//            }
         }
 
         @Override
@@ -167,20 +170,33 @@ public class OnBoardingActivity extends AppCompatActivity {
         }
     };
 
-    private void setBackButtonOnClickListener() {
-        this.backButton.setOnClickListener(view -> {
-            slideViewPager.setCurrentItem(currentPagePosition - 1);
-        });
-    }
+//    private void setBackButtonOnClickListener() {
+//        this.backButton.setOnClickListener(view -> {
+//            slideViewPager.setCurrentItem(currentPagePosition - 1);
+//        });
+//    }
 
-    private void setNextButtonOnClickListener() {
-        this.nextButton.setOnClickListener(view -> {
-            slideViewPager.setCurrentItem(currentPagePosition + 1);
-        });
-    }
+//    private void setNextButtonOnClickListener() {
+//        this.nextButton.setOnClickListener(view -> {
+//            slideViewPager.setCurrentItem(currentPagePosition + 1);
+//        });
+//    }
 
-    private void setLaunchAppButtonOnClickListener() {
-        this.launchAppButton.setOnClickListener(view -> {
+//    private void setLaunchAppButtonOnClickListener() {
+//        this.launchAppButton.setOnClickListener(view -> {
+//            // save on boarding show status
+//            initializeSharedPreferenceProcess();
+//            spp.putOnBoardingIsFirstShow(false);
+//
+//            Intent returnIntent = getIntent();
+//            setResult(MainActivity.ON_BOARDING_RESULT_OK, returnIntent);
+//            finish();
+//            overridePendingTransition(0, android.R.anim.fade_out);
+//        });
+//    }
+
+        private void setSkipButtonOnClickListener() {
+        this.skipButton.setOnClickListener(view -> {
             // save on boarding show status
             initializeSharedPreferenceProcess();
             spp.putOnBoardingIsFirstShow(false);
