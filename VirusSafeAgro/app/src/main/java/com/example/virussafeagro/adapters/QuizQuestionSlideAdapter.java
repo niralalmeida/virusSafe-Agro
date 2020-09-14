@@ -331,19 +331,27 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                             R.layout.bottom_sheet_right_quiz_result,
                             fragmentActivity.findViewById(R.id.container_bottom_sheet_right_quiz_result)
                     );
+
             // show the user answer
             TextView userRightAnswer = bottomSheetView.findViewById(R.id.tv_user_answer_right_quiz_result);
-            userRightAnswer.setText(currentChoiceQuestionModel.getUserAnswerList().get(0));
+            StringBuilder userAnswersStringBuilder = new StringBuilder();
+            for(String optionAnswer : currentChoiceQuestionModel.getUserAnswerList()){
+                userAnswersStringBuilder.append(" ").append(optionAnswer);
+            }
+            userRightAnswer.setText(userAnswersStringBuilder.toString());
+
             // close button
             bottomSheetView.findViewById(R.id.btn_close_right_quiz_result).setOnClickListener(closeButtonView -> {
                 // close the dialog
                 bottomSheetDialog.dismiss();
             });
+
             // next step button
             bottomSheetView.findViewById(R.id.btn_next_step_right_quiz_result).setOnClickListener(nextStepView -> {
                 // close the dialog
                 bottomSheetDialog.dismiss();
             });
+
         } else { // wrong
             bottomSheetView = LayoutInflater
                     .from(fragmentActivity.getApplicationContext())
@@ -351,17 +359,29 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                             R.layout.bottom_sheet_wrong_quiz_result,
                             fragmentActivity.findViewById(R.id.container_bottom_sheet_wrong_quiz_result)
                     );
+
             // show the user answer
             TextView userRightAnswer = bottomSheetView.findViewById(R.id.tv_user_answer_wrong_quiz_result);
-            userRightAnswer.setText(currentChoiceQuestionModel.getUserAnswerList().get(0));
-            // show the user answer
+            StringBuilder userAnswersStringBuilder = new StringBuilder();
+            for(String optionAnswer : currentChoiceQuestionModel.getUserAnswerList()){
+                userAnswersStringBuilder.append(" ").append(optionAnswer);
+            }
+            userRightAnswer.setText(userAnswersStringBuilder.toString());
+
+            // show the correct answer
             TextView correctAnswer = bottomSheetView.findViewById(R.id.tv_correct_answer_wrong_quiz_result);
-            correctAnswer.setText(currentChoiceQuestionModel.getCorrectAnswerList().get(0));
+            StringBuilder correctAnswersStringBuilder = new StringBuilder();
+            for(String optionAnswer : currentChoiceQuestionModel.getCorrectAnswerList()){
+                correctAnswersStringBuilder.append(" ").append(optionAnswer);
+            }
+            correctAnswer.setText(correctAnswersStringBuilder.toString());
+
             // close button
             bottomSheetView.findViewById(R.id.btn_close_wrong_quiz_result).setOnClickListener(closeButtonView -> {
                 // close the dialog
                 bottomSheetDialog.dismiss();
             });
+
             // next step button
             bottomSheetView.findViewById(R.id.btn_next_step_wrong_quiz_result).setOnClickListener(nextStepView -> {
                 // close the dialog
