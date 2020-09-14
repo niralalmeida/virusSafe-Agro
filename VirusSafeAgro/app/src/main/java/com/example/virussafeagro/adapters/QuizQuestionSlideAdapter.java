@@ -1,6 +1,7 @@
 package com.example.virussafeagro.adapters;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -233,58 +234,54 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         return false;
     }
 
-//    private boolean checkSingleChoiceQuestionAnswer() {
-//        String correctAnswer = currentChoiceQuestionModel.getCorrectAnswerList().get(0);
-//        for (RadioButton radioButton : getAllCurrentSlideRadioButton()){
-//            if (radioButton.isChecked()) {
-//                if (currentChoiceQuestionModel.getCorrectAnswerList().get(0).equals(radioButton.getText().toString().substring(0, 1))) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-
     private void openBottomSheetDialogForResult() {
         // initialize the bottom sheet dialog
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(fragmentActivity, R.style.BottomSheetDialogTheme);
         // initialize the bottom sheet view
         View bottomSheetView;
-        if (isCorrect){
+        if (isCorrect){ // right
             bottomSheetView = LayoutInflater
                     .from(fragmentActivity.getApplicationContext())
                     .inflate(
                             R.layout.bottom_sheet_right_quiz_result,
                             fragmentActivity.findViewById(R.id.container_bottom_sheet_right_quiz_result)
                     );
-        } else {
+            // close button
+            bottomSheetView.findViewById(R.id.btn_close_right_quiz_result).setOnClickListener(closeButtonView -> {
+                // close the dialog
+                bottomSheetDialog.dismiss();
+            });
+            // next step button
+            bottomSheetView.findViewById(R.id.btn_next_step_right_quiz_result).setOnClickListener(nextStepView -> {
+                // close the dialog
+                bottomSheetDialog.dismiss();
+            });
+        } else { // wrong
             bottomSheetView = LayoutInflater
                     .from(fragmentActivity.getApplicationContext())
                     .inflate(
                             R.layout.bottom_sheet_wrong_quiz_result,
-                            fragmentActivity.findViewById(R.id.container_bottom_sheet_right_quiz_result)
+                            fragmentActivity.findViewById(R.id.container_bottom_sheet_wrong_quiz_result)
                     );
+            // close button
+            bottomSheetView.findViewById(R.id.btn_close_wrong_quiz_result).setOnClickListener(closeButtonView -> {
+                // close the dialog
+                bottomSheetDialog.dismiss();
+            });
+            // next step button
+            bottomSheetView.findViewById(R.id.btn_next_step_wrong_quiz_result).setOnClickListener(nextStepView -> {
+                // close the dialog
+                bottomSheetDialog.dismiss();
+            });
         }
         // change the view according to the answer
-
-
-
-        // close button
-        bottomSheetView.findViewById(R.id.btn_close_right_quiz_result).setOnClickListener(closeButtonView -> {
-            bottomSheetDialog.dismiss();
-        });
-        // next step button
-        bottomSheetView.findViewById(R.id.btn_next_step_right_quiz_result).setOnClickListener(nextStepView -> {
-            // slide to next page if it is correct
-            if (isCorrect) {
-                virusQuizResultViewModel.setIsCorrectLD(true);
-            }
-            // just close the result view bottomSheetDialog
-            bottomSheetDialog.dismiss();
-        });
-
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
+
+        bottomSheetDialog.setOnDismissListener(dialog -> {
+            // slide to next page if it is correct
+            virusQuizResultViewModel.setIsCorrectLD(true);
+        });
     }
 
     @Override

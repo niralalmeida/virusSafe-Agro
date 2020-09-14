@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container_bottom_sheet_right_quiz_result"
+    android:alpha="0.9"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_bg_right_quiz_result"
@@ -67,15 +68,37 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="YOUR ANSWER: "
                 android:textColor="#000"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_user_answer_right_quiz_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="# # #"
+                android:textColor="@color/rightAnswer"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <View
+            android:id="@+id/v_line_slide_quiz_question"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:alpha="0.3"
+            android:background="@color/rightAnswer"
+            android:layout_gravity="center_horizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,7 +113,7 @@
                 android:padding="5dp"
                 android:text="EXPLANATION: "
                 android:textColor="#000"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textStyle="bold"/>
 
         </LinearLayout>

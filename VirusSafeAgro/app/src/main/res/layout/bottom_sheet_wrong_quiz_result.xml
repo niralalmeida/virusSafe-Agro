@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container_bottom_sheet_wrong_quiz_result"
+    android:alpha="0.9"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_bg_wrong_quiz_result"
@@ -67,11 +68,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="YOUR ANSWER: "
                 android:textColor="#000"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_user_answer_wrong_quiz_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="# # #"
+                android:textColor="@color/wrongAnswer"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -86,11 +97,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="CORRECT ANSWER: "
                 android:textColor="#000"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_correct_answer_wrong_quiz_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="# # #"
+                android:textColor="@color/correctAnswer"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -121,7 +142,7 @@
                 android:padding="5dp"
                 android:text="EXPLANATION: "
                 android:textColor="#000"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textStyle="bold"/>
 
         </LinearLayout>
@@ -145,7 +166,7 @@
                 android:background="@color/wrongAnswer"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:text="try again" />
+                android:text="next" />
 
         </LinearLayout>
 
