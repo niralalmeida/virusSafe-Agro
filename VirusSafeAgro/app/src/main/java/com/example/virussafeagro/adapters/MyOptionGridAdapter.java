@@ -39,8 +39,6 @@ public class MyOptionGridAdapter extends BaseAdapter {
 
     private MyOptionGridAdapter.SingleButtonOnClickListener singleButtonOnClickListener;
 
-    private List<CheckBox> itemCheckboxList = new ArrayList<>();;
-
     public MyOptionGridAdapter(FragmentActivity fragmentActivity, ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
         this.fragmentActivity = fragmentActivity;
         this.currentChoiceQuestionModel = currentChoiceQuestionModel;
@@ -178,18 +176,85 @@ public class MyOptionGridAdapter extends BaseAdapter {
                 // set checkbox
                 CheckBox checkBox = new CheckBox(fragmentActivity);
                 // set checkbox text
-                checkBox.setText(optionModel.getChoiceOptionContent());
+                String optionTextString = optionModel.getChoiceOptionLabel().toUpperCase() + ". " + optionModel.getChoiceOptionContent();
+                checkBox.setText(optionTextString);
+                // set color for clicking style
+                if(Build.VERSION.SDK_INT>=21)
+                {
+                    ColorStateList colorStateList = new ColorStateList(
+                            new int[][]{
+                                    new int[]{-android.R.attr.state_enabled}, //disabled
+                                    new int[]{android.R.attr.state_enabled} //enabled
+                            },
+                            new int[] {
+                                    Color.BLACK//disabled
+                                    ,ContextCompat.getColor(fragmentActivity, R.color.colorPrimaryDark) //enabled
+                            }
+                    );
+                    checkBox.setButtonTintList(colorStateList);//set the color tint list
+                }
                 // add checkbox into the linear layout
                 choiceButtonsLinearLayout.addView(checkBox);
 
-                // add the new check box into the item checkbox list
-                itemCheckboxList.add(checkBox);
+                // add the new checkbox into the item checkbox list
+                if (QuizQuestionSlideAdapter.allCheckBoxMapList.isEmpty()){
+                    // create question list
+                    List<Map<Integer, CheckBox>> mapList = new ArrayList<>();
+                    // create option map
+                    Map<Integer, CheckBox> integerCheckBoxMap = new HashMap<>();
+                    integerCheckBoxMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), checkBox);
+                    // add option
+                    mapList.add(integerCheckBoxMap);
+                    // add question
+                    QuizQuestionSlideAdapter.allCheckBoxMapList.add(mapList);
+                } else {
+                    boolean hasTheQuestionAndOption = false;
+                    boolean isFull = false;
+                    // find for question and option
+                    for (int mapListPosition = 0; mapListPosition < QuizQuestionSlideAdapter.allCheckBoxMapList.size(); mapListPosition++){
+                        // check whether the list is full
+                        List<Map<Integer, CheckBox>> mapList = QuizQuestionSlideAdapter.allCheckBoxMapList.get(mapListPosition);
+
+                        if (mapList.get(0).containsKey(currentChoiceQuestionModel.getChoiceQuestionId())){
+                            if (mapList.size() < currentChoiceQuestionModel.getChoiceQuestionOptionList().size()){ // not full
+                                // create option map
+                                Map<Integer, CheckBox> integerCheckBoxMap = new HashMap<>();
+                                integerCheckBoxMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), checkBox);
+                                // add option
+                                mapList.add(integerCheckBoxMap);
+                                hasTheQuestionAndOption = true;
+                            } else {
+                                isFull = true;
+                                // refresh the CheckBox list
+                                // create question list
+                                List<Map<Integer, CheckBox>> refreshedMapList = new ArrayList<>();
+                                // create option map
+                                Map<Integer, CheckBox> integerCheckBoxMap = new HashMap<>();
+                                integerCheckBoxMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), checkBox);
+                                // add option
+                                refreshedMapList.add(integerCheckBoxMap);
+                                // change the question list to refreshedMapList
+                                QuizQuestionSlideAdapter.allCheckBoxMapList.set(mapListPosition, refreshedMapList);
+                            }
+                            break;
+                        }
+                    }
+                    // there is no list for this question
+                    if (!hasTheQuestionAndOption && (!isFull)) {
+                        // create question list
+                        List<Map<Integer, CheckBox>> mapList = new ArrayList<>();
+                        // create option map
+                        Map<Integer, CheckBox> integerCheckBoxMap = new HashMap<>();
+                        integerCheckBoxMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), checkBox);
+                        // add option
+                        mapList.add(integerCheckBoxMap);
+                        // add question
+                        QuizQuestionSlideAdapter.allCheckBoxMapList.add(mapList);
+                    }
+                }
             }
         }
         return convertView;
     }
 
-    public List<CheckBox> getItemCheckboxList() {
-        return itemCheckboxList;
-    }
 }

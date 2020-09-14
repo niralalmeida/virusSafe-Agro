@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -49,6 +50,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private ChoiceQuestionModel currentChoiceQuestionModel;
     private int currentQuestionSlidePosition;
     public static List<List<Map<Integer, RadioButton>>> allRadioButtonMapList = new ArrayList<>(); // questionId + RadioButton
+    public static List<List<Map<Integer, CheckBox>>> allCheckBoxMapList = new ArrayList<>(); // questionId + CheckBox
 
     private VirusQuizResultViewModel virusQuizResultViewModel; // for isCorrect
     private boolean isCorrect = true;
@@ -116,6 +118,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             this.quizQuestionImageView.setLayoutParams(layoutParams);
         }
 
+        // question options
         // get options
         List<ChoiceOptionModel> optionList = currentChoiceQuestionModel.getChoiceQuestionOptionList();
         // initialize GridView for options
@@ -206,6 +209,13 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
 
             // test
+            for (List<Map<Integer, CheckBox>> mapList : allCheckBoxMapList) {
+                for (Map<Integer, CheckBox> map : mapList) {
+                    System.out.println("# question id: " + map.keySet().iterator().next());
+                    System.out.println("    - checkbox text" + Objects.requireNonNull(map.get(map.keySet().iterator().next())).getText().toString());
+                }
+            }
+            // test
             System.out.println("!!!! answer: =========>>>>>>" + currentChoiceQuestionModel.getCorrectAnswerList().get(0));
 
 
@@ -218,6 +228,9 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                     // open the bottom sheet dialog for result
                     openBottomSheetDialogForResult();
                 }
+            } else if (currentChoiceQuestionModel.getChoiceQuestionType().equals("multiple")){
+                // open the bottom sheet dialog for result
+                openBottomSheetDialogForResult();
             }
         });
     }
