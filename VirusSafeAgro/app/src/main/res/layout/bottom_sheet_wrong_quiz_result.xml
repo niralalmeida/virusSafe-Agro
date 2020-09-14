@@ -162,7 +162,6 @@
                 android:layout_gravity="center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:alpha="0.8"
                 android:background="@color/wrongAnswer"
                 android:textColor="#fff"
                 android:textStyle="bold"
