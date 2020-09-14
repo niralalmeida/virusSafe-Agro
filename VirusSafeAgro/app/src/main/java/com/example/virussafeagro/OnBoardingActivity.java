@@ -94,7 +94,7 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     private void addDotsIndicator(int position) {
 
-        this.bottomDotsTextViewArray = new TextView[3];
+        this.bottomDotsTextViewArray = new TextView[OnBoardingSlideAdapter.slide_headings.length];
         this.dotButtonsLinearLayout.removeAllViews();
 
         for (int i = 0; i < this.bottomDotsTextViewArray.length; i++) {
@@ -107,7 +107,21 @@ public class OnBoardingActivity extends AppCompatActivity {
         }
 
         if (this.bottomDotsTextViewArray.length > 0) {
-            bottomDotsTextViewArray[position].setTextColor(getResources().getColor(R.color.colorBlack));
+            bottomDotsTextViewArray[position].setTextColor(getResources().getColor(R.color.colorWhite));
+        }
+    }
+
+    private void setDotOnClickListener() {
+        for (int dotIndex = 0; dotIndex < OnBoardingSlideAdapter.slide_headings.length; dotIndex++) {
+            // add on click listener
+            if (dotIndex != currentPagePosition) {
+                TextView tv = bottomDotsTextViewArray[dotIndex];
+                int finalDotIndex = dotIndex;
+                tv.setOnClickListener(view -> {
+                    System.out.println("click!!!!");
+                    slideViewPager.setCurrentItem(finalDotIndex);
+                });
+            }
         }
     }
 
@@ -120,9 +134,16 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            addDotsIndicator(position);
             currentPagePosition = position;
 
+            addDotsIndicator(position);
+            setDotOnClickListener();
+
+            if (position == OnBoardingSlideAdapter.slide_headings.length - 1){
+                skipButton.setText("Enter");
+            } else {
+                skipButton.setText("skip");
+            }
             // control the buttons
 //            if (position == 0) {
 //                backButton.setEnabled(false);

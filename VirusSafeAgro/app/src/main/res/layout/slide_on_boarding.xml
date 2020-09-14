@@ -6,9 +6,10 @@
     <ImageView
         android:id="@+id/img_icon_slide_boarding"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/icon1" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/screen_1_easy_virus_detection" />
 
     <TextView
         android:id="@+id/tv_heading_slide_boarding"
@@ -17,14 +18,14 @@
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/img_icon_slide_boarding"
-        android:textSize="25dp"
-        android:textColor="#000"
+        android:textSize="25sp"
+        android:textColor="#fff"
         android:textStyle="bold"
         android:text="HEADING 1" />
 
     <View
         android:id="@+id/v_line_slide_boarding"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -37,11 +38,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
+        android:gravity="start"
         android:layout_below="@id/v_line_slide_boarding"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="@color/backButton"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:textSize="17sp"
+        android:textColor="@color/colorTransparentWhiteForText"
         android:text="This this description " />
 
 </RelativeLayout>

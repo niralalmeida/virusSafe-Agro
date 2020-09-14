@@ -23,22 +23,25 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
     private TextView slideDescriptionTextView;
 
     // icon id Arrays
-    public int[] slide_images = {
-            R.drawable.icon1,
-            R.drawable.icon2,
-            R.drawable.icon3
+    public static int[] slide_images = {
+            R.drawable.screen_1_easy_virus_detection,
+            R.drawable.screen_2_virus_and_nutrient_deficiency,
+            R.drawable.screen_3_news_tweets,
+            R.drawable.screen_4_causes
     };
     // String heading Arrays
-    public String[] slide_headings = {
-            "First Heading",
-            "Second Heading",
-            "Third Heading"
+    public static String[] slide_headings = {
+            "Easy Virus Detection",
+            "Viruses and Nutrient Deficiency",
+            "News and Tweets",
+            "Causes and Control Strategies"
     };
     // String description Arrays
-    public String[] slide_descriptions = {
-            "First - This this description 1\n This this description 1 This this description 1 \n This this description 1",
-            "Second - This this description 2\n This this description 2 This this description 2 \n This this description 2",
-            "Third - This this description 3\n This this description 3 This this description 3 \n This this description 3"
+    public static String[] slide_descriptions = {
+            "Upload the image of your tomato plant to \ncheck if it is infected or not.",
+            "Read about virus and nutrient deficiencies in tomato plants.",
+            "Streaming of latest news updates in the field of agriculture.",
+            "Environmental conditions and causes of viral diseases in tomato plants.\n\nChemical and non-chemical strategies to control the spread of virus"
     };
 
     public OnBoardingSlideAdapter(Context context) {
@@ -76,9 +79,9 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
     }
 
     private void setContentOfViewsByPosition(int position) {
-        this.slideImageView.setImageResource(this.slide_images[position]);
-        this.slideHeadingTextView.setText(this.slide_headings[position]);
-        this.slideDescriptionTextView.setText(this.slide_descriptions[position]);
+        this.slideImageView.setImageResource(slide_images[position]);
+        this.slideHeadingTextView.setText(slide_headings[position]);
+        this.slideDescriptionTextView.setText(slide_descriptions[position]);
     }
 
     @Override
