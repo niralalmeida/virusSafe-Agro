@@ -387,6 +387,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                 // close the dialog
                 bottomSheetDialog.dismiss();
             });
+
         }
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
