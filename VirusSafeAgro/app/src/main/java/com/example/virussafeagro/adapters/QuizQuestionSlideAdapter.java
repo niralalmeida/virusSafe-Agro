@@ -13,11 +13,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
+import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.List;
@@ -37,6 +39,9 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private List<ChoiceQuestionModel> choiceQuestionModelList;
     private MyOptionGridAdapter myOptionGridAdapter;
 
+    private VirusQuizResultViewModel virusQuizResultViewModel; // for isCorrect
+    private boolean isCorrect = true; // test
+
     private static final int QUESTION_COUNT = 5;
 
     public QuizQuestionSlideAdapter(FragmentActivity fragmentActivity, List<ChoiceQuestionModel> choiceQuestionModelList) {
@@ -52,7 +57,9 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         this.questionView = layoutInflater.inflate(R.layout.slide_quiz_question, container, false);
 
         // initiate Question Views
-        this.initiateQuestionViews();
+        this.initializeQuestionViews();
+        // initialize VirusQuizResultViewModel
+        this.initializeVirusQuizResultViewModel();
 
         // setup all the views within the slides
         this.setContentOfViewsByPosition(position);
@@ -64,13 +71,17 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         return this.questionView;
     }
 
-    private void initiateQuestionViews() {
+    private void initializeQuestionViews() {
         this.quizQuestionCardView = questionView.findViewById(R.id.cv_quiz_question);
         this.quizQuestionNoTextView = questionView.findViewById(R.id.tv_question_no_slide_quiz_question);
         this.quizQuestionContentTextView = questionView.findViewById(R.id.tv_question_content_slide_quiz_question);
         this.quizQuestionImageView = questionView.findViewById(R.id.img_question_slide_quiz_question);
         this.quizOptionGridView = questionView.findViewById(R.id.gv_options_quiz_question);
         this.submitAnswerButton = questionView.findViewById(R.id.btn_submit_answer_slide_quiz_question);
+    }
+
+    private void initializeVirusQuizResultViewModel(){
+        this.virusQuizResultViewModel = new ViewModelProvider(fragmentActivity).get(VirusQuizResultViewModel.class);
     }
 
     private void setContentOfViewsByPosition(int slidePosition) {
@@ -124,12 +135,12 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             });
             // next step button
             bottomSheetView.findViewById(R.id.btn_next_step_quiz_result).setOnClickListener(nextStepView -> {
+                // slide to next page if it is correct
+                if (isCorrect) {
+                    virusQuizResultViewModel.setIsCorrectLD(true);
+                }
                 // just close the result view bottomSheetDialog
                 bottomSheetDialog.dismiss();
-                // slide to next page if it is correct
-                if (true) {
-
-                }
             });
 
             bottomSheetDialog.setContentView(bottomSheetView);

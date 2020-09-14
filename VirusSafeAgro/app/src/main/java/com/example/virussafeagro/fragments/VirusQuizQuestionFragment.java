@@ -39,6 +39,7 @@ import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.NonSwipeableViewPager;
 import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
+import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     private VirusModel currentVirusModel;
 
     private VirusQuizQuestionViewModel virusQuizQuestionViewModel;
+    private VirusQuizResultViewModel virusQuizResultViewModel;
     private List<ChoiceQuestionModel> choiceQuestionModelList;
 
     private LinearLayout processBarLinearLayout;
@@ -57,6 +59,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     private NonSwipeableViewPager questionViewPager;
 
     private QuizQuestionSlideAdapter quizQuestionSlideAdapter;
+    private int currentPagePosition;
 
     @Nullable
     @Override
@@ -89,6 +92,8 @@ public class VirusQuizQuestionFragment extends Fragment {
 
         // initialize view model
         this.initializeVirusQuizQuestionViewModel();
+        // initialize view model
+        this.initializeVirusQuizResultViewModel();
         // find virus quiz list in new Thread
         this.findVirusQuizQuestionsFromDB();
         // observe VirusModel Quiz List Live Data
@@ -104,6 +109,9 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     private void initializeVirusQuizQuestionViewModel() {
         this.virusQuizQuestionViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizQuestionViewModel.class);
+    }
+    private void initializeVirusQuizResultViewModel() {
+        this.virusQuizResultViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizResultViewModel.class);
     }
 
     private void findVirusQuizQuestionsFromDB() {
@@ -122,11 +130,39 @@ public class VirusQuizQuestionFragment extends Fragment {
                 // initialize the QuizQuestionSlideAdapter and ViewPager
                 quizQuestionSlideAdapter = new QuizQuestionSlideAdapter(requireActivity(), choiceQuestionModelList);
                 questionViewPager.setAdapter(quizQuestionSlideAdapter);
-
-                // test
+                // get the current slide position
+                questionViewPager.addOnPageChangeListener(viewPagerListener);
+                // slide to next page when the button in bottom sheet is clicked
+                observeIsCorrectLD();
             }
         });
     }
+
+    private void observeIsCorrectLD() {
+        this.virusQuizResultViewModel.getIsCorrectLD().observe(getViewLifecycleOwner(), isCorrectLD -> {
+            if(isCorrectLD){
+                questionViewPager.setCurrentItem(currentPagePosition + 1);
+            }
+        });
+    }
+
+    ViewPager.OnPageChangeListener viewPagerListener = new ViewPager.OnPageChangeListener(){
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            currentPagePosition = position;
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
 
     @Override
     public void onPause() {
