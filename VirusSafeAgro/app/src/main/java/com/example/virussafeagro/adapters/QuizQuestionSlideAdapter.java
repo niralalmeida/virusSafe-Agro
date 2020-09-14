@@ -38,9 +38,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private ImageView quizQuestionImageView;
     private GridView quizOptionGridView;
     private Button submitAnswerButton;
-//    private CardView resultCardView;
-
-    private boolean isResultCardViewUp;
 
     private List<ChoiceQuestionModel> choiceQuestionModelList;
     private MyOptionGridAdapter myOptionGridAdapter;
@@ -79,7 +76,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         this.quizQuestionImageView = questionView.findViewById(R.id.img_question_slide_quiz_question);
         this.quizOptionGridView = questionView.findViewById(R.id.gv_options_quiz_question);
         this.submitAnswerButton = questionView.findViewById(R.id.btn_submit_answer_slide_quiz_question);
-//        this.resultCardView = questionView.findViewById(R.id.cv_result_slide_quiz_question);
     }
 
     private void setContentOfViewsByPosition(int slidePosition) {
@@ -115,6 +111,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         quizOptionGridView.setAdapter(myOptionGridAdapter);
     }
 
+    // when click, open the result view
     private void setSubmitAnswerButtonOnClickListener() {
         this.submitAnswerButton.setOnClickListener(view -> {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
@@ -126,8 +123,18 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                             R.layout.layout_bottom_sheet_quiz_result,
                             fragmentActivity.findViewById(R.id.container_bottom_sheet_quiz_result)
                     );
+            // close button
             bottomSheetView.findViewById(R.id.btn_close_quiz_result).setOnClickListener(closeButtonView -> {
                 bottomSheetDialog.dismiss();
+            });
+            // next step button
+            bottomSheetView.findViewById(R.id.btn_next_step_quiz_result).setOnClickListener(nextStepView -> {
+                // just close the result view bottomSheetDialog
+                bottomSheetDialog.dismiss();
+                // slide to next page if it is correct
+                if (true) {
+                    
+                }
             });
 
             bottomSheetDialog.setContentView(bottomSheetView);

@@ -53,8 +53,6 @@ public class MyOptionGridAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        //test
-//        System.out.println("size: ==============> " + optionList.size());
         return optionList.size();
     }
 

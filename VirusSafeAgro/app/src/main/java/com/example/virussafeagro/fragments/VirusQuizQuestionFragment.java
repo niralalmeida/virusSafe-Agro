@@ -112,12 +112,14 @@ public class VirusQuizQuestionFragment extends Fragment {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
                 // set recycler view linear layout visible and process bar invisible
                 processBarLinearLayout.setVisibility(View.INVISIBLE);
-                this.questionViewPager.setVisibility(View.VISIBLE);
+                questionViewPager.setVisibility(View.VISIBLE);
                 // set question list
                 choiceQuestionModelList = resultQuizQuestionModelList;
                 // initialize the QuizQuestionSlideAdapter and ViewPager
                 quizQuestionSlideAdapter = new QuizQuestionSlideAdapter(requireActivity(), choiceQuestionModelList);
                 questionViewPager.setAdapter(quizQuestionSlideAdapter);
+
+                // test
             }
         });
     }
