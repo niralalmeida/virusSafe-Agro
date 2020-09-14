@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_bottom_sheet_right_quiz_result"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_bg_right_quiz_result"
+    android:orientation="vertical">
+
+    <!--  title  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/rightAnswer"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quiz Result - Correct !"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btn_close_right_quiz_result"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="end"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_close_white_50dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="YOUR ANSWER: "
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="EXPLANATION: "
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_next_step_right_quiz_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:alpha="0.8"
+                android:background="@color/rightAnswer"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="next" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

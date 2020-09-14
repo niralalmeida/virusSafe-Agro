@@ -249,23 +249,32 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         // initialize the bottom sheet dialog
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(fragmentActivity, R.style.BottomSheetDialogTheme);
         // initialize the bottom sheet view
-        View bottomSheetView = LayoutInflater
-                .from(fragmentActivity.getApplicationContext())
-                .inflate(
-                        R.layout.bottom_sheet_quiz_result,
-                        fragmentActivity.findViewById(R.id.container_bottom_sheet_quiz_result)
-                );
-
+        View bottomSheetView;
+        if (isCorrect){
+            bottomSheetView = LayoutInflater
+                    .from(fragmentActivity.getApplicationContext())
+                    .inflate(
+                            R.layout.bottom_sheet_right_quiz_result,
+                            fragmentActivity.findViewById(R.id.container_bottom_sheet_right_quiz_result)
+                    );
+        } else {
+            bottomSheetView = LayoutInflater
+                    .from(fragmentActivity.getApplicationContext())
+                    .inflate(
+                            R.layout.bottom_sheet_wrong_quiz_result,
+                            fragmentActivity.findViewById(R.id.container_bottom_sheet_right_quiz_result)
+                    );
+        }
         // change the view according to the answer
-        
+
 
 
         // close button
-        bottomSheetView.findViewById(R.id.btn_close_quiz_result).setOnClickListener(closeButtonView -> {
+        bottomSheetView.findViewById(R.id.btn_close_right_quiz_result).setOnClickListener(closeButtonView -> {
             bottomSheetDialog.dismiss();
         });
         // next step button
-        bottomSheetView.findViewById(R.id.btn_next_step_quiz_result).setOnClickListener(nextStepView -> {
+        bottomSheetView.findViewById(R.id.btn_next_step_right_quiz_result).setOnClickListener(nextStepView -> {
             // slide to next page if it is correct
             if (isCorrect) {
                 virusQuizResultViewModel.setIsCorrectLD(true);
