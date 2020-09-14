@@ -193,6 +193,9 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().removeObservers(getViewLifecycleOwner());
         List<ChoiceQuestionModel> choiceQuestionModelList = new ArrayList<>();
         this.virusQuizQuestionViewModel.setQuizQuestionModelListLD(choiceQuestionModelList);
+
+        this.virusQuizResultViewModel.getIsCorrectLD().removeObservers(getViewLifecycleOwner());
+        this.virusQuizResultViewModel.setIsCorrectLD(false);
     }
 
     @Override
