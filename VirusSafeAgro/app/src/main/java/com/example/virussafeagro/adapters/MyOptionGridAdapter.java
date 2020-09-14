@@ -108,24 +108,38 @@ public class MyOptionGridAdapter extends BaseAdapter {
                     QuizQuestionSlideAdapter.allRadioButtonMapList.add(mapList);
                 } else {
                     boolean hasTheQuestionAndOption = false;
+                    boolean isFull = false;
                     // find for question and option
-                    for (List<Map<Integer, RadioButton>> mapList : QuizQuestionSlideAdapter.allRadioButtonMapList){
-                        for (Map<Integer, RadioButton> integerRadioButtonMap : mapList){
-                            if (integerRadioButtonMap.containsKey(currentChoiceQuestionModel.getChoiceQuestionId())) {
+                    for (int mapListPosition = 0; mapListPosition < QuizQuestionSlideAdapter.allRadioButtonMapList.size(); mapListPosition++){
+                        // check whether the list is full
+                        List<Map<Integer, RadioButton>> mapList = QuizQuestionSlideAdapter.allRadioButtonMapList.get(mapListPosition);
+
+                        if (mapList.get(0).containsKey(currentChoiceQuestionModel.getChoiceQuestionId())){
+                            if (mapList.size() < currentChoiceQuestionModel.getChoiceQuestionOptionList().size()){ // not full
+                                // create option map
+                                Map<Integer, RadioButton> integerRadioButtonMap = new HashMap<>();
+                                integerRadioButtonMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), radioButton);
+                                // add option
+                                mapList.add(integerRadioButtonMap);
                                 hasTheQuestionAndOption = true;
-                                break;
+                            } else {
+                                isFull = true;
+                                // refresh the radio list
+                                    // create question list
+                                List<Map<Integer, RadioButton>> refreshedMapList = new ArrayList<>();
+                                    // create option map
+                                Map<Integer, RadioButton> integerRadioButtonMap = new HashMap<>();
+                                integerRadioButtonMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), radioButton);
+                                    // add option
+                                refreshedMapList.add(integerRadioButtonMap);
+                                    // change the question list to refreshedMapList
+                                QuizQuestionSlideAdapter.allRadioButtonMapList.set(mapListPosition, refreshedMapList);
                             }
-                        }
-                        if (hasTheQuestionAndOption){
-                            // create option map
-                            Map<Integer, RadioButton> integerRadioButtonMap = new HashMap<>();
-                            integerRadioButtonMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), radioButton);
-                            // add option
-                            mapList.add(integerRadioButtonMap);
                             break;
                         }
                     }
-                    if (!hasTheQuestionAndOption) {
+                    // there is no list for this question
+                    if (!hasTheQuestionAndOption && (!isFull)) {
                         // create question list
                         List<Map<Integer, RadioButton>> mapList = new ArrayList<>();
                         // create option map

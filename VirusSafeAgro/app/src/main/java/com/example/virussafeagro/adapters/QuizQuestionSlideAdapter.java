@@ -129,6 +129,8 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
     private void setSingleButtonOnClickListener() {
         myOptionGridAdapter.setOnSingleButtonOnClickListenerClickListener(optionPosition -> {
+            // set currentChoiceQuestionModel
+            this.currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
             // test
             System.out.println("after added ~~~ all radio list size(" + allRadioButtonMapList.size() + ")");
             // test
@@ -141,15 +143,25 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             // test
             System.out.println("----> optionPosition <" + optionPosition + ">");
 
+            // test
+            System.out.println("current slide position: [[[" + currentQuestionSlidePosition + "]]]");
+            // test
+            System.out.println("current question id: [[[" + currentChoiceQuestionModel.getChoiceQuestionId() + "]]]");
+
             // set all radio button checked false and get checked Radio button
             RadioButton checkedRadioButton = setCheckedRadioButtonFalseAndGetCheckedOne(optionPosition);
+
+            // test
+            System.out.println("checkedRadioButton text [[[[ " + checkedRadioButton.getText().toString() + "]]]");
+            // test
+            System.out.println("####################################################################################");
+
             // set clicked radio button checked true
             checkedRadioButton.setChecked(true);
         });
     }
 
     private RadioButton setCheckedRadioButtonFalseAndGetCheckedOne(int optionPosition) {
-        this.currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
         RadioButton checkedRadioButton = null;
         for (List<Map<Integer, RadioButton>> mapList : allRadioButtonMapList) {
             // if find the question option radio button list
@@ -218,5 +230,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
     public void setCurrentQuestionSlidePosition(int currentQuestionSlidePosition) {
         this.currentQuestionSlidePosition = currentQuestionSlidePosition;
+        this.currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
     }
 }
