@@ -25,6 +25,8 @@ import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -245,6 +247,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(fragmentActivity, R.style.BottomSheetDialogTheme);
         // initialize the bottom sheet view
         View bottomSheetView;
+        // change the view according to the answer
         if (isCorrect){ // right
             bottomSheetView = LayoutInflater
                     .from(fragmentActivity.getApplicationContext())
@@ -252,6 +255,9 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                             R.layout.bottom_sheet_right_quiz_result,
                             fragmentActivity.findViewById(R.id.container_bottom_sheet_right_quiz_result)
                     );
+            // show the user answer
+            TextView userRightAnswer = bottomSheetView.findViewById(R.id.tv_user_answer_right_quiz_result);
+            userRightAnswer.setText(currentChoiceQuestionModel.getUserAnswerList().get(0));
             // close button
             bottomSheetView.findViewById(R.id.btn_close_right_quiz_result).setOnClickListener(closeButtonView -> {
                 // close the dialog
@@ -269,6 +275,12 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                             R.layout.bottom_sheet_wrong_quiz_result,
                             fragmentActivity.findViewById(R.id.container_bottom_sheet_wrong_quiz_result)
                     );
+            // show the user answer
+            TextView userRightAnswer = bottomSheetView.findViewById(R.id.tv_user_answer_wrong_quiz_result);
+            userRightAnswer.setText(currentChoiceQuestionModel.getUserAnswerList().get(0));
+            // show the user answer
+            TextView correctAnswer = bottomSheetView.findViewById(R.id.tv_correct_answer_wrong_quiz_result);
+            correctAnswer.setText(currentChoiceQuestionModel.getCorrectAnswerList().get(0));
             // close button
             bottomSheetView.findViewById(R.id.btn_close_wrong_quiz_result).setOnClickListener(closeButtonView -> {
                 // close the dialog
@@ -280,7 +292,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                 bottomSheetDialog.dismiss();
             });
         }
-        // change the view according to the answer
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
 
