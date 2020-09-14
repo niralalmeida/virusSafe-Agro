@@ -21,6 +21,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.List;
 
@@ -35,7 +36,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private ImageView quizQuestionImageView;
     private GridView quizOptionGridView;
     private Button submitAnswerButton;
-    private LinearLayout resultLinearLayout;
 //    private CardView resultCardView;
 
     private boolean isResultCardViewUp;
@@ -77,7 +77,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         this.quizQuestionImageView = questionView.findViewById(R.id.img_question_slide_quiz_question);
         this.quizOptionGridView = questionView.findViewById(R.id.gv_options_quiz_question);
         this.submitAnswerButton = questionView.findViewById(R.id.btn_submit_answer_slide_quiz_question);
-        this.resultLinearLayout = questionView.findViewById(R.id.ll_result_slide_quiz_question);
 //        this.resultCardView = questionView.findViewById(R.id.cv_result_slide_quiz_question);
     }
 
