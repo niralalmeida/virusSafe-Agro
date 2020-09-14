@@ -23,7 +23,10 @@ import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class QuizQuestionSlideAdapter extends PagerAdapter {
     private FragmentActivity fragmentActivity;
@@ -39,9 +42,12 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
     private List<ChoiceQuestionModel> choiceQuestionModelList;
     private MyOptionGridAdapter myOptionGridAdapter;
+    private ChoiceQuestionModel currentChoiceQuestionModel;
+    private int currentQuestionSlidePosition;
+    public static List<List<Map<Integer, RadioButton>>> allRadioButtonMapList = new ArrayList<>(); // questionId + RadioButton
 
     private VirusQuizResultViewModel virusQuizResultViewModel; // for isCorrect
-    private boolean isCorrect = true; // test
+    private boolean isCorrect = true;
 
     private static final int QUESTION_COUNT = 5;
 
@@ -111,9 +117,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         // initialize GridView for options
         showGrid(currentChoiceQuestionModel, optionList);
 
-        // test
-        System.out.println("radio list size(" + myOptionGridAdapter.getItemRadioButtonList().size() + ")");
-
         // set single button on click listener
         setSingleButtonOnClickListener();
     }
@@ -127,33 +130,44 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private void setSingleButtonOnClickListener() {
         myOptionGridAdapter.setOnSingleButtonOnClickListenerClickListener(optionPosition -> {
             // test
-            System.out.println("after added ~~~ radio list size(" + myOptionGridAdapter.getItemRadioButtonList().size() + ")");
-
-            // set all radio button checked false
-            setCheckedRadioButtonFalse();
-            // set clicked radio button checked true
-            List<RadioButton> itemRadioButtonList = myOptionGridAdapter.getItemRadioButtonList();
-            if ((itemRadioButtonList != null) || (!itemRadioButtonList.isEmpty())){
-                // test
-                System.out.println("=-======> itemRadioButtonList size [" + itemRadioButtonList.size() + "]");
-                // test
-                System.out.println("----> optionPosition <" + optionPosition + ">");
-//                RadioButton radioButton = itemRadioButtonList.get(optionPosition);
-//                radioButton.setChecked(true);
+            System.out.println("after added ~~~ all radio list size(" + allRadioButtonMapList.size() + ")");
+            // test
+            for (List<Map<Integer, RadioButton>> mapList : allRadioButtonMapList) {
+                for (Map<Integer, RadioButton> map : mapList) {
+                    System.out.println("# question id: " + map.keySet().iterator().next());
+                    System.out.println("    - radio button text" + Objects.requireNonNull(map.get(map.keySet().iterator().next())).getText().toString());
+                }
             }
+            // test
+            System.out.println("----> optionPosition <" + optionPosition + ">");
+
+            // set all radio button checked false and get checked Radio button
+            RadioButton checkedRadioButton = setCheckedRadioButtonFalseAndGetCheckedOne(optionPosition);
+            // set clicked radio button checked true
+            checkedRadioButton.setChecked(true);
         });
     }
 
-    private void setCheckedRadioButtonFalse() {
-        for (RadioButton rb : myOptionGridAdapter.getItemRadioButtonList()) {
-            // test
-            System.out.println("##### reached");
-            // test
-            System.out.println("is checked ++++ > [" + rb.isChecked() + "]");
-            if (rb.isChecked()){
-                rb.setChecked(false);
+    private RadioButton setCheckedRadioButtonFalseAndGetCheckedOne(int optionPosition) {
+        this.currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
+        RadioButton checkedRadioButton = null;
+        for (List<Map<Integer, RadioButton>> mapList : allRadioButtonMapList) {
+            // if find the question option radio button list
+            if (mapList.get(0).keySet().iterator().next() == (currentChoiceQuestionModel.getChoiceQuestionId())){
+                // assign the checkedRadioButton
+                Map<Integer, RadioButton> checkedMap = mapList.get(optionPosition);
+                checkedRadioButton = checkedMap.get(checkedMap.keySet().iterator().next());
+                // set all radio button checked false
+                for (Map<Integer, RadioButton> map : mapList) {
+                    RadioButton radioButton = map.get(map.keySet().iterator().next());
+                    if (radioButton.isChecked()) {
+                        radioButton.setChecked(false);
+                    }
+                }
+                break;
             }
         }
+        return checkedRadioButton;
     }
 
     // when click, open the result view
@@ -200,5 +214,9 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
+    }
+
+    public void setCurrentQuestionSlidePosition(int currentQuestionSlidePosition) {
+        this.currentQuestionSlidePosition = currentQuestionSlidePosition;
     }
 }

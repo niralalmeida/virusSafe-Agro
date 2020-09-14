@@ -164,6 +164,8 @@ public class VirusQuizQuestionFragment extends Fragment {
         @Override
         public void onPageSelected(int position) {
             currentPagePosition = position;
+            // set position in QuizQuestionSlideAdapter
+            ((QuizQuestionSlideAdapter) Objects.requireNonNull(questionViewPager.getAdapter())).setCurrentQuestionSlidePosition(position);
             // control the visibility of the slide back button
             if (position == 0){
                 slideBackButtonLinearLayout.setVisibility(View.INVISIBLE);

@@ -15,10 +15,11 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
-import com.example.virussafeagro.uitilities.DataConverter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MyOptionGridAdapter extends BaseAdapter {
 
@@ -33,7 +34,6 @@ public class MyOptionGridAdapter extends BaseAdapter {
 
     private MyOptionGridAdapter.SingleButtonOnClickListener singleButtonOnClickListener;
 
-    private List<RadioButton> itemRadioButtonList = new ArrayList<>();;
     private List<CheckBox> itemCheckboxList = new ArrayList<>();;
 
     public MyOptionGridAdapter(FragmentActivity fragmentActivity, ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
@@ -96,10 +96,47 @@ public class MyOptionGridAdapter extends BaseAdapter {
                 radioButton.setOnClickListener(v -> singleButtonOnClickListener.onSingleButtonClick(position));
 
                 // add the new radio Button into the item radio Button list
-                itemRadioButtonList.add(radioButton);
-
-                // test
-                System.out.println("~~~~~~ added ~~~~~~");
+                if (QuizQuestionSlideAdapter.allRadioButtonMapList.isEmpty()){
+                    // create question list
+                    List<Map<Integer, RadioButton>> mapList = new ArrayList<>();
+                    // create option map
+                    Map<Integer, RadioButton> integerRadioButtonMap = new HashMap<>();
+                    integerRadioButtonMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), radioButton);
+                    // add option
+                    mapList.add(integerRadioButtonMap);
+                    // add question
+                    QuizQuestionSlideAdapter.allRadioButtonMapList.add(mapList);
+                } else {
+                    boolean hasTheQuestionAndOption = false;
+                    // find for question and option
+                    for (List<Map<Integer, RadioButton>> mapList : QuizQuestionSlideAdapter.allRadioButtonMapList){
+                        for (Map<Integer, RadioButton> integerRadioButtonMap : mapList){
+                            if (integerRadioButtonMap.containsKey(currentChoiceQuestionModel.getChoiceQuestionId())) {
+                                hasTheQuestionAndOption = true;
+                                break;
+                            }
+                        }
+                        if (hasTheQuestionAndOption){
+                            // create option map
+                            Map<Integer, RadioButton> integerRadioButtonMap = new HashMap<>();
+                            integerRadioButtonMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), radioButton);
+                            // add option
+                            mapList.add(integerRadioButtonMap);
+                            break;
+                        }
+                    }
+                    if (!hasTheQuestionAndOption) {
+                        // create question list
+                        List<Map<Integer, RadioButton>> mapList = new ArrayList<>();
+                        // create option map
+                        Map<Integer, RadioButton> integerRadioButtonMap = new HashMap<>();
+                        integerRadioButtonMap.put(currentChoiceQuestionModel.getChoiceQuestionId(), radioButton);
+                        // add option
+                        mapList.add(integerRadioButtonMap);
+                        // add question
+                        QuizQuestionSlideAdapter.allRadioButtonMapList.add(mapList);
+                    }
+                }
 
             } else if (currentChoiceQuestionModel.getChoiceQuestionType().equals("multiple")) {
                 // set checkbox
@@ -112,16 +149,10 @@ public class MyOptionGridAdapter extends BaseAdapter {
                 // add the new check box into the item checkbox list
                 itemCheckboxList.add(checkBox);
             }
-
-            // test
-            System.out.println("## type ### - " + currentChoiceQuestionModel.getChoiceQuestionType() + " === : [ in adapter radio list size ] -> {" + itemRadioButtonList.size() + "}");
         }
         return convertView;
     }
 
-    public List<RadioButton> getItemRadioButtonList() {
-        return itemRadioButtonList;
-    }
     public List<CheckBox> getItemCheckboxList() {
         return itemCheckboxList;
     }
