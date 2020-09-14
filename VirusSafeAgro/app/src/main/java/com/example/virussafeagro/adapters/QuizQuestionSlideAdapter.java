@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -109,12 +110,50 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         List<ChoiceOptionModel> optionList = currentChoiceQuestionModel.getChoiceQuestionOptionList();
         // initialize GridView for options
         showGrid(currentChoiceQuestionModel, optionList);
+
+        // test
+        System.out.println("radio list size(" + myOptionGridAdapter.getItemRadioButtonList().size() + ")");
+
+        // set single button on click listener
+        setSingleButtonOnClickListener();
     }
 
     // initialize GridView for options
     private void showGrid(ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
         myOptionGridAdapter = new MyOptionGridAdapter(fragmentActivity, currentChoiceQuestionModel, optionList);
         quizOptionGridView.setAdapter(myOptionGridAdapter);
+    }
+
+    private void setSingleButtonOnClickListener() {
+        myOptionGridAdapter.setOnSingleButtonOnClickListenerClickListener(optionPosition -> {
+            // test
+            System.out.println("after added ~~~ radio list size(" + myOptionGridAdapter.getItemRadioButtonList().size() + ")");
+
+            // set all radio button checked false
+            setCheckedRadioButtonFalse();
+            // set clicked radio button checked true
+            List<RadioButton> itemRadioButtonList = myOptionGridAdapter.getItemRadioButtonList();
+            if ((itemRadioButtonList != null) || (!itemRadioButtonList.isEmpty())){
+                // test
+                System.out.println("=-======> itemRadioButtonList size [" + itemRadioButtonList.size() + "]");
+                // test
+                System.out.println("----> optionPosition <" + optionPosition + ">");
+//                RadioButton radioButton = itemRadioButtonList.get(optionPosition);
+//                radioButton.setChecked(true);
+            }
+        });
+    }
+
+    private void setCheckedRadioButtonFalse() {
+        for (RadioButton rb : myOptionGridAdapter.getItemRadioButtonList()) {
+            // test
+            System.out.println("##### reached");
+            // test
+            System.out.println("is checked ++++ > [" + rb.isChecked() + "]");
+            if (rb.isChecked()){
+                rb.setChecked(false);
+            }
+        }
     }
 
     // when click, open the result view

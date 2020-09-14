@@ -33,15 +33,14 @@ public class MyOptionGridAdapter extends BaseAdapter {
 
     private MyOptionGridAdapter.SingleButtonOnClickListener singleButtonOnClickListener;
 
-    // test
-    private List<RadioButton> itemRadioButtonList;
+    private List<RadioButton> itemRadioButtonList = new ArrayList<>();;
+    private List<CheckBox> itemCheckboxList = new ArrayList<>();;
 
     public MyOptionGridAdapter(FragmentActivity fragmentActivity, ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
         this.fragmentActivity = fragmentActivity;
         this.currentChoiceQuestionModel = currentChoiceQuestionModel;
         this.optionList = optionList;
         this.layoutInflater = (LayoutInflater) fragmentActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.itemRadioButtonList = new ArrayList<>();
     }
 
     public interface SingleButtonOnClickListener{
@@ -85,26 +84,45 @@ public class MyOptionGridAdapter extends BaseAdapter {
             // get option model
             ChoiceOptionModel optionModel = optionList.get(position);
 
+            // setup all option views
             if (currentChoiceQuestionModel.getChoiceQuestionType().equals("single")){
                 // set radio Button
                 RadioButton radioButton = new RadioButton(fragmentActivity);
+                // set radio Button text
                 radioButton.setText(optionList.get(position).getChoiceOptionContent());
+                // add radio Button into the linear layout
                 choiceButtonsLinearLayout.addView(radioButton);
-//                radioButton.setOnClickListener(v -> singleButtonOnClickListener.onSingleButtonClick(position));
-//                if ((position != 0) || itemRadioButtonList.isEmpty()){
-//                    itemRadioButtonList.add(radioButton);
-//                }
-            } else if(currentChoiceQuestionModel.getChoiceQuestionType().equals("multiple")) {
+                // set radio Button OnClickListener
+                radioButton.setOnClickListener(v -> singleButtonOnClickListener.onSingleButtonClick(position));
+
+                // add the new radio Button into the item radio Button list
+                itemRadioButtonList.add(radioButton);
+
+                // test
+                System.out.println("~~~~~~ added ~~~~~~");
+
+            } else if (currentChoiceQuestionModel.getChoiceQuestionType().equals("multiple")) {
                 // set checkbox
                 CheckBox checkBox = new CheckBox(fragmentActivity);
+                // set checkbox text
                 checkBox.setText(optionList.get(position).getChoiceOptionContent());
+                // add checkbox into the linear layout
                 choiceButtonsLinearLayout.addView(checkBox);
+
+                // add the new check box into the item checkbox list
+                itemCheckboxList.add(checkBox);
             }
+
+            // test
+            System.out.println("## type ### - " + currentChoiceQuestionModel.getChoiceQuestionType() + " === : [ in adapter radio list size ] -> {" + itemRadioButtonList.size() + "}");
         }
         return convertView;
     }
 
     public List<RadioButton> getItemRadioButtonList() {
         return itemRadioButtonList;
+    }
+    public List<CheckBox> getItemCheckboxList() {
+        return itemCheckboxList;
     }
 }
