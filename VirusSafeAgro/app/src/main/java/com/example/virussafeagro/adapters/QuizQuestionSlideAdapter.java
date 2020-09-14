@@ -202,49 +202,64 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         this.submitAnswerButton.setOnClickListener(view -> {
             currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
 
+            // test
+            System.out.println("!!!! answer: =========>>>>>>" + currentChoiceQuestionModel.getCorrectAnswerList().get(0));
+
+
             // check the question type
             if (currentChoiceQuestionModel.getChoiceQuestionType().equals("single")){
                 // check whether user select an option
                 if (!checkHasUserAnsweredSingleChoiceQuestion()) {
                     Toast.makeText(fragmentActivity, "Please make a choice!", Toast.LENGTH_SHORT).show();
                 } else {
-
+                    // open the bottom sheet dialog for result
+                    openBottomSheetDialogForResult();
                 }
             }
-
-            // open the bottom sheet dialog for result
-            openBottomSheetDialogForResult();
         });
     }
 
     private boolean checkHasUserAnsweredSingleChoiceQuestion() {
         for (RadioButton radioButton : getAllCurrentSlideRadioButton()){
             if (radioButton.isChecked()) {
+                if (currentChoiceQuestionModel.getCorrectAnswerList().get(0).equals(radioButton.getText().toString().substring(0, 1))) {
+                    isCorrect = true;
+                } else {
+                    isCorrect = false;
+                }
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkSingleChoiceQuestionAnswer() {
-        for (RadioButton radioButton : getAllCurrentSlideRadioButton()){
-            if (radioButton.isChecked()) {
-//                if (currentChoiceQuestionModel.getCorrectAnswerList().get(0))
-            }
-        }
-        return false;
-    }
+//    private boolean checkSingleChoiceQuestionAnswer() {
+//        String correctAnswer = currentChoiceQuestionModel.getCorrectAnswerList().get(0);
+//        for (RadioButton radioButton : getAllCurrentSlideRadioButton()){
+//            if (radioButton.isChecked()) {
+//                if (currentChoiceQuestionModel.getCorrectAnswerList().get(0).equals(radioButton.getText().toString().substring(0, 1))) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+//    }
 
     private void openBottomSheetDialogForResult() {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
-                fragmentActivity, R.style.BottomSheetDialogTheme
-        );
+        // initialize the bottom sheet dialog
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(fragmentActivity, R.style.BottomSheetDialogTheme);
+        // initialize the bottom sheet view
         View bottomSheetView = LayoutInflater
                 .from(fragmentActivity.getApplicationContext())
                 .inflate(
                         R.layout.bottom_sheet_quiz_result,
                         fragmentActivity.findViewById(R.id.container_bottom_sheet_quiz_result)
                 );
+
+        // change the view according to the answer
+        
+
+
         // close button
         bottomSheetView.findViewById(R.id.btn_close_quiz_result).setOnClickListener(closeButtonView -> {
             bottomSheetDialog.dismiss();

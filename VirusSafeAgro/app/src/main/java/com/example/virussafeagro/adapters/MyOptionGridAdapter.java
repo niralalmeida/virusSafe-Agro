@@ -90,7 +90,8 @@ public class MyOptionGridAdapter extends BaseAdapter {
                 // set radio Button
                 RadioButton radioButton = new RadioButton(fragmentActivity);
                 // set radio Button text
-                radioButton.setText(optionModel.getChoiceOptionContent());
+                String optionTextString = optionModel.getChoiceOptionLabel().toUpperCase() + ". " + optionModel.getChoiceOptionContent();
+                radioButton.setText(optionTextString);
                 // add radio Button into the linear layout
                 choiceButtonsLinearLayout.addView(radioButton);
                 // set radio Button OnClickListener
