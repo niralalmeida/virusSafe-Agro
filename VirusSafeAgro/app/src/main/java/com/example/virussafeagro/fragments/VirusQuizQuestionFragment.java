@@ -1,7 +1,9 @@
 package com.example.virussafeagro.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -35,6 +37,7 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.NonSwipeableViewPager;
 import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 
 import java.io.Serializable;
@@ -51,7 +54,7 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     private LinearLayout processBarLinearLayout;
     private TextView virusFullNameTitleTextView;
-    private ViewPager questionViewPager;
+    private NonSwipeableViewPager questionViewPager;
 
     private QuizQuestionSlideAdapter quizQuestionSlideAdapter;
 
@@ -107,6 +110,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusQuizQuestionViewModel.processFindingVirusQuizQuestions(this.currentVirusModel.getVirusId());
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void observeVirusTwoTypeQuestionArrayLD() {
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultQuizQuestionModelList -> {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){

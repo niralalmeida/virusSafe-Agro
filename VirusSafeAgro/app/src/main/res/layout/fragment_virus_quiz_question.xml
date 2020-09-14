@@ -51,14 +51,14 @@
 
         </LinearLayout>
 
-        <androidx.viewpager.widget.ViewPager
+        <com.example.virussafeagro.uitilities.NonSwipeableViewPager
             android:id="@+id/slide_virus_quiz_question"
             android:layout_below="@id/ll_question_process_quiz_question"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp">
 
-        </androidx.viewpager.widget.ViewPager>
+        </com.example.virussafeagro.uitilities.NonSwipeableViewPager>
 
         <LinearLayout
             android:id="@+id/ll_process_bar_virus_quiz_question"
