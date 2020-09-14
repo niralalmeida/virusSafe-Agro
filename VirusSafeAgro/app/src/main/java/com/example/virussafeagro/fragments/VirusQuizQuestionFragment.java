@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -57,6 +58,8 @@ public class VirusQuizQuestionFragment extends Fragment {
     private LinearLayout processBarLinearLayout;
     private TextView virusFullNameTitleTextView;
     private NonSwipeableViewPager questionViewPager;
+    private LinearLayout slideBackButtonLinearLayout;
+    private ImageButton slideBackButton;
 
     private QuizQuestionSlideAdapter quizQuestionSlideAdapter;
     private int currentPagePosition;
@@ -98,6 +101,8 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.findVirusQuizQuestionsFromDB();
         // observe VirusModel Quiz List Live Data
         this.observeVirusTwoTypeQuestionArrayLD();
+        //
+        this.setSlideBackButtonOnClickListener();
     }
 
     private void initializeViews() {
@@ -105,6 +110,8 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
+        this.slideBackButtonLinearLayout = view.findViewById(R.id.ll_slide_back_quiz_question);
+        this.slideBackButton = view.findViewById(R.id.btn_slide_back_quiz_question);
     }
 
     private void initializeVirusQuizQuestionViewModel() {
@@ -141,6 +148,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void observeIsCorrectLD() {
         this.virusQuizResultViewModel.getIsCorrectLD().observe(getViewLifecycleOwner(), isCorrectLD -> {
             if(isCorrectLD){
+                // swipe to the next slide
                 questionViewPager.setCurrentItem(currentPagePosition + 1);
             }
         });
@@ -156,6 +164,14 @@ public class VirusQuizQuestionFragment extends Fragment {
         @Override
         public void onPageSelected(int position) {
             currentPagePosition = position;
+            // control the visibility of the slide back button
+            if (position == 0){
+                slideBackButtonLinearLayout.setVisibility(View.INVISIBLE);
+                slideBackButton.setEnabled(false);
+            } else {
+                slideBackButtonLinearLayout.setVisibility(View.VISIBLE);
+                slideBackButton.setEnabled(true);
+            }
         }
 
         @Override
@@ -163,6 +179,13 @@ public class VirusQuizQuestionFragment extends Fragment {
 
         }
     };
+
+    private void setSlideBackButtonOnClickListener() {
+        this.slideBackButton.setOnClickListener(view -> {
+            // swipe to the previous slide
+            questionViewPager.setCurrentItem(currentPagePosition - 1);
+        });
+    }
 
     @Override
     public void onPause() {
