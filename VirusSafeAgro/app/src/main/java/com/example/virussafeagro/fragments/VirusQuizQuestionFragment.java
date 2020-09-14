@@ -2,6 +2,8 @@ package com.example.virussafeagro.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Html;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -58,6 +61,8 @@ public class VirusQuizQuestionFragment extends Fragment {
     private LinearLayout processBarLinearLayout;
     private TextView virusFullNameTitleTextView;
     private NonSwipeableViewPager questionViewPager;
+    private TextView[] topDotsTextViewArray;
+    private LinearLayout dotButtonsLinearLayout;
 //    private LinearLayout slideBackButtonLinearLayout;
 //    private ImageButton slideBackButton;
 
@@ -97,6 +102,8 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.initializeVirusQuizQuestionViewModel();
         // initialize view model
         this.initializeVirusQuizResultViewModel();
+        // add dots
+        this.addDotsIndicator(0);
         // find virus quiz list in new Thread
         this.findVirusQuizQuestionsFromDB();
         // observe VirusModel Quiz List Live Data
@@ -106,6 +113,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
 
     private void initializeViews() {
+        this.dotButtonsLinearLayout = view.findViewById(R.id.ll_dot_quiz_question);
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_quiz_question);
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
@@ -119,6 +127,34 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
     private void initializeVirusQuizResultViewModel() {
         this.virusQuizResultViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizResultViewModel.class);
+    }
+
+    private void addDotsIndicator(int position) {
+        topDotsTextViewArray = new TextView[QuizQuestionSlideAdapter.QUESTION_COUNT];
+        dotButtonsLinearLayout.removeAllViews(); // clean the views
+
+//        TextView questionProcessTextView = new TextView(requireActivity());
+//        String questionProcessString = (position + 1) + " / " + QuizQuestionSlideAdapter.QUESTION_COUNT;
+//        questionProcessTextView.setText(questionProcessString);
+//        questionProcessTextView.setTextColor(ContextCompat.getColor(requireActivity(), R.color.colorWhite));
+//        questionProcessTextView.setTextSize(12);
+//        dotButtonsLinearLayout.addView(questionProcessTextView);
+
+        for (int i = 0; i < topDotsTextViewArray.length; i++) {
+            topDotsTextViewArray[i] = new TextView(requireActivity());
+            topDotsTextViewArray[i].setText(Html.fromHtml("&#8226"));
+            topDotsTextViewArray[i].setTextSize(35);
+            topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.colorGreyForDots));
+            topDotsTextViewArray[i].setGravity(Gravity.TOP);
+
+            dotButtonsLinearLayout.addView(topDotsTextViewArray[i]);
+        }
+
+        if (topDotsTextViewArray.length > 0) {
+            for (int p = 0; p <= position; p++){
+                topDotsTextViewArray[p].setTextColor(requireActivity().getResources().getColor(R.color.colorWhite));
+            }
+        }
     }
 
     private void findVirusQuizQuestionsFromDB() {
@@ -164,6 +200,8 @@ public class VirusQuizQuestionFragment extends Fragment {
         @Override
         public void onPageSelected(int position) {
             currentPagePosition = position;
+            // set dots
+            addDotsIndicator(position);
             // set position in QuizQuestionSlideAdapter
             ((QuizQuestionSlideAdapter) Objects.requireNonNull(questionViewPager.getAdapter())).setCurrentQuestionSlidePosition(position);
             // control the visibility of the slide back button

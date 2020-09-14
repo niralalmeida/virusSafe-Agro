@@ -2,6 +2,7 @@ package com.example.virussafeagro.adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -55,7 +57,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private VirusQuizResultViewModel virusQuizResultViewModel; // for isCorrect
     private boolean isCorrect = true;
 
-    private static final int QUESTION_COUNT = 5;
+    public static final int QUESTION_COUNT = 5;
 
     public QuizQuestionSlideAdapter(FragmentActivity fragmentActivity, List<ChoiceQuestionModel> choiceQuestionModelList) {
         this.fragmentActivity = fragmentActivity;

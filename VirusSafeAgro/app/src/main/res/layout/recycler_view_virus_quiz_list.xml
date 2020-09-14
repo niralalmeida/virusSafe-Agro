@@ -48,7 +48,7 @@
                 android:id="@+id/btn_take_quiz_virus_quiz_list"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:background="#000"
+                android:background="@color/colorDarkBackground"
                 android:text="@string/recycler_view_quiz_button"
                 android:textColor="#fff" />
 
