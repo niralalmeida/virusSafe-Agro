@@ -42,7 +42,7 @@
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:textSize="30sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorWhite"
             android:text="@string/process_bar_text_virus_info" />
 
     </LinearLayout>

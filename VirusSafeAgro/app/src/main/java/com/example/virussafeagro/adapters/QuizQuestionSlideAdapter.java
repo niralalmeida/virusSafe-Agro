@@ -138,30 +138,9 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
         myOptionGridAdapter.setOnSingleButtonOnClickListenerClickListener(optionPosition -> {
             // set currentChoiceQuestionModel
             this.currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
-            // test
-            System.out.println("after added ~~~ all radio list size(" + allRadioButtonMapList.size() + ")");
-            // test
-            for (List<Map<Integer, RadioButton>> mapList : allRadioButtonMapList) {
-                for (Map<Integer, RadioButton> map : mapList) {
-                    System.out.println("# question id: " + map.keySet().iterator().next());
-                    System.out.println("    - radio button text" + Objects.requireNonNull(map.get(map.keySet().iterator().next())).getText().toString());
-                }
-            }
-            // test
-            System.out.println("----> optionPosition <" + optionPosition + ">");
-
-            // test
-            System.out.println("current slide position: [[[" + currentQuestionSlidePosition + "]]]");
-            // test
-            System.out.println("current question id: [[[" + currentChoiceQuestionModel.getChoiceQuestionId() + "]]]");
 
             // set all radio button checked false and get checked Radio button
             RadioButton checkedRadioButton = setCheckedRadioButtonFalseAndGetCheckedOne(optionPosition);
-
-            // test
-            System.out.println("checkedRadioButton text [[[[ " + checkedRadioButton.getText().toString() + "]]]");
-            // test
-            System.out.println("####################################################################################");
 
             // set clicked radio button checked true
             checkedRadioButton.setChecked(true);
@@ -221,14 +200,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private void setSubmitAnswerButtonOnClickListener() {
         this.submitAnswerButton.setOnClickListener(view -> {
             currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
-
-            // test
-            for (List<Map<Integer, CheckBox>> mapList : allCheckBoxMapList) {
-                for (Map<Integer, CheckBox> map : mapList) {
-                    System.out.println("# question id: " + map.keySet().iterator().next());
-                    System.out.println("    - checkbox text" + Objects.requireNonNull(map.get(map.keySet().iterator().next())).getText().toString());
-                }
-            }
 
             // check the question type
             if (currentChoiceQuestionModel.getChoiceQuestionType().equals("single")){
