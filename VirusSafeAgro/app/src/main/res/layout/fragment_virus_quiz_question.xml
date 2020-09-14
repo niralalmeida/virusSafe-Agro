@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/correctAnswer"
+        android:background="#000"
         android:orientation="vertical">
 
         <LinearLayout
@@ -104,7 +104,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="30sp"
-                android:textColor="@color/correctAnswer"
+                android:textColor="@color/colorWhite"
                 android:text="@string/process_bar_text_virus_quiz_question" />
 
         </LinearLayout>

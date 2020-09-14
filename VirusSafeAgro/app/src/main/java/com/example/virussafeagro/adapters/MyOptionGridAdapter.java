@@ -1,6 +1,10 @@
 package com.example.virussafeagro.adapters;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.virussafeagro.R;
@@ -92,6 +97,21 @@ public class MyOptionGridAdapter extends BaseAdapter {
                 // set radio Button text
                 String optionTextString = optionModel.getChoiceOptionLabel().toUpperCase() + ". " + optionModel.getChoiceOptionContent();
                 radioButton.setText(optionTextString);
+                // set color for clicking style
+                if(Build.VERSION.SDK_INT>=21)
+                {
+                    ColorStateList colorStateList = new ColorStateList(
+                            new int[][]{
+                                    new int[]{-android.R.attr.state_enabled}, //disabled
+                                    new int[]{android.R.attr.state_enabled} //enabled
+                            },
+                            new int[] {
+                                    Color.BLACK//disabled
+                                    ,ContextCompat.getColor(fragmentActivity, R.color.colorPrimaryDark) //enabled
+                            }
+                    );
+                    radioButton.setButtonTintList(colorStateList);//set the color tint list
+                }
                 // add radio Button into the linear layout
                 choiceButtonsLinearLayout.addView(radioButton);
                 // set radio Button OnClickListener

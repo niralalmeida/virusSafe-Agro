@@ -44,8 +44,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:textSize="15sp"
-                            android:textColor="@color/correctAnswer"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold"
                             android:text="Q# - " />
 
@@ -101,20 +101,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@color/correctAnswer"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:orientation="vertical">
 
                     <Button
                         android:id="@+id/btn_submit_answer_slide_quiz_question"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:paddingStart="20dp"
                         android:paddingEnd="20dp"
-                        android:layout_margin="5dp"
-                        android:background="#000"
+                        android:background="@color/colorPrimaryDark"
                         android:textStyle="bold"
                         android:textColor="#fff"
                         android:text="submit answer"/>

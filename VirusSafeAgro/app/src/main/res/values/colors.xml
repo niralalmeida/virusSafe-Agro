@@ -3,6 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#074A44</color>
     <color name="colorAccent">#03DAC5</color>
+<!--    <color name="colorDarkBackground">#707B7C</color>-->
+    <color name="colorDarkBackground">#515A5A</color>
 
     // for OnBoarding Screen
     <color name="colorWhite">#FFFFFF</color>
