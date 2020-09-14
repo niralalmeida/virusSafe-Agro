@@ -12,12 +12,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
@@ -115,7 +117,21 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
     private void setSubmitAnswerButtonOnClickListener() {
         this.submitAnswerButton.setOnClickListener(view -> {
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                    fragmentActivity, R.style.BottomSheetDialogTheme
+            );
+            View bottomSheetView = LayoutInflater
+                    .from(fragmentActivity.getApplicationContext())
+                    .inflate(
+                            R.layout.layout_bottom_sheet_quiz_result,
+                            fragmentActivity.findViewById(R.id.container_bottom_sheet_quiz_result)
+                    );
+            bottomSheetView.findViewById(R.id.btn_close_quiz_result).setOnClickListener(closeButtonView -> {
+                bottomSheetDialog.dismiss();
+            });
 
+            bottomSheetDialog.setContentView(bottomSheetView);
+            bottomSheetDialog.show();
         });
     }
 
