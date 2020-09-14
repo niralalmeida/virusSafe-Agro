@@ -35,7 +35,7 @@
             android:textSize="23sp"
             android:textStyle="bold"
             android:typeface="sans"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:text="XXXX XXXX" />
 
         <LinearLayout
