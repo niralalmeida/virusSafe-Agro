@@ -223,7 +223,13 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private boolean checkHasUserAnsweredSingleChoiceQuestion() {
         for (RadioButton radioButton : getAllCurrentSlideRadioButton()){
             if (radioButton.isChecked()) {
-                if (currentChoiceQuestionModel.getCorrectAnswerList().get(0).equals(radioButton.getText().toString().substring(0, 1))) {
+                String userAnswer = radioButton.getText().toString().substring(0, 1);
+                // store user's answer
+                List<String> userAnswerList = new ArrayList<>();
+                userAnswerList.add(userAnswer);
+                currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
+                // check the answer
+                if (currentChoiceQuestionModel.getCorrectAnswerList().get(0).equals(userAnswer)) {
                     isCorrect = true;
                 } else {
                     isCorrect = false;
