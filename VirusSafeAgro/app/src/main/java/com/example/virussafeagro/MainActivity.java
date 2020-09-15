@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.example.virussafeagro.fragments.HomeFragment;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private LinearLayout backgroundLinearLayout;
     private BottomNavigationView bottomNavigationView;
+    private LinearLayout launchScreenLinearLayout;
 
     public static final int PASSWORD_REQUEST_CODE = 9;
     public static final int PASSWORD_RESULT_OK = 24;
@@ -53,22 +55,36 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         this.initializeViews();
         // initialize SharedPreferenceProcess
         this.initializeSharedPreferenceProcess();
+
         // check whether OnBoardingActivity is first show
         if (this.spp.getOnBoardingIsFirstShow()) {
             // show OnBoarding Screen
             this.showOnBoardingScreen();
-        } else {
-
         }
     }
 
     private void initializeViews() {
         // initialize background image
+        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
         this.backgroundLinearLayout = findViewById(R.id.ll_image_main);
+        this.launchScreenLinearLayout = findViewById(R.id.ll_launch_screen);
     }
 
     private void initializeSharedPreferenceProcess() {
         this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(this);
+    }
+
+    private void showAndCloseTheLaunchScreen() {
+        // hide bottom bar
+        this.bottomNavigationView.setVisibility(View.GONE);
+        // show launch screen
+        this.launchScreenLinearLayout.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(() -> {
+            // hide launch screen
+            launchScreenLinearLayout.setVisibility(View.GONE);
+            // show bottom bar
+            bottomNavigationView.setVisibility(View.VISIBLE);
+        },3000);
     }
 
     private void showOnBoardingScreen() {
@@ -87,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())){
             // set authentication as "no"
             AppAuthentication.setAuthenticationAsNo(this);
-            // check the authentication
+            // check the authentication --> show the PasswordActivity
             new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity),200);
         }
     }
@@ -104,12 +120,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PASSWORD_REQUEST_CODE){
-            if (resultCode == PASSWORD_RESULT_OK) {
+            if (resultCode == PASSWORD_RESULT_OK) { // from password activity
                 isFromPasswordActivity = true;
                 this.setMainBackgroundImageVisibility(true);
+
+                // show launch screen
+                this.showAndCloseTheLaunchScreen();
             }
         }
-        if(requestCode == ON_BOARDING_REQUEST_CODE){
+        if(requestCode == ON_BOARDING_REQUEST_CODE){ // from on boarding activity
             if (resultCode == ON_BOARDING_RESULT_OK) {
                 isFromOnBoardingActivity = true;
                 this.setMainBackgroundImageVisibility(true);
@@ -165,7 +184,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     // initialize BottomNavigationView and set OnNavigationItemSelectedListener
     private void initializeBottomNavigationView(){
-        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
         this.bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 

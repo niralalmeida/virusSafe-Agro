@@ -43,4 +43,20 @@
         app:itemTextColor="@color/color_selector_bottom_bar_items"
         app:menu="@menu/nav_menu" />
 
+    <!-- launch screen -->
+    <LinearLayout
+        android:id="@+id/ll_launch_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/launch_screen"/>
+
+    </LinearLayout>
+
 </RelativeLayout>
