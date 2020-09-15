@@ -1,10 +1,7 @@
 package com.example.virussafeagro.uitilities;
 
 import com.example.virussafeagro.models.ChoiceOptionModel;
-import com.example.virussafeagro.models.ChoiceQuestionCorrectAnswerModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
-import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
-import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
 
 import org.json.JSONArray;
@@ -105,42 +102,6 @@ public class JsonParser {
         return optionModelList;
     }
 
-    // don't use
-    public static List<ChoiceQuestionCorrectAnswerModel> choiceQuestionAnswerListJsonParser(String resultText) throws JSONException{
-        List<ChoiceQuestionCorrectAnswerModel> correctAnswersList = new ArrayList<>();
-        if(!resultText.equals("[]")){
-            JSONArray answerListJsonArray = new JSONArray(resultText);
-            int arrayLength = answerListJsonArray.length();
-            for (int i = 0; i < arrayLength; i++) {
-                JSONObject answerJsonObject = answerListJsonArray.getJSONObject(i);
-
-                // question id
-                int choiceQuestionId = answerJsonObject.getInt("choiceQuestionId");
-                // question type
-                String choiceQuestionTypeLetter = answerJsonObject.getString("choiceQuestionType");
-                String choiceQuestionType = "";
-                if (choiceQuestionTypeLetter.equals("s")){ // single choice
-                    choiceQuestionType = "single";
-                } else { // multiple choice
-                    choiceQuestionType = "multiple";
-                }
-
-                // answer
-                String answer = answerJsonObject.getString("answer");
-                List<String> answerList = new ArrayList<>();
-                for (int k = 0; k < answer.length(); k++) {
-                    String answerItem = answer.substring(k, k + 1);
-                    answerList.add(answerItem);
-                }
-                ChoiceQuestionCorrectAnswerModel choiceQuestionCorrectAnswerModel = new ChoiceQuestionCorrectAnswerModel();
-                choiceQuestionCorrectAnswerModel.setChoiceQuestionId(choiceQuestionId);
-                choiceQuestionCorrectAnswerModel.setChoiceQuestionType(choiceQuestionType);
-                choiceQuestionCorrectAnswerModel.setCorrectAnswerList(answerList);
-                correctAnswersList.add(choiceQuestionCorrectAnswerModel);
-            }
-        }
-        return correctAnswersList;
-    }
 
     public static String imageCheckFeedbackJsonParser(String resultText) throws JSONException {
         String feedBack = "";

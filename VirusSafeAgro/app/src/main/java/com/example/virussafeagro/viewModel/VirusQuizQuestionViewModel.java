@@ -1,6 +1,5 @@
 package com.example.virussafeagro.viewModel;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
@@ -9,10 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
-import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
-import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
-import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.JsonParser;
 
 import java.util.ArrayList;

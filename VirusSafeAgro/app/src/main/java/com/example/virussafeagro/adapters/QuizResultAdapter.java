@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
-import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.uitilities.DataComparison;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.ViewHolder> {
