@@ -63,6 +63,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     private NonSwipeableViewPager questionViewPager;
     private TextView[] topDotsTextViewArray;
     private LinearLayout dotButtonsLinearLayout;
+    private LinearLayout quizResultLinearLayout;
 //    private LinearLayout slideBackButtonLinearLayout;
 //    private ImageButton slideBackButton;
 
@@ -89,7 +90,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         // initialize views
         this.initializeViews();
         this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.questionViewPager.setVisibility(View.INVISIBLE);
+        this.questionViewPager.setVisibility(View.GONE);
 
         return this.view;
     }
@@ -118,6 +119,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
+        this.quizResultLinearLayout = view.findViewById(R.id.ll_quiz_result_question);
 //        this.slideBackButtonLinearLayout = view.findViewById(R.id.ll_slide_back_quiz_question);
 //        this.slideBackButton = view.findViewById(R.id.btn_slide_back_quiz_question);
     }
@@ -166,7 +168,8 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultQuizQuestionModelList -> {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
                 // set recycler view linear layout visible and process bar invisible
-                processBarLinearLayout.setVisibility(View.INVISIBLE);
+                processBarLinearLayout.setVisibility(View.GONE);
+                dotButtonsLinearLayout.setVisibility(View.VISIBLE);
                 questionViewPager.setVisibility(View.VISIBLE);
                 // set question list
                 choiceQuestionModelList = resultQuizQuestionModelList;
@@ -197,9 +200,12 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void observeIsLastSlideLD() {
         this.virusQuizResultViewModel.getIsLastSlideLD().observe(getViewLifecycleOwner(), isLastSlideLD -> {
             if(isLastSlideLD){
-                // hide the view pager (GONE)
+                // hide the dots -> GONE
+                dotButtonsLinearLayout.setVisibility(View.GONE);
+                // hide the view pager -> GONE
                 questionViewPager.setVisibility(View.GONE);
                 // show the final result view
+                quizResultLinearLayout.setVisibility(View.VISIBLE);
 
             }
         });

@@ -6,6 +6,7 @@
     android:orientation="vertical"
     tools:context=".fragments.VirusQuizQuestionFragment">
 
+    <!-- title -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,29 +36,22 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!-- body -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/quiz_bg">
 
+        <!-- process dots -->
         <LinearLayout
-            android:id="@+id/ll_text_process_quiz_question"
-            android:layout_width="match_parent"
+            android:id="@+id/ll_dot_quiz_question"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
             android:layout_centerHorizontal="true"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/ll_dot_quiz_question"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal">
-            </LinearLayout>
-
-
+            android:orientation="horizontal"
+            android:visibility="gone">
         </LinearLayout>
 
         <!-- back button -->
@@ -85,14 +79,16 @@
 
 <!--        </LinearLayout>-->
 
+        <!-- view pager for question slides -->
         <com.example.virussafeagro.uitilities.NonSwipeableViewPager
             android:id="@+id/slide_virus_quiz_question"
-            android:layout_below="@id/ll_text_process_quiz_question"
+            android:layout_below="@id/ll_dot_quiz_question"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </com.example.virussafeagro.uitilities.NonSwipeableViewPager>
 
+        <!-- progress bar for loading the page -->
         <LinearLayout
             android:id="@+id/ll_process_bar_virus_quiz_question"
             android:layout_width="wrap_content"
@@ -118,8 +114,52 @@
 
         </LinearLayout>
 
+        <!-- result view for the quiz -->
+        <LinearLayout
+            android:id="@+id/ll_quiz_result_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsv_quiz_result_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fff"
+                            android:text="Your Quiz Result" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_quiz_result_question"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="vertical" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
     </RelativeLayout>
-
-
 
 </LinearLayout>
