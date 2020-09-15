@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
         public TextView questionContentTextView;
         public ImageView questionImageView;
         public TextView userAnswersTextView;
+        public LinearLayout correctAnswerLinearLayout;
         public TextView correctAnswersTextView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -51,6 +53,7 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
             this.questionContentTextView = itemView.findViewById(R.id.tv_question_content_quiz_result_final);
             this.questionImageView = itemView.findViewById(R.id.img_question_quiz_result_final);
             this.userAnswersTextView = itemView.findViewById(R.id.tv_user_answer_quiz_result_final);
+            this.correctAnswerLinearLayout = itemView.findViewById(R.id.ll_correct_answer_quiz_result_final);
             this.correctAnswersTextView = itemView.findViewById(R.id.tv_correct_answer_quiz_result_final);
         }
     }
@@ -72,10 +75,24 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
         // question mark and background color
         if (DataComparison.checkTwoListHaveSameItems(choiceQuestionModel.getUserAnswerList(), choiceQuestionModel.getCorrectAnswerList())){
             viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_right_circle_white_50dp);
-            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.colorPrimaryDark));
+            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.rightAnswer));
+            viewHolder.correctAnswerLinearLayout.setVisibility(View.GONE);
         } else {
             viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_wrong_circle_white_50dp);
             viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.wrongAnswer));
+            // correct answer
+            StringBuilder correctAnswerStringBuilder = new StringBuilder();
+            // get correct answer content by the label
+            for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()) {
+                for (String answerLabel : choiceQuestionModel.getCorrectAnswerList()) {
+                    if (answerLabel.equals(choiceOptionModel.getChoiceOptionLabel())) {
+                        correctAnswerStringBuilder.append(answerLabel).append(". ").append(choiceOptionModel.getChoiceOptionContent()).append("\n");
+                        break;
+                    }
+                }
+            }
+            correctAnswerStringBuilder.deleteCharAt(correctAnswerStringBuilder.length() - 1);
+            viewHolder.correctAnswersTextView.setText(correctAnswerStringBuilder.toString());
         }
 
         // question no
@@ -91,30 +108,18 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
         // user answer
         StringBuilder userAnswerStringBuilder = new StringBuilder();
             // get user answer content by the label
-        for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()) {
-            for (String answerLabel : choiceQuestionModel.getUserAnswerList()) {
-                if (answerLabel.equals(choiceOptionModel.getChoiceOptionLabel())) {
-                    userAnswerStringBuilder.append(answerLabel).append(choiceOptionModel.getChoiceOptionContent()).append("\n");
-                    break;
+        if(choiceQuestionModel.getUserAnswerList() != null){
+            for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()) {
+                for (String answerLabel : choiceQuestionModel.getUserAnswerList()) {
+                    if (answerLabel.equals(choiceOptionModel.getChoiceOptionLabel())) {
+                        userAnswerStringBuilder.append(answerLabel).append(". ").append(choiceOptionModel.getChoiceOptionContent()).append("\n");
+                        break;
+                    }
                 }
             }
+            userAnswerStringBuilder.deleteCharAt(userAnswerStringBuilder.length() - 1);
+            viewHolder.userAnswersTextView.setText(userAnswerStringBuilder.toString());
         }
-        userAnswerStringBuilder.deleteCharAt(userAnswerStringBuilder.length() - 1);
-        viewHolder.userAnswersTextView.setText(userAnswerStringBuilder.toString());
-
-        // correct answer
-        StringBuilder correctAnswerStringBuilder = new StringBuilder();
-        // get correct answer content by the label
-        for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()) {
-            for (String answerLabel : choiceQuestionModel.getCorrectAnswerList()) {
-                if (answerLabel.equals(choiceOptionModel.getChoiceOptionLabel())) {
-                    correctAnswerStringBuilder.append(answerLabel).append(choiceOptionModel.getChoiceOptionContent()).append("\n");
-                    break;
-                }
-            }
-        }
-        correctAnswerStringBuilder.deleteCharAt(correctAnswerStringBuilder.length() - 1);
-        viewHolder.correctAnswersTextView.setText(correctAnswerStringBuilder.toString());
     }
 
     @Override

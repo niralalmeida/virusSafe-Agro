@@ -35,7 +35,9 @@ import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.MultipleChoiceQuestionAdapter;
 import com.example.virussafeagro.adapters.QuizQuestionSlideAdapter;
+import com.example.virussafeagro.adapters.QuizResultAdapter;
 import com.example.virussafeagro.adapters.SingleChoiceQuestionAdapter;
+import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.MultipleChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
@@ -227,10 +229,20 @@ public class VirusQuizQuestionFragment extends Fragment {
                 // hide the view pager -> GONE
                 questionViewPager.setVisibility(View.GONE);
                 // show the final result view
-                MyAnimationBox.runFadeInAnimation(quizResultLinearLayout, 1000);
-
+                showQuizResultView();
             }
         });
+    }
+
+    // show the result view
+    private void showQuizResultView() {
+        MyAnimationBox.runFadeInAnimation(quizResultLinearLayout, 1000);
+        QuizResultAdapter quizResultAdapter = new QuizResultAdapter(choiceQuestionModelList, requireActivity());
+        RecyclerView recyclerViewForQuizResult = view.findViewById(R.id.rv_quiz_result_question);
+        recyclerViewForQuizResult.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
+        recyclerViewForQuizResult.setAdapter(quizResultAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity());
+        recyclerViewForQuizResult.setLayoutManager(layoutManager);
     }
 
     ViewPager.OnPageChangeListener viewPagerListener = new ViewPager.OnPageChangeListener(){
