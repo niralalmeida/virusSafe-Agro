@@ -320,10 +320,15 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             });
 
             // next step button
-            bottomSheetView.findViewById(R.id.btn_next_step_right_quiz_result).setOnClickListener(nextStepView -> {
+            Button nextStepButton = bottomSheetView.findViewById(R.id.btn_next_step_right_quiz_result);
+            nextStepButton.setOnClickListener(nextStepView -> {
                 // close the dialog
                 bottomSheetDialog.dismiss();
             });
+            // change the button text for last slide
+            if (currentQuestionSlidePosition == QUESTION_COUNT - 1){
+                nextStepButton.setText("Finish");
+            }
 
         } else { // wrong
             bottomSheetView = LayoutInflater
@@ -356,10 +361,15 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             });
 
             // next step button
-            bottomSheetView.findViewById(R.id.btn_next_step_wrong_quiz_result).setOnClickListener(nextStepView -> {
+            Button nextStepButton = bottomSheetView.findViewById(R.id.btn_next_step_wrong_quiz_result);
+            nextStepButton.setOnClickListener(nextStepView -> {
                 // close the dialog
                 bottomSheetDialog.dismiss();
             });
+                // change the button text for last slide
+            if (currentQuestionSlidePosition == QUESTION_COUNT - 1){
+                nextStepButton.setText("Finish");
+            }
 
         }
         bottomSheetDialog.setContentView(bottomSheetView);
