@@ -34,13 +34,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textStyle="bold"
-                android:text="@string/text_error_title_virus_check_result" />
+                android:text="[ Error Message ]" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:text="@string/text_error_virus_check_result"
+                android:text="It's not a tomato leaf image! Please try again!"
                 android:textStyle="bold"/>
 
         </LinearLayout>
