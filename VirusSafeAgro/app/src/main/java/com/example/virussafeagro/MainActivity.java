@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private LinearLayout backgroundLinearLayout;
     private BottomNavigationView bottomNavigationView;
-    private LinearLayout launchScreenLinearLayout;
 
     public static final int PASSWORD_REQUEST_CODE = 9;
     public static final int PASSWORD_RESULT_OK = 24;
@@ -68,24 +67,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         // initialize background image
         this.bottomNavigationView = findViewById(R.id.bottom_navigation);
         this.backgroundLinearLayout = findViewById(R.id.ll_image_main);
-        this.launchScreenLinearLayout = findViewById(R.id.ll_launch_screen);
     }
 
     private void initializeSharedPreferenceProcess() {
         this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(this);
-    }
-
-    private void showAndCloseTheLaunchScreen() {
-        // hide bottom bar
-        this.bottomNavigationView.setVisibility(View.GONE);
-        // show launch screen
-        this.launchScreenLinearLayout.setVisibility(View.VISIBLE);
-        new Handler().postDelayed(() -> {
-            // hide launch screen
-            MyAnimationBox.runFadeOutAnimation(launchScreenLinearLayout, 1000);
-            // show bottom bar
-            new Handler().postDelayed(() -> bottomNavigationView.setVisibility(View.VISIBLE),1000);
-        },4000);
     }
 
     private void showOnBoardingScreen() {
@@ -105,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             // set authentication as "no"
             AppAuthentication.setAuthenticationAsNo(this);
             // check the authentication --> show the PasswordActivity
-            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity),200);
+            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity),800);
         }
     }
 
@@ -124,9 +109,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             if (resultCode == PASSWORD_RESULT_OK) { // from password activity
                 isFromPasswordActivity = true;
                 this.setMainBackgroundImageVisibility(true);
-
-                // show launch screen
-//                this.showAndCloseTheLaunchScreen();
             }
         }
         if(requestCode == ON_BOARDING_REQUEST_CODE){ // from on boarding activity
