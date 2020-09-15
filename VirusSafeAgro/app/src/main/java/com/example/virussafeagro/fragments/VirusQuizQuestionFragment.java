@@ -67,6 +67,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     private TextView virusFullNameTitleTextView;
     private NonSwipeableViewPager questionViewPager;
     private LinearLayout dotButtonsLinearLayout;
+    // result views
     private LinearLayout quizResultLinearLayout;
 //    private LinearLayout slideBackButtonLinearLayout;
 //    private ImageButton slideBackButton;
@@ -227,6 +228,7 @@ public class VirusQuizQuestionFragment extends Fragment {
                 questionViewPager.setVisibility(View.GONE);
                 // show the final result view
                 MyAnimationBox.runFadeInAnimation(quizResultLinearLayout, 1000);
+
             }
         });
     }

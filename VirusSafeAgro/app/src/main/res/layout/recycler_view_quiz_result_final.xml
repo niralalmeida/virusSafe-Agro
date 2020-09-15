@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_each_item_quiz_result_final"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cv_each_quiz_result_final"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        card_view:cardBackgroundColor="@color/rightAnswer"
+        card_view:cardBackgroundColor="@color/colorPrimaryDark"
         card_view:cardCornerRadius="15dp">
 
         <LinearLayout
@@ -57,6 +57,19 @@
 
             </LinearLayout>
 
+            <!-- question image -->
+            <ImageView
+                android:id="@+id/img_question_quiz_result_final"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/default_leaf" />
+
             <View
                 android:id="@+id/v_line_quiz_result_final"
                 android:layout_width="match_parent"
@@ -74,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:orientation="horizontal">
@@ -81,18 +95,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:layout_gravity="top"
                     android:text="YOUR ANSWER: "
                     android:textColor="@color/colorWhite"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_user_answer_right_quiz_result_final"
+                    android:id="@+id/tv_user_answer_quiz_result_final"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="# # #"
+                    android:text="#. xxxx\n#. xxxx "
+                    android:layout_gravity="top"
                     android:textColor="@color/colorWhite"
                     android:textSize="15sp"/>
 
@@ -109,7 +123,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
                     android:text="EXPLANATION: "
                     android:textColor="@color/colorWhite"
                     android:textSize="13sp"
