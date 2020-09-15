@@ -385,7 +385,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
         bottomSheetDialog.setOnDismissListener(dialog -> {
             // slide to next page if it is correct
-            virusQuizResultViewModel.setIsCorrectLD(true);
+            virusQuizResultViewModel.setIsCorrectLD(isCorrect);
         });
     }
 

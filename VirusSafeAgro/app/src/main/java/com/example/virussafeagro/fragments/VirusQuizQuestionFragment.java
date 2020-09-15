@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -41,6 +43,7 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.NonSwipeableViewPager;
 import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
@@ -57,11 +60,12 @@ public class VirusQuizQuestionFragment extends Fragment {
     private VirusQuizQuestionViewModel virusQuizQuestionViewModel;
     private VirusQuizResultViewModel virusQuizResultViewModel;
     private List<ChoiceQuestionModel> choiceQuestionModelList;
+    private static TextView[] topDotsTextViewArray = new TextView[QuizQuestionSlideAdapter.QUESTION_COUNT]; // dots
+    private static boolean isLastAnswerRight; // for dot color
 
     private LinearLayout processBarLinearLayout;
     private TextView virusFullNameTitleTextView;
     private NonSwipeableViewPager questionViewPager;
-    private TextView[] topDotsTextViewArray;
     private LinearLayout dotButtonsLinearLayout;
     private LinearLayout quizResultLinearLayout;
 //    private LinearLayout slideBackButtonLinearLayout;
@@ -120,6 +124,16 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
         this.quizResultLinearLayout = view.findViewById(R.id.ll_quiz_result_question);
+
+        // initialize the dot array
+        for (int i = 0; i < topDotsTextViewArray.length; i++) {
+            topDotsTextViewArray[i] = new TextView(requireActivity());
+            topDotsTextViewArray[i].setText(Html.fromHtml("&#8226 &nbsp"));
+            topDotsTextViewArray[i].setTextSize(35);
+            topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.colorGreyForDots));
+            topDotsTextViewArray[i].setGravity(Gravity.TOP);
+        }
+
 //        this.slideBackButtonLinearLayout = view.findViewById(R.id.ll_slide_back_quiz_question);
 //        this.slideBackButton = view.findViewById(R.id.btn_slide_back_quiz_question);
     }
@@ -132,7 +146,6 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
 
     private void addDotsIndicator(int position) {
-        topDotsTextViewArray = new TextView[QuizQuestionSlideAdapter.QUESTION_COUNT];
         dotButtonsLinearLayout.removeAllViews(); // clean the views
 
 //        TextView questionProcessTextView = new TextView(requireActivity());
@@ -143,20 +156,25 @@ public class VirusQuizQuestionFragment extends Fragment {
 //        dotButtonsLinearLayout.addView(questionProcessTextView);
 
         for (int i = 0; i < topDotsTextViewArray.length; i++) {
-            topDotsTextViewArray[i] = new TextView(requireActivity());
-            topDotsTextViewArray[i].setText(Html.fromHtml("&#8226"));
-            topDotsTextViewArray[i].setTextSize(35);
-            topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.colorGreyForDots));
-            topDotsTextViewArray[i].setGravity(Gravity.TOP);
-
+            if (i > position){
+                topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.colorGreyForDots));
+            } else if (i == position) {
+                topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.colorWhite));
+            } else if (i == position - 1){
+                if (isLastAnswerRight){
+                    topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.rightAnswer));
+                } else {
+                    topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.wrongAnswer));
+                }
+            }
             dotButtonsLinearLayout.addView(topDotsTextViewArray[i]);
         }
 
-        if (topDotsTextViewArray.length > 0) {
-            for (int p = 0; p <= position; p++){
-                topDotsTextViewArray[p].setTextColor(requireActivity().getResources().getColor(R.color.colorWhite));
-            }
-        }
+//        if (topDotsTextViewArray.length > 0) {
+//            for (int p = 0; p <= position; p++){
+//                topDotsTextViewArray[p].setTextColor(requireActivity().getResources().getColor(R.color.colorWhite));
+//            }
+//        }
     }
 
     private void findVirusQuizQuestionsFromDB() {
@@ -167,10 +185,16 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void observeVirusTwoTypeQuestionArrayLD() {
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultQuizQuestionModelList -> {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
+
                 // set recycler view linear layout visible and process bar invisible
                 processBarLinearLayout.setVisibility(View.GONE);
+                // show dots
+                dotButtonsLinearLayout.startAnimation(MyAnimationBox.getAlphaAnimationForFadeIn(1000));
                 dotButtonsLinearLayout.setVisibility(View.VISIBLE);
+                // show slides (view pag)
+                questionViewPager.startAnimation(MyAnimationBox.getAlphaAnimationForFadeIn(1000));
                 questionViewPager.setVisibility(View.VISIBLE);
+
                 // set question list
                 choiceQuestionModelList = resultQuizQuestionModelList;
                 // initialize the QuizQuestionSlideAdapter and ViewPager
@@ -189,10 +213,9 @@ public class VirusQuizQuestionFragment extends Fragment {
     // for each question slide result
     private void observeIsCorrectLD() {
         this.virusQuizResultViewModel.getIsCorrectLD().observe(getViewLifecycleOwner(), isCorrectLD -> {
-            if(isCorrectLD){
-                // swipe to the next slide
-                questionViewPager.setCurrentItem(currentPagePosition + 1);
-            }
+            isLastAnswerRight = isCorrectLD;
+            // swipe to the next slide
+            questionViewPager.setCurrentItem(currentPagePosition + 1);
         });
     }
 
@@ -205,8 +228,8 @@ public class VirusQuizQuestionFragment extends Fragment {
                 // hide the view pager -> GONE
                 questionViewPager.setVisibility(View.GONE);
                 // show the final result view
+                quizResultLinearLayout.startAnimation(MyAnimationBox.getAlphaAnimationForFadeIn(1000)); // set fade in animation
                 quizResultLinearLayout.setVisibility(View.VISIBLE);
-
             }
         });
     }
@@ -256,10 +279,10 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusQuizQuestionViewModel.setQuizQuestionModelListLD(choiceQuestionModelList);
 
         this.virusQuizResultViewModel.getIsCorrectLD().removeObservers(getViewLifecycleOwner());
-        this.virusQuizResultViewModel.setIsCorrectLD(false);
+//        this.virusQuizResultViewModel.setIsCorrectLD(false);
 
         this.virusQuizResultViewModel.getIsLastSlideLD().removeObservers(getViewLifecycleOwner());
-        this.virusQuizResultViewModel.setIsLastSlideLD(false);
+//        this.virusQuizResultViewModel.setIsLastSlideLD(false);
     }
 
     @Override
