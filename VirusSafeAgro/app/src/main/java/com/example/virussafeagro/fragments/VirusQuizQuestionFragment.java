@@ -189,11 +189,9 @@ public class VirusQuizQuestionFragment extends Fragment {
                 // set recycler view linear layout visible and process bar invisible
                 processBarLinearLayout.setVisibility(View.GONE);
                 // show dots
-                dotButtonsLinearLayout.startAnimation(MyAnimationBox.getAlphaAnimationForFadeIn(1000));
-                dotButtonsLinearLayout.setVisibility(View.VISIBLE);
+                MyAnimationBox.runFadeInAnimation(dotButtonsLinearLayout, 1000);
                 // show slides (view pag)
-                questionViewPager.startAnimation(MyAnimationBox.getAlphaAnimationForFadeIn(1000));
-                questionViewPager.setVisibility(View.VISIBLE);
+                MyAnimationBox.runFadeInAnimation(questionViewPager, 1000);
 
                 // set question list
                 choiceQuestionModelList = resultQuizQuestionModelList;
@@ -228,8 +226,7 @@ public class VirusQuizQuestionFragment extends Fragment {
                 // hide the view pager -> GONE
                 questionViewPager.setVisibility(View.GONE);
                 // show the final result view
-                quizResultLinearLayout.startAnimation(MyAnimationBox.getAlphaAnimationForFadeIn(1000)); // set fade in animation
-                quizResultLinearLayout.setVisibility(View.VISIBLE);
+                MyAnimationBox.runFadeInAnimation(quizResultLinearLayout, 1000);
             }
         });
     }

@@ -14,11 +14,19 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_virus_info"
+        <LinearLayout
+            android:id="@+id/ll_virus_info"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_virus_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 

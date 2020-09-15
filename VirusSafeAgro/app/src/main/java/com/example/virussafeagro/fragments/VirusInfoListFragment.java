@@ -26,6 +26,7 @@ import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
@@ -44,7 +45,7 @@ public class VirusInfoListFragment extends Fragment {
     private SharedPreferenceProcess spp;
 
     private LinearLayout processBarLinearLayout;
-    private NestedScrollView recyclerViewNestedScrollView;
+    private LinearLayout recyclerViewLinearLayout;
 
     private RecyclerView.LayoutManager layoutManager;
     private VirusInfoListAdapter virusInfoListAdapter;
@@ -69,7 +70,7 @@ public class VirusInfoListFragment extends Fragment {
         // initialize views
         this.initializeViews();
         this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.recyclerViewNestedScrollView.setVisibility(View.INVISIBLE);
+        this.recyclerViewLinearLayout.setVisibility(View.GONE);
 
         return this.view;
     }
@@ -114,7 +115,7 @@ public class VirusInfoListFragment extends Fragment {
 
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
-        this.recyclerViewNestedScrollView = view.findViewById(R.id.nsv_list_virus_info);
+        this.recyclerViewLinearLayout = view.findViewById(R.id.ll_virus_info);
     }
 
     private void initializeVirusInfoViewModel() {
@@ -146,7 +147,7 @@ public class VirusInfoListFragment extends Fragment {
     private void displayVirusCardList() {
         // set recycler view linear layout visible and process bar invisible
         processBarLinearLayout.setVisibility(View.INVISIBLE);
-        recyclerViewNestedScrollView.setVisibility(View.VISIBLE);
+        MyAnimationBox.runFadeInAnimation(recyclerViewLinearLayout, 1000);
 
         // show RecyclerView
         showVirusInfoListRecyclerView();
