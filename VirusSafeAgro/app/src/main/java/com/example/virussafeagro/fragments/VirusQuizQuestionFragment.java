@@ -64,6 +64,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     private List<ChoiceQuestionModel> choiceQuestionModelList;
     private static TextView[] topDotsTextViewArray = new TextView[QuizQuestionSlideAdapter.QUESTION_COUNT]; // dots
     private static boolean isLastAnswerRight; // for dot color
+    private static int rightAnswerCount; // count the number of right answer
 
     private LinearLayout processBarLinearLayout;
     private TextView virusFullNameTitleTextView;
@@ -71,6 +72,8 @@ public class VirusQuizQuestionFragment extends Fragment {
     private LinearLayout dotButtonsLinearLayout;
     // result views
     private LinearLayout quizResultLinearLayout;
+    private TextView quizResultTitleTextView;
+
 //    private LinearLayout slideBackButtonLinearLayout;
 //    private ImageButton slideBackButton;
 
@@ -127,6 +130,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
         this.quizResultLinearLayout = view.findViewById(R.id.ll_quiz_result_question);
+        this.quizResultTitleTextView = view.findViewById(R.id.tv_title_quiz_result_final);
 
         // initialize the dot array
         for (int i = 0; i < topDotsTextViewArray.length; i++) {
@@ -215,6 +219,10 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void observeIsCorrectLD() {
         this.virusQuizResultViewModel.getIsCorrectLD().observe(getViewLifecycleOwner(), isCorrectLD -> {
             isLastAnswerRight = isCorrectLD;
+            // count the number of right answer
+            if (isCorrectLD){
+                rightAnswerCount += 1;
+            }
             // swipe to the next slide
             questionViewPager.setCurrentItem(currentPagePosition + 1);
         });
@@ -236,7 +244,14 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     // show the result view
     private void showQuizResultView() {
+        // show the layout
         MyAnimationBox.runFadeInAnimation(quizResultLinearLayout, 1000);
+
+        // show the title
+        String quizResultTitleString = "You Got " + rightAnswerCount + " Out of 5 Correct";
+        quizResultTitleTextView.setText(quizResultTitleString);
+
+        // show the recycler view
         QuizResultAdapter quizResultAdapter = new QuizResultAdapter(choiceQuestionModelList, requireActivity());
         RecyclerView recyclerViewForQuizResult = view.findViewById(R.id.rv_quiz_result_question);
         recyclerViewForQuizResult.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));

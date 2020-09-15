@@ -102,6 +102,23 @@
             android:visibility="gone"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title_quiz_result_final"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:textSize="30sp"
+                    android:text="You Got # Out of 5 Correct" />
+
+            </LinearLayout>
+
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nsv_quiz_result_question"
                 android:layout_width="match_parent"
@@ -114,19 +131,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#fff"
-                            android:text="Your Quiz Result" />
-
-                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_quiz_result_question"
