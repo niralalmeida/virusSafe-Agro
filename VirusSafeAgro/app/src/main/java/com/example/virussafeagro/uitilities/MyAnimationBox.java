@@ -14,6 +14,13 @@ public class MyAnimationBox {
         view.startAnimation(alphaAnimation);
     }
 
+    public static void runFadeOutAnimation(View view, int duration) {
+        view.setVisibility(View.GONE);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+        alphaAnimation.setDuration(duration);
+        view.startAnimation(alphaAnimation);
+    }
+
     public static void runSlideInAnimationFromBottomToTop(View view, int duration) {
         view.setVisibility(View.VISIBLE);
         TranslateAnimation animate = new TranslateAnimation(

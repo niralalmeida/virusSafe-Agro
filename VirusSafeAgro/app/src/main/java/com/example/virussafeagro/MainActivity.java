@@ -22,6 +22,7 @@ import com.example.virussafeagro.fragments.VirusQuizListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -81,10 +82,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         this.launchScreenLinearLayout.setVisibility(View.VISIBLE);
         new Handler().postDelayed(() -> {
             // hide launch screen
-            launchScreenLinearLayout.setVisibility(View.GONE);
+            MyAnimationBox.runFadeOutAnimation(launchScreenLinearLayout, 1000);
             // show bottom bar
-            bottomNavigationView.setVisibility(View.VISIBLE);
-        },3000);
+            new Handler().postDelayed(() -> bottomNavigationView.setVisibility(View.VISIBLE),1000);
+        },4000);
     }
 
     private void showOnBoardingScreen() {
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 this.setMainBackgroundImageVisibility(true);
 
                 // show launch screen
-                this.showAndCloseTheLaunchScreen();
+//                this.showAndCloseTheLaunchScreen();
             }
         }
         if(requestCode == ON_BOARDING_REQUEST_CODE){ // from on boarding activity
