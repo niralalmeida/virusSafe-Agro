@@ -14,9 +14,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.SingleChoiceQuestionModel;
+import com.example.virussafeagro.uitilities.DataComparison;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.ViewHolder> {
@@ -60,10 +63,36 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
     public void onBindViewHolder(@NonNull QuizResultAdapter.ViewHolder viewHolder, int position) {
         final ChoiceQuestionModel choiceQuestionModel = this.choiceQuestionModelList.get(position);
 
-//        viewHolder.questionMarkImageVew.setImageResource(R.drawable.rig);
-//        viewHolder.singleChoiceQuestionContentTextView.setText(singleChoiceQuestionModel.getSingleChoiceQuestionContent());
+        // question mark
+        if (DataComparison.checkTwoListHaveSameItems(choiceQuestionModel.getUserAnswerList(), choiceQuestionModel.getCorrectAnswerList())){
+            viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_right_circle_white_50dp);
+        } else {
+            viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_wrong_circle_white_50dp);
+        }
 
+        // question no
+        String questionNoString = "Q" + (position + 1) + " - ";
+        viewHolder.questionNoTextView.setText(questionNoString);
 
+        // question content
+        viewHolder.questionContentTextView.setText(choiceQuestionModel.getChoiceQuestionContent());
+
+        // question image
+        viewHolder.questionImageView.setImageBitmap(choiceQuestionModel.getChoiceQuestionImage());
+
+        // user answer
+        StringBuilder userAnswerStringBuilder = new StringBuilder();
+        // get answer content by the label
+        for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()) {
+            for (String answerLabel : choiceQuestionModel.getUserAnswerList()) {
+                if (answerLabel.equals(choiceOptionModel.getChoiceOptionLabel())) {
+                    userAnswerStringBuilder.append(answerLabel).append(choiceOptionModel.getChoiceOptionContent()).append("\n");
+                    break;
+                }
+            }
+        }
+        userAnswerStringBuilder.deleteCharAt(userAnswerStringBuilder.length() - 1);
+        viewHolder.userAnswersTextView.setText(userAnswerStringBuilder.toString());
     }
 
     @Override
