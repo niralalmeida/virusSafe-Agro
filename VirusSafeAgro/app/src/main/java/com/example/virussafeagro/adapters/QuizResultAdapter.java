@@ -10,6 +10,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,20 +34,24 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        public CardView quizResultCardView;
         public ImageView questionMarkImageVew;
         public TextView questionNoTextView;
         public TextView questionContentTextView;
         public ImageView questionImageView;
         public TextView userAnswersTextView;
+        public TextView correctAnswersTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            this.quizResultCardView = itemView.findViewById(R.id.cv_each_quiz_result_final);
             this.questionMarkImageVew = itemView.findViewById(R.id.img_question_mark_quiz_result_final);
             this.questionNoTextView = itemView.findViewById(R.id.tv_question_no_quiz_result_final);
             this.questionContentTextView = itemView.findViewById(R.id.tv_question_content_quiz_result_final);
             this.questionImageView = itemView.findViewById(R.id.img_question_quiz_result_final);
             this.userAnswersTextView = itemView.findViewById(R.id.tv_user_answer_quiz_result_final);
+            this.correctAnswersTextView = itemView.findViewById(R.id.tv_correct_answer_quiz_result_final);
         }
     }
 
@@ -63,11 +69,13 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
     public void onBindViewHolder(@NonNull QuizResultAdapter.ViewHolder viewHolder, int position) {
         final ChoiceQuestionModel choiceQuestionModel = this.choiceQuestionModelList.get(position);
 
-        // question mark
+        // question mark and background color
         if (DataComparison.checkTwoListHaveSameItems(choiceQuestionModel.getUserAnswerList(), choiceQuestionModel.getCorrectAnswerList())){
             viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_right_circle_white_50dp);
+            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.colorPrimaryDark));
         } else {
             viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_wrong_circle_white_50dp);
+            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.wrongAnswer));
         }
 
         // question no
@@ -82,7 +90,7 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
 
         // user answer
         StringBuilder userAnswerStringBuilder = new StringBuilder();
-        // get answer content by the label
+            // get user answer content by the label
         for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()) {
             for (String answerLabel : choiceQuestionModel.getUserAnswerList()) {
                 if (answerLabel.equals(choiceOptionModel.getChoiceOptionLabel())) {
@@ -93,6 +101,20 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
         }
         userAnswerStringBuilder.deleteCharAt(userAnswerStringBuilder.length() - 1);
         viewHolder.userAnswersTextView.setText(userAnswerStringBuilder.toString());
+
+        // correct answer
+        StringBuilder correctAnswerStringBuilder = new StringBuilder();
+        // get correct answer content by the label
+        for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()) {
+            for (String answerLabel : choiceQuestionModel.getCorrectAnswerList()) {
+                if (answerLabel.equals(choiceOptionModel.getChoiceOptionLabel())) {
+                    correctAnswerStringBuilder.append(answerLabel).append(choiceOptionModel.getChoiceOptionContent()).append("\n");
+                    break;
+                }
+            }
+        }
+        correctAnswerStringBuilder.deleteCharAt(correctAnswerStringBuilder.length() - 1);
+        viewHolder.correctAnswersTextView.setText(correctAnswerStringBuilder.toString());
     }
 
     @Override
