@@ -162,7 +162,7 @@ public class VirusQuizQuestionFragment extends Fragment {
                 topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.colorWhite));
             } else if (i == position - 1){
                 if (isLastAnswerRight){
-                    topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.rightAnswer));
+                    topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.colorPrimaryDark));
                 } else {
                     topDotsTextViewArray[i].setTextColor(requireActivity().getResources().getColor(R.color.wrongAnswer));
                 }

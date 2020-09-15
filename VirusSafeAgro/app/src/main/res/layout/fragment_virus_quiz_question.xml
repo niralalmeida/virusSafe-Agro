@@ -57,30 +57,7 @@
             android:visibility="gone">
         </LinearLayout>
 
-        <!-- back button -->
-<!--        <LinearLayout-->
-<!--            android:id="@+id/ll_slide_back_quiz_question"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:layout_alignParentLeft="true"-->
-<!--            android:layout_marginStart="3dp"-->
-<!--            android:layout_marginEnd="3dp"-->
-<!--            android:orientation="vertical"-->
-<!--            android:visibility="invisible"-->
-<!--            android:layout_alignParentStart="true">-->
 
-<!--            <ImageButton-->
-<!--                android:id="@+id/btn_slide_back_quiz_question"-->
-<!--                android:layout_width="20dp"-->
-<!--                android:layout_height="70dp"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:adjustViewBounds="false"-->
-<!--                android:saveEnabled="false"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:src="@drawable/btn_arrow_left_white_100dp"/>-->
-
-<!--        </LinearLayout>-->
 
         <!-- view pager for question slides -->
         <com.example.virussafeagro.uitilities.NonSwipeableViewPager
@@ -162,6 +139,31 @@
             </androidx.core.widget.NestedScrollView>
 
         </LinearLayout>
+
+        <!-- back button -->
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/ll_slide_back_quiz_question"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_centerVertical="true"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_marginStart="3dp"-->
+        <!--            android:layout_marginEnd="3dp"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:visibility="invisible"-->
+        <!--            android:layout_alignParentStart="true">-->
+
+        <!--            <ImageButton-->
+        <!--                android:id="@+id/btn_slide_back_quiz_question"-->
+        <!--                android:layout_width="20dp"-->
+        <!--                android:layout_height="70dp"-->
+        <!--                android:scaleType="centerCrop"-->
+        <!--                android:adjustViewBounds="false"-->
+        <!--                android:saveEnabled="false"-->
+        <!--                android:background="@android:color/transparent"-->
+        <!--                android:src="@drawable/btn_arrow_left_white_100dp"/>-->
+
+        <!--        </LinearLayout>-->
 
     </RelativeLayout>
 

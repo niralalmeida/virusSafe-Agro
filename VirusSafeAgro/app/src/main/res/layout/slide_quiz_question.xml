@@ -53,7 +53,7 @@
                             android:id="@+id/tv_question_content_slide_quiz_question"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
+                            android:layout_gravity="center_vertical"
                             android:textSize="15sp"
                             android:textColor="#000"
                             android:textStyle="bold"
