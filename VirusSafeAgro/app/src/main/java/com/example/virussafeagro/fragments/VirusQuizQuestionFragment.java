@@ -181,11 +181,24 @@ public class VirusQuizQuestionFragment extends Fragment {
         });
     }
 
+    // for each question slide result
     private void observeIsCorrectLD() {
         this.virusQuizResultViewModel.getIsCorrectLD().observe(getViewLifecycleOwner(), isCorrectLD -> {
             if(isCorrectLD){
                 // swipe to the next slide
                 questionViewPager.setCurrentItem(currentPagePosition + 1);
+            }
+        });
+    }
+
+    // for the last question slide result
+    private void observeIsLastSlideLD() {
+        this.virusQuizResultViewModel.getIsLastSlideLD().observe(getViewLifecycleOwner(), isLastSlideLD -> {
+            if(isLastSlideLD){
+                // hide the view pager (GONE)
+                questionViewPager.setVisibility(View.GONE);
+                // show the final result view
+
             }
         });
     }

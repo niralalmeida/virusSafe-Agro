@@ -17,16 +17,25 @@ import java.util.List;
 
 public class VirusQuizResultViewModel extends ViewModel {
 
-    private MutableLiveData<Boolean> isCorrectLD;
+    private MutableLiveData<Boolean> isCorrectLD; // for each question slide
+    private MutableLiveData<Boolean> isLastSlideLD; // for last question slide
 
     public VirusQuizResultViewModel() {
         this.isCorrectLD = new MutableLiveData<>();
+        this.isLastSlideLD = new MutableLiveData<>();
     }
     
-    public void setIsCorrectLD(Boolean isCorrectL){
-        this.isCorrectLD.setValue(isCorrectL);
+    public void setIsCorrectLD(Boolean isCorrect){
+        this.isCorrectLD.setValue(isCorrect);
     }
     public LiveData<Boolean> getIsCorrectLD(){
+        return this.isCorrectLD;
+    }
+
+    public void setIsLastSlideLD(Boolean isLastSlide){
+        this.isLastSlideLD.setValue(isLastSlide);
+    }
+    public LiveData<Boolean> getIsLastSlideLD(){
         return this.isCorrectLD;
     }
 }
