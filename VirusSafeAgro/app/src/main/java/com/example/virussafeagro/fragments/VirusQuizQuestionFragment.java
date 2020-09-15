@@ -44,6 +44,7 @@ import com.example.virussafeagro.models.SingleChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DataComparison;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.NonSwipeableViewPager;
@@ -64,7 +65,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     private List<ChoiceQuestionModel> choiceQuestionModelList;
     private static TextView[] topDotsTextViewArray = new TextView[QuizQuestionSlideAdapter.QUESTION_COUNT]; // dots
     private static boolean isLastAnswerRight; // for dot color
-    private static int rightAnswerCount; // count the number of right answer
+//    private static int rightAnswerCount; // count the number of right answer
 
     private LinearLayout processBarLinearLayout;
     private TextView virusFullNameTitleTextView;
@@ -97,17 +98,18 @@ public class VirusQuizQuestionFragment extends Fragment {
         assert bundle != null;
         this.currentVirusModel = bundle.getParcelable("currentVirusModel");
 
-        // initialize views
-        this.initializeViews();
-        this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.questionViewPager.setVisibility(View.GONE);
-
         return this.view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        // initialize views
+        this.initializeViews();
+        this.quizResultLinearLayout.setVisibility(View.GONE);
+        this.processBarLinearLayout.setVisibility(View.VISIBLE);
+        this.questionViewPager.setVisibility(View.GONE);
 
         // initialize view model
         this.initializeVirusQuizQuestionViewModel();
@@ -119,8 +121,15 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.findVirusQuizQuestionsFromDB();
         // observe VirusModel Quiz List Live Data
         this.observeVirusTwoTypeQuestionArrayLD();
+
+        // slide to next page when the button in bottom sheet is clicked
+        this.observeIsCorrectLD();
+        // hide the view pager when it comes to the last question slide
+        this.observeIsLastSlideLD();
+
         // back button
 //        this.setSlideBackButtonOnClickListener();
+
     }
 
     private void initializeViews() {
@@ -207,10 +216,11 @@ public class VirusQuizQuestionFragment extends Fragment {
                 questionViewPager.setAdapter(quizQuestionSlideAdapter);
                 // get the current slide position
                 questionViewPager.addOnPageChangeListener(viewPagerListener);
+
                 // slide to next page when the button in bottom sheet is clicked
-                observeIsCorrectLD();
-                // hide the view pager when it comes to the last question slide
-                observeIsLastSlideLD();
+//                observeIsCorrectLD();
+//                // hide the view pager when it comes to the last question slide
+//                observeIsLastSlideLD();
             }
         });
     }
@@ -219,10 +229,6 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void observeIsCorrectLD() {
         this.virusQuizResultViewModel.getIsCorrectLD().observe(getViewLifecycleOwner(), isCorrectLD -> {
             isLastAnswerRight = isCorrectLD;
-            // count the number of right answer
-            if (isCorrectLD){
-                rightAnswerCount += 1;
-            }
             // swipe to the next slide
             questionViewPager.setCurrentItem(currentPagePosition + 1);
         });
@@ -248,6 +254,13 @@ public class VirusQuizQuestionFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(quizResultLinearLayout, 1000);
 
         // show the title
+            // count the number of right answer
+        int rightAnswerCount = 0;
+        for (ChoiceQuestionModel q : choiceQuestionModelList) {
+            if (DataComparison.checkTwoListHaveSameItems(q.getUserAnswerList(), q.getCorrectAnswerList())){
+                rightAnswerCount++;
+            }
+        }
         String quizResultTitleString = "You Got " + rightAnswerCount + " Out of 5 Correct";
         quizResultTitleTextView.setText(quizResultTitleString);
 
@@ -305,10 +318,10 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.virusQuizQuestionViewModel.setQuizQuestionModelListLD(choiceQuestionModelList);
 
         this.virusQuizResultViewModel.getIsCorrectLD().removeObservers(getViewLifecycleOwner());
-//        this.virusQuizResultViewModel.setIsCorrectLD(false);
+        this.virusQuizResultViewModel.setIsCorrectLD(false);
 
         this.virusQuizResultViewModel.getIsLastSlideLD().removeObservers(getViewLifecycleOwner());
-//        this.virusQuizResultViewModel.setIsLastSlideLD(false);
+        this.virusQuizResultViewModel.setIsLastSlideLD(false);
     }
 
     @Override
