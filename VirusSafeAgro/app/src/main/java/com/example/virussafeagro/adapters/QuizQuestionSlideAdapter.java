@@ -322,6 +322,10 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             // next step button
             Button nextStepButton = bottomSheetView.findViewById(R.id.btn_next_step_right_quiz_result);
             nextStepButton.setOnClickListener(nextStepView -> {
+                // hide the view pager when it comes to the last question slide
+                if (currentQuestionSlidePosition == QUESTION_COUNT - 1){
+                    virusQuizResultViewModel.setIsLastSlideLD(true);
+                }
                 // close the dialog
                 bottomSheetDialog.dismiss();
             });
@@ -363,6 +367,10 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             // next step button
             Button nextStepButton = bottomSheetView.findViewById(R.id.btn_next_step_wrong_quiz_result);
             nextStepButton.setOnClickListener(nextStepView -> {
+                // hide the view pager when it comes to the last question slide
+                if (currentQuestionSlidePosition == QUESTION_COUNT - 1){
+                    virusQuizResultViewModel.setIsLastSlideLD(true);
+                }
                 // close the dialog
                 bottomSheetDialog.dismiss();
             });

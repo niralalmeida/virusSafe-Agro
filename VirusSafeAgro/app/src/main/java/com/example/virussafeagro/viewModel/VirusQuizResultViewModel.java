@@ -36,6 +36,6 @@ public class VirusQuizResultViewModel extends ViewModel {
         this.isLastSlideLD.setValue(isLastSlide);
     }
     public LiveData<Boolean> getIsLastSlideLD(){
-        return this.isCorrectLD;
+        return this.isLastSlideLD;
     }
 }

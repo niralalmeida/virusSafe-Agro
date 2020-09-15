@@ -177,6 +177,8 @@ public class VirusQuizQuestionFragment extends Fragment {
                 questionViewPager.addOnPageChangeListener(viewPagerListener);
                 // slide to next page when the button in bottom sheet is clicked
                 observeIsCorrectLD();
+                // hide the view pager when it comes to the last question slide
+                observeIsLastSlideLD();
             }
         });
     }
@@ -249,6 +251,9 @@ public class VirusQuizQuestionFragment extends Fragment {
 
         this.virusQuizResultViewModel.getIsCorrectLD().removeObservers(getViewLifecycleOwner());
         this.virusQuizResultViewModel.setIsCorrectLD(false);
+
+        this.virusQuizResultViewModel.getIsLastSlideLD().removeObservers(getViewLifecycleOwner());
+        this.virusQuizResultViewModel.setIsLastSlideLD(false);
     }
 
     @Override
