@@ -72,8 +72,11 @@ public class NutrientFragment extends Fragment {
 
 //        // initialize nutrient list
         nutrientModelList = new ArrayList<>();
-//        // initialize view model
-//        this.initializeVirusInfoViewModel();
+        // initialize view model
+        this.initializeVirusInfoViewModel();
+        // find virus info list in new Thread
+            this.findNutrientListFromDB();
+
 //        // initialize SharedPreferenceProcess
 //        this.initializeSharedPreferenceProcess();
 //
@@ -85,8 +88,8 @@ public class NutrientFragment extends Fragment {
 //            getVirusModelListFromSPAsyncTask.execute();
 //        }
 //
-//        // observe VirusModel Info List Live Data
-//        this.observeVirusInfoListLD();
+        // observe VirusModel Info List Live Data
+        this.observeNutrientListLD();
     }
 
 //    private class GetVirusModelListFromSPAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -111,32 +114,32 @@ public class NutrientFragment extends Fragment {
     }
 
     private void initializeVirusInfoViewModel() {
-//        this.virusInfoListViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoListViewModel.class);
-//        this.virusInfoListViewModel.initiateSharedPreferenceProcess(requireContext());
+        this.nutrientViewModel = new ViewModelProvider(requireActivity()).get(NutrientViewModel.class);
+//        this.nutrientViewModel.initiateSharedPreferenceProcess(requireContext());
     }
 
-    private void initializeSharedPreferenceProcess() {
+//    private void initializeSharedPreferenceProcess() {
 //        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireContext());
+//    }
+
+    private void findNutrientListFromDB() {
+        this.nutrientViewModel.processFindingNutrientList();
     }
 
-    private void findVirusInfoListFromDB() {
-//        this.virusInfoListViewModel.processFindingVirusInfoList();
+    private void observeNutrientListLD() {
+        this.nutrientViewModel.getNutrientListLD().observe(getViewLifecycleOwner(), resultNutrientList -> {
+            if ((resultNutrientList != null) && (resultNutrientList.size() != 0)) {
+
+                nutrientModelList.clear();
+                nutrientModelList = resultNutrientList;
+
+                // show the virus list
+//                displayNutrientsCardList();
+            }
+        });
     }
 
-    private void observeVirusInfoListLD() {
-//        this.virusInfoListViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
-//            if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
-//
-//                virusModelInfoList.clear();
-//                virusModelInfoList = resultVirusInfoList;
-//
-//                // show the virus list
-//                displayVirusCardList();
-//            }
-//        });
-    }
-
-    private void displayVirusCardList() {
+    private void displayNutrientsCardList() {
 //         //set recycler view linear layout visible and process bar invisible
 //        processBarLinearLayout.setVisibility(View.GONE);
 //        MyAnimationBox.runFadeInAnimation(virusGridViewLinearLayout, 1000);
@@ -163,7 +166,7 @@ public class NutrientFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-//        this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
-//        this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
+        this.nutrientViewModel.getNutrientListLD().removeObservers(requireActivity());
+        this.nutrientViewModel.setNutrientListLD(new ArrayList<>());
     }
 }

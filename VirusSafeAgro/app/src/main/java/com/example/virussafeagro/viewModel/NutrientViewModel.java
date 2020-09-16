@@ -18,7 +18,7 @@ import java.util.List;
 
 public class NutrientViewModel extends ViewModel {
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
-    private SharedPreferenceProcess spp;
+//    private SharedPreferenceProcess spp;
 
     private MutableLiveData<List<NutrientModel>> nutrientListLD;
 
@@ -27,17 +27,18 @@ public class NutrientViewModel extends ViewModel {
         this.nutrientListLD = new MutableLiveData<>();
     }
 
-    public void initiateSharedPreferenceProcess(Context context) {
-        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(context);
-    }
+//    public void initiateSharedPreferenceProcess(Context context) {
+//        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(context);
+//    }
 
     // for live data
-    public void setNutrientListLD(List<NutrientModel> nutrientModelList){
+    public void setNutrientListLD(List<NutrientModel> nutrientModelList) {
         this.nutrientListLD.setValue(nutrientModelList);
     }
-    public LiveData<List<NutrientModel>> getNutrientListLD(){
+    public LiveData<List<NutrientModel>> getNutrientListLD() {
         return this.nutrientListLD;
     }
+
 
     // for find all virus by AsyncTask
     public void processFindingNutrientList() {
@@ -48,6 +49,7 @@ public class NutrientViewModel extends ViewModel {
             e.printStackTrace();
         }
     }
+
     private class FindNutrientListAsyncTask extends AsyncTask<Void, Void, List<NutrientModel>> {
         @Override
         protected List<NutrientModel> doInBackground(Void... voids) {
@@ -59,7 +61,7 @@ public class NutrientViewModel extends ViewModel {
                 e.printStackTrace();
             }
             // save virus list into spp
-            spp.saveVirusInfoList(nutrientModelList);
+//            spp.saveVirusInfoList(nutrientModelList);
             return nutrientModelList;
         }
 
@@ -68,3 +70,5 @@ public class NutrientViewModel extends ViewModel {
             setNutrientListLD(resultNutrientList);
         }
     }
+
+}
