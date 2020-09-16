@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,7 @@ public class VirusCheckFragment extends Fragment {
     private Button uploadImageButton;
     private LinearLayout allVirusCheckLinearLayout;
     private LinearLayout uploadingProgressBarLinearLayout;
+    private RelativeLayout virusCheckRelativeLayout;
 
     private boolean isUploadImageButtonClicked;
 
@@ -109,6 +111,7 @@ public class VirusCheckFragment extends Fragment {
         this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
         this.allVirusCheckLinearLayout = view.findViewById(R.id.ll_all_virus_check);
         this.uploadingProgressBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_check);
+        this.virusCheckRelativeLayout = view.findViewById(R.id.rl_virus_check);
     }
 
     private void initializeSharedPreference() {
@@ -194,6 +197,7 @@ public class VirusCheckFragment extends Fragment {
                 // hide this virus check page and show the process bar
                 this.allVirusCheckLinearLayout.setVisibility(View.INVISIBLE);
                 this.uploadingProgressBarLinearLayout.setVisibility(View.VISIBLE);
+                this.virusCheckRelativeLayout.setBackground(getResources().getDrawable(R.drawable.quiz_bg));
                 // save the image into SharedPreference
                 Bitmap uploadImageBitmap = uploadImageImageViewBitmapDrawable.getBitmap();
                 PutCurrentVirusCheckImageAsyncTask putCurrentVirusCheckImageAsyncTask = new PutCurrentVirusCheckImageAsyncTask();
@@ -251,5 +255,7 @@ public class VirusCheckFragment extends Fragment {
         // clear all the observer for the LiveData
         LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
         this.virusCheckViewModel.getCheckFeedbackLD().removeObservers(lifecycleOwner);
+        // set background
+        this.virusCheckRelativeLayout.setBackground(getResources().getDrawable(R.drawable.quiz_bg));
     }
 }
