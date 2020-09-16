@@ -1,8 +1,6 @@
 package com.example.virussafeagro.adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +8,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,12 +26,9 @@ import com.example.virussafeagro.uitilities.DataComparison;
 import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class QuizQuestionSlideAdapter extends PagerAdapter {
     private FragmentActivity fragmentActivity;
@@ -49,7 +43,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
     private Button submitAnswerButton;
 
     private List<ChoiceQuestionModel> choiceQuestionModelList;
-    private MyOptionGridAdapter myOptionGridAdapter;
+    private GridOptionAdapter gridOptionAdapter;
     private ChoiceQuestionModel currentChoiceQuestionModel;
     private int currentQuestionSlidePosition;
     public static List<List<Map<Integer, RadioButton>>> allRadioButtonMapList = new ArrayList<>(); // questionId + RadioButton
@@ -133,12 +127,12 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
     // initialize GridView for options
     private void showGrid(ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
-        myOptionGridAdapter = new MyOptionGridAdapter(fragmentActivity, currentChoiceQuestionModel, optionList);
-        quizOptionGridView.setAdapter(myOptionGridAdapter);
+        gridOptionAdapter = new GridOptionAdapter(fragmentActivity, currentChoiceQuestionModel, optionList);
+        quizOptionGridView.setAdapter(gridOptionAdapter);
     }
 
     private void setSingleButtonOnClickListener() {
-        myOptionGridAdapter.setOnSingleButtonOnClickListenerClickListener(optionPosition -> {
+        gridOptionAdapter.setOnSingleButtonOnClickListenerClickListener(optionPosition -> {
             // set currentChoiceQuestionModel
             this.currentChoiceQuestionModel = choiceQuestionModelList.get(currentQuestionSlidePosition);
 

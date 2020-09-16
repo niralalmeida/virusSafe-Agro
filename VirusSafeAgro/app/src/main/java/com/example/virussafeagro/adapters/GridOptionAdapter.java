@@ -3,7 +3,6 @@ package com.example.virussafeagro.adapters;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyOptionGridAdapter extends BaseAdapter {
+public class GridOptionAdapter extends BaseAdapter {
 
     private FragmentActivity fragmentActivity;
     private LayoutInflater layoutInflater;
@@ -37,9 +36,9 @@ public class MyOptionGridAdapter extends BaseAdapter {
     private ImageView optionImageView;
     private LinearLayout choiceButtonsLinearLayout;
 
-    private MyOptionGridAdapter.SingleButtonOnClickListener singleButtonOnClickListener;
+    private GridOptionAdapter.SingleButtonOnClickListener singleButtonOnClickListener;
 
-    public MyOptionGridAdapter(FragmentActivity fragmentActivity, ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
+    public GridOptionAdapter(FragmentActivity fragmentActivity, ChoiceQuestionModel currentChoiceQuestionModel, List<ChoiceOptionModel> optionList) {
         this.fragmentActivity = fragmentActivity;
         this.currentChoiceQuestionModel = currentChoiceQuestionModel;
         this.optionList = optionList;
@@ -49,7 +48,7 @@ public class MyOptionGridAdapter extends BaseAdapter {
     public interface SingleButtonOnClickListener{
         void onSingleButtonClick(int position);
     }
-    public void setOnSingleButtonOnClickListenerClickListener(MyOptionGridAdapter.SingleButtonOnClickListener singleButtonOnClickListener){
+    public void setOnSingleButtonOnClickListenerClickListener(GridOptionAdapter.SingleButtonOnClickListener singleButtonOnClickListener){
         this.singleButtonOnClickListener = singleButtonOnClickListener;
     }
 
