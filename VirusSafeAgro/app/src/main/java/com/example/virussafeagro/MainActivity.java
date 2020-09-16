@@ -202,7 +202,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.ic_virus_check:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
                 break;
-            case R.id.ic_virus_quiz:
+            case R.id.ic_nutrient:
+//                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
                 break;
             case R.id.ic_more:
