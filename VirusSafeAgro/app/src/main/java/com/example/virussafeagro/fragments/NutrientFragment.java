@@ -17,11 +17,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.GridVirusInfoAdapter;
+import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
+import com.example.virussafeagro.viewModel.NutrientViewModel;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
 import java.util.ArrayList;
@@ -31,9 +33,9 @@ import java.util.Objects;
 public class NutrientFragment extends Fragment {
     private View view;
 
-//    private VirusInfoListViewModel virusInfoListViewModel;
+    private NutrientViewModel nutrientViewModel;
 //    private SharedPreferenceProcess spp;
-//    private List<VirusModel> virusModelInfoList;
+    private List<NutrientModel> nutrientModelList;
 //
 //    private LinearLayout processBarLinearLayout;
 //
@@ -68,8 +70,8 @@ public class NutrientFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-//        // initialize virus list
-//        virusModelInfoList = new ArrayList<>();
+//        // initialize nutrient list
+        nutrientModelList = new ArrayList<>();
 //        // initialize view model
 //        this.initializeVirusInfoViewModel();
 //        // initialize SharedPreferenceProcess
