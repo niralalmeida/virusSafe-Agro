@@ -146,7 +146,7 @@ public class VirusInfoListFragment extends Fragment {
 
     private void displayVirusCardList() {
         // set recycler view linear layout visible and process bar invisible
-        processBarLinearLayout.setVisibility(View.INVISIBLE);
+        processBarLinearLayout.setVisibility(View.GONE);
         MyAnimationBox.runFadeInAnimation(recyclerViewLinearLayout, 1000);
 
         // show RecyclerView

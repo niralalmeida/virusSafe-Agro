@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginEnd="10dp"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/ll_virus_info"
@@ -31,13 +32,31 @@
     </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <GridView
+            android:id="@+id/gv_list_virus_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
+            android:padding="10dp"
+            android:numColumns="2" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:id="@+id/ll_process_bar_virus_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ProgressBar
             android:layout_gravity="center_horizontal"
