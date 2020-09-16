@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDarkBG"
+    android:background="@drawable/bg_virus_detail"
     android:orientation="vertical"
     tools:context=".fragments.VirusDetailFragment">
 
@@ -105,7 +105,8 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginLeft="1dp"
                     android:gravity="center"
-                    android:background="@color/colorPrimaryLight"
+                    android:background="@drawable/selector_btn_bg_virus_details"
+                    android:textColor="@drawable/selector_btn_text_virus_details"
                     android:textStyle="bold"
                     android:text="Symptoms" />
 
@@ -117,7 +118,8 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginLeft="1dp"
                     android:gravity="center"
-                    android:background="@color/colorPrimaryLight"
+                    android:background="@drawable/selector_btn_bg_virus_details"
+                    android:textColor="@drawable/selector_btn_text_virus_details"
                     android:textStyle="bold"
                     android:text="Causes" />
 
@@ -129,7 +131,8 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginLeft="1dp"
                     android:gravity="center"
-                    android:background="@color/colorPrimaryLight"
+                    android:background="@drawable/selector_btn_bg_virus_details"
+                    android:textColor="@drawable/selector_btn_text_virus_details"
                     android:textStyle="bold"
                     android:text="Prevention" />
 
@@ -139,6 +142,7 @@
 
         <!-- Middle Part -->
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_description_virus_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -158,12 +162,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorSubTitle"
-                        android:text="Description:"/>
-                    <TextView
                         android:id="@+id/tv_description_virus_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -173,18 +171,30 @@
 
                 </LinearLayout>
 
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_symptom_virus_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/rl_top_part_virus_detail"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
                 <LinearLayout
                     android:id="@+id/ll_symptoms_virus_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorSubTitle"
-                        android:text="Symptoms:"/>
                     <TextView
                         android:id="@+id/tv_symptoms_virus_detail"
                         android:layout_width="wrap_content"
@@ -195,18 +205,30 @@
 
                 </LinearLayout>
 
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_causes_virus_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/rl_top_part_virus_detail"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
                 <LinearLayout
                     android:id="@+id/ll_causes_virus_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorSubTitle"
-                        android:text="Causes:"/>
                     <TextView
                         android:id="@+id/tv_causes_virus_detail"
                         android:layout_width="wrap_content"
@@ -217,28 +239,23 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/ll_spread_virus_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorSubTitle"
-                        android:text="Spread:"/>
-                    <TextView
-                        android:id="@+id/tv_spread_virus_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorSubTitle"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp" />
+        </androidx.core.widget.NestedScrollView>
 
-                </LinearLayout>
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_prevention_virus_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/rl_top_part_virus_detail"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
                 <LinearLayout
                     android:id="@+id/ll_prevention_virus_detail"
@@ -246,12 +263,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorSubTitle"
-                        android:text="Prevention:"/>
                     <TextView
                         android:id="@+id/tv_prevention_virus_detail"
                         android:layout_width="wrap_content"
@@ -262,32 +273,7 @@
 
                 </LinearLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/ll_distribution_virus_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorSubTitle"
-                        android:text="Distribution:"/>
-                    <TextView
-                        android:id="@+id/tv_distribution_virus_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorSubTitle"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp" />
-
-                </LinearLayout>
-
-
             </LinearLayout>
-
 
         </androidx.core.widget.NestedScrollView>
 
@@ -304,6 +290,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/colorBlack"
                 android:textColor="@color/colorWhite"
+                android:textStyle="bold"
                 android:text="@string/recycler_view_quiz_button" />
 
         </LinearLayout>

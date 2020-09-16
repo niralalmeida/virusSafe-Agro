@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
@@ -37,13 +38,20 @@ public class VirusDetailFragment extends Fragment {
     private ImageView virusPictureImageView;
 
     private Button descriptionButton;
+    private Button symptomsButton;
+    private Button causesButton;
+    private Button preventionButton;
+
+    private NestedScrollView descriptionNestedScrollView;
+    private NestedScrollView symptomsNestedScrollView;
+    private NestedScrollView causesNestedScrollView;
+    private NestedScrollView preventionNestedScrollView;
 
     private TextView descriptionTextView;
     private TextView symptomsTextView;
     private TextView causesTextView;
-    private TextView spreadTextView;
     private TextView preventionTextView;
-    private TextView distributionTextView;
+    
     private Button takeQuizButton;
 
     @Nullable
@@ -78,6 +86,9 @@ public class VirusDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(this.virusDetailRelativeLayout, 1000);
         this.showVirusDetails();
 
+        // initialize description content
+        this.initializeDescriptionContent();
+
         // set top buttons listener
         this.setTopButtonsListener();
     }
@@ -90,20 +101,77 @@ public class VirusDetailFragment extends Fragment {
         this.virusPictureImageView = view.findViewById(R.id.img_top_pic_virus_detail);
 
         this.descriptionButton = view.findViewById(R.id.btn_description_virus_detail);
+        this.symptomsButton = view.findViewById(R.id.btn_symptom_virus_detail);
+        this.causesButton = view.findViewById(R.id.btn_causes_virus_detail);
+        this.preventionButton = view.findViewById(R.id.btn_prevention_virus_detail);
+
+        this.descriptionNestedScrollView = view.findViewById(R.id.nsv_description_virus_detail);
+        this.symptomsNestedScrollView = view.findViewById(R.id.nsv_symptom_virus_detail);
+        this.causesNestedScrollView = view.findViewById(R.id.nsv_causes_virus_detail);
+        this.preventionNestedScrollView = view.findViewById(R.id.nsv_prevention_virus_detail);
 
         this.descriptionTextView = view.findViewById(R.id.tv_description_virus_detail);
         this.symptomsTextView = view.findViewById(R.id.tv_symptoms_virus_detail);
         this.causesTextView = view.findViewById(R.id.tv_causes_virus_detail);
-        this.spreadTextView = view.findViewById(R.id.tv_spread_virus_detail);
         this.preventionTextView = view.findViewById(R.id.tv_prevention_virus_detail);
-        this.distributionTextView = view.findViewById(R.id.tv_distribution_virus_detail);
         this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
+    }
+
+    private void initializeDescriptionContent() {
+        descriptionButton.setEnabled(false);
+        symptomsButton.setEnabled(true);
+        causesButton.setEnabled(true);
+        preventionButton.setEnabled(true);
+
+        MyAnimationBox.runFadeInAnimation(descriptionNestedScrollView, 1000);
+        symptomsNestedScrollView.setVisibility(View.GONE);
+        causesNestedScrollView.setVisibility(View.GONE);
+        preventionNestedScrollView.setVisibility(View.GONE);
     }
 
     private void setTopButtonsListener() {
         this.descriptionButton.setOnClickListener(buttonView -> {
             if (buttonView.isEnabled()){
+                initializeDescriptionContent();
+            }
+        });
+        this.symptomsButton.setOnClickListener(buttonView -> {
+            if (buttonView.isEnabled()){
+                descriptionButton.setEnabled(true);
                 buttonView.setEnabled(false);
+                causesButton.setEnabled(true);
+                preventionButton.setEnabled(true);
+
+                descriptionNestedScrollView.setVisibility(View.GONE);
+                MyAnimationBox.runFadeInAnimation(symptomsNestedScrollView, 1000);
+                causesNestedScrollView.setVisibility(View.GONE);
+                preventionNestedScrollView.setVisibility(View.GONE);
+            }
+        });
+        this.causesButton.setOnClickListener(buttonView -> {
+            if (buttonView.isEnabled()){
+                descriptionButton.setEnabled(true);
+                symptomsButton.setEnabled(true);
+                buttonView.setEnabled(false);
+                preventionButton.setEnabled(true);
+
+                descriptionNestedScrollView.setVisibility(View.GONE);
+                symptomsNestedScrollView.setVisibility(View.GONE);
+                MyAnimationBox.runFadeInAnimation(causesNestedScrollView, 1000);
+                preventionNestedScrollView.setVisibility(View.GONE);
+            }
+        });
+        this.preventionButton.setOnClickListener(buttonView -> {
+            if (buttonView.isEnabled()){
+                descriptionButton.setEnabled(true);
+                symptomsButton.setEnabled(true);
+                causesButton.setEnabled(true);
+                buttonView.setEnabled(false);
+
+                descriptionNestedScrollView.setVisibility(View.GONE);
+                symptomsNestedScrollView.setVisibility(View.GONE);
+                causesNestedScrollView.setVisibility(View.GONE);
+                MyAnimationBox.runFadeInAnimation(preventionNestedScrollView, 1000);
             }
         });
     }
@@ -131,17 +199,9 @@ public class VirusDetailFragment extends Fragment {
         LinearLayout linearLayoutForCauses = view.findViewById(R.id.ll_causes_virus_detail);
         this.hideLinearLayoutIfItemIsEmpty(linearLayoutForCauses, this.causesTextView, this.currentVirusModel.getCauses());
 
-        // spread
-        LinearLayout linearLayoutForSpread = view.findViewById(R.id.ll_spread_virus_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForSpread, this.spreadTextView, this.currentVirusModel.getSpread());
-
         // prevention
         LinearLayout linearLayoutForPrevention = view.findViewById(R.id.ll_prevention_virus_detail);
         this.hideLinearLayoutIfItemIsEmpty(linearLayoutForPrevention, this.preventionTextView, this.currentVirusModel.getPrevention());
-
-        // distribution
-        LinearLayout linearLayoutForDistribution = view.findViewById(R.id.ll_distribution_virus_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForDistribution, this.distributionTextView, this.currentVirusModel.getDistribution());
 
         int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(this.currentVirusModel.getVirusId());
         Bitmap virusPictureBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), virusPictureDrawableId);
