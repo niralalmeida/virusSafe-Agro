@@ -101,6 +101,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         // initialize bottom navigation bar
         this.initializeBottomNavigationView();
+
+        // show home page
+        this.showHomePage();
     }
 
     @Override
@@ -169,6 +172,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // initialize BottomNavigationView and set OnNavigationItemSelectedListener
     private void initializeBottomNavigationView(){
         this.bottomNavigationView.setOnNavigationItemSelectedListener(this);
+    }
+
+    // show home page
+    private void showHomePage() {
+        FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
     }
 
     @Override

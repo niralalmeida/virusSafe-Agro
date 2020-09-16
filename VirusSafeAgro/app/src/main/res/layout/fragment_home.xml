@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/quiz_bg"
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout
@@ -12,6 +13,7 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:background="#000"
+        android:visibility="gone"
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/img_home_page"

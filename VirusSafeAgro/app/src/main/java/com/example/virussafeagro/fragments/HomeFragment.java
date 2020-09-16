@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,11 +13,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
     private View view;
+
+    private LinearLayout homeImageLinearLayout;
 
     public HomeFragment() {
     }
@@ -33,6 +37,32 @@ public class HomeFragment extends Fragment {
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
 
+        // initialize Views
+        this.initializeViews();
+
         return this.view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // show Home Image
+        this.showHomeImage();
+    }
+
+    private void initializeViews() {
+        this.homeImageLinearLayout = view.findViewById(R.id.ll_home_picture);
+    }
+
+    // show Home Image
+    private void showHomeImage() {
+        MyAnimationBox.runFadeInAnimation(this.homeImageLinearLayout, 1000);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.homeImageLinearLayout.setVisibility(View.GONE);
     }
 }
