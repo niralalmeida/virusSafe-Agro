@@ -2,6 +2,7 @@ package com.example.virussafeagro.uitilities;
 
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
+import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.VirusModel;
 
 import org.json.JSONArray;
@@ -102,7 +103,6 @@ public class JsonParser {
         return optionModelList;
     }
 
-
     public static String imageCheckFeedbackJsonParser(String resultText) throws JSONException {
         String feedBack = "";
         if(!resultText.equals("[]")){
@@ -115,5 +115,30 @@ public class JsonParser {
             }
         }
         return feedBack;
+    }
+
+    public static List<NutrientModel> nutrientListJsonParser(String resultText) throws JSONException {
+        List<NutrientModel> nutrientModelList = new ArrayList<>();
+//        if(!resultText.equals("[]")){
+//            JSONArray virusInfoListJsonArray = new JSONArray(resultText);
+//            int listSize = virusInfoListJsonArray.length();
+//            for (int i = 0; i < listSize; i++) {
+//                JSONObject virusJsonObject = virusInfoListJsonArray.getJSONObject(i);
+//
+//                int virusId = virusJsonObject.getInt("virusId");
+//                String virusFullName = virusJsonObject.getString("virusFullName");
+//                String virusAbbreviation = virusJsonObject.getString("virusAbbreviation");
+//                String virusDescription = virusJsonObject.getString("virusDescription");
+//                String symptoms = virusJsonObject.getString("symptoms");
+//                String causes = virusJsonObject.getString("causes");
+//                String spread = virusJsonObject.getString("spread");
+//                String prevention = virusJsonObject.getString("prevention");
+//                String virusDistribution = virusJsonObject.getString("virusDistribution");
+//
+//                VirusModel virusModel = new VirusModel(virusId, virusFullName, virusAbbreviation, virusDescription, symptoms, causes, spread, prevention, virusDistribution, null);
+//                virusModelInfoList.add(virusModel);
+//            }
+//        }
+        return nutrientModelList;
     }
 }

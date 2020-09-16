@@ -54,7 +54,7 @@ public class NutrientViewModel extends ViewModel {
             List<NutrientModel> nutrientModelList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToTomatoVirusDB.getAllNutrients();
-                nutrientModelList = JsonParser.virusInfoListJsonParser(resultText);
+                nutrientModelList = JsonParser.nutrientListJsonParser(resultText);
             } catch (Exception e) {
                 e.printStackTrace();
             }

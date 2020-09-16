@@ -55,11 +55,10 @@ public class NetworkConnectionToTomatoVirusDB {
         return resultText;
     }
 
-    public String getAllAnswers(int virusId) {
+    public String getAllNutrients() {
         String resultText = "";
-        String API_URL = "https://0ft54nygc2.execute-api.us-east-1.amazonaws.com/choiceAnswerStage/choiceanswerresource?virusId=";
-        String searchURL = API_URL + virusId;
-        Request request = new Request.Builder().url(searchURL).build();
+        final String API_URL = "https://";
+        Request request = new Request.Builder().url(API_URL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();
             resultText = response.body().string();
