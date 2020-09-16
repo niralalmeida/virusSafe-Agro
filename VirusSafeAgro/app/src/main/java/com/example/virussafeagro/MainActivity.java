@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.example.virussafeagro.fragments.HomeFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
+import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizListFragment;
@@ -204,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case R.id.ic_nutrient:
 //                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
+                FragmentOperator.replaceFragmentNoBackStack(this, new NutrientFragment(), AppResources.FRAGMENT_TAG_NUTRIENT);
                 break;
             case R.id.ic_more:
                 FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
