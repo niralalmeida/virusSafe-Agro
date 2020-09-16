@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#074A44</color>
-    <color name="colorPrimaryLight">#0c8278</color>
+    <color name="colorPrimaryLight">#0d9488</color>
     <color name="colorPrimaryDarkBG">#032623</color>
     <color name="colorAccent">#03DAC5</color>
 <!--    <color name="colorDarkBackground">#707B7C</color>-->
@@ -15,7 +15,7 @@
     <color name="colorGreyForDots">#909497</color>
     <color name="colorLaunchApp">#C0392B</color>
 
-    <color name="moreTitleLane">#BFC9CA</color>
+    <color name="moreTitleLane">#0d9488</color>
 
     <color name="rightAnswer">#1E8449</color>
     <color name="wrongAnswer">#C0392B</color>

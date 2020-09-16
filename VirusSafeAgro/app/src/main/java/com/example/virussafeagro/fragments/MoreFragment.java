@@ -59,6 +59,7 @@ public class MoreFragment extends Fragment {
     private void setAboutLinearLayoutOnClickListener() {
         this.aboutLinearLayout.setOnClickListener(view -> {
             FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
         });
     }
 
