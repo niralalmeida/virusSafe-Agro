@@ -54,7 +54,7 @@ public class VirusCheckFragment extends Fragment {
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
     private LinearLayout allVirusCheckLinearLayout;
-    private LinearLayout uploadingProgressBarLinearLayout;
+    private RelativeLayout uploadingProgressBarRelativeLayout;
     private RelativeLayout virusCheckRelativeLayout;
 
     private boolean isUploadImageButtonClicked;
@@ -110,7 +110,7 @@ public class VirusCheckFragment extends Fragment {
         this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
         this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
         this.allVirusCheckLinearLayout = view.findViewById(R.id.ll_all_virus_check);
-        this.uploadingProgressBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_check);
+        this.uploadingProgressBarRelativeLayout = view.findViewById(R.id.rl_process_bar_virus_check);
         this.virusCheckRelativeLayout = view.findViewById(R.id.rl_virus_check);
     }
 
@@ -196,8 +196,8 @@ public class VirusCheckFragment extends Fragment {
             if (!DataConverter.isSameImage(uploadImageImageViewBitmapDrawable, requireActivity(), R.drawable.default_leaf)) {
                 // hide this virus check page and show the process bar
                 this.allVirusCheckLinearLayout.setVisibility(View.INVISIBLE);
-                this.uploadingProgressBarLinearLayout.setVisibility(View.VISIBLE);
-                this.virusCheckRelativeLayout.setBackground(getResources().getDrawable(R.drawable.quiz_bg));
+                this.uploadingProgressBarRelativeLayout.setVisibility(View.VISIBLE);
+                this.uploadingProgressBarRelativeLayout.setBackground(getResources().getDrawable(R.drawable.quiz_bg));
                 // save the image into SharedPreference
                 Bitmap uploadImageBitmap = uploadImageImageViewBitmapDrawable.getBitmap();
                 PutCurrentVirusCheckImageAsyncTask putCurrentVirusCheckImageAsyncTask = new PutCurrentVirusCheckImageAsyncTask();
@@ -242,7 +242,7 @@ public class VirusCheckFragment extends Fragment {
                 } else {
                     // hide this virus check page and show the process bar
                     this.allVirusCheckLinearLayout.setVisibility(View.VISIBLE);
-                    this.uploadingProgressBarLinearLayout.setVisibility(View.INVISIBLE);
+                    this.uploadingProgressBarRelativeLayout.setVisibility(View.GONE);
                     Toast.makeText(requireActivity(), "The remote service stop working!!!", Toast.LENGTH_LONG).show();
                 }
             }
@@ -255,7 +255,5 @@ public class VirusCheckFragment extends Fragment {
         // clear all the observer for the LiveData
         LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
         this.virusCheckViewModel.getCheckFeedbackLD().removeObservers(lifecycleOwner);
-        // set background
-        this.virusCheckRelativeLayout.setBackground(getResources().getDrawable(R.drawable.quiz_bg));
     }
 }

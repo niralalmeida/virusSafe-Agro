@@ -74,18 +74,19 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/ll_process_bar_virus_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+    <RelativeLayout
+        android:id="@+id/rl_process_bar_virus_check"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <ProgressBar
-            android:layout_gravity="center_horizontal"
+            android:id="@+id/pb_uploading_virus_check"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -93,11 +94,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/pb_uploading_virus_check"
             android:textStyle="bold"
             android:textSize="30sp"
             android:textColor="@color/colorWhite"
             android:text="@string/process_bar_text_virus_check" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
