@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
 
@@ -28,9 +30,14 @@ public class VirusDetailFragment extends Fragment {
     private View view;
     private VirusModel currentVirusModel;
 
+    private RelativeLayout virusDetailRelativeLayout;
+
     private TextView virusFullNameTextView;
     private TextView virusAbbreviationTextView;
     private ImageView virusPictureImageView;
+
+    private Button descriptionButton;
+
     private TextView descriptionTextView;
     private TextView symptomsTextView;
     private TextView causesTextView;
@@ -67,13 +74,23 @@ public class VirusDetailFragment extends Fragment {
         // set take quiz button on click listener
         this.setTakeQuizButtonOnClickListener();
 
+        // show virus details
+        MyAnimationBox.runFadeInAnimation(this.virusDetailRelativeLayout, 1000);
         this.showVirusDetails();
+
+        // set top buttons listener
+        this.setTopButtonsListener();
     }
 
     private void initializeViews() {
-        this.virusFullNameTextView = view.findViewById(R.id.tv_title_virus_full_name_virus_detail);
-        this.virusAbbreviationTextView = view.findViewById(R.id.tv_sub_title_abbreviation_virus_detail);
-        this.virusPictureImageView = view.findViewById(R.id.img_virus_picture_virus_detail);
+        this.virusDetailRelativeLayout = view.findViewById(R.id.rl_virus_detail);
+
+        this.virusFullNameTextView = view.findViewById(R.id.tv_full_name_virus_detail);
+        this.virusAbbreviationTextView = view.findViewById(R.id.tv_abbreviation_virus_detail);
+        this.virusPictureImageView = view.findViewById(R.id.img_top_pic_virus_detail);
+
+        this.descriptionButton = view.findViewById(R.id.btn_description_virus_detail);
+
         this.descriptionTextView = view.findViewById(R.id.tv_description_virus_detail);
         this.symptomsTextView = view.findViewById(R.id.tv_symptoms_virus_detail);
         this.causesTextView = view.findViewById(R.id.tv_causes_virus_detail);
@@ -83,13 +100,23 @@ public class VirusDetailFragment extends Fragment {
         this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
     }
 
+    private void setTopButtonsListener() {
+        this.descriptionButton.setOnClickListener(buttonView -> {
+            if (buttonView.isEnabled()){
+                buttonView.setEnabled(false);
+            }
+        });
+    }
+
     private void showVirusDetails() {
+        // full name title
         this.virusFullNameTextView.setText(this.currentVirusModel.getVirusFullName());
-        // abbreviation
+        // abbreviation title
         if (!this.currentVirusModel.getVirusAbbreviation().isEmpty()) {
-            LinearLayout linearLayoutForSubtitle = view.findViewById(R.id.ll_sub_title_abbreviation_virus_detail);
-            linearLayoutForSubtitle.setVisibility(View.VISIBLE);
-            this.virusAbbreviationTextView.setText(this.currentVirusModel.getVirusAbbreviation());
+            String abbreviationString = " (" + this.currentVirusModel.getVirusAbbreviation() + ")";
+            this.virusAbbreviationTextView.setText(abbreviationString);
+        } else {
+            this.virusAbbreviationTextView.setVisibility(View.GONE);
         }
 
         // description

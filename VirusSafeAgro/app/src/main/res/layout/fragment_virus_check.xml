@@ -18,7 +18,7 @@
                 android:src="@drawable/default_leaf"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="300dp" />
+                android:layout_height="250dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,15 +29,17 @@
 
                 <ImageButton
                     android:id="@+id/btn_camera"
-                    android:layout_width="210dp"
+                    android:layout_width="0dp"
                     android:layout_height="70dp"
+                    android:layout_weight="1"
                     android:background="#000"
                     android:src="@drawable/ic_add_a_photo_white"/>
 
                 <ImageButton
                     android:id="@+id/btn_select_image"
-                    android:layout_width="210dp"
+                    android:layout_width="0dp"
                     android:layout_height="70dp"
+                    android:layout_weight="1"
                     android:background="@color/correctAnswer"
                     android:src="@drawable/ic_photo_library_white" />
 
