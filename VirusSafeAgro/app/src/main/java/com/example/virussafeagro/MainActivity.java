@@ -128,13 +128,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         boolean isHomeFragment = currentVisibleFragment instanceof HomeFragment;
         boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
         boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusCheckFragment;
-        boolean isVirusQuizListFragment = currentVisibleFragment instanceof VirusQuizListFragment;
+        boolean isNutrientFragment = currentVisibleFragment instanceof NutrientFragment;
         boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
         if ((currentVisibleFragment == null)
                 || isHomeFragment
                 || isVirusInfoListFragment
                 || isVirusIdentificationFragment
-                || isVirusQuizListFragment
+                || isNutrientFragment
                 || isMoreFragment){
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
