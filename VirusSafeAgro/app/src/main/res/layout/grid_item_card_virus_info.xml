@@ -34,16 +34,16 @@
     <LinearLayout
         android:id="@+id/ll_option_grid_item"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
         android:layout_centerHorizontal="true"
         android:background="#70000000"
         android:layout_alignBottom="@+id/ll_card_virus_info_list"
-        android:paddingBottom="2dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -52,7 +52,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="20sp"
+                android:gravity="center"
+                android:textSize="17sp"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 android:text="TOMATO YELLOW LEAF CURL VIRUS"/>

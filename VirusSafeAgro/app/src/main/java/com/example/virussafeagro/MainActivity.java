@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             // set authentication as "no"
             AppAuthentication.setAuthenticationAsNo(this);
             // check the authentication --> show the PasswordActivity
-            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity),800);
+            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity),600);
         }
     }
 

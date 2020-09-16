@@ -17,11 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.adapters.GridVirusInfoAdapter;
 import com.example.virussafeagro.adapters.VirusInfoListAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
@@ -43,14 +45,19 @@ public class VirusInfoListFragment extends Fragment {
 
     private VirusInfoListViewModel virusInfoListViewModel;
     private SharedPreferenceProcess spp;
+    private List<VirusModel> virusModelInfoList;
 
     private LinearLayout processBarLinearLayout;
-    private LinearLayout recyclerViewLinearLayout;
 
+    private LinearLayout virusGridViewLinearLayout;
+    private GridView virusGridView;
+    private GridVirusInfoAdapter gridVirusInfoAdapter;
+
+    private LinearLayout recyclerViewLinearLayout;
     private RecyclerView.LayoutManager layoutManager;
     private VirusInfoListAdapter virusInfoListAdapter;
     private RecyclerView recyclerViewForVirusInfoList;
-    private List<VirusModel> virusModelInfoList;
+
 
     public VirusInfoListFragment() {
     }
@@ -70,7 +77,8 @@ public class VirusInfoListFragment extends Fragment {
         // initialize views
         this.initializeViews();
         this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.recyclerViewLinearLayout.setVisibility(View.GONE);
+//        this.recyclerViewLinearLayout.setVisibility(View.GONE);
+        this.virusGridViewLinearLayout.setVisibility(View.GONE);
 
         return this.view;
     }
@@ -116,6 +124,9 @@ public class VirusInfoListFragment extends Fragment {
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
         this.recyclerViewLinearLayout = view.findViewById(R.id.ll_virus_info);
+
+        this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
+        this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
     }
 
     private void initializeVirusInfoViewModel() {
@@ -147,12 +158,17 @@ public class VirusInfoListFragment extends Fragment {
     private void displayVirusCardList() {
         // set recycler view linear layout visible and process bar invisible
         processBarLinearLayout.setVisibility(View.GONE);
-        MyAnimationBox.runFadeInAnimation(recyclerViewLinearLayout, 1000);
+//        MyAnimationBox.runFadeInAnimation(recyclerViewLinearLayout, 1000);
+        MyAnimationBox.runFadeInAnimation(virusGridViewLinearLayout, 1000);
 
         // show RecyclerView
-        showVirusInfoListRecyclerView();
+//        showVirusInfoListRecyclerView();
         // set RecyclerView item virus CardView click listener
-        setRecyclerViewItemVirusCardViewClickListener();
+//        setRecyclerViewItemVirusCardViewClickListener();
+
+        // show grid view
+        gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), virusModelInfoList);
+        virusGridView.setAdapter(gridVirusInfoAdapter);
     }
 
     private void showVirusInfoListRecyclerView() {

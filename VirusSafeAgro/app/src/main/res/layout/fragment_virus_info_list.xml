@@ -32,12 +32,13 @@
     </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
+        android:id="@+id/ll_list_virus_info_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <GridView
-            android:id="@+id/gv_list_virus_info"
+            android:id="@+id/gv_list_virus_info_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:horizontalSpacing="5dp"

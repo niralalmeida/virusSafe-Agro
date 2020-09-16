@@ -31,11 +31,12 @@ public class GridVirusInfoAdapter extends BaseAdapter {
     public GridVirusInfoAdapter(FragmentActivity fragmentActivity, List<VirusModel> virusModelInfoList) {
         this.fragmentActivity = fragmentActivity;
         this.layoutInflater = (LayoutInflater) fragmentActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.virusModelInfoList = virusModelInfoList;
     }
 
     @Override
     public int getCount() {
-        return virusModelInfoList.size();
+        return this.virusModelInfoList.size();
     }
 
     @Override
