@@ -26,7 +26,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="false"
-                android:src="@drawable/zinc_demo" />
+                android:src="@drawable/nutrient_demo" />
 
         </androidx.cardview.widget.CardView>
 

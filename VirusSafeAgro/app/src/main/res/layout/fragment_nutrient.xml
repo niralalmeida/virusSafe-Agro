@@ -6,31 +6,6 @@
     android:background="@drawable/quiz_bg"
     tools:context=".fragments.NutrientFragment">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsv_list_nutrient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:id="@+id/ll_nutrient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_nutrient"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
     <LinearLayout
         android:id="@+id/ll_list_nutrient_list"
         android:layout_width="match_parent"
@@ -44,7 +19,7 @@
             android:horizontalSpacing="5dp"
             android:verticalSpacing="5dp"
             android:padding="10dp"
-            android:numColumns="2" />
+            android:numColumns="3" />
 
     </LinearLayout>
 
