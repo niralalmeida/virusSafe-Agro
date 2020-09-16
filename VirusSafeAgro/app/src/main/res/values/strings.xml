@@ -44,6 +44,7 @@
     <!--  message  -->
     <string name="process_bar_text_virus_info">Loading Virus List &#8230;</string>
     <string name="process_bar_text_virus_quiz">Loading Quiz List &#8230;</string>
+    <string name="process_bar_text_nutrient">Loading Nutrient List &#8230;</string>
     <string name="process_bar_text_virus_quiz_question">Loading Quiz Questions &#8230;</string>
     <string name="process_bar_text_virus_quiz_result">Loading Quiz Results &#8230;</string>
     <string name="process_bar_text_virus_check">Analysing the Image &#8230;</string>

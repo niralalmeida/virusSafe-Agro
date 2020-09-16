@@ -37,11 +37,11 @@ public class NutrientFragment extends Fragment {
 //    private SharedPreferenceProcess spp;
     private List<NutrientModel> nutrientModelList;
 //
-//    private LinearLayout processBarLinearLayout;
-//
-//    private LinearLayout virusGridViewLinearLayout;
-//    private GridView virusGridView;
-//    private GridVirusInfoAdapter gridVirusInfoAdapter;
+    private LinearLayout processBarLinearLayout;
+
+    private LinearLayout nutrientsGridViewLinearLayout;
+    private GridView nutrientsGridView;
+//    private GridNutrientAdapter gridVirusInfoAdapter;
 
     public NutrientFragment() {
     }
@@ -60,8 +60,8 @@ public class NutrientFragment extends Fragment {
 
         // initialize views
         this.initializeViews();
-//        this.processBarLinearLayout.setVisibility(View.VISIBLE);
-//        this.virusGridViewLinearLayout.setVisibility(View.GONE);
+        this.processBarLinearLayout.setVisibility(View.VISIBLE);
+        this.nutrientsGridViewLinearLayout.setVisibility(View.GONE);
 
         return this.view;
     }
@@ -75,7 +75,7 @@ public class NutrientFragment extends Fragment {
         // initialize view model
         this.initializeVirusInfoViewModel();
         // find virus info list in new Thread
-            this.findNutrientListFromDB();
+        this.findNutrientListFromDB();
 
 //        // initialize SharedPreferenceProcess
 //        this.initializeSharedPreferenceProcess();
@@ -108,9 +108,9 @@ public class NutrientFragment extends Fragment {
 //    }
 
     private void initializeViews() {
-//        this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
-//        this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
-//        this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
+        this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_nutrient);
+        this.nutrientsGridViewLinearLayout = view.findViewById(R.id.ll_list_nutrient_list);
+        this.nutrientsGridView = view.findViewById(R.id.gv_list_nutrient_list);
     }
 
     private void initializeVirusInfoViewModel() {
@@ -134,16 +134,16 @@ public class NutrientFragment extends Fragment {
                 nutrientModelList = resultNutrientList;
 
                 // show the virus list
-//                displayNutrientsCardList();
+                displayNutrientsCardList();
             }
         });
     }
 
     private void displayNutrientsCardList() {
-//         //set recycler view linear layout visible and process bar invisible
-//        processBarLinearLayout.setVisibility(View.GONE);
-//        MyAnimationBox.runFadeInAnimation(virusGridViewLinearLayout, 1000);
-//
+        //set recycler view linear layout visible and process bar invisible
+        processBarLinearLayout.setVisibility(View.GONE);
+        MyAnimationBox.runFadeInAnimation(nutrientsGridViewLinearLayout, 1000);
+
 //        // show grid view
 //        gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), virusModelInfoList);
 //        virusGridView.setAdapter(gridVirusInfoAdapter);
