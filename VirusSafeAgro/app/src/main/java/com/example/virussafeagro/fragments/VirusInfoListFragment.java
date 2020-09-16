@@ -53,12 +53,6 @@ public class VirusInfoListFragment extends Fragment {
     private GridView virusGridView;
     private GridVirusInfoAdapter gridVirusInfoAdapter;
 
-    private LinearLayout recyclerViewLinearLayout;
-    private RecyclerView.LayoutManager layoutManager;
-    private VirusInfoListAdapter virusInfoListAdapter;
-    private RecyclerView recyclerViewForVirusInfoList;
-
-
     public VirusInfoListFragment() {
     }
 
@@ -77,7 +71,6 @@ public class VirusInfoListFragment extends Fragment {
         // initialize views
         this.initializeViews();
         this.processBarLinearLayout.setVisibility(View.VISIBLE);
-//        this.recyclerViewLinearLayout.setVisibility(View.GONE);
         this.virusGridViewLinearLayout.setVisibility(View.GONE);
 
         return this.view;
@@ -123,8 +116,6 @@ public class VirusInfoListFragment extends Fragment {
 
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
-        this.recyclerViewLinearLayout = view.findViewById(R.id.ll_virus_info);
-
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
     }
@@ -158,30 +149,18 @@ public class VirusInfoListFragment extends Fragment {
     private void displayVirusCardList() {
         // set recycler view linear layout visible and process bar invisible
         processBarLinearLayout.setVisibility(View.GONE);
-//        MyAnimationBox.runFadeInAnimation(recyclerViewLinearLayout, 1000);
         MyAnimationBox.runFadeInAnimation(virusGridViewLinearLayout, 1000);
-
-        // show RecyclerView
-//        showVirusInfoListRecyclerView();
-        // set RecyclerView item virus CardView click listener
-//        setRecyclerViewItemVirusCardViewClickListener();
 
         // show grid view
         gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), virusModelInfoList);
         virusGridView.setAdapter(gridVirusInfoAdapter);
+        // set GridView Item VirusCard Click Listener
+        setGridViewItemVirusCardClickListener();
     }
 
-    private void showVirusInfoListRecyclerView() {
-        virusInfoListAdapter = new VirusInfoListAdapter(virusModelInfoList, requireActivity());
-        recyclerViewForVirusInfoList = view.findViewById(R.id.rv_virus_info);
-        recyclerViewForVirusInfoList.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
-        recyclerViewForVirusInfoList.setAdapter(virusInfoListAdapter);
-        layoutManager = new LinearLayoutManager(requireActivity());
-        recyclerViewForVirusInfoList.setLayoutManager(layoutManager);
-    }
-
-    private void setRecyclerViewItemVirusCardViewClickListener(){
-        virusInfoListAdapter.setOnVirusCardViewClickListener(position -> {
+    // set card on click listener
+    private void setGridViewItemVirusCardClickListener(){
+        gridVirusInfoAdapter.setOnVirusCardClickListener(position -> {
             Bundle bundle = new Bundle();
             VirusModel currentVirusModel = virusModelInfoList.get(position);
             bundle.putParcelable("currentVirusModel", currentVirusModel);

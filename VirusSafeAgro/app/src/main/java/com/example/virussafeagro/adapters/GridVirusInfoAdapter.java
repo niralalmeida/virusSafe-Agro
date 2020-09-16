@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
@@ -27,11 +28,21 @@ public class GridVirusInfoAdapter extends BaseAdapter {
 
     private ImageView virusImageView;
     private TextView virusFullNameTextView;
+    private RelativeLayout virusRelativeLayout;
+
+    private GridVirusInfoAdapter.VirusCardClickListener virusCardClickListener;
 
     public GridVirusInfoAdapter(FragmentActivity fragmentActivity, List<VirusModel> virusModelInfoList) {
         this.fragmentActivity = fragmentActivity;
         this.layoutInflater = (LayoutInflater) fragmentActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.virusModelInfoList = virusModelInfoList;
+    }
+
+    public interface VirusCardClickListener{
+        void onVirusCardClick(int position);
+    }
+    public void setOnVirusCardClickListener(GridVirusInfoAdapter.VirusCardClickListener virusCardClickListener){
+        this.virusCardClickListener = virusCardClickListener;
     }
 
     @Override
@@ -55,7 +66,7 @@ public class GridVirusInfoAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.grid_item_card_virus_info, parent, false);
 
             // initialize views
-            this.virusImageView = convertView.findViewById(R.id.img_option_grid_item);
+            this.virusImageView = convertView.findViewById(R.id.img_virus_grid_item);
             this.virusFullNameTextView = convertView.findViewById(R.id.tv_full_name_virus_info_list);
 
             // get virus model
@@ -68,6 +79,10 @@ public class GridVirusInfoAdapter extends BaseAdapter {
 
             // set virus full name
             this.virusFullNameTextView.setText(virusModel.getVirusFullName());
+
+            // set card on click listener
+            this.virusRelativeLayout = convertView.findViewById(R.id.rl_virus_info_list);
+            this.virusRelativeLayout.setOnClickListener(v -> virusCardClickListener.onVirusCardClick(position));
 
         }
         return convertView;

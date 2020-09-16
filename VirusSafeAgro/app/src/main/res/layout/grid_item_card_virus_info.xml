@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_virus_info_list"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -20,7 +21,7 @@
             card_view:cardCornerRadius="10dp">
 
             <ImageView
-                android:id="@+id/img_option_grid_item"
+                android:id="@+id/img_virus_grid_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
