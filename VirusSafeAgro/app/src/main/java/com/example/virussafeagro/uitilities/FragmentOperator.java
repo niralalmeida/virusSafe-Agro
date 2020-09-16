@@ -4,6 +4,7 @@ package com.example.virussafeagro.uitilities;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.virussafeagro.R;
 
@@ -13,6 +14,16 @@ public class FragmentOperator {
         fragmentActivity.getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fl_fragments, nextFragment, fragmentTag)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    // replace the fragment view with back stack
+    public static void replaceFragmentWithFadeAnimation(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
+        FragmentTransaction fragmentTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+        fragmentTransaction.replace(R.id.fl_fragments, nextFragment, fragmentTag)
                 .addToBackStack(null)
                 .commit();
     }
