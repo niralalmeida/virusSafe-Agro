@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorPrimaryDarkBG"
     tools:context=".fragments.VirusQuizQuestionFragment">
 
     <!-- title -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000"
+        android:background="@color/colorPrimaryTile"
         android:orientation="vertical">
 
         <LinearLayout
@@ -39,15 +40,14 @@
     <!-- body -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/quiz_bg">
+        android:layout_height="match_parent">
 
         <!-- process dots -->
         <LinearLayout
             android:id="@+id/ll_dot_quiz_question"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/colorBlack"
+            android:background="@color/colorPrimaryTile"
             android:paddingTop="1dp"
             android:paddingBottom="1dp"
             android:layout_marginBottom="5dp"
