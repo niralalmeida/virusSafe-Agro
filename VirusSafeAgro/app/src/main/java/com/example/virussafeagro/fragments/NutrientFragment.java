@@ -156,9 +156,9 @@ public class NutrientFragment extends Fragment {
             Bundle bundle = new Bundle();
             NutrientModel currentNutrientModel = nutrientModelList.get(position);
             bundle.putParcelable("currentNutrientModel", currentNutrientModel);
-//            NutrientDetailFragment nutrientDetailFragment = new NutrientDetailFragment();
-//            nutrientDetailFragment.setArguments(bundle);
-//            FragmentOperator.replaceFragmentWithFadeAnimation(requireActivity(), nutrientDetailFragment, AppResources.FRAGMENT_TAG_NUTRIENT_DETAIL);
+            NutrientDetailFragment nutrientDetailFragment = new NutrientDetailFragment();
+            nutrientDetailFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentWithFadeAnimation(requireActivity(), nutrientDetailFragment, AppResources.FRAGMENT_TAG_NUTRIENT_DETAIL);
         });
     }
 

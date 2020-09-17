@@ -74,17 +74,18 @@ public class GridNutrientAdapter extends BaseAdapter {
         NutrientModel nutrientModel = nutrientModelList.get(position);
 
         // set nutrient image
-//            int nutrientPictureDrawableId = AppResources.getNutrientPictureDrawableId(nutrientModel.getNutrientId());
-//            Bitmap nutrientPictureBitmap = BitmapFactory.decodeResource(fragmentActivity.getResources(), nutrientPictureDrawableId);
-//            this.nutrientImageView.setImageBitmap(nutrientPictureBitmap);
+        int nutrientPictureDrawableId = AppResources.getNutrientPictureDrawableId(nutrientModel.getNutrientId());
+        Bitmap nutrientPictureBitmap = BitmapFactory.decodeResource(fragmentActivity.getResources(), nutrientPictureDrawableId);
+        this.nutrientImageView.setImageBitmap(nutrientPictureBitmap);
 
-        // set nutrient full name
+        // set nutrient name
         this.nutrientNameTextView.setText(nutrientModel.getNutrientName());
 
         // set card on click listener
         this.nutrientRelativeLayout = convertView.findViewById(R.id.rl_nutrient_list);
-        this.nutrientRelativeLayout.setOnClickListener(v -> nutrientCardClickListener.onNutrientCardClick(position));
-
+        this.nutrientRelativeLayout.setOnClickListener(v -> {
+            nutrientCardClickListener.onNutrientCardClick(position);
+        });
 
         return convertView;
     }

@@ -64,6 +64,46 @@ public class AppResources {
         return virusDrawablePictureResource;
     }
 
+    public static int getNutrientPictureDrawableId(int virusId) {
+        int nutrientDrawablePictureResource = -1;
+        switch (virusId){
+            case 1:
+                nutrientDrawablePictureResource = R.drawable.zinc1;
+                break;
+            case 2:
+                nutrientDrawablePictureResource = R.drawable.magnesium2;
+                break;
+            case 3:
+                nutrientDrawablePictureResource = R.drawable.potassium3;
+                break;
+            case 4:
+                nutrientDrawablePictureResource = R.drawable.sulphur4;
+                break;
+            case 5:
+                nutrientDrawablePictureResource = R.drawable.phosphorus5;
+                break;
+            case 6:
+                nutrientDrawablePictureResource = R.drawable.nitrogen6;
+                break;
+            case 7:
+                nutrientDrawablePictureResource = R.drawable.magnesium7;
+                break;
+            case 8:
+                nutrientDrawablePictureResource = R.drawable.iron8;
+                break;
+            case 9:
+                nutrientDrawablePictureResource = R.drawable.boron9;
+                break;
+            case 10:
+                nutrientDrawablePictureResource = R.drawable.calcium10;
+                break;
+            case 11:
+                nutrientDrawablePictureResource = R.drawable.copper11;
+                break;
+        }
+        return nutrientDrawablePictureResource;
+    }
+
     public static int getVirusIdByVirusFullName(String virusFullName) {
         int virusId = 0;
         switch (virusFullName) {

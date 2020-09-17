@@ -16,14 +16,14 @@
         <RelativeLayout
             android:id="@+id/rl_top_part_nutrient_detail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:orientation="vertical">
 
             <!-- Virus Image -->
             <LinearLayout
                 android:id="@+id/ll_top_pic_nutrient_detail"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:orientation="vertical">
 
                 <ImageView
