@@ -20,7 +20,7 @@ import java.util.Objects;
 public class HomeFragment extends Fragment {
     private View view;
 
-    private LinearLayout homeImageLinearLayout;
+    private LinearLayout allViewLinearLayout;
 
     public HomeFragment() {
     }
@@ -52,17 +52,17 @@ public class HomeFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.homeImageLinearLayout = view.findViewById(R.id.ll_home_picture);
+        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_home);
     }
 
     // show Home Image
     private void showHomeImage() {
-        MyAnimationBox.runFadeInAnimation(this.homeImageLinearLayout, 1000);
+        MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        this.homeImageLinearLayout.setVisibility(View.GONE);
+        this.allViewLinearLayout.setVisibility(View.GONE);
     }
 }
