@@ -14,6 +14,7 @@ public class ChoiceQuestionModel implements Parcelable {
     private List<ChoiceOptionModel> choiceQuestionOptionList;
     private List<String> userAnswerList; // store user's answers
     private List<String> correctAnswerList; // store correct answers
+    private String choiceQuestionExplanation;
     private int choiceQuestionVirusId;
 
     public ChoiceQuestionModel() {
@@ -26,7 +27,7 @@ public class ChoiceQuestionModel implements Parcelable {
         this.correctAnswerList = correctAnswerList;
     }
 
-    public ChoiceQuestionModel(int choiceQuestionId, String choiceQuestionType, String choiceQuestionContent, Bitmap choiceQuestionImage, List<ChoiceOptionModel> choiceQuestionOptionList, List<String> userAnswerList, List<String> correctAnswerList, int choiceQuestionVirusId) {
+    public ChoiceQuestionModel(int choiceQuestionId, String choiceQuestionType, String choiceQuestionContent, Bitmap choiceQuestionImage, List<ChoiceOptionModel> choiceQuestionOptionList, List<String> userAnswerList, List<String> correctAnswerList, String choiceQuestionExplanation, int choiceQuestionVirusId) {
         this.choiceQuestionId = choiceQuestionId;
         this.choiceQuestionType = choiceQuestionType;
         this.choiceQuestionContent = choiceQuestionContent;
@@ -34,6 +35,7 @@ public class ChoiceQuestionModel implements Parcelable {
         this.choiceQuestionOptionList = choiceQuestionOptionList;
         this.userAnswerList = userAnswerList;
         this.correctAnswerList = correctAnswerList;
+        this.choiceQuestionExplanation = choiceQuestionExplanation;
         this.choiceQuestionVirusId = choiceQuestionVirusId;
     }
 
@@ -45,7 +47,26 @@ public class ChoiceQuestionModel implements Parcelable {
         choiceQuestionOptionList = in.createTypedArrayList(ChoiceOptionModel.CREATOR);
         userAnswerList = in.createStringArrayList();
         correctAnswerList = in.createStringArrayList();
+        choiceQuestionExplanation = in.readString();
         choiceQuestionVirusId = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(choiceQuestionId);
+        dest.writeString(choiceQuestionType);
+        dest.writeString(choiceQuestionContent);
+        dest.writeParcelable(choiceQuestionImage, flags);
+        dest.writeTypedList(choiceQuestionOptionList);
+        dest.writeStringList(userAnswerList);
+        dest.writeStringList(correctAnswerList);
+        dest.writeString(choiceQuestionExplanation);
+        dest.writeInt(choiceQuestionVirusId);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<ChoiceQuestionModel> CREATOR = new Creator<ChoiceQuestionModel>() {
@@ -116,28 +137,19 @@ public class ChoiceQuestionModel implements Parcelable {
         this.correctAnswerList = correctAnswerList;
     }
 
+    public String getChoiceQuestionExplanation() {
+        return choiceQuestionExplanation;
+    }
+
+    public void setChoiceQuestionExplanation(String choiceQuestionExplanation) {
+        this.choiceQuestionExplanation = choiceQuestionExplanation;
+    }
+
     public int getChoiceQuestionVirusId() {
         return choiceQuestionVirusId;
     }
 
     public void setChoiceQuestionVirusId(int choiceQuestionVirusId) {
         this.choiceQuestionVirusId = choiceQuestionVirusId;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(choiceQuestionId);
-        dest.writeString(choiceQuestionType);
-        dest.writeString(choiceQuestionContent);
-        dest.writeParcelable(choiceQuestionImage, flags);
-        dest.writeTypedList(choiceQuestionOptionList);
-        dest.writeStringList(userAnswerList);
-        dest.writeStringList(correctAnswerList);
-        dest.writeInt(choiceQuestionVirusId);
     }
 }
