@@ -2,6 +2,7 @@ package com.example.virussafeagro.uitilities;
 
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
+import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.VirusModel;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class JsonParser {
+public class MyJsonParser {
 
     public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
         List<VirusModel> virusModelInfoList = new ArrayList<>();
@@ -140,5 +141,22 @@ public class JsonParser {
 //            }
 //        }
         return nutrientModelList;
+    }
+
+    public static List<NewsModel> newsListJsonParser(String resultText) throws JSONException {
+        List<NewsModel> newsModelList = new ArrayList<>();
+        if(!resultText.equals("[]")){
+            JSONArray newsListJsonArray = new JSONArray(resultText);
+            int listSize = newsListJsonArray.length();
+            for (int i = 0; i < listSize; i++) {
+                JSONObject newsJsonObject = newsListJsonArray.getJSONObject(i);
+
+                int newsId = newsJsonObject.getInt("newsId");
+
+                NewsModel newsModel = new NewsModel();
+                newsModelList.add(newsModel);
+            }
+        }
+        return newsModelList;
     }
 }

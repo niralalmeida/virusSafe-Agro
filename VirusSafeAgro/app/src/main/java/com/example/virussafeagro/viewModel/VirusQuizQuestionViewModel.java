@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
-import com.example.virussafeagro.uitilities.JsonParser;
+import com.example.virussafeagro.uitilities.MyJsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +46,11 @@ public class VirusQuizQuestionViewModel extends ViewModel {
             int virusId = integers[0];
             try {
                 String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
-                quizQuestionModelList = JsonParser.choiceQuestionModelListJsonParser(resultTextForQuestions);
+                quizQuestionModelList = MyJsonParser.choiceQuestionModelListJsonParser(resultTextForQuestions);
                 // find options for choice questions
                 for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
                     String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
-                    List<ChoiceOptionModel> optionModelList = JsonParser.choiceOptionListJsonParser(resultTextForOptions);
+                    List<ChoiceOptionModel> optionModelList = MyJsonParser.choiceOptionListJsonParser(resultTextForOptions);
                     choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
                 }
             } catch (Exception e) {

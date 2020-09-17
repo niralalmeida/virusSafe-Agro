@@ -1,6 +1,5 @@
 package com.example.virussafeagro.viewModel;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
@@ -8,10 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.NutrientModel;
-import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
-import com.example.virussafeagro.uitilities.JsonParser;
-import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +52,7 @@ public class NutrientViewModel extends ViewModel {
             List<NutrientModel> nutrientModelList = new ArrayList<>();
 //            try {
 //                String resultText = networkConnectionToTomatoVirusDB.getAllNutrients();
-//                nutrientModelList = JsonParser.nutrientListJsonParser(resultText);
+//                nutrientModelList = MyJsonParser.nutrientListJsonParser(resultText);
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
