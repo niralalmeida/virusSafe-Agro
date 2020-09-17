@@ -210,21 +210,10 @@ public class VirusCheckResultFragment extends Fragment {
         // parse the name to standard: eg. TARGET SPOT
         String processedResultName = DataConverter.checkResultVirusRawNameToUpperCaseWithSpace(resultVirusRawFullName);
 
-<<<<<<< HEAD
         // get result virus id
         int virusId = AppResources.getVirusIdByVirusFullName(processedResultName);
 
-=======
-        // test
-        System.out.println("processedResultName --> " + processedResultName);
-
-        // get result virus id
-        int virusId = AppResources.getVirusIdByVirusFullName(processedResultName);
-
-        // test
-        System.out.println("virusId --> " + virusId);
-
->>>>>>> master
+        
         // get the virus list
         List<VirusModel> virusModelList = spp.getVirusModelListFromSP();
         return (virusId == 0) ? null : virusModelList.get(virusId - 1);
