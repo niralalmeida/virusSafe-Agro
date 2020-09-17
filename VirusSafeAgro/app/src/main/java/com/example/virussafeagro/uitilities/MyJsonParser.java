@@ -71,6 +71,9 @@ public class MyJsonParser {
                     choiceQuestionType = "multiple";
                 }
 
+                // question explanation
+                String explanation = questionJsonObject.getString("")
+
                 // create the choiceQuestionModel and add it into quizQuestionModelList
                 ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(choiceQuestionId, choiceQuestionType, choiceQuestionContent, correctAnswerList);
                 quizQuestionModelList.add(choiceQuestionModel);

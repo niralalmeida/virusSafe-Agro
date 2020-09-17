@@ -20,6 +20,7 @@ CREATE TABLE choicequestion
     choice_question_content VARCHAR(1500) NOT NULL,
     choice_question_type CHAR(1) NOT NULL,
     answer VARCHAR(10) NOT NULL,
+    explanation VARCHAR(1500) NOT NULL,
     choice_question_virus_id INTEGER NOT NULL,
 
     PRIMARY KEY(choice_question_id),
