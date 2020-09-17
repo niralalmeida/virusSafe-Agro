@@ -101,9 +101,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         // initialize bottom navigation bar
         this.initializeBottomNavigationView();
-
-        // show home page
-        this.showHomePage();
     }
 
     @Override
@@ -112,13 +109,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if(requestCode == PASSWORD_REQUEST_CODE){
             if (resultCode == PASSWORD_RESULT_OK) { // from password activity
                 isFromPasswordActivity = true;
-                this.setMainBackgroundImageVisibility(true);
+                // show home page
+                this.showHomePage();
             }
         }
         if(requestCode == ON_BOARDING_REQUEST_CODE){ // from on boarding activity
             if (resultCode == ON_BOARDING_RESULT_OK) {
                 isFromOnBoardingActivity = true;
-                this.setMainBackgroundImageVisibility(true);
+                // show home page
+                this.showHomePage();
             }
         }
     }
@@ -162,7 +161,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         } else {
             FragmentOperator.backToLastFragment(this);
             if (count == 1){
-                this.setMainBackgroundImageVisibility(true);
                 // set title
                 Objects.requireNonNull(getSupportActionBar()).setTitle("virusSafe Agro");
             }
@@ -182,22 +180,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        this.setMainBackgroundImageVisibility(false);
-
         // open fragment according to id
         this.switchFragments(id);
 
         return true;
-    }
-
-    public void setMainBackgroundImageVisibility(boolean isVisible) {
-        if (isVisible) {
-            // show tha main background image
-            this.backgroundLinearLayout.setVisibility(View.VISIBLE);
-        } else {
-            // hide tha main background image
-            this.backgroundLinearLayout.setVisibility(View.INVISIBLE);
-        }
     }
 
     private void switchFragments(int itemId) {

@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,6 +32,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
 import com.mindorks.paracamera.Camera;
@@ -60,6 +62,8 @@ public class VirusCheckFragment extends Fragment {
     private boolean isUploadImageButtonClicked;
 
     private final int RESULT_OK = -1;
+    public final int REQUEST_OPEN_CAMERA = Camera.REQUEST_TAKE_PHOTO;
+    public final int REQUEST_CHOOSE_GALLERY = 5678;
 
     public VirusCheckFragment() {
     }
@@ -92,6 +96,9 @@ public class VirusCheckFragment extends Fragment {
         // initialize VirusCheckViewModel
         this.initializeVirusCheckViewModel();
 
+        // show All Views
+        this.showAllViews();
+
         // set camera button
         this.setCameraButtonOnClickListener();
         // set selectImageButton on click listener
@@ -122,6 +129,10 @@ public class VirusCheckFragment extends Fragment {
         this.virusCheckViewModel = new ViewModelProvider(requireActivity()).get(VirusCheckViewModel.class);
     }
 
+    private void showAllViews() {
+        MyAnimationBox.runFadeInAnimation(allVirusCheckLinearLayout, 1000);
+    }
+
     private void setCameraButtonOnClickListener() {
         this.cameraButton.setOnClickListener(view -> {
             // open camera
@@ -150,7 +161,7 @@ public class VirusCheckFragment extends Fragment {
             Intent intent=new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, REQUEST_CHOOSE_GALLERY);
         });
     }
 
@@ -168,7 +179,7 @@ public class VirusCheckFragment extends Fragment {
             }
         }
         // for album result
-        if(data != null){
+        if(requestCode == REQUEST_CHOOSE_GALLERY){
             if(!data.toString().equals("Intent {  }") && resultCode == RESULT_OK){
                 Uri uri = data.getData();
                 Log.e("uri", uri.toString());
@@ -195,9 +206,8 @@ public class VirusCheckFragment extends Fragment {
             // check the uploadImageImageView is same as the default leaf image
             if (!DataConverter.isSameImage(uploadImageImageViewBitmapDrawable, requireActivity(), R.drawable.default_leaf)) {
                 // hide this virus check page and show the process bar
-                this.allVirusCheckLinearLayout.setVisibility(View.INVISIBLE);
+                this.allVirusCheckLinearLayout.setVisibility(View.GONE);
                 this.uploadingProgressBarRelativeLayout.setVisibility(View.VISIBLE);
-                this.uploadingProgressBarRelativeLayout.setBackground(getResources().getDrawable(R.drawable.quiz_bg));
                 // save the image into SharedPreference
                 Bitmap uploadImageBitmap = uploadImageImageViewBitmapDrawable.getBitmap();
                 PutCurrentVirusCheckImageAsyncTask putCurrentVirusCheckImageAsyncTask = new PutCurrentVirusCheckImageAsyncTask();
@@ -240,8 +250,8 @@ public class VirusCheckFragment extends Fragment {
                     virusCheckResultFragment.setArguments(bundle);
                     FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment, AppResources.FRAGMENT_TAG_VIRUS_CHECK_RESULT);
                 } else {
-                    // hide this virus check page and show the process bar
-                    this.allVirusCheckLinearLayout.setVisibility(View.VISIBLE);
+                    // show this virus check page and hide the process bar
+                    this.showAllViews();
                     this.uploadingProgressBarRelativeLayout.setVisibility(View.GONE);
                     Toast.makeText(requireActivity(), "The remote service stop working!!!", Toast.LENGTH_LONG).show();
                 }

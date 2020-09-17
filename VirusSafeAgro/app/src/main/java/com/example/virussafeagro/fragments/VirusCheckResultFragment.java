@@ -86,6 +86,7 @@ public class VirusCheckResultFragment extends Fragment {
         assert bundle != null;
         this.resultCheckFeedback = bundle.getString("resultCheckFeedback");
 
+        // get upload image
         GetCurrentVirusCheckImageAsyncTask getCurrentVirusCheckImageAsyncTask = new GetCurrentVirusCheckImageAsyncTask();
         getCurrentVirusCheckImageAsyncTask.execute();
     }
