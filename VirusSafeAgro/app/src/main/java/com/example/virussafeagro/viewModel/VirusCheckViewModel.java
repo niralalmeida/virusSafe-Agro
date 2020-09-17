@@ -7,7 +7,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.virussafeagro.models.ImageObject;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToMLModel;
+import com.example.virussafeagro.uitilities.DataConverter;
+import com.example.virussafeagro.uitilities.MyJsonParser;
 
 public class VirusCheckViewModel extends ViewModel {
     private NetworkConnectionToMLModel networkConnectionToMLModel;
@@ -38,16 +41,16 @@ public class VirusCheckViewModel extends ViewModel {
         @Override
         protected String doInBackground(Bitmap... bitmaps) {
             String feedback = "";
-//            Bitmap uploadImageBitmap = bitmaps[0];
-//            String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
-//            ImageObject imageObject = new ImageObject(uploadImageBitmapString);
-//            try {
-//                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
-//                feedback = MyJsonParser.imageCheckFeedbackJsonParser(rawFeedback);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-            feedback = "Tomato_Mosaic_Virus";
+            Bitmap uploadImageBitmap = bitmaps[0];
+            String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
+            ImageObject imageObject = new ImageObject(uploadImageBitmapString);
+            try {
+                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
+                feedback = MyJsonParser.imageCheckFeedbackJsonParser(rawFeedback);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+//            feedback = "Tomato_Mosaic_Virus";
             return feedback;
         }
 

@@ -51,8 +51,9 @@ public class VirusCheckFragment extends Fragment {
     private SharedPreferenceProcess spp;
     private VirusCheckViewModel virusCheckViewModel;
 
-    private ImageButton cameraButton;
-    private ImageButton selectImageButton;
+    private LinearLayout cameraLinearLayout;
+    private LinearLayout selectImageLinearLayout;
+
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
     private LinearLayout allVirusCheckLinearLayout;
@@ -112,8 +113,8 @@ public class VirusCheckFragment extends Fragment {
 
     private void initializeViews() {
         this.isUploadImageButtonClicked = false;
-        this.cameraButton = view.findViewById(R.id.btn_camera);
-        this.selectImageButton = view.findViewById(R.id.btn_select_image);
+        this.cameraLinearLayout = view.findViewById(R.id.ll_camera);
+        this.selectImageLinearLayout = view.findViewById(R.id.ll_select_image);
         this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
         this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
         this.allVirusCheckLinearLayout = view.findViewById(R.id.ll_all_virus_check);
@@ -134,7 +135,7 @@ public class VirusCheckFragment extends Fragment {
     }
 
     private void setCameraButtonOnClickListener() {
-        this.cameraButton.setOnClickListener(view -> {
+        this.cameraLinearLayout.setOnClickListener(view -> {
             // open camera
             openCamera();
         });
@@ -156,7 +157,7 @@ public class VirusCheckFragment extends Fragment {
     }
 
     private void setSelectImageButtonOnClickListener() {
-        this.selectImageButton.setOnClickListener(view -> {
+        this.selectImageLinearLayout.setOnClickListener(view -> {
             // open album
             Intent intent=new Intent();
             intent.setType("image/*");
