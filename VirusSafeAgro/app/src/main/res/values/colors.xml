@@ -34,4 +34,7 @@
     <color name="btnQuizStart">#0d9488</color>
     <color name="btnQuizEnd">#0d9488</color>
 
+    <!-- home -->
+    <color name="tilePressed">#515A5A</color>
+
 </resources>

@@ -21,6 +21,7 @@ public class HomeFragment extends Fragment {
     private View view;
 
     private LinearLayout allViewLinearLayout;
+    private LinearLayout waterCalculatorLinearLayout;
 
     public HomeFragment() {
     }
@@ -40,6 +41,11 @@ public class HomeFragment extends Fragment {
         // initialize Views
         this.initializeViews();
 
+        // test
+        this.waterCalculatorLinearLayout.setOnClickListener(llView -> {
+
+        });
+
         return this.view;
     }
 
@@ -53,6 +59,7 @@ public class HomeFragment extends Fragment {
 
     private void initializeViews() {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_home);
+        this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_home);
     }
 
     // show Home Image
