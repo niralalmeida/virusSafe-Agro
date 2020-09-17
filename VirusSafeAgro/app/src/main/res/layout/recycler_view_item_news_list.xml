@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_item_card_news_list"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/selector_tile_news"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.72"
+            android:padding="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_title_news_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:text="News Title - News TitleNews TitleNews TitleNews TitleNews Title" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0.3"
+            android:background="@color/colorTransparentWhiteForText"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.28"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_time_news_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:textSize="15sp"
+                android:textColor="@color/colorWhite"
+                android:text="16 hours ago"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
