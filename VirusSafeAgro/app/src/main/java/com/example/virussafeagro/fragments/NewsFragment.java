@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,11 @@ public class NewsFragment extends Fragment {
 
         // show News Views
         this.showNewsViews();
+
+        // test
+        WebView webView = view.findViewById(R.id.wv_news);
+        webView.loadUrl("https://www.stockandland.com.au/story/6929499/targeted-funding-to-attract-seasonal-workers/");
+        webView.getSettings().setJavaScriptEnabled(true);
     }
 
     private void initializeViews() {
