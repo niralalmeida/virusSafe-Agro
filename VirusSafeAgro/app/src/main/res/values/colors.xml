@@ -32,6 +32,6 @@
     <color name="btnTopStart">#D5D8DC</color>
     <color name="btnTopEnd">#D5D8DC</color>
     <color name="btnQuizStart">#0d9488</color>
-    <color name="btnQuizEnd">#000000</color>
+    <color name="btnQuizEnd">#0d9488</color>
 
 </resources>

@@ -5,6 +5,8 @@
 
     <solid android:color="@color/colorPrimaryLight" />
 
+    <corners android:radius="10dp" />
+
     <gradient
         android:angle="270"
         android:startColor="@color/btnQuizStart"
