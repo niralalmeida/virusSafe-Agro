@@ -7,19 +7,19 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.NewsModel;
-import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
+import com.example.virussafeagro.networkConnection.NetworkConnectionToGoogleSearchAPI;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NewsViewModel extends ViewModel {
-    private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
+    private NetworkConnectionToGoogleSearchAPI networkConnectionToGoogleSearchAPI;
 
     private MutableLiveData<List<NewsModel>> newsListLD;
 
     public NewsViewModel() {
-        this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
+        this.networkConnectionToGoogleSearchAPI = new NetworkConnectionToGoogleSearchAPI();
         this.newsListLD = new MutableLiveData<>();
     }
 
@@ -47,7 +47,7 @@ public class NewsViewModel extends ViewModel {
         protected List<NewsModel> doInBackground(Void... voids) {
             List<NewsModel> newsModelList = new ArrayList<>();
             try {
-                String resultText = networkConnectionToTomatoVirusDB.getAllNews();
+                String resultText = networkConnectionToGoogleSearchAPI.getAllNews("vic",1);
                 newsModelList = MyJsonParser.newsListJsonParser(resultText);
             } catch (Exception e) {
                 e.printStackTrace();
