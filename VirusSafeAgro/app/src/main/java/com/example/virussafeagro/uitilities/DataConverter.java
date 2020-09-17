@@ -4,8 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Base64;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.virussafeagro.R;
@@ -13,6 +15,9 @@ import com.example.virussafeagro.R;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class DataConverter {
 
@@ -54,5 +59,14 @@ public class DataConverter {
     public static String checkResultVirusRawNameToUpperCaseWithSpace(String resultVirusRawFullName) {
         String processedNameWithNoUnderline = resultVirusRawFullName.trim().replace('_', ' ');
         return processedNameWithNoUnderline.toUpperCase();
+    }
+
+    public static void newsTimeToStandardFormat(String originalTimeString) {
+//
+//        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss+mm:ss", Locale.CHINA);
+//        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyy", Locale.ENGLISH);
+//        LocalDate date = LocalDate.parse("2020-09-17T12:13:00+10:00", inputFormatter);
+//        String formattedDate = outputFormatter.format(date);
+//        System.out.println(formattedDate); // prints 10-04-2018
     }
 }

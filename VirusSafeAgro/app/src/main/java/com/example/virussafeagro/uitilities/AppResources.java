@@ -24,6 +24,7 @@ public class AppResources {
     public final static String FRAGMENT_TAG_VIRUS_QUIZ_RESULT = "virus_quiz_result";
     public final static String FRAGMENT_TAG_VIRUS_CHECK_RESULT = "virus_check_result";
     public final static String FRAGMENT_TAG_NEWS_LIST = "news_list";
+    public final static String FRAGMENT_TAG_NEWS_DETAIL = "news_detail";
 
 
     public static int getVirusPictureDrawableId(int virusId) {

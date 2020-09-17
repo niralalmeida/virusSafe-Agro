@@ -79,7 +79,7 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
         viewHolder.newsPressTimeTextView.setText(newsModel.getNewsPressTime());
 
         // news tile on click listener
-        viewHolder.newsPressTimeTextView.setOnClickListener(v -> newsTileClickListener.onNewsTileClick(position));
+        viewHolder.allItemViewsLinearLayout.setOnClickListener(v -> newsTileClickListener.onNewsTileClick(position));
     }
 
     @Override

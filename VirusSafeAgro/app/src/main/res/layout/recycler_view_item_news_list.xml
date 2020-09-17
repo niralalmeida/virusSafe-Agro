@@ -37,9 +37,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="15dp"
             android:orientation="horizontal">
 
             <View
@@ -49,16 +50,25 @@
                 android:background="@color/colorTransparentWhiteForText"
                 android:layout_gravity="center_vertical" />
 
-            <TextView
-                android:id="@+id/tv_snippet_news_list"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="25dp"
-                android:textSize="15sp"
-                android:textColor="@color/colorWhite"
-                android:text="News Title - News TitleNews TitleNews TitleNews TitleNews Title" />
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_snippet_news_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorWhite"
+                    android:text="News Title - News TitleNews TitleNews TitleNews TitleNews Title" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -82,6 +92,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="15sp"

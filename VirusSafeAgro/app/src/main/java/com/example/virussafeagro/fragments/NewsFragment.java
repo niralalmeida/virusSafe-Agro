@@ -1,5 +1,6 @@
 package com.example.virussafeagro.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -22,6 +24,7 @@ import com.example.virussafeagro.adapters.ListQuizResultAdapter;
 import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.viewModel.NewsViewModel;
@@ -77,6 +80,7 @@ public class NewsFragment extends Fragment {
         this.findNewsListByGoogleSearchAPI();
         // observe NewsListLD
         this.observeNewsListLD();
+
     }
 
     private void initializeViews() {
@@ -100,7 +104,7 @@ public class NewsFragment extends Fragment {
             if ((resultNewsList != null) && (resultNewsList.size() != 0)) {
                 newsModelList.clear();
                 newsModelList = resultNewsList;
-                
+
                 // show News Views
                 showNewsViews();
                 // show the news list
@@ -130,9 +134,9 @@ public class NewsFragment extends Fragment {
             Bundle bundle = new Bundle();
             NewsModel currentNewsModel = newsModelList.get(position);
             bundle.putParcelable("currentNewsModel", currentNewsModel);
-//            NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
-//            newsDetailFragment.setArguments(bundle);
-//            FragmentOperator.replaceFragment(requireActivity(), newsDetailFragment, AppResources.FRAGMENT_TAG_NEWS_DETAIL);
+            NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
+            newsDetailFragment.setArguments(bundle);
+            FragmentOperator.replaceFragment(requireActivity(), newsDetailFragment, AppResources.FRAGMENT_TAG_NEWS_DETAIL);
         });
     }
 
