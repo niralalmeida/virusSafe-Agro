@@ -163,6 +163,7 @@ public class VirusCheckResultFragment extends Fragment {
                 // set virus detail button visible
                 this.virusDetailsButton.setVisibility(View.VISIBLE);
                 this.buttonProcessBarLinearLayout.setVisibility(View.INVISIBLE);
+
                 // get result virus id
                 this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
             }
@@ -199,7 +200,7 @@ public class VirusCheckResultFragment extends Fragment {
                 virusDetailFragment.setArguments(bundle);
                 FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
             } else {
-                String errorMessage = "The result virus is not in the virus list! Something wrong with the model!";
+                String errorMessage = "The result virus is not in the virus list!";
                 Toast.makeText(requireActivity(), errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
@@ -208,8 +209,16 @@ public class VirusCheckResultFragment extends Fragment {
     private VirusModel getResultVirusModelFromSP(String resultVirusRawFullName){
         // parse the name to standard: eg. TARGET SPOT
         String processedResultName = DataConverter.checkResultVirusRawNameToUpperCaseWithSpace(resultVirusRawFullName);
+
+        // test
+        System.out.println("processedResultName --> " + processedResultName);
+
         // get result virus id
         int virusId = AppResources.getVirusIdByVirusFullName(processedResultName);
+
+        // test
+        System.out.println("virusId --> " + virusId);
+
         // get the virus list
         List<VirusModel> virusModelList = spp.getVirusModelListFromSP();
         return (virusId == 0) ? null : virusModelList.get(virusId - 1);
