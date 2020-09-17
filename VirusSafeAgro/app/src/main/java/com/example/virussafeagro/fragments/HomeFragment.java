@@ -51,8 +51,8 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show Home Image
-        this.showHomeImage();
+        // show Home Views
+        this.showHomeViews();
 
         // control all tiles on click listeners
         this.allTilesOnClickListener();
@@ -64,8 +64,8 @@ public class HomeFragment extends Fragment {
         this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
 
-    // show Home Image
-    private void showHomeImage() {
+    // show Home Views
+    private void showHomeViews() {
         MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
     }
 
@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
 
     private void setNewsTileOnClickListener() {
         this.newsLinearLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
     }
 
