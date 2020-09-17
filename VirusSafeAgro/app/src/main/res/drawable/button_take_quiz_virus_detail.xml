@@ -3,11 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
+    <solid android:color="@color/colorPrimaryLight" />
+
     <gradient
         android:angle="270"
-        android:startColor="@color/btnTopStart"
-        android:centerColor="@color/btnTopStart"
-        android:endColor="@color/btnTopEnd"
+        android:startColor="@color/btnQuizStart"
+        android:centerColor="@color/btnQuizStart"
+        android:endColor="@color/btnQuizEnd"
         android:centerY="0.70"
         android:type="linear" />
 
