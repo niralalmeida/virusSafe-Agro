@@ -10,7 +10,7 @@
         android:startColor="@color/btnQuizStart"
         android:centerColor="@color/btnQuizStart"
         android:endColor="@color/btnQuizEnd"
-        android:centerY="0.70"
+        android:centerY="0.60"
         android:type="linear" />
 
 </shape>

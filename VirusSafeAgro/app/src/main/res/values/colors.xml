@@ -30,8 +30,8 @@
     <!-- virus detail -->
     <color name="colorSubTitle">#d0d3d6</color>
     <color name="btnTopStart">#D5D8DC</color>
-    <color name="btnTopEnd">#808B96</color>
+    <color name="btnTopEnd">#D5D8DC</color>
     <color name="btnQuizStart">#0d9488</color>
-    <color name="btnQuizEnd">#074A44</color>
+    <color name="btnQuizEnd">#000000</color>
 
 </resources>
