@@ -100,10 +100,7 @@ public class NewsFragment extends Fragment {
             if ((resultNewsList != null) && (resultNewsList.size() != 0)) {
                 newsModelList.clear();
                 newsModelList = resultNewsList;
-
-                // test
-                System.out.println("=====> news list size [" + newsModelList.size() + "]");
-
+                
                 // show News Views
                 showNewsViews();
                 // show the news list
