@@ -33,6 +33,10 @@
     <string name="menu_ic_nutrient">NUTRIENT</string>
     <string name="menu_ic_more">MORE</string>
 
+    <!-- virus info list -->
+    <string name="text_description_title">Virus disease in tomato plants</string>
+    <string name="text_description_content">There are nine types of viruses in tomato plants, which causes major damages to the yield.  Tap on the tiles below to learn more about the viruses</string>
+
     <!--  buttons  -->
     <string name="recycler_view_quiz_button">Take Quiz</string>
     <string name="recycler_view_content_button">View Content</string>

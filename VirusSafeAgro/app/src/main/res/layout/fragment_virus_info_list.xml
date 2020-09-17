@@ -3,26 +3,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/quiz_bg"
+    android:background="@color/colorPrimaryDarkBG"
     tools:context=".fragments.VirusInfoListFragment">
 
+    <!-- virus grid -->
     <LinearLayout
         android:id="@+id/ll_list_virus_info_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_tile"
+            android:padding="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/text_description_title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="15sp"
+                android:text="@string/text_description_content"/>
+
+        </LinearLayout>
 
         <GridView
             android:id="@+id/gv_list_virus_info_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:horizontalSpacing="5dp"
             android:verticalSpacing="5dp"
-            android:padding="10dp"
             android:numColumns="2" />
 
     </LinearLayout>
 
+    <!-- progress bar -->
     <LinearLayout
         android:id="@+id/ll_process_bar_virus_info"
         android:layout_width="wrap_content"
