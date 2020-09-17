@@ -64,27 +64,28 @@ public class GridNutrientAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.grid_item_card_nutrient, parent, false);
+        }
 
-            // initialize views
-            this.nutrientImageView = convertView.findViewById(R.id.img_nutrient_grid_item);
-            this.nutrientNameTextView = convertView.findViewById(R.id.tv_name_nutrient_list);
+        // initialize views
+        this.nutrientImageView = convertView.findViewById(R.id.img_nutrient_grid_item);
+        this.nutrientNameTextView = convertView.findViewById(R.id.tv_name_nutrient_list);
 
-            // get nutrient model
-            NutrientModel nutrientModel = nutrientModelList.get(position);
+        // get nutrient model
+        NutrientModel nutrientModel = nutrientModelList.get(position);
 
-            // set nutrient image
+        // set nutrient image
 //            int nutrientPictureDrawableId = AppResources.getNutrientPictureDrawableId(nutrientModel.getNutrientId());
 //            Bitmap nutrientPictureBitmap = BitmapFactory.decodeResource(fragmentActivity.getResources(), nutrientPictureDrawableId);
 //            this.nutrientImageView.setImageBitmap(nutrientPictureBitmap);
 
-            // set nutrient full name
-            this.nutrientNameTextView.setText(nutrientModel.getNutrientName());
+        // set nutrient full name
+        this.nutrientNameTextView.setText(nutrientModel.getNutrientName());
 
-            // set card on click listener
-            this.nutrientRelativeLayout = convertView.findViewById(R.id.rl_nutrient_list);
-            this.nutrientRelativeLayout.setOnClickListener(v -> nutrientCardClickListener.onNutrientCardClick(position));
+        // set card on click listener
+        this.nutrientRelativeLayout = convertView.findViewById(R.id.rl_nutrient_list);
+        this.nutrientRelativeLayout.setOnClickListener(v -> nutrientCardClickListener.onNutrientCardClick(position));
 
-        }
+
         return convertView;
     }
 }

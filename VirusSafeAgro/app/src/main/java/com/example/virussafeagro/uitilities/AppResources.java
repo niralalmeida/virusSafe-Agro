@@ -92,4 +92,39 @@ public class AppResources {
         }
         return virusId;
     }
+
+    public static String getVirusShortName(int virusId){
+        String virusShortName = "";
+        switch (virusId){
+            case 1:
+                virusShortName = "Mosaic Virus";
+                break;
+            case 2:
+                virusShortName = "Target Spot";
+                break;
+            case 3:
+                virusShortName = "Bacterial Spot";
+                break;
+            case 4:
+                virusShortName = "Yellow Leaf Curl ";
+                break;
+            case 5:
+                virusShortName = "Late Blight";
+                break;
+            case 6:
+                virusShortName = "Leaf Mold";
+                break;
+            case 7:
+                virusShortName = "Early Blight";
+                break;
+            case 8:
+                virusShortName = "Spider Mite";
+                break;
+            case 9:
+                virusShortName = "Septoria Leaf Spot";
+                break;
+        }
+        return virusShortName;
+    }
+
 }

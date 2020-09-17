@@ -64,27 +64,27 @@ public class GridVirusInfoAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.grid_item_card_virus_info, parent, false);
-
-            // initialize views
-            this.virusImageView = convertView.findViewById(R.id.img_virus_grid_item);
-            this.virusFullNameTextView = convertView.findViewById(R.id.tv_full_name_virus_info_list);
-
-            // get virus model
-            VirusModel virusModel = virusModelInfoList.get(position);
-
-            // set virus image
-            int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(virusModel.getVirusId());
-            Bitmap virusPictureBitmap = BitmapFactory.decodeResource(fragmentActivity.getResources(), virusPictureDrawableId);
-            this.virusImageView.setImageBitmap(virusPictureBitmap);
-
-            // set virus full name
-            this.virusFullNameTextView.setText(virusModel.getVirusFullName());
-
-            // set card on click listener
-            this.virusRelativeLayout = convertView.findViewById(R.id.rl_virus_info_list);
-            this.virusRelativeLayout.setOnClickListener(v -> virusCardClickListener.onVirusCardClick(position));
-
         }
+        // initialize views
+        this.virusImageView = convertView.findViewById(R.id.img_virus_grid_item);
+        this.virusFullNameTextView = convertView.findViewById(R.id.tv_full_name_virus_info_list);
+
+        // get virus model
+        VirusModel virusModel = virusModelInfoList.get(position);
+
+        // set virus image
+        int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(virusModel.getVirusId());
+        Bitmap virusPictureBitmap = BitmapFactory.decodeResource(fragmentActivity.getResources(), virusPictureDrawableId);
+        this.virusImageView.setImageBitmap(virusPictureBitmap);
+
+        // set virus name (short name)
+        String virusShortName = AppResources.getVirusShortName(virusModel.getVirusId());
+        this.virusFullNameTextView.setText(virusShortName);
+
+        // set card on click listener
+        this.virusRelativeLayout = convertView.findViewById(R.id.rl_virus_info_list);
+        this.virusRelativeLayout.setOnClickListener(v -> virusCardClickListener.onVirusCardClick(position));
+
         return convertView;
     }
 }
