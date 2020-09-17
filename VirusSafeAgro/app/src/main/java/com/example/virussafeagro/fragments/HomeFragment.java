@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
@@ -22,6 +24,7 @@ public class HomeFragment extends Fragment {
 
     private LinearLayout allViewLinearLayout;
     private LinearLayout waterCalculatorLinearLayout;
+    private LinearLayout newsLinearLayout;
 
     public HomeFragment() {
     }
@@ -41,11 +44,6 @@ public class HomeFragment extends Fragment {
         // initialize Views
         this.initializeViews();
 
-        // test
-        this.waterCalculatorLinearLayout.setOnClickListener(llView -> {
-
-        });
-
         return this.view;
     }
 
@@ -55,16 +53,32 @@ public class HomeFragment extends Fragment {
 
         // show Home Image
         this.showHomeImage();
+
+        // control all tiles on click listeners
+        this.allTilesOnClickListener();
     }
 
     private void initializeViews() {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_home);
         this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_home);
+        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
 
     // show Home Image
     private void showHomeImage() {
         MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
+    }
+
+    private void allTilesOnClickListener() {
+
+        // news
+        this.setNewsTileOnClickListener();
+    }
+
+    private void setNewsTileOnClickListener() {
+        this.newsLinearLayout.setOnClickListener(llView -> {
+//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
+        });
     }
 
     @Override
