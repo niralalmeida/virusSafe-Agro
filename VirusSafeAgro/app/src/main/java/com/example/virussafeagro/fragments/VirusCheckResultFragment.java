@@ -191,7 +191,10 @@ public class VirusCheckResultFragment extends Fragment {
         this.virusDetailsButton.setOnClickListener(view -> {
             if (resultVirusModel != null){
                 Bundle bundle = new Bundle();
+                // store the virus model in the bundle
                 bundle.putParcelable("currentVirusModel", resultVirusModel);
+                // store the message for "prevention" in the bundle
+                bundle.putString("prevention", "yes");
                 VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
                 virusDetailFragment.setArguments(bundle);
                 FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);

@@ -50,7 +50,7 @@ public class VirusCheckViewModel extends ViewModel {
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
-            feedback = "healthy";
+            feedback = "Tomato_Mosaic_Virus";
             return feedback;
         }
 

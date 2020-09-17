@@ -30,6 +30,7 @@ import java.util.Objects;
 public class VirusDetailFragment extends Fragment {
     private View view;
     private VirusModel currentVirusModel;
+    private String preventionMessage;
 
     private RelativeLayout virusDetailRelativeLayout;
 
@@ -71,6 +72,7 @@ public class VirusDetailFragment extends Fragment {
         Bundle bundle = getArguments();
         assert bundle != null;
         this.currentVirusModel = bundle.getParcelable("currentVirusModel");
+        this.preventionMessage = bundle.getString("prevention");
 
         return this.view;
     }
@@ -86,8 +88,14 @@ public class VirusDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(this.virusDetailRelativeLayout, 1000);
         this.showVirusDetails();
 
-        // initialize description content
-        this.initializeDescriptionContent();
+        // initialize description content / or prevention content
+        if (this.preventionMessage != null){
+            // show prevention
+            this.showPreventionContent();
+        } else {
+            // show description
+            this.showDescriptionContent();
+        }
 
         // set top buttons listener
         this.setTopButtonsListener();
@@ -117,7 +125,7 @@ public class VirusDetailFragment extends Fragment {
         this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
     }
 
-    private void initializeDescriptionContent() {
+    private void showDescriptionContent() {
         descriptionButton.setEnabled(false);
         symptomsButton.setEnabled(true);
         causesButton.setEnabled(true);
@@ -129,10 +137,22 @@ public class VirusDetailFragment extends Fragment {
         preventionNestedScrollView.setVisibility(View.GONE);
     }
 
+    private void showPreventionContent() {
+        descriptionButton.setEnabled(true);
+        symptomsButton.setEnabled(true);
+        causesButton.setEnabled(true);
+        preventionButton.setEnabled(false);
+
+        descriptionNestedScrollView.setVisibility(View.GONE);
+        symptomsNestedScrollView.setVisibility(View.GONE);
+        causesNestedScrollView.setVisibility(View.GONE);
+        MyAnimationBox.runFadeInAnimation(preventionNestedScrollView, 1000);
+    }
+
     private void setTopButtonsListener() {
         this.descriptionButton.setOnClickListener(buttonView -> {
             if (buttonView.isEnabled()){
-                initializeDescriptionContent();
+                showDescriptionContent();
             }
         });
         this.symptomsButton.setOnClickListener(buttonView -> {
@@ -163,15 +183,7 @@ public class VirusDetailFragment extends Fragment {
         });
         this.preventionButton.setOnClickListener(buttonView -> {
             if (buttonView.isEnabled()){
-                descriptionButton.setEnabled(true);
-                symptomsButton.setEnabled(true);
-                causesButton.setEnabled(true);
-                buttonView.setEnabled(false);
-
-                descriptionNestedScrollView.setVisibility(View.GONE);
-                symptomsNestedScrollView.setVisibility(View.GONE);
-                causesNestedScrollView.setVisibility(View.GONE);
-                MyAnimationBox.runFadeInAnimation(preventionNestedScrollView, 1000);
+                showPreventionContent();
             }
         });
     }

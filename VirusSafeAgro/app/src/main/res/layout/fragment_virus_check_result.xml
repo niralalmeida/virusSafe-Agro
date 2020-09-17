@@ -137,7 +137,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/button_upload_virus_check"
                     android:text="@string/button_virus_details_check_result"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:textStyle="bold"

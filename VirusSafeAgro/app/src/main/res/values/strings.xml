@@ -40,7 +40,7 @@
     <string name="button_review_quiz">Review Virus Knowledge</string>
     <string name="button_retake_quiz">Retake Quiz</string>
     <string name="button_back">Back</string>
-    <string name="button_virus_details_check_result">View This Virus</string>
+    <string name="button_virus_details_check_result">View Prevention Strategies</string>
 
     <!--  message  -->
     <string name="process_bar_text_virus_info">Loading Virus List &#8230;</string>

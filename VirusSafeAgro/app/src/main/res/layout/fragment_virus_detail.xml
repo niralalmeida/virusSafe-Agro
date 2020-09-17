@@ -150,26 +150,20 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp">
 
+
             <LinearLayout
+                android:id="@+id/ll_description_virus_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/ll_description_virus_detail"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_description_virus_detail"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_description_virus_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorSubTitle"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp" />
-
-                </LinearLayout>
+                    android:textColor="@color/colorSubTitle"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
 
             </LinearLayout>
 
@@ -184,28 +178,23 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp">
 
+
             <LinearLayout
+                android:id="@+id/ll_symptoms_virus_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/ll_symptoms_virus_detail"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_symptoms_virus_detail"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_symptoms_virus_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorSubTitle"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp" />
-
-                </LinearLayout>
+                    android:textColor="@color/colorSubTitle"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
 
             </LinearLayout>
+
 
         </androidx.core.widget.NestedScrollView>
 
@@ -219,25 +208,18 @@
             android:layout_marginEnd="10dp">
 
             <LinearLayout
+                android:id="@+id/ll_causes_virus_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/ll_causes_virus_detail"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_causes_virus_detail"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_causes_virus_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorSubTitle"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp" />
-
-                </LinearLayout>
+                    android:textColor="@color/colorSubTitle"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
 
             </LinearLayout>
 
@@ -253,25 +235,18 @@
             android:layout_marginEnd="10dp">
 
             <LinearLayout
+                android:id="@+id/ll_prevention_virus_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/ll_prevention_virus_detail"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_prevention_virus_detail"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_prevention_virus_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorSubTitle"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp" />
-
-                </LinearLayout>
+                    android:textColor="@color/colorSubTitle"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
 
             </LinearLayout>
 
