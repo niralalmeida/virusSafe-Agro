@@ -229,7 +229,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="#000"
-                        android:text="@string/fragment_c3_contact_about"/>
+                        android:text="@string/fragment_c4_contact_about"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -306,7 +306,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="#000"
-                        android:text="@string/fragment_c4_disclaimer_about"/>
+                        android:text="@string/fragment_c3_disclaimer_about"/>
 
                 </LinearLayout>
 

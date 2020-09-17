@@ -88,19 +88,19 @@ public class MoreFragment extends Fragment {
 
     private void setUpdatesLinearLayoutOnClickListener() {
         this.updatesLinearLayout.setOnClickListener(view -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
+            FragmentOperator.replaceFragment(requireActivity(), new UpdatesFragment(), AppResources.FRAGMENT_TAG_UPDATES);
         });
     }
 
     private void setDisclaimerLinearLayoutOnClickListener() {
         this.disclaimerLinearLayout.setOnClickListener(view -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
+            FragmentOperator.replaceFragment(requireActivity(), new DisclaimerFragment(), AppResources.FRAGMENT_TAG_DISCLAIMER);
         });
     }
 
     private void setContactUsLinearLayoutOnClickListener() {
         this.contactUsLinearLayout.setOnClickListener(view -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
+            FragmentOperator.replaceFragment(requireActivity(), new ContactUsFragment(), AppResources.FRAGMENT_TAG_CONTACT_US);
         });
     }
 

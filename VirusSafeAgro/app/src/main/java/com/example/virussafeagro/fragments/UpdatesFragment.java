@@ -17,19 +17,19 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
 
-public class AboutAppFragment extends Fragment {
+public class UpdatesFragment extends Fragment {
     private View view;
 
     private LinearLayout allViewLinearLayout;
 
-    public AboutAppFragment() {
+    public UpdatesFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
-        this.view = inflater.inflate(R.layout.fragment_about_app, container, false);
+        this.view = inflater.inflate(R.layout.fragment_updates, container, false);
 
         // set title
         Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("About virusSafe Agro");
@@ -52,7 +52,7 @@ public class AboutAppFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_about_app);
+        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_updates);
     }
 
     // show Home Views

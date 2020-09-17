@@ -22,9 +22,10 @@
         <p>&#x000A;&#x000A;This app offers you a new way of uploading a picture of a tomato plant to check if it is infected or not. On uploading the picture, the user gets instant feedback on whether the plant is infected or not.</p>
     </string>
     <string name="fragment_c2_updates_about">The app will contain a feature to check nutrient deficiency in tomato plants and way to tackle it, and revisions based on user feedback.</string>
-    <string name="fragment_c3_contact_about">We are open to feedback about this application.&#x000A;E-mail: </string>
+    <string name="fragment_c4_contact_about">We are open to feedback about this application.</string>
+    <string name="email_title">E-mail: </string>
     <string name="our_email">virusSafeAgro@gmail.com</string>
-    <string name="fragment_c4_disclaimer_about">virusSafe Agro does not guarantee the completeness or accuracy of information on this page. virusSafe Agro shall bear no liability or responsibility for any errors, defects, faults or omissions in the information.</string>
+    <string name="fragment_c3_disclaimer_about">virusSafe Agro does not guarantee the completeness or accuracy of information on this page. virusSafe Agro shall bear no liability or responsibility for any errors, defects, faults or omissions in the information.</string>
 
     <!--  menu items  -->
     <string name="menu_ic_home">HOME</string>
