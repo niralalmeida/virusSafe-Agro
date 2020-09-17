@@ -16,110 +16,69 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.ChoiceOptionModel;
-import com.example.virussafeagro.models.ChoiceQuestionModel;
+import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.uitilities.DataComparison;
 
 import java.util.List;
 
 public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHolder> {
-private List<ChoiceQuestionModel> choiceQuestionModelList;
-private FragmentActivity fragmentActivity;
+    private List<NewsModel> newsModelList;
 
-public ListNewsAdapter(List<ChoiceQuestionModel> choiceQuestionModelList, FragmentActivity fragmentActivity) {
-        this.choiceQuestionModelList = choiceQuestionModelList;
+    private FragmentActivity fragmentActivity;
+    private ListNewsAdapter.NewsTileClickListener newsTileClickListener;
+
+    public ListNewsAdapter(List<NewsModel> newsModelList, FragmentActivity fragmentActivity) {
+        this.newsModelList = newsModelList;
         this.fragmentActivity = fragmentActivity;
         }
 
-public class ViewHolder extends RecyclerView.ViewHolder{
-    public CardView quizResultCardView;
-    public ImageView questionMarkImageVew;
-    public TextView questionNoTextView;
-    public TextView questionContentTextView;
-    public ImageView questionImageView;
-    public TextView userAnswersTextView;
-    public LinearLayout correctAnswerLinearLayout;
-    public TextView correctAnswersTextView;
-
-    public ViewHolder(@NonNull View itemView) {
-        super(itemView);
-
-        this.quizResultCardView = itemView.findViewById(R.id.cv_each_quiz_result_final);
-        this.questionMarkImageVew = itemView.findViewById(R.id.img_question_mark_quiz_result_final);
-        this.questionNoTextView = itemView.findViewById(R.id.tv_question_no_quiz_result_final);
-        this.questionContentTextView = itemView.findViewById(R.id.tv_question_content_quiz_result_final);
-        this.questionImageView = itemView.findViewById(R.id.img_question_quiz_result_final);
-        this.userAnswersTextView = itemView.findViewById(R.id.tv_user_answer_quiz_result_final);
-        this.correctAnswerLinearLayout = itemView.findViewById(R.id.ll_correct_answer_quiz_result_final);
-        this.correctAnswersTextView = itemView.findViewById(R.id.tv_correct_answer_quiz_result_final);
+    public interface NewsTileClickListener{
+        void onNewsTileClick(int position);
     }
-}
+    public void setOnNewsTileClickListener(ListNewsAdapter.NewsTileClickListener newsTileClickListener){
+        this.newsTileClickListener = newsTileClickListener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        public LinearLayout allItemViewsLinearLayout;
+        public TextView newsTitleTextView;
+        public TextView newsPressTimeTextView;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            this.allItemViewsLinearLayout = itemView.findViewById(R.id.ll_item_card_news_list);
+            this.newsTitleTextView = itemView.findViewById(R.id.tv_title_news_list);
+            this.newsPressTimeTextView = itemView.findViewById(R.id.tv_time_news_list);
+        }
+    }
 
     @NonNull
     @Override
     public ListNewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View quizResultView = inflater.inflate(R.layout.recycler_view_quiz_result_final, parent, false);
-        ListNewsAdapter.ViewHolder viewHolder = new ListNewsAdapter.ViewHolder(quizResultView);
+        View newsView = inflater.inflate(R.layout.recycler_view_item_news_list, parent, false);
+        ListNewsAdapter.ViewHolder viewHolder = new ListNewsAdapter.ViewHolder(newsView);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListNewsAdapter.ViewHolder viewHolder, int position) {
-        final ChoiceQuestionModel choiceQuestionModel = this.choiceQuestionModelList.get(position);
+        final NewsModel newsModel = this.newsModelList.get(position);
 
-        // question mark and background color
-        if (DataComparison.checkTwoListHaveSameItems(choiceQuestionModel.getUserAnswerList(), choiceQuestionModel.getCorrectAnswerList())){
-            viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_right_circle_white_50dp);
-            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.rightAnswer));
-            viewHolder.correctAnswerLinearLayout.setVisibility(View.GONE);
-        } else {
-            viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_wrong_circle_white_50dp);
-            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.wrongAnswer));
-            // correct answer
-            StringBuilder correctAnswerStringBuilder = new StringBuilder();
-            // get correct answer content by the label
-            for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()) {
-                for (String answerLabel : choiceQuestionModel.getCorrectAnswerList()) {
-                    if (answerLabel.equals(choiceOptionModel.getChoiceOptionLabel())) {
-                        correctAnswerStringBuilder.append(answerLabel).append(". ").append(choiceOptionModel.getChoiceOptionContent()).append("\n");
-                        break;
-                    }
-                }
-            }
-            correctAnswerStringBuilder.deleteCharAt(correctAnswerStringBuilder.length() - 1);
-            viewHolder.correctAnswersTextView.setText(correctAnswerStringBuilder.toString());
-        }
+        // news title
+        viewHolder.newsTitleTextView.setText(newsModel.getNewsTitle());
 
-        // question no
-        String questionNoString = "Q" + (position + 1) + " - ";
-        viewHolder.questionNoTextView.setText(questionNoString);
+        // news press time
+        viewHolder.newsPressTimeTextView.setText(newsModel.getNewsPressTime());
 
-        // question content
-        viewHolder.questionContentTextView.setText(choiceQuestionModel.getChoiceQuestionContent());
-
-        // question image
-        viewHolder.questionImageView.setImageBitmap(choiceQuestionModel.getChoiceQuestionImage());
-
-        // user answer
-        StringBuilder userAnswerStringBuilder = new StringBuilder();
-        // get user answer content by the label
-        if(choiceQuestionModel.getUserAnswerList() != null){
-            for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()) {
-                for (String answerLabel : choiceQuestionModel.getUserAnswerList()) {
-                    if (answerLabel.equals(choiceOptionModel.getChoiceOptionLabel())) {
-                        userAnswerStringBuilder.append(answerLabel).append(". ").append(choiceOptionModel.getChoiceOptionContent()).append("\n");
-                        break;
-                    }
-                }
-            }
-            userAnswerStringBuilder.deleteCharAt(userAnswerStringBuilder.length() - 1);
-            viewHolder.userAnswersTextView.setText(userAnswerStringBuilder.toString());
-        }
+        // news tile on click listener
+        viewHolder.newsPressTimeTextView.setOnClickListener(v -> newsTileClickListener.onNewsTileClick(position));
     }
 
     @Override
     public int getItemCount() {
-        return this.choiceQuestionModelList.size();
+        return this.newsModelList.size();
     }
 }

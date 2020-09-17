@@ -4,24 +4,41 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.adapters.ListNewsAdapter;
+import com.example.virussafeagro.adapters.ListQuizResultAdapter;
+import com.example.virussafeagro.models.NewsModel;
+import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class NewsFragment extends Fragment {
     private View view;
 
+    private List<NewsModel> newsModelList;
+
     private LinearLayout allViewLinearLayout;
+
+    // recycler view
+    private ListNewsAdapter listNewsAdapter;
+    private RecyclerView recyclerViewForNews;
+    private RecyclerView.LayoutManager layoutManager;
 
     public NewsFragment() {
     }
@@ -38,6 +55,8 @@ public class NewsFragment extends Fragment {
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
 
+        // initialize Data
+        this.initializeData();
         // initialize Views
         this.initializeViews();
 
@@ -51,19 +70,39 @@ public class NewsFragment extends Fragment {
         // show News Views
         this.showNewsViews();
 
-        // test
-        WebView webView = view.findViewById(R.id.wv_news);
-        webView.loadUrl("https://www.stockandland.com.au/story/6929499/targeted-funding-to-attract-seasonal-workers/");
-        webView.getSettings().setJavaScriptEnabled(true);
     }
 
     private void initializeViews() {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news);
     }
 
+    private void initializeData() {
+        this.newsModelList = new ArrayList<>();
+    }
+
     // show News Views
     private void showNewsViews() {
         MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
+    }
+
+    private void showNewsRecyclerView() {
+        listNewsAdapter = new ListNewsAdapter(newsModelList, requireActivity());
+        recyclerViewForNews = view.findViewById(R.id.rv_news_list);
+        recyclerViewForNews.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
+        recyclerViewForNews.setAdapter(listNewsAdapter);
+        layoutManager = new LinearLayoutManager(requireActivity());
+        recyclerViewForNews.setLayoutManager(layoutManager);
+    }
+
+    private void setNewsTileOnClickedListener() {
+        listNewsAdapter.setOnNewsTileClickListener(position -> {
+            Bundle bundle = new Bundle();
+            NewsModel currentNewsModel = newsModelList.get(position);
+            bundle.putParcelable("currentNewsModel", currentNewsModel);
+//            NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
+//            newsDetailFragment.setArguments(bundle);
+//            FragmentOperator.replaceFragment(requireActivity(), newsDetailFragment, AppResources.FRAGMENT_TAG_NEWS_DETAIL);
+        });
     }
 
     @Override
