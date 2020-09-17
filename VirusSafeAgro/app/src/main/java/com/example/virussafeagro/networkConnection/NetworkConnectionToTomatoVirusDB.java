@@ -57,7 +57,7 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllNutrients() {
         String resultText = "";
-        final String API_URL = "https://";
+        final String API_URL = "https://l0j2i6t18a.execute-api.us-east-1.amazonaws.com/nutrientStage/nutrientresource";
         Request request = new Request.Builder().url(API_URL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();

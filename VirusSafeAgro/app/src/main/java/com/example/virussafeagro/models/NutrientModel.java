@@ -8,30 +8,48 @@ import java.util.List;
 public class NutrientModel implements Parcelable {
     private int nutrientId;
     private String nutrientName;
-    private List<String> nutrientSymptomList;
-    private List<String> nutrientReasonList;
-    private List<String> nutrientFactoryList;
+    private String nutrientSymptom;
+    private String nutrientReason;
+    private String nutrientFactory;
+//    private List<String> nutrientSymptomList;
+//    private List<String> nutrientReasonList;
+//    private List<String> nutrientFactoryList;
     private String nutrientCorrectionMethod;
 
     public NutrientModel() {
     }
 
-    public NutrientModel(int nutrientId, String nutrientName, List<String> nutrientSymptomList, List<String> nutrientReasonList, List<String> nutrientFactoryList, String nutrientCorrectionMethod) {
+    public NutrientModel(int nutrientId, String nutrientName, String nutrientSymptom, String nutrientReason, String nutrientFactory, String nutrientCorrectionMethod) {
         this.nutrientId = nutrientId;
         this.nutrientName = nutrientName;
-        this.nutrientSymptomList = nutrientSymptomList;
-        this.nutrientReasonList = nutrientReasonList;
-        this.nutrientFactoryList = nutrientFactoryList;
+        this.nutrientSymptom = nutrientSymptom;
+        this.nutrientReason = nutrientReason;
+        this.nutrientFactory = nutrientFactory;
         this.nutrientCorrectionMethod = nutrientCorrectionMethod;
     }
 
     protected NutrientModel(Parcel in) {
         nutrientId = in.readInt();
         nutrientName = in.readString();
-        nutrientSymptomList = in.createStringArrayList();
-        nutrientReasonList = in.createStringArrayList();
-        nutrientFactoryList = in.createStringArrayList();
+        nutrientSymptom = in.readString();
+        nutrientReason = in.readString();
+        nutrientFactory = in.readString();
         nutrientCorrectionMethod = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(nutrientId);
+        dest.writeString(nutrientName);
+        dest.writeString(nutrientSymptom);
+        dest.writeString(nutrientReason);
+        dest.writeString(nutrientFactory);
+        dest.writeString(nutrientCorrectionMethod);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<NutrientModel> CREATOR = new Creator<NutrientModel>() {
@@ -62,28 +80,28 @@ public class NutrientModel implements Parcelable {
         this.nutrientName = nutrientName;
     }
 
-    public List<String> getNutrientSymptomList() {
-        return nutrientSymptomList;
+    public String getNutrientSymptom() {
+        return nutrientSymptom;
     }
 
-    public void setNutrientSymptomList(List<String> nutrientSymptomList) {
-        this.nutrientSymptomList = nutrientSymptomList;
+    public void setNutrientSymptom(String nutrientSymptom) {
+        this.nutrientSymptom = nutrientSymptom;
     }
 
-    public List<String> getNutrientReasonList() {
-        return nutrientReasonList;
+    public String getNutrientReason() {
+        return nutrientReason;
     }
 
-    public void setNutrientReasonList(List<String> nutrientReasonList) {
-        this.nutrientReasonList = nutrientReasonList;
+    public void setNutrientReason(String nutrientReason) {
+        this.nutrientReason = nutrientReason;
     }
 
-    public List<String> getNutrientFactoryList() {
-        return nutrientFactoryList;
+    public String getNutrientFactory() {
+        return nutrientFactory;
     }
 
-    public void setNutrientFactoryList(List<String> nutrientFactoryList) {
-        this.nutrientFactoryList = nutrientFactoryList;
+    public void setNutrientFactory(String nutrientFactory) {
+        this.nutrientFactory = nutrientFactory;
     }
 
     public String getNutrientCorrectionMethod() {
@@ -92,20 +110,5 @@ public class NutrientModel implements Parcelable {
 
     public void setNutrientCorrectionMethod(String nutrientCorrectionMethod) {
         this.nutrientCorrectionMethod = nutrientCorrectionMethod;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(nutrientId);
-        dest.writeString(nutrientName);
-        dest.writeStringList(nutrientSymptomList);
-        dest.writeStringList(nutrientReasonList);
-        dest.writeStringList(nutrientFactoryList);
-        dest.writeString(nutrientCorrectionMethod);
     }
 }
