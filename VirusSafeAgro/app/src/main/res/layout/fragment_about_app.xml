@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textSize="15sp"
                     android:textColor="@color/colorWhite"
                     android:text="@string/fragment_c1_app_description_about"/>
