@@ -4,141 +4,170 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/img_upload_check_result"
-        android:scaleType="centerCrop"
+    <LinearLayout
+        android:id="@+id/ll_all_view_virus_check_result"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/ll_error_feedback_image_check"
+        <ImageView
+            android:id="@+id/img_upload_check_result"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/feedbackBG"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:visibility="invisible">
+            android:layout_height="300dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textStyle="bold"
-                android:text="[ Error Message ]" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:text="It's not a tomato leaf image! Please try again!"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_healthy_feedback_image_check"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/resultItemRightBG"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:visibility="invisible">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text_healthy_virus_check_result"
-                android:textColor="@color/rightAnswer"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_ill_feedback_image_check"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/resultItemWrongBG"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:visibility="invisible">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textStyle="bold"
-                android:text="@string/text_ill_virus_check_result" />
-
-            <TextView
-                android:id="@+id/tv_ill_feedback_image_check"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/wrongAnswer"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/btn_virus_details_check_result"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="@string/button_virus_details_check_result"
-                android:textColor="#fff"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textStyle="bold"
-                android:layout_marginBottom="100dp"
-                android:visibility="invisible"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_btn_progress_bar_check_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical" >
-
-            <ProgressBar
-                android:layout_gravity="center_horizontal"
+            <RelativeLayout
+                android:id="@+id/rl_result_messages_virus_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="100dp"
-                android:visibility="invisible"/>
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true">
 
-        </LinearLayout>
+                <!-- error -->
+                <LinearLayout
+                    android:id="@+id/ll_error_feedback_image_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_tile"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="invisible">
 
-    </RelativeLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:textColor="@color/wrongAnswer"
+                        android:text="[ Error Message ]" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/wrongAnswer"
+                        android:text="It's not a tomato leaf image! Please try again!"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <!-- healthy -->
+                <LinearLayout
+                    android:id="@+id/ll_healthy_feedback_image_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_tile"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_healthy_virus_check_result"
+                        android:textColor="@color/rightAnswer"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <!-- ill -->
+                <LinearLayout
+                    android:id="@+id/ll_ill_feedback_image_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_tile"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite"
+                        android:text="@string/text_ill_virus_check_result" />
+
+                    <TextView
+                        android:id="@+id/tv_ill_feedback_image_check"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/wrongAnswer"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <!-- virus detail button (prevention) -->
+            <LinearLayout
+                android:id="@+id/ll_button_virus_check_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/rl_result_messages_virus_result"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/btn_virus_details_check_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button_upload_virus_check"
+                    android:text="@string/button_virus_details_check_result"
+                    android:textColor="@color/colorBlack"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="100dp"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
+
+            <!-- progress bar for button -->
+            <LinearLayout
+                android:id="@+id/ll_btn_progress_bar_check_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/ll_button_virus_check_result"
+                android:orientation="vertical" >
+
+                <ProgressBar
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="100dp"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

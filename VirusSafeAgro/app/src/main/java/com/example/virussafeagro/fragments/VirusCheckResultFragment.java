@@ -24,6 +24,7 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckResultViewModel;
 
@@ -40,6 +41,7 @@ public class VirusCheckResultFragment extends Fragment {
     private String resultCheckFeedback;
     private VirusModel resultVirusModel;
 
+    private LinearLayout allViewLinearLayout;
     private ImageView uploadedImageImageView;
     private LinearLayout imageCheckErrorFeedbackLinearLayout;
     private LinearLayout imageCheckHealthyFeedbackLinearLayout;
@@ -104,6 +106,9 @@ public class VirusCheckResultFragment extends Fragment {
         protected void onPostExecute(Bitmap uploadedImageBitmap) {
             uploadedImageImageView.setImageBitmap(uploadedImageBitmap);
 
+            // show all views
+            showAllViews();
+
             // control the resultCheckFeedback display
             controlResultCheckFeedback();
 
@@ -115,6 +120,7 @@ public class VirusCheckResultFragment extends Fragment {
     }
 
     private void initializeViews() {
+        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_virus_check_result);
         this.uploadedImageImageView = view.findViewById(R.id.img_upload_check_result);
         this.imageCheckErrorFeedbackLinearLayout = view.findViewById(R.id.ll_error_feedback_image_check);
         this.imageCheckHealthyFeedbackLinearLayout = view.findViewById(R.id.ll_healthy_feedback_image_check);
@@ -122,6 +128,10 @@ public class VirusCheckResultFragment extends Fragment {
         this.imageCheckIllFeedbackTextView = view.findViewById(R.id.tv_ill_feedback_image_check);
         this.virusDetailsButton = view.findViewById(R.id.btn_virus_details_check_result);
         this.buttonProcessBarLinearLayout = view.findViewById(R.id.ll_btn_progress_bar_check_result);
+    }
+
+    private void showAllViews() {
+        MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
     }
 
     private void initializeSharedPreference() {
@@ -140,7 +150,9 @@ public class VirusCheckResultFragment extends Fragment {
             this.imageCheckHealthyFeedbackLinearLayout.setVisibility(View.VISIBLE);
         } else {
             this.imageCheckIllFeedbackLinearLayout.setVisibility(View.VISIBLE);
-            this.imageCheckIllFeedbackTextView.setText(this.resultCheckFeedback);
+            // convert the virus result
+            String virusNameString = DataConverter.checkResultVirusRawNameToDisplayFormat(this.resultCheckFeedback);
+            this.imageCheckIllFeedbackTextView.setText(virusNameString);
             this.isInfected = true;
             this.buttonProcessBarLinearLayout.setVisibility(View.VISIBLE);
 

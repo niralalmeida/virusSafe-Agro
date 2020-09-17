@@ -46,6 +46,11 @@ public class DataConverter {
         return imageViewDrawable.getConstantState().equals(drawableCs);
     }
 
+    public static String checkResultVirusRawNameToDisplayFormat(String resultVirusRawFullName) {
+        String processedNameWithNoUnderline = resultVirusRawFullName.trim().replace('_', ' ');
+        return processedNameWithNoUnderline;
+    }
+
     public static String checkResultVirusRawNameToUpperCaseWithSpace(String resultVirusRawFullName) {
         String processedNameWithNoUnderline = resultVirusRawFullName.trim().replace('_', ' ');
         return processedNameWithNoUnderline.toUpperCase();
