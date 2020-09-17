@@ -32,4 +32,15 @@ public class MyAnimationBox {
         animate.setFillAfter(true);
         view.startAnimation(animate);
     }
+
+    public static void runFlickerAnimation(View view, int duration) {
+        view.setVisibility(View.VISIBLE);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
+        alphaAnimation.setDuration(duration);
+        alphaAnimation.setRepeatCount(Animation.INFINITE);
+        alphaAnimation.setRepeatMode(Animation.RESTART);
+        view.startAnimation(alphaAnimation);
+//        view.setAnimation(alphaAnimation);
+//        alphaAnimation.start();
+    }
 }

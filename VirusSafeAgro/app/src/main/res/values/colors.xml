@@ -3,7 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#074A44</color>
     <color name="colorPrimaryLight">#0d9488</color>
-    <color name="colorPrimaryDarkBG">#032623</color>
+    <color name="colorPrimaryDarkBG">#0B0808</color>
+    <color name="colorPrimaryTile">#353437</color>
     <color name="colorAccent">#03DAC5</color>
 <!--    <color name="colorDarkBackground">#707B7C</color>-->
     <color name="colorDarkBackground">#515A5A</color>

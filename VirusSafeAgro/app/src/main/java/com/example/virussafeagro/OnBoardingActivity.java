@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.virussafeagro.adapters.OnBoardingSlideAdapter;
 import com.example.virussafeagro.uitilities.AppAuthentication;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 public class OnBoardingActivity extends AppCompatActivity {
@@ -24,6 +26,7 @@ public class OnBoardingActivity extends AppCompatActivity {
     private LinearLayout dotButtonsLinearLayout;
     private TextView[] bottomDotsTextViewArray;
     private Button skipButton;
+    private TextView swipeTextView;
 //    private Button backButton;
 //    private Button nextButton;
 
@@ -45,6 +48,11 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         // initialize SlideAdapter and ViewPager
         this.initializeSlideAdapterAndViewPager();
+
+        // show swipe
+        if (currentPagePosition == 0){
+            this.showSwipe();
+        }
 
         // add dots
         this.addDotsIndicator(0);
@@ -82,6 +90,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         this.slideViewPager = findViewById(R.id.slide_view_pager_boarding);
         this.dotButtonsLinearLayout = findViewById(R.id.ll_dot_button_boarding);
         this.skipButton = findViewById(R.id.btn_skip_boarding);
+        this.swipeTextView = findViewById(R.id.tv_swipe_boarding);
 //        this.backButton = findViewById(R.id.btn_back_boarding);
 //        this.nextButton = findViewById(R.id.btn_next_boarding);
 //        this.launchAppButton = findViewById(R.id.btn_launch_app_boarding);
@@ -139,6 +148,15 @@ public class OnBoardingActivity extends AppCompatActivity {
             addDotsIndicator(position);
             setDotOnClickListener();
 
+            // show "swipe"
+            if (position == 0) {
+                showSwipe();
+            } else {
+                swipeTextView.setVisibility(View.INVISIBLE);
+                // clear the animation
+                swipeTextView.clearAnimation();
+            }
+
             if (position == OnBoardingSlideAdapter.slide_headings.length - 1){
                 skipButton.setText("Enter");
             } else {
@@ -190,6 +208,10 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         }
     };
+
+    private void showSwipe() {
+        MyAnimationBox.runFlickerAnimation(swipeTextView, 2000);
+    }
 
 //    private void setBackButtonOnClickListener() {
 //        this.backButton.setOnClickListener(view -> {

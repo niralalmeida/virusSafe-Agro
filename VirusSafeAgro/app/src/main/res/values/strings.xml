@@ -4,6 +4,7 @@
 
     <!-- for on boarding  -->
     <string name="button_launch_app">Enter</string>
+    <string name="text_swipe">&lt;&lt; Swipe &gt;&gt;</string>
 
     <!--  subtitles  -->
     <string name="fragment_virus_single_choice">Single Choice Questions</string>
