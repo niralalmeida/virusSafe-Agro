@@ -15,12 +15,14 @@ import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
 
 public class MoreFragment extends Fragment {
     private View view;
 
+    private LinearLayout allViewLinearLayout;
     private LinearLayout aboutAppLinearLayout;
     private LinearLayout updatesLinearLayout;
     private LinearLayout disclaimerLinearLayout;
@@ -51,15 +53,24 @@ public class MoreFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // show Home Views
+        this.showHomeViews();
+
         // set all tiles On Click Listener
         this.allTilesOnClickListener();
     }
 
     private void initializeViews() {
+        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_more);
         this.aboutAppLinearLayout = view.findViewById(R.id.ll_about_app_more);
         this.updatesLinearLayout = view.findViewById(R.id.ll_updates_more);
         this.disclaimerLinearLayout = view.findViewById(R.id.ll_disclaimer_more);
         this.contactUsLinearLayout = view.findViewById(R.id.ll_contact_us_more);
+    }
+
+    // show Home Views
+    private void showHomeViews() {
+        MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
     }
 
     private void allTilesOnClickListener() {
@@ -71,24 +82,24 @@ public class MoreFragment extends Fragment {
 
     private void setAboutAppLinearLayoutOnClickListener() {
         this.aboutAppLinearLayout.setOnClickListener(view -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
+            FragmentOperator.replaceFragment(requireActivity(), new AboutAppFragment(), AppResources.FRAGMENT_TAG_ABOUT_APP);
         });
     }
 
     private void setUpdatesLinearLayoutOnClickListener() {
-        this.aboutAppLinearLayout.setOnClickListener(view -> {
+        this.updatesLinearLayout.setOnClickListener(view -> {
 //            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
         });
     }
 
     private void setDisclaimerLinearLayoutOnClickListener() {
-        this.aboutAppLinearLayout.setOnClickListener(view -> {
+        this.disclaimerLinearLayout.setOnClickListener(view -> {
 //            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
         });
     }
 
     private void setContactUsLinearLayoutOnClickListener() {
-        this.aboutAppLinearLayout.setOnClickListener(view -> {
+        this.contactUsLinearLayout.setOnClickListener(view -> {
 //            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
         });
     }

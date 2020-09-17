@@ -17,7 +17,7 @@ public class AppResources {
     public final static String FRAGMENT_TAG_VIRUS_QUIZ = "virus_quiz";
     public final static String FRAGMENT_TAG_NUTRIENT = "nutrient";
     public final static String FRAGMENT_TAG_MORE = "more";
-    public final static String FRAGMENT_TAG_ABOUT = "about";
+    public final static String FRAGMENT_TAG_ABOUT_APP = "about_app";
     public final static String FRAGMENT_TAG_VIRUS_DETAIL = "virus_detail";
     public final static String FRAGMENT_TAG_NUTRIENT_DETAIL = "nutrient_detail";
     public final static String FRAGMENT_TAG_VIRUS_QUIZ_QUESTION = "virus_quiz_question";

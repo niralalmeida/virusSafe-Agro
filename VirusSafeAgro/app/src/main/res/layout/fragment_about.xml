@@ -43,7 +43,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/fragment_t1_app_description_about"
+                        android:text="@string/fragment_t1_app_description_more"
                         android:textColor="#000"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -120,7 +120,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/fragment_t2_updates_about"
+                            android:text="@string/fragment_t2_updates_more"
                             android:textColor="#000"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -191,7 +191,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/fragment_t3_contact_about"
+                            android:text="@string/fragment_t3_contact_more"
                             android:textColor="#000"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -268,7 +268,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/fragment_t4_disclaimer_about"
+                            android:text="@string/fragment_t4_disclaimer_more"
                             android:textColor="#000"
                             android:textSize="20sp"
                             android:textStyle="bold" />
