@@ -45,3 +45,16 @@ CREATE TABLE choiceoption
           choice_option_label='f'
          )
 );
+
+CREATE TABLE nutrient
+(
+    nutrient_id INTEGER NOT NULL,
+    nutrient_name VARCHAR(255) NOT NULL,
+    nutrient_symptoms VARCHAR(1500),
+    nutrient_reasons VARCHAR(1500),
+    nutrient_factory VARCHAR(1500),
+    nutrient_correction_method VARCHAR(1500),
+
+    PRIMARY KEY(nutrient_id),
+    UNIQUE(nutrient_name)
+);
