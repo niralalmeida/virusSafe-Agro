@@ -11,16 +11,18 @@ public class NutrientModel implements Parcelable {
     private List<String> nutrientSymptomList;
     private List<String> nutrientReasonList;
     private List<String> nutrientFactoryList;
+    private String nutrientCorrectionMethod;
 
     public NutrientModel() {
     }
 
-    public NutrientModel(int nutrientId, String nutrientName, List<String> nutrientSymptomList, List<String> nutrientReasonList, List<String> nutrientFactoryList) {
+    public NutrientModel(int nutrientId, String nutrientName, List<String> nutrientSymptomList, List<String> nutrientReasonList, List<String> nutrientFactoryList, String nutrientCorrectionMethod) {
         this.nutrientId = nutrientId;
         this.nutrientName = nutrientName;
         this.nutrientSymptomList = nutrientSymptomList;
         this.nutrientReasonList = nutrientReasonList;
         this.nutrientFactoryList = nutrientFactoryList;
+        this.nutrientCorrectionMethod = nutrientCorrectionMethod;
     }
 
     protected NutrientModel(Parcel in) {
@@ -29,6 +31,7 @@ public class NutrientModel implements Parcelable {
         nutrientSymptomList = in.createStringArrayList();
         nutrientReasonList = in.createStringArrayList();
         nutrientFactoryList = in.createStringArrayList();
+        nutrientCorrectionMethod = in.readString();
     }
 
     public static final Creator<NutrientModel> CREATOR = new Creator<NutrientModel>() {
@@ -83,6 +86,14 @@ public class NutrientModel implements Parcelable {
         this.nutrientFactoryList = nutrientFactoryList;
     }
 
+    public String getNutrientCorrectionMethod() {
+        return nutrientCorrectionMethod;
+    }
+
+    public void setNutrientCorrectionMethod(String nutrientCorrectionMethod) {
+        this.nutrientCorrectionMethod = nutrientCorrectionMethod;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -95,5 +106,6 @@ public class NutrientModel implements Parcelable {
         dest.writeStringList(nutrientSymptomList);
         dest.writeStringList(nutrientReasonList);
         dest.writeStringList(nutrientFactoryList);
+        dest.writeString(nutrientCorrectionMethod);
     }
 }
