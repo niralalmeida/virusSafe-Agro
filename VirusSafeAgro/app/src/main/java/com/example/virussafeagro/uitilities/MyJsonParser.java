@@ -145,16 +145,87 @@ public class MyJsonParser {
 
     public static List<NewsModel> newsListJsonParser(String resultText) throws JSONException {
         List<NewsModel> newsModelList = new ArrayList<>();
-        if(!resultText.equals("[]")){
-            JSONArray newsListJsonArray = new JSONArray(resultText);
-            int listSize = newsListJsonArray.length();
-            for (int i = 0; i < listSize; i++) {
-                JSONObject newsJsonObject = newsListJsonArray.getJSONObject(i);
+        if(resultText.substring(0,1).equals("{")) {
+            JSONObject resultTextJsonObject = new JSONObject(resultText);
+            Iterator<String> resultKeys = resultTextJsonObject.keys();
+            // check "items" key
+            while (resultKeys.hasNext()) {
+                String keyString = resultKeys.next();
+                // find "items" key
+                if (keyString.equals("items")) {
+                    // get "items" json array
+                    JSONArray newsListJsonArray = resultTextJsonObject.getJSONArray("items");
+                    int listSize = newsListJsonArray.length();
+                    for (int i = 0; i < listSize; i++) {
+                        JSONObject newsJsonObject = newsListJsonArray.getJSONObject(i);
 
-                int newsId = newsJsonObject.getInt("newsId");
+                        // check keys existence
+                        boolean hasTitle = false;
+                        boolean hasPressTime = false;
+                        boolean hasSnippet = false;
+                        boolean hasAuthor = false;
+                        boolean hasURL = false;
+                        Iterator<String> itemKeys = newsJsonObject.keys();
+                        while(itemKeys.hasNext()){
+                            String itemKeyString = itemKeys.next();
+                            if (itemKeyString.equals("title")){
+                                hasTitle = true;
+                            }
+                            if (itemKeyString.equals("article:published_time")){
+                                hasPressTime = true;
+                            }
+                            if (itemKeyString.equals("og:description")){
+                                hasSnippet = true;
+                            }
+                            if (itemKeyString.equals("author")){
+                                hasAuthor = true;
+                            }
+                            if (itemKeyString.equals("og:url")){
+                                hasURL = true;
+                            }
+                        }
 
-                NewsModel newsModel = new NewsModel();
-                newsModelList.add(newsModel);
+                        // news title
+                        String newsTitle = "";
+                        if (hasTitle){
+                            newsTitle = newsJsonObject.getString("title");
+                        }
+
+                        // news press time
+                        String newsPressTime = "";
+                        if (hasPressTime){
+                            newsPressTime = newsJsonObject.getString("article:published_time");
+                        }
+
+                        // news author
+                        String newsAuthor = "";
+                        if (hasAuthor){
+                            newsAuthor = newsJsonObject.getString("author");
+                        }
+
+                        // news Snippet
+                        String newsSnippet = "";
+                        if (hasSnippet){
+                            newsSnippet = newsJsonObject.getString("og:description");
+                        }
+
+                        // news URL
+                        String newsURL = "";
+                        if (hasURL){
+                            newsURL = newsJsonObject.getString("og:url");
+                        }
+
+                        NewsModel newsModel = new NewsModel();
+                        newsModel.setNewsId(i + 1); // id
+                        newsModel.setNewsTitle(newsTitle); // tile
+                        newsModel.setNewsPressTime(newsPressTime); // time
+                        newsModel.setNewsAuthor(newsAuthor); // author
+                        newsModel.setNewsSnippet(newsSnippet); // snippet
+                        newsModel.setNewsURL(newsURL); // URL
+
+                        newsModelList.add(newsModel);
+                    }
+                }
             }
         }
         return newsModelList;
