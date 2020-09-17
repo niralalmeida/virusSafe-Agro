@@ -62,7 +62,7 @@
                         android:textSize="17sp"
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
-                        android:text="TOMATO YELLOW LEAF CURL VIRUS"/>
+                        android:text="ZINC"/>
 
                 </LinearLayout>
 
@@ -78,7 +78,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_description_nutrient_detail"
+                    android:id="@+id/btn_symptoms_nutrient_detail"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -86,23 +86,23 @@
                     android:background="@drawable/selector_btn_bg_virus_details"
                     android:textColor="@drawable/selector_btn_text_virus_details"
                     android:textStyle="bold"
-                    android:text="Description" />
+                    android:text="Symptoms" />
 
                 <Button
-                    android:id="@+id/btn_symptom_nutrient_detail"
+                    android:id="@+id/btn_reasons_nutrient_detail"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.9"
+                    android:layout_weight="0.8"
                     android:layout_marginStart="1dp"
                     android:layout_marginLeft="1dp"
                     android:gravity="center"
                     android:background="@drawable/selector_btn_bg_virus_details"
                     android:textColor="@drawable/selector_btn_text_virus_details"
                     android:textStyle="bold"
-                    android:text="Symptoms" />
+                    android:text="Reasons" />
 
                 <Button
-                    android:id="@+id/btn_causes_nutrient_detail"
+                    android:id="@+id/btn_factory_nutrient_detail"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.7"
@@ -112,10 +112,10 @@
                     android:background="@drawable/selector_btn_bg_virus_details"
                     android:textColor="@drawable/selector_btn_text_virus_details"
                     android:textStyle="bold"
-                    android:text="Causes" />
+                    android:text="Factory" />
 
                 <Button
-                    android:id="@+id/btn_prevention_nutrient_detail"
+                    android:id="@+id/btn_correction_method_nutrient_detail"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -125,7 +125,7 @@
                     android:background="@drawable/selector_btn_bg_virus_details"
                     android:textColor="@drawable/selector_btn_text_virus_details"
                     android:textStyle="bold"
-                    android:text="Prevention" />
+                    android:text="Correction Method" />
 
             </LinearLayout>
 
@@ -133,37 +133,7 @@
 
         <!-- Middle Part -->
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsv_description_nutrient_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/rl_top_part_nutrient_detail"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
-
-
-            <LinearLayout
-                android:id="@+id/ll_description_nutrient_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_tile_virus_detail_contents"
-                android:padding="5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_description_nutrient_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorSubTitle"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp" />
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsv_symptom_nutrient_detail"
+            android:id="@+id/nsv_symptoms_nutrient_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -190,11 +160,41 @@
 
             </LinearLayout>
 
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_reasons_nutrient_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/rl_top_part_nutrient_detail"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+
+            <LinearLayout
+                android:id="@+id/ll_reasons_nutrient_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_tile_virus_detail_contents"
+                android:padding="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_reasons_nutrient_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSubTitle"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+
+            </LinearLayout>
+
 
         </androidx.core.widget.NestedScrollView>
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsv_causes_nutrient_detail"
+            android:id="@+id/nsv_factory_nutrient_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -203,7 +203,7 @@
             android:layout_marginEnd="10dp">
 
             <LinearLayout
-                android:id="@+id/ll_causes_nutrient_detail"
+                android:id="@+id/ll_factory_nutrient_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_tile_virus_detail_contents"
@@ -211,7 +211,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_causes_nutrient_detail"
+                    android:id="@+id/tv_factory_nutrient_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorSubTitle"
@@ -223,7 +223,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsv_prevention_nutrient_detail"
+            android:id="@+id/nsv_correction_method_nutrient_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -232,7 +232,7 @@
             android:layout_marginEnd="10dp">
 
             <LinearLayout
-                android:id="@+id/ll_prevention_nutrient_detail"
+                android:id="@+id/ll_correction_method_nutrient_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_tile_virus_detail_contents"
@@ -240,7 +240,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_prevention_nutrient_detail"
+                    android:id="@+id/tv_correction_method_nutrient_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorSubTitle"
