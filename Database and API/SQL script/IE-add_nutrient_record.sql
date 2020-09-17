@@ -1,4 +1,4 @@
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     1,
     'ZINC',
@@ -8,7 +8,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
     '• Foliar spray of ZnSO4 (0.2%)'
 );
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     2,
     'MAGNESIUM',
@@ -18,7 +18,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
     '• Add dolomite limestone to the soil \n • Foliar spray of MgSO4'
 );
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     3,
     'POTASSIUM',
@@ -28,7 +28,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
     '• Foliar application of K2SO4 \n • Organic matter should be added at least once a year \n • Immediate remedy: \n Sulphate of potash'
 );
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     4,
     'SULPHUR',
@@ -38,7 +38,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
     '• Foliar spray of K2SO4. /CaSO4 (Fortnightly interval)'
 );
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     5,
     'PHOSPHORUS',
@@ -49,7 +49,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
 );
 
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     6,
     'NITROGEN',
@@ -60,7 +60,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
 );
 
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     7,
     'MANGANESE',
@@ -71,7 +71,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
 );
 
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     8,
     'IRON',
@@ -81,7 +81,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
     '• Foliar spray of FeSO4'
 );
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     9,
     'BORON',
@@ -91,7 +91,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
     'Foliar spray of borax'
 );
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     10,
     'CALCIUM',
@@ -101,7 +101,7 @@ INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_re
     '• Foliar spray of calcium sulphate (2%)'
 );
 
-INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factory, nutrient_correction_method) VALUES 
+INSERT INTO nutrient (nutrient_id, nutrient_name, nutrient_symptoms, nutrient_reasons, nutrient_factors, nutrient_correction_method) VALUES 
 (
     11,
     'COPPER',

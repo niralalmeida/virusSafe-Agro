@@ -53,7 +53,7 @@ CREATE TABLE nutrient
     nutrient_name VARCHAR(255) NOT NULL,
     nutrient_symptoms VARCHAR(1500),
     nutrient_reasons VARCHAR(1500),
-    nutrient_factory VARCHAR(1500),
+    nutrient_factors VARCHAR(1500),
     nutrient_correction_method VARCHAR(1500),
 
     PRIMARY KEY(nutrient_id),

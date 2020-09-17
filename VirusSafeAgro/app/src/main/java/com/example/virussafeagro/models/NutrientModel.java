@@ -10,21 +10,21 @@ public class NutrientModel implements Parcelable {
     private String nutrientName;
     private String nutrientSymptom;
     private String nutrientReason;
-    private String nutrientFactory;
+    private String nutrientFactors;
 //    private List<String> nutrientSymptomList;
 //    private List<String> nutrientReasonList;
-//    private List<String> nutrientFactoryList;
+//    private List<String> nutrientFactorsList;
     private String nutrientCorrectionMethod;
 
     public NutrientModel() {
     }
 
-    public NutrientModel(int nutrientId, String nutrientName, String nutrientSymptom, String nutrientReason, String nutrientFactory, String nutrientCorrectionMethod) {
+    public NutrientModel(int nutrientId, String nutrientName, String nutrientSymptom, String nutrientReason, String nutrientFactors, String nutrientCorrectionMethod) {
         this.nutrientId = nutrientId;
         this.nutrientName = nutrientName;
         this.nutrientSymptom = nutrientSymptom;
         this.nutrientReason = nutrientReason;
-        this.nutrientFactory = nutrientFactory;
+        this.nutrientFactors = nutrientFactors;
         this.nutrientCorrectionMethod = nutrientCorrectionMethod;
     }
 
@@ -33,7 +33,7 @@ public class NutrientModel implements Parcelable {
         nutrientName = in.readString();
         nutrientSymptom = in.readString();
         nutrientReason = in.readString();
-        nutrientFactory = in.readString();
+        nutrientFactors = in.readString();
         nutrientCorrectionMethod = in.readString();
     }
 
@@ -43,7 +43,7 @@ public class NutrientModel implements Parcelable {
         dest.writeString(nutrientName);
         dest.writeString(nutrientSymptom);
         dest.writeString(nutrientReason);
-        dest.writeString(nutrientFactory);
+        dest.writeString(nutrientFactors);
         dest.writeString(nutrientCorrectionMethod);
     }
 
@@ -96,12 +96,12 @@ public class NutrientModel implements Parcelable {
         this.nutrientReason = nutrientReason;
     }
 
-    public String getNutrientFactory() {
-        return nutrientFactory;
+    public String getNutrientFactors() {
+        return nutrientFactors;
     }
 
-    public void setNutrientFactory(String nutrientFactory) {
-        this.nutrientFactory = nutrientFactory;
+    public void setNutrientFactors(String nutrientFactors) {
+        this.nutrientFactors = nutrientFactors;
     }
 
     public String getNutrientCorrectionMethod() {

@@ -39,6 +39,7 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
         public TextView userAnswersTextView;
         public LinearLayout correctAnswerLinearLayout;
         public TextView correctAnswersTextView;
+        public TextView explanationTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -51,6 +52,7 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
             this.userAnswersTextView = itemView.findViewById(R.id.tv_user_answer_quiz_result_final);
             this.correctAnswerLinearLayout = itemView.findViewById(R.id.ll_correct_answer_quiz_result_final);
             this.correctAnswersTextView = itemView.findViewById(R.id.tv_correct_answer_quiz_result_final);
+            this.explanationTextView = itemView.findViewById(R.id.tv_explanation_quiz_result_final);
         }
     }
 
@@ -116,6 +118,10 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
             userAnswerStringBuilder.deleteCharAt(userAnswerStringBuilder.length() - 1);
             viewHolder.userAnswersTextView.setText(userAnswerStringBuilder.toString());
         }
+
+        // question explanation
+        viewHolder.explanationTextView.setText(choiceQuestionModel.getChoiceQuestionExplanation());
+
     }
 
     @Override

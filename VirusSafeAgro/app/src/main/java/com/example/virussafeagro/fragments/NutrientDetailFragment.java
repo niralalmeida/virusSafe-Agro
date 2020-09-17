@@ -22,7 +22,6 @@ import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
@@ -39,17 +38,17 @@ public class NutrientDetailFragment extends Fragment {
 
     private Button nutrientSymptomsButton;
     private Button nutrientReasonsButton;
-    private Button nutrientFactoryButton;
+    private Button nutrientFactorsButton;
     private Button nutrientCorrectionMethodButton;
 
     private NestedScrollView nutrientSymptomsNestedScrollView;
     private NestedScrollView nutrientReasonsNestedScrollView;
-    private NestedScrollView nutrientFactoryNestedScrollView;
+    private NestedScrollView nutrientFactorsNestedScrollView;
     private NestedScrollView nutrientCorrectionMethodNestedScrollView;
 
     private TextView nutrientSymptomsTextView;
     private TextView nutrientReasonsTextView;
-    private TextView nutrientFactoryTextView;
+    private TextView nutrientFactorsTextView;
     private TextView nutrientCorrectionMethodTextView;
     
     @Nullable
@@ -103,41 +102,41 @@ public class NutrientDetailFragment extends Fragment {
 
         this.nutrientSymptomsButton = view.findViewById(R.id.btn_symptoms_nutrient_detail);
         this.nutrientReasonsButton = view.findViewById(R.id.btn_reasons_nutrient_detail);
-        this.nutrientFactoryButton = view.findViewById(R.id.btn_factory_nutrient_detail);
+        this.nutrientFactorsButton = view.findViewById(R.id.btn_factors_nutrient_detail);
         this.nutrientCorrectionMethodButton = view.findViewById(R.id.btn_correction_method_nutrient_detail);
 
         this.nutrientSymptomsNestedScrollView = view.findViewById(R.id.nsv_symptoms_nutrient_detail);
         this.nutrientReasonsNestedScrollView = view.findViewById(R.id.nsv_reasons_nutrient_detail);
-        this.nutrientFactoryNestedScrollView = view.findViewById(R.id.nsv_factory_nutrient_detail);
+        this.nutrientFactorsNestedScrollView = view.findViewById(R.id.nsv_factors_nutrient_detail);
         this.nutrientCorrectionMethodNestedScrollView = view.findViewById(R.id.nsv_correction_method_nutrient_detail);
 
         this.nutrientSymptomsTextView = view.findViewById(R.id.tv_symptoms_nutrient_detail);
         this.nutrientReasonsTextView = view.findViewById(R.id.tv_reasons_nutrient_detail);
-        this.nutrientFactoryTextView = view.findViewById(R.id.tv_factory_nutrient_detail);
+        this.nutrientFactorsTextView = view.findViewById(R.id.tv_factors_nutrient_detail);
         this.nutrientCorrectionMethodTextView = view.findViewById(R.id.tv_correction_method_nutrient_detail);
     }
 
     private void showDescriptionContent() {
         nutrientSymptomsButton.setEnabled(false);
         nutrientReasonsButton.setEnabled(true);
-        nutrientFactoryButton.setEnabled(true);
+        nutrientFactorsButton.setEnabled(true);
         nutrientCorrectionMethodButton.setEnabled(true);
 
         MyAnimationBox.runFadeInAnimation(nutrientSymptomsNestedScrollView, 1000);
         nutrientReasonsNestedScrollView.setVisibility(View.GONE);
-        nutrientFactoryNestedScrollView.setVisibility(View.GONE);
+        nutrientFactorsNestedScrollView.setVisibility(View.GONE);
         nutrientCorrectionMethodNestedScrollView.setVisibility(View.GONE);
     }
 
     private void showPreventionContent() {
         nutrientSymptomsButton.setEnabled(true);
         nutrientReasonsButton.setEnabled(true);
-        nutrientFactoryButton.setEnabled(true);
+        nutrientFactorsButton.setEnabled(true);
         nutrientCorrectionMethodButton.setEnabled(false);
 
         nutrientSymptomsNestedScrollView.setVisibility(View.GONE);
         nutrientReasonsNestedScrollView.setVisibility(View.GONE);
-        nutrientFactoryNestedScrollView.setVisibility(View.GONE);
+        nutrientFactorsNestedScrollView.setVisibility(View.GONE);
         MyAnimationBox.runFadeInAnimation(nutrientCorrectionMethodNestedScrollView, 1000);
     }
 
@@ -151,16 +150,16 @@ public class NutrientDetailFragment extends Fragment {
             if (buttonView.isEnabled()){
                 nutrientSymptomsButton.setEnabled(true);
                 buttonView.setEnabled(false);
-                nutrientFactoryButton.setEnabled(true);
+                nutrientFactorsButton.setEnabled(true);
                 nutrientCorrectionMethodButton.setEnabled(true);
 
                 nutrientSymptomsNestedScrollView.setVisibility(View.GONE);
                 MyAnimationBox.runFadeInAnimation(nutrientReasonsNestedScrollView, 1000);
-                nutrientFactoryNestedScrollView.setVisibility(View.GONE);
+                nutrientFactorsNestedScrollView.setVisibility(View.GONE);
                 nutrientCorrectionMethodNestedScrollView.setVisibility(View.GONE);
             }
         });
-        this.nutrientFactoryButton.setOnClickListener(buttonView -> {
+        this.nutrientFactorsButton.setOnClickListener(buttonView -> {
             if (buttonView.isEnabled()){
                 nutrientSymptomsButton.setEnabled(true);
                 nutrientReasonsButton.setEnabled(true);
@@ -169,7 +168,7 @@ public class NutrientDetailFragment extends Fragment {
 
                 nutrientSymptomsNestedScrollView.setVisibility(View.GONE);
                 nutrientReasonsNestedScrollView.setVisibility(View.GONE);
-                MyAnimationBox.runFadeInAnimation(nutrientFactoryNestedScrollView, 1000);
+                MyAnimationBox.runFadeInAnimation(nutrientFactorsNestedScrollView, 1000);
                 nutrientCorrectionMethodNestedScrollView.setVisibility(View.GONE);
             }
         });
@@ -192,9 +191,9 @@ public class NutrientDetailFragment extends Fragment {
         LinearLayout linearLayoutForSymptom = view.findViewById(R.id.ll_reasons_nutrient_detail);
         this.hideLinearLayoutIfItemIsEmpty(linearLayoutForSymptom, this.nutrientReasonsTextView, this.currentNutrientModel.getNutrientReason());
 
-        // factory
-        LinearLayout linearLayoutForCauses = view.findViewById(R.id.ll_factory_nutrient_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForCauses, this.nutrientFactoryTextView, this.currentNutrientModel.getNutrientFactory());
+        // factors
+        LinearLayout linearLayoutForCauses = view.findViewById(R.id.ll_factors_nutrient_detail);
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForCauses, this.nutrientFactorsTextView, this.currentNutrientModel.getNutrientFactors());
 
         // nutrient Correction Method
         LinearLayout linearLayoutForPrevention = view.findViewById(R.id.ll_correction_method_nutrient_detail);

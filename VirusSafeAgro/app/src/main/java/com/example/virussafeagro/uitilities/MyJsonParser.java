@@ -72,10 +72,10 @@ public class MyJsonParser {
                 }
 
                 // question explanation
-                String explanation = questionJsonObject.getString("")
+                String explanation = questionJsonObject.getString("explanation");
 
                 // create the choiceQuestionModel and add it into quizQuestionModelList
-                ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(choiceQuestionId, choiceQuestionType, choiceQuestionContent, correctAnswerList);
+                ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(choiceQuestionId, choiceQuestionType, choiceQuestionContent, correctAnswerList, explanation);
                 quizQuestionModelList.add(choiceQuestionModel);
             }
         }

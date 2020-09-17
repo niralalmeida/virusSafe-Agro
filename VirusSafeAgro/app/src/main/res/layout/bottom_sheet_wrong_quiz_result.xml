@@ -137,13 +137,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="EXPLANATION: "
                 android:textColor="#000"
                 android:textSize="13sp"
                 android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_user_explanation_wrong_quiz_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="xxxxxxx"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"/>
 
         </LinearLayout>
 

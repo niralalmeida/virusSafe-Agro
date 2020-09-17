@@ -285,6 +285,10 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             }
             userRightAnswer.setText(userAnswersStringBuilder.toString());
 
+            // show explanation
+            TextView rightExplanationTextView = bottomSheetView.findViewById(R.id.tv_user_explanation_right_quiz_result);
+            rightExplanationTextView.setText(currentChoiceQuestionModel.getChoiceQuestionExplanation());
+
             // close button
             bottomSheetView.findViewById(R.id.btn_close_right_quiz_result).setOnClickListener(closeButtonView -> {
                 // close the dialog
@@ -329,6 +333,10 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
                 correctAnswersStringBuilder.append(" ").append(optionAnswer);
             }
             correctAnswer.setText(correctAnswersStringBuilder.toString());
+
+            // show explanation
+            TextView wrongExplanationTextView = bottomSheetView.findViewById(R.id.tv_user_explanation_wrong_quiz_result);
+            wrongExplanationTextView.setText(currentChoiceQuestionModel.getChoiceQuestionExplanation());
 
             // close button
             bottomSheetView.findViewById(R.id.btn_close_wrong_quiz_result).setOnClickListener(closeButtonView -> {

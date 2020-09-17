@@ -102,7 +102,7 @@
                     android:text="Reasons" />
 
                 <Button
-                    android:id="@+id/btn_factory_nutrient_detail"
+                    android:id="@+id/btn_factors_nutrient_detail"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.7"
@@ -112,7 +112,7 @@
                     android:background="@drawable/selector_btn_bg_virus_details"
                     android:textColor="@drawable/selector_btn_text_virus_details"
                     android:textStyle="bold"
-                    android:text="Factory" />
+                    android:text="Factors" />
 
                 <Button
                     android:id="@+id/btn_correction_method_nutrient_detail"
@@ -194,7 +194,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsv_factory_nutrient_detail"
+            android:id="@+id/nsv_factors_nutrient_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -203,7 +203,7 @@
             android:layout_marginEnd="10dp">
 
             <LinearLayout
-                android:id="@+id/ll_factory_nutrient_detail"
+                android:id="@+id/ll_factors_nutrient_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_tile_virus_detail_contents"
@@ -211,7 +211,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_factory_nutrient_detail"
+                    android:id="@+id/tv_factors_nutrient_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorSubTitle"
