@@ -33,9 +33,17 @@
     <string name="menu_ic_nutrient">NUTRIENT</string>
     <string name="menu_ic_more">MORE</string>
 
+    <!-- home -->
+    <string name="text_description_title_home">Welcome to VirusSage Agro</string>
+    <string name="text_description_content_home">This app aims to provide an easy reference to diagnose virus in tomato plants and a care guide for farmers in Victoria who are new to farming.</string>
+    <string name="text_description_read_more_home">Read More &gt;</string>
+    <string name="text_water_calculator_title_home">Calculate your water usage</string>
+    <string name="text_water_calculator_content_home">Click this calculator to get your estimated spending on water per year.</string>
+    <string name="text_water_calculator_guide_home">Calculator Guide &gt;</string>
+
     <!-- virus info list -->
-    <string name="text_description_title">Virus disease in tomato plants</string>
-    <string name="text_description_content">There are nine types of viruses in tomato plants, which causes major damages to the yield.  Tap on the tiles below to learn more about the viruses</string>
+    <string name="text_description_title_virus_info">Virus disease in tomato plants</string>
+    <string name="text_description_content_virus_info">There are nine types of viruses in tomato plants, which causes major damages to the yield.  Tap on the tiles below to learn more about the viruses.</string>
 
     <!--  buttons  -->
     <string name="recycler_view_quiz_button">Take Quiz</string>
