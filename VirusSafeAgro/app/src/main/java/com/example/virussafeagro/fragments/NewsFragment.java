@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,8 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.viewModel.NewsViewModel;
+import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +35,7 @@ public class NewsFragment extends Fragment {
     private View view;
 
     private List<NewsModel> newsModelList;
+    private NewsViewModel newsViewModel;
 
     private LinearLayout allViewLinearLayout;
 
@@ -57,6 +61,8 @@ public class NewsFragment extends Fragment {
 
         // initialize Data
         this.initializeData();
+        // initialize view model
+        this.initializeNewsViewModel();
         // initialize Views
         this.initializeViews();
 
@@ -67,9 +73,10 @@ public class NewsFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show News Views
-        this.showNewsViews();
-
+        // find News List by Google search API
+        this.findNewsListByGoogleSearchAPI();
+        // observe NewsListLD
+        this.observeNewsListLD();
     }
 
     private void initializeViews() {
@@ -80,9 +87,36 @@ public class NewsFragment extends Fragment {
         this.newsModelList = new ArrayList<>();
     }
 
+    private void initializeNewsViewModel() {
+        this.newsViewModel = new ViewModelProvider(requireActivity()).get(NewsViewModel.class);
+    }
+
+    private void findNewsListByGoogleSearchAPI() {
+        this.newsViewModel.processFindingNewsList();
+    }
+
+    private void observeNewsListLD() {
+        this.newsViewModel.getNewsListLD().observe(getViewLifecycleOwner(), resultNewsList -> {
+            if ((resultNewsList != null) && (resultNewsList.size() != 0)) {
+                newsModelList.clear();
+                newsModelList = resultNewsList;
+
+                // test
+                System.out.println("=====> news list size [" + newsModelList.size() + "]");
+
+                // show News Views
+                showNewsViews();
+                // show the news list
+                showNewsRecyclerView();
+                // set News Tile On Clicked Listener
+                setNewsTileOnClickedListener();
+            }
+        });
+    }
+
     // show News Views
     private void showNewsViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
+        MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
     }
 
     private void showNewsRecyclerView() {

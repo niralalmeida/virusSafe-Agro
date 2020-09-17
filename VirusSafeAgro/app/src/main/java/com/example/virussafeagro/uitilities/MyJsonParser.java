@@ -147,84 +147,112 @@ public class MyJsonParser {
         List<NewsModel> newsModelList = new ArrayList<>();
         if(resultText.substring(0,1).equals("{")) {
             JSONObject resultTextJsonObject = new JSONObject(resultText);
-            Iterator<String> resultKeys = resultTextJsonObject.keys();
+
             // check "items" key
+            Iterator<String> resultKeys = resultTextJsonObject.keys();
             while (resultKeys.hasNext()) {
                 String keyString = resultKeys.next();
                 // find "items" key
                 if (keyString.equals("items")) {
                     // get "items" json array
-                    JSONArray newsListJsonArray = resultTextJsonObject.getJSONArray("items");
-                    int listSize = newsListJsonArray.length();
+                    JSONArray newsItemListJsonArray = resultTextJsonObject.getJSONArray("items");
+                    int listSize = newsItemListJsonArray.length();
                     for (int i = 0; i < listSize; i++) {
-                        JSONObject newsJsonObject = newsListJsonArray.getJSONObject(i);
+                        JSONObject newsJsonObject = newsItemListJsonArray.getJSONObject(i);
 
-                        // check keys existence
-                        boolean hasTitle = false;
-                        boolean hasPressTime = false;
-                        boolean hasSnippet = false;
-                        boolean hasAuthor = false;
-                        boolean hasURL = false;
+                        // check "pagemap" key
                         Iterator<String> itemKeys = newsJsonObject.keys();
-                        while(itemKeys.hasNext()){
+                        while (itemKeys.hasNext()) {
                             String itemKeyString = itemKeys.next();
-                            if (itemKeyString.equals("title")){
-                                hasTitle = true;
+                            // find "items" key
+                            if (itemKeyString.equals("pagemap")) {
+                                // get "items" json array
+                                JSONObject pageMapJsonObject = newsJsonObject.getJSONObject("pagemap");
+
+                                // check "metatags" key
+                                Iterator<String> pageMapKeys = pageMapJsonObject.keys();
+                                while (pageMapKeys.hasNext()) {
+                                    String pageMapKeyString = pageMapKeys.next();
+                                    // find "metatags" key
+                                    if (pageMapKeyString.equals("metatags")) {
+                                        // get "metatags" json array and object
+                                        JSONArray metaTagsJsonArray = pageMapJsonObject.getJSONArray("metatags");
+                                        JSONObject metaTagsJsonObject = metaTagsJsonArray.getJSONObject(0);
+
+                                        // check keys existence
+                                        boolean hasTitle = false;
+                                        boolean hasPressTime = false;
+                                        boolean hasSnippet = false;
+                                        boolean hasAuthor = false;
+                                        boolean hasURL = false;
+                                        Iterator<String> metaTagsKeys = metaTagsJsonObject.keys();
+                                        while(metaTagsKeys.hasNext()){
+                                            String metaTagsKeyString = metaTagsKeys.next();
+                                            if (metaTagsKeyString.equals("title")){
+                                                hasTitle = true;
+                                            }
+                                            if (metaTagsKeyString.equals("article:published_time")){
+                                                hasPressTime = true;
+                                            }
+                                            if (metaTagsKeyString.equals("og:description")){
+                                                hasSnippet = true;
+                                            }
+                                            if (metaTagsKeyString.equals("author")){
+                                                hasAuthor = true;
+                                            }
+                                            if (metaTagsKeyString.equals("og:url")){
+                                                hasURL = true;
+                                            }
+                                        }
+
+                                        // news title
+                                        String newsTitle = "";
+                                        if (hasTitle){
+                                            newsTitle = metaTagsJsonObject.getString("title");
+                                        }
+
+                                        // news press time
+                                        String newsPressTime = "";
+                                        if (hasPressTime){
+                                            newsPressTime = metaTagsJsonObject.getString("article:published_time");
+                                        }
+
+                                        // news author
+                                        String newsAuthor = "";
+                                        if (hasAuthor){
+                                            newsAuthor = metaTagsJsonObject.getString("author");
+                                        }
+
+                                        // news Snippet
+                                        String newsSnippet = "";
+                                        if (hasSnippet){
+                                            newsSnippet = metaTagsJsonObject.getString("og:description");
+                                        }
+
+                                        // news URL
+                                        String newsURL = "";
+                                        if (hasURL){
+                                            newsURL = metaTagsJsonObject.getString("og:url");
+                                        }
+
+                                        NewsModel newsModel = new NewsModel();
+                                        newsModel.setNewsId(i + 1); // id
+                                        newsModel.setNewsTitle(newsTitle); // tile
+                                        newsModel.setNewsPressTime(newsPressTime); // time
+                                        newsModel.setNewsAuthor(newsAuthor); // author
+                                        newsModel.setNewsSnippet(newsSnippet); // snippet
+                                        newsModel.setNewsURL(newsURL); // URL
+
+                                        newsModelList.add(newsModel);
+
+                                        break;
+                                    }
+                                }
+                                break;
                             }
-                            if (itemKeyString.equals("article:published_time")){
-                                hasPressTime = true;
-                            }
-                            if (itemKeyString.equals("og:description")){
-                                hasSnippet = true;
-                            }
-                            if (itemKeyString.equals("author")){
-                                hasAuthor = true;
-                            }
-                            if (itemKeyString.equals("og:url")){
-                                hasURL = true;
-                            }
                         }
-
-                        // news title
-                        String newsTitle = "";
-                        if (hasTitle){
-                            newsTitle = newsJsonObject.getString("title");
-                        }
-
-                        // news press time
-                        String newsPressTime = "";
-                        if (hasPressTime){
-                            newsPressTime = newsJsonObject.getString("article:published_time");
-                        }
-
-                        // news author
-                        String newsAuthor = "";
-                        if (hasAuthor){
-                            newsAuthor = newsJsonObject.getString("author");
-                        }
-
-                        // news Snippet
-                        String newsSnippet = "";
-                        if (hasSnippet){
-                            newsSnippet = newsJsonObject.getString("og:description");
-                        }
-
-                        // news URL
-                        String newsURL = "";
-                        if (hasURL){
-                            newsURL = newsJsonObject.getString("og:url");
-                        }
-
-                        NewsModel newsModel = new NewsModel();
-                        newsModel.setNewsId(i + 1); // id
-                        newsModel.setNewsTitle(newsTitle); // tile
-                        newsModel.setNewsPressTime(newsPressTime); // time
-                        newsModel.setNewsAuthor(newsAuthor); // author
-                        newsModel.setNewsSnippet(newsSnippet); // snippet
-                        newsModel.setNewsURL(newsURL); // URL
-
-                        newsModelList.add(newsModel);
                     }
+                    break;
                 }
             }
         }

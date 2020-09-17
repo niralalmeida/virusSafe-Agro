@@ -5,8 +5,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class NetworkConnectionToGoogleSearchAPI {
-    private static final String API_KEY = "";
-    private static final String SEARCH_ID_cx = "";
+    private static final String API_KEY = "AIzaSyCKl7VgrECl32m3i6EoeUGJPnSWwQt9a1E";
+    private static final String SEARCH_ID_cx = "351def83661bfe7c1";
 
     private OkHttpClient okHttpClient;
 
@@ -19,6 +19,7 @@ public class NetworkConnectionToGoogleSearchAPI {
         keyword = keyword.replace(" ", "+");
         String searchURL = "https://www.googleapis.com/customsearch/v1?key="
                 + API_KEY + "&cx=" + SEARCH_ID_cx + "&q=" + keyword + "&sort=date:d&start=" + startFromWhichItem;
+
         Request request = new Request.Builder().url(searchURL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();

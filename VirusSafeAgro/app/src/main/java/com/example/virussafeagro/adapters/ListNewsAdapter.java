@@ -67,6 +67,9 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
     public void onBindViewHolder(@NonNull ListNewsAdapter.ViewHolder viewHolder, int position) {
         final NewsModel newsModel = this.newsModelList.get(position);
 
+        // test
+        System.out.println(" --->position(" + position + ") ==> news title:<" + newsModel.getNewsTitle() + ">");
+
         // news title
         viewHolder.newsTitleTextView.setText(newsModel.getNewsTitle());
 
