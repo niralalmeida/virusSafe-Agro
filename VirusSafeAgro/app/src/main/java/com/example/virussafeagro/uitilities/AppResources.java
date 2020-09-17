@@ -119,7 +119,7 @@ public class AppResources {
             case "TOMATO YELLOW LEAF CURL VIRUS":
                 virusId = 4;
                 break;
-            case "TOMATO LATE BLIGHT":
+            case "LATE BLIGHT":
                 virusId = 5;
                 break;
             case "LEAF MOLD":
