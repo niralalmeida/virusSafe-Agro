@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_centerHorizontal="true"
-        android:background="#70000000"
+        android:background="#60000000"
         android:layout_alignTop="@+id/ll_card_nutrient_list"
         android:orientation="vertical">
 
