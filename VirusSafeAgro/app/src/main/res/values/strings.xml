@@ -9,12 +9,12 @@
     <!--  subtitles  -->
     <string name="fragment_virus_single_choice">Single Choice Questions</string>
     <string name="fragment_virus_multiple_choice">Multiple Choice Questions</string>
-    <string name="fragment_more_about">About</string>
-    <!--  subtitles - About  -->
-    <string name="fragment_t1_app_description_about">About virusSafe Phone App</string>
-    <string name="fragment_t2_updates_about">Future Updates</string>
-    <string name="fragment_t3_contact_about">Contact Us</string>
-    <string name="fragment_t4_disclaimer_about">Disclaimer</string>
+
+    <!--  subtitles - More  -->
+    <string name="fragment_t1_app_description_more">About virusSafe Phone App</string>
+    <string name="fragment_t2_updates_more">Future Updates</string>
+    <string name="fragment_t3_contact_more">Disclaimer</string>
+    <string name="fragment_t4_disclaimer_more">Contact Us</string>
     <!--  contents - About  -->
     <string name="fragment_c1_app_description_about">
         <p>Viruses in tomato plants cause humongous damages in Victoria, which results in massive losses. virusSafe Agro aims to inculcate awareness among the farmers at an earlier age by providing an educational platform and ways to mitigate the risk of loss of their cultivation from viruses.</p>
@@ -46,7 +46,6 @@
     <string name="text_pesticide_shop_home">Pesticide Shops</string>
     <string name="text_news_home">News</string>
     <string name="text_tweets_home">Tweets</string>
-
 
     <!-- virus info list -->
     <string name="text_description_title_virus_info">Virus disease in tomato plants</string>

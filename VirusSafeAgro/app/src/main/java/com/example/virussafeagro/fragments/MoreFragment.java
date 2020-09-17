@@ -21,7 +21,10 @@ import java.util.Objects;
 public class MoreFragment extends Fragment {
     private View view;
 
-    private LinearLayout aboutLinearLayout;
+    private LinearLayout aboutAppLinearLayout;
+    private LinearLayout updatesLinearLayout;
+    private LinearLayout disclaimerLinearLayout;
+    private LinearLayout contactUsLinearLayout;
 
     public MoreFragment() {
     }
@@ -48,18 +51,45 @@ public class MoreFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // set AboutLinearLayout On Click Listener
-        this.setAboutLinearLayoutOnClickListener();
+        // set all tiles On Click Listener
+        this.allTilesOnClickListener();
     }
 
     private void initializeViews() {
-        this.aboutLinearLayout = view.findViewById(R.id.ll_about_more);
+        this.aboutAppLinearLayout = view.findViewById(R.id.ll_about_app_more);
+        this.updatesLinearLayout = view.findViewById(R.id.ll_updates_more);
+        this.disclaimerLinearLayout = view.findViewById(R.id.ll_disclaimer_more);
+        this.contactUsLinearLayout = view.findViewById(R.id.ll_contact_us_more);
     }
 
-    private void setAboutLinearLayoutOnClickListener() {
-        this.aboutLinearLayout.setOnClickListener(view -> {
-            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
+    private void allTilesOnClickListener() {
+        setAboutAppLinearLayoutOnClickListener();
+        setUpdatesLinearLayoutOnClickListener();
+        setDisclaimerLinearLayoutOnClickListener();
+        setContactUsLinearLayoutOnClickListener();
+    }
+
+    private void setAboutAppLinearLayoutOnClickListener() {
+        this.aboutAppLinearLayout.setOnClickListener(view -> {
+//            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
+        });
+    }
+
+    private void setUpdatesLinearLayoutOnClickListener() {
+        this.aboutAppLinearLayout.setOnClickListener(view -> {
+//            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
+        });
+    }
+
+    private void setDisclaimerLinearLayoutOnClickListener() {
+        this.aboutAppLinearLayout.setOnClickListener(view -> {
+//            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
+        });
+    }
+
+    private void setContactUsLinearLayoutOnClickListener() {
+        this.aboutAppLinearLayout.setOnClickListener(view -> {
+//            FragmentOperator.replaceFragment(requireActivity(), new AboutFragment(), AppResources.FRAGMENT_TAG_ABOUT);
         });
     }
 
