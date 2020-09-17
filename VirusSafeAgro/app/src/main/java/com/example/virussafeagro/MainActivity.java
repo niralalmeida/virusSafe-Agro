@@ -19,7 +19,6 @@ import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
-import com.example.virussafeagro.fragments.VirusQuizListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;

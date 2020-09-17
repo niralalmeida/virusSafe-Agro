@@ -21,11 +21,11 @@ import com.example.virussafeagro.uitilities.DataComparison;
 
 import java.util.List;
 
-public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.ViewHolder> {
+public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAdapter.ViewHolder> {
     private List<ChoiceQuestionModel> choiceQuestionModelList;
     private FragmentActivity fragmentActivity;
 
-    public QuizResultAdapter(List<ChoiceQuestionModel> choiceQuestionModelList, FragmentActivity fragmentActivity) {
+    public ListQuizResultAdapter(List<ChoiceQuestionModel> choiceQuestionModelList, FragmentActivity fragmentActivity) {
         this.choiceQuestionModelList = choiceQuestionModelList;
         this.fragmentActivity = fragmentActivity;
     }
@@ -56,16 +56,16 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
 
     @NonNull
     @Override
-    public QuizResultAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListQuizResultAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View quizResultView = inflater.inflate(R.layout.recycler_view_quiz_result_final, parent, false);
-        QuizResultAdapter.ViewHolder viewHolder = new QuizResultAdapter.ViewHolder(quizResultView);
+        ListQuizResultAdapter.ViewHolder viewHolder = new ListQuizResultAdapter.ViewHolder(quizResultView);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuizResultAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ListQuizResultAdapter.ViewHolder viewHolder, int position) {
         final ChoiceQuestionModel choiceQuestionModel = this.choiceQuestionModelList.get(position);
 
         // question mark and background color

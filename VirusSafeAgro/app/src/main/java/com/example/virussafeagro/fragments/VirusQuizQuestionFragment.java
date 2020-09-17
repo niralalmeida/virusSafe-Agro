@@ -23,7 +23,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.QuizQuestionSlideAdapter;
-import com.example.virussafeagro.adapters.QuizResultAdapter;
+import com.example.virussafeagro.adapters.ListQuizResultAdapter;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppAuthentication;
@@ -218,10 +218,10 @@ public class VirusQuizQuestionFragment extends Fragment {
         quizResultTitleTextView.setText(quizResultTitleString);
 
         // show the recycler view
-        QuizResultAdapter quizResultAdapter = new QuizResultAdapter(choiceQuestionModelList, requireActivity());
+        ListQuizResultAdapter listQuizResultAdapter = new ListQuizResultAdapter(choiceQuestionModelList, requireActivity());
         RecyclerView recyclerViewForQuizResult = view.findViewById(R.id.rv_quiz_result_question);
         recyclerViewForQuizResult.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
-        recyclerViewForQuizResult.setAdapter(quizResultAdapter);
+        recyclerViewForQuizResult.setAdapter(listQuizResultAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity());
         recyclerViewForQuizResult.setLayoutManager(layoutManager);
     }

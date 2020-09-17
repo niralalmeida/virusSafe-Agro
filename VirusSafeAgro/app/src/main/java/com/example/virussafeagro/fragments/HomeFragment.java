@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
 
     private void setNewsTileOnClickListener() {
         this.newsLinearLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
+//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
     }
 
