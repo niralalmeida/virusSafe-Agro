@@ -56,6 +56,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     // result views
     private LinearLayout quizResultLinearLayout;
     private TextView quizResultTitleTextView;
+    private LinearLayout networkErrorLinearLayout;
 
     private QuizQuestionSlideAdapter quizQuestionSlideAdapter;
     private int currentPagePosition;
@@ -116,6 +117,8 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
         this.quizResultLinearLayout = view.findViewById(R.id.ll_quiz_result_question);
         this.quizResultTitleTextView = view.findViewById(R.id.tv_title_quiz_result_final);
+        this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
+
 
         // initialize the dot array
         for (int i = 0; i < topDotsTextViewArray.length; i++) {
@@ -160,12 +163,14 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void observeVirusTwoTypeQuestionArrayLD() {
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultQuizQuestionModelList -> {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
+                // set recycler view linear layout visible and process bar invisible
+                processBarLinearLayout.setVisibility(View.GONE);
                 // check network connection
                 if (resultQuizQuestionModelList.get(0).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                    // show network error image
+                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);
                 } else {
-                    // set recycler view linear layout visible and process bar invisible
-                    processBarLinearLayout.setVisibility(View.GONE);
                     // show dots
                     MyAnimationBox.runFadeInAnimation(dotButtonsLinearLayout, 1000);
                     // show slides (view pag)

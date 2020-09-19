@@ -18,7 +18,7 @@ public class NetworkConnectionToTomatoVirusDB {
 //        this.okHttpClient = new OkHttpClient();
         this.okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)// the time for connection
-                .readTimeout(20, TimeUnit.SECONDS)// the time for reading
+                .readTimeout(10, TimeUnit.SECONDS)// the time for reading
                 .build();
     }
 
