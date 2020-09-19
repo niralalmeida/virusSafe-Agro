@@ -8,51 +8,97 @@
     tools:context=".fragments.NewsFragment">
 
     <!-- news list -->
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
+        android:id="@+id/ll_all_view_news"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/ll_all_view_news"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:padding="15dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_news_list"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="vertical" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_news_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="vertical" />
 
-    </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
     <!-- network error -->
     <LinearLayout
         android:id="@+id/ll_fail_network_news"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:visibility="gone"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/network_error"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <TextView
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/network_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="@color/colorWhite"
+                android:text="@string/network_error_text" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- progress bar for loading the page -->
+    <LinearLayout
+        android:id="@+id/ll_process_bar_news"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            android:textColor="@color/colorWhite"
-            android:text="@string/network_error_text" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="@color/colorWhite"
+                android:text="@string/process_bar_text_virus_quiz_question" />
+        </LinearLayout>
 
     </LinearLayout>
 

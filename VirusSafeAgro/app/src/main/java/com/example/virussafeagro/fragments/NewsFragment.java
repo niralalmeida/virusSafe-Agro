@@ -42,6 +42,7 @@ public class NewsFragment extends Fragment {
     private List<NewsModel> newsModelList;
     private NewsViewModel newsViewModel;
 
+    private LinearLayout processBarLinearLayout;
     private LinearLayout allViewLinearLayout;
     private LinearLayout networkErrorLinearLayout;
 
@@ -71,6 +72,8 @@ public class NewsFragment extends Fragment {
         this.initializeNewsViewModel();
         // initialize Views
         this.initializeViews();
+        this.processBarLinearLayout.setVisibility(View.VISIBLE);
+        this.allViewLinearLayout.setVisibility(View.GONE);
 
         return this.view;
     }
@@ -87,6 +90,7 @@ public class NewsFragment extends Fragment {
     }
 
     private void initializeViews() {
+        this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_news);
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_news);
     }
@@ -106,6 +110,8 @@ public class NewsFragment extends Fragment {
     private void observeNewsListLD() {
         this.newsViewModel.getNewsListLD().observe(getViewLifecycleOwner(), resultNewsList -> {
             if ((resultNewsList != null) && (resultNewsList.size() != 0)) {
+                // hide process bar
+                processBarLinearLayout.setVisibility(View.GONE);
                 // check network connection
                 if (resultNewsList.get(0).getNewsSnippet().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
