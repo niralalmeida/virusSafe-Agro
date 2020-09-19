@@ -43,6 +43,7 @@ public class NewsFragment extends Fragment {
     private NewsViewModel newsViewModel;
 
     private LinearLayout allViewLinearLayout;
+    private LinearLayout networkErrorLinearLayout;
 
     // recycler view
     private ListNewsAdapter listNewsAdapter;
@@ -87,6 +88,7 @@ public class NewsFragment extends Fragment {
 
     private void initializeViews() {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news);
+        this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_news);
     }
 
     private void initializeData() {
@@ -107,6 +109,8 @@ public class NewsFragment extends Fragment {
                 // check network connection
                 if (resultNewsList.get(0).getNewsSnippet().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                    // show network error image
+                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);
                 } else {
                     newsModelList.clear();
                     newsModelList = resultNewsList;
