@@ -144,5 +144,9 @@ public class NewsFragment extends Fragment {
     public void onPause() {
         super.onPause();
         this.allViewLinearLayout.setVisibility(View.GONE);
+
+        this.newsViewModel.getNewsListLD().removeObservers(getViewLifecycleOwner());
+        List<NewsModel> newsModelList = new ArrayList<>();
+        this.newsViewModel.setNewsListLD(newsModelList);
     }
 }

@@ -1,5 +1,9 @@
 package com.example.virussafeagro.networkConnection;
 
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,7 +15,11 @@ public class NetworkConnectionToTomatoVirusDB {
     private OkHttpClient okHttpClient;
 
     public NetworkConnectionToTomatoVirusDB() {
-        this.okHttpClient = new OkHttpClient();
+//        this.okHttpClient = new OkHttpClient();
+        this.okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)// the time for connection
+                .readTimeout(20, TimeUnit.SECONDS)// the time for reading
+                .build();
     }
 
     public String getAllVirus() {
@@ -22,7 +30,14 @@ public class NetworkConnectionToTomatoVirusDB {
             Response response = this.okHttpClient.newCall(request).execute();
             resultText = response.body().string();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            if(e instanceof SocketTimeoutException){// check overtime
+
+            }
+            if(e instanceof ConnectException){// check connection  -- > Failed to connect to 10.7.5.144
+
+            }
+
         }
         return resultText;
     }
