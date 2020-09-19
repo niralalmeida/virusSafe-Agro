@@ -15,7 +15,6 @@ public class NetworkConnectionToAWSTomatoS3 {
     private OkHttpClient okHttpClient;
 
     public NetworkConnectionToAWSTomatoS3() {
-//        this.okHttpClient = new OkHttpClient();
         this.okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)// the time for connection
                 .readTimeout(10, TimeUnit.SECONDS)// the time for reading

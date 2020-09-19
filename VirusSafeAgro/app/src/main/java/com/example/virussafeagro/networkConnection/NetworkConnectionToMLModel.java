@@ -10,9 +10,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class NetworkConnectionToMLModel {
-//    private static final String API_URL = "http://ec2-34-207-155-154.compute-1.amazonaws.com:5000/";
-//    private static final String API_URL = "http://ec2-34-238-194-211.compute-1.amazonaws.com:5000/";
-//    private static final String API_URL = "http://ec2-3-237-45-16.compute-1.amazonaws.com:5000/";
     private static final String API_URL = "http://ec2-3-235-29-187.compute-1.amazonaws.com:5000/";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 

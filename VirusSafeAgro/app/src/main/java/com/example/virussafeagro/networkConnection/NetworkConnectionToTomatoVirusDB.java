@@ -1,7 +1,5 @@
 package com.example.virussafeagro.networkConnection;
 
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -15,7 +13,6 @@ public class NetworkConnectionToTomatoVirusDB {
     private OkHttpClient okHttpClient;
 
     public NetworkConnectionToTomatoVirusDB() {
-//        this.okHttpClient = new OkHttpClient();
         this.okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)// the time for connection
                 .readTimeout(10, TimeUnit.SECONDS)// the time for reading
