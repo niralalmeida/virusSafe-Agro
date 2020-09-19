@@ -23,7 +23,17 @@ public class NetworkConnectionToAWSTomatoS3 {
 
     // get all Question Images by virus name(id in parameter)
     public String getAllQuestionImages(String virusName) {
-        return "";
+        String resultText = "";
+        final String API_URL = "https://sqwja4gpl5.execute-api.us-east-2.amazonaws.com/v1/getOptions?id=";
+        String searchURL = API_URL + virusName; // id in parameter
+        Request request = new Request.Builder().url(searchURL).build();
+        try {
+            Response response = this.okHttpClient.newCall(request).execute();
+            resultText = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultText;
     }
 
     public Bitmap getPictureFromURL(String pictureURL){
