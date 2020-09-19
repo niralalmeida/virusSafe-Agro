@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
+import com.example.virussafeagro.networkConnection.NetworkConnectionToAWSTomatoS3;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 
 import java.util.ArrayList;
@@ -16,11 +18,13 @@ import java.util.List;
 
 public class VirusQuizQuestionViewModel extends ViewModel {
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
+    private NetworkConnectionToAWSTomatoS3 networkConnectionToAWSTomatoS3;
 
     private MutableLiveData<List<ChoiceQuestionModel>> quizQuestionModelListLD;
 
     public VirusQuizQuestionViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
+        this.networkConnectionToAWSTomatoS3 = new NetworkConnectionToAWSTomatoS3();
         this.quizQuestionModelListLD = new MutableLiveData<>();
     }
 
@@ -57,9 +61,15 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                     }
                 }
 
-                // get images by URLs
-//                String re
-
+                // get images URLs by S3 API
+                String virusIdForS3API = AppResources.getVirusIdForS3API(virusId);
+                String resultTextForQuestionImages = networkConnectionToAWSTomatoS3.getAllQuestionImages(virusIdForS3API);
+                quizQuestionModelList = MyJsonParser.choiceQuestionModelListForImageJsonParser(resultTextForQuestionImages, quizQuestionModelList);
+                // check network connection for question image
+                if (!quizQuestionModelList.get(quizQuestionModelList.size() - 1).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                    // get images Bitmaps by the URLs
+                    
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

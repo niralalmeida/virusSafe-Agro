@@ -172,4 +172,48 @@ public class AppResources {
         return virusShortName;
     }
 
+    // for question images
+    public static String getVirusIdForS3API(int virusId){
+        String virusShortName = "";
+        switch (virusId){
+            case 1:
+                // Mosaic Virus
+                virusShortName = "TOMATO MOSAC VIRUS";
+                break;
+            case 2:
+                // Target Spot
+                virusShortName = "TARGET SPOT";
+                break;
+            case 3:
+                // Bacterial Spot
+                virusShortName = "BACTERIAL SPOT";
+                break;
+            case 4:
+                // Yellow Leaf Curl
+                virusShortName = "TOMATO YELLOW CURL VIRUS";
+                break;
+            case 5:
+                // Late Blight
+                virusShortName = "LATE BLIGHT";
+                break;
+            case 6:
+                // Leaf Mold
+                virusShortName = "LEAF MOLD";
+                break;
+            case 7:
+                // Early Blight
+                virusShortName = "EARLY BLIGHT";
+                break;
+            case 8:
+                // Spider Mite
+                virusShortName = "TWO SPOTTED SPIDER MITE";
+                break;
+            case 9:
+                // Septoria Leaf Spot
+                virusShortName = "SEPTORIA";
+                break;
+        }
+        return virusShortName;
+    }
+
 }

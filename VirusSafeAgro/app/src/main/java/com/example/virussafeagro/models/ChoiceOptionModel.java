@@ -8,6 +8,7 @@ public class ChoiceOptionModel implements Parcelable {
     private int choiceOptionId;
     private String choiceOptionLabel;
     private String choiceOptionContent;
+    private String choiceOptionImageURL;
     private Bitmap choiceOptionImage;
 
     public ChoiceOptionModel() {
@@ -19,10 +20,11 @@ public class ChoiceOptionModel implements Parcelable {
         this.choiceOptionContent = choiceOptionContent;
     }
 
-    public ChoiceOptionModel(int choiceOptionId, String choiceOptionLabel, String choiceOptionContent, Bitmap choiceOptionImage) {
+    public ChoiceOptionModel(int choiceOptionId, String choiceOptionLabel, String choiceOptionContent, String choiceOptionImageURL, Bitmap choiceOptionImage) {
         this.choiceOptionId = choiceOptionId;
         this.choiceOptionLabel = choiceOptionLabel;
         this.choiceOptionContent = choiceOptionContent;
+        this.choiceOptionImageURL = choiceOptionImageURL;
         this.choiceOptionImage = choiceOptionImage;
     }
 
@@ -30,6 +32,7 @@ public class ChoiceOptionModel implements Parcelable {
         choiceOptionId = in.readInt();
         choiceOptionLabel = in.readString();
         choiceOptionContent = in.readString();
+        choiceOptionImageURL = in.readString();
         choiceOptionImage = in.readParcelable(Bitmap.class.getClassLoader());
     }
 
@@ -69,6 +72,14 @@ public class ChoiceOptionModel implements Parcelable {
         this.choiceOptionContent = choiceOptionContent;
     }
 
+    public String getChoiceOptionImageURL() {
+        return choiceOptionImageURL;
+    }
+
+    public void setChoiceOptionImageURL(String choiceOptionImageURL) {
+        this.choiceOptionImageURL = choiceOptionImageURL;
+    }
+
     public Bitmap getChoiceOptionImage() {
         return choiceOptionImage;
     }
@@ -87,6 +98,7 @@ public class ChoiceOptionModel implements Parcelable {
         dest.writeInt(choiceOptionId);
         dest.writeString(choiceOptionLabel);
         dest.writeString(choiceOptionContent);
+        dest.writeString(choiceOptionImageURL);
         dest.writeParcelable(choiceOptionImage, flags);
     }
 }

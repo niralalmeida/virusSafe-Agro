@@ -36,9 +36,8 @@ public class NetworkConnectionToAWSTomatoS3 {
         return resultText;
     }
 
-    public Bitmap getPictureFromURL(String pictureURL){
-        final String pictureSearchPath = "https://quziquzitions.s3.us-east-2.amazonaws.com/BACTERIAL%20SPOT/QUESTION%201/chemical-control.jpg";
-        Request request = new Request.Builder().url(pictureSearchPath).build();
+    public Bitmap getImageFromURL(String imageURL){
+        Request request = new Request.Builder().url(imageURL).build();
         Bitmap bitmap = null;
         try{
             Response response = this.okHttpClient.newCall(request).execute();

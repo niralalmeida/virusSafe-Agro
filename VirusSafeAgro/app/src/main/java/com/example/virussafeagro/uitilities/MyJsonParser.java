@@ -17,6 +17,7 @@ import java.util.List;
 public class MyJsonParser {
     public final static String CONNECTION_ERROR_MESSAGE = "Fail to connect to the server! Something wrong with the network!";
 
+    // get data to store viruses into virus model list
     public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
         List<VirusModel> virusModelInfoList = new ArrayList<>();
         // check network connection
@@ -48,6 +49,7 @@ public class MyJsonParser {
         return virusModelInfoList;
     }
 
+    // get data to store questions into question model list
     public static List<ChoiceQuestionModel> choiceQuestionModelListJsonParser(String resultText) throws JSONException{
         List<ChoiceQuestionModel> quizQuestionModelList = new ArrayList<>();
         // check network connection
@@ -96,6 +98,7 @@ public class MyJsonParser {
         return quizQuestionModelList;
     }
 
+    // get data to store question options into question model list
     public static List<ChoiceOptionModel> choiceOptionListJsonParser(String resultText) throws JSONException{
         List<ChoiceOptionModel> optionModelList = new ArrayList<>();
         if(!resultText.equals("[]")){
@@ -119,6 +122,64 @@ public class MyJsonParser {
             }
         }
         return optionModelList;
+    }
+
+    // get data to store question images into question model list
+    public static List<ChoiceQuestionModel> choiceQuestionModelListForImageJsonParser(String resultText, List<ChoiceQuestionModel> quizQuestionModelList) throws JSONException{
+        // check network connection
+        if (resultText.isEmpty()){
+            // add a new question model into the list and set the message into it
+            ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(CONNECTION_ERROR_MESSAGE);
+            quizQuestionModelList.add(choiceQuestionModel);
+        } else {
+            if (resultText.substring(0,1).equals("{") && (!resultText.equals("{}"))) {
+                // get result Json Object
+                JSONObject resultJsonObject = new JSONObject(resultText);
+                // check "QUESTION 1" to "QUESTION 5" keys
+                Iterator<String> resultKeys = resultJsonObject.keys();
+                while (resultKeys.hasNext()) {
+                    String resultKeyString = resultKeys.next();
+                    // find questions' keys
+                    for (int questionNo = 1; questionNo <= 5; questionNo++) {
+                        if (resultKeyString.equals("QUESTION " + questionNo)) {
+                            // get question json object
+                            JSONObject questionJsonObject = resultJsonObject.getJSONObject("QUESTION " + questionNo);
+                            // get question json object keys
+                            Iterator<String> questionKeys = questionJsonObject.keys();
+                            // check "question" and "options" key
+                            while (questionKeys.hasNext()){
+                                String questionKeyString = questionKeys.next();
+                                if (questionKeyString.equals("question")){ // find "question" key
+                                    // get question image json array
+                                    JSONArray questionImageJsonArray = questionJsonObject.getJSONArray("question");
+                                    // get question image URLs
+                                    List<String> questionImageURLs = new ArrayList<>();
+                                    for (int i = 0; i < questionImageJsonArray.length(); i++) {
+                                        // store the image URL into the URL list
+                                        questionImageURLs.add(questionImageJsonArray.getString(i));
+                                    }
+                                    // store the URL list for each question model
+                                    quizQuestionModelList.get(questionNo - 1).setImageURLList(questionImageURLs);
+                                } else if (questionKeyString.equals("options")){ // find "options" key
+                                    // get option image json array
+                                    JSONArray optionImageJsonArray = questionJsonObject.getJSONArray("options");
+                                    // get option image URLs
+                                    for (int i = 0; i < optionImageJsonArray.length(); i++) {
+                                        // store the option image URL for each option model
+                                        quizQuestionModelList
+                                                .get(questionNo - 1) // get the question model
+                                                .getChoiceQuestionOptionList() // get the option list
+                                                .get(i) // get the option
+                                                .setChoiceOptionImageURL(optionImageJsonArray.getString(i)); // set the option image URL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return quizQuestionModelList;
     }
 
     public static String imageCheckFeedbackJsonParser(String resultText) throws JSONException {

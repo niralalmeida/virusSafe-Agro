@@ -10,6 +10,7 @@ public class ChoiceQuestionModel implements Parcelable {
     private int choiceQuestionId;
     private String choiceQuestionType; // single or multiple
     private String choiceQuestionContent;
+    private List<String> imageURLList; // store the image URL getting from the S3 API
     private Bitmap choiceQuestionImage;
     private List<ChoiceOptionModel> choiceQuestionOptionList;
     private List<String> userAnswerList; // store user's answers
@@ -32,10 +33,11 @@ public class ChoiceQuestionModel implements Parcelable {
         this.choiceQuestionExplanation = choiceQuestionExplanation;
     }
 
-    public ChoiceQuestionModel(int choiceQuestionId, String choiceQuestionType, String choiceQuestionContent, Bitmap choiceQuestionImage, List<ChoiceOptionModel> choiceQuestionOptionList, List<String> userAnswerList, List<String> correctAnswerList, String choiceQuestionExplanation, int choiceQuestionVirusId) {
+    public ChoiceQuestionModel(int choiceQuestionId, String choiceQuestionType, String choiceQuestionContent, List<String> imageURLList, Bitmap choiceQuestionImage, List<ChoiceOptionModel> choiceQuestionOptionList, List<String> userAnswerList, List<String> correctAnswerList, String choiceQuestionExplanation, int choiceQuestionVirusId) {
         this.choiceQuestionId = choiceQuestionId;
         this.choiceQuestionType = choiceQuestionType;
         this.choiceQuestionContent = choiceQuestionContent;
+        this.imageURLList = imageURLList;
         this.choiceQuestionImage = choiceQuestionImage;
         this.choiceQuestionOptionList = choiceQuestionOptionList;
         this.userAnswerList = userAnswerList;
@@ -48,6 +50,7 @@ public class ChoiceQuestionModel implements Parcelable {
         choiceQuestionId = in.readInt();
         choiceQuestionType = in.readString();
         choiceQuestionContent = in.readString();
+        imageURLList = in.createStringArrayList();
         choiceQuestionImage = in.readParcelable(Bitmap.class.getClassLoader());
         choiceQuestionOptionList = in.createTypedArrayList(ChoiceOptionModel.CREATOR);
         userAnswerList = in.createStringArrayList();
@@ -61,6 +64,7 @@ public class ChoiceQuestionModel implements Parcelable {
         dest.writeInt(choiceQuestionId);
         dest.writeString(choiceQuestionType);
         dest.writeString(choiceQuestionContent);
+        dest.writeStringList(imageURLList);
         dest.writeParcelable(choiceQuestionImage, flags);
         dest.writeTypedList(choiceQuestionOptionList);
         dest.writeStringList(userAnswerList);
@@ -108,6 +112,14 @@ public class ChoiceQuestionModel implements Parcelable {
 
     public void setChoiceQuestionContent(String choiceQuestionContent) {
         this.choiceQuestionContent = choiceQuestionContent;
+    }
+
+    public List<String> getImageURLList() {
+        return imageURLList;
+    }
+
+    public void setImageURLList(List<String> imageURLList) {
+        this.imageURLList = imageURLList;
     }
 
     public Bitmap getChoiceQuestionImage() {

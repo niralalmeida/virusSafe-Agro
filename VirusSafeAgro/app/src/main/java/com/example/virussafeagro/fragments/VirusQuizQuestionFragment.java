@@ -165,7 +165,7 @@ public class VirusQuizQuestionFragment extends Fragment {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
                 // hide process bar
                 processBarLinearLayout.setVisibility(View.GONE);
-                // check network connection
+                // check network connection for question text content
                 if (resultQuizQuestionModelList.get(0).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
                     // show network error image
@@ -183,6 +183,10 @@ public class VirusQuizQuestionFragment extends Fragment {
                     questionViewPager.setAdapter(quizQuestionSlideAdapter);
                     // get the current slide position
                     questionViewPager.addOnPageChangeListener(viewPagerListener);
+                }
+                // check network connection for question image
+                if (resultQuizQuestionModelList.get(resultQuizQuestionModelList.size() - 1).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                    Toast.makeText(requireActivity(), "Fail to connect to the image server! Something wrong with the network!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
