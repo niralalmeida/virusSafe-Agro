@@ -165,97 +165,103 @@ public class MyJsonParser {
 
     public static List<NewsModel> newsListJsonParser(String resultText) throws JSONException {
         List<NewsModel> newsModelList = new ArrayList<>();
-        if(resultText.substring(0,1).equals("{")) {
-            JSONObject resultTextJsonObject = new JSONObject(resultText);
+        // check network connection
+        if (resultText.isEmpty()){
+            NewsModel newsModel = new NewsModel(CONNECTION_ERROR_MESSAGE);
+            newsModelList.add(newsModel);
+        } else {
+            if (resultText.substring(0, 1).equals("{")) {
+                JSONObject resultTextJsonObject = new JSONObject(resultText);
 
-            // check "items" key
-            Iterator<String> resultKeys = resultTextJsonObject.keys();
-            while (resultKeys.hasNext()) {
-                String keyString = resultKeys.next();
-                // find "items" key
-                if (keyString.equals("items")) {
-                    // get "items" json array
-                    JSONArray newsItemListJsonArray = resultTextJsonObject.getJSONArray("items");
-                    int listSize = newsItemListJsonArray.length();
-                    for (int i = 0; i < listSize; i++) {
-                        JSONObject newsJsonObject = newsItemListJsonArray.getJSONObject(i);
+                // check "items" key
+                Iterator<String> resultKeys = resultTextJsonObject.keys();
+                while (resultKeys.hasNext()) {
+                    String keyString = resultKeys.next();
+                    // find "items" key
+                    if (keyString.equals("items")) {
+                        // get "items" json array
+                        JSONArray newsItemListJsonArray = resultTextJsonObject.getJSONArray("items");
+                        int listSize = newsItemListJsonArray.length();
+                        for (int i = 0; i < listSize; i++) {
+                            JSONObject newsJsonObject = newsItemListJsonArray.getJSONObject(i);
 
-                        // check "pagemap" key
-                        Iterator<String> itemKeys = newsJsonObject.keys();
-                        while (itemKeys.hasNext()) {
-                            String itemKeyString = itemKeys.next();
-                            // find "items" key
-                            if (itemKeyString.equals("pagemap")) {
-                                // get "items" json array
-                                JSONObject pageMapJsonObject = newsJsonObject.getJSONObject("pagemap");
+                            // check "pagemap" key
+                            Iterator<String> itemKeys = newsJsonObject.keys();
+                            while (itemKeys.hasNext()) {
+                                String itemKeyString = itemKeys.next();
+                                // find "items" key
+                                if (itemKeyString.equals("pagemap")) {
+                                    // get "items" json array
+                                    JSONObject pageMapJsonObject = newsJsonObject.getJSONObject("pagemap");
 
-                                // check "metatags" key
-                                Iterator<String> pageMapKeys = pageMapJsonObject.keys();
-                                while (pageMapKeys.hasNext()) {
-                                    String pageMapKeyString = pageMapKeys.next();
-                                    // find "metatags" key
-                                    if (pageMapKeyString.equals("metatags")) {
-                                        // get "metatags" json array and object
-                                        JSONArray metaTagsJsonArray = pageMapJsonObject.getJSONArray("metatags");
-                                        JSONObject metaTagsJsonObject = metaTagsJsonArray.getJSONObject(0);
+                                    // check "metatags" key
+                                    Iterator<String> pageMapKeys = pageMapJsonObject.keys();
+                                    while (pageMapKeys.hasNext()) {
+                                        String pageMapKeyString = pageMapKeys.next();
+                                        // find "metatags" key
+                                        if (pageMapKeyString.equals("metatags")) {
+                                            // get "metatags" json array and object
+                                            JSONArray metaTagsJsonArray = pageMapJsonObject.getJSONArray("metatags");
+                                            JSONObject metaTagsJsonObject = metaTagsJsonArray.getJSONObject(0);
 
-                                        // check keys existence
-                                        boolean hasTitle = false;
-                                        boolean hasPressTime = false;
-                                        boolean hasSnippet = false;
-                                        boolean hasAuthor = false;
-                                        boolean hasURL = false;
-                                        Iterator<String> metaTagsKeys = metaTagsJsonObject.keys();
-                                        while(metaTagsKeys.hasNext()){
-                                            String metaTagsKeyString = metaTagsKeys.next();
-                                            if (metaTagsKeyString.equals("title")){
-                                                hasTitle = true;
+                                            // check keys existence
+                                            boolean hasTitle = false;
+                                            boolean hasPressTime = false;
+                                            boolean hasSnippet = false;
+                                            boolean hasAuthor = false;
+                                            boolean hasURL = false;
+                                            Iterator<String> metaTagsKeys = metaTagsJsonObject.keys();
+                                            while (metaTagsKeys.hasNext()) {
+                                                String metaTagsKeyString = metaTagsKeys.next();
+                                                if (metaTagsKeyString.equals("title")) {
+                                                    hasTitle = true;
+                                                }
+                                                if (metaTagsKeyString.equals("article:published_time")) {
+                                                    hasPressTime = true;
+                                                }
+                                                if (metaTagsKeyString.equals("og:description")) {
+                                                    hasSnippet = true;
+                                                }
+                                                if (metaTagsKeyString.equals("author")) {
+                                                    hasAuthor = true;
+                                                }
+                                                if (metaTagsKeyString.equals("og:url")) {
+                                                    hasURL = true;
+                                                }
                                             }
-                                            if (metaTagsKeyString.equals("article:published_time")){
-                                                hasPressTime = true;
+
+                                            if (hasTitle && hasAuthor && hasPressTime && hasSnippet && hasURL) {
+                                                // title
+                                                String newsTitle = metaTagsJsonObject.getString("title");
+                                                // news press time
+                                                String newsPressTime = metaTagsJsonObject.getString("article:published_time");
+                                                // news author
+                                                String newsAuthor = metaTagsJsonObject.getString("author");
+                                                // news Snippet
+                                                String newsSnippet = metaTagsJsonObject.getString("og:description");
+                                                // news URL
+                                                String newsURL = metaTagsJsonObject.getString("og:url");
+
+                                                NewsModel newsModel = new NewsModel();
+                                                newsModel.setNewsId(i + 1); // id
+                                                newsModel.setNewsTitle(newsTitle); // tile
+                                                newsModel.setNewsPressTime(newsPressTime); // time
+                                                newsModel.setNewsAuthor(newsAuthor); // author
+                                                newsModel.setNewsSnippet(newsSnippet); // snippet
+                                                newsModel.setNewsURL(newsURL); // URL
+
+                                                newsModelList.add(newsModel);
                                             }
-                                            if (metaTagsKeyString.equals("og:description")){
-                                                hasSnippet = true;
-                                            }
-                                            if (metaTagsKeyString.equals("author")){
-                                                hasAuthor = true;
-                                            }
-                                            if (metaTagsKeyString.equals("og:url")){
-                                                hasURL = true;
-                                            }
+
+                                            break;
                                         }
-
-                                        if (hasTitle && hasAuthor && hasPressTime && hasSnippet && hasURL) {
-                                            // title
-                                            String newsTitle = metaTagsJsonObject.getString("title");
-                                            // news press time
-                                            String newsPressTime = metaTagsJsonObject.getString("article:published_time");
-                                            // news author
-                                            String newsAuthor = metaTagsJsonObject.getString("author");
-                                            // news Snippet
-                                            String newsSnippet = metaTagsJsonObject.getString("og:description");
-                                            // news URL
-                                            String newsURL = metaTagsJsonObject.getString("og:url");
-
-                                            NewsModel newsModel = new NewsModel();
-                                            newsModel.setNewsId(i + 1); // id
-                                            newsModel.setNewsTitle(newsTitle); // tile
-                                            newsModel.setNewsPressTime(newsPressTime); // time
-                                            newsModel.setNewsAuthor(newsAuthor); // author
-                                            newsModel.setNewsSnippet(newsSnippet); // snippet
-                                            newsModel.setNewsURL(newsURL); // URL
-
-                                            newsModelList.add(newsModel);
-                                        }
-
-                                        break;
                                     }
+                                    break;
                                 }
-                                break;
                             }
                         }
+                        break;
                     }
-                    break;
                 }
             }
         }

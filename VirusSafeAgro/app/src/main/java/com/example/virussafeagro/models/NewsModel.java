@@ -16,6 +16,10 @@ public class NewsModel implements Parcelable {
     public NewsModel() {
     }
 
+    public NewsModel(String newsSnippet) {
+        this.newsSnippet = newsSnippet;
+    }
+
     public NewsModel(int newsId, String newsTitle, String newsSnippet, String newsPressTime, String newsAuthor, Bitmap newsImage, String newsURL) {
         this.newsId = newsId;
         this.newsTitle = newsTitle;

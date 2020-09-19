@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.viewModel.NewsViewModel;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
@@ -102,15 +104,20 @@ public class NewsFragment extends Fragment {
     private void observeNewsListLD() {
         this.newsViewModel.getNewsListLD().observe(getViewLifecycleOwner(), resultNewsList -> {
             if ((resultNewsList != null) && (resultNewsList.size() != 0)) {
-                newsModelList.clear();
-                newsModelList = resultNewsList;
+                // check network connection
+                if (resultNewsList.get(0).getNewsSnippet().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                    Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                } else {
+                    newsModelList.clear();
+                    newsModelList = resultNewsList;
 
-                // show News Views
-                showNewsViews();
-                // show the news list
-                showNewsRecyclerView();
-                // set News Tile On Clicked Listener
-                setNewsTileOnClickedListener();
+                    // show News Views
+                    showNewsViews();
+                    // show the news list
+                    showNewsRecyclerView();
+                    // set News Tile On Clicked Listener
+                    setNewsTileOnClickedListener();
+                }
             }
         });
     }
