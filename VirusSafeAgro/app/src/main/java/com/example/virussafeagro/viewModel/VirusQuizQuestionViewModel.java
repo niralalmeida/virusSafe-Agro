@@ -1,5 +1,6 @@
 package com.example.virussafeagro.viewModel;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
@@ -67,8 +68,33 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                 quizQuestionModelList = MyJsonParser.choiceQuestionModelListForImageJsonParser(resultTextForQuestionImages, quizQuestionModelList);
                 // check network connection for question image
                 if (!quizQuestionModelList.get(quizQuestionModelList.size() - 1).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+
                     // get images Bitmaps by the URLs
-                    
+                    for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
+
+                        // set question images by question image URLs
+                        List<String> questionImageURLList = choiceQuestionModel.getImageURLList();
+                        List<Bitmap> questionImageList = new ArrayList<>();
+                        for (String questionImageURL : questionImageURLList){
+                            // get a question image by networkConnectionToAWSTomatoS3
+                            Bitmap questionImageBitmap = networkConnectionToAWSTomatoS3.getImageFromURL(questionImageURL);
+                            // add the question image into the new list
+                            questionImageList.add(questionImageBitmap);
+                        }
+                        // store the question image list into the question list
+                        choiceQuestionModel.setChoiceQuestionImageList(questionImageList);
+
+                        // set option images by question image URLs
+                        List<ChoiceOptionModel> choiceOptionModelList = choiceQuestionModel.getChoiceQuestionOptionList();
+                        for (ChoiceOptionModel choiceOptionModel : choiceOptionModelList) {
+                            // get option image URL
+                            String optionImageURL = choiceOptionModel.getChoiceOptionImageURL();
+                            // get a option image by networkConnectionToAWSTomatoS3
+                            Bitmap optionImageBitmap = networkConnectionToAWSTomatoS3.getImageFromURL(optionImageURL);
+                            // store the image bitmap into the option model
+                            choiceOptionModel.setChoiceOptionImage(optionImageBitmap);
+                        }
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
