@@ -48,7 +48,7 @@ public class VirusInfoListFragment extends Fragment {
     private List<VirusModel> virusModelInfoList;
 
     private LinearLayout processBarLinearLayout;
-
+    private LinearLayout networkErrorLinearLayout;
     private LinearLayout virusGridViewLinearLayout;
     private GridView virusGridView;
     private GridVirusInfoAdapter gridVirusInfoAdapter;
@@ -118,6 +118,7 @@ public class VirusInfoListFragment extends Fragment {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
+        this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
     }
 
     private void initializeVirusInfoViewModel() {
@@ -139,6 +140,8 @@ public class VirusInfoListFragment extends Fragment {
                 // check network connection
                 if (resultVirusInfoList.get(0).getVirusDescription().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                    // show network error image
+                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);
                 } else {
                     virusModelInfoList.clear();
                     virusModelInfoList = resultVirusInfoList;
