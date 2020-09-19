@@ -58,7 +58,9 @@ public class NutrientViewModel extends ViewModel {
                 e.printStackTrace();
             }
             // save nutrient list into spp
-//            spp.saveNutrientList(nutrientModelList);
+//            if (!nutrientModelList.get(0).getNutrientReason().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+//                spp.saveNutrientList(nutrientModelList);
+//            }
             return nutrientModelList;
         }
 

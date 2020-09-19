@@ -19,6 +19,10 @@ public class NutrientModel implements Parcelable {
     public NutrientModel() {
     }
 
+    public NutrientModel(String nutrientReason) {
+        this.nutrientReason = nutrientReason;
+    }
+
     public NutrientModel(int nutrientId, String nutrientName, String nutrientSymptom, String nutrientReason, String nutrientFactors, String nutrientCorrectionMethod) {
         this.nutrientId = nutrientId;
         this.nutrientName = nutrientName;

@@ -50,7 +50,7 @@ public class MyJsonParser {
 
     public static List<ChoiceQuestionModel> choiceQuestionModelListJsonParser(String resultText) throws JSONException{
         List<ChoiceQuestionModel> quizQuestionModelList = new ArrayList<>();
-
+        // check network connection
         if (resultText.isEmpty()){
             ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(CONNECTION_ERROR_MESSAGE);
             quizQuestionModelList.add(choiceQuestionModel);
@@ -137,21 +137,27 @@ public class MyJsonParser {
 
     public static List<NutrientModel> nutrientListJsonParser(String resultText) throws JSONException {
         List<NutrientModel> nutrientModelList = new ArrayList<>();
-        if(!resultText.equals("[]")){
-            JSONArray nutrientInfoListJsonArray = new JSONArray(resultText);
-            int listSize = nutrientInfoListJsonArray.length();
-            for (int i = 0; i < listSize; i++) {
-                JSONObject nutrientJsonObject = nutrientInfoListJsonArray.getJSONObject(i);
+        // check network connection
+        if (resultText.isEmpty()){
+            NutrientModel nutrientModel = new NutrientModel(CONNECTION_ERROR_MESSAGE);
+            nutrientModelList.add(nutrientModel);
+        } else {
+            if (!resultText.equals("[]")) {
+                JSONArray nutrientInfoListJsonArray = new JSONArray(resultText);
+                int listSize = nutrientInfoListJsonArray.length();
+                for (int i = 0; i < listSize; i++) {
+                    JSONObject nutrientJsonObject = nutrientInfoListJsonArray.getJSONObject(i);
 
-                int nutrientId = nutrientJsonObject.getInt("nutrientId");
-                String nutrientName = nutrientJsonObject.getString("nutrientName");
-                String nutrientSymptoms = nutrientJsonObject.getString("nutrientSymptoms");
-                String nutrientReasons = nutrientJsonObject.getString("nutrientReasons");
-                String nutrientFactory = nutrientJsonObject.getString("nutrientFactory");
-                String nutrientCorrectionMethod = nutrientJsonObject.getString("nutrientCorrectionMethod");
+                    int nutrientId = nutrientJsonObject.getInt("nutrientId");
+                    String nutrientName = nutrientJsonObject.getString("nutrientName");
+                    String nutrientSymptoms = nutrientJsonObject.getString("nutrientSymptoms");
+                    String nutrientReasons = nutrientJsonObject.getString("nutrientReasons");
+                    String nutrientFactory = nutrientJsonObject.getString("nutrientFactory");
+                    String nutrientCorrectionMethod = nutrientJsonObject.getString("nutrientCorrectionMethod");
 
-                NutrientModel nutrientModel = new NutrientModel(nutrientId, nutrientName, nutrientSymptoms, nutrientReasons, nutrientFactory, nutrientCorrectionMethod);
-                nutrientModelList.add(nutrientModel);
+                    NutrientModel nutrientModel = new NutrientModel(nutrientId, nutrientName, nutrientSymptoms, nutrientReasons, nutrientFactory, nutrientCorrectionMethod);
+                    nutrientModelList.add(nutrientModel);
+                }
             }
         }
         return nutrientModelList;
