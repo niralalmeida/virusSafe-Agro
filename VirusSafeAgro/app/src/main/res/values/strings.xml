@@ -15,11 +15,11 @@
     <string name="fragment_t2_updates_more">Future Updates</string>
     <string name="fragment_t3_contact_more">Disclaimer</string>
     <string name="fragment_t4_disclaimer_more">Contact Us</string>
-    <!--  contents - About  -->
+    <!--  contents - About App  -->
     <string name="fragment_c1_app_description_about">
-        <p>Viruses in tomato plants cause humongous damages in Victoria, which results in massive losses. virusSafe Agro aims to inculcate awareness among the farmers at an earlier age by providing an educational platform and ways to mitigate the risk of loss of their cultivation from viruses.</p>
-        <p>&#x000A;&#x000A;virusSafe Agro is designed for people who are new to farming and wish to take tomato cultivation as their profession. It serves as an educational platform by providing information about the nine types of viruses in tomato plants, their description, symptoms, causes, prevention strategies. The user also has an option to check his knowledge about the content related to viruses.</p>
-        <p>&#x000A;&#x000A;This app offers you a new way of uploading a picture of a tomato plant to check if it is infected or not. On uploading the picture, the user gets instant feedback on whether the plant is infected or not.</p>
+        Viruses in tomato plants cause humongous damages in Victoria, which results in massive losses. virusSafe Agro aims to inculcate awareness among the farmers at an earlier age by providing an educational platform and ways to mitigate the risk of loss of their cultivation from viruses.
+        \n \nvirusSafe Agro is designed for people who are new to farming and wish to take tomato cultivation as their profession. It serves as an educational platform by providing information about the nine types of viruses in tomato plants, their description, symptoms, causes, prevention strategies. The user also has an option to check his knowledge about the content related to viruses.
+        \n \nThis app offers you a new way of uploading a picture of a tomato plant to check if it is infected or not. On uploading the picture, the user gets instant feedback on whether the plant is infected or not.
     </string>
     <string name="fragment_c2_updates_about">The app will contain a feature to check nutrient deficiency in tomato plants and way to tackle it, and revisions based on user feedback.</string>
     <string name="fragment_c4_contact_about">We are open to feedback about this application.</string>
@@ -35,7 +35,7 @@
     <string name="menu_ic_more">MORE</string>
 
     <!-- home -->
-    <string name="text_description_title_home">Welcome to VirusSage Agro</string>
+    <string name="text_description_title_home">Welcome to VirusSafe Agro</string>
     <string name="text_description_content_home">This app aims to provide an easy reference to diagnose virus in tomato plants and a care guide for farmers in Victoria who are new to farming.</string>
     <string name="text_description_read_more_home">Read More &gt;</string>
     <string name="text_water_calculator_title_home">Calculate your water usage</string>

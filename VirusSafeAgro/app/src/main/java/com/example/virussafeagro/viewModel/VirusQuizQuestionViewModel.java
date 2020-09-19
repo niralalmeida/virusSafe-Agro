@@ -56,6 +56,10 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                         choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
                     }
                 }
+
+                // get images by URLs
+//                String re
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

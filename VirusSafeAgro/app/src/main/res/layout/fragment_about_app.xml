@@ -35,9 +35,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="start"
-                    android:textSize="15sp"
+                    android:lineSpacingExtra="8dp"
+                    android:text="@string/fragment_c1_app_description_about"
                     android:textColor="@color/colorWhite"
-                    android:text="@string/fragment_c1_app_description_about"/>
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
