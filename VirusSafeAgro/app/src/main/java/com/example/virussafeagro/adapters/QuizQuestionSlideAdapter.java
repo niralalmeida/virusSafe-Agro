@@ -1,6 +1,7 @@
 package com.example.virussafeagro.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,6 +100,7 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
         // question title
         this.quizQuestionNoTextView.setText("Q" + (slidePosition + 1) + " - ");
+
         // question content
         String questionContent = "";
         if (currentChoiceQuestionModel.getChoiceQuestionType().equals("single")){
@@ -107,12 +109,13 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
             questionContent = currentChoiceQuestionModel.getChoiceQuestionContent() + " - [ multiple choice ]";
         }
         this.quizQuestionContentTextView.setText(questionContent);
+
         // question image
-        if (currentChoiceQuestionModel.getChoiceQuestionImage() != null){
-            this.quizQuestionImageView.setImageBitmap(currentChoiceQuestionModel.getChoiceQuestionImage());
-            ViewGroup.LayoutParams layoutParams = this.quizQuestionImageView.getLayoutParams();
-            layoutParams.height = 150;
-            this.quizQuestionImageView.setLayoutParams(layoutParams);
+        List<Bitmap> currentQuestionImageList = currentChoiceQuestionModel.getChoiceQuestionImageList();
+        if (currentQuestionImageList != null && currentQuestionImageList.size() != 0 && (currentQuestionImageList.get(0) != null)){
+            // just one image can be shown for now
+            this.quizQuestionImageView.setImageBitmap(currentQuestionImageList.get(0));
+            this.quizQuestionImageView.setVisibility(View.VISIBLE);
         }
 
         // question options

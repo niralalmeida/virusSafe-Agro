@@ -1,6 +1,7 @@
 package com.example.virussafeagro.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +102,12 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
         viewHolder.questionContentTextView.setText(choiceQuestionModel.getChoiceQuestionContent());
 
         // question image
-        viewHolder.questionImageView.setImageBitmap(choiceQuestionModel.getChoiceQuestionImage());
+        List<Bitmap> questionImageList = choiceQuestionModel.getChoiceQuestionImageList();
+        if (questionImageList != null && questionImageList.size() != 0 && (questionImageList.get(0) != null)){
+            // just one image can be shown for now
+            viewHolder.questionImageView.setImageBitmap(questionImageList.get(0));
+            viewHolder.questionImageView.setVisibility(View.VISIBLE);
+        }
 
         // user answer
         StringBuilder userAnswerStringBuilder = new StringBuilder();

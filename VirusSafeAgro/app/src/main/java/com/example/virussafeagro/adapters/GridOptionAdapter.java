@@ -78,10 +78,8 @@ public class GridOptionAdapter extends BaseAdapter {
             // set option image
             if (optionModel.getChoiceOptionImage() != null){
                 optionImageView = convertView.findViewById(R.id.img_option_grid_item);
-                ViewGroup.LayoutParams layoutParams = optionImageView.getLayoutParams();
-                layoutParams.height = 50;
-                optionImageView.setLayoutParams(layoutParams);
                 optionImageView.setImageBitmap(optionModel.getChoiceOptionImage());
+                optionImageView.setVisibility(View.VISIBLE);
             }
 
             // initialize choiceButtons LinearLayout

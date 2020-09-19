@@ -64,9 +64,10 @@
                     <ImageView
                         android:id="@+id/img_question_slide_quiz_question"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="150dp"
                         android:scaleType="centerCrop"
                         android:layout_marginTop="8dp"
+                        android:visibility="gone"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/default_leaf" />
 
