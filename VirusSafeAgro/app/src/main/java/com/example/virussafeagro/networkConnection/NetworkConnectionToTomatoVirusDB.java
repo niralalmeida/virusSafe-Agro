@@ -30,14 +30,7 @@ public class NetworkConnectionToTomatoVirusDB {
             Response response = this.okHttpClient.newCall(request).execute();
             resultText = response.body().string();
         } catch (Exception e) {
-//            e.printStackTrace();
-            if(e instanceof SocketTimeoutException){// check overtime
-
-            }
-            if(e instanceof ConnectException){// check connection  -- > Failed to connect to 10.7.5.144
-
-            }
-
+            e.printStackTrace();
         }
         return resultText;
     }

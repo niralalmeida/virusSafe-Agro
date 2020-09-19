@@ -19,6 +19,10 @@ public class VirusModel implements Parcelable {
     public VirusModel() {
     }
 
+    public VirusModel(String virusDescription) {
+        this.virusDescription = virusDescription;
+    }
+
     public VirusModel(int virusId, String virusFullName, String virusAbbreviation, String virusDescription, String symptoms, String causes, String spread, String prevention, String distribution, Bitmap virusPicture) {
         this.virusId = virusId;
         this.virusFullName = virusFullName;

@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
@@ -27,6 +28,7 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
@@ -134,12 +136,16 @@ public class VirusInfoListFragment extends Fragment {
     private void observeVirusInfoListLD() {
         this.virusInfoListViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
             if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
+                // check network connection
+                if (resultVirusInfoList.get(0).getVirusDescription().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                    Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                } else {
+                    virusModelInfoList.clear();
+                    virusModelInfoList = resultVirusInfoList;
 
-                virusModelInfoList.clear();
-                virusModelInfoList = resultVirusInfoList;
-
-                // show the virus list
-                displayVirusCardList();
+                    // show the virus list
+                    displayVirusCardList();
+                }
             }
         });
     }
