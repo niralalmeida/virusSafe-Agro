@@ -163,7 +163,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void observeVirusTwoTypeQuestionArrayLD() {
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultQuizQuestionModelList -> {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
-                // set recycler view linear layout visible and process bar invisible
+                // hide process bar
                 processBarLinearLayout.setVisibility(View.GONE);
                 // check network connection
                 if (resultQuizQuestionModelList.get(0).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {

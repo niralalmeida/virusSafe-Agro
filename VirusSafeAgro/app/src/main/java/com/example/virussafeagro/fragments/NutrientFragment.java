@@ -39,7 +39,7 @@ public class NutrientFragment extends Fragment {
     private List<NutrientModel> nutrientModelList;
 //
     private LinearLayout processBarLinearLayout;
-
+    private LinearLayout networkErrorLinearLayout;
     private LinearLayout nutrientsGridViewLinearLayout;
     private GridView nutrientsGridView;
     private GridNutrientAdapter gridNutrientAdapter;
@@ -112,6 +112,7 @@ public class NutrientFragment extends Fragment {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_nutrient);
         this.nutrientsGridViewLinearLayout = view.findViewById(R.id.ll_list_nutrient_list);
         this.nutrientsGridView = view.findViewById(R.id.gv_list_nutrient_list);
+        this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_nutrient);
     }
 
     private void initializeNutrientViewModel() {
@@ -130,13 +131,18 @@ public class NutrientFragment extends Fragment {
     private void observeNutrientListLD() {
         this.nutrientViewModel.getNutrientListLD().observe(getViewLifecycleOwner(), resultNutrientList -> {
             if ((resultNutrientList != null) && (resultNutrientList.size() != 0)) {
+                // hide progress bar
+                processBarLinearLayout.setVisibility(View.GONE);
                 // check network connection
                 if (resultNutrientList.get(0).getNutrientReason().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                    // show network error image
+                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);
                 } else {
                     nutrientModelList.clear();
                     nutrientModelList = resultNutrientList;
-
+                    //set recycler view linear layout visible
+                    MyAnimationBox.runFadeInAnimation(nutrientsGridViewLinearLayout, 1000);
                     // show the virus list
                     displayNutrientsCardList();
                 }
@@ -145,9 +151,7 @@ public class NutrientFragment extends Fragment {
     }
 
     private void displayNutrientsCardList() {
-        //set recycler view linear layout visible and process bar invisible
-        processBarLinearLayout.setVisibility(View.GONE);
-        MyAnimationBox.runFadeInAnimation(nutrientsGridViewLinearLayout, 1000);
+
 
         // show grid view
         gridNutrientAdapter = new GridNutrientAdapter(requireActivity(), nutrientModelList);
