@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class MyJsonParser {
+    public final static String CONNECTION_ERROR_MESSAGE = "Fail to connect to the server! Something wrong with the network!";
 
     public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
         List<VirusModel> virusModelInfoList = new ArrayList<>();
@@ -43,42 +44,49 @@ public class MyJsonParser {
 
     public static List<ChoiceQuestionModel> choiceQuestionModelListJsonParser(String resultText) throws JSONException{
         List<ChoiceQuestionModel> quizQuestionModelList = new ArrayList<>();
-        if(!resultText.equals("[]")){
-            JSONArray questionListJsonArray = new JSONArray(resultText);
-            int arrayLength = questionListJsonArray.length();
-            for (int i = 0; i < arrayLength; i++) {
-                JSONObject questionJsonObject = questionListJsonArray.getJSONObject(i);
 
-                // question id
-                int choiceQuestionId = questionJsonObject.getInt("choiceQuestionId");
+        if (resultText.isEmpty()){
+            ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(CONNECTION_ERROR_MESSAGE);
+            quizQuestionModelList.add(choiceQuestionModel);
+        } else {
+            if (!resultText.equals("[]")) {
+                JSONArray questionListJsonArray = new JSONArray(resultText);
+                int arrayLength = questionListJsonArray.length();
+                for (int i = 0; i < arrayLength; i++) {
+                    JSONObject questionJsonObject = questionListJsonArray.getJSONObject(i);
 
-                // question content
-                String choiceQuestionContent = questionJsonObject.getString("choiceQuestionContent");
+                    // question id
+                    int choiceQuestionId = questionJsonObject.getInt("choiceQuestionId");
 
-                // question type and answer
-                String choiceQuestionTypeLetter = questionJsonObject.getString("choiceQuestionType");
-                String choiceQuestionType = "";
-                String answer = questionJsonObject.getString("answer");
-                List<String> correctAnswerList = new ArrayList<>();
-                if (choiceQuestionTypeLetter.equals("s")){ // single choice
-                    choiceQuestionType = "single";
-                    correctAnswerList.add(answer);
-                } else { // multiple choice
-                    for (int k = 0; k < answer.length(); k++) {
-                        String answerItem = answer.substring(k, k + 1);
-                        correctAnswerList.add(answerItem);
+                    // question content
+                    String choiceQuestionContent = questionJsonObject.getString("choiceQuestionContent");
+
+                    // question type and answer
+                    String choiceQuestionTypeLetter = questionJsonObject.getString("choiceQuestionType");
+                    String choiceQuestionType = "";
+                    String answer = questionJsonObject.getString("answer");
+                    List<String> correctAnswerList = new ArrayList<>();
+                    if (choiceQuestionTypeLetter.equals("s")) { // single choice
+                        choiceQuestionType = "single";
+                        correctAnswerList.add(answer);
+                    } else { // multiple choice
+                        for (int k = 0; k < answer.length(); k++) {
+                            String answerItem = answer.substring(k, k + 1);
+                            correctAnswerList.add(answerItem);
+                        }
+                        choiceQuestionType = "multiple";
                     }
-                    choiceQuestionType = "multiple";
+
+                    // question explanation
+                    String explanation = questionJsonObject.getString("explanation");
+
+                    // create the choiceQuestionModel and add it into quizQuestionModelList
+                    ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(choiceQuestionId, choiceQuestionType, choiceQuestionContent, correctAnswerList, explanation);
+                    quizQuestionModelList.add(choiceQuestionModel);
                 }
-
-                // question explanation
-                String explanation = questionJsonObject.getString("explanation");
-
-                // create the choiceQuestionModel and add it into quizQuestionModelList
-                ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(choiceQuestionId, choiceQuestionType, choiceQuestionContent, correctAnswerList, explanation);
-                quizQuestionModelList.add(choiceQuestionModel);
             }
         }
+
         return quizQuestionModelList;
     }
 

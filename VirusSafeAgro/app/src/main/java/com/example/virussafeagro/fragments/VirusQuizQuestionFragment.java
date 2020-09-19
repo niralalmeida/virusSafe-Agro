@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +30,7 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.DataComparison;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.uitilities.NonSwipeableViewPager;
 import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
@@ -158,22 +160,25 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void observeVirusTwoTypeQuestionArrayLD() {
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultQuizQuestionModelList -> {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
+                // check network connection
+                if (resultQuizQuestionModelList.get(0).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                    Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                } else {
+                    // set recycler view linear layout visible and process bar invisible
+                    processBarLinearLayout.setVisibility(View.GONE);
+                    // show dots
+                    MyAnimationBox.runFadeInAnimation(dotButtonsLinearLayout, 1000);
+                    // show slides (view pag)
+                    MyAnimationBox.runFadeInAnimation(questionViewPager, 1000);
 
-                // set recycler view linear layout visible and process bar invisible
-                processBarLinearLayout.setVisibility(View.GONE);
-                // show dots
-                MyAnimationBox.runFadeInAnimation(dotButtonsLinearLayout, 1000);
-                // show slides (view pag)
-                MyAnimationBox.runFadeInAnimation(questionViewPager, 1000);
-
-                // set question list
-                choiceQuestionModelList = resultQuizQuestionModelList;
-                // initialize the QuizQuestionSlideAdapter and ViewPager
-                quizQuestionSlideAdapter = new QuizQuestionSlideAdapter(requireActivity(), choiceQuestionModelList);
-                questionViewPager.setAdapter(quizQuestionSlideAdapter);
-                // get the current slide position
-                questionViewPager.addOnPageChangeListener(viewPagerListener);
-
+                    // set question list
+                    choiceQuestionModelList = resultQuizQuestionModelList;
+                    // initialize the QuizQuestionSlideAdapter and ViewPager
+                    quizQuestionSlideAdapter = new QuizQuestionSlideAdapter(requireActivity(), choiceQuestionModelList);
+                    questionViewPager.setAdapter(quizQuestionSlideAdapter);
+                    // get the current slide position
+                    questionViewPager.addOnPageChangeListener(viewPagerListener);
+                }
             }
         });
     }

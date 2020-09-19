@@ -47,11 +47,14 @@ public class VirusQuizQuestionViewModel extends ViewModel {
             try {
                 String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
                 quizQuestionModelList = MyJsonParser.choiceQuestionModelListJsonParser(resultTextForQuestions);
-                // find options for choice questions
-                for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
-                    String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
-                    List<ChoiceOptionModel> optionModelList = MyJsonParser.choiceOptionListJsonParser(resultTextForOptions);
-                    choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
+                // check network connection
+                if (!quizQuestionModelList.get(0).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                    // find options for choice questions
+                    for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
+                        String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
+                        List<ChoiceOptionModel> optionModelList = MyJsonParser.choiceOptionListJsonParser(resultTextForOptions);
+                        choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
