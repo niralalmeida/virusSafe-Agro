@@ -205,45 +205,28 @@ public class MyJsonParser {
                                             }
                                         }
 
-                                        // news title
-                                        String newsTitle = "";
-                                        if (hasTitle){
-                                            newsTitle = metaTagsJsonObject.getString("title");
+                                        if (hasTitle && hasAuthor && hasPressTime && hasSnippet && hasURL) {
+                                            // title
+                                            String newsTitle = metaTagsJsonObject.getString("title");
+                                            // news press time
+                                            String newsPressTime = metaTagsJsonObject.getString("article:published_time");
+                                            // news author
+                                            String newsAuthor = metaTagsJsonObject.getString("author");
+                                            // news Snippet
+                                            String newsSnippet = metaTagsJsonObject.getString("og:description");
+                                            // news URL
+                                            String newsURL = metaTagsJsonObject.getString("og:url");
+
+                                            NewsModel newsModel = new NewsModel();
+                                            newsModel.setNewsId(i + 1); // id
+                                            newsModel.setNewsTitle(newsTitle); // tile
+                                            newsModel.setNewsPressTime(newsPressTime); // time
+                                            newsModel.setNewsAuthor(newsAuthor); // author
+                                            newsModel.setNewsSnippet(newsSnippet); // snippet
+                                            newsModel.setNewsURL(newsURL); // URL
+
+                                            newsModelList.add(newsModel);
                                         }
-
-                                        // news press time
-                                        String newsPressTime = "";
-                                        if (hasPressTime){
-                                            newsPressTime = metaTagsJsonObject.getString("article:published_time");
-                                        }
-
-                                        // news author
-                                        String newsAuthor = "";
-                                        if (hasAuthor){
-                                            newsAuthor = metaTagsJsonObject.getString("author");
-                                        }
-
-                                        // news Snippet
-                                        String newsSnippet = "";
-                                        if (hasSnippet){
-                                            newsSnippet = metaTagsJsonObject.getString("og:description");
-                                        }
-
-                                        // news URL
-                                        String newsURL = "";
-                                        if (hasURL){
-                                            newsURL = metaTagsJsonObject.getString("og:url");
-                                        }
-
-                                        NewsModel newsModel = new NewsModel();
-                                        newsModel.setNewsId(i + 1); // id
-                                        newsModel.setNewsTitle(newsTitle); // tile
-                                        newsModel.setNewsPressTime(newsPressTime); // time
-                                        newsModel.setNewsAuthor(newsAuthor); // author
-                                        newsModel.setNewsSnippet(newsSnippet); // snippet
-                                        newsModel.setNewsURL(newsURL); // URL
-
-                                        newsModelList.add(newsModel);
 
                                         break;
                                     }

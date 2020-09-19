@@ -20,6 +20,9 @@ public class NetworkConnectionToGoogleSearchAPI {
         String searchURL = "https://www.googleapis.com/customsearch/v1?key="
                 + API_KEY + "&cx=" + SEARCH_ID_cx + "&q=" + keyword + "&sort=date:d&start=" + startFromWhichItem;
 
+        // test
+        System.out.println("URL ====> " + searchURL);
+
         Request request = new Request.Builder().url(searchURL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();
