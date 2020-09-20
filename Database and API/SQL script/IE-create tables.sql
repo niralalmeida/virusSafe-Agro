@@ -34,6 +34,7 @@ CREATE TABLE choiceoption
     choice_option_label CHAR(1) NOT NULL,
     choice_option_content VARCHAR(1500) NOT NULL,
     choice_option_question_id INTEGER NOT NULL,
+    choice_option_image_binary_code LONGTEXT,
     
     PRIMARY KEY(choice_option_id),
     FOREIGN KEY(choice_option_question_id) REFERENCES choicequestion(choice_question_id),
