@@ -63,9 +63,9 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                 }
 
                 // get images URLs by S3 API
-                String virusIdForS3API = AppResources.getVirusIdForS3API(virusId);
-                String resultTextForQuestionImages = networkConnectionToAWSTomatoS3.getAllQuestionImages(virusIdForS3API);
-                quizQuestionModelList = MyJsonParser.choiceQuestionModelListForImageJsonParser(resultTextForQuestionImages, quizQuestionModelList);
+//                String virusIdForS3API = AppResources.getVirusIdForS3API(virusId);
+//                String resultTextForQuestionImages = networkConnectionToAWSTomatoS3.getAllQuestionImages(virusIdForS3API);
+//                quizQuestionModelList = MyJsonParser.choiceQuestionModelListForImageJsonParser(resultTextForQuestionImages, quizQuestionModelList);
 
                 // test
 //                for(ChoiceQuestionModel cqm : quizQuestionModelList){
@@ -79,47 +79,47 @@ public class VirusQuizQuestionViewModel extends ViewModel {
 //                }
 
                 // check network connection for question image
-                if (!quizQuestionModelList.get(quizQuestionModelList.size() - 1).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
-
-                    // get images Bitmaps by the URLs
-                    for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
-                        // test
-                        System.out.println("[[[[[ question id ]]]]]: (" + choiceQuestionModel.getChoiceQuestionId() + ")");
-
-                        // set question images by question image URLs
-                        List<String> questionImageURLList = choiceQuestionModel.getImageURLList();
-                        List<Bitmap> questionImageList = new ArrayList<>();
-                        for (String questionImageURL : questionImageURLList){
-
-                            // test
-                            System.out.println("   ===>> URL : <" + questionImageURL +">");
-
-                            // get a question image by networkConnectionToAWSTomatoS3
-                            Bitmap questionImageBitmap = networkConnectionToAWSTomatoS3.getImageFromURL(questionImageURL);
-
-                            // test
-                            System.out.println("   --> bitmap : [<" + questionImageBitmap +">]");
-
-                            // add the question image into the new list
-                            questionImageList.add(questionImageBitmap);
-                        }
-                        // store the question image list into the question list
-                        choiceQuestionModel.setChoiceQuestionImageList(questionImageList);
-
-                        // set option images by option image URLs
-                        List<ChoiceOptionModel> choiceOptionModelList = choiceQuestionModel.getChoiceQuestionOptionList();
-                        for (ChoiceOptionModel choiceOptionModel : choiceOptionModelList) {
-                            // get option image URL
-                            String optionImageURL = choiceOptionModel.getChoiceOptionImageURL();
-                            if (optionImageURL != null && (!optionImageURL.isEmpty())) {
-                                // get a option image by networkConnectionToAWSTomatoS3
-                                Bitmap optionImageBitmap = networkConnectionToAWSTomatoS3.getImageFromURL(optionImageURL);
-                                // store the image bitmap into the option model
-                                choiceOptionModel.setChoiceOptionImage(optionImageBitmap);
-                            }
-                        }
-                    }
-                }
+//                if (!quizQuestionModelList.get(quizQuestionModelList.size() - 1).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+//
+//                    // get images Bitmaps by the URLs
+//                    for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
+//                        // test
+//                        System.out.println("[[[[[ question id ]]]]]: (" + choiceQuestionModel.getChoiceQuestionId() + ")");
+//
+//                        // set question images by question image URLs
+//                        List<String> questionImageURLList = choiceQuestionModel.getImageURLList();
+//                        List<Bitmap> questionImageList = new ArrayList<>();
+//                        for (String questionImageURL : questionImageURLList){
+//
+//                            // test
+//                            System.out.println("   ===>> URL : <" + questionImageURL +">");
+//
+//                            // get a question image by networkConnectionToAWSTomatoS3
+//                            Bitmap questionImageBitmap = networkConnectionToAWSTomatoS3.getImageFromURL(questionImageURL);
+//
+//                            // test
+//                            System.out.println("   --> bitmap : [<" + questionImageBitmap +">]");
+//
+//                            // add the question image into the new list
+//                            questionImageList.add(questionImageBitmap);
+//                        }
+//                        // store the question image list into the question list
+//                        choiceQuestionModel.setChoiceQuestionImageList(questionImageList);
+//
+//                        // set option images by option image URLs
+//                        List<ChoiceOptionModel> choiceOptionModelList = choiceQuestionModel.getChoiceQuestionOptionList();
+//                        for (ChoiceOptionModel choiceOptionModel : choiceOptionModelList) {
+//                            // get option image URL
+//                            String optionImageURL = choiceOptionModel.getChoiceOptionImageURL();
+//                            if (optionImageURL != null && (!optionImageURL.isEmpty())) {
+//                                // get a option image by networkConnectionToAWSTomatoS3
+//                                Bitmap optionImageBitmap = networkConnectionToAWSTomatoS3.getImageFromURL(optionImageURL);
+//                                // store the image bitmap into the option model
+//                                choiceOptionModel.setChoiceOptionImage(optionImageBitmap);
+//                            }
+//                        }
+//                    }
+//                }
 
 //                // test
 //                for (ChoiceQuestionModel cqm : quizQuestionModelList){
