@@ -60,6 +60,20 @@ public class NetworkConnectionToTomatoVirusDB {
         return resultText;
     }
 
+    public String getOptionsImage(int choiceOptionId) {
+        String resultText = "";
+        final String API_URL = "https://o16onbsxxl.execute-api.us-east-1.amazonaws.com/optionImageStage/optionimage?choiceOptionId=";
+        String searchURL = API_URL + choiceOptionId;
+        Request request = new Request.Builder().url(searchURL).build();
+        try {
+            Response response = this.okHttpClient.newCall(request).execute();
+            resultText = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultText;
+    }
+
     public String getAllNutrients() {
         String resultText = "";
         final String API_URL = "https://l0j2i6t18a.execute-api.us-east-1.amazonaws.com/nutrientStage/nutrientresource";

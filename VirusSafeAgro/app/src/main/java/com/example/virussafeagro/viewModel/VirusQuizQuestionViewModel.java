@@ -12,6 +12,7 @@ import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToAWSTomatoS3;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
 import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 
 import java.util.ArrayList;
@@ -58,6 +59,16 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                     for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
                         String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
                         List<ChoiceOptionModel> optionModelList = MyJsonParser.choiceOptionListJsonParser(resultTextForOptions);
+
+                        // [ RDS ] find images for options
+                        for (ChoiceOptionModel choiceOptionModel : optionModelList) {
+                            String optionImageJsonResult = networkConnectionToTomatoVirusDB.getOptionsImage(choiceOptionModel.getChoiceOptionId());
+                            String optionImageString = MyJsonParser.quizImageJsonParser(optionImageJsonResult);
+                            Bitmap optionImageBitmap = DataConverter.stringToBitmapConverter(optionImageString);
+                            choiceOptionModel.setChoiceOptionImage(optionImageBitmap);
+                        }
+
+                        // set the option list into question model
                         choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
                     }
                 }

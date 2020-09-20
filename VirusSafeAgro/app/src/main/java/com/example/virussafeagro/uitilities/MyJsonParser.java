@@ -1,5 +1,7 @@
 package com.example.virussafeagro.uitilities;
 
+import android.graphics.Bitmap;
+
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.NewsModel;
@@ -116,12 +118,29 @@ public class MyJsonParser {
                 // option label
                 String choiceOptionLabel = optionJsonObject.getString("choiceOptionLabel").toUpperCase();
 
+//                // test - image base64-bitmap
+//                String imageBase64 = optionJsonObject.getString("choiceOptionImageBinaryCode");
+//                // test
+//                Bitmap bitmap = DataConverter.stringToBitmapConverter(imageBase64);
+
                 // create a ChoiceOptionModel and add it into the optionModelList
                 ChoiceOptionModel choiceOption = new ChoiceOptionModel(optionId, choiceOptionLabel, choiceOptionContent);
+                // test
+//                choiceOption.setChoiceOptionImage(bitmap);
                 optionModelList.add(choiceOption);
             }
         }
         return optionModelList;
+    }
+
+    public static String quizImageJsonParser(String resultText) throws JSONException{
+        String imageString = "";
+        if(!resultText.equals("[]")){
+            JSONArray imageResultJsonArray = new JSONArray(resultText);
+            JSONObject imageResultJsonObject = imageResultJsonArray.getJSONObject(0);
+            imageString = imageResultJsonObject.getString("choiceOptionImageBinaryCode");
+        }
+        return imageString;
     }
 
     // get data to store question images into question model list
