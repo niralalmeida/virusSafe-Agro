@@ -1,9 +1,12 @@
 package com.example.virussafeagro.fragments;
 
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -13,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.networkConnection.NetworkConnectionToAWSTomatoS3;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
@@ -49,6 +53,9 @@ public class AboutAppFragment extends Fragment {
 
         // show all views
         this.showAllViews();
+
+        // test
+//        this.testImageURL();
     }
 
     private void initializeViews() {
@@ -59,5 +66,28 @@ public class AboutAppFragment extends Fragment {
     private void showAllViews() {
         MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
     }
+//
+//    // test
+//    private void testImageURL(){
+//        String imageURL = "https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/TA24-system%20architecture.png?token=ANAMHQXWB5FBJUGV4MKT5O27N73MK";
+//        A a = new A();
+//        a.execute(imageURL);
+//    }
+//
+//    // test
+//    private class A extends AsyncTask<String, Void, Bitmap>{
+//
+//        @Override
+//        protected Bitmap doInBackground(String... strings) {
+//            NetworkConnectionToAWSTomatoS3 networkConnectionToAWSTomatoS3 = new NetworkConnectionToAWSTomatoS3();
+//            return networkConnectionToAWSTomatoS3.getImageFromURL(strings[0]);
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Bitmap bitmap) {
+//            ImageView mapImageView = view.findViewById(R.id.img_aus_map_about_app);
+//            mapImageView.setImageBitmap(bitmap);
+//        }
+//    }
 
 }
