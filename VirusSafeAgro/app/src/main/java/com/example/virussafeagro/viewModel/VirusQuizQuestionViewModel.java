@@ -57,13 +57,22 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                 if (!quizQuestionModelList.get(0).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     // find options for choice questions
                     for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
+                        // [ RDS ] find images for questions
+                        String questionImageJsonResult = networkConnectionToTomatoVirusDB.getQuestionsImage(choiceQuestionModel.getChoiceQuestionId());
+                        String questionImageString = MyJsonParser.questionImageJsonParser(questionImageJsonResult);
+                        Bitmap questionImageBitmap = DataConverter.stringToBitmapConverter(questionImageString);
+                        List<Bitmap> questionImageList = new ArrayList<>();
+                        questionImageList.add(questionImageBitmap);
+                        choiceQuestionModel.setChoiceQuestionImageList(questionImageList);
+
+                        // find options
                         String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
                         List<ChoiceOptionModel> optionModelList = MyJsonParser.choiceOptionListJsonParser(resultTextForOptions);
 
                         // [ RDS ] find images for options
                         for (ChoiceOptionModel choiceOptionModel : optionModelList) {
                             String optionImageJsonResult = networkConnectionToTomatoVirusDB.getOptionsImage(choiceOptionModel.getChoiceOptionId());
-                            String optionImageString = MyJsonParser.quizImageJsonParser(optionImageJsonResult);
+                            String optionImageString = MyJsonParser.optionImageJsonParser(optionImageJsonResult);
                             Bitmap optionImageBitmap = DataConverter.stringToBitmapConverter(optionImageString);
                             choiceOptionModel.setChoiceOptionImage(optionImageBitmap);
                         }

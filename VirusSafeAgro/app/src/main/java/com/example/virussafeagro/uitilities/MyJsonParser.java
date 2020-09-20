@@ -133,7 +133,17 @@ public class MyJsonParser {
         return optionModelList;
     }
 
-    public static String quizImageJsonParser(String resultText) throws JSONException{
+    public static String questionImageJsonParser(String resultText) throws JSONException{
+        String imageString = "";
+        if(!resultText.equals("[]")){
+            JSONArray imageResultJsonArray = new JSONArray(resultText);
+            JSONObject imageResultJsonObject = imageResultJsonArray.getJSONObject(0);
+            imageString = imageResultJsonObject.getString("choiceQuestionImageBinaryCode");
+        }
+        return imageString;
+    }
+
+    public static String optionImageJsonParser(String resultText) throws JSONException{
         String imageString = "";
         if(!resultText.equals("[]")){
             JSONArray imageResultJsonArray = new JSONArray(resultText);
