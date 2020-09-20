@@ -22,6 +22,7 @@ CREATE TABLE choicequestion
     answer VARCHAR(10) NOT NULL,
     explanation VARCHAR(1500) NOT NULL,
     choice_question_virus_id INTEGER NOT NULL,
+    choice_question_image_binary_code LONGTEXT,
 
     PRIMARY KEY(choice_question_id),
     FOREIGN KEY(choice_question_virus_id) REFERENCES virus(virus_id),
