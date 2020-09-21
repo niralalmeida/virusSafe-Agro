@@ -1,14 +1,17 @@
 package com.example.virussafeagro.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
@@ -22,7 +25,7 @@ import java.util.Objects;
 public class HomeFragment extends Fragment {
     private View view;
 
-    private LinearLayout allViewLinearLayout;
+    private RelativeLayout allViewsRelativeLayout;
     private LinearLayout waterCalculatorLinearLayout;
 //    private LinearLayout newsLinearLayout;
 
@@ -59,14 +62,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_home);
+        this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_home);
         this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_home);
 //        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
 
     // show Home Views
     private void showHomeViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
+        MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
     }
 
     private void allTilesOnClickListener() {
@@ -85,6 +88,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        this.allViewLinearLayout.setVisibility(View.GONE);
+        this.allViewsRelativeLayout.setVisibility(View.GONE);
     }
 }
