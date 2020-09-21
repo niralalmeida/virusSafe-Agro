@@ -30,10 +30,14 @@ public class HomeFragment extends Fragment {
     private RelativeLayout allViewsRelativeLayout;
     private ImageView swipeImageView;
     private DragYRelativeLayout homeImageDragYRelativeLayout;
+    // top
     private LinearLayout virusCheckLinearLayout;
     private LinearLayout learnLinearLayout;
-
     private LinearLayout waterCalculatorLinearLayout;
+    // middle
+    private LinearLayout controlStrategiesLinearLayout;
+
+
 //    private LinearLayout newsLinearLayout;
 
     public HomeFragment() {
@@ -75,6 +79,7 @@ public class HomeFragment extends Fragment {
         this.virusCheckLinearLayout = view.findViewById(R.id.ll_virus_check_home);
         this.learnLinearLayout = view.findViewById(R.id.ll_learn_home);
         this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_home);
+        this.controlStrategiesLinearLayout = view.findViewById(R.id.ll_control_strategies_home);
 //        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
 
@@ -96,6 +101,11 @@ public class HomeFragment extends Fragment {
         this.setVirusCheckTileOnClickListener();
         // virus info
         this.setLearnTileOnClickListener();
+        // water calculator
+        this.setWaterCalculatorOnClickListener();
+
+        // control strategies
+        this.setControlStrategiesOnClickListener();
 
         // news
 //        this.setNewsTileOnClickListener();
@@ -108,10 +118,24 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    // virus info
+    // learn
     private void setLearnTileOnClickListener() {
         this.learnLinearLayout.setOnClickListener(llView -> {
             FragmentOperator.replaceFragment(requireActivity(), new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
+        });
+    }
+
+    // water
+    private void setWaterCalculatorOnClickListener() {
+        this.waterCalculatorLinearLayout.setOnClickListener(llView -> {
+//            FragmentOperator.replaceFragment(requireActivity(), new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
+        });
+    }
+
+    // control strategies
+    private void setControlStrategiesOnClickListener() {
+        this.controlStrategiesLinearLayout.setOnClickListener(llView -> {
+            FragmentOperator.replaceFragment(requireActivity(), new ControlStrategiesFragment(), AppResources.FRAGMENT_TAG_CONTROL_STRATEGIES);
         });
     }
 

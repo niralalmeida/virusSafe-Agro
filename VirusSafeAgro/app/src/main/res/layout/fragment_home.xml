@@ -35,13 +35,13 @@
 
                 <!-- virus check -->
                 <LinearLayout
-                    android:id="@+id/ll_virus_check_home"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/ll_virus_check_home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -80,13 +80,13 @@
 
                 <!-- learn -->
                 <LinearLayout
-                    android:id="@+id/ll_learn_home"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/ll_learn_home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -126,13 +126,13 @@
 
                 <!-- water usage calculator -->
                 <LinearLayout
-                    android:id="@+id/ll_water_calculator_home"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/ll_water_calculator_home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -502,7 +502,6 @@
 
     <!-- image -->
     <com.example.virussafeagro.uitilities.DragYRelativeLayout
-        android:visibility="gone"
         android:id="@+id/drl_image_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
