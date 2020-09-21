@@ -61,6 +61,15 @@
     <string name="text_title_non_chemical_control">NON-CHEMICAL CONTROL</string>
     <string name="text_content_non_chemical_control">Tap on the tile to know about the organic ways to control the virus spread.</string>
 
+    <!-- insights -->
+    <string name="text_title_news_insights">NEWS</string>
+    <string name="text_content_news_insights">Tap on the tile to know read about the happenings in the agricultural industry.</string>
+    <string name="text_title_tweets_insights">TWEETS</string>
+    <string name="text_content_tweets_insights">Tap on the tile to know read about the tweets posted by people on twitter.</string>
+    <string name="text_title_videos_insights">VIDEOS</string>
+    <string name="text_content_videos_insights">Tap on the tile to watch videos related to agriculture.</string>
+
+
     <!-- virus info list -->
     <string name="text_description_title_virus_info">Virus disease in tomato plants</string>
     <string name="text_description_content_virus_info">There are nine types of viruses in tomato plants, which causes major damages to the yield.  Tap on the tiles below to learn more about the viruses.</string>
