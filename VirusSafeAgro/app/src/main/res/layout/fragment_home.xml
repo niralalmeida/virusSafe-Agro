@@ -515,7 +515,7 @@
             android:layout_above="@+id/img_swipe_home"
             android:textSize="20sp"
             android:textColor="@color/colorWhite"
-            android:text="Swipe Up"/>
+            android:text="Swipe Up / Click Up"/>
 
         <ImageView
             android:id="@+id/img_swipe_home"

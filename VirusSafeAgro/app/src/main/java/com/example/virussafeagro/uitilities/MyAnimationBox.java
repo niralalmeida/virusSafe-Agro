@@ -21,13 +21,12 @@ public class MyAnimationBox {
         view.startAnimation(alphaAnimation);
     }
 
-    public static void runSlideInAnimationFromBottomToTop(View view, int duration) {
-        view.setVisibility(View.VISIBLE);
+    public static void runSlideOutAnimationToTop(View view, int duration) {
         TranslateAnimation animate = new TranslateAnimation(
                 0,
                 0,
-                view.getHeight(),
-                0);
+                0,
+                -view.getHeight());
         animate.setDuration(duration);
         animate.setFillAfter(true);
         view.startAnimation(animate);
@@ -44,6 +43,7 @@ public class MyAnimationBox {
 //        alphaAnimation.start();
     }
 
+    // for swipe
     public static void runRepeatedAnimationBottomToTop(View view, int duration) {
         view.setVisibility(View.VISIBLE);
         TranslateAnimation translateAnimation = new TranslateAnimation(

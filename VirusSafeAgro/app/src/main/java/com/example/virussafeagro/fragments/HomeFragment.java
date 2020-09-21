@@ -28,6 +28,7 @@ public class HomeFragment extends Fragment {
 
     private RelativeLayout allViewsRelativeLayout;
     private ImageView swipeImageView;
+    private RelativeLayout homeImageRelativeLayout;
 
     private LinearLayout waterCalculatorLinearLayout;
 //    private LinearLayout newsLinearLayout;
@@ -60,6 +61,8 @@ public class HomeFragment extends Fragment {
         // show Home Views
         this.showHomeViews();
 
+        // set Home Image On Click Listener
+        this.setHomeImageOnClickListener();
         // control all tiles on click listeners
         this.allTilesOnClickListener();
     }
@@ -67,6 +70,7 @@ public class HomeFragment extends Fragment {
     private void initializeViews() {
         this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_home);
         this.swipeImageView = view.findViewById(R.id.img_swipe_home);
+        this.homeImageRelativeLayout = view.findViewById(R.id.rl_image_home);
         this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_home);
 //        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
@@ -77,6 +81,14 @@ public class HomeFragment extends Fragment {
         new Handler().postDelayed(()->{
             MyAnimationBox.runRepeatedAnimationBottomToTop(swipeImageView, 1000);
         }, 1000);
+    }
+
+    private void setHomeImageOnClickListener() {
+        this.homeImageRelativeLayout.setOnClickListener(rlView -> {
+            MyAnimationBox.runSlideOutAnimationToTop(rlView, 500);
+            rlView.setClickable(false);
+            rlView.setVisibility(View.GONE);
+        });
     }
 
     private void allTilesOnClickListener() {
