@@ -23,9 +23,8 @@ public class HomeFragment extends Fragment {
     private View view;
 
     private LinearLayout allViewLinearLayout;
-    private LinearLayout descriptionLinearLayout;
     private LinearLayout waterCalculatorLinearLayout;
-    private LinearLayout newsLinearLayout;
+//    private LinearLayout newsLinearLayout;
 
     public HomeFragment() {
     }
@@ -61,9 +60,8 @@ public class HomeFragment extends Fragment {
 
     private void initializeViews() {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_home);
-        this.descriptionLinearLayout = view.findViewById(R.id.ll_description_home);
         this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_home);
-        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
+//        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
 
     // show Home Views
@@ -73,26 +71,16 @@ public class HomeFragment extends Fragment {
 
     private void allTilesOnClickListener() {
 
-        // description
-        this.setDescriptionTileOnClickListener();
-
         // news
-        this.setNewsTileOnClickListener();
-    }
-
-    // description
-    private void setDescriptionTileOnClickListener() {
-        this.descriptionLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new AboutAppFragment(), AppResources.FRAGMENT_TAG_ABOUT_APP);
-        });
+//        this.setNewsTileOnClickListener();
     }
 
     // news
-    private void setNewsTileOnClickListener() {
-        this.newsLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
-        });
-    }
+//    private void setNewsTileOnClickListener() {
+//        this.newsLinearLayout.setOnClickListener(llView -> {
+//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+//        });
+//    }
 
     @Override
     public void onPause() {
