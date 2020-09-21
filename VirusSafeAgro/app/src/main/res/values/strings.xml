@@ -61,6 +61,12 @@
     <string name="text_title_non_chemical_control">NON-CHEMICAL CONTROL</string>
     <string name="text_content_non_chemical_control">Tap on the tile to know about the organic ways to control the virus spread.</string>
 
+    <!-- factors -->
+    <string name="text_title_cause_factors">TIMING OF CAUSE</string>
+    <string name="text_content_cause_factors">Tap on the tile to read about the causes that gives rise to the spread of virus.</string>
+    <string name="text_title_environmental_conditions_factors">ENVIRONMENTAL CONDITIONS</string>
+    <string name="text_content_environmental_conditions_factors">Tap on the tile to know about the environmental conditions that fuel up the virus spread.</string>
+
     <!-- insights -->
     <string name="text_title_news_insights">NEWS</string>
     <string name="text_content_news_insights">Tap on the tile to know read about the happenings in the agricultural industry.</string>

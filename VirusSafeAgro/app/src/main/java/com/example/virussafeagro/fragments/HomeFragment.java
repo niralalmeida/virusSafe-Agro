@@ -158,7 +158,7 @@ public class HomeFragment extends Fragment {
     // factors
     private void setFactorsTileOnClickListener() {
         this.factorsLinearLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new InsightsFragment(), AppResources.FRAGMENT_TAG_INSIGHTS);
+            FragmentOperator.replaceFragment(requireActivity(), new FactorsFragment(), AppResources.FRAGMENT_TAG_FACTORS);
         });
     }
 
