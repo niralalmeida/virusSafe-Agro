@@ -5,6 +5,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 
+import java.util.logging.Handler;
+
 public class MyAnimationBox {
 
     public static void runFadeInAnimation(View view, int duration) {
@@ -28,7 +30,7 @@ public class MyAnimationBox {
                 0,
                 -view.getHeight());
         animate.setDuration(duration);
-        animate.setFillAfter(true);
+        animate.setFillAfter(false);
         view.startAnimation(animate);
         view.setVisibility(View.GONE);
     }
@@ -41,7 +43,7 @@ public class MyAnimationBox {
                 -view.getHeight(),
                 0);
         animate.setDuration(duration);
-        animate.setFillAfter(true);
+        animate.setFillAfter(false);
         view.startAnimation(animate);
     }
 

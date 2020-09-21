@@ -3,13 +3,12 @@ package com.example.virussafeagro.uitilities;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.Nullable;
-
 public class DragYRelativeLayout extends RelativeLayout {
+
     private int mLastY;
+
     public DragYRelativeLayout(Context context) {
         this(context, null);
     }
@@ -41,11 +40,6 @@ public class DragYRelativeLayout extends RelativeLayout {
                 MyAnimationBox.runSlideOutAnimationToTop(this, 500);
         }
         return true;
-    }
-
-    @Override
-    public void setOnTouchListener(OnTouchListener l) {
-        super.setOnTouchListener(l);
     }
 
     // example
