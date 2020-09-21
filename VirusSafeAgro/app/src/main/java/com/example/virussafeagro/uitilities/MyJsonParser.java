@@ -155,6 +155,8 @@ public class MyJsonParser {
 
     // get data to store question images into question model list
     public static List<ChoiceQuestionModel> choiceQuestionModelListForImageJsonParser(String resultText, List<ChoiceQuestionModel> quizQuestionModelList) throws JSONException{
+        // test
+        System.out.println("result text" + resultText);
         // check network connection
         if (resultText.isEmpty()){
             // add a new question model into the list and set the message into it
@@ -208,6 +210,8 @@ public class MyJsonParser {
                 }
             }
         }
+        //
+        System.out.println("");
         return quizQuestionModelList;
     }
 

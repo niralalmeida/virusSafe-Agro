@@ -24,7 +24,7 @@ public class NetworkConnectionToAWSTomatoS3 {
     // get all Question Images by virus name(id in parameter)
     public String getAllQuestionImages(String virusName) {
         String resultText = "";
-        final String API_URL = "https://sqwja4gpl5.execute-api.us-east-2.amazonaws.com/v1/getOptions?id=";
+        final String API_URL = "https://qcqanvg6il.execute-api.us-east-2.amazonaws.com/v1/Newlambda?id=";
         String searchURL = API_URL + virusName; // id in parameter
         Request request = new Request.Builder().url(searchURL).build();
         try {
@@ -41,6 +41,9 @@ public class NetworkConnectionToAWSTomatoS3 {
         Bitmap bitmap = null;
         try{
             Response response = this.okHttpClient.newCall(request).execute();
+            //test
+            String t = response.body().string();
+            System.out.println("response body {{{" + t + "}}}");
             InputStream resultStream = Objects.requireNonNull(response.body()).byteStream();
             bitmap = BitmapFactory.decodeStream(resultStream);
         } catch (Exception e){
