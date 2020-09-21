@@ -487,8 +487,8 @@
 <!--    </LinearLayout>-->
 
     <!-- image -->
-    <RelativeLayout
-        android:id="@+id/rl_image_home"
+    <com.example.virussafeagro.uitilities.DragYRelativeLayout
+        android:id="@+id/drl_image_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -526,7 +526,7 @@
             android:layout_marginBottom="30dp"
             android:src="@drawable/swipe_up"/>
 
-    </RelativeLayout>
+    </com.example.virussafeagro.uitilities.DragYRelativeLayout>
 
 </RelativeLayout>
 
