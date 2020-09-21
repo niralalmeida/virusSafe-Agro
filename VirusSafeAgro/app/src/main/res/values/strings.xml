@@ -47,6 +47,8 @@
     <string name="text_environmental_condition_home">Environmental Conditions</string>
     <string name="text_pesticide_home">PESTICIDE</string>
     <string name="text_stores_home">STORES</string>
+    <string name="text_insights_home">INSIGHTS</string>
+    <string name="text_causes_home">CAUSES</string>
     <string name="text_news_home">News</string>
     <string name="text_tweets_home">Tweets</string>
     <string name="text_virus_check_home">Check</string>

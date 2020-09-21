@@ -171,7 +171,7 @@
 
             </LinearLayout>
 
-            <!-- 2 control strategies -->
+            <!-- control strategies + pesticide store -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -325,42 +325,44 @@
 
             </LinearLayout>
 
-            <!-- environmental conditions + shop -->
+            <!-- control strategies + pesticide store -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <!-- environmental conditions -->
+                <!-- chemical control -->
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="110dp"
+                    android:layout_height="130dp"
                     android:layout_weight="1"
+                    android:padding="18dp"
+                    android:orientation="horizontal"
                     android:background="@drawable/selector_tile_home">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center_horizontal"
                             android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="5dp"
+                                android:layout_gravity="center"
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="38dp"
-                                    android:layout_height="38dp"
+                                    android:layout_width="35dp"
+                                    android:layout_height="35dp"
                                     android:src="@drawable/weather"/>
 
                             </LinearLayout>
@@ -368,122 +370,56 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/colorWhite"
+                                    android:layout_gravity="center_horizontal"
                                     android:gravity="center_horizontal"
-                                    android:textSize="17sp"
+                                    android:textSize="13sp"
                                     android:textStyle="bold"
-                                    android:text="@string/text_environmental_condition_home"/>
+                                    android:text="@string/text_causes_home"/>
 
                             </LinearLayout>
 
                         </LinearLayout>
 
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- news and tweets -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <!-- news -->
-                <LinearLayout
-                    android:id="@+id/ll_news_home"
-                    android:layout_width="0dp"
-                    android:layout_height="110dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_tile_home">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginTop="15dp"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="5dp"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:src="@drawable/news"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/colorWhite"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="17sp"
-                                    android:textStyle="bold"
-                                    android:text="@string/text_news_home"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <!-- tweets -->
+                <!-- pesticide shop -->
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="110dp"
+                    android:layout_height="130dp"
                     android:layout_weight="1"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
+                    android:padding="18dp"
+                    android:orientation="horizontal"
                     android:background="@drawable/selector_tile_home">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_alignParentTop="true"
+                            android:layout_gravity="center_horizontal"
                             android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="5dp"
+                                android:layout_gravity="center"
                                 android:orientation="horizontal">
 
                                 <ImageView
@@ -496,28 +432,30 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center_horizontal"
                                     android:textColor="@color/colorWhite"
-                                    android:textSize="17sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:gravity="center_horizontal"
+                                    android:textSize="13sp"
                                     android:textStyle="bold"
-                                    android:text="@string/text_tweets_home"/>
+                                    android:text="@string/text_insights_home"/>
 
                             </LinearLayout>
 
                         </LinearLayout>
 
-                    </RelativeLayout>
+
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
-
-
 
             </LinearLayout>
 
@@ -566,3 +504,130 @@
     <!--                    android:text="@string/text_description_read_more_home"/>-->
 
     <!--            </LinearLayout>-->
+
+    <!-- news and tweets -->
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginTop="10dp"-->
+<!--android:orientation="horizontal">-->
+
+<!--&lt;!&ndash; news &ndash;&gt;-->
+<!--<LinearLayout-->
+<!--    android:id="@+id/ll_news_home"-->
+<!--    android:layout_width="0dp"-->
+<!--    android:layout_height="110dp"-->
+<!--    android:layout_weight="1"-->
+<!--    android:background="@drawable/selector_tile_home">-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="35dp"-->
+<!--                    android:layout_height="35dp"-->
+<!--                    android:src="@drawable/news"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    android:textSize="17sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:text="@string/text_news_home"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+
+<!--    </RelativeLayout>-->
+
+<!--</LinearLayout>-->
+
+<!--&lt;!&ndash; tweets &ndash;&gt;-->
+<!--<LinearLayout-->
+<!--    android:layout_width="0dp"-->
+<!--    android:layout_height="110dp"-->
+<!--    android:layout_weight="1"-->
+<!--    android:layout_marginStart="10dp"-->
+<!--    android:layout_marginLeft="10dp"-->
+<!--    android:background="@drawable/selector_tile_home">-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="35dp"-->
+<!--                    android:layout_height="35dp"-->
+<!--                    android:src="@drawable/twitter"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="17sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:text="@string/text_tweets_home"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </RelativeLayout>-->
+
+<!--</LinearLayout>-->
+
+<!--</LinearLayout>-->
