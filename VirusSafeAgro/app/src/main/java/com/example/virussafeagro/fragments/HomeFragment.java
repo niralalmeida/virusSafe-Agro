@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
     private ImageView swipeImageView;
     private DragYRelativeLayout homeImageDragYRelativeLayout;
     private LinearLayout virusCheckLinearLayout;
-    private LinearLayout virusInfoLinearLayout;
+    private LinearLayout learnLinearLayout;
 
     private LinearLayout waterCalculatorLinearLayout;
 //    private LinearLayout newsLinearLayout;
@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
         this.swipeImageView = view.findViewById(R.id.img_swipe_home);
         this.homeImageDragYRelativeLayout = view.findViewById(R.id.drl_image_home);
         this.virusCheckLinearLayout = view.findViewById(R.id.ll_virus_check_home);
-        this.virusInfoLinearLayout = view.findViewById(R.id.ll_virus_info_home);
+        this.learnLinearLayout = view.findViewById(R.id.ll_learn_home);
         this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_home);
 //        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
@@ -95,7 +95,7 @@ public class HomeFragment extends Fragment {
         // virus check
         this.setVirusCheckTileOnClickListener();
         // virus info
-        this.setVirusInfoTileOnClickListener();
+        this.setLearnTileOnClickListener();
 
         // news
 //        this.setNewsTileOnClickListener();
@@ -109,8 +109,8 @@ public class HomeFragment extends Fragment {
     }
 
     // virus info
-    private void setVirusInfoTileOnClickListener() {
-        this.virusInfoLinearLayout.setOnClickListener(llView -> {
+    private void setLearnTileOnClickListener() {
+        this.learnLinearLayout.setOnClickListener(llView -> {
             FragmentOperator.replaceFragment(requireActivity(), new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
         });
     }

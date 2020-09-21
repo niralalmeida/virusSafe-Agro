@@ -80,7 +80,7 @@
 
                 <!-- learn -->
                 <LinearLayout
-                    android:id="@+id/ll_virus_info_home"
+                    android:id="@+id/ll_learn_home"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -181,8 +181,9 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <!-- chemical control -->
+                <!-- control strategies -->
                 <LinearLayout
+                    android:id="@+id/ll_control_strategies_home"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
                     android:layout_weight="1"
@@ -251,8 +252,9 @@
 
                 </LinearLayout>
 
-                <!-- pesticide shop -->
+                <!-- pesticide store -->
                 <LinearLayout
+                    android:id="@+id/ll_pesticide_store_home"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
                     android:layout_weight="1"
@@ -328,7 +330,7 @@
 
             </LinearLayout>
 
-            <!-- control strategies + pesticide store -->
+            <!-- factors and insight -->
             <LinearLayout
                 android:id="@+id/ll_bottom_tiles_home"
                 android:layout_width="match_parent"
@@ -336,8 +338,9 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <!-- chemical control -->
+                <!-- factors -->
                 <LinearLayout
+                    android:id="@+id/ll_factors_home"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
                     android:layout_weight="1"
@@ -379,6 +382,16 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorWhite"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center_horizontal"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                android:text="@string/text_factors_1_home"/>
+
+                                <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/colorWhite"
@@ -386,7 +399,7 @@
                                     android:gravity="center_horizontal"
                                     android:textSize="13sp"
                                     android:textStyle="bold"
-                                    android:text="@string/text_causes_home"/>
+                                    android:text="@string/text_factors_2_home"/>
 
                             </LinearLayout>
 
@@ -396,8 +409,9 @@
 
                 </LinearLayout>
 
-                <!-- pesticide shop -->
+                <!-- insights -->
                 <LinearLayout
+                    android:id="@+id/ll_insights_home"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
                     android:layout_weight="1"
@@ -488,6 +502,7 @@
 
     <!-- image -->
     <com.example.virussafeagro.uitilities.DragYRelativeLayout
+        android:visibility="gone"
         android:id="@+id/drl_image_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

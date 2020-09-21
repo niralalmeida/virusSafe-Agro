@@ -48,7 +48,8 @@
     <string name="text_pesticide_home">PESTICIDE</string>
     <string name="text_stores_home">STORES</string>
     <string name="text_insights_home">INSIGHTS</string>
-    <string name="text_causes_home">CAUSES</string>
+    <string name="text_factors_1_home">FACTORS FOR</string>
+    <string name="text_factors_2_home">VIRUS SPREAD</string>
     <string name="text_news_home">News</string>
     <string name="text_tweets_home">Tweets</string>
     <string name="text_virus_check_home">Check</string>
