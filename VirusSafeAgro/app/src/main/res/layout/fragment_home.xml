@@ -49,7 +49,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_green_tile_home"
                             android:gravity="center"
-                            android:padding="10dp"
+                            android:padding="13dp"
                             android:layout_gravity="center"
                             android:orientation="vertical">
 
@@ -57,7 +57,7 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/calculator"/>
+                                android:src="@drawable/ic_photo_camera"/>
 
                         </LinearLayout>
 
@@ -94,7 +94,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_green_tile_home"
                             android:gravity="center"
-                            android:padding="10dp"
+                            android:padding="13dp"
                             android:layout_gravity="center_horizontal"
                             android:orientation="vertical">
 
@@ -102,7 +102,7 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/calculator"/>
+                                android:src="@drawable/learn"/>
 
                         </LinearLayout>
 
@@ -140,7 +140,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_green_tile_home"
                             android:gravity="center"
-                            android:padding="10dp"
+                            android:padding="13dp"
                             android:layout_gravity="center_horizontal"
                             android:orientation="vertical">
 
