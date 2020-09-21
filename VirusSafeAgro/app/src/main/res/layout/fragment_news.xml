@@ -97,7 +97,7 @@
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="@color/colorWhite"
-                android:text="@string/process_bar_text_virus_quiz_question" />
+                android:text="@string/process_bar_text_news" />
         </LinearLayout>
 
     </LinearLayout>

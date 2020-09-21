@@ -36,6 +36,9 @@ public class HomeFragment extends Fragment {
     private LinearLayout waterCalculatorLinearLayout;
     // middle
     private LinearLayout controlStrategiesLinearLayout;
+    private LinearLayout pesticideStoresLinearLayout;
+    private LinearLayout factorsLinearLayout;
+    private LinearLayout insightsLinearLayout;
 
 
 //    private LinearLayout newsLinearLayout;
@@ -80,6 +83,9 @@ public class HomeFragment extends Fragment {
         this.learnLinearLayout = view.findViewById(R.id.ll_learn_home);
         this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_home);
         this.controlStrategiesLinearLayout = view.findViewById(R.id.ll_control_strategies_home);
+        this.pesticideStoresLinearLayout = view.findViewById(R.id.ll_pesticide_store_home);
+        this.factorsLinearLayout = view.findViewById(R.id.ll_factors_home);
+        this.insightsLinearLayout = view.findViewById(R.id.ll_insights_home);
 //        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
 
@@ -106,9 +112,12 @@ public class HomeFragment extends Fragment {
 
         // control strategies
         this.setControlStrategiesOnClickListener();
-
-        // news
-//        this.setNewsTileOnClickListener();
+        // pesticide stores
+        this.setPesticideStoresTileOnClickListener();
+        // factors
+        this.setFactorsTileOnClickListener();
+        // insights
+        this.setInsightsTileOnClickListener();
     }
 
     // virus check
@@ -125,7 +134,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    // water
+    // water calculator
     private void setWaterCalculatorOnClickListener() {
         this.waterCalculatorLinearLayout.setOnClickListener(llView -> {
 //            FragmentOperator.replaceFragment(requireActivity(), new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
@@ -139,12 +148,26 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    // news
-//    private void setNewsTileOnClickListener() {
-//        this.newsLinearLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
-//        });
-//    }
+    // pesticide stores
+    private void setPesticideStoresTileOnClickListener() {
+        this.pesticideStoresLinearLayout.setOnClickListener(llView -> {
+//            FragmentOperator.replaceFragment(requireActivity(), new InsightsFragment(), AppResources.FRAGMENT_TAG_INSIGHTS);
+        });
+    }
+
+    // factors
+    private void setFactorsTileOnClickListener() {
+        this.factorsLinearLayout.setOnClickListener(llView -> {
+//            FragmentOperator.replaceFragment(requireActivity(), new InsightsFragment(), AppResources.FRAGMENT_TAG_INSIGHTS);
+        });
+    }
+
+    // insights
+    private void setInsightsTileOnClickListener() {
+        this.insightsLinearLayout.setOnClickListener(llView -> {
+            FragmentOperator.replaceFragment(requireActivity(), new InsightsFragment(), AppResources.FRAGMENT_TAG_INSIGHTS);
+        });
+    }
 
     @Override
     public void onPause() {

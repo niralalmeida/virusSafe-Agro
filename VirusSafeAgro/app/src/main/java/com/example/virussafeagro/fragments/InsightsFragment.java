@@ -89,14 +89,14 @@ public class InsightsFragment extends Fragment {
 
     // tweets
     private void setTweetsTileOnClickListener() {
-        this.newsRelativeLayout.setOnClickListener(llView -> {
+        this.tweetsRelativeLayout.setOnClickListener(llView -> {
 //            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
     }
 
     // videos
     private void setVideosTileOnClickListener() {
-        this.newsRelativeLayout.setOnClickListener(llView -> {
+        this.videosRelativeLayout.setOnClickListener(llView -> {
 //            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
     }

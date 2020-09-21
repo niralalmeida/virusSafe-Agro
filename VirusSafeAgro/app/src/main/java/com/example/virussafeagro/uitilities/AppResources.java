@@ -29,6 +29,9 @@ public class AppResources {
     public final static String FRAGMENT_TAG_NEWS_LIST = "news_list";
     public final static String FRAGMENT_TAG_NEWS_DETAIL = "news_detail";
     public final static String FRAGMENT_TAG_CONTROL_STRATEGIES = "control_strategies";
+    public final static String FRAGMENT_TAG_PESTICIDE_STORES = "pesticide_stores";
+    public final static String FRAGMENT_TAG_FACTORS = "factors";
+    public final static String FRAGMENT_TAG_INSIGHTS = "insights";
 
 
     public static int getVirusPictureDrawableId(int virusId) {
