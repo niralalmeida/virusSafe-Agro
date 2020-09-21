@@ -32,6 +32,7 @@ public class AppResources {
     public final static String FRAGMENT_TAG_PESTICIDE_STORES = "pesticide_stores";
     public final static String FRAGMENT_TAG_FACTORS = "factors";
     public final static String FRAGMENT_TAG_INSIGHTS = "insights";
+    public final static String FRAGMENT_TAG_LEARN = "learn";
 
 
     public static int getVirusPictureDrawableId(int virusId) {

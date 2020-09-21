@@ -75,6 +75,12 @@
     <string name="text_title_videos_insights">VIDEOS</string>
     <string name="text_content_videos_insights">Tap on the tile to watch videos related to agriculture.</string>
 
+    <!-- learn -->
+    <string name="text_title_virus_learn">VIRUS TYPES</string>
+    <string name="text_content_virus_learn">There are 9 types of viruses in tomato plants. Tap on the tile to learn something about them.</string>
+    <string name="text_title_nutrient_learn">NUTRIENT DEFICIENCIES</string>
+    <string name="text_content_nutrient_learn">There are 11 types of nutrient deficiencies in tomato plants. Tap on the tile to read about the nutrient deficiencies in tomato plants.</string>
+
 
     <!-- virus info list -->
     <string name="text_description_title_virus_info">Virus disease in tomato plants</string>
