@@ -62,8 +62,6 @@ public class HomeFragment extends Fragment {
         // show Home Views
         this.showHomeViews();
 
-        // set Home Image On Click Listener
-//        this.setHomeImageOnClickListener();
         // control all tiles on click listeners
         this.allTilesOnClickListener();
     }
@@ -76,22 +74,16 @@ public class HomeFragment extends Fragment {
 //        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
 
+    public DragYRelativeLayout getHomeImageDragYRelativeLayout() {
+        return homeImageDragYRelativeLayout;
+    }
+
     // show Home Views
     private void showHomeViews() {
         MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
         new Handler().postDelayed(()->{
             MyAnimationBox.runRepeatedAnimationBottomToTop(swipeImageView, 1000);
         }, 1000);
-    }
-
-    private void setHomeImageOnClickListener() {
-        this.homeImageDragYRelativeLayout.setOnClickListener(rlView -> {
-            // test
-            System.out.println("yes");
-            MyAnimationBox.runSlideOutAnimationToTop(rlView, 500);
-            rlView.setClickable(false);
-            rlView.setVisibility(View.GONE);
-        });
     }
 
     private void allTilesOnClickListener() {

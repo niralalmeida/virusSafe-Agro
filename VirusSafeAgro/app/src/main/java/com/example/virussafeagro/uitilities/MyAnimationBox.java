@@ -30,6 +30,19 @@ public class MyAnimationBox {
         animate.setDuration(duration);
         animate.setFillAfter(true);
         view.startAnimation(animate);
+        view.setVisibility(View.GONE);
+    }
+
+    public static void runSlideInAnimationFromTop(View view, int duration) {
+        view.setVisibility(View.VISIBLE);
+        TranslateAnimation animate = new TranslateAnimation(
+                0,
+                0,
+                -view.getHeight(),
+                0);
+        animate.setDuration(duration);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
     }
 
     public static void runFlickerAnimation(View view, int duration) {

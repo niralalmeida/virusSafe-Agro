@@ -21,6 +21,7 @@ import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DragYRelativeLayout;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
@@ -188,7 +189,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void switchFragments(int itemId) {
         switch (itemId) {
             case R.id.ic_home:
-                FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
+                FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
+                Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+                if (currentVisibleFragment instanceof HomeFragment){
+                    HomeFragment currentHomeFragment = (HomeFragment)currentVisibleFragment;
+                    DragYRelativeLayout homeImageDragYRelativeLayout = currentHomeFragment.getHomeImageDragYRelativeLayout();
+                    if (homeImageDragYRelativeLayout.getVisibility() == View.GONE){
+                        MyAnimationBox.runSlideInAnimationFromTop(homeImageDragYRelativeLayout, 500);
+                    }
+                } else {
+                    FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
+                }
                 break;
             case R.id.ic_virus_info:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
