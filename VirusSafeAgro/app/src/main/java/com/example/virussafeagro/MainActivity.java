@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.example.virussafeagro.fragments.HomeFragment;
+import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
@@ -128,13 +129,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
 
         boolean isHomeFragment = currentVisibleFragment instanceof HomeFragment;
-        boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
+        boolean isLearnFragment = currentVisibleFragment instanceof LearnFragment;
         boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusCheckFragment;
         boolean isNutrientFragment = currentVisibleFragment instanceof NutrientFragment;
         boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
         if ((currentVisibleFragment == null)
                 || isHomeFragment
-                || isVirusInfoListFragment
+                || isLearnFragment
                 || isVirusIdentificationFragment
                 || isNutrientFragment
                 || isMoreFragment){
@@ -201,8 +202,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
                 }
                 break;
-            case R.id.ic_virus_info:
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
+            case R.id.ic_learn:
+                FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                 break;
             case R.id.ic_virus_check:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);

@@ -7,9 +7,9 @@
         android:title="@string/menu_ic_home" />
 
     <item
-        android:id="@+id/ic_virus_info"
-        android:icon="@drawable/ic_book"
-        android:title="@string/menu_ic_virus_info" />
+        android:id="@+id/ic_learn"
+        android:icon="@drawable/learn"
+        android:title="@string/menu_ic_learn" />
 
     <item
         android:id="@+id/ic_virus_check"

@@ -29,7 +29,7 @@
 
     <!--  menu items  -->
     <string name="menu_ic_home">HOME</string>
-    <string name="menu_ic_virus_info">VIRUS</string>
+    <string name="menu_ic_learn">LEARN</string>
     <string name="menu_ic_virus_check">CHECK</string>
     <string name="menu_ic_nutrient">NUTRIENT</string>
     <string name="menu_ic_more">MORE</string>
