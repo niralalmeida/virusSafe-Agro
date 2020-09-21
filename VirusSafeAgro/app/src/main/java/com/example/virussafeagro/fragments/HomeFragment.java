@@ -137,7 +137,7 @@ public class HomeFragment extends Fragment {
     // water calculator
     private void setWaterCalculatorOnClickListener() {
         this.waterCalculatorLinearLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
+            FragmentOperator.replaceFragment(requireActivity(), new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
         });
     }
 

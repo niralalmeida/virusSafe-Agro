@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.example.virussafeagro.fragments.CalculatorFragment;
 import com.example.virussafeagro.fragments.HomeFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
@@ -131,13 +132,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         boolean isHomeFragment = currentVisibleFragment instanceof HomeFragment;
         boolean isLearnFragment = currentVisibleFragment instanceof LearnFragment;
         boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusCheckFragment;
-        boolean isNutrientFragment = currentVisibleFragment instanceof NutrientFragment;
+        boolean isCalculatorFragment = currentVisibleFragment instanceof CalculatorFragment;
         boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
         if ((currentVisibleFragment == null)
                 || isHomeFragment
                 || isLearnFragment
                 || isVirusIdentificationFragment
-                || isNutrientFragment
+                || isCalculatorFragment
                 || isMoreFragment){
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
@@ -208,9 +209,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.ic_virus_check:
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
                 break;
-            case R.id.ic_nutrient:
+            case R.id.ic_calculator:
 //                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
-                FragmentOperator.replaceFragmentNoBackStack(this, new NutrientFragment(), AppResources.FRAGMENT_TAG_NUTRIENT);
+                FragmentOperator.replaceFragmentNoBackStack(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
                 break;
             case R.id.ic_more:
                 FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);

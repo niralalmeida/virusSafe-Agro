@@ -17,9 +17,9 @@
         android:title="@string/menu_ic_virus_check" />
 
     <item
-        android:id="@+id/ic_nutrient"
-        android:icon="@drawable/ic_nutrient_old"
-        android:title="@string/menu_ic_nutrient" />
+        android:id="@+id/ic_calculator"
+        android:icon="@drawable/calculator"
+        android:title="@string/menu_ic_calculator" />
 
     <item
         android:id="@+id/ic_more"
