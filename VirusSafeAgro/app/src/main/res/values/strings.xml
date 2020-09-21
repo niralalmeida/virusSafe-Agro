@@ -40,13 +40,15 @@
     <string name="text_description_read_more_home">Read More &gt;</string>
     <string name="text_water_calculator_title_home">Calculate your water usage</string>
     <string name="text_water_calculator_content_home">Click this calculator to get your estimated spending on water per year.</string>
-    <string name="text_water_calculator_guide_home">Calculator Guide &gt;</string>
-    <string name="text_chemical_control_home">Chemical Control</string>
+    <string name="text_water_calculator_home">Calculate</string>
+    <string name="text_control_strategies_home">CONTROL STRATEGIES</string>
     <string name="text_non_chemical_control_home">Non-chemical Control</string>
     <string name="text_environmental_condition_home">Environmental Conditions</string>
     <string name="text_pesticide_shop_home">Pesticide Shops</string>
     <string name="text_news_home">News</string>
     <string name="text_tweets_home">Tweets</string>
+    <string name="text_virus_check_home">Check</string>
+    <string name="text_virus_info_home">Learn</string>
 
     <!-- virus info list -->
     <string name="text_description_title_virus_info">Virus disease in tomato plants</string>
