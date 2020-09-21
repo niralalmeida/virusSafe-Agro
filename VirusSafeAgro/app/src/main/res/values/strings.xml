@@ -55,6 +55,12 @@
     <string name="text_virus_check_home">Check</string>
     <string name="text_virus_info_home">Learn</string>
 
+    <!-- control strategy -->
+    <string name="text_title_chemical_control">CHEMICAL CONTROL</string>
+    <string name="text_content_chemical_control">Tap on the tile to know about the chemical sprays that can be used to control the virus spread.</string>
+    <string name="text_title_non_chemical_control">NON-CHEMICAL CONTROL</string>
+    <string name="text_content_non_chemical_control">Tap on the tile to know about the organic ways to control the virus spread.</string>
+
     <!-- virus info list -->
     <string name="text_description_title_virus_info">Virus disease in tomato plants</string>
     <string name="text_description_content_virus_info">There are nine types of viruses in tomato plants, which causes major damages to the yield.  Tap on the tiles below to learn more about the viruses.</string>
