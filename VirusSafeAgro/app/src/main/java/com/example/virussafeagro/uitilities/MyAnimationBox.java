@@ -43,4 +43,18 @@ public class MyAnimationBox {
 //        view.setAnimation(alphaAnimation);
 //        alphaAnimation.start();
     }
+
+    public static void runRepeatedAnimationBottomToTop(View view, int duration) {
+        view.setVisibility(View.VISIBLE);
+        TranslateAnimation translateAnimation = new TranslateAnimation(
+                0,
+                0,
+                50,
+                25);
+        translateAnimation.setDuration(duration);
+        translateAnimation.setRepeatCount(Animation.INFINITE);
+        translateAnimation.setRepeatMode(Animation.RESTART);
+        view.setAnimation(translateAnimation);
+        view.startAnimation(translateAnimation);
+    }
 }
