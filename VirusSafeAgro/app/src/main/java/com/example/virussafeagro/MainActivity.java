@@ -219,4 +219,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
+    public BottomNavigationView getBottomNavigationView() {
+        return bottomNavigationView;
+    }
 }

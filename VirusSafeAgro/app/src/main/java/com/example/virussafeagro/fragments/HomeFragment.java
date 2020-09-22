@@ -21,6 +21,7 @@ import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DragYRelativeLayout;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
 
@@ -120,25 +121,43 @@ public class HomeFragment extends Fragment {
         this.setInsightsTileOnClickListener();
     }
 
-    // virus check
+    // [menu] virus check
     private void setVirusCheckTileOnClickListener() {
         this.virusCheckLinearLayout.setOnClickListener(llView -> {
+            changeTheIconInMenu(AppResources.FRAGMENT_TAG_VIRUS_CHECK);
             FragmentOperator.replaceFragment(requireActivity(), new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
         });
     }
 
-    // learn
+    // [menu] learn
     private void setLearnTileOnClickListener() {
         this.learnLinearLayout.setOnClickListener(llView -> {
+            changeTheIconInMenu(AppResources.FRAGMENT_TAG_LEARN);
             FragmentOperator.replaceFragment(requireActivity(), new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
         });
     }
 
-    // water calculator
+    // [menu] water calculator
     private void setWaterCalculatorOnClickListener() {
         this.waterCalculatorLinearLayout.setOnClickListener(llView -> {
+            changeTheIconInMenu(AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
             FragmentOperator.replaceFragment(requireActivity(), new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
         });
+    }
+
+    private void changeTheIconInMenu(String fragmentTag) {
+        BottomNavigationView bottomNavigationView = ((MainActivity) requireActivity()).getBottomNavigationView();
+        switch (fragmentTag) {
+            case AppResources.FRAGMENT_TAG_VIRUS_CHECK:
+                bottomNavigationView.setSelectedItemId(R.id.ic_virus_check);
+                break;
+            case AppResources.FRAGMENT_TAG_LEARN:
+                bottomNavigationView.setSelectedItemId(R.id.ic_learn);
+                break;
+            case AppResources.FRAGMENT_TAG_WATER_CALCULATOR:
+                bottomNavigationView.setSelectedItemId(R.id.ic_calculator);
+                break;
+        }
     }
 
     // control strategies
