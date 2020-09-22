@@ -279,6 +279,9 @@ public class MyJsonParser {
                         for (int i = 0; i < listSize; i++) {
                             JSONObject newsJsonObject = newsItemListJsonArray.getJSONObject(i);
 
+                            // create a news model
+                            NewsModel newsModel = new NewsModel();
+
                             // check "pagemap" key
                             Iterator<String> itemKeys = newsJsonObject.keys();
                             while (itemKeys.hasNext()) {
@@ -288,7 +291,7 @@ public class MyJsonParser {
                                     // get "items" json array
                                     JSONObject pageMapJsonObject = newsJsonObject.getJSONObject("pagemap");
 
-                                    // check "metatags" key
+                                    // check "metatags" and "cse_image" key
                                     Iterator<String> pageMapKeys = pageMapJsonObject.keys();
                                     while (pageMapKeys.hasNext()) {
                                         String pageMapKeyString = pageMapKeys.next();
@@ -336,22 +339,38 @@ public class MyJsonParser {
                                                 // news URL
                                                 String newsURL = metaTagsJsonObject.getString("og:url");
 
-                                                NewsModel newsModel = new NewsModel();
                                                 newsModel.setNewsId(i + 1); // id
                                                 newsModel.setNewsTitle(newsTitle); // tile
                                                 newsModel.setNewsPressTime(newsPressTime); // time
                                                 newsModel.setNewsAuthor(newsAuthor); // author
                                                 newsModel.setNewsSnippet(newsSnippet); // snippet
                                                 newsModel.setNewsURL(newsURL); // URL
-
-                                                newsModelList.add(newsModel);
                                             }
-
-                                            break;
+                                        } else if (pageMapKeyString.equals("cse_image")){
+                                            // find "cse_image" key
+                                            // get "cse_image" json array and object
+                                            JSONArray cseImageJsonArray = pageMapJsonObject.getJSONArray("cse_image");
+                                            JSONObject cseImageJsonObject = cseImageJsonArray.getJSONObject(0);
+                                            // check "src" key
+                                            Iterator<String> cseImageKeys = cseImageJsonObject.keys();
+                                            while(cseImageKeys.hasNext()){
+                                                // find "src" key
+                                                if (cseImageKeys.next().equals("src")){
+                                                    // image URL
+                                                    String imageURL = cseImageJsonObject.getString("src");
+                                                    newsModel.setNewsImageURL(imageURL);
+                                                    break;
+                                                }
+                                            }
                                         }
                                     }
                                     break;
                                 }
+                            }
+
+                            // add the news model into the list
+                            if (newsModel.getNewsTitle() != null) {
+                                newsModelList.add(newsModel);
                             }
                         }
                         break;
