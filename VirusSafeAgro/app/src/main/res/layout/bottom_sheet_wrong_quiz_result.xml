@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container_bottom_sheet_wrong_quiz_result"
-    android:alpha="0.9"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_bg_wrong_quiz_result"
@@ -174,6 +173,7 @@
                 android:background="@drawable/ripple_btn_wrong_bottom_sheet"
                 android:textColor="#fff"
                 android:textStyle="bold"
+                android:textSize="20sp"
                 android:text="next" />
 
         </LinearLayout>
