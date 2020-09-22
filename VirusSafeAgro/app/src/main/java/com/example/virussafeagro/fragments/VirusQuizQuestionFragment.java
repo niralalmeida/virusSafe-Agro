@@ -58,6 +58,9 @@ public class VirusQuizQuestionFragment extends Fragment {
     // progress bar
     private LinearLayout processBarLinearLayout;
     private MyProgressBar progressBar;
+    private TextView dot1TextView;
+    private TextView dot2TextView;
+    private TextView dot3TextView;
 
     // result views
     private LinearLayout quizResultLinearLayout;
@@ -124,6 +127,9 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.dotButtonsLinearLayout = view.findViewById(R.id.ll_dot_quiz_question);
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_quiz_question);
         this.progressBar = view.findViewById(R.id.pb_quiz_question);
+        this.dot1TextView = view.findViewById(R.id.tv_dot1_quiz_question);
+        this.dot2TextView = view.findViewById(R.id.tv_dot2_quiz_question);
+        this.dot3TextView = view.findViewById(R.id.tv_dot3_quiz_question);
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
