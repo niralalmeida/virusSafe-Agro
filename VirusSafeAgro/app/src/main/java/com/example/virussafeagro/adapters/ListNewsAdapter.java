@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -40,6 +41,7 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
         public TextView newsTitleTextView;
         public TextView newsSnippetTextView;
         public TextView newsPressTimeTextView;
+        public ImageView newsImageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -48,6 +50,7 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
             this.newsTitleTextView = itemView.findViewById(R.id.tv_title_news_list);
             this.newsSnippetTextView = itemView.findViewById(R.id.tv_snippet_news_list);
             this.newsPressTimeTextView = itemView.findViewById(R.id.tv_time_news_list);
+            this.newsImageView = itemView.findViewById(R.id.img_item_news_list);
         }
     }
 
@@ -77,6 +80,9 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
         String targetTimePattern = "dd MMMM yyyy, HH:mm";
         String newsPressTime = DataConverter.newsTimeToStandardFormat(originalTimeString, originalTimePattern, targetTimePattern);
         viewHolder.newsPressTimeTextView.setText(newsPressTime);
+
+        // news image
+        viewHolder.newsImageView.setImageBitmap(newsModel.getNewsImage());
 
         // news tile on click listener
         viewHolder.allItemViewsLinearLayout.setOnClickListener(v -> newsTileClickListener.onNewsTileClick(position));
