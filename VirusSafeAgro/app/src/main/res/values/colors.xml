@@ -19,6 +19,7 @@
     <color name="moreTitleLane">#0d9488</color>
 
     <color name="rightAnswer">#1E8449</color>
+    <color name="rightAnswerLight">#2bb565</color>
     <color name="wrongAnswer">#C0392B</color>
     <color name="correctAnswer">#2E86C1</color>
     <color name="resultItemRightBG">#A9DFBF</color>

@@ -142,7 +142,7 @@
                 android:layout_gravity="center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@color/rightAnswer"
+                android:background="@drawable/ripple_btn_right_bottom_sheet"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:text="next" />
