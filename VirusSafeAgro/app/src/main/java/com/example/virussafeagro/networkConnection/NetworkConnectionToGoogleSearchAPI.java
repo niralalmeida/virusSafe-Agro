@@ -1,5 +1,11 @@
 package com.example.virussafeagro.networkConnection;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.InputStream;
+import java.util.Objects;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -28,6 +34,19 @@ public class NetworkConnectionToGoogleSearchAPI {
             e.printStackTrace();
         }
         return resultText;
+    }
+
+    public Bitmap getImageByURL(String imageURL) {
+        Request request = new Request.Builder().url(imageURL).build();
+        Bitmap bitmap = null;
+        try {
+            Response response = this.okHttpClient.newCall(request).execute();
+            InputStream resultStream = Objects.requireNonNull(response.body()).byteStream();
+            bitmap = BitmapFactory.decodeStream(resultStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
 }
