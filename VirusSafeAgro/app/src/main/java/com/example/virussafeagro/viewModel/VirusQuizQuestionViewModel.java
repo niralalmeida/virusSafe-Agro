@@ -53,9 +53,12 @@ public class VirusQuizQuestionViewModel extends ViewModel {
             e.printStackTrace();
         }
     }
-    private class FindVirusQuizQuestionsAsyncTask extends AsyncTask<Integer, Void, List<ChoiceQuestionModel>> {
+    public class FindVirusQuizQuestionsAsyncTask extends AsyncTask<Integer, Void, List<ChoiceQuestionModel>> {
         @Override
         protected List<ChoiceQuestionModel> doInBackground(Integer... integers) {
+            if (isCancelled()){
+                return null;
+            }
             List<ChoiceQuestionModel> quizQuestionModelList = new ArrayList<>();
             int virusId = integers[0];
             try {
@@ -152,5 +155,7 @@ public class VirusQuizQuestionViewModel extends ViewModel {
         }
     }
 
-
+    public FindVirusQuizQuestionsAsyncTask getCurrentFindVirusQuizQuestionsAsyncTask() {
+        return currentFindVirusQuizQuestionsAsyncTask;
+    }
 }

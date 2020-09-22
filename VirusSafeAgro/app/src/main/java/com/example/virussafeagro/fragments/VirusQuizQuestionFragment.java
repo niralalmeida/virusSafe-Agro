@@ -285,8 +285,9 @@ public class VirusQuizQuestionFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        // test
-//        this.virusQuizQuestionViewModel.
+        // cancel the AsyncTask 
+        VirusQuizQuestionViewModel.FindVirusQuizQuestionsAsyncTask f = this.virusQuizQuestionViewModel.getCurrentFindVirusQuizQuestionsAsyncTask();
+        f.cancel(true);
 
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().removeObservers(getViewLifecycleOwner());
         List<ChoiceQuestionModel> choiceQuestionModelList = new ArrayList<>();
