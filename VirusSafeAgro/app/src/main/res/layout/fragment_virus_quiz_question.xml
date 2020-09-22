@@ -103,15 +103,50 @@
             android:layout_centerVertical="true"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:textSize="30sp"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/colorWhite"
-                android:text="@string/process_bar_text_virus_quiz_question" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorWhite"
+                    android:text="@string/process_bar_text_virus_quiz_question" />
+
+                <TextView
+                    android:id="@+id/tv_dot1_quiz_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="@color/colorWhite"
+                    android:text="." />
+
+                <TextView
+                    android:id="@+id/tv_dot2_quiz_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="@color/colorWhite"
+                    android:text="." />
+
+                <TextView
+                    android:id="@+id/tv_dot3_quiz_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="@color/colorWhite"
+                    android:text="." />
+
+            </LinearLayout>
+
 
             <com.example.virussafeagro.uitilities.MyProgressBar
                 android:id="@+id/pb_quiz_question"

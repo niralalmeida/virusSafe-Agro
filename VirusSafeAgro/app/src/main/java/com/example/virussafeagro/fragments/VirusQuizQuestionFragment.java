@@ -285,7 +285,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        // cancel the AsyncTask 
+        // cancel the AsyncTask
         VirusQuizQuestionViewModel.FindVirusQuizQuestionsAsyncTask f = this.virusQuizQuestionViewModel.getCurrentFindVirusQuizQuestionsAsyncTask();
         f.cancel(true);
 
