@@ -171,7 +171,7 @@
                 android:layout_gravity="center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@color/wrongAnswer"
+                android:background="@drawable/ripple_btn_wrong_bottom_sheet"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:text="next" />
