@@ -41,9 +41,6 @@ public class HomeFragment extends Fragment {
     private LinearLayout factorsLinearLayout;
     private LinearLayout insightsLinearLayout;
 
-
-//    private LinearLayout newsLinearLayout;
-
     public HomeFragment() {
     }
 
@@ -61,6 +58,23 @@ public class HomeFragment extends Fragment {
 
         // initialize Views
         this.initializeViews();
+
+        // get the bundle for checking where from
+        Bundle bundle = getArguments();
+        if (bundle != null){
+
+            // test
+            System.out.println("reach!!");
+
+            String fromString = bundle.getString("from", "back");
+
+            // test
+            System.out.println("from string: [" + fromString + "]");
+
+            if (fromString.equals("back")){
+                this.homeImageDragYRelativeLayout.setVisibility(View.GONE);
+            }
+        }
 
         return this.view;
     }
@@ -87,7 +101,6 @@ public class HomeFragment extends Fragment {
         this.pesticideStoresLinearLayout = view.findViewById(R.id.ll_pesticide_store_home);
         this.factorsLinearLayout = view.findViewById(R.id.ll_factors_home);
         this.insightsLinearLayout = view.findViewById(R.id.ll_insights_home);
-//        this.newsLinearLayout = view.findViewById(R.id.ll_news_home);
     }
 
     public DragYRelativeLayout getHomeImageDragYRelativeLayout() {
@@ -97,9 +110,11 @@ public class HomeFragment extends Fragment {
     // show Home Views
     private void showHomeViews() {
         MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
-        new Handler().postDelayed(()->{
-            MyAnimationBox.runRepeatedAnimationBottomToTop(swipeImageView, 1000);
-        }, 1000);
+        if (homeImageDragYRelativeLayout.getVisibility() == View.VISIBLE) {
+            new Handler().postDelayed(() -> {
+                MyAnimationBox.runRepeatedAnimationBottomToTop(swipeImageView, 1000);
+            }, 1000);
+        }
     }
 
     private void allTilesOnClickListener() {
@@ -192,5 +207,10 @@ public class HomeFragment extends Fragment {
     public void onPause() {
         super.onPause();
         this.allViewsRelativeLayout.setVisibility(View.GONE);
+
+        // hide the image when back button is clicked
+        Bundle bundle = new Bundle();
+        bundle.putString("from", "back");
+        setArguments(bundle);
     }
 }

@@ -197,10 +197,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     HomeFragment currentHomeFragment = (HomeFragment)currentVisibleFragment;
                     DragYRelativeLayout homeImageDragYRelativeLayout = currentHomeFragment.getHomeImageDragYRelativeLayout();
                     if (homeImageDragYRelativeLayout.getVisibility() == View.GONE){
-                        MyAnimationBox.runSlideInAnimationFromTop(homeImageDragYRelativeLayout, 500);
+                        MyAnimationBox.runSlideInAnimationFromTop(homeImageDragYRelativeLayout, 500); // show
+                    } else {
+                        MyAnimationBox.runSlideOutAnimationToTop(homeImageDragYRelativeLayout, 500); // hide
                     }
                 } else {
-                    FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("from", "menu");
+                    HomeFragment homeFragment = new HomeFragment();
+                    homeFragment.setArguments(bundle);
+                    FragmentOperator.replaceFragmentNoBackStack(this, homeFragment, AppResources.FRAGMENT_TAG_HOME);
                 }
                 break;
             case R.id.ic_learn:
