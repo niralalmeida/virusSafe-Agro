@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_top_tile_home"
+                android:background="@drawable/shape_top_tile_home"
                 android:layout_marginTop="10dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="15dp"
@@ -189,7 +189,7 @@
                     android:layout_weight="1"
                     android:padding="18dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/selector_tile_home">
+                    android:background="@drawable/ripple_tile_home">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -262,7 +262,7 @@
                     android:layout_marginLeft="10dp"
                     android:padding="18dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/selector_tile_home">
+                    android:background="@drawable/ripple_tile_home">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -346,7 +346,7 @@
                     android:layout_weight="1"
                     android:padding="18dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/selector_tile_home">
+                    android:background="@drawable/ripple_tile_home">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -419,7 +419,7 @@
                     android:layout_marginLeft="10dp"
                     android:padding="18dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/selector_tile_home">
+                    android:background="@drawable/ripple_tile_home">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -502,6 +502,7 @@
 
     <!-- image -->
     <com.example.virussafeagro.uitilities.DragYRelativeLayout
+        android:visibility="gone"
         android:id="@+id/drl_image_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
