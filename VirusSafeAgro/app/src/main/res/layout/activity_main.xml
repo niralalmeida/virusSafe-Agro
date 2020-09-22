@@ -41,6 +41,8 @@
         app:itemBackground="@color/colorPrimaryDark"
         app:itemIconTint="@color/color_selector_bottom_bar_items"
         app:itemTextColor="@color/color_selector_bottom_bar_items"
+        app:itemTextAppearanceActive="@style/navTextActive"
+        app:itemTextAppearanceInactive="@style/navTextInactive"
         app:menu="@menu/nav_menu" />
 
 </RelativeLayout>

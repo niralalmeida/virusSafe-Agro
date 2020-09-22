@@ -17,4 +17,13 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <!-- bottom navigation bar -->
+    <style name="navTextInactive">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="navTextActive">
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>
