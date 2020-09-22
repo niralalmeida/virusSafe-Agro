@@ -79,6 +79,8 @@ public class VirusQuizQuestionViewModel extends ViewModel {
 
                         // set the option list into question model
                         choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
+
+
                     }
                 }
 

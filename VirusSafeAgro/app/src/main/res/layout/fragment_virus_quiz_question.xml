@@ -123,8 +123,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:progressBackgroundTint="@drawable/shape_progress_bar_bg_quiz"
-                android:progress="1"
+                android:progress="0"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:max="5"/>
 
@@ -136,7 +135,7 @@
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="@color/colorWhite"
-                android:text="3 / 5" />
+                android:text="0 / 5" />
 
         </LinearLayout>
 

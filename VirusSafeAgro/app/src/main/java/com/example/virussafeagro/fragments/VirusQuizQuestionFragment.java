@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,10 +50,15 @@ public class VirusQuizQuestionFragment extends Fragment {
     private static TextView[] topDotsTextViewArray = new TextView[QuizQuestionSlideAdapter.QUESTION_COUNT]; // dots
     private static boolean isLastAnswerRight; // for dot color
 
-    private LinearLayout processBarLinearLayout;
     private TextView virusFullNameTitleTextView;
     private NonSwipeableViewPager questionViewPager;
     private LinearLayout dotButtonsLinearLayout;
+
+    // progress bar
+    private LinearLayout processBarLinearLayout;
+    private android.widget.ProgressBar progressBar;
+    private TextView progressBarTextView;
+
     // result views
     private LinearLayout quizResultLinearLayout;
     private TextView quizResultTitleTextView;
@@ -100,7 +106,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         // find virus quiz list in new Thread
         this.findVirusQuizQuestionsFromDB();
         // observe VirusModel Quiz List Live Data
-        this.observeVirusTwoTypeQuestionArrayLD();
+        this.observeVirusQuizQuestionArrayLD();
 
         // slide to next page when the button in bottom sheet is clicked
         this.observeIsCorrectLD();
@@ -112,6 +118,8 @@ public class VirusQuizQuestionFragment extends Fragment {
     private void initializeViews() {
         this.dotButtonsLinearLayout = view.findViewById(R.id.ll_dot_quiz_question);
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_quiz_question);
+        this.progressBar = view.findViewById(R.id.pb_quiz_question);
+        this.progressBarTextView = view.findViewById(R.id.tv_progress_bar_quiz_question);
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
@@ -160,7 +168,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void observeVirusTwoTypeQuestionArrayLD() {
+    private void observeVirusQuizQuestionArrayLD() {
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().observe(getViewLifecycleOwner(), resultQuizQuestionModelList -> {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
                 // hide process bar
