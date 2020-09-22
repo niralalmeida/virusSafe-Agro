@@ -15,8 +15,11 @@ import com.example.virussafeagro.R;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Locale;
 
 public class DataConverter {
@@ -61,12 +64,21 @@ public class DataConverter {
         return processedNameWithNoUnderline.toUpperCase();
     }
 
-    public static void newsTimeToStandardFormat(String originalTimeString) {
-//
-//        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss+mm:ss", Locale.CHINA);
-//        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyy", Locale.ENGLISH);
-//        LocalDate date = LocalDate.parse("2020-09-17T12:13:00+10:00", inputFormatter);
-//        String formattedDate = outputFormatter.format(date);
-//        System.out.println(formattedDate); // prints 10-04-2018
+    public static String newsTimeToStandardFormat(String originalTimeString, String originalTimePattern, String targetTimePattern) {
+        DateFormat df = new SimpleDateFormat(originalTimePattern);  //yyyy-MM-dd'T'HH:mm:ss.SSSZ
+        Date date;
+        String time = "";
+        if (originalTimeString != null) {
+            try {
+                date = df.parse(originalTimeString);
+                SimpleDateFormat df1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.UK);
+                Date date1 = df1.parse(date.toString());
+                DateFormat df2 = new SimpleDateFormat(targetTimePattern);
+                time = df2.format(date1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return time;
     }
 }

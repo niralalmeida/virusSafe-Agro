@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.ic_home:
                 FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
                 Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
-                if (currentVisibleFragment instanceof HomeFragment){
+                if (currentVisibleFragment instanceof HomeFragment){ // if it is in home fragment now
                     HomeFragment currentHomeFragment = (HomeFragment)currentVisibleFragment;
                     DragYRelativeLayout homeImageDragYRelativeLayout = currentHomeFragment.getHomeImageDragYRelativeLayout();
                     if (homeImageDragYRelativeLayout.getVisibility() == View.GONE){

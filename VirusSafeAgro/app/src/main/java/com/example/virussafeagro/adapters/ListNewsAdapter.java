@@ -4,20 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.NewsModel;
-import com.example.virussafeagro.uitilities.DataComparison;
+import com.example.virussafeagro.uitilities.DataConverter;
 
 import java.util.List;
 
@@ -76,7 +72,11 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
         viewHolder.newsSnippetTextView.setText(newsModel.getNewsSnippet());
 
         // news press time
-        viewHolder.newsPressTimeTextView.setText(newsModel.getNewsPressTime());
+        String originalTimeString = newsModel.getNewsPressTime(); // "yyyy-MM-dd'T'HH:mm:ssXXX"
+        String originalTimePattern = "yyyy-MM-dd'T'HH:mm:ssXXX";
+        String targetTimePattern = "dd MMMM yyyy, HH:mm";
+        String newsPressTime = DataConverter.newsTimeToStandardFormat(originalTimeString, originalTimePattern, targetTimePattern);
+        viewHolder.newsPressTimeTextView.setText(newsPressTime);
 
         // news tile on click listener
         viewHolder.allItemViewsLinearLayout.setOnClickListener(v -> newsTileClickListener.onNewsTileClick(position));
