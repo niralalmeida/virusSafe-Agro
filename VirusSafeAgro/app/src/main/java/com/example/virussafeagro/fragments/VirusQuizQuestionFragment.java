@@ -67,6 +67,9 @@ public class VirusQuizQuestionFragment extends Fragment {
     private QuizQuestionSlideAdapter quizQuestionSlideAdapter;
     private int currentPagePosition;
 
+    // check is initial open this page
+    private boolean isInitialOpening;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -108,6 +111,8 @@ public class VirusQuizQuestionFragment extends Fragment {
         // observe VirusModel Quiz List Live Data
         this.observeVirusQuizQuestionArrayLD();
 
+        // check is initial open this page
+        isInitialOpening = true;
         // slide to next page when the button in bottom sheet is clicked
         this.observeIsCorrectLD();
         // hide the view pager when it comes to the last question slide
@@ -140,6 +145,7 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     private void initializeVirusQuizQuestionViewModel() {
         this.virusQuizQuestionViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizQuestionViewModel.class);
+        this.virusQuizQuestionViewModel.setProgressBar(progressBar);
     }
     private void initializeVirusQuizResultViewModel() {
         this.virusQuizResultViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizResultViewModel.class);
@@ -203,9 +209,13 @@ public class VirusQuizQuestionFragment extends Fragment {
     // for each question slide result
     private void observeIsCorrectLD() {
         this.virusQuizResultViewModel.getIsCorrectLD().observe(getViewLifecycleOwner(), isCorrectLD -> {
-            isLastAnswerRight = isCorrectLD;
-            // swipe to the next slide
-            questionViewPager.setCurrentItem(currentPagePosition + 1);
+            if (isInitialOpening) {
+                isInitialOpening = false;
+            } else {
+                isLastAnswerRight = isCorrectLD;
+                // swipe to the next slide
+                questionViewPager.setCurrentItem(currentPagePosition + 1);
+            }
         });
     }
 

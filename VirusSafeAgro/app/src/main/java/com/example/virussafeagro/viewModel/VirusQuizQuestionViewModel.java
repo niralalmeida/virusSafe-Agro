@@ -2,6 +2,7 @@ package com.example.virussafeagro.viewModel;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.widget.ProgressBar;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VirusQuizQuestionViewModel extends ViewModel {
+    private ProgressBar progressBar;
+
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
     private NetworkConnectionToAWSTomatoS3 networkConnectionToAWSTomatoS3;
 
@@ -28,6 +31,10 @@ public class VirusQuizQuestionViewModel extends ViewModel {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
         this.networkConnectionToAWSTomatoS3 = new NetworkConnectionToAWSTomatoS3();
         this.quizQuestionModelListLD = new MutableLiveData<>();
+    }
+
+    public void setProgressBar(ProgressBar progressBar) {
+        this.progressBar = progressBar;
     }
 
     public void setQuizQuestionModelListLD(List<ChoiceQuestionModel> quizQuestionModelList){
@@ -80,7 +87,8 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                         // set the option list into question model
                         choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
 
-
+                        // set progress bar
+                        progressBar.setProgress(choiceQuestionModel.getChoiceQuestionId());
                     }
                 }
 
