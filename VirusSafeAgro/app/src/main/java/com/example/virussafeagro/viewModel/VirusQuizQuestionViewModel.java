@@ -22,6 +22,7 @@ import java.util.List;
 public class VirusQuizQuestionViewModel extends ViewModel {
     private ProgressBar progressBar;
 
+    private FindVirusQuizQuestionsAsyncTask currentFindVirusQuizQuestionsAsyncTask;
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
     private NetworkConnectionToAWSTomatoS3 networkConnectionToAWSTomatoS3;
 
@@ -46,8 +47,8 @@ public class VirusQuizQuestionViewModel extends ViewModel {
 
     public void processFindingVirusQuizQuestions(int virusId) {
         try {
-            FindVirusQuizQuestionsAsyncTask findVirusQuizQuestionsAsyncTask = new FindVirusQuizQuestionsAsyncTask();
-            findVirusQuizQuestionsAsyncTask.execute(virusId);
+            currentFindVirusQuizQuestionsAsyncTask = new FindVirusQuizQuestionsAsyncTask();
+            currentFindVirusQuizQuestionsAsyncTask.execute(virusId);
         } catch (Exception e) {
             e.printStackTrace();
         }

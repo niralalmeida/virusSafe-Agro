@@ -207,6 +207,9 @@ public class VirusQuizQuestionFragment extends Fragment {
     // for each question slide result
     private void observeIsCorrectLD() {
         this.virusQuizResultViewModel.getIsCorrectLD().observe(getViewLifecycleOwner(), isCorrectLD -> {
+            if (isCorrectLD) {
+                isInitialOpening = false;
+            }
             if (isInitialOpening) {
                 isInitialOpening = false;
             } else {
@@ -281,6 +284,10 @@ public class VirusQuizQuestionFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+
+        // test
+//        this.virusQuizQuestionViewModel.
+
         this.virusQuizQuestionViewModel.getQuizQuestionModelListLD().removeObservers(getViewLifecycleOwner());
         List<ChoiceQuestionModel> choiceQuestionModelList = new ArrayList<>();
         this.virusQuizQuestionViewModel.setQuizQuestionModelListLD(choiceQuestionModelList);
