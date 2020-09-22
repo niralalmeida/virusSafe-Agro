@@ -23,7 +23,7 @@
             android:paddingBottom="15dp"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
-            android:background="@drawable/selector_tile_home">
+            android:background="@drawable/ripple_tile_rectangle">
 
             <TextView
                 android:id="@+id/tv_title_virus_learn"
@@ -80,7 +80,7 @@
             android:paddingBottom="15dp"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
-            android:background="@drawable/selector_tile_home">
+            android:background="@drawable/ripple_tile_rectangle">
 
             <TextView
                 android:id="@+id/tv_title_nutrient_learn"

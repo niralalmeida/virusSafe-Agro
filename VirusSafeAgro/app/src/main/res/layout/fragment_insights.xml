@@ -23,7 +23,7 @@
             android:paddingBottom="15dp"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
-            android:background="@drawable/selector_tile_home">
+            android:background="@drawable/ripple_tile_rectangle">
 
             <TextView
                 android:id="@+id/tv_title_news_insights"
@@ -80,7 +80,7 @@
             android:paddingBottom="15dp"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
-            android:background="@drawable/selector_tile_home">
+            android:background="@drawable/ripple_tile_rectangle">
 
             <TextView
                 android:id="@+id/tv_title_tweets_insights"
@@ -138,7 +138,7 @@
             android:paddingBottom="15dp"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
-            android:background="@drawable/selector_tile_home">
+            android:background="@drawable/ripple_tile_rectangle">
 
             <TextView
                 android:id="@+id/tv_title_videos_insights"

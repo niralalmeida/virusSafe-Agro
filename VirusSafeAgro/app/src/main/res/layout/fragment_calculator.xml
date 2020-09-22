@@ -17,7 +17,7 @@
             android:id="@+id/ll_good_calculator"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/ripple_tile_home">
+            android:background="@drawable/ripple_tile_rectangle">
 
             <LinearLayout
                 android:layout_width="match_parent"

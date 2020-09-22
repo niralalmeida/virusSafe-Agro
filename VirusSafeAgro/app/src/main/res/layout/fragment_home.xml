@@ -502,7 +502,6 @@
 
     <!-- image -->
     <com.example.virussafeagro.uitilities.DragYRelativeLayout
-        android:visibility="gone"
         android:id="@+id/drl_image_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
