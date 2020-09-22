@@ -88,7 +88,7 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                         choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
 
                         // set progress bar
-                        progressBar.setProgress(choiceQuestionModel.getChoiceQuestionId());
+                        progressBar.setProgress(choiceQuestionModel.getChoiceQuestionId() > 5 ? choiceQuestionModel.getChoiceQuestionId() / 5 : choiceQuestionModel.getChoiceQuestionId());
                     }
                 }
 

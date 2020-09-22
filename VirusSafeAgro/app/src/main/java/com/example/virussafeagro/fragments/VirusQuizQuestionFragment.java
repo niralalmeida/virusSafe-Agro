@@ -32,6 +32,7 @@ import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.DataComparison;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
+import com.example.virussafeagro.uitilities.MyProgressBar;
 import com.example.virussafeagro.uitilities.NonSwipeableViewPager;
 import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
@@ -56,8 +57,8 @@ public class VirusQuizQuestionFragment extends Fragment {
 
     // progress bar
     private LinearLayout processBarLinearLayout;
-    private android.widget.ProgressBar progressBar;
-    private TextView progressBarTextView;
+    private MyProgressBar progressBar;
+//    private TextView progressBarTextView;
 
     // result views
     private LinearLayout quizResultLinearLayout;
@@ -124,7 +125,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.dotButtonsLinearLayout = view.findViewById(R.id.ll_dot_quiz_question);
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_quiz_question);
         this.progressBar = view.findViewById(R.id.pb_quiz_question);
-        this.progressBarTextView = view.findViewById(R.id.tv_progress_bar_quiz_question);
+//        this.progressBarTextView = view.findViewById(R.id.tv_progress_bar_quiz_question);
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
