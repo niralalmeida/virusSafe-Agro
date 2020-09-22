@@ -272,7 +272,7 @@
                 android:id="@+id/btn_take_quiz_virus_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/button_take_quiz_virus_detail"
+                android:background="@drawable/ripple_btn_quiz_virus_detail"
                 android:textColor="@color/colorBlack"
                 android:textStyle="bold"
                 android:text="@string/recycler_view_quiz_button" />
