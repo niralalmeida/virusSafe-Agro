@@ -3,14 +3,14 @@
     android:id="@+id/container_bottom_sheet_right_quiz_result"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bottom_sheet_bg_right_quiz_result"
+    android:background="@drawable/shape_bottom_sheet_bg_right_quiz_result"
     android:orientation="vertical">
 
     <!--  title  -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/shape_bottom_sheet_title_right_quiz_result"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         android:orientation="horizontal">

@@ -99,7 +99,7 @@
     <string name="process_bar_text_virus_info">Loading Virus List &#8230;</string>
     <string name="process_bar_text_virus_quiz">Loading Quiz List and Images &#8230;</string>
     <string name="process_bar_text_nutrient">Loading Nutrient List &#8230;</string>
-    <string name="process_bar_text_virus_quiz_question">Loading Quiz Question &#8230;</string>
+    <string name="process_bar_text_virus_quiz_question">Loading Quiz Images &#8230;</string>
     <string name="process_bar_text_news">Loading News List &#8230;</string>
     <string name="network_error_text">Network Error</string>
     <string name="process_bar_text_virus_quiz_result">Loading Quiz Results &#8230;</string>
