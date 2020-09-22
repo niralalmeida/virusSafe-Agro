@@ -26,4 +26,9 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <!-- progress bar -->
+    <style name="MyProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:height">15dip</item>
+    </style>
+
 </resources>

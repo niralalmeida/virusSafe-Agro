@@ -83,12 +83,18 @@ public class VirusQuizQuestionViewModel extends ViewModel {
                             Bitmap optionImageBitmap = DataConverter.stringToBitmapConverter(optionImageString);
                             choiceOptionModel.setChoiceOptionImage(optionImageBitmap);
                         }
+                        // get progress no
+                        int questionId =  choiceQuestionModel.getChoiceQuestionId();
+                        int progressNo =  questionId > 5 ? questionId % 5 : questionId;
+                        if (progressNo == 0){
+                            progressNo = 5;
+                        }
 
                         // set the option list into question model
                         choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
 
                         // set progress bar
-                        progressBar.setProgress(choiceQuestionModel.getChoiceQuestionId() > 5 ? choiceQuestionModel.getChoiceQuestionId() / 5 : choiceQuestionModel.getChoiceQuestionId());
+                        progressBar.setProgress(progressNo);
                     }
                 }
 

@@ -58,7 +58,6 @@ public class VirusQuizQuestionFragment extends Fragment {
     // progress bar
     private LinearLayout processBarLinearLayout;
     private MyProgressBar progressBar;
-//    private TextView progressBarTextView;
 
     // result views
     private LinearLayout quizResultLinearLayout;
@@ -125,14 +124,12 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.dotButtonsLinearLayout = view.findViewById(R.id.ll_dot_quiz_question);
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_quiz_question);
         this.progressBar = view.findViewById(R.id.pb_quiz_question);
-//        this.progressBarTextView = view.findViewById(R.id.tv_progress_bar_quiz_question);
         this.virusFullNameTitleTextView = view.findViewById(R.id.tv_title_virus_full_name_quiz_question);
         this.virusFullNameTitleTextView.setText(this.currentVirusModel.getVirusFullName());
         this.questionViewPager = view.findViewById(R.id.slide_virus_quiz_question);
         this.quizResultLinearLayout = view.findViewById(R.id.ll_quiz_result_question);
         this.quizResultTitleTextView = view.findViewById(R.id.tv_title_quiz_result_final);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
-
 
         // initialize the dot array
         for (int i = 0; i < topDotsTextViewArray.length; i++) {
