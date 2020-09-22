@@ -43,6 +43,7 @@
             android:paddingBottom="15dp"
             android:orientation="horizontal">
 
+            <!-- line -->
             <View
                 android:layout_width="5dp"
                 android:layout_height="match_parent"
@@ -50,11 +51,15 @@
                 android:background="@color/colorTransparentWhiteForText"
                 android:layout_gravity="center_vertical" />
 
+            <!-- snippet -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.70"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+                android:paddingEnd="10dp"
+                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
@@ -69,6 +74,26 @@
                     android:text="News Title - News TitleNews TitleNews TitleNews TitleNews Title" />
 
             </LinearLayout>
+
+            <!-- image -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_item_news_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/screen_4_causes" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
