@@ -2,6 +2,7 @@ package com.example.virussafeagro.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -40,6 +41,8 @@ import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class VirusQuizQuestionFragment extends Fragment {
     private View view;
@@ -102,6 +105,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         this.quizResultLinearLayout.setVisibility(View.GONE);
         this.processBarLinearLayout.setVisibility(View.VISIBLE);
         this.questionViewPager.setVisibility(View.GONE);
+        this.show3DotsAnimation();
 
         // initialize view model
         this.initializeVirusQuizQuestionViewModel();
@@ -147,6 +151,16 @@ public class VirusQuizQuestionFragment extends Fragment {
         }
     }
 
+    private void show3DotsAnimation() {
+        MyAnimationBox.runFlickerAnimation(dot3TextView, 500);
+        new Handler().postDelayed(() -> {
+            MyAnimationBox.runFlickerAnimation(dot2TextView, 500);
+        }, 500);
+        new Handler().postDelayed(() -> {
+            MyAnimationBox.runFlickerAnimation(dot1TextView, 500);
+        },1000);
+    }
+
     private void initializeVirusQuizQuestionViewModel() {
         this.virusQuizQuestionViewModel = new ViewModelProvider(requireActivity()).get(VirusQuizQuestionViewModel.class);
         this.virusQuizQuestionViewModel.setProgressBar(progressBar);
@@ -183,6 +197,10 @@ public class VirusQuizQuestionFragment extends Fragment {
             if ((resultQuizQuestionModelList != null) && (resultQuizQuestionModelList.size() != 0)){
                 // hide process bar
                 processBarLinearLayout.setVisibility(View.GONE);
+                // clear dots animations
+                dot1TextView.clearAnimation();
+                dot2TextView.clearAnimation();
+                dot3TextView.clearAnimation();
                 // check network connection for question text content
                 if (resultQuizQuestionModelList.get(0).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();

@@ -62,15 +62,7 @@ public class HomeFragment extends Fragment {
         // get the bundle for checking where from
         Bundle bundle = getArguments();
         if (bundle != null){
-
-            // test
-            System.out.println("reach!!");
-
             String fromString = bundle.getString("from", "back");
-
-            // test
-            System.out.println("from string: [" + fromString + "]");
-
             if (fromString.equals("back")){
                 this.homeImageDragYRelativeLayout.setVisibility(View.GONE);
             }
