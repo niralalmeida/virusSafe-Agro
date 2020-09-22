@@ -1,5 +1,6 @@
 package com.example.virussafeagro.viewModel;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
@@ -49,6 +50,11 @@ public class NewsViewModel extends ViewModel {
             try {
                 String resultText = networkConnectionToGoogleSearchAPI.getAllNews("vic",1);
                 newsModelList = MyJsonParser.newsListJsonParser(resultText);
+                // get news image
+                for (NewsModel newsModel : newsModelList) {
+                    Bitmap newsImageBitmap = networkConnectionToGoogleSearchAPI.getImageByURL(newsModel.getNewsImageURL());
+                    newsModel.setNewsImage(newsImageBitmap);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
