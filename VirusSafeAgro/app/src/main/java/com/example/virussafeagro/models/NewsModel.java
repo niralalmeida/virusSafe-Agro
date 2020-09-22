@@ -10,6 +10,7 @@ public class NewsModel implements Parcelable {
     private String newsSnippet;
     private String newsPressTime;
     private String newsAuthor;
+    private String newsImageURL;
     private Bitmap newsImage;
     private String newsURL;
 
@@ -20,12 +21,13 @@ public class NewsModel implements Parcelable {
         this.newsSnippet = newsSnippet;
     }
 
-    public NewsModel(int newsId, String newsTitle, String newsSnippet, String newsPressTime, String newsAuthor, Bitmap newsImage, String newsURL) {
+    public NewsModel(int newsId, String newsTitle, String newsSnippet, String newsPressTime, String newsAuthor, String newsImageURL, Bitmap newsImage, String newsURL) {
         this.newsId = newsId;
         this.newsTitle = newsTitle;
         this.newsSnippet = newsSnippet;
         this.newsPressTime = newsPressTime;
         this.newsAuthor = newsAuthor;
+        this.newsImageURL = newsImageURL;
         this.newsImage = newsImage;
         this.newsURL = newsURL;
     }
@@ -36,6 +38,7 @@ public class NewsModel implements Parcelable {
         newsSnippet = in.readString();
         newsPressTime = in.readString();
         newsAuthor = in.readString();
+        newsImageURL = in.readString();
         newsImage = in.readParcelable(Bitmap.class.getClassLoader());
         newsURL = in.readString();
     }
@@ -92,6 +95,14 @@ public class NewsModel implements Parcelable {
         this.newsAuthor = newsAuthor;
     }
 
+    public String getNewsImageURL() {
+        return newsImageURL;
+    }
+
+    public void setNewsImageURL(String newsImageURL) {
+        this.newsImageURL = newsImageURL;
+    }
+
     public Bitmap getNewsImage() {
         return newsImage;
     }
@@ -120,6 +131,7 @@ public class NewsModel implements Parcelable {
         dest.writeString(newsSnippet);
         dest.writeString(newsPressTime);
         dest.writeString(newsAuthor);
+        dest.writeString(newsImageURL);
         dest.writeParcelable(newsImage, flags);
         dest.writeString(newsURL);
     }
