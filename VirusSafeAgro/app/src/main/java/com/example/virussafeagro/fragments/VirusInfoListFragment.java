@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -52,6 +54,10 @@ public class VirusInfoListFragment extends Fragment {
     private LinearLayout virusGridViewLinearLayout;
     private GridView virusGridView;
     private GridVirusInfoAdapter gridVirusInfoAdapter;
+
+    // search function
+    private EditText searchVirusEditText;
+    private ImageButton searchVirusImageButton;
 
     public VirusInfoListFragment() {
     }
@@ -119,6 +125,8 @@ public class VirusInfoListFragment extends Fragment {
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
+        this.searchVirusEditText = view.findViewById(R.id.et_search_virus_info);
+        this.searchVirusImageButton = view.findViewById(R.id.imgbtn_search_virus_info);
     }
 
     private void initializeVirusInfoViewModel() {
