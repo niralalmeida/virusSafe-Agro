@@ -20,7 +20,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.VirusCauseModel;
+import com.example.virussafeagro.models.VirusDescriptionModel;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.models.VirusPreventionModel;
+import com.example.virussafeagro.models.VirusSymptomModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
@@ -201,19 +205,36 @@ public class VirusDetailFragment extends Fragment {
 
         // description
         LinearLayout linearLayoutForDescription = view.findViewById(R.id.ll_description_virus_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForDescription, this.descriptionTextView, this.currentVirusModel.getVirusDescription());
+        StringBuilder virusDescriptionStringBuilder = new StringBuilder();
+        for (VirusDescriptionModel virusDescriptionModel : this.currentVirusModel.getVirusDescriptionModelList()) {
+            virusDescriptionStringBuilder.append("- ").append(virusDescriptionModel.getDesContent()).append("\n");
+        }
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForDescription, this.descriptionTextView, virusDescriptionStringBuilder.toString());
 
         // symptom
         LinearLayout linearLayoutForSymptom = view.findViewById(R.id.ll_symptoms_virus_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForSymptom, this.symptomsTextView, this.currentVirusModel.getSymptoms());
+        StringBuilder virusSymptomStringBuilder = new StringBuilder();
+        for (VirusSymptomModel virusSymptomModel : this.currentVirusModel.getVirusSymptomModelList()) {
+            // without type
+            virusSymptomStringBuilder.append("- ").append(virusSymptomModel.getSymContent()).append("\n");
+        }
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForSymptom, this.symptomsTextView, virusSymptomStringBuilder.toString());
 
         // causes
         LinearLayout linearLayoutForCauses = view.findViewById(R.id.ll_causes_virus_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForCauses, this.causesTextView, this.currentVirusModel.getCauses());
+        StringBuilder virusCauseStringBuilder = new StringBuilder();
+        for (VirusCauseModel virusCauseModel : this.currentVirusModel.getVirusCauseModelList()) {
+            virusCauseStringBuilder.append("- ").append(virusCauseModel.getCauseContent()).append("\n");
+        }
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForCauses, this.causesTextView, virusCauseStringBuilder.toString());
 
         // prevention
         LinearLayout linearLayoutForPrevention = view.findViewById(R.id.ll_prevention_virus_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForPrevention, this.preventionTextView, this.currentVirusModel.getPrevention());
+        StringBuilder virusPreventionStringBuilder = new StringBuilder();
+        for (VirusPreventionModel virusPreventionModel : this.currentVirusModel.getVirusPreventionModelList()) {
+            virusPreventionStringBuilder.append("- ").append(virusPreventionModel.getPreContent()).append("\n");
+        }
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForPrevention, this.preventionTextView, virusPreventionStringBuilder.toString());
 
         int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(this.currentVirusModel.getVirusId());
         Bitmap virusPictureBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), virusPictureDrawableId);
