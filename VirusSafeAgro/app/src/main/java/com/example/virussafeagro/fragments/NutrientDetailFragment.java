@@ -20,7 +20,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.NutrientCorrectionMethodModel;
+import com.example.virussafeagro.models.NutrientFactorModel;
 import com.example.virussafeagro.models.NutrientModel;
+import com.example.virussafeagro.models.NutrientReasonModel;
+import com.example.virussafeagro.models.NutrientSymptomModel;
+import com.example.virussafeagro.models.VirusSymptomModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 
@@ -185,19 +190,36 @@ public class NutrientDetailFragment extends Fragment {
 
         // symptoms
         LinearLayout linearLayoutForDescription = view.findViewById(R.id.ll_symptoms_nutrient_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForDescription, this.nutrientSymptomsTextView, this.currentNutrientModel.getNutrientSymptom());
+        StringBuilder nutrientSymptomStringBuilder = new StringBuilder();
+        for (NutrientSymptomModel nutrientSymptomModel : this.currentNutrientModel.getNutrientSymptomList()) {
+            // without type
+            nutrientSymptomStringBuilder.append("- ").append(nutrientSymptomModel.getSymContent()).append("\n");
+        }
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForDescription, this.nutrientSymptomsTextView, nutrientSymptomStringBuilder.toString());
 
         // reasons
         LinearLayout linearLayoutForSymptom = view.findViewById(R.id.ll_reasons_nutrient_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForSymptom, this.nutrientReasonsTextView, this.currentNutrientModel.getNutrientReason());
+        StringBuilder nutrientReasonStringBuilder = new StringBuilder();
+        for (NutrientReasonModel nutrientReasonModel : this.currentNutrientModel.getNutrientReasonList()) {
+            nutrientReasonStringBuilder.append("- ").append(nutrientReasonModel.getReasonContent()).append("\n");
+        }
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForSymptom, this.nutrientReasonsTextView, nutrientReasonStringBuilder.toString());
 
         // factors
         LinearLayout linearLayoutForCauses = view.findViewById(R.id.ll_factors_nutrient_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForCauses, this.nutrientFactorsTextView, this.currentNutrientModel.getNutrientFactors());
+        StringBuilder nutrientFactorStringBuilder = new StringBuilder();
+        for (NutrientFactorModel nutrientFactorModel : this.currentNutrientModel.getNutrientFactorList()) {
+            nutrientFactorStringBuilder.append("- ").append(nutrientFactorModel.getFactorContent()).append("\n");
+        }
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForCauses, this.nutrientFactorsTextView, nutrientFactorStringBuilder.toString());
 
         // nutrient Correction Method
         LinearLayout linearLayoutForPrevention = view.findViewById(R.id.ll_correction_method_nutrient_detail);
-        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForPrevention, this.nutrientCorrectionMethodTextView, this.currentNutrientModel.getNutrientCorrectionMethod());
+        StringBuilder nutrientCorrectionMethodStringBuilder = new StringBuilder();
+        for (NutrientCorrectionMethodModel nutrientCorrectionMethodModel : this.currentNutrientModel.getNutrientCorrectionMethodList()) {
+            nutrientCorrectionMethodStringBuilder.append("- ").append(nutrientCorrectionMethodModel.getMethodContent()).append("\n");
+        }
+        this.hideLinearLayoutIfItemIsEmpty(linearLayoutForPrevention, this.nutrientCorrectionMethodTextView, nutrientCorrectionMethodStringBuilder.toString());
 
         // image
         int nutrientPictureDrawableId = AppResources.getNutrientPictureDrawableId(this.currentNutrientModel.getNutrientId());

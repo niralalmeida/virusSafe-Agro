@@ -10,7 +10,7 @@ public class NutrientModel implements Parcelable {
     private String nutrientName;
     private List<NutrientSymptomModel> nutrientSymptomList;
     private List<NutrientReasonModel> nutrientReasonList;
-    private List<NutrientFactorModel> nutrientFactorsList;
+    private List<NutrientFactorModel> nutrientFactorList;
     private List<NutrientCorrectionMethodModel> nutrientCorrectionMethodList;
 
     public NutrientModel() {
@@ -20,12 +20,12 @@ public class NutrientModel implements Parcelable {
         this.nutrientName = nutrientName;
     }
 
-    public NutrientModel(int nutrientId, String nutrientName, List<NutrientSymptomModel> nutrientSymptomList, List<NutrientReasonModel> nutrientReasonList, List<NutrientFactorModel> nutrientFactorsList, List<NutrientCorrectionMethodModel> nutrientCorrectionMethodList) {
+    public NutrientModel(int nutrientId, String nutrientName, List<NutrientSymptomModel> nutrientSymptomList, List<NutrientReasonModel> nutrientReasonList, List<NutrientFactorModel> nutrientFactorList, List<NutrientCorrectionMethodModel> nutrientCorrectionMethodList) {
         this.nutrientId = nutrientId;
         this.nutrientName = nutrientName;
         this.nutrientSymptomList = nutrientSymptomList;
         this.nutrientReasonList = nutrientReasonList;
-        this.nutrientFactorsList = nutrientFactorsList;
+        this.nutrientFactorList = nutrientFactorList;
         this.nutrientCorrectionMethodList = nutrientCorrectionMethodList;
     }
 
@@ -34,7 +34,7 @@ public class NutrientModel implements Parcelable {
         nutrientName = in.readString();
         nutrientSymptomList = in.createTypedArrayList(NutrientSymptomModel.CREATOR);
         nutrientReasonList = in.createTypedArrayList(NutrientReasonModel.CREATOR);
-        nutrientFactorsList = in.createTypedArrayList(NutrientFactorModel.CREATOR);
+        nutrientFactorList = in.createTypedArrayList(NutrientFactorModel.CREATOR);
         nutrientCorrectionMethodList = in.createTypedArrayList(NutrientCorrectionMethodModel.CREATOR);
     }
 
@@ -44,7 +44,7 @@ public class NutrientModel implements Parcelable {
         dest.writeString(nutrientName);
         dest.writeTypedList(nutrientSymptomList);
         dest.writeTypedList(nutrientReasonList);
-        dest.writeTypedList(nutrientFactorsList);
+        dest.writeTypedList(nutrientFactorList);
         dest.writeTypedList(nutrientCorrectionMethodList);
     }
 
@@ -97,12 +97,12 @@ public class NutrientModel implements Parcelable {
         this.nutrientReasonList = nutrientReasonList;
     }
 
-    public List<NutrientFactorModel> getNutrientFactorsList() {
-        return nutrientFactorsList;
+    public List<NutrientFactorModel> getNutrientFactorList() {
+        return nutrientFactorList;
     }
 
-    public void setNutrientFactorsList(List<NutrientFactorModel> nutrientFactorsList) {
-        this.nutrientFactorsList = nutrientFactorsList;
+    public void setNutrientFactorList(List<NutrientFactorModel> nutrientFactorList) {
+        this.nutrientFactorList = nutrientFactorList;
     }
 
     public List<NutrientCorrectionMethodModel> getNutrientCorrectionMethodList() {
