@@ -58,10 +58,10 @@ public class VirusInfoListViewModel extends ViewModel {
                 e.printStackTrace();
             }
             // check network connection
-            if (!virusModelInfoList.get(0).getVirusDescription().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
-                // save virus list into spp
-                spp.saveVirusInfoList(virusModelInfoList);
-            }
+//            if (!virusModelInfoList.get(0).getVirusDescription().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+//                // save virus list into spp
+//                spp.saveVirusInfoList(virusModelInfoList);
+//            }
             return virusModelInfoList;
         }
 

@@ -58,7 +58,7 @@ public class VirusQuizListViewModel extends ViewModel {
                 e.printStackTrace();
             }
             // save virus list into spp
-            spp.saveVirusInfoList(virusModelQuizList);
+//            spp.saveVirusInfoList(virusModelQuizList);
             return virusModelQuizList;
         }
 

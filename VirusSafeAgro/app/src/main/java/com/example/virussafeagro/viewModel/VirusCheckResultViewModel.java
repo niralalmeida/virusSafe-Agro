@@ -58,7 +58,7 @@ public class VirusCheckResultViewModel extends ViewModel {
                 e.printStackTrace();
             }
             // save virus list into spp
-            spp.saveVirusInfoList(virusModelList);
+//            spp.saveVirusInfoList(virusModelList);
             return virusModelList;
         }
 

@@ -87,32 +87,32 @@ public class VirusInfoListFragment extends Fragment {
         // initialize SharedPreferenceProcess
         this.initializeSharedPreferenceProcess();
 
-        if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
+//        if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
             // find virus info list in new Thread
-            this.findVirusInfoListFromDB();
-        } else {
-            GetVirusModelListFromSPAsyncTask getVirusModelListFromSPAsyncTask = new GetVirusModelListFromSPAsyncTask();
-            getVirusModelListFromSPAsyncTask.execute();
-        }
+        this.findVirusInfoListFromDB();
+//        } else {
+//            GetVirusModelListFromSPAsyncTask getVirusModelListFromSPAsyncTask = new GetVirusModelListFromSPAsyncTask();
+//            getVirusModelListFromSPAsyncTask.execute();
+//        }
 
         // observe VirusModel Info List Live Data
         this.observeVirusInfoListLD();
     }
 
-    private class GetVirusModelListFromSPAsyncTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-            // get the virus list from spp
-            virusModelInfoList = spp.getVirusModelListFromSP();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            // show the virus list
-            displayVirusCardList();
-        }
-    }
+//    private class GetVirusModelListFromSPAsyncTask extends AsyncTask<Void, Void, Void> {
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            // get the virus list from spp
+//            virusModelInfoList = spp.getVirusModelListFromSP();
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//            // show the virus list
+//            displayVirusCardList();
+//        }
+//    }
 
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);

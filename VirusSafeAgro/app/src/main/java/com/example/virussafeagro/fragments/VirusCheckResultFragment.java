@@ -156,17 +156,17 @@ public class VirusCheckResultFragment extends Fragment {
             this.isInfected = true;
             this.buttonProcessBarLinearLayout.setVisibility(View.VISIBLE);
 
-            if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
+//            if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
                 // find virus info list in new Thread
-                this.findVirusInfoListFromDB();
-            } else {
-                // set virus detail button visible
-                this.virusDetailsButton.setVisibility(View.VISIBLE);
-                this.buttonProcessBarLinearLayout.setVisibility(View.INVISIBLE);
+            this.findVirusInfoListFromDB();
+//            } else {
+//                // set virus detail button visible
+//                this.virusDetailsButton.setVisibility(View.VISIBLE);
+//                this.buttonProcessBarLinearLayout.setVisibility(View.INVISIBLE);
 
                 // get result virus id
-                this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
-            }
+//                this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
+//            }
         }
     }
 
@@ -181,9 +181,9 @@ public class VirusCheckResultFragment extends Fragment {
                 this.virusDetailsButton.setVisibility(View.VISIBLE);
                 this.buttonProcessBarLinearLayout.setVisibility(View.INVISIBLE);
                 // get result virus id
-                if ((!this.resultCheckFeedback.equals("json error")) && (!this.resultCheckFeedback.equals("healthy"))){
-                    this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
-                }
+//                if ((!this.resultCheckFeedback.equals("json error")) && (!this.resultCheckFeedback.equals("healthy"))){
+//                    this.resultVirusModel = getResultVirusModelFromSP(this.resultCheckFeedback);
+//                }
             }
         });
     }
@@ -206,18 +206,18 @@ public class VirusCheckResultFragment extends Fragment {
         });
     }
 
-    private VirusModel getResultVirusModelFromSP(String resultVirusRawFullName){
-        // parse the name to standard: eg. TARGET SPOT
-        String processedResultName = DataConverter.checkResultVirusRawNameToUpperCaseWithSpace(resultVirusRawFullName);
-
-        // get result virus id
-        int virusId = AppResources.getVirusIdByVirusFullName(processedResultName);
-
-        
-        // get the virus list
-        List<VirusModel> virusModelList = spp.getVirusModelListFromSP();
-        return (virusId == 0) ? null : virusModelList.get(virusId - 1);
-    }
+//    private VirusModel getResultVirusModelFromSP(String resultVirusRawFullName){
+//        // parse the name to standard: eg. TARGET SPOT
+//        String processedResultName = DataConverter.checkResultVirusRawNameToUpperCaseWithSpace(resultVirusRawFullName);
+//
+//        // get result virus id
+//        int virusId = AppResources.getVirusIdByVirusFullName(processedResultName);
+//
+//
+//        // get the virus list
+//        List<VirusModel> virusModelList = spp.getVirusModelListFromSP();
+//        return (virusId == 0) ? null : virusModelList.get(virusId - 1);
+//    }
 
     @Override
     public void onPause() {
