@@ -5,7 +5,11 @@ import android.graphics.Bitmap;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.NewsModel;
+import com.example.virussafeagro.models.NutrientCorrectionMethodModel;
+import com.example.virussafeagro.models.NutrientFactorModel;
 import com.example.virussafeagro.models.NutrientModel;
+import com.example.virussafeagro.models.NutrientReasonModel;
+import com.example.virussafeagro.models.NutrientSymptomModel;
 import com.example.virussafeagro.models.VirusCauseModel;
 import com.example.virussafeagro.models.VirusDescriptionModel;
 import com.example.virussafeagro.models.VirusModel;
@@ -289,12 +293,53 @@ public class MyJsonParser {
 
                     int nutrientId = nutrientJsonObject.getInt("nutrientId");
                     String nutrientName = nutrientJsonObject.getString("nutrientName");
-                    String nutrientSymptoms = nutrientJsonObject.getString("nutrientSymptoms");
-                    String nutrientReasons = nutrientJsonObject.getString("nutrientReasons");
-                    String nutrientFactory = nutrientJsonObject.getString("nutrientFactory");
-                    String nutrientCorrectionMethod = nutrientJsonObject.getString("nutrientCorrectionMethod");
 
-                    NutrientModel nutrientModel = new NutrientModel(nutrientId, nutrientName, nutrientSymptoms, nutrientReasons, nutrientFactory, nutrientCorrectionMethod);
+                    // symptom
+                    JSONArray nutrientSymptomJSONArray = nutrientJsonObject.getJSONArray("symptom");
+                    List<NutrientSymptomModel> nutrientSymptomModelList = new ArrayList<>();
+                    for (int di = 0; di < nutrientSymptomJSONArray.length(); di++){
+                        JSONObject nutrientSymptomJSONObject = nutrientSymptomJSONArray.getJSONObject(di);
+                        NutrientSymptomModel nutrientSymptomModel = new NutrientSymptomModel();
+                        nutrientSymptomModel.setSymId(nutrientSymptomJSONObject.getInt("symId"));
+                        nutrientSymptomModel.setSymContent(nutrientSymptomJSONObject.getString("symContent"));
+                        nutrientSymptomModel.setSymType(nutrientSymptomJSONObject.getString("symType"));
+                        nutrientSymptomModelList.add(nutrientSymptomModel);
+                    }
+
+                    // reason
+                    JSONArray nutrientReasonJSONArray = nutrientJsonObject.getJSONArray("reason");
+                    List<NutrientReasonModel> nutrientReasonModelList = new ArrayList<>();
+                    for (int di = 0; di < nutrientReasonJSONArray.length(); di++){
+                        JSONObject nutrientReasonJSONObject = nutrientReasonJSONArray.getJSONObject(di);
+                        NutrientReasonModel nutrientReasonModel = new NutrientReasonModel();
+                        nutrientReasonModel.setReasonId(nutrientReasonJSONObject.getInt("reasonId"));
+                        nutrientReasonModel.setReasonContent(nutrientReasonJSONObject.getString("reasonContent"));
+                        nutrientReasonModelList.add(nutrientReasonModel);
+                    }
+
+                    // factor
+                    JSONArray nutrientFactorJSONArray = nutrientJsonObject.getJSONArray("factor");
+                    List<NutrientFactorModel> nutrientFactorModelList = new ArrayList<>();
+                    for (int di = 0; di < nutrientFactorJSONArray.length(); di++){
+                        JSONObject nutrientFactorJSONObject = nutrientFactorJSONArray.getJSONObject(di);
+                        NutrientFactorModel nutrientFactorModel = new NutrientFactorModel();
+                        nutrientFactorModel.setFactorId(nutrientFactorJSONObject.getInt("factorId"));
+                        nutrientFactorModel.setFactorContent(nutrientFactorJSONObject.getString("factorContent"));
+                        nutrientFactorModelList.add(nutrientFactorModel);
+                    }
+
+                    // method
+                    JSONArray nutrientCorrectionMethodJSONArray = nutrientJsonObject.getJSONArray("method");
+                    List<NutrientCorrectionMethodModel> nutrientCorrectionMethodModelList = new ArrayList<>();
+                    for (int di = 0; di < nutrientCorrectionMethodJSONArray.length(); di++){
+                        JSONObject nutrientCorrectionMethodJSONObject = nutrientCorrectionMethodJSONArray.getJSONObject(di);
+                        NutrientCorrectionMethodModel nutrientCorrectionMethodModel = new NutrientCorrectionMethodModel();
+                        nutrientCorrectionMethodModel.setMethodId(nutrientCorrectionMethodJSONObject.getInt("methodId"));
+                        nutrientCorrectionMethodModel.setMethodContent(nutrientCorrectionMethodJSONObject.getString("methodContent"));
+                        nutrientCorrectionMethodModelList.add(nutrientCorrectionMethodModel);
+                    }
+
+                    NutrientModel nutrientModel = new NutrientModel(nutrientId, nutrientName, nutrientSymptomModelList, nutrientReasonModelList, nutrientFactorModelList, nutrientCorrectionMethodModelList);
                     nutrientModelList.add(nutrientModel);
                 }
             }
