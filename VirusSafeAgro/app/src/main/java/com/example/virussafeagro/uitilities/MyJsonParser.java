@@ -6,7 +6,11 @@ import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.models.NutrientModel;
+import com.example.virussafeagro.models.VirusCauseModel;
+import com.example.virussafeagro.models.VirusDescriptionModel;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.models.VirusPreventionModel;
+import com.example.virussafeagro.models.VirusSymptomModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,14 +40,55 @@ public class MyJsonParser {
                     int virusId = virusJsonObject.getInt("virusId");
                     String virusFullName = virusJsonObject.getString("virusFullName");
                     String virusAbbreviation = virusJsonObject.getString("virusAbbreviation");
-                    String virusDescription = virusJsonObject.getString("virusDescription");
-                    String symptoms = virusJsonObject.getString("symptoms");
-                    String causes = virusJsonObject.getString("causes");
-                    String spread = virusJsonObject.getString("spread");
-                    String prevention = virusJsonObject.getString("prevention");
-                    String virusDistribution = virusJsonObject.getString("virusDistribution");
 
-                    VirusModel virusModel = new VirusModel(virusId, virusFullName, virusAbbreviation, virusDescription, symptoms, causes, spread, prevention, virusDistribution, null);
+                    // description
+                    JSONArray virusDescriptionJSONArray = virusJsonObject.getJSONArray("description");
+                    List<VirusDescriptionModel> virusDescriptionModelList = new ArrayList<>();
+                    for (int di = 0; di < virusDescriptionJSONArray.length(); di++){
+                        JSONObject virusDescriptionJSONObject = virusDescriptionJSONArray.getJSONObject(di);
+                        VirusDescriptionModel virusDescriptionModel = new VirusDescriptionModel();
+                        virusDescriptionModel.setDesId(virusDescriptionJSONObject.getInt("desId"));
+                        virusDescriptionModel.setDesContent(virusDescriptionJSONObject.getString("desContent"));
+                        virusDescriptionModelList.add(virusDescriptionModel);
+                    }
+
+                    // symptom
+                    JSONArray virusSymptomJSONArray = virusJsonObject.getJSONArray("symptom");
+                    List<VirusSymptomModel> virusSymptomModelList = new ArrayList<>();
+                    for (int di = 0; di < virusSymptomJSONArray.length(); di++){
+                        JSONObject virusSymptomJSONObject = virusSymptomJSONArray.getJSONObject(di);
+                        VirusSymptomModel virusSymptomModel = new VirusSymptomModel();
+                        virusSymptomModel.setSymId(virusSymptomJSONObject.getInt("symId"));
+                        virusSymptomModel.setSymContent(virusSymptomJSONObject.getString("symContent"));
+                        virusSymptomModel.setSymObjectType(virusSymptomJSONObject.getString("symObjectType"));
+                        virusSymptomModelList.add(virusSymptomModel);
+                    }
+
+                    // cause
+                    JSONArray virusCauseJSONArray = virusJsonObject.getJSONArray("cause");
+                    List<VirusCauseModel> virusCauseModelList = new ArrayList<>();
+                    for (int di = 0; di < virusCauseJSONArray.length(); di++){
+                        JSONObject virusCauseJSONObject = virusCauseJSONArray.getJSONObject(di);
+                        VirusCauseModel virusCauseModel = new VirusCauseModel();
+                        virusCauseModel.setCauseId(virusCauseJSONObject.getInt("causeId"));
+                        virusCauseModel.setCauseContent(virusCauseJSONObject.getString("causeContent"));
+                        virusCauseModel.setCauseType(virusCauseJSONObject.getString("causeType"));
+                        virusCauseModelList.add(virusCauseModel);
+                    }
+
+                    // prevention
+                    JSONArray virusPreventionJSONArray = virusJsonObject.getJSONArray("prevention");
+                    List<VirusPreventionModel> virusPreventionModelList = new ArrayList<>();
+                    for (int di = 0; di < virusPreventionJSONArray.length(); di++){
+                        JSONObject virusPreventionJSONObject = virusPreventionJSONArray.getJSONObject(di);
+                        VirusPreventionModel virusPreventionModel = new VirusPreventionModel();
+                        virusPreventionModel.setPreId(virusPreventionJSONObject.getInt("preId"));
+                        virusPreventionModel.setPreContent(virusPreventionJSONObject.getString("preContent"));
+                        virusPreventionModel.setPreType(virusPreventionJSONObject.getString("preType"));
+                        virusPreventionModelList.add(virusPreventionModel);
+                    }
+
+                    VirusModel virusModel = new VirusModel(virusId, virusFullName, virusAbbreviation, virusDescriptionModelList, virusSymptomModelList, virusCauseModelList, virusPreventionModelList, null, null);
                     virusModelInfoList.add(virusModel);
                 }
             }
