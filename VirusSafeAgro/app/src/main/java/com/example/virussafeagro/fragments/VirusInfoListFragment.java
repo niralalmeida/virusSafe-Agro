@@ -138,7 +138,7 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
             if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
                 // check network connection
-                if (resultVirusInfoList.get(0).getVirusDescription().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                if (resultVirusInfoList.get(0).getVirusFullName().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
                     // show network error image
                     MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);

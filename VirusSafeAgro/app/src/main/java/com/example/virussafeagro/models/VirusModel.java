@@ -4,49 +4,71 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 public class VirusModel implements Parcelable {
     private int virusId;
     private String virusFullName;
     private String virusAbbreviation;
-    private String virusDescription;
-    private String symptoms;
-    private String causes;
-    private String spread;
-    private String prevention;
-    private String distribution;
-    private Bitmap virusPicture;
+    private List<VirusDescriptionModel> virusDescriptionModelList;
+    private List<VirusSymptomModel> virusSymptomModelList;
+    private List<VirusCauseModel> virusCauseModelList;
+    private List<VirusPreventionModel> virusPreventionModelList;
+    private List<String> virusPictureURLList;
+    private List<Bitmap> virusPictureBitmapList;
+
+//    private String description;
+//    private String symptoms;
+//    private String causes;
+//    private String prevention;
 
     public VirusModel() {
     }
 
-    public VirusModel(String virusDescription) {
-        this.virusDescription = virusDescription;
+    public VirusModel(String virusFullName) {
+        this.virusFullName = virusFullName;
     }
 
-    public VirusModel(int virusId, String virusFullName, String virusAbbreviation, String virusDescription, String symptoms, String causes, String spread, String prevention, String distribution, Bitmap virusPicture) {
+    public VirusModel(int virusId, String virusFullName, String virusAbbreviation, List<VirusDescriptionModel> virusDescriptionModelList, List<VirusSymptomModel> virusSymptomModelList, List<VirusCauseModel> virusCauseModelList, List<VirusPreventionModel> virusPreventionModelList, List<String> virusPictureURLList, List<Bitmap> virusPictureBitmapList) {
         this.virusId = virusId;
         this.virusFullName = virusFullName;
         this.virusAbbreviation = virusAbbreviation;
-        this.virusDescription = virusDescription;
-        this.symptoms = symptoms;
-        this.causes = causes;
-        this.spread = spread;
-        this.prevention = prevention;
-        this.distribution = distribution;
-        this.virusPicture = virusPicture;
+        this.virusDescriptionModelList = virusDescriptionModelList;
+        this.virusSymptomModelList = virusSymptomModelList;
+        this.virusCauseModelList = virusCauseModelList;
+        this.virusPreventionModelList = virusPreventionModelList;
+        this.virusPictureURLList = virusPictureURLList;
+        this.virusPictureBitmapList = virusPictureBitmapList;
     }
 
     protected VirusModel(Parcel in) {
         virusId = in.readInt();
         virusFullName = in.readString();
         virusAbbreviation = in.readString();
-        virusDescription = in.readString();
-        symptoms = in.readString();
-        causes = in.readString();
-        spread = in.readString();
-        prevention = in.readString();
-        distribution = in.readString();
-        virusPicture = in.readParcelable(Bitmap.class.getClassLoader());
+        virusDescriptionModelList = in.createTypedArrayList(VirusDescriptionModel.CREATOR);
+        virusSymptomModelList = in.createTypedArrayList(VirusSymptomModel.CREATOR);
+        virusCauseModelList = in.createTypedArrayList(VirusCauseModel.CREATOR);
+        virusPreventionModelList = in.createTypedArrayList(VirusPreventionModel.CREATOR);
+        virusPictureURLList = in.createStringArrayList();
+        virusPictureBitmapList = in.createTypedArrayList(Bitmap.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(virusId);
+        dest.writeString(virusFullName);
+        dest.writeString(virusAbbreviation);
+        dest.writeTypedList(virusDescriptionModelList);
+        dest.writeTypedList(virusSymptomModelList);
+        dest.writeTypedList(virusCauseModelList);
+        dest.writeTypedList(virusPreventionModelList);
+        dest.writeStringList(virusPictureURLList);
+        dest.writeTypedList(virusPictureBitmapList);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<VirusModel> CREATOR = new Creator<VirusModel>() {
@@ -85,78 +107,51 @@ public class VirusModel implements Parcelable {
         this.virusAbbreviation = virusAbbreviation;
     }
 
-    public String getVirusDescription() {
-        return virusDescription;
+    public List<VirusDescriptionModel> getVirusDescriptionModelList() {
+        return virusDescriptionModelList;
     }
 
-    public void setVirusDescription(String virusDescription) {
-        this.virusDescription = virusDescription;
+    public void setVirusDescriptionModelList(List<VirusDescriptionModel> virusDescriptionModelList) {
+        this.virusDescriptionModelList = virusDescriptionModelList;
     }
 
-    public String getSymptoms() {
-        return symptoms;
+    public List<VirusSymptomModel> getVirusSymptomModelList() {
+        return virusSymptomModelList;
     }
 
-    public void setSymptoms(String symptoms) {
-        this.symptoms = symptoms;
+    public void setVirusSymptomModelList(List<VirusSymptomModel> virusSymptomModelList) {
+        this.virusSymptomModelList = virusSymptomModelList;
     }
 
-    public String getCauses() {
-        return causes;
+    public List<VirusCauseModel> getVirusCauseModelList() {
+        return virusCauseModelList;
     }
 
-    public void setCauses(String causes) {
-        this.causes = causes;
+    public void setVirusCauseModelList(List<VirusCauseModel> virusCauseModelList) {
+        this.virusCauseModelList = virusCauseModelList;
     }
 
-    public String getSpread() {
-        return spread;
+    public List<VirusPreventionModel> getVirusPreventionModelList() {
+        return virusPreventionModelList;
     }
 
-    public void setSpread(String spread) {
-        this.spread = spread;
+    public void setVirusPreventionModelList(List<VirusPreventionModel> virusPreventionModelList) {
+        this.virusPreventionModelList = virusPreventionModelList;
     }
 
-    public String getPrevention() {
-        return prevention;
+    public List<String> getVirusPictureURLList() {
+        return virusPictureURLList;
     }
 
-    public void setPrevention(String prevention) {
-        this.prevention = prevention;
+    public void setVirusPictureURLList(List<String> virusPictureURLList) {
+        this.virusPictureURLList = virusPictureURLList;
     }
 
-    public String getDistribution() {
-        return distribution;
+    public List<Bitmap> getVirusPictureBitmapList() {
+        return virusPictureBitmapList;
     }
 
-    public void setDistribution(String distribution) {
-        this.distribution = distribution;
-    }
-
-    public Bitmap getVirusPicture() {
-        return virusPicture;
-    }
-
-    public void setVirusPicture(Bitmap virusPicture) {
-        this.virusPicture = virusPicture;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(virusId);
-        dest.writeString(virusFullName);
-        dest.writeString(virusAbbreviation);
-        dest.writeString(virusDescription);
-        dest.writeString(symptoms);
-        dest.writeString(causes);
-        dest.writeString(spread);
-        dest.writeString(prevention);
-        dest.writeString(distribution);
-        dest.writeParcelable(virusPicture, flags);
+    public void setVirusPictureBitmapList(List<Bitmap> virusPictureBitmapList) {
+        this.virusPictureBitmapList = virusPictureBitmapList;
     }
 }

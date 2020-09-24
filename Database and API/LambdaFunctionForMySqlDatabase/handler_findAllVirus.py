@@ -60,7 +60,7 @@ def lambda_handler(event, context):
         causeArray = []
         for cause_row in cause_rows:
             causeObject = {}
-            causeObject["cause_id"] = cause_row[0]
+            causeObject["causeId"] = cause_row[0]
             causeObject["causeContent"] = cause_row[1]
             causeObject["causeType"] = cause_row[2]
             causeArray.append(causeObject)
