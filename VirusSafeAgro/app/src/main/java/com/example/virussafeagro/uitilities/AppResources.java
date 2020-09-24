@@ -70,9 +70,9 @@ public class AppResources {
         return virusDrawablePictureResource;
     }
 
-    public static int getNutrientPictureDrawableId(int virusId) {
+    public static int getNutrientPictureDrawableId(int nutrientId) {
         int nutrientDrawablePictureResource = -1;
-        switch (virusId){
+        switch (nutrientId){
             case 1:
                 nutrientDrawablePictureResource = R.drawable.zinc1;
                 break;

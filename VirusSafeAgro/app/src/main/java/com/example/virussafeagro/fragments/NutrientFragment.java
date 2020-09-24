@@ -134,7 +134,7 @@ public class NutrientFragment extends Fragment {
                 // hide progress bar
                 processBarLinearLayout.setVisibility(View.GONE);
                 // check network connection
-                if (resultNutrientList.get(0).getNutrientReason().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                if (resultNutrientList.get(0).getNutrientName().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
                     // show network error image
                     MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);

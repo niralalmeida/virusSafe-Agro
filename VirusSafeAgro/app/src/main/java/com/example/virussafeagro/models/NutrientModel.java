@@ -8,47 +8,44 @@ import java.util.List;
 public class NutrientModel implements Parcelable {
     private int nutrientId;
     private String nutrientName;
-    private String nutrientSymptom;
-    private String nutrientReason;
-    private String nutrientFactors;
-//    private List<String> nutrientSymptomList;
-//    private List<String> nutrientReasonList;
-//    private List<String> nutrientFactorsList;
-    private String nutrientCorrectionMethod;
+    private List<NutrientSymptomModel> nutrientSymptomList;
+    private List<NutrientReasonModel> nutrientReasonList;
+    private List<NutrientFactorModel> nutrientFactorsList;
+    private List<NutrientCorrectionMethodModel> nutrientCorrectionMethodList;
 
     public NutrientModel() {
     }
 
-    public NutrientModel(String nutrientReason) {
-        this.nutrientReason = nutrientReason;
+    public NutrientModel(String nutrientName) {
+        this.nutrientName = nutrientName;
     }
 
-    public NutrientModel(int nutrientId, String nutrientName, String nutrientSymptom, String nutrientReason, String nutrientFactors, String nutrientCorrectionMethod) {
+    public NutrientModel(int nutrientId, String nutrientName, List<NutrientSymptomModel> nutrientSymptomList, List<NutrientReasonModel> nutrientReasonList, List<NutrientFactorModel> nutrientFactorsList, List<NutrientCorrectionMethodModel> nutrientCorrectionMethodList) {
         this.nutrientId = nutrientId;
         this.nutrientName = nutrientName;
-        this.nutrientSymptom = nutrientSymptom;
-        this.nutrientReason = nutrientReason;
-        this.nutrientFactors = nutrientFactors;
-        this.nutrientCorrectionMethod = nutrientCorrectionMethod;
+        this.nutrientSymptomList = nutrientSymptomList;
+        this.nutrientReasonList = nutrientReasonList;
+        this.nutrientFactorsList = nutrientFactorsList;
+        this.nutrientCorrectionMethodList = nutrientCorrectionMethodList;
     }
 
     protected NutrientModel(Parcel in) {
         nutrientId = in.readInt();
         nutrientName = in.readString();
-        nutrientSymptom = in.readString();
-        nutrientReason = in.readString();
-        nutrientFactors = in.readString();
-        nutrientCorrectionMethod = in.readString();
+        nutrientSymptomList = in.createTypedArrayList(NutrientSymptomModel.CREATOR);
+        nutrientReasonList = in.createTypedArrayList(NutrientReasonModel.CREATOR);
+        nutrientFactorsList = in.createTypedArrayList(NutrientFactorModel.CREATOR);
+        nutrientCorrectionMethodList = in.createTypedArrayList(NutrientCorrectionMethodModel.CREATOR);
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(nutrientId);
         dest.writeString(nutrientName);
-        dest.writeString(nutrientSymptom);
-        dest.writeString(nutrientReason);
-        dest.writeString(nutrientFactors);
-        dest.writeString(nutrientCorrectionMethod);
+        dest.writeTypedList(nutrientSymptomList);
+        dest.writeTypedList(nutrientReasonList);
+        dest.writeTypedList(nutrientFactorsList);
+        dest.writeTypedList(nutrientCorrectionMethodList);
     }
 
     @Override
@@ -84,35 +81,35 @@ public class NutrientModel implements Parcelable {
         this.nutrientName = nutrientName;
     }
 
-    public String getNutrientSymptom() {
-        return nutrientSymptom;
+    public List<NutrientSymptomModel> getNutrientSymptomList() {
+        return nutrientSymptomList;
     }
 
-    public void setNutrientSymptom(String nutrientSymptom) {
-        this.nutrientSymptom = nutrientSymptom;
+    public void setNutrientSymptomList(List<NutrientSymptomModel> nutrientSymptomList) {
+        this.nutrientSymptomList = nutrientSymptomList;
     }
 
-    public String getNutrientReason() {
-        return nutrientReason;
+    public List<NutrientReasonModel> getNutrientReasonList() {
+        return nutrientReasonList;
     }
 
-    public void setNutrientReason(String nutrientReason) {
-        this.nutrientReason = nutrientReason;
+    public void setNutrientReasonList(List<NutrientReasonModel> nutrientReasonList) {
+        this.nutrientReasonList = nutrientReasonList;
     }
 
-    public String getNutrientFactors() {
-        return nutrientFactors;
+    public List<NutrientFactorModel> getNutrientFactorsList() {
+        return nutrientFactorsList;
     }
 
-    public void setNutrientFactors(String nutrientFactors) {
-        this.nutrientFactors = nutrientFactors;
+    public void setNutrientFactorsList(List<NutrientFactorModel> nutrientFactorsList) {
+        this.nutrientFactorsList = nutrientFactorsList;
     }
 
-    public String getNutrientCorrectionMethod() {
-        return nutrientCorrectionMethod;
+    public List<NutrientCorrectionMethodModel> getNutrientCorrectionMethodList() {
+        return nutrientCorrectionMethodList;
     }
 
-    public void setNutrientCorrectionMethod(String nutrientCorrectionMethod) {
-        this.nutrientCorrectionMethod = nutrientCorrectionMethod;
+    public void setNutrientCorrectionMethodList(List<NutrientCorrectionMethodModel> nutrientCorrectionMethodList) {
+        this.nutrientCorrectionMethodList = nutrientCorrectionMethodList;
     }
 }
