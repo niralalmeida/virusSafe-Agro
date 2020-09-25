@@ -11,6 +11,11 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.VirusCauseModel;
+import com.example.virussafeagro.models.VirusDescriptionModel;
+import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.models.VirusPreventionModel;
+import com.example.virussafeagro.models.VirusSymptomModel;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -19,7 +24,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class DataConverter {
@@ -80,5 +87,32 @@ public class DataConverter {
             }
         }
         return time;
+    }
+
+    // for searching virus
+    public static List<String> virusModelInfoListToVirusStringInfoList(List<VirusModel> virusModelInfoList) {
+        List<String> VirusStringInfoList = new ArrayList<>();
+        for (VirusModel virusModel : virusModelInfoList) {
+            StringBuilder virusModelStringBuilder = new StringBuilder();
+            virusModelStringBuilder.append(virusModel.getVirusId()).append("#").append(virusModel.getVirusFullName()).append("#").append(virusModel.getVirusAbbreviation());
+            // add description
+            for (VirusDescriptionModel virusDescriptionModel : virusModel.getVirusDescriptionModelList()) {
+                virusModelStringBuilder.append("#").append(virusDescriptionModel.getDesContent());
+            }
+            // add symptom
+            for (VirusSymptomModel virusSymptomModel : virusModel.getVirusSymptomModelList()) {
+                virusModelStringBuilder.append("#").append(virusSymptomModel.getSymContent());
+            }
+            // add cause
+            for (VirusCauseModel virusCauseModel : virusModel.getVirusCauseModelList()) {
+                virusModelStringBuilder.append("#").append(virusCauseModel.getCauseContent());
+            }
+            // add prevention
+            for (VirusPreventionModel virusPreventionModel : virusModel.getVirusPreventionModelList()) {
+                virusModelStringBuilder.append("#").append(virusPreventionModel.getPreContent());
+            }
+            VirusStringInfoList.add(virusModelStringBuilder.toString());
+        }
+        return VirusStringInfoList;
     }
 }
