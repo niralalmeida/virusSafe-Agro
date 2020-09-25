@@ -2,10 +2,14 @@ package com.example.virussafeagro.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -18,9 +22,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.GridNutrientAdapter;
+import com.example.virussafeagro.adapters.GridVirusInfoAdapter;
 import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.NutrientModel;
+import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
@@ -43,6 +50,10 @@ public class NutrientFragment extends Fragment {
     private LinearLayout nutrientsGridViewLinearLayout;
     private GridView nutrientsGridView;
     private GridNutrientAdapter gridNutrientAdapter;
+
+    // search function
+    private EditText searchNutrientEditText;
+    private ImageButton searchNutrientImageButton;
 
     public NutrientFragment() {
     }
@@ -113,6 +124,8 @@ public class NutrientFragment extends Fragment {
         this.nutrientsGridViewLinearLayout = view.findViewById(R.id.ll_list_nutrient_list);
         this.nutrientsGridView = view.findViewById(R.id.gv_list_nutrient_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_nutrient);
+        this.searchNutrientEditText = view.findViewById(R.id.et_search_nutrient);
+        this.searchNutrientImageButton= view.findViewById(R.id.imgbtn_search_nutrient);
     }
 
     private void initializeNutrientViewModel() {
@@ -151,20 +164,74 @@ public class NutrientFragment extends Fragment {
     }
 
     private void displayNutrientsCardList() {
-
-
         // show grid view
         gridNutrientAdapter = new GridNutrientAdapter(requireActivity(), nutrientModelList);
         nutrientsGridView.setAdapter(gridNutrientAdapter);
         // set GridView Item NutrientCard Click Listener
-        setGridViewItemNutrientCardClickListener();
+        setGridViewItemNutrientCardClickListener(nutrientModelList);
+        // set SearchEditText On Change Listener
+        setSearchEditOnTextChangeListener();
+        // set search image button on click listener
+        setSearchImageButtonOnClickListener();
+    }
+
+    // set search edit text on change listener
+    private void setSearchEditOnTextChangeListener() {
+        searchNutrientEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // get the nutrient list by input keyword and display
+                displayNutrientModelListBySearching(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
+
+    private void setSearchImageButtonOnClickListener(){
+        searchNutrientImageButton.setOnClickListener(view -> {
+            // get the nutrient list by input keyword and display
+            displayNutrientModelListBySearching(searchNutrientEditText.getText().toString());
+        });
+    }
+
+    // get the virus model list by search input keyword
+    private void displayNutrientModelListBySearching(String searchInput) {
+        List<NutrientModel> searchedNutrientModelList = new ArrayList<>();
+        if (!searchInput.isEmpty()) {
+            List<String> nutrientStringInfoList = DataConverter.nutrientModelListToNutrientStringList(nutrientModelList);
+            for (String nutrientString : nutrientStringInfoList) {
+                if (nutrientString.toLowerCase().contains(searchInput.toLowerCase())) {
+                    int nutrientId = Integer.parseInt(nutrientString.substring(0, 1));
+                    for (NutrientModel nutrientModel : nutrientModelList) {
+                        if (nutrientModel.getNutrientId() == nutrientId) {
+                            searchedNutrientModelList.add(nutrientModel);
+                            break;
+                        }
+                    }
+                }
+            }
+        } else {
+            searchedNutrientModelList = nutrientModelList;
+        }
+        // show grid view
+        gridNutrientAdapter = new GridNutrientAdapter(requireActivity(), searchedNutrientModelList);
+        nutrientsGridView.setAdapter(gridNutrientAdapter);
+        // set GridView Item nutrient Card Click Listener
+        setGridViewItemNutrientCardClickListener(searchedNutrientModelList);
     }
 
     // set card on click listener
-    private void setGridViewItemNutrientCardClickListener(){
+    private void setGridViewItemNutrientCardClickListener(List<NutrientModel> nutrientModelListForListener){
         gridNutrientAdapter.setOnNutrientCardClickListener(position -> {
             Bundle bundle = new Bundle();
-            NutrientModel currentNutrientModel = nutrientModelList.get(position);
+            NutrientModel currentNutrientModel = nutrientModelListForListener.get(position);
             bundle.putParcelable("currentNutrientModel", currentNutrientModel);
             NutrientDetailFragment nutrientDetailFragment = new NutrientDetailFragment();
             nutrientDetailFragment.setArguments(bundle);

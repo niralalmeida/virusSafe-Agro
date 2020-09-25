@@ -11,6 +11,11 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.NutrientCorrectionMethodModel;
+import com.example.virussafeagro.models.NutrientFactorModel;
+import com.example.virussafeagro.models.NutrientModel;
+import com.example.virussafeagro.models.NutrientReasonModel;
+import com.example.virussafeagro.models.NutrientSymptomModel;
 import com.example.virussafeagro.models.VirusCauseModel;
 import com.example.virussafeagro.models.VirusDescriptionModel;
 import com.example.virussafeagro.models.VirusModel;
@@ -114,5 +119,32 @@ public class DataConverter {
             VirusStringInfoList.add(virusModelStringBuilder.toString());
         }
         return VirusStringInfoList;
+    }
+
+    // for searching nutrient
+    public static List<String> nutrientModelListToNutrientStringList(List<NutrientModel> nutrientModelList) {
+        List<String> NutrientStringList = new ArrayList<>();
+        for (NutrientModel nutrientModel : nutrientModelList) {
+            StringBuilder nutrientModelStringBuilder = new StringBuilder();
+            nutrientModelStringBuilder.append(nutrientModel.getNutrientId()).append("#").append(nutrientModel.getNutrientName());
+            // add symptom
+            for (NutrientSymptomModel nutrientSymptomModel : nutrientModel.getNutrientSymptomList()) {
+                nutrientModelStringBuilder.append("#").append(nutrientSymptomModel.getSymContent());
+            }
+            // add reason
+            for (NutrientReasonModel nutrientReasonModel : nutrientModel.getNutrientReasonList()) {
+                nutrientModelStringBuilder.append("#").append(nutrientReasonModel.getReasonContent());
+            }
+            // add factor
+            for (NutrientFactorModel nutrientFactorModel : nutrientModel.getNutrientFactorList()) {
+                nutrientModelStringBuilder.append("#").append(nutrientFactorModel.getFactorContent());
+            }
+            // add correction method
+            for (NutrientCorrectionMethodModel nutrientCorrectionMethodModel : nutrientModel.getNutrientCorrectionMethodList()) {
+                nutrientModelStringBuilder.append("#").append(nutrientCorrectionMethodModel.getMethodContent());
+            }
+            NutrientStringList.add(nutrientModelStringBuilder.toString());
+        }
+        return NutrientStringList;
     }
 }
