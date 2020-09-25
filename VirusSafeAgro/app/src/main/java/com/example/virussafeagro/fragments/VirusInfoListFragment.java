@@ -174,6 +174,7 @@ public class VirusInfoListFragment extends Fragment {
         virusGridView.setAdapter(gridVirusInfoAdapter);
         // set GridView Item VirusCard Click Listener
         setGridViewItemVirusCardClickListener(virusModelInfoList);
+
         // set SearchEditText On Change Listener
         setSearchEditOnTextChangeListener();
         // set search image button on click listener
@@ -210,10 +211,10 @@ public class VirusInfoListFragment extends Fragment {
     private void displayVirusModelListBySearching(String searchInput) {
         List<VirusModel> searchedVirusModelList = new ArrayList<>();
         if (!searchInput.isEmpty()) {
-            List<String> virusStringInfoList = DataConverter.virusModelInfoListToVirusStringInfoList(virusModelInfoList);
-            for (String virusString : virusStringInfoList) {
-                if (virusString.toLowerCase().contains(searchInput.toLowerCase())) {
-                    int virusId = Integer.parseInt(virusString.substring(0, 1));
+            List<String> VirusStringInfoList = DataConverter.virusModelInfoListToVirusStringInfoList(virusModelInfoList);
+            for (String VirusString : VirusStringInfoList) {
+                if (VirusString.toLowerCase().contains(searchInput.toLowerCase())) {
+                    int virusId = Integer.parseInt(VirusString.substring(0, 1));
                     for (VirusModel virusModel : virusModelInfoList) {
                         if (virusModel.getVirusId() == virusId) {
                             searchedVirusModelList.add(virusModel);
