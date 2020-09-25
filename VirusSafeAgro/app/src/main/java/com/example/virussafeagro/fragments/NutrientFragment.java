@@ -207,8 +207,13 @@ public class NutrientFragment extends Fragment {
         if (!searchInput.isEmpty()) {
             List<String> nutrientStringInfoList = DataConverter.nutrientModelListToNutrientStringList(nutrientModelList);
             for (String nutrientString : nutrientStringInfoList) {
+                int nutrientId;
                 if (nutrientString.toLowerCase().contains(searchInput.toLowerCase())) {
-                    int nutrientId = Integer.parseInt(nutrientString.substring(0, 1));
+                    if (nutrientString.substring(1, 2).equals("#")) {
+                        nutrientId = Integer.parseInt(nutrientString.substring(0, 1));
+                    } else {
+                        nutrientId = Integer.parseInt(nutrientString.substring(0, 2));
+                    }
                     for (NutrientModel nutrientModel : nutrientModelList) {
                         if (nutrientModel.getNutrientId() == nutrientId) {
                             searchedNutrientModelList.add(nutrientModel);
