@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -14,9 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.FragmentOperator;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
 
@@ -51,16 +47,16 @@ public class CalculatorFragment extends Fragment {
         super.onResume();
 
         // show all views
-        this.showAllViews();
+//        this.showAllViews();
     }
 
     private void initializeViews() {
-        this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_calculator);
+//        this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_calculator);
     }
 
     // show All Views
     private void showAllViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
+//        MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
     }
 
 }

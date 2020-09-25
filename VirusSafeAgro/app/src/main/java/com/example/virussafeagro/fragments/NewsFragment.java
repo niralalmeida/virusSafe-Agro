@@ -31,6 +31,10 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.viewModel.NewsViewModel;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
+import com.scwang.smart.refresh.footer.BallPulseFooter;
+import com.scwang.smart.refresh.header.BezierRadarHeader;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +131,8 @@ public class NewsFragment extends Fragment {
                     showNewsRecyclerView();
                     // set News Tile On Clicked Listener
                     setNewsTileOnClickedListener();
+                    // show smart refresh layout
+                    initializeHeaderAndFooter();
                 }
             }
         });
@@ -154,6 +160,18 @@ public class NewsFragment extends Fragment {
             NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
             newsDetailFragment.setArguments(bundle);
             FragmentOperator.replaceFragment(requireActivity(), newsDetailFragment, AppResources.FRAGMENT_TAG_NEWS_DETAIL);
+        });
+    }
+
+    private void initializeHeaderAndFooter() {
+        RefreshLayout refreshLayout = view.findViewById(R.id.refreshLayout_news);
+        refreshLayout.setRefreshHeader(new BezierRadarHeader(requireActivity()));
+        refreshLayout.setRefreshFooter(new BallPulseFooter(requireActivity()));
+        refreshLayout.setOnRefreshListener(refreshlayout -> {
+            refreshlayout.finishRefresh(2000/*,false*/);// "false" means refreshing fail
+        });
+        refreshLayout.setOnLoadMoreListener(refreshlayout -> {
+            refreshlayout.finishLoadMore(2000/*,false*/);// "false" means loading fail
         });
     }
 

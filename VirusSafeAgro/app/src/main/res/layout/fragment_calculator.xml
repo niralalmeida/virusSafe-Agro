@@ -7,13 +7,28 @@
     android:background="@color/colorPrimaryDarkBG"
     tools:context=".fragments.CalculatorFragment">
 
-    <RelativeLayout
-        android:id="@+id/rl_all_views_calculator"
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp">
+        android:background="@color/colorPrimaryDarkBG"
+        app:srlPrimaryColor="@color/colorPrimaryDark"
+        app:srlAccentColor="@color/colorPrimaryLight">
 
+        <com.scwang.smart.refresh.header.BezierRadarHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/launch_screen"/>
+
+        <com.scwang.smart.refresh.footer.BallPulseFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 </RelativeLayout>
