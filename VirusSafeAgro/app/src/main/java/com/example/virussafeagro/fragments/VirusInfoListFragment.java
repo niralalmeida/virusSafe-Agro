@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.GridVirusInfoAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
@@ -46,7 +49,7 @@ public class VirusInfoListFragment extends Fragment {
     private View view;
 
     private VirusInfoListViewModel virusInfoListViewModel;
-    private SharedPreferenceProcess spp;
+//    private SharedPreferenceProcess spp;
     private List<VirusModel> virusModelInfoList;
 
     private LinearLayout processBarLinearLayout;
@@ -91,7 +94,7 @@ public class VirusInfoListFragment extends Fragment {
         // initialize view model
         this.initializeVirusInfoViewModel();
         // initialize SharedPreferenceProcess
-        this.initializeSharedPreferenceProcess();
+//        this.initializeSharedPreferenceProcess();
 
 //        if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
             // find virus info list in new Thread
@@ -134,9 +137,9 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.initiateSharedPreferenceProcess(requireContext());
     }
 
-    private void initializeSharedPreferenceProcess() {
-        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireContext());
-    }
+//    private void initializeSharedPreferenceProcess() {
+//        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireContext());
+//    }
 
     private void findVirusInfoListFromDB() {
         this.virusInfoListViewModel.processFindingVirusInfoList();
@@ -168,6 +171,64 @@ public class VirusInfoListFragment extends Fragment {
 
         // show grid view
         gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), virusModelInfoList);
+        virusGridView.setAdapter(gridVirusInfoAdapter);
+        // set GridView Item VirusCard Click Listener
+        setGridViewItemVirusCardClickListener();
+        // set SearchEditText On Change Listener
+        setSearchEditOnTextChangeListener();
+        // set search image button on click listener
+        setSearchImageButtonOnClickListener();
+    }
+
+    // set search edit text on change listener
+    private void setSearchEditOnTextChangeListener() {
+        searchVirusEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // get the virus list by input keyword and display
+                displayVirusModelListBySearching(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void setSearchImageButtonOnClickListener(){
+        searchVirusImageButton.setOnClickListener(view -> {
+            // get the virus list by input keyword and display
+            displayVirusModelListBySearching(searchVirusEditText.getText().toString());
+        });
+    }
+
+    // get the virus model list by search input keyword
+    private void displayVirusModelListBySearching(String searchInput) {
+        List<VirusModel> searchedVirusModelList = new ArrayList<>();
+        if (!searchInput.isEmpty()) {
+            List<String> VirusStringInfoList = DataConverter.virusModelInfoListToVirusStringInfoList(virusModelInfoList);
+            for (String VirusString : VirusStringInfoList) {
+                if (VirusString.toLowerCase().contains(searchInput.toLowerCase())) {
+                    int virusId = Integer.parseInt(VirusString.substring(0, 1));
+                    for (VirusModel virusModel : virusModelInfoList) {
+                        if (virusModel.getVirusId() == virusId) {
+                            searchedVirusModelList.add(virusModel);
+                            break;
+                        }
+                    }
+                }
+            }
+        } else {
+            searchedVirusModelList = virusModelInfoList;
+        }
+        // show grid view
+        gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), searchedVirusModelList);
         virusGridView.setAdapter(gridVirusInfoAdapter);
         // set GridView Item VirusCard Click Listener
         setGridViewItemVirusCardClickListener();
