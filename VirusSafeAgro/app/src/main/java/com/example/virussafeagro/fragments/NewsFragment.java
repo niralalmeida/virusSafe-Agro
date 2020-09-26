@@ -167,9 +167,13 @@ public class NewsFragment extends Fragment {
         RefreshLayout refreshLayout = view.findViewById(R.id.refreshLayout_news);
         refreshLayout.setRefreshHeader(new BezierRadarHeader(requireActivity()));
         refreshLayout.setRefreshFooter(new BallPulseFooter(requireActivity()));
+        // refresh
         refreshLayout.setOnRefreshListener(refreshlayout -> {
+            findNewsListByGoogleSearchAPI();
             refreshlayout.finishRefresh(2000/*,false*/);// "false" means refreshing fail
         });
+
+        // load more
         refreshLayout.setOnLoadMoreListener(refreshlayout -> {
             refreshlayout.finishLoadMore(2000/*,false*/);// "false" means loading fail
         });
