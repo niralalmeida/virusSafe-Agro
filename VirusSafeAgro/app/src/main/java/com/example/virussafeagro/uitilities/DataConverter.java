@@ -26,10 +26,12 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -92,6 +94,50 @@ public class DataConverter {
             }
         }
         return time;
+    }
+
+    public static Date getDateByString(String time) {
+        Date date = null;
+        if(time == null) {
+            return date;
+        }
+
+        String pattern = "dd MMMM yyyy, HH:mm";
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        try {
+            date = format.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static String getShortTime(String time) {
+        String shortString = null;
+        long now = Calendar.getInstance().getTimeInMillis();
+        Date date = getDateByString(time);
+        if(date == null) {
+            return null;
+        }
+        long delTime = (now - date.getTime()) / 1000;
+        if (delTime > 365 * 24 * 60 * 60) {
+            int year = (int) (delTime / (365 * 24 * 60 * 60));
+            shortString =  year > 1 ? year + " years ago" : year + " year ago";
+        } else if (delTime > 24 * 60 * 60) {
+            int day = (int) (delTime / (24 * 60 * 60));
+            shortString =  day > 1 ? day + " days ago" : day + " day ago";
+        } else if (delTime > 60 * 60) {
+            int hour = (int) (delTime / (60 * 60));
+            shortString =  hour > 1 ? hour + " hours ago" : hour + " hour ago";
+        } else if (delTime > 60) {
+            int minute = (int) (delTime / (60));
+            shortString = minute > 1 ? minute + " minutes ago" : minute + " minute ago";
+        } else if (delTime > 1) {
+            shortString = delTime + " seconds ago";
+        } else {
+            shortString = "1 second ago";
+        }
+        return shortString;
     }
 
     // for searching virus

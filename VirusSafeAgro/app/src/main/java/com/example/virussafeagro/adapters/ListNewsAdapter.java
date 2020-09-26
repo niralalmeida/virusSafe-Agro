@@ -78,7 +78,9 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
         String originalTimeString = newsModel.getNewsPressTime(); // "yyyy-MM-dd'T'HH:mm:ssXXX"
         String originalTimePattern = "yyyy-MM-dd'T'HH:mm:ssXXX";
         String targetTimePattern = "dd MMMM yyyy, HH:mm";
-        String newsPressTime = DataConverter.newsTimeToStandardFormat(originalTimeString, originalTimePattern, targetTimePattern);
+        String newsPressTime1 = DataConverter.newsTimeToStandardFormat(originalTimeString, originalTimePattern, targetTimePattern);
+        String newsPressTime2 = DataConverter.getShortTime(newsPressTime1);
+        String newsPressTime = newsPressTime2 + " • " + newsPressTime1;
         viewHolder.newsPressTimeTextView.setText(newsPressTime);
         
         // news image
