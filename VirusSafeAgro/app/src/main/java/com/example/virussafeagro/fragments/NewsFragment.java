@@ -55,6 +55,9 @@ public class NewsFragment extends Fragment {
     private RecyclerView recyclerViewForNews;
     private RecyclerView.LayoutManager layoutManager;
 
+    // loading time no
+    private static int loadingTimeNo;
+
     public NewsFragment() {
     }
 
@@ -87,7 +90,7 @@ public class NewsFragment extends Fragment {
         super.onResume();
 
         // find News List by Google search API
-        this.findNewsListByGoogleSearchAPI();
+        this.findNewsListByGoogleSearchAPI(1);
         // observe NewsListLD
         this.observeNewsListLD();
 
@@ -101,14 +104,15 @@ public class NewsFragment extends Fragment {
 
     private void initializeData() {
         this.newsModelList = new ArrayList<>();
+        this.loadingTimeNo = 1;
     }
 
     private void initializeNewsViewModel() {
         this.newsViewModel = new ViewModelProvider(requireActivity()).get(NewsViewModel.class);
     }
 
-    private void findNewsListByGoogleSearchAPI() {
-        this.newsViewModel.processFindingNewsList();
+    private void findNewsListByGoogleSearchAPI(int fromNo) {
+        this.newsViewModel.processFindingNewsList(fromNo);
     }
 
     private void observeNewsListLD() {
@@ -169,13 +173,49 @@ public class NewsFragment extends Fragment {
         refreshLayout.setRefreshFooter(new BallPulseFooter(requireActivity()));
         // refresh
         refreshLayout.setOnRefreshListener(refreshlayout -> {
-            findNewsListByGoogleSearchAPI();
+            find10MoreNewsByGoogleSearchAPI(1);
             refreshlayout.finishRefresh(2000/*,false*/);// "false" means refreshing fail
         });
 
         // load more
         refreshLayout.setOnLoadMoreListener(refreshlayout -> {
+            find10MoreNewsByGoogleSearchAPI(loadingTimeNo * 10 + 1);
+            loadingTimeNo++;
             refreshlayout.finishLoadMore(2000/*,false*/);// "false" means loading fail
+        });
+
+        // observe the live data for refreshing or loading news
+        observeMore10NewsListLD();
+    }
+
+    // for loading more 10 news
+    private void find10MoreNewsByGoogleSearchAPI(int fromNo) {
+        this.newsViewModel.processFinding10MoreNewsList(fromNo);
+    }
+    // for loading more 10 news
+    private void observeMore10NewsListLD() {
+        this.newsViewModel.getMore10NewsListLD().observe(getViewLifecycleOwner(), resultMore10NewsList -> {
+            if ((resultMore10NewsList != null) && (resultMore10NewsList.size() != 0)) {
+                // check network connection
+                if (resultMore10NewsList.get(0).getNewsSnippet().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                    Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                    // show network error image
+                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);
+                } else {
+                    listNewsAdapter.addNewsItem(resultMore10NewsList);
+//                    newsModelList.addAll(resultMore10NewsList);
+//                    recyclerViewForNews.removeAllViews();
+//
+//                    // show News Views
+//                    showNewsViews();
+//                    // show the news list
+//                    showNewsRecyclerView();
+//                    // set News Tile On Clicked Listener
+//                    setNewsTileOnClickedListener();
+//                    // show smart refresh layout
+//                    initializeHeaderAndFooter();
+                }
+            }
         });
     }
 

@@ -97,4 +97,9 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
     public int getItemCount() {
         return this.newsModelList.size();
     }
+
+    public void addNewsItem(List<NewsModel> newsModelList) {
+        this.newsModelList.addAll(newsModelList);
+        notifyDataSetChanged();
+    }
 }
