@@ -489,7 +489,9 @@ public class MyJsonParser {
             Element div = doc.select("div[itemprop=articleBody]").get(0);
             Elements articleParagraphList = div.select("p[class=story-paragraph]");
             for (Element articleParagraph : articleParagraphList) {
-                newsArticleBody.add(articleParagraph.childNode(0).toString());
+                if (!articleParagraph.childNode(0).toString().contains("<b>")) {
+                    newsArticleBody.add(articleParagraph.childNode(0).toString());
+                }
             }
         }
         return newsArticleBody;
