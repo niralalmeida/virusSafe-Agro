@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,6 +48,9 @@ public class VirusDetailFragment extends Fragment {
     private TextView virusFullNameTextView;
     private TextView virusAbbreviationTextView;
     private ImageView virusPictureImageView;
+    // swipe up
+    private RelativeLayout swipeUpRelativeLayout;
+    private ImageView swipeUpImageView;
     // top buttons
     private LinearLayout topButtonLinearLayout;
     private Button descriptionButton;
@@ -62,9 +66,7 @@ public class VirusDetailFragment extends Fragment {
     private Button takeQuizButton;
 
     // coordinate
-    private float startX;
     private float startY;
-    private float currentX;
     private float currentY;
 
     @Nullable
@@ -86,8 +88,6 @@ public class VirusDetailFragment extends Fragment {
         this.currentVirusModel = bundle.getParcelable("currentVirusModel");
         this.preventionMessage = bundle.getString("prevention");
 
-
-
         return this.view;
     }
 
@@ -102,15 +102,6 @@ public class VirusDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(this.virusDetailLinearLayout, 1000);
         MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
         this.showVirusDetails();
-
-//        // initialize description content / or prevention content
-//        if (this.preventionMessage != null){
-//            // show prevention
-//            this.showPreventionContent();
-//        } else {
-//            // show description
-//            this.showDescriptionContent();
-//        }
 
         // set top buttons listener
         this.setTopButtonsListener();
@@ -130,6 +121,8 @@ public class VirusDetailFragment extends Fragment {
         this.symptomsButton = view.findViewById(R.id.btn_symptom_virus_detail);
         this.causesButton = view.findViewById(R.id.btn_causes_virus_detail);
         this.preventionButton = view.findViewById(R.id.btn_prevention_virus_detail);
+        this.swipeUpRelativeLayout = view.findViewById(R.id.rl_swipe_up_virus_detail);
+        this.swipeUpImageView = view.findViewById(R.id.img_swipe_up_virus_detail);
         this.middleContentNestedScrollView = view.findViewById(R.id.nsv_middle_content_virus_detail);
         this.middleContentLinearLayout= view.findViewById(R.id.ll_middle_content_virus_detail);
         this.middleContentTextView = view.findViewById(R.id.tv_middle_content_virus_detail);
@@ -246,14 +239,15 @@ public class VirusDetailFragment extends Fragment {
         view.setOnTouchListener((v, event) -> {
             // when press
             if(event.getAction() == MotionEvent.ACTION_DOWN){
-                startX = event.getX();
                 startY = event.getY();
             }
             // when move
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                currentX = event.getX();
                 currentY = event.getY();
                 if (currentY < startY) {
+                    // hide the swipe up
+                    MyAnimationBox.runFoldViewAnimation(swipeUpRelativeLayout,swipeUpRelativeLayout.getHeight(), 0, 500);
+                    // fold the top image
                     MyAnimationBox.runFoldViewAnimation(virusPictureImageView, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 1000);
                     MyAnimationBox.runFoldViewAnimation(topRelativeLayout, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 1000);
                     middleContentNestedScrollView.setVisibility(View.VISIBLE);
