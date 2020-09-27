@@ -12,6 +12,7 @@ public class NewsModel implements Parcelable {
     private String newsAuthor;
     private String newsImageURL;
     private Bitmap newsImage;
+    private String newsArticleBody;
     private String newsURL;
 
     public NewsModel() {
@@ -21,7 +22,7 @@ public class NewsModel implements Parcelable {
         this.newsSnippet = newsSnippet;
     }
 
-    public NewsModel(int newsId, String newsTitle, String newsSnippet, String newsPressTime, String newsAuthor, String newsImageURL, Bitmap newsImage, String newsURL) {
+    public NewsModel(int newsId, String newsTitle, String newsSnippet, String newsPressTime, String newsAuthor, String newsImageURL, Bitmap newsImage, String newsArticleBody, String newsURL) {
         this.newsId = newsId;
         this.newsTitle = newsTitle;
         this.newsSnippet = newsSnippet;
@@ -29,6 +30,7 @@ public class NewsModel implements Parcelable {
         this.newsAuthor = newsAuthor;
         this.newsImageURL = newsImageURL;
         this.newsImage = newsImage;
+        this.newsArticleBody = newsArticleBody;
         this.newsURL = newsURL;
     }
 
@@ -40,7 +42,26 @@ public class NewsModel implements Parcelable {
         newsAuthor = in.readString();
         newsImageURL = in.readString();
         newsImage = in.readParcelable(Bitmap.class.getClassLoader());
+        newsArticleBody = in.readString();
         newsURL = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(newsId);
+        dest.writeString(newsTitle);
+        dest.writeString(newsSnippet);
+        dest.writeString(newsPressTime);
+        dest.writeString(newsAuthor);
+        dest.writeString(newsImageURL);
+        dest.writeParcelable(newsImage, flags);
+        dest.writeString(newsArticleBody);
+        dest.writeString(newsURL);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<NewsModel> CREATOR = new Creator<NewsModel>() {
@@ -111,28 +132,19 @@ public class NewsModel implements Parcelable {
         this.newsImage = newsImage;
     }
 
+    public String getNewsArticleBody() {
+        return newsArticleBody;
+    }
+
+    public void setNewsArticleBody(String newsArticleBody) {
+        this.newsArticleBody = newsArticleBody;
+    }
+
     public String getNewsURL() {
         return newsURL;
     }
 
     public void setNewsURL(String newsURL) {
         this.newsURL = newsURL;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(newsId);
-        dest.writeString(newsTitle);
-        dest.writeString(newsSnippet);
-        dest.writeString(newsPressTime);
-        dest.writeString(newsAuthor);
-        dest.writeString(newsImageURL);
-        dest.writeParcelable(newsImage, flags);
-        dest.writeString(newsURL);
     }
 }

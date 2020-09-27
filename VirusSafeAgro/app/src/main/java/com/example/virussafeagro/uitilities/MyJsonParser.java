@@ -453,6 +453,23 @@ public class MyJsonParser {
                                                 }
                                             }
                                         }
+//                                        else if (pageMapKeyString.equals("article")){
+//                                            // find "article" key
+//                                            // get "article" json array and object
+//                                            JSONArray articleJsonArray = pageMapJsonObject.getJSONArray("article");
+//                                            JSONObject articleJsonObject = articleJsonArray.getJSONObject(0);
+//                                            // check "articlebody" key
+//                                            Iterator<String> cseImageKeys = articleJsonObject.keys();
+//                                            while(cseImageKeys.hasNext()){
+//                                                // find "articlebody" key
+//                                                if (cseImageKeys.next().equals("articlebody")){
+//                                                    // article body
+//                                                    String articleBodyString = articleJsonObject.getString("articlebody");
+//                                                    newsModel.setNewsArticleBody(articleBodyString);
+//                                                    break;
+//                                                }
+//                                            }
+//                                        }
                                     }
                                     break;
                                 }
