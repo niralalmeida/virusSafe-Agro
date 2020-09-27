@@ -123,7 +123,10 @@ public class DataConverter {
         if (delTime > 365 * 24 * 60 * 60) {
             int year = (int) (delTime / (365 * 24 * 60 * 60));
             shortString =  year > 1 ? year + " years ago" : year + " year ago";
-        } else if (delTime > 24 * 60 * 60) {
+        } else if (delTime > 24 * 60 * 60 * 30) {
+            int month = (int) (delTime / (24 * 60 * 60 * 30));
+            shortString =  month > 1 ? month + " months ago" : month + " month ago";
+        }else if (delTime > 24 * 60 * 60) {
             int day = (int) (delTime / (24 * 60 * 60));
             shortString =  day > 1 ? day + " days ago" : day + " day ago";
         } else if (delTime > 60 * 60) {
