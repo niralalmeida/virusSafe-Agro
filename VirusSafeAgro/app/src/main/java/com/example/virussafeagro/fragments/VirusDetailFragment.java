@@ -36,21 +36,23 @@ public class VirusDetailFragment extends Fragment {
     private VirusModel currentVirusModel;
     private String preventionMessage;
 
+    // all view except quiz button
     private LinearLayout virusDetailLinearLayout;
-
+    // top views
     private TextView virusFullNameTextView;
     private TextView virusAbbreviationTextView;
     private ImageView virusPictureImageView;
-
+    // top buttons
     private Button descriptionButton;
     private Button symptomsButton;
     private Button causesButton;
     private Button preventionButton;
-
+    // middle views
     private NestedScrollView middleContentNestedScrollView;
     private LinearLayout middleContentLinearLayout;
     private TextView middleContentTextView;
-
+    // bottom quiz button views
+    private LinearLayout takeQuizLinearLayout;
     private Button takeQuizButton;
 
     @Nullable
@@ -84,6 +86,7 @@ public class VirusDetailFragment extends Fragment {
 
         // show virus details
         MyAnimationBox.runFadeInAnimation(this.virusDetailLinearLayout, 1000);
+        MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
         this.showVirusDetails();
 
         // initialize description content / or prevention content
@@ -101,20 +104,17 @@ public class VirusDetailFragment extends Fragment {
 
     private void initializeViews() {
         this.virusDetailLinearLayout = view.findViewById(R.id.ll_virus_detail);
-
         this.virusFullNameTextView = view.findViewById(R.id.tv_full_name_virus_detail);
         this.virusAbbreviationTextView = view.findViewById(R.id.tv_abbreviation_virus_detail);
         this.virusPictureImageView = view.findViewById(R.id.img_top_pic_virus_detail);
-
         this.descriptionButton = view.findViewById(R.id.btn_description_virus_detail);
         this.symptomsButton = view.findViewById(R.id.btn_symptom_virus_detail);
         this.causesButton = view.findViewById(R.id.btn_causes_virus_detail);
         this.preventionButton = view.findViewById(R.id.btn_prevention_virus_detail);
-
         this.middleContentNestedScrollView = view.findViewById(R.id.nsv_middle_content_virus_detail);
         this.middleContentLinearLayout= view.findViewById(R.id.ll_middle_content_virus_detail);
         this.middleContentTextView = view.findViewById(R.id.tv_middle_content_virus_detail);
-
+        this.takeQuizLinearLayout = view.findViewById(R.id.ll_take_quiz_virus_detail);
         this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
     }
 
@@ -220,6 +220,10 @@ public class VirusDetailFragment extends Fragment {
         int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(this.currentVirusModel.getVirusId());
         Bitmap virusPictureBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), virusPictureDrawableId);
         this.virusPictureImageView.setImageBitmap(virusPictureBitmap);
+    }
+
+    private void setOnSwipeUpListener() {
+
     }
 
     private void setTakeQuizButtonOnClickListener() {
