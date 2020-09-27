@@ -15,15 +15,30 @@
             android:id="@+id/ll_all_view_news_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/shape_tile_text_container"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_article_body_news_detail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/colorWhite"/>
+            <!-- title -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_title_news_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/colorWhite"/>
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_article_body_news_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorWhite"/>
 
     </androidx.core.widget.NestedScrollView>
 

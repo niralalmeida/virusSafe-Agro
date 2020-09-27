@@ -37,7 +37,6 @@ public class NewsDetailFragment extends Fragment {
     private NewsDetailViewModel newsDetailViewModel;
 
     private LinearLayout allViewLinearLayout;
-//    private WebView newsWebView;
     private TextView newsArticleBodyTextView;
 
     public NewsDetailFragment() {
@@ -81,7 +80,6 @@ public class NewsDetailFragment extends Fragment {
 
     private void initializeViews() {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news_detail);
-//        this.newsWebView = view.findViewById(R.id.wv_news_detail);
         this.newsArticleBodyTextView = view.findViewById(R.id.tv_article_body_news_detail);
     }
 
