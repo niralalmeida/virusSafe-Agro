@@ -495,4 +495,12 @@ public class MyJsonParser {
         }
         return newsModelList;
     }
+
+    public static String newsArticleBodyHTMLParser(String resultText) throws JSONException {
+        String newsArticleBody = "good";
+        if (resultText.substring(0,15).equals("<!DOCTYPE html>")){
+
+        }
+        return newsArticleBody;
+    }
 }

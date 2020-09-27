@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToGoogleSearchAPI;
+import com.example.virussafeagro.uitilities.MyJsonParser;
 
 import java.util.List;
 
@@ -42,11 +43,10 @@ public class NewsDetailViewModel extends ViewModel {
 
         @Override
         protected String doInBackground(String... strings) {
-            String newsArticleBody = "good";
+            String newsArticleBody = "";
             try {
                 String newsItemHTMLResult = networkConnectionToGoogleSearchAPI.getNewsItemHTML(strings[0]);
-                // test
-                System.out.println(" ==== > [" +  newsItemHTMLResult + "]");
+                newsArticleBody = MyJsonParser.newsArticleBodyHTMLParser(newsItemHTMLResult);
             } catch (Exception e){
                 e.printStackTrace();
             }
