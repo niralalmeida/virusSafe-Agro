@@ -460,7 +460,15 @@ public class MyJsonParser {
 
                             // add the news model into the list
                             if (newsModel.getNewsTitle() != null) {
-                                newsModelList.add(newsModel);
+                                boolean isExist = false;
+                                for (NewsModel n : newsModelList){
+                                    if (n.getNewsSnippet().equals(newsModel.getNewsSnippet())){
+                                        isExist = true;
+                                    }
+                                }
+                                if (!isExist) {
+                                    newsModelList.add(newsModel);
+                                }
                             }
                         }
                         break;
