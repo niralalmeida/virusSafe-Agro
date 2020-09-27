@@ -24,6 +24,7 @@ import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.ListNewsAdapter;
 import com.example.virussafeagro.models.NewsModel;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.viewModel.NewsDetailViewModel;
 import com.example.virussafeagro.viewModel.NewsViewModel;
@@ -132,6 +133,27 @@ public class NewsDetailFragment extends Fragment {
     }
 
     private void showNewsContent() {
+        // news title
+        newsTitleTextView.setText(currentNewsModel.getNewsTitle());
+
+        // news author
+        newsAuthorTextView.setText(currentNewsModel.getNewsAuthor());
+
+        // time
+        String originalTimeString = currentNewsModel.getNewsPressTime(); // "yyyy-MM-dd'T'HH:mm:ssXXX"
+        String newsPostedTimeAgo = DataConverter.getShortTime(originalTimeString);
+            // news posted time ago
+        newsPostedTimeAgoTextView.setText(newsPostedTimeAgo);
+            // news press time
+        newsTimeTextView.setText(originalTimeString);
+
+        // image
+        newsImageView.setImageBitmap(currentNewsModel.getNewsImage());
+
+        // news snippet
+        newsSnippetTextView.setText(currentNewsModel.getNewsSnippet());
+
+        // news article body
         StringBuilder newsArticleBodyStringBuilder = new StringBuilder();
         for (String newsParagraph : currentNewsModel.getNewsArticleBody()) {
             newsArticleBodyStringBuilder.append(newsParagraph).append("\n\n");
