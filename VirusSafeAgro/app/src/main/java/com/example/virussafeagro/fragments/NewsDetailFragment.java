@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.ListNewsAdapter;
 import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.viewModel.NewsDetailViewModel;
 import com.example.virussafeagro.viewModel.NewsViewModel;
 
 import java.util.ArrayList;
@@ -32,9 +34,11 @@ public class NewsDetailFragment extends Fragment {
     private View view;
 
     private NewsModel currentNewsModel;
+    private NewsDetailViewModel newsDetailViewModel;
 
     private LinearLayout allViewLinearLayout;
-    private WebView newsWebView;
+//    private WebView newsWebView;
+    private TextView newsArticleBodyTextView;
 
     public NewsDetailFragment() {
     }
@@ -56,6 +60,8 @@ public class NewsDetailFragment extends Fragment {
         assert bundle != null;
         this.currentNewsModel = bundle.getParcelable("currentNewsModel");
 
+        // initialize news detail view model
+        this.initializeNewsDetailViewModel();
         // initialize Views
         this.initializeViews();
 
@@ -68,13 +74,24 @@ public class NewsDetailFragment extends Fragment {
 
         // show news views
         this.showNewsViews();
+
+        // find news article body
+        this.findNewsArticleBody();
+        // observe NewsArticleBody live data
+        this.observeNewsArticleBodyLD();
         // show news content
-        this.showNewsWebView();
+//        this.showNewsWebView();
+
     }
 
     private void initializeViews() {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news_detail);
-        this.newsWebView = view.findViewById(R.id.wv_news_detail);
+//        this.newsWebView = view.findViewById(R.id.wv_news_detail);
+        this.newsArticleBodyTextView = view.findViewById(R.id.tv_article_body_news_detail);
+    }
+
+    private void initializeNewsDetailViewModel() {
+        this.newsDetailViewModel = new ViewModelProvider(requireActivity()).get(NewsDetailViewModel.class);
     }
 
     // show News Views
@@ -82,15 +99,25 @@ public class NewsDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
     }
 
-    private void showNewsWebView() {
-        this.newsWebView.loadUrl(currentNewsModel.getNewsURL());
-        this.newsWebView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return super.shouldOverrideUrlLoading(view, url);
-            }
+    // find news article body
+    private void findNewsArticleBody() {
+        this.newsDetailViewModel.processFindingNewsArticleBody(currentNewsModel.getNewsURL());
+    }
+    private void observeNewsArticleBodyLD() {
+        this.newsDetailViewModel.getNewsArticleBodyLD().observe(getViewLifecycleOwner(), resultNewsArticleBody -> {
+            newsArticleBodyTextView.setText(resultNewsArticleBody);
         });
+    }
+
+    private void showNewsWebView() {
+//        this.newsWebView.loadUrl(currentNewsModel.getNewsURL());
+//        this.newsWebView.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                view.loadUrl(url);
+//                return super.shouldOverrideUrlLoading(view, url);
+//            }
+//        });
     }
 
     @Override

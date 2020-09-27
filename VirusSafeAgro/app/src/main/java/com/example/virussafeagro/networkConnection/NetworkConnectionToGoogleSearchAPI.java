@@ -49,4 +49,16 @@ public class NetworkConnectionToGoogleSearchAPI {
         return bitmap;
     }
 
+    public String getNewsItemHTML(String newsURL) {
+        String resultText = "";
+        Request request = new Request.Builder().url(newsURL).build();
+        try {
+            Response response = this.okHttpClient.newCall(request).execute();
+            resultText = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultText;
+    }
+
 }
