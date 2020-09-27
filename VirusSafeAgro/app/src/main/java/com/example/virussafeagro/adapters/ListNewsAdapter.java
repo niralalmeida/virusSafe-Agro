@@ -39,7 +39,6 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
         public LinearLayout allItemViewsLinearLayout;
         public TextView newsTitleTextView;
-        public TextView newsSnippetTextView;
         public TextView newsPressTimeTextView;
         public ImageView newsImageView;
 
@@ -48,7 +47,6 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
 
             this.allItemViewsLinearLayout = itemView.findViewById(R.id.ll_item_card_news_list);
             this.newsTitleTextView = itemView.findViewById(R.id.tv_title_news_list);
-            this.newsSnippetTextView = itemView.findViewById(R.id.tv_snippet_news_list);
             this.newsPressTimeTextView = itemView.findViewById(R.id.tv_time_news_list);
             this.newsImageView = itemView.findViewById(R.id.img_item_news_list);
         }
@@ -70,9 +68,6 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
 
         // news title
         viewHolder.newsTitleTextView.setText(newsModel.getNewsTitle());
-
-        // news snippet
-        viewHolder.newsSnippetTextView.setText(newsModel.getNewsSnippet());
 
         // news press time
         String originalTimeString = newsModel.getNewsPressTime(); // "yyyy-MM-dd'T'HH:mm:ssXXX"
