@@ -75,10 +75,9 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
         viewHolder.newsPressTimeTextView.setText(newsPressTime);
         
         // news image
-        viewHolder.newsImageView.setImageBitmap(newsModel.getNewsImage());
-
-        // news image
-        viewHolder.newsImageView.setImageBitmap(newsModel.getNewsImage());
+        if (newsModel.getNewsImage() != null ) {
+            viewHolder.newsImageView.setImageBitmap(newsModel.getNewsImage());
+        }
 
         // news tile on click listener
         viewHolder.allItemViewsLinearLayout.setOnClickListener(v -> newsTileClickListener.onNewsTileClick(position));

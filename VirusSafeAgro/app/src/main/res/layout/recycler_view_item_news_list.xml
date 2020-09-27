@@ -50,7 +50,7 @@
             <!-- h - line -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="35dp"
                 android:visibility="invisible"
                 android:layout_gravity="center_horizontal" />
 
