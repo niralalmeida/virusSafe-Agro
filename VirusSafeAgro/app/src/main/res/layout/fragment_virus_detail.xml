@@ -84,11 +84,11 @@
             <RelativeLayout
                 android:id="@+id/rl_swipe_up_virus_detail"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="200dp"
                 android:padding="10dp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:background="#80000000"
+                android:background="@drawable/shape_swipe_up_bg_virus_detail"
                 android:orientation="vertical">
 
                 <TextView
