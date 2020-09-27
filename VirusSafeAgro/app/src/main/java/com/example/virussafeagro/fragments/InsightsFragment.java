@@ -83,7 +83,11 @@ public class InsightsFragment extends Fragment {
     // news
     private void setNewsTileOnClickListener() {
         this.newsRelativeLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("fromInsights", true);
+            NewsFragment newsFragment = new NewsFragment();
+            newsFragment.setArguments(bundle);
+            FragmentOperator.replaceFragment(requireActivity(), newsFragment, AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
     }
 

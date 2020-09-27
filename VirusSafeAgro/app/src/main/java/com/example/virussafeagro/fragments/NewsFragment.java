@@ -42,8 +42,9 @@ import java.util.Objects;
 
 public class NewsFragment extends Fragment {
     private View view;
+    private boolean isFromInsights;
 
-    private List<NewsModel> newsModelList;
+    private static List<NewsModel> newsModelList;
     private NewsViewModel newsViewModel;
 
     private LinearLayout processBarLinearLayout;
@@ -73,14 +74,36 @@ public class NewsFragment extends Fragment {
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
 
-        // initialize Data
-        this.initializeData();
         // initialize view model
         this.initializeNewsViewModel();
         // initialize Views
         this.initializeViews();
-        this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.allViewLinearLayout.setVisibility(View.GONE);
+
+        // check where from
+        Bundle bundle = getArguments();
+        assert bundle != null;
+        isFromInsights = bundle.getBoolean("fromInsights");
+        if (isFromInsights){
+            // initialize Data
+            this.initializeData();
+            // show progress bar
+            this.processBarLinearLayout.setVisibility(View.VISIBLE);
+            this.allViewLinearLayout.setVisibility(View.GONE);
+
+            // find News List by Google search API
+            this.findNewsListByGoogleSearchAPI(1);
+        } else {
+            // show News Views
+            showNewsViews();
+            // show the news list
+            showNewsRecyclerView();
+            // set News Tile On Clicked Listener
+            setNewsTileOnClickedListener();
+            // show smart refresh layout
+            initializeHeaderAndFooter();
+            // observe the live data for refreshing or loading news
+            observeMore10NewsListLD();
+        }
 
         return this.view;
     }
@@ -89,8 +112,7 @@ public class NewsFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // find News List by Google search API
-        this.findNewsListByGoogleSearchAPI(1);
+
         // observe NewsListLD
         this.observeNewsListLD();
 
@@ -103,8 +125,8 @@ public class NewsFragment extends Fragment {
     }
 
     private void initializeData() {
-        this.newsModelList = new ArrayList<>();
-        this.loadingTimeNo = 1;
+        newsModelList = new ArrayList<>();
+        loadingTimeNo = 1;
     }
 
     private void initializeNewsViewModel() {
@@ -137,6 +159,8 @@ public class NewsFragment extends Fragment {
                     setNewsTileOnClickedListener();
                     // show smart refresh layout
                     initializeHeaderAndFooter();
+                    // observe the live data for refreshing or loading news
+                    observeMore10NewsListLD();
                 }
             }
         });
@@ -183,9 +207,6 @@ public class NewsFragment extends Fragment {
             loadingTimeNo++;
             refreshlayout.finishLoadMore(2000/*,false*/);// "false" means loading fail
         });
-
-        // observe the live data for refreshing or loading news
-        observeMore10NewsListLD();
     }
 
     // for loading more 10 news
@@ -220,5 +241,8 @@ public class NewsFragment extends Fragment {
         this.newsViewModel.getMore10NewsListLD().removeObservers(getViewLifecycleOwner());
         List<NewsModel> more10NewsList = new ArrayList<>();
         this.newsViewModel.setMore10NewsListLD(more10NewsList);
+
+        assert getArguments() != null;
+        getArguments().clear();
     }
 }
