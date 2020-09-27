@@ -468,7 +468,8 @@ public class MyJsonParser {
                             if (newsModel.getNewsTitle() != null) {
                                 boolean isExist = false;
                                 for (NewsModel n : newsModelList){
-                                    if (n.getNewsSnippet().equals(newsModel.getNewsSnippet())){
+                                    if (n.getNewsSnippet().equals(newsModel.getNewsSnippet())
+                                    || n.getNewsTitle().equals(newsModel.getNewsTitle())){
                                         isExist = true;
                                     }
                                 }
