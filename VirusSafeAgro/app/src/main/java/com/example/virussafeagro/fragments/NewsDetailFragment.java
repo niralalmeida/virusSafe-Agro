@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +39,16 @@ public class NewsDetailFragment extends Fragment {
     private NewsDetailViewModel newsDetailViewModel;
 
     private LinearLayout allViewLinearLayout;
+    // top
+    private RelativeLayout topRelativeLayout;
+    private ImageView newsImageView;
+    private LinearLayout topTextLinearLayout;
+    private TextView newsTitleTextView;
+    private TextView newsAuthorTextView;
+    private TextView newsPostedTimeAgoTextView;
+    private TextView newsTimeTextView;
+    // article
+    private TextView newsSnippetTextView;
     private TextView newsArticleBodyTextView;
 
     public NewsDetailFragment() {
@@ -63,6 +75,7 @@ public class NewsDetailFragment extends Fragment {
         this.initializeNewsDetailViewModel();
         // initialize Views
         this.initializeViews();
+        this.allViewLinearLayout.setVisibility(View.GONE);
 
         return this.view;
     }
@@ -80,16 +93,19 @@ public class NewsDetailFragment extends Fragment {
 
     private void initializeViews() {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news_detail);
+        this.topRelativeLayout = view.findViewById(R.id.rl_top_news_detail);
+        this.newsImageView = view.findViewById(R.id.img_top_pic_virus_detail);
+        this.topTextLinearLayout = view.findViewById(R.id.ll_top_text_news_detail);
+        this.newsTitleTextView = view.findViewById(R.id.tv_title_news_detail);
+        this.newsAuthorTextView = view.findViewById(R.id.tv_author_news_detail);
+        this.newsPostedTimeAgoTextView = view.findViewById(R.id.tv_posted_time_ago_news_detail);
+        this.newsTimeTextView = view.findViewById(R.id.tv_time_news_detail);
+        this.newsSnippetTextView = view.findViewById(R.id.tv_snippet_news_detail);
         this.newsArticleBodyTextView = view.findViewById(R.id.tv_article_body_news_detail);
     }
 
     private void initializeNewsDetailViewModel() {
         this.newsDetailViewModel = new ViewModelProvider(requireActivity()).get(NewsDetailViewModel.class);
-    }
-
-    // show News Views
-    private void showNewsViews() {
-        MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
     }
 
     // find news article body
@@ -107,6 +123,12 @@ public class NewsDetailFragment extends Fragment {
                 showNewsViews();
             }
         });
+    }
+
+
+    // show News Views
+    private void showNewsViews() {
+        MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
     }
 
     private void showNewsContent() {
