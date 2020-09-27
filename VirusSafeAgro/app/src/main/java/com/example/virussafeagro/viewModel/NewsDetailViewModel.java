@@ -10,23 +10,24 @@ import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToGoogleSearchAPI;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class NewsDetailViewModel extends ViewModel {
     private NetworkConnectionToGoogleSearchAPI networkConnectionToGoogleSearchAPI;
 
-    private MutableLiveData<String> newsArticleBodyLD;
+    private MutableLiveData<List<String>> newsArticleBodyLD;
 
     public NewsDetailViewModel() {
         this.networkConnectionToGoogleSearchAPI = new NetworkConnectionToGoogleSearchAPI();
         this.newsArticleBodyLD = new MutableLiveData<>();
     }
 
-    public void setNewsArticleBodyLD(String newsArticleBody) {
+    public void setNewsArticleBodyLD(List<String> newsArticleBody) {
         this.newsArticleBodyLD.setValue(newsArticleBody);
     }
-    public LiveData<String> getNewsArticleBodyLD() {
+    public LiveData<List<String>> getNewsArticleBodyLD() {
         return this.newsArticleBodyLD;
     }
 
@@ -39,11 +40,11 @@ public class NewsDetailViewModel extends ViewModel {
         }
     }
 
-    private class FindNewsArticleBodyAsyncTask extends AsyncTask<String, Void, String> {
+    private class FindNewsArticleBodyAsyncTask extends AsyncTask<String, Void, List<String>> {
 
         @Override
-        protected String doInBackground(String... strings) {
-            String newsArticleBody = "";
+        protected List<String> doInBackground(String... strings) {
+            List<String> newsArticleBody = new ArrayList<>();
             try {
                 String newsItemHTMLResult = networkConnectionToGoogleSearchAPI.getNewsItemHTML(strings[0]);
                 newsArticleBody = MyJsonParser.newsArticleBodyHTMLParser(newsItemHTMLResult);
@@ -54,7 +55,7 @@ public class NewsDetailViewModel extends ViewModel {
         }
 
         @Override
-        protected void onPostExecute(String resultNewsArticleBody) {
+        protected void onPostExecute(List<String> resultNewsArticleBody) {
             setNewsArticleBodyLD(resultNewsArticleBody);
         }
     }

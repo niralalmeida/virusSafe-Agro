@@ -99,25 +99,32 @@ public class NewsDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
     }
 
+    // show News title, time, author, snippet, image
+    private void showNewsContentWithoutArticle() {
+
+    }
+
     // find news article body
     private void findNewsArticleBody() {
         this.newsDetailViewModel.processFindingNewsArticleBody(currentNewsModel.getNewsURL());
     }
     private void observeNewsArticleBodyLD() {
         this.newsDetailViewModel.getNewsArticleBodyLD().observe(getViewLifecycleOwner(), resultNewsArticleBody -> {
-            newsArticleBodyTextView.setText(resultNewsArticleBody);
+            if(resultNewsArticleBody != null && (!resultNewsArticleBody.isEmpty())) {
+                currentNewsModel.setNewsArticleBody(resultNewsArticleBody);
+
+                // show news article body
+                showNewsArticleBody();
+            }
         });
     }
 
-    private void showNewsWebView() {
-//        this.newsWebView.loadUrl(currentNewsModel.getNewsURL());
-//        this.newsWebView.setWebViewClient(new WebViewClient(){
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                view.loadUrl(url);
-//                return super.shouldOverrideUrlLoading(view, url);
-//            }
-//        });
+    private void showNewsArticleBody() {
+        StringBuilder newsArticleBodyStringBuilder = new StringBuilder();
+        for (String newsParagraph : currentNewsModel.getNewsArticleBody()) {
+            newsArticleBodyStringBuilder.append(newsParagraph).append("\n\n");
+        }
+        newsArticleBodyTextView.setText(newsArticleBodyStringBuilder.toString());
     }
 
     @Override

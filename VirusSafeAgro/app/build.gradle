@@ -55,6 +55,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.5.0'
     // GSON
     implementation 'com.google.code.gson:gson:2.8.5'
+    // jsoup for parse HTML
+    implementation 'org.jsoup:jsoup:1.11.2'
 
     // An external camera library
     implementation project(':paracamera')

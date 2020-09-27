@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 public class NewsModel implements Parcelable {
     private int newsId;
     private String newsTitle;
@@ -12,7 +14,7 @@ public class NewsModel implements Parcelable {
     private String newsAuthor;
     private String newsImageURL;
     private Bitmap newsImage;
-    private String newsArticleBody;
+    private List<String> newsArticleBody;
     private String newsURL;
 
     public NewsModel() {
@@ -22,7 +24,7 @@ public class NewsModel implements Parcelable {
         this.newsSnippet = newsSnippet;
     }
 
-    public NewsModel(int newsId, String newsTitle, String newsSnippet, String newsPressTime, String newsAuthor, String newsImageURL, Bitmap newsImage, String newsArticleBody, String newsURL) {
+    public NewsModel(int newsId, String newsTitle, String newsSnippet, String newsPressTime, String newsAuthor, String newsImageURL, Bitmap newsImage, List<String> newsArticleBody, String newsURL) {
         this.newsId = newsId;
         this.newsTitle = newsTitle;
         this.newsSnippet = newsSnippet;
@@ -42,7 +44,7 @@ public class NewsModel implements Parcelable {
         newsAuthor = in.readString();
         newsImageURL = in.readString();
         newsImage = in.readParcelable(Bitmap.class.getClassLoader());
-        newsArticleBody = in.readString();
+        newsArticleBody = in.createStringArrayList();
         newsURL = in.readString();
     }
 
@@ -55,7 +57,7 @@ public class NewsModel implements Parcelable {
         dest.writeString(newsAuthor);
         dest.writeString(newsImageURL);
         dest.writeParcelable(newsImage, flags);
-        dest.writeString(newsArticleBody);
+        dest.writeStringList(newsArticleBody);
         dest.writeString(newsURL);
     }
 
@@ -132,11 +134,11 @@ public class NewsModel implements Parcelable {
         this.newsImage = newsImage;
     }
 
-    public String getNewsArticleBody() {
+    public List<String> getNewsArticleBody() {
         return newsArticleBody;
     }
 
-    public void setNewsArticleBody(String newsArticleBody) {
+    public void setNewsArticleBody(List<String> newsArticleBody) {
         this.newsArticleBody = newsArticleBody;
     }
 

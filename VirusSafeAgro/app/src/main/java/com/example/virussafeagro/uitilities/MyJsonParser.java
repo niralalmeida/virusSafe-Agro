@@ -1,6 +1,5 @@
 package com.example.virussafeagro.uitilities;
 
-import android.graphics.Bitmap;
 
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
@@ -19,6 +18,10 @@ import com.example.virussafeagro.models.VirusSymptomModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -453,23 +456,6 @@ public class MyJsonParser {
                                                 }
                                             }
                                         }
-//                                        else if (pageMapKeyString.equals("article")){
-//                                            // find "article" key
-//                                            // get "article" json array and object
-//                                            JSONArray articleJsonArray = pageMapJsonObject.getJSONArray("article");
-//                                            JSONObject articleJsonObject = articleJsonArray.getJSONObject(0);
-//                                            // check "articlebody" key
-//                                            Iterator<String> cseImageKeys = articleJsonObject.keys();
-//                                            while(cseImageKeys.hasNext()){
-//                                                // find "articlebody" key
-//                                                if (cseImageKeys.next().equals("articlebody")){
-//                                                    // article body
-//                                                    String articleBodyString = articleJsonObject.getString("articlebody");
-//                                                    newsModel.setNewsArticleBody(articleBodyString);
-//                                                    break;
-//                                                }
-//                                            }
-//                                        }
                                     }
                                     break;
                                 }
@@ -496,10 +482,15 @@ public class MyJsonParser {
         return newsModelList;
     }
 
-    public static String newsArticleBodyHTMLParser(String resultText) throws JSONException {
-        String newsArticleBody = "good";
+    public static List<String> newsArticleBodyHTMLParser(String resultText){
+        List<String> newsArticleBody = new ArrayList<>();
         if (resultText.substring(0,15).equals("<!DOCTYPE html>")){
-
+            Document doc = Jsoup.parse(resultText);
+            Element div = doc.select("div[itemprop=articleBody]").get(0);
+            Elements articleParagraphList = div.select("p[class=story-paragraph]");
+            for (Element articleParagraph : articleParagraphList) {
+                newsArticleBody.add(articleParagraph.childNode(0).toString());
+            }
         }
         return newsArticleBody;
     }
