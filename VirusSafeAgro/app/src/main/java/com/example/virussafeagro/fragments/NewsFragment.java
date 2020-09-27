@@ -69,7 +69,7 @@ public class NewsFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_news, container, false);
 
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("News");
+        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Agricultural News in VIC");
 
         // show back button
         MainActivity.showTopActionBar((MainActivity)requireActivity());
