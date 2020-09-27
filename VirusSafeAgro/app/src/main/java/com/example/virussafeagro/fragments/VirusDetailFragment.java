@@ -98,9 +98,10 @@ public class VirusDetailFragment extends Fragment {
         // set take quiz button on click listener
         this.setTakeQuizButtonOnClickListener();
 
-        // show virus details
+        // show all virus details views
         MyAnimationBox.runFadeInAnimation(this.virusDetailLinearLayout, 1000);
         MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
+        MyAnimationBox.runRepeatedAnimationBottomToTop(this.swipeUpImageView, 1000);
         this.showVirusDetails();
 
         // set top buttons listener
@@ -242,7 +243,7 @@ public class VirusDetailFragment extends Fragment {
                 startY = event.getY();
             }
             // when move
-            if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
                 currentY = event.getY();
                 if (currentY < startY) {
                     // hide the swipe up
