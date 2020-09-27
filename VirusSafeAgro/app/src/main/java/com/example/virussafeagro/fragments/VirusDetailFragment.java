@@ -245,7 +245,7 @@ public class VirusDetailFragment extends Fragment {
             // when move
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 currentY = event.getY();
-                if (currentY < startY) {
+                if (currentY <= startY) {
                     // hide the swipe up
                     MyAnimationBox.runFoldViewAnimation(swipeUpRelativeLayout,swipeUpRelativeLayout.getHeight(), 0, 500);
                     // fold the top image

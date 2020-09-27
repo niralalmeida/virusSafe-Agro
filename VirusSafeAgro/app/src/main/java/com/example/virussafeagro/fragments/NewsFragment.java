@@ -203,17 +203,6 @@ public class NewsFragment extends Fragment {
                     MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);
                 } else {
                     listNewsAdapter.addNewsItem(resultMore10NewsList);
-//                    newsModelList.addAll(resultMore10NewsList);
-//                    recyclerViewForNews.removeAllViews();
-//
-//                    // show News Views
-//                    showNewsViews();
-//                    // show the news list
-//                    showNewsRecyclerView();
-//                    // set News Tile On Clicked Listener
-//                    setNewsTileOnClickedListener();
-//                    // show smart refresh layout
-//                    initializeHeaderAndFooter();
                 }
             }
         });
@@ -227,5 +216,9 @@ public class NewsFragment extends Fragment {
         this.newsViewModel.getNewsListLD().removeObservers(getViewLifecycleOwner());
         List<NewsModel> newsModelList = new ArrayList<>();
         this.newsViewModel.setNewsListLD(newsModelList);
+
+        this.newsViewModel.getMore10NewsListLD().removeObservers(getViewLifecycleOwner());
+        List<NewsModel> more10NewsList = new ArrayList<>();
+        this.newsViewModel.setMore10NewsListLD(more10NewsList);
     }
 }
