@@ -489,7 +489,7 @@ public class MyJsonParser {
             Element div = doc.select("div[itemprop=articleBody]").get(0);
             Elements articleParagraphList = div.select("p[class=story-paragraph]");
             for (Element articleParagraph : articleParagraphList) {
-                if (!articleParagraph.childNode(0).toString().contains("<b>")) {
+                if ((!articleParagraph.childNode(0).toString().contains("<b>")) && (!articleParagraph.childNode(0).toString().contains("<em"))) {
                     newsArticleBody.add(articleParagraph.childNode(0).toString());
                 }
             }

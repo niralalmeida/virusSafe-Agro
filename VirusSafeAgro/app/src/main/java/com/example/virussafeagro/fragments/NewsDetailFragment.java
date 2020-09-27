@@ -72,15 +72,10 @@ public class NewsDetailFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show news views
-        this.showNewsViews();
-
         // find news article body
         this.findNewsArticleBody();
         // observe NewsArticleBody live data
         this.observeNewsArticleBodyLD();
-        // show news content
-//        this.showNewsWebView();
 
     }
 
@@ -99,11 +94,6 @@ public class NewsDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
     }
 
-    // show News title, time, author, snippet, image
-    private void showNewsContentWithoutArticle() {
-
-    }
-
     // find news article body
     private void findNewsArticleBody() {
         this.newsDetailViewModel.processFindingNewsArticleBody(currentNewsModel.getNewsURL());
@@ -114,12 +104,14 @@ public class NewsDetailFragment extends Fragment {
                 currentNewsModel.setNewsArticleBody(resultNewsArticleBody);
 
                 // show news article body
-                showNewsArticleBody();
+                showNewsContent();
+                // show news views
+                showNewsViews();
             }
         });
     }
 
-    private void showNewsArticleBody() {
+    private void showNewsContent() {
         StringBuilder newsArticleBodyStringBuilder = new StringBuilder();
         for (String newsParagraph : currentNewsModel.getNewsArticleBody()) {
             newsArticleBodyStringBuilder.append(newsParagraph).append("\n\n");
@@ -131,5 +123,8 @@ public class NewsDetailFragment extends Fragment {
     public void onPause() {
         super.onPause();
         this.allViewLinearLayout.setVisibility(View.GONE);
+
+        this.newsDetailViewModel.getNewsArticleBodyLD().removeObservers(getViewLifecycleOwner());
+        this.newsDetailViewModel.setNewsArticleBodyLD(new ArrayList<>());
     }
 }
