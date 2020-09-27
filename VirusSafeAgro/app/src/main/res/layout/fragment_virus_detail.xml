@@ -18,22 +18,22 @@
         <RelativeLayout
             android:id="@+id/rl_top_part_virus_detail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <!-- Virus Image -->
             <LinearLayout
                 android:id="@+id/ll_top_pic_virus_detail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/img_top_pic_virus_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:adjustViewBounds="false"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/one" />
 
             </LinearLayout>
@@ -80,71 +80,71 @@
 
             </LinearLayout>
 
-            <!-- Buttons for Virus Content -->
-            <LinearLayout
-                android:id="@+id/ll_button_list_virus_detail"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_below="@+id/ll_top_pic_virus_detail"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_description_virus_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:background="@drawable/selector_btn_bg_virus_details"
-                    android:textColor="@drawable/selector_btn_text_virus_details"
-                    android:textStyle="bold"
-                    android:text="Description" />
-
-                <Button
-                    android:id="@+id/btn_symptom_virus_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.9"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:gravity="center"
-                    android:background="@drawable/selector_btn_bg_virus_details"
-                    android:textColor="@drawable/selector_btn_text_virus_details"
-                    android:textStyle="bold"
-                    android:text="Symptoms" />
-
-                <Button
-                    android:id="@+id/btn_causes_virus_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:gravity="center"
-                    android:background="@drawable/selector_btn_bg_virus_details"
-                    android:textColor="@drawable/selector_btn_text_virus_details"
-                    android:textStyle="bold"
-                    android:text="Causes" />
-
-                <Button
-                    android:id="@+id/btn_prevention_virus_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:gravity="center"
-                    android:background="@drawable/selector_btn_bg_virus_details"
-                    android:textColor="@drawable/selector_btn_text_virus_details"
-                    android:textStyle="bold"
-                    android:text="Prevention" />
-
-            </LinearLayout>
-
         </RelativeLayout>
+
+        <!-- Buttons for Virus Content -->
+        <LinearLayout
+            android:id="@+id/ll_button_list_virus_detail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_description_virus_detail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/selector_btn_bg_virus_details"
+                android:textColor="@drawable/selector_btn_text_virus_details"
+                android:textStyle="bold"
+                android:text="Description" />
+
+            <Button
+                android:id="@+id/btn_symptom_virus_detail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:background="@drawable/selector_btn_bg_virus_details"
+                android:textColor="@drawable/selector_btn_text_virus_details"
+                android:textStyle="bold"
+                android:text="Symptoms" />
+
+            <Button
+                android:id="@+id/btn_causes_virus_detail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:background="@drawable/selector_btn_bg_virus_details"
+                android:textColor="@drawable/selector_btn_text_virus_details"
+                android:textStyle="bold"
+                android:text="Causes" />
+
+            <Button
+                android:id="@+id/btn_prevention_virus_detail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:background="@drawable/selector_btn_bg_virus_details"
+                android:textColor="@drawable/selector_btn_text_virus_details"
+                android:textStyle="bold"
+                android:text="Prevention" />
+
+        </LinearLayout>
 
         <!-- Middle Part -->
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nsv_middle_content_virus_detail"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -157,7 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_tile_virus_detail_contents"
-                android:padding="5dp"
+                android:paddingTop="10dp"
                 android:orientation="vertical">
 
                 <TextView

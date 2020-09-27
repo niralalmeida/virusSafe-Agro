@@ -42,11 +42,13 @@ public class VirusDetailFragment extends Fragment {
     // all view except quiz button
     private LinearLayout virusDetailLinearLayout;
     // top views
+    private RelativeLayout topRelativeLayout;
     private LinearLayout virusFullNameLinearLayout;
     private TextView virusFullNameTextView;
     private TextView virusAbbreviationTextView;
     private ImageView virusPictureImageView;
     // top buttons
+    private LinearLayout topButtonLinearLayout;
     private Button descriptionButton;
     private Button symptomsButton;
     private Button causesButton;
@@ -101,14 +103,14 @@ public class VirusDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
         this.showVirusDetails();
 
-        // initialize description content / or prevention content
-        if (this.preventionMessage != null){
-            // show prevention
-            this.showPreventionContent();
-        } else {
-            // show description
-            this.showDescriptionContent();
-        }
+//        // initialize description content / or prevention content
+//        if (this.preventionMessage != null){
+//            // show prevention
+//            this.showPreventionContent();
+//        } else {
+//            // show description
+//            this.showDescriptionContent();
+//        }
 
         // set top buttons listener
         this.setTopButtonsListener();
@@ -118,10 +120,12 @@ public class VirusDetailFragment extends Fragment {
 
     private void initializeViews() {
         this.virusDetailLinearLayout = view.findViewById(R.id.ll_virus_detail);
+        this.topRelativeLayout = view.findViewById(R.id.rl_top_part_virus_detail);
         this.virusFullNameLinearLayout = view.findViewById(R.id.ll_full_name_virus_detail);
         this.virusFullNameTextView = view.findViewById(R.id.tv_full_name_virus_detail);
         this.virusAbbreviationTextView = view.findViewById(R.id.tv_abbreviation_virus_detail);
         this.virusPictureImageView = view.findViewById(R.id.img_top_pic_virus_detail);
+        this.topButtonLinearLayout = view.findViewById(R.id.ll_button_list_virus_detail);
         this.descriptionButton = view.findViewById(R.id.btn_description_virus_detail);
         this.symptomsButton = view.findViewById(R.id.btn_symptom_virus_detail);
         this.causesButton = view.findViewById(R.id.btn_causes_virus_detail);
@@ -251,6 +255,17 @@ public class VirusDetailFragment extends Fragment {
                 currentY = event.getY();
                 if (currentY < startY) {
                     MyAnimationBox.runFoldViewAnimation(virusPictureImageView, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 1000);
+                    MyAnimationBox.runFoldViewAnimation(topRelativeLayout, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 1000);
+                    middleContentNestedScrollView.setVisibility(View.VISIBLE);
+
+                    // initialize description content / or prevention content
+                    if (this.preventionMessage != null){
+                        // show prevention
+                        this.showPreventionContent();
+                    } else {
+                        // show description
+                        this.showDescriptionContent();
+                    }
                 }
             }
             return true;
