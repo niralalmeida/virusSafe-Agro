@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
@@ -68,6 +69,7 @@ public class VirusDetailFragment extends Fragment {
     // coordinate
     private float startY;
     private float currentY;
+    private boolean isVirusDetailsShown;
 
     @Nullable
     @Override
@@ -239,30 +241,49 @@ public class VirusDetailFragment extends Fragment {
     private void setOnSwipeUpListener() {
         view.setOnTouchListener((v, event) -> {
             // when press
-            if(event.getAction() == MotionEvent.ACTION_DOWN){
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 startY = event.getY();
             }
             // when move
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 currentY = event.getY();
-                if (currentY <= startY) {
-                    // hide the swipe up
-                    MyAnimationBox.runFoldViewAnimation(swipeUpRelativeLayout,swipeUpRelativeLayout.getHeight(), 0, 500);
-                    // fold the top image
-                    MyAnimationBox.runFoldViewAnimation(virusPictureImageView, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 1000);
-                    MyAnimationBox.runFoldViewAnimation(topRelativeLayout, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 1000);
-                    middleContentNestedScrollView.setVisibility(View.VISIBLE);
 
-                    // initialize description content / or prevention content
-                    if (this.preventionMessage != null){
-                        // show prevention
-                        this.showPreventionContent();
-                    } else {
-                        // show description
-                        this.showDescriptionContent();
+                // show the virus details if it is not shown
+                if (!isVirusDetailsShown) {
+                    // when move up
+                    if (currentY <= startY) {
+                        isVirusDetailsShown = true;
+                        // hide the swipe up
+                        MyAnimationBox.runFoldViewAnimation(swipeUpRelativeLayout, swipeUpRelativeLayout.getHeight(), 0, 300);
+                        // fold the top image
+                        MyAnimationBox.runFoldViewAnimation(virusPictureImageView, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 800);
+                        MyAnimationBox.runFoldViewAnimation(topRelativeLayout, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 800);
+                        middleContentNestedScrollView.setVisibility(View.VISIBLE);
+
+                        // initialize description content / or prevention content
+                        if (this.preventionMessage != null) {
+                            // show prevention
+                            this.showPreventionContent();
+                        } else {
+                            // show description
+                            this.showDescriptionContent();
+                        }
+                    }
+                }
+                else {
+                    // when move down
+                    if (startY < virusFullNameLinearLayout.getHeight() && currentY >= startY) {
+                        isVirusDetailsShown = false;
+                        // fold the top image
+                        MyAnimationBox.runFoldViewAnimation(virusPictureImageView, virusPictureImageView.getHeight(), virusDetailLinearLayout.getHeight(), 800);
+                        MyAnimationBox.runFoldViewAnimation(topRelativeLayout, virusPictureImageView.getHeight(), virusDetailLinearLayout.getHeight(), 800);
+                        middleContentNestedScrollView.setVisibility(View.GONE);
+                        // show the swipe up
+                        MyAnimationBox.runFoldViewAnimation(swipeUpRelativeLayout, swipeUpRelativeLayout.getHeight(), 200, 300);
                     }
                 }
             }
+
             return true;
         });
     }
