@@ -77,6 +77,8 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
         // news image
         if (newsModel.getNewsImage() != null ) {
             viewHolder.newsImageView.setImageBitmap(newsModel.getNewsImage());
+        } else {
+            newsModel.setNewsImage(DataConverter.drawableImageToBitmap(fragmentActivity, R.drawable.agriculture));
         }
 
         // news tile on click listener
