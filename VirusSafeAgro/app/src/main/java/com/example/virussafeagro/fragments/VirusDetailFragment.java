@@ -42,6 +42,7 @@ public class VirusDetailFragment extends Fragment {
     // all view except quiz button
     private LinearLayout virusDetailLinearLayout;
     // top views
+    private LinearLayout virusFullNameLinearLayout;
     private TextView virusFullNameTextView;
     private TextView virusAbbreviationTextView;
     private ImageView virusPictureImageView;
@@ -117,6 +118,7 @@ public class VirusDetailFragment extends Fragment {
 
     private void initializeViews() {
         this.virusDetailLinearLayout = view.findViewById(R.id.ll_virus_detail);
+        this.virusFullNameLinearLayout = view.findViewById(R.id.ll_full_name_virus_detail);
         this.virusFullNameTextView = view.findViewById(R.id.tv_full_name_virus_detail);
         this.virusAbbreviationTextView = view.findViewById(R.id.tv_abbreviation_virus_detail);
         this.virusPictureImageView = view.findViewById(R.id.img_top_pic_virus_detail);
@@ -248,7 +250,7 @@ public class VirusDetailFragment extends Fragment {
                 currentX = event.getX();
                 currentY = event.getY();
                 if (currentY < startY) {
-                    System.out.println("up!!!!");
+                    MyAnimationBox.runFoldViewAnimation(virusPictureImageView, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 1000);
                 }
             }
             return true;
