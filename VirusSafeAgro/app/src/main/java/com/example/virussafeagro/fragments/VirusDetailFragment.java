@@ -1,9 +1,11 @@
 package com.example.virussafeagro.fragments;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,6 +58,12 @@ public class VirusDetailFragment extends Fragment {
     private LinearLayout takeQuizLinearLayout;
     private Button takeQuizButton;
 
+    // coordinate
+    private float startX;
+    private float startY;
+    private float currentX;
+    private float currentY;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,6 +82,8 @@ public class VirusDetailFragment extends Fragment {
         assert bundle != null;
         this.currentVirusModel = bundle.getParcelable("currentVirusModel");
         this.preventionMessage = bundle.getString("prevention");
+
+
 
         return this.view;
     }
@@ -100,6 +111,8 @@ public class VirusDetailFragment extends Fragment {
 
         // set top buttons listener
         this.setTopButtonsListener();
+
+        setOnSwipeUpListener();
     }
 
     private void initializeViews() {
@@ -222,8 +235,24 @@ public class VirusDetailFragment extends Fragment {
         this.virusPictureImageView.setImageBitmap(virusPictureBitmap);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setOnSwipeUpListener() {
-
+        view.setOnTouchListener((v, event) -> {
+            // when press
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+                startX = event.getX();
+                startY = event.getY();
+            }
+            // when move
+            if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                currentX = event.getX();
+                currentY = event.getY();
+                if (currentY < startY) {
+                    System.out.println("up!!!!");
+                }
+            }
+            return true;
+        });
     }
 
     private void setTakeQuizButtonOnClickListener() {
