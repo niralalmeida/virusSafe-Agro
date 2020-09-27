@@ -10,7 +10,7 @@ public class NewsModel implements Parcelable {
     private int newsId;
     private String newsTitle;
     private String newsSnippet;
-    private String newsPressTime;
+    private String newsPressTime; // "yyyy-MM-dd'T'HH:mm:ssXXX" --> "dd MMMM yyyy, HH:mm"
     private String newsAuthor;
     private String newsImageURL;
     private Bitmap newsImage;

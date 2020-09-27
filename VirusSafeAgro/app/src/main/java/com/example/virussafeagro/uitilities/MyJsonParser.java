@@ -424,7 +424,10 @@ public class MyJsonParser {
                                                 // title
                                                 String newsTitle = metaTagsJsonObject.getString("title");
                                                 // news press time
-                                                String newsPressTime = metaTagsJsonObject.getString("article:published_time");
+                                                String rawNewsPressTime = metaTagsJsonObject.getString("article:published_time");
+                                                String originalTimePattern = "yyyy-MM-dd'T'HH:mm:ssXXX";
+                                                String targetTimePattern = "dd MMMM yyyy, HH:mm";
+                                                String newsPressTime = DataConverter.newsTimeToStandardFormat(rawNewsPressTime, originalTimePattern, targetTimePattern);
                                                 // news author
                                                 String newsAuthor = metaTagsJsonObject.getString("author");
                                                 // news Snippet
