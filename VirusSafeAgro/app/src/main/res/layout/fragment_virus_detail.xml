@@ -7,8 +7,10 @@
     android:orientation="vertical"
     tools:context=".fragments.VirusDetailFragment">
 
-    <RelativeLayout
-        android:id="@+id/rl_virus_detail"
+    <LinearLayout
+        android:id="@+id/ll_virus_detail"
+        android:orientation="vertical"
+        android:layout_above="@+id/ll_take_quiz_virus_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -146,7 +148,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/rl_top_part_virus_detail"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp">
 
@@ -171,25 +172,26 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <!-- Bottom Part -->
-        <LinearLayout
+    </LinearLayout>
+
+    <!-- Bottom Part -->
+    <LinearLayout
+        android:id="@+id/ll_take_quiz_virus_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_take_quiz_virus_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical">
+            android:background="@drawable/ripple_btn_quiz_virus_detail"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:text="@string/recycler_view_quiz_button" />
 
-            <Button
-                android:id="@+id/btn_take_quiz_virus_detail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/ripple_btn_quiz_virus_detail"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                android:text="@string/recycler_view_quiz_button" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

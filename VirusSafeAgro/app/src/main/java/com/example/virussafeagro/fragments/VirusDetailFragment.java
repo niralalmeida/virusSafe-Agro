@@ -36,7 +36,7 @@ public class VirusDetailFragment extends Fragment {
     private VirusModel currentVirusModel;
     private String preventionMessage;
 
-    private RelativeLayout virusDetailRelativeLayout;
+    private LinearLayout virusDetailLinearLayout;
 
     private TextView virusFullNameTextView;
     private TextView virusAbbreviationTextView;
@@ -83,7 +83,7 @@ public class VirusDetailFragment extends Fragment {
         this.setTakeQuizButtonOnClickListener();
 
         // show virus details
-        MyAnimationBox.runFadeInAnimation(this.virusDetailRelativeLayout, 1000);
+        MyAnimationBox.runFadeInAnimation(this.virusDetailLinearLayout, 1000);
         this.showVirusDetails();
 
         // initialize description content / or prevention content
@@ -100,7 +100,7 @@ public class VirusDetailFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.virusDetailRelativeLayout = view.findViewById(R.id.rl_virus_detail);
+        this.virusDetailLinearLayout = view.findViewById(R.id.ll_virus_detail);
 
         this.virusFullNameTextView = view.findViewById(R.id.tv_full_name_virus_detail);
         this.virusAbbreviationTextView = view.findViewById(R.id.tv_abbreviation_virus_detail);
