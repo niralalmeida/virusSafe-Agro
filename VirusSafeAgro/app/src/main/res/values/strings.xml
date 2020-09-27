@@ -108,4 +108,8 @@
     <string name="text_error_title_virus_check_result">[ Error Message ]:</string>
     <string name="text_error_virus_check_result">Something wrong with the server! Please try again!</string>
     <string name="text_ill_virus_check_result">Your tomato is infected by :</string>
+
+
+    <!-- general tool -->
+    <string name="dot_with_space">&#160;•&#160;</string>
 </resources>

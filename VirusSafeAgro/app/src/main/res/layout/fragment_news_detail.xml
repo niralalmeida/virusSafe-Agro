@@ -5,43 +5,208 @@
     android:orientation="vertical"
     android:background="@color/colorPrimaryDarkBG"
     tools:context=".fragments.NewsDetailFragment">
-
-    <androidx.core.widget.NestedScrollView
+    
+    <LinearLayout
+        android:id="@+id/ll_all_view_news_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/ll_all_view_news_detail"
+        <!-- top part -->
+        <RelativeLayout
+            android:id="@+id/rl_top_news_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/shape_tile_text_container"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- title -->
+            <!-- image -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_image_news_detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_title_news_detail"
+                <ImageView
+                    android:id="@+id/img_top_pic_virus_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/colorWhite"/>
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/agriculture" />
 
             </LinearLayout>
 
-        </LinearLayout>
+            <!-- title + author + time -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignBottom="@id/ll_image_news_detail"
+                android:background="@drawable/shape_title_gradient_container_news_detail"
+                android:padding="10dp"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_article_body_news_detail"
+                <!-- title -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_title_news_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="30sp"
+                        android:text="XXXX XXXX"/>
+
+                </LinearLayout>
+
+                <!-- author -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/author"
+                        android:textSize="13sp"
+                        android:text="Article By - "/>
+
+                    <TextView
+                        android:id="@+id/tv_author_news_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/author"
+                        android:textSize="13sp"
+                        android:text="Hoy"/>
+
+                </LinearLayout>
+
+                <!-- h-line -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/top_line"/>
+
+                <!-- time -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/author"
+                        android:textSize="13sp"
+                        android:text="Posted - "/>
+
+                    <TextView
+                        android:id="@+id/tv_posted_time_ago_news_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/author"
+                        android:textSize="13sp"
+                        android:text="3 hours ago"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/author"
+                        android:textSize="13sp"
+                        android:text="@string/dot_with_space"/>
+
+                    <TextView
+                        android:id="@+id/tv_time_news_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/author"
+                        android:textSize="13sp"
+                        android:text="2 May 2020, 10:30"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!-- article part -->
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/colorWhite"/>
+            android:layout_height="wrap_content">
 
-    </androidx.core.widget.NestedScrollView>
+            <!-- snippet + article -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:orientation="vertical">
 
+                <!-- snippet -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
+                    <!-- v - line -->
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:alpha="0.3"
+                        android:background="@color/colorTransparentWhiteForText"
+                        android:layout_gravity="center_vertical" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginEnd="7dp"
+                        android:paddingBottom="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_snippet_news_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/author"
+                            android:textSize="18sp"
+                            android:text="xxxx xxxx xxxx"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- article body -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_article_body_news_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="23sp"
+                        android:textColor="@color/colorWhite"
+                        android:text="xxxx xxxx xxxx xxxx xxxx xxxx"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
 </LinearLayout>
