@@ -49,8 +49,8 @@ public class NewsDetailFragment extends Fragment {
     private TextView newsTimeTextView;
     // article
     private NestedScrollView newsArticleNestedScrollView;
-    private TextView newsSnippetTextView;
-    private TextView newsArticleBodyTextView;
+    private com.uncopt.android.widget.text.justify.JustifiedTextView newsSnippetTextView;
+    private com.uncopt.android.widget.text.justify.JustifiedTextView newsArticleBodyTextView;
 
     // for gesture
     private boolean isNewsDetailViewShown;

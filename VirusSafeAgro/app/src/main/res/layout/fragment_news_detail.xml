@@ -187,7 +187,7 @@
 
                         <!-- v - line -->
                         <View
-                            android:layout_width="3dp"
+                            android:layout_width="5dp"
                             android:layout_height="match_parent"
                             android:alpha="0.3"
                             android:background="@color/colorTransparentWhiteForText"
@@ -202,7 +202,7 @@
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.uncopt.android.widget.text.justify.JustifiedTextView
                                 android:id="@+id/tv_snippet_news_detail"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -222,7 +222,7 @@
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
                             android:id="@+id/tv_article_body_news_detail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
