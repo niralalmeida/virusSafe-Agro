@@ -90,8 +90,17 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
         return this.newsModelList.size();
     }
 
-    public void addNewsItem(List<NewsModel> newsModelList) {
-        this.newsModelList.addAll(newsModelList);
+    public void addNewsItem(List<NewsModel> moreNewsModelList) {
+        for(int i = moreNewsModelList.size() - 1; i >= 0; i--){
+            NewsModel moreNewsModel = moreNewsModelList.get(i);
+            for (NewsModel newsModel : this.newsModelList){
+                if (moreNewsModel.getNewsTitle().equals(newsModel.getNewsTitle())
+                || moreNewsModel.getNewsSnippet().equals(newsModel.getNewsSnippet())){
+                    moreNewsModelList.remove(moreNewsModel);
+                }
+            }
+        }
+        this.newsModelList.addAll(moreNewsModelList);
         notifyDataSetChanged();
     }
 }
