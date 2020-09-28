@@ -3,12 +3,15 @@ package com.example.virussafeagro.viewModel;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.TweetModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToGoogleSearchAPI;
+import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 
 import java.util.ArrayList;
@@ -16,6 +19,7 @@ import java.util.List;
 
 public class TweetViewModel extends ViewModel {
     private NetworkConnectionToGoogleSearchAPI networkConnectionToGoogleSearchAPI;
+    private FragmentActivity fragmentActivity;
 
     private MutableLiveData<List<TweetModel>> tweetListLD;
     private MutableLiveData<List<TweetModel>> more10TweetListLD;
@@ -24,6 +28,10 @@ public class TweetViewModel extends ViewModel {
         this.networkConnectionToGoogleSearchAPI = new NetworkConnectionToGoogleSearchAPI();
         this.tweetListLD = new MutableLiveData<>();
         this.more10TweetListLD = new MutableLiveData<>();
+    }
+
+    public void setFragmentActivity(FragmentActivity fragmentActivity) {
+        this.fragmentActivity = fragmentActivity;
     }
 
     // for first 10 tweet live data
@@ -65,6 +73,12 @@ public class TweetViewModel extends ViewModel {
                     Bitmap tweetImageBitmap = networkConnectionToGoogleSearchAPI.getImageByURL(tweetModel.getTweetImageURL());
                     tweetModel.setTweetImageBitmap(tweetImageBitmap);
                 }
+                // set tweet portrait
+                for (TweetModel tweetModel : tweetModelList){
+                    int resourceNo = (int) (1 + Math.random() * (33 - 1 + 1));
+                    Bitmap portraitBitmap = DataConverter.drawableImageToBitmap(fragmentActivity, AppResources.getTweetPortraitImageDrawableId(resourceNo));
+                    tweetModel.setTweetPortraitBitmap(portraitBitmap);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -98,6 +112,12 @@ public class TweetViewModel extends ViewModel {
                 for (TweetModel tweetModel : tweetModelList) {
                     Bitmap tweetImageBitmap = networkConnectionToGoogleSearchAPI.getImageByURL(tweetModel.getTweetImageURL());
                     tweetModel.setTweetImageBitmap(tweetImageBitmap);
+                }
+                // set tweet portrait
+                for (TweetModel tweetModel : tweetModelList){
+                    int resourceNo = (int) (1 + Math.random() * (33 - 1 + 1));
+                    Bitmap portraitBitmap = DataConverter.drawableImageToBitmap(fragmentActivity, AppResources.getTweetPortraitImageDrawableId(resourceNo));
+                    tweetModel.setTweetPortraitBitmap(portraitBitmap);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

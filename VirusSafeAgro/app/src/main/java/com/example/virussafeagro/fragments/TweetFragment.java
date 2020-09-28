@@ -122,6 +122,7 @@ public class TweetFragment extends Fragment {
 
     private void initializeTweetViewModel() {
         this.tweetViewModel = new ViewModelProvider(requireActivity()).get(TweetViewModel.class);
+        this.tweetViewModel.setFragmentActivity(requireActivity());
     }
 
     private void findTweetListByGoogleSearchAPI(int fromNo) {

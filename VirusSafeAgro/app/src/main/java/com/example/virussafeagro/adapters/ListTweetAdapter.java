@@ -60,6 +60,9 @@ public class ListTweetAdapter extends RecyclerView.Adapter<ListTweetAdapter.View
     public void onBindViewHolder(@NonNull ListTweetAdapter.ViewHolder viewHolder, int position) {
         final TweetModel tweetModel = this.tweetModelList.get(position);
 
+        // tweet portrait
+        viewHolder.tweetPortraitImageView.setImageBitmap(tweetModel.getTweetPortraitBitmap());
+
         // tweet content
         viewHolder.tweetContentTextView.setText(tweetModel.getTweetContent());
 

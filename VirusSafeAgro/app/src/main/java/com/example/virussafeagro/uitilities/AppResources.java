@@ -223,4 +223,110 @@ public class AppResources {
         return virusShortName;
     }
 
+    // for tweet portrait
+    public static int getTweetPortraitImageDrawableId(int number) {
+        int tweetPortraitDrawablePictureResource = -1;
+        switch (number) {
+            case 1:
+                tweetPortraitDrawablePictureResource = R.drawable.default1;
+                break;
+            case 2:
+                tweetPortraitDrawablePictureResource = R.drawable.default2;
+                break;
+            case 3:
+                tweetPortraitDrawablePictureResource = R.drawable.default3;
+                break;
+            case 4:
+                tweetPortraitDrawablePictureResource = R.drawable.default4;
+                break;
+            case 5:
+                tweetPortraitDrawablePictureResource = R.drawable.default5;
+                break;
+            case 6:
+                tweetPortraitDrawablePictureResource = R.drawable.default6;
+                break;
+            case 7:
+                tweetPortraitDrawablePictureResource = R.drawable.default7;
+                break;
+            case 8:
+                tweetPortraitDrawablePictureResource = R.drawable.default8;
+                break;
+            case 9:
+                tweetPortraitDrawablePictureResource = R.drawable.default9;
+                break;
+            case 10:
+                tweetPortraitDrawablePictureResource = R.drawable.default10;
+                break;
+            case 11:
+                tweetPortraitDrawablePictureResource = R.drawable.default11;
+                break;
+            case 12:
+                tweetPortraitDrawablePictureResource = R.drawable.default12;
+                break;
+            case 13:
+                tweetPortraitDrawablePictureResource = R.drawable.default13;
+                break;
+            case 14:
+                tweetPortraitDrawablePictureResource = R.drawable.default14;
+                break;
+            case 15:
+                tweetPortraitDrawablePictureResource = R.drawable.default15;
+                break;
+            case 16:
+                tweetPortraitDrawablePictureResource = R.drawable.default16;
+                break;
+            case 17:
+                tweetPortraitDrawablePictureResource = R.drawable.default17;
+                break;
+            case 18:
+                tweetPortraitDrawablePictureResource = R.drawable.default18;
+                break;
+            case 19:
+                tweetPortraitDrawablePictureResource = R.drawable.default19;
+                break;
+            case 20:
+                tweetPortraitDrawablePictureResource = R.drawable.default20;
+                break;
+            case 21:
+                tweetPortraitDrawablePictureResource = R.drawable.default21;
+                break;
+            case 22:
+                tweetPortraitDrawablePictureResource = R.drawable.default22;
+                break;
+            case 23:
+                tweetPortraitDrawablePictureResource = R.drawable.default23;
+                break;
+            case 24:
+                tweetPortraitDrawablePictureResource = R.drawable.default24;
+                break;
+            case 25:
+                tweetPortraitDrawablePictureResource = R.drawable.default25;
+                break;
+            case 26:
+                tweetPortraitDrawablePictureResource = R.drawable.default26;
+                break;
+            case 27:
+                tweetPortraitDrawablePictureResource = R.drawable.default27;
+                break;
+            case 28:
+                tweetPortraitDrawablePictureResource = R.drawable.default28;
+                break;
+            case 29:
+                tweetPortraitDrawablePictureResource = R.drawable.default29;
+                break;
+            case 30:
+                tweetPortraitDrawablePictureResource = R.drawable.default30;
+                break;
+            case 31:
+                tweetPortraitDrawablePictureResource = R.drawable.default31;
+                break;
+            case 32:
+                tweetPortraitDrawablePictureResource = R.drawable.default32;
+                break;
+            case 33:
+                tweetPortraitDrawablePictureResource = R.drawable.default33;
+                break;
+        }
+        return tweetPortraitDrawablePictureResource;
+    }
 }
