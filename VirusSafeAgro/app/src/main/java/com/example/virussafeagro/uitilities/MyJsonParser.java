@@ -551,7 +551,7 @@ public class MyJsonParser {
                                             // check keys existence
                                             boolean hasDescription = false;
                                             boolean hasPublishTime = false;
-                                            boolean hasSite = false;
+                                            boolean hasPublisher = false;
                                             boolean hasImageURL = false;
                                             Iterator<String> metaTagsKeys = metaTagsJsonObject.keys();
                                             while (metaTagsKeys.hasNext()) {
@@ -562,15 +562,15 @@ public class MyJsonParser {
                                                 if (metaTagsKeyString.equals("article:published_time")) {
                                                     hasPublishTime = true;
                                                 }
-                                                if (metaTagsKeyString.equals("twitter:site")) {
-                                                    hasSite = true;
+                                                if (metaTagsKeyString.equals("author")) {
+                                                    hasPublisher = true;
                                                 }
                                                 if (metaTagsKeyString.equals("twitter:image")) {
                                                     hasImageURL = true;
                                                 }
                                             }
 
-                                            if (hasDescription && hasPublishTime && hasSite && hasImageURL) {
+                                            if (hasDescription && hasPublishTime && hasPublisher && hasImageURL) {
                                                 // tweet content
                                                 String tweetContent = metaTagsJsonObject.getString("twitter:description");
                                                 // tweet publish time
@@ -578,15 +578,15 @@ public class MyJsonParser {
                                                 String originalTimePattern = "yyyy-MM-dd'T'HH:mm:ssXXX";
                                                 String targetTimePattern = "dd MMMM yyyy, HH:mm";
                                                 String tweetPublishTime = DataConverter.newsTimeToStandardFormat(rawTweetPressTime, originalTimePattern, targetTimePattern);
-                                                // tweet site
-                                                String tweetSite = metaTagsJsonObject.getString("twitter:site");
+                                                // tweet publisher
+                                                String tweetPublisher = metaTagsJsonObject.getString("author");
                                                 // tweet image URL
                                                 String tweetImageURL = metaTagsJsonObject.getString("twitter:image");
 
                                                 tweetModel.setTweetId(i + 1); // id
                                                 tweetModel.setTweetContent(tweetContent); // content
                                                 tweetModel.setTweetPublishTime(tweetPublishTime); // time
-                                                tweetModel.setTweetSite(tweetSite); // site
+                                                tweetModel.setTweetPublisher(tweetPublisher); // publisher
                                                 tweetModel.setTweetImageURL(tweetImageURL); // image URL
                                             }
                                         }

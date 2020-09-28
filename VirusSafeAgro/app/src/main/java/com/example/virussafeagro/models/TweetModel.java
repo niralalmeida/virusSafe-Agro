@@ -7,7 +7,7 @@ import android.os.Parcelable;
 public class TweetModel implements Parcelable {
     private int tweetId;
     private String tweetContent; // twitter:description
-    private String tweetSite; // @xxx
+    private String tweetPublisher; // @xxx
     private String tweetPublishTime; // "yyyy-MM-dd'T'HH:mm:ssXXX" --> "dd MMMM yyyy, HH:mm"
     private String tweetImageURL;
     private Bitmap tweetImageBitmap;
@@ -20,10 +20,10 @@ public class TweetModel implements Parcelable {
         this.tweetContent = tweetContent;
     }
 
-    public TweetModel(int tweetId, String tweetContent, String tweetSite, String tweetPublishTime, String tweetImageURL, Bitmap tweetImageBitmap, Bitmap tweetPortraitBitmap) {
+    public TweetModel(int tweetId, String tweetContent, String tweetPublisher, String tweetPublishTime, String tweetImageURL, Bitmap tweetImageBitmap, Bitmap tweetPortraitBitmap) {
         this.tweetId = tweetId;
         this.tweetContent = tweetContent;
-        this.tweetSite = tweetSite;
+        this.tweetPublisher = tweetPublisher;
         this.tweetPublishTime = tweetPublishTime;
         this.tweetImageURL = tweetImageURL;
         this.tweetImageBitmap = tweetImageBitmap;
@@ -33,7 +33,7 @@ public class TweetModel implements Parcelable {
     protected TweetModel(Parcel in) {
         tweetId = in.readInt();
         tweetContent = in.readString();
-        tweetSite = in.readString();
+        tweetPublisher = in.readString();
         tweetPublishTime = in.readString();
         tweetImageURL = in.readString();
         tweetImageBitmap = in.readParcelable(Bitmap.class.getClassLoader());
@@ -44,7 +44,7 @@ public class TweetModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(tweetId);
         dest.writeString(tweetContent);
-        dest.writeString(tweetSite);
+        dest.writeString(tweetPublisher);
         dest.writeString(tweetPublishTime);
         dest.writeString(tweetImageURL);
         dest.writeParcelable(tweetImageBitmap, flags);
@@ -84,12 +84,12 @@ public class TweetModel implements Parcelable {
         this.tweetContent = tweetContent;
     }
 
-    public String getTweetSite() {
-        return tweetSite;
+    public String getTweetPublisher() {
+        return tweetPublisher;
     }
 
-    public void setTweetSite(String tweetSite) {
-        this.tweetSite = tweetSite;
+    public void setTweetPublisher(String tweetPublisher) {
+        this.tweetPublisher = tweetPublisher;
     }
 
     public String getTweetPublishTime() {

@@ -30,6 +30,7 @@ public class ListTweetAdapter extends RecyclerView.Adapter<ListTweetAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public LinearLayout allItemViewsLinearLayout;
+        public TextView tweetPublisherTextView;
         public ImageView tweetPortraitImageView;
         public com.uncopt.android.widget.text.justify.JustifiedTextView tweetContentTextView;
         public TextView tweetPublishTimeAgoTextView;
@@ -39,6 +40,7 @@ public class ListTweetAdapter extends RecyclerView.Adapter<ListTweetAdapter.View
             super(itemView);
 
             this.allItemViewsLinearLayout = itemView.findViewById(R.id.ll_item_card_tweet_list);
+            this.tweetPublisherTextView = itemView.findViewById(R.id.tv_publisher_tweet_list);
             this.tweetPortraitImageView = itemView.findViewById(R.id.img_portrait_tweet_list);
             this.tweetContentTextView = itemView.findViewById(R.id.tv_content_tweet_list);
             this.tweetPublishTimeAgoTextView = itemView.findViewById(R.id.tv_time_tweet_list);
@@ -62,6 +64,9 @@ public class ListTweetAdapter extends RecyclerView.Adapter<ListTweetAdapter.View
 
         // tweet portrait
         viewHolder.tweetPortraitImageView.setImageBitmap(tweetModel.getTweetPortraitBitmap());
+
+        // tweet publisher
+        viewHolder.tweetPublisherTextView.setText(tweetModel.getTweetPublisher());
 
         // tweet content
         viewHolder.tweetContentTextView.setText(tweetModel.getTweetContent());
