@@ -109,7 +109,8 @@ public class VirusDetailFragment extends Fragment {
         // set top buttons listener
         this.setTopButtonsListener();
 
-        setOnSwipeUpListener();
+        // set swipe gesture listener
+        this.setGestureListener();
     }
 
     private void initializeViews() {
@@ -238,13 +239,13 @@ public class VirusDetailFragment extends Fragment {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void setOnSwipeUpListener() {
+    private void setGestureListener() {
         view.setOnTouchListener((v, event) -> {
             // when press
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 startY = event.getY();
             }
-            // when move
+            // when move up
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 currentY = event.getY();
 

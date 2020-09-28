@@ -44,19 +44,22 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignBottom="@id/ll_image_news_detail"
                 android:background="@drawable/shape_title_gradient_container_news_detail"
-                android:padding="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/ll_top_text_news_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <!-- title -->
                     <LinearLayout
+                        android:id="@+id/ll_top_title_news_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="15dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -73,7 +76,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -99,12 +103,16 @@
                         android:layout_height="1dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@color/top_line"/>
 
                     <!-- time -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -148,6 +156,7 @@
 
         <!-- article part -->
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_article_news_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
