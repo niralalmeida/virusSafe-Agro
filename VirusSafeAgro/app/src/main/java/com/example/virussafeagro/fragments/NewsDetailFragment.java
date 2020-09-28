@@ -13,6 +13,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -62,8 +63,6 @@ public class NewsDetailFragment extends Fragment {
     // for gesture
     private boolean isNewsDetailViewShown;
     private int originalImageHeight;
-    private float startY;
-    private float currentY;
 
     public NewsDetailFragment() {
     }
@@ -190,18 +189,17 @@ public class NewsDetailFragment extends Fragment {
                 // check swipe up
                 if (oldScrollY == 0){
                     if (newsImageView.getHeight() > topTitleLinearLayout.getBottom()) {
-                        MyAnimationBox.runFoldViewAnimation(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 500);
+                        MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 30f, 22f, 200);
+                        new Handler().postDelayed(() -> {
+                            MyAnimationBox.runFoldViewAnimation(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 200);
+                        },200);
                     }
                 } else if (oldScrollY > scrollY){ // check swipe down
                     if (scrollY == 0) {
-                        MyAnimationBox.runFoldViewAnimation(newsImageView, newsImageView.getHeight(), originalImageHeight, 500);
+                        MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 22f, 30f, 200);
+                        MyAnimationBox.runFoldViewAnimation(newsImageView, newsImageView.getHeight(), originalImageHeight, 200);
                     }
                 }
-                // check swipe down and to top
-
-                // test
-                System.out.println("oldScrollY ==> scrollY [[[" + oldScrollY + " ---> " + scrollY + "]]]");
-
             }
         });
     }

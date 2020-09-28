@@ -1,10 +1,13 @@
 package com.example.virussafeagro.uitilities;
 
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.TextView;
 
 import java.util.logging.Handler;
 
@@ -90,6 +93,23 @@ public class MyAnimationBox {
         valueAnimator.setDuration(duration);
         // start animation
         valueAnimator.start();
+    }
+
+    // for fold the image in virus details
+    public static void runChangeViewSizeAnimation(TextView textView, float startSize, float targetSize, int duration){
+        //value animator
+        ObjectAnimator objectAnimator = new ObjectAnimator();
+        //hide view
+        objectAnimator = ObjectAnimator.ofFloat(textView, "textSize", startSize, targetSize);
+        objectAnimator.addUpdateListener(valueAnimator1 -> {
+            //get the current size value
+            float size = (float)valueAnimator1.getAnimatedValue();
+            // update the height of the view dynamically
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        });
+        objectAnimator.setDuration(duration);
+        // start animation
+        objectAnimator.start();
     }
 
 }
