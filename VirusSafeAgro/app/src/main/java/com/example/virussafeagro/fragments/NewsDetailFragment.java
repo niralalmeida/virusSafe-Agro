@@ -4,17 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,21 +20,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.adapters.ListNewsAdapter;
 import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.viewModel.NewsDetailViewModel;
-import com.example.virussafeagro.viewModel.NewsViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class NewsDetailFragment extends Fragment {
@@ -154,6 +144,7 @@ public class NewsDetailFragment extends Fragment {
         new Handler().postDelayed(() -> {
             isNewsDetailViewShown = true;
             originalImageHeight = newsImageView.getHeight();
+            topRelativeLayout.setActivated(true);
         }, 1100);
     }
 
@@ -237,6 +228,7 @@ public class NewsDetailFragment extends Fragment {
                     if (startY < newsImageView.getHeight() && currentY >= startY){
                         isImageFolded = false;
                         topRelativeLayout.setClickable(true);
+                        topRelativeLayout.setActivated(true);
                         MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 22f, 30f, 200);
                         MyAnimationBox.runFoldViewAnimation(newsImageView, newsImageView.getHeight(), originalImageHeight, 200);
                     }
