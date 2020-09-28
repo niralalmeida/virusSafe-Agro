@@ -39,6 +39,7 @@
 
             <!-- title + author + time -->
             <LinearLayout
+                android:id="@+id/ll_top_text_bg_news_detail"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_alignParentTop="true"
