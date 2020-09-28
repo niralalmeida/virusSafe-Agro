@@ -9,6 +9,7 @@ import com.example.virussafeagro.models.NutrientFactorModel;
 import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.NutrientReasonModel;
 import com.example.virussafeagro.models.NutrientSymptomModel;
+import com.example.virussafeagro.models.TweetModel;
 import com.example.virussafeagro.models.VirusCauseModel;
 import com.example.virussafeagro.models.VirusDescriptionModel;
 import com.example.virussafeagro.models.VirusModel;
@@ -501,5 +502,117 @@ public class MyJsonParser {
             }
         }
         return newsArticleBody;
+    }
+
+    public static List<TweetModel> tweetListJsonParser(String resultText) throws JSONException {
+        List<TweetModel> tweetModelList = new ArrayList<>();
+        // check network connection
+        if (resultText.isEmpty()){
+            TweetModel tweetModel = new TweetModel(CONNECTION_ERROR_MESSAGE);
+            tweetModelList.add(tweetModel);
+        } else {
+            if (resultText.substring(0, 1).equals("{")) {
+                JSONObject resultTextJsonObject = new JSONObject(resultText);
+
+                // check "items" key
+                Iterator<String> resultKeys = resultTextJsonObject.keys();
+                while (resultKeys.hasNext()) {
+                    String keyString = resultKeys.next();
+                    // find "items" key
+                    if (keyString.equals("items")) {
+                        // get "items" json array
+                        JSONArray tweetItemListJsonArray = resultTextJsonObject.getJSONArray("items");
+                        int listSize = tweetItemListJsonArray.length();
+                        for (int i = 0; i < listSize; i++) {
+                            JSONObject tweetJsonObject = tweetItemListJsonArray.getJSONObject(i);
+
+                            // create a tweet model
+                            TweetModel tweetModel = new TweetModel();
+
+                            // check "pagemap" key
+                            Iterator<String> itemKeys = tweetJsonObject.keys();
+                            while (itemKeys.hasNext()) {
+                                String itemKeyString = itemKeys.next();
+                                // find "items" key
+                                if (itemKeyString.equals("pagemap")) {
+                                    // get "items" json array
+                                    JSONObject pageMapJsonObject = tweetJsonObject.getJSONObject("pagemap");
+
+                                    // check "metatags" and "cse_image" key
+                                    Iterator<String> pageMapKeys = pageMapJsonObject.keys();
+                                    while (pageMapKeys.hasNext()) {
+                                        String pageMapKeyString = pageMapKeys.next();
+                                        // find "metatags" key
+                                        if (pageMapKeyString.equals("metatags")) {
+                                            // get "metatags" json array and object
+                                            JSONArray metaTagsJsonArray = pageMapJsonObject.getJSONArray("metatags");
+                                            JSONObject metaTagsJsonObject = metaTagsJsonArray.getJSONObject(0);
+
+                                            // check keys existence
+                                            boolean hasDescription = false;
+                                            boolean hasPublishTime = false;
+                                            boolean hasSite = false;
+                                            boolean hasImageURL = false;
+                                            Iterator<String> metaTagsKeys = metaTagsJsonObject.keys();
+                                            while (metaTagsKeys.hasNext()) {
+                                                String metaTagsKeyString = metaTagsKeys.next();
+                                                if (metaTagsKeyString.equals("twitter:description")) {
+                                                    hasDescription = true;
+                                                }
+                                                if (metaTagsKeyString.equals("article:published_time")) {
+                                                    hasPublishTime = true;
+                                                }
+                                                if (metaTagsKeyString.equals("twitter:site")) {
+                                                    hasSite = true;
+                                                }
+                                                if (metaTagsKeyString.equals("twitter:image")) {
+                                                    hasImageURL = true;
+                                                }
+                                            }
+
+                                            if (hasDescription && hasPublishTime && hasSite && hasImageURL) {
+                                                // tweet content
+                                                String tweetContent = metaTagsJsonObject.getString("twitter:description");
+                                                // tweet publish time
+                                                String rawTweetPressTime = metaTagsJsonObject.getString("article:published_time");
+                                                String originalTimePattern = "yyyy-MM-dd'T'HH:mm:ssXXX";
+                                                String targetTimePattern = "dd MMMM yyyy, HH:mm";
+                                                String tweetPublishTime = DataConverter.newsTimeToStandardFormat(rawTweetPressTime, originalTimePattern, targetTimePattern);
+                                                // tweet site
+                                                String tweetSite = metaTagsJsonObject.getString("twitter:site");
+                                                // tweet image URL
+                                                String tweetImageURL = metaTagsJsonObject.getString("twitter:image");
+
+                                                tweetModel.setTweetId(i + 1); // id
+                                                tweetModel.setTweetContent(tweetContent); // content
+                                                tweetModel.setTweetPublishTime(tweetPublishTime); // time
+                                                tweetModel.setTweetSite(tweetSite); // site
+                                                tweetModel.setTweetImageURL(tweetImageURL); // image URL
+                                            }
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+
+                            // add the tweet model into the list
+                            if (tweetModel.getTweetContent() != null) {
+                                boolean isExist = false;
+                                for (TweetModel n : tweetModelList){
+                                    if (n.getTweetContent().equals(tweetModel.getTweetContent())){
+                                        isExist = true;
+                                    }
+                                }
+                                if (!isExist) {
+                                    tweetModelList.add(tweetModel);
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return tweetModelList;
     }
 }

@@ -36,6 +36,10 @@ public class NetworkConnectionToGoogleSearchAPI {
         return resultText;
     }
 
+    public String getAllTweet(String keyword, int startFromWhichItem) {
+        return this.getAllNews(keyword, startFromWhichItem);
+    }
+
     public Bitmap getImageByURL(String imageURL) {
         Request request = new Request.Builder().url(imageURL).build();
         Bitmap bitmap = null;

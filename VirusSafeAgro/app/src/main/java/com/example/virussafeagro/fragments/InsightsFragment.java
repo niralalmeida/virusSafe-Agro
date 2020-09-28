@@ -94,7 +94,11 @@ public class InsightsFragment extends Fragment {
     // tweets
     private void setTweetsTileOnClickListener() {
         this.tweetsRelativeLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("fromInsights", true);
+            TweetFragment tweetFragment = new TweetFragment();
+            tweetFragment.setArguments(bundle);
+            FragmentOperator.replaceFragment(requireActivity(), tweetFragment, AppResources.FRAGMENT_TAG_TWEET_LIST);
         });
     }
 

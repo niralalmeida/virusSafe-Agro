@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimaryDarkBG"
-    tools:context=".fragments.NewsFragment">
+    tools:context=".fragments.TweetFragment">
 
-    <!-- news list -->
+    <!-- tweet list -->
     <LinearLayout
-        android:id="@+id/ll_all_view_news"
+        android:id="@+id/ll_all_view_tweet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
@@ -17,11 +17,9 @@
 
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/refreshLayout_news"
+            android:id="@+id/refreshLayout_tweet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             android:background="@color/colorPrimaryDarkBG"
             app:srlPrimaryColor="@color/colorPrimaryDark"
             app:srlAccentColor="@color/colorPrimaryLight">
@@ -30,11 +28,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_news_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="vertical" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_tweet_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical" />
 
             <com.scwang.smart.refresh.footer.BallPulseFooter
                 android:layout_width="match_parent"
@@ -46,7 +44,7 @@
 
     <!-- network error -->
     <LinearLayout
-        android:id="@+id/ll_fail_network_news"
+        android:id="@+id/ll_fail_network_tweet"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
@@ -79,7 +77,7 @@
 
     <!-- progress bar for loading the page -->
     <LinearLayout
-        android:id="@+id/ll_process_bar_news"
+        android:id="@+id/ll_process_bar_tweet"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
@@ -104,7 +102,7 @@
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="@color/colorWhite"
-                android:text="@string/process_bar_text_news" />
+                android:text="@string/process_bar_text_tweet" />
         </LinearLayout>
 
     </LinearLayout>
