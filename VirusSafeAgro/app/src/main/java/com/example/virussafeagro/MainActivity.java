@@ -201,20 +201,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //        });
 //    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.top_menu, menu);
-        this.toolbar.inflateMenu(R.menu.top_menu);
-        // hide the search button
-        this.toolbar.getMenu().findItem(R.id.action_search).setVisible(false);
-        return true;
-    }
-
-    // show or not top bar search button
-//    public static void showTopBarSearchButton(MainActivity mainActivity) {
-//        mainActivity.getToolbar().getMenu().findItem(R.id.action_search).setVisible(true);
-//    }
 
     // show or not top bar back button
     public static void showTopBarBackButton(MainActivity mainActivity) {
