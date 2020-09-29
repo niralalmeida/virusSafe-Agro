@@ -58,12 +58,7 @@ public class VirusInfoListFragment extends Fragment {
     private GridVirusInfoAdapter gridVirusInfoAdapter;
 
     // search function
-    private LinearLayout titleLinearLayout;
-    private LinearLayout openSearchLinearLayout;
-    private LinearLayout doSearchLinearLayout;
     private com.example.virussafeagro.uitilities.ExtendedEditText searchVirusEditText;
-    private ImageButton searchVirusImageButton;
-    private LinearLayout closeSearchLinearLayout; // for button
 
     public VirusInfoListFragment() {
     }
@@ -134,12 +129,7 @@ public class VirusInfoListFragment extends Fragment {
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
-//        this.titleLinearLayout = this.mainActivity.getTitleLinearLayout();
-//        this.openSearchLinearLayout = this.mainActivity.getOpenSearchLinearLayout();
-//        this.doSearchLinearLayout = this.mainActivity.getDoSearchLinearLayout();
         this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
-//        this.searchVirusImageButton = this.mainActivity.getDoSearchImageButton();
-//        this.closeSearchLinearLayout = this.mainActivity.getCloseSearchLinearLayout();
     }
 
     private void initializeVirusInfoViewModel() {
@@ -185,34 +175,12 @@ public class VirusInfoListFragment extends Fragment {
         // set GridView Item VirusCard Click Listener
         setGridViewItemVirusCardClickListener(virusModelInfoList);
 
-        // show search button
-        mainActivity.onlyShowSearchIcon();
-        mainActivity.showSearchButton(true, true, 1000);
-        // set search button on click listener
-        mainActivity.setSearchOnClickListener();
-        // set close search button on click listener
-        mainActivity.setCloseSearchOnClickListener();
+        // display search function
+        mainActivity.displaySearch();
         // set SearchEditText On Change Listener
         setSearchEditOnTextChangeListener();
-
-        // test
-        System.out.println("reach");
     }
 
-    // set open search button on click listener
-//    private void setOpenSearchOnClickListener() {
-//        openSearchLinearLayout.setOnClickListener(v -> {
-//            // show search area
-//            MyAnimationBox.runFoldViewAnimationByWidth(doSearchLinearLayout, doSearchLinearLayout.getWidth(), MainActivity.TOOLBAR_WIDTH, 500);
-//
-//            // set SearchEditText On Change Listener
-//            setSearchEditOnTextChangeListener();
-//            // set search image button on click listener
-//            setSearchImageButtonOnClickListener();
-//            // set close search button on click listener
-//            setCloseSearchButtonOnClickListener();
-//        });
-//    }
     // set search edit text on change listener
     private void setSearchEditOnTextChangeListener() {
         searchVirusEditText.addTextChangedListener(new TextWatcher() {
@@ -275,13 +243,8 @@ public class VirusInfoListFragment extends Fragment {
         super.onPause();
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
-        // hide search area
-            // clear the edit text content
-        searchVirusEditText.clearTextChangedListeners();
-        searchVirusEditText.setText("");
-            // hide keyboard
-        KeyboardToggleUtils.hideKeyboard(mainActivity);
-            // set GONE to all search views
-        mainActivity.setAllSearchViewLinearLayoutVisibility(View.GONE);
+
+        // close search function
+        mainActivity.closeSearch();
     }
 }

@@ -89,7 +89,7 @@
                     <!-- search edit -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="0.73"
+                        android:layout_weight="0.70"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
@@ -111,7 +111,7 @@
                     <LinearLayout
                         android:id="@+id/ll_close_btn_search_toolbar"
                         android:layout_width="0dp"
-                        android:layout_weight="0.1"
+                        android:layout_weight="0.13"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:background="@drawable/ripple_close_btn_search_toolbar"

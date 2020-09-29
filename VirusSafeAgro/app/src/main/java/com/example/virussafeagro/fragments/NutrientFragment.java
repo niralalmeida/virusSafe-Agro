@@ -48,8 +48,7 @@ public class NutrientFragment extends Fragment {
     private GridNutrientAdapter gridNutrientAdapter;
 
     // search function
-    private EditText searchNutrientEditText;
-    private ImageButton searchNutrientImageButton;
+    private com.example.virussafeagro.uitilities.ExtendedEditText searchVirusEditText;
 
     public NutrientFragment() {
     }
@@ -123,8 +122,7 @@ public class NutrientFragment extends Fragment {
         this.nutrientsGridViewLinearLayout = view.findViewById(R.id.ll_list_nutrient_list);
         this.nutrientsGridView = view.findViewById(R.id.gv_list_nutrient_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_nutrient);
-        this.searchNutrientEditText = view.findViewById(R.id.et_search_nutrient);
-        this.searchNutrientImageButton= view.findViewById(R.id.imgbtn_search_nutrient);
+        this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
     }
 
     private void initializeNutrientViewModel() {
@@ -168,15 +166,16 @@ public class NutrientFragment extends Fragment {
         nutrientsGridView.setAdapter(gridNutrientAdapter);
         // set GridView Item NutrientCard Click Listener
         setGridViewItemNutrientCardClickListener(nutrientModelList);
+
+        // display search function
+        mainActivity.displaySearch();
         // set SearchEditText On Change Listener
         setSearchEditOnTextChangeListener();
-        // set search image button on click listener
-        setSearchImageButtonOnClickListener();
     }
 
     // set search edit text on change listener
     private void setSearchEditOnTextChangeListener() {
-        searchNutrientEditText.addTextChangedListener(new TextWatcher() {
+        searchVirusEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -190,13 +189,6 @@ public class NutrientFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });
-    }
-
-    private void setSearchImageButtonOnClickListener(){
-        searchNutrientImageButton.setOnClickListener(view -> {
-            // get the nutrient list by input keyword and display
-            displayNutrientModelListBySearching(searchNutrientEditText.getText().toString());
         });
     }
 
@@ -248,7 +240,8 @@ public class NutrientFragment extends Fragment {
         super.onPause();
         this.nutrientViewModel.getNutrientListLD().removeObservers(requireActivity());
         this.nutrientViewModel.setNutrientListLD(new ArrayList<>());
-        // hide search button
-//        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
+
+        // close search function
+        mainActivity.closeSearch();
     }
 }

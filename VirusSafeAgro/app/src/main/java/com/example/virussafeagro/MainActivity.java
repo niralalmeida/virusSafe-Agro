@@ -230,6 +230,29 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //        });
 //    }
 
+    // display search function
+    public void displaySearch() {
+        // show search button
+        mainActivity.onlyShowSearchIcon();
+        mainActivity.showSearchButton(true, true, 1000);
+        // set search button on click listener
+        mainActivity.setSearchOnClickListener();
+        // set close search button on click listener
+        mainActivity.setCloseSearchOnClickListener();
+    }
+
+    // close search function
+    public void closeSearch() {
+        // hide search area
+        // clear the edit text content
+        doSearchEditText.clearTextChangedListeners();
+        doSearchEditText.setText("");
+        // hide keyboard
+        KeyboardToggleUtils.hideKeyboard(mainActivity);
+        // set GONE to all search views
+        mainActivity.setAllSearchViewLinearLayoutVisibility(View.GONE);
+    }
+
     // only show search button (hide edit and close button )
     public void onlyShowSearchIcon() {
         // test
