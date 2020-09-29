@@ -39,6 +39,7 @@ import java.util.Objects;
  * @author Haoyu Yang
  */
 public class VirusInfoListFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private VirusInfoListViewModel virusInfoListViewModel;
@@ -67,12 +68,15 @@ public class VirusInfoListFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_virus_info_list, container, false);
 
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus List");
+//        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus List");
 
+        this.mainActivity = (MainActivity)getActivity();
+        // set title
+
+        // show search button
+        this.mainActivity.getToolbar().getMenu().findItem(R.id.action_search).setVisible(true);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
-        // show search button
-        MainActivity.showTopBarSearchButton((MainActivity)requireActivity());
 
         // initialize views
         this.initializeViews();
@@ -257,5 +261,7 @@ public class VirusInfoListFragment extends Fragment {
         super.onPause();
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
+        // hide search button
+        this.mainActivity.getToolbar().getMenu().findItem(R.id.action_search).setVisible(false);
     }
 }

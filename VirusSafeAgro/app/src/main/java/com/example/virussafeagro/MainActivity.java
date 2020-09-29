@@ -13,7 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -42,7 +45,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private boolean isFromOnBoardingActivity;
     private SharedPreferenceProcess spp;
 
+    // toolbar
     private Toolbar toolbar;
+    // toolbar - title
+    private LinearLayout titleLinearLayout;
+    private TextView titleTextView;
+    // toolbar - search open button
+    private LinearLayout openSearchLinearLayout;
+    // toolbar - search area
+    private LinearLayout doSearchLinearLayout;
+    private ImageButton doSearchImageButton;
+    private EditText doSearchEditText;
+    private LinearLayout closeSearchLinearLayout; // for button
+    // bottom bar
     private BottomNavigationView bottomNavigationView;
 
     public static final int PASSWORD_REQUEST_CODE = 9;
@@ -74,6 +89,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void initializeViews() {
         // initialize background image
         this.toolbar = findViewById(R.id.toolbar);
+        this.titleLinearLayout = findViewById(R.id.ll_title_toolbar);
+        this.titleTextView = findViewById(R.id.tv_title_toolbar);
+        this.openSearchLinearLayout = findViewById(R.id.ll_open_search_toolbar);
+        this.doSearchLinearLayout = findViewById(R.id.ll_do_search_toolbar);
+        this.doSearchImageButton = findViewById(R.id.imgbtn_do_search_toolbar);
+        this.doSearchEditText = findViewById(R.id.et_do_search_toolbar);
+        this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
         this.bottomNavigationView = findViewById(R.id.bottom_navigation);
     }
 
@@ -133,51 +155,51 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // add toolbar
     private void configureToolbar() {
         setSupportActionBar(this.toolbar);
-        this.setOnTopMenuItemClickedListener();
+//        this.setOnTopMenuItemClickedListener();
     }
     public Toolbar getToolbar() {
         return toolbar;
     }
     // set on top menu item clicked
-    private void setOnTopMenuItemClickedListener() {
-        this.toolbar.setOnMenuItemClickListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.action_search){
-
-                FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
-                Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
-
-                boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
-                boolean isNutrientFragment = currentVisibleFragment instanceof NutrientFragment;
-                boolean isNewsFragment = currentVisibleFragment instanceof NewsFragment;
-
-                if (isVirusInfoListFragment){
-                    VirusInfoListFragment virusInfoListFragment = (VirusInfoListFragment)currentVisibleFragment;
-                    LinearLayout virusDescriptionLinearLayout = virusInfoListFragment.getVirusDescriptionLinearLayout();
-                    LinearLayout virusSearchLinearLayout = virusInfoListFragment.getVirusSearchLinearLayout();
-                    if (virusSearchLinearLayout.getVisibility() == View.GONE){
-                        MyAnimationBox.runSlideOutAnimationToTop(virusDescriptionLinearLayout, 500);
-                        new Handler().postDelayed(() -> {
-                            MyAnimationBox.runSlideInAnimationFromTop(virusSearchLinearLayout, 600);
-                        },500);
-
-                    } else {
-                        MyAnimationBox.runSlideOutAnimationToTop(virusSearchLinearLayout, 500);
-                        new Handler().postDelayed(() -> {
-                            MyAnimationBox.runSlideInAnimationFromTop(virusDescriptionLinearLayout, 600);
-                        },500);
-                    }
-                } else if (isNutrientFragment){
-                    // test
-                    System.out.println("nutrient");
-                } else if (isNewsFragment){
-                    // test
-                    System.out.println("news");
-                }
-            }
-            return true;
-        });
-    }
+//    private void setOnTopMenuItemClickedListener() {
+//        this.toolbar.setOnMenuItemClickListener(item -> {
+//            int id = item.getItemId();
+//            if (id == R.id.action_search){
+//
+//                FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
+//                Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+//
+//                boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
+//                boolean isNutrientFragment = currentVisibleFragment instanceof NutrientFragment;
+//                boolean isNewsFragment = currentVisibleFragment instanceof NewsFragment;
+//
+//                if (isVirusInfoListFragment){
+//                    VirusInfoListFragment virusInfoListFragment = (VirusInfoListFragment)currentVisibleFragment;
+//                    LinearLayout virusDescriptionLinearLayout = virusInfoListFragment.getVirusDescriptionLinearLayout();
+//                    LinearLayout virusSearchLinearLayout = virusInfoListFragment.getVirusSearchLinearLayout();
+//                    if (virusSearchLinearLayout.getVisibility() == View.GONE){
+//                        MyAnimationBox.runSlideOutAnimationToTop(virusDescriptionLinearLayout, 500);
+//                        new Handler().postDelayed(() -> {
+//                            MyAnimationBox.runSlideInAnimationFromTop(virusSearchLinearLayout, 600);
+//                        },500);
+//
+//                    } else {
+//                        MyAnimationBox.runSlideOutAnimationToTop(virusSearchLinearLayout, 500);
+//                        new Handler().postDelayed(() -> {
+//                            MyAnimationBox.runSlideInAnimationFromTop(virusDescriptionLinearLayout, 600);
+//                        },500);
+//                    }
+//                } else if (isNutrientFragment){
+//                    // test
+//                    System.out.println("nutrient");
+//                } else if (isNewsFragment){
+//                    // test
+//                    System.out.println("news");
+//                }
+//            }
+//            return true;
+//        });
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -190,9 +212,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     // show or not top bar search button
-    public static void showTopBarSearchButton(MainActivity mainActivity) {
-        mainActivity.getToolbar().getMenu().findItem(R.id.action_search).setVisible(true);
-    }
+//    public static void showTopBarSearchButton(MainActivity mainActivity) {
+//        mainActivity.getToolbar().getMenu().findItem(R.id.action_search).setVisible(true);
+//    }
 
     // show or not top bar back button
     public static void showTopBarBackButton(MainActivity mainActivity) {
