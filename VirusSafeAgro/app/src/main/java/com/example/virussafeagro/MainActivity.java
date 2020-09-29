@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.DragYRelativeLayout;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
@@ -50,17 +53,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // toolbar - title
     private LinearLayout titleLinearLayout;
     private TextView titleTextView;
-    // toolbar - search open button
-    private LinearLayout openSearchLinearLayout;
     // toolbar - search area
-    private LinearLayout doSearchLinearLayout;
-    private ImageButton doSearchImageButton;
+    private LinearLayout allSearchViewLinearLayout;
+    private LinearLayout searchLinearLayout;
+    private ImageView searchImageView;
     private EditText doSearchEditText;
     private LinearLayout closeSearchLinearLayout; // for button
     // bottom bar
     private BottomNavigationView bottomNavigationView;
 
     public static int TOOLBAR_WIDTH;
+    public static int TOOLBAR_SEARCH_EDIT_AND_CLOSE;
 
     public static final int PASSWORD_REQUEST_CODE = 9;
     public static final int PASSWORD_RESULT_OK = 24;
@@ -93,9 +96,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         this.toolbar = findViewById(R.id.toolbar);
         this.titleLinearLayout = findViewById(R.id.ll_title_toolbar);
         this.titleTextView = findViewById(R.id.tv_title_toolbar);
-        this.openSearchLinearLayout = findViewById(R.id.ll_open_search_toolbar);
-        this.doSearchLinearLayout = findViewById(R.id.ll_do_search_toolbar);
-        this.doSearchImageButton = findViewById(R.id.imgbtn_do_search_toolbar);
+        this.allSearchViewLinearLayout = findViewById(R.id.ll_all_search_views_toolbar);
+        this.searchLinearLayout = findViewById(R.id.ll_search_toolbar);
+        this.searchImageView = findViewById(R.id.img_search_toolbar);
         this.doSearchEditText = findViewById(R.id.et_do_search_toolbar);
         this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
         this.bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -157,38 +160,31 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // add toolbar
     private void configureToolbar() {
         setSupportActionBar(this.toolbar);
-        TOOLBAR_WIDTH = findViewById(R.id.rl_all_views_toolbar).getWidth();
+//        TOOLBAR_WIDTH = findViewById(R.id.rl_all_views_toolbar).getWidth();
 //        this.setOnTopMenuItemClickedListener();
     }
 
     public Toolbar getToolbar() {
         return toolbar;
     }
-
     public LinearLayout getTitleLinearLayout() {
         return titleLinearLayout;
     }
-
     public TextView getTitleTextView() {
         return titleTextView;
     }
-
-    public LinearLayout getOpenSearchLinearLayout() {
-        return openSearchLinearLayout;
+    public LinearLayout getAllSearchViewLinearLayout() {
+        return allSearchViewLinearLayout;
     }
-
-    public LinearLayout getDoSearchLinearLayout() {
-        return doSearchLinearLayout;
+    public LinearLayout getSearchLinearLayout() {
+        return searchLinearLayout;
     }
-
-    public ImageButton getDoSearchImageButton() {
-        return doSearchImageButton;
+    public ImageView getSearchImageView() {
+        return searchImageView;
     }
-
     public EditText getDoSearchEditText() {
         return doSearchEditText;
     }
-
     public LinearLayout getCloseSearchLinearLayout() {
         return closeSearchLinearLayout;
     }
@@ -233,6 +229,31 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //        });
 //    }
 
+    // show search button
+    public void showSearchButton(boolean showOrHide, boolean withFadeAnimation, int duration) {
+        if (showOrHide) {
+            if (withFadeAnimation) {
+                MyAnimationBox.runFadeInAnimation(this.allSearchViewLinearLayout, duration);
+            } else {
+                this.allSearchViewLinearLayout.setVisibility(View.VISIBLE);
+            }
+        } else {
+            if (withFadeAnimation) {
+                MyAnimationBox.runFadeOutAnimation(this.allSearchViewLinearLayout, duration);
+            } else {
+                this.allSearchViewLinearLayout.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    public void onlyShowSearchIcon() {
+        // change the search icon style
+        searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
+        searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
+        // hide EditText and close button
+        TOOLBAR_SEARCH_EDIT_AND_CLOSE = doSearchEditText.getWidth() + closeSearchLinearLayout.getWidth();
+        this.allSearchViewLinearLayout.setTranslationX(TOOLBAR_SEARCH_EDIT_AND_CLOSE + 1);
+    }
 
     // show or not top bar back button
     public static void showTopBarBackButton(MainActivity mainActivity) {

@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/shape_edit_search_virus_info_list"
+            android:background="@drawable/shape_search_toolbar"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -34,7 +34,7 @@
                     android:layout_height="match_parent"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
-                    android:background="@drawable/shape_edit_search_virus_info_list"
+                    android:background="@drawable/shape_search_toolbar"
                     android:hint="Search Nutrient" />
 
             </LinearLayout>

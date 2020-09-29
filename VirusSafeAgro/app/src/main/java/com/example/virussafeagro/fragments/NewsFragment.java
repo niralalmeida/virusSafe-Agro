@@ -67,7 +67,7 @@ public class NewsFragment extends Fragment {
         // set title
         this.mainActivity.getTitleTextView().setText("Agricultural News in VIC");
         // show search button
-        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
+//        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
@@ -243,6 +243,6 @@ public class NewsFragment extends Fragment {
         getArguments().clear();
 
         // hide search button
-        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
+//        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
     }
 }

@@ -134,10 +134,10 @@ public class VirusInfoListFragment extends Fragment {
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
         this.titleLinearLayout = this.mainActivity.getTitleLinearLayout();
-        this.openSearchLinearLayout = this.mainActivity.getOpenSearchLinearLayout();
-        this.doSearchLinearLayout = this.mainActivity.getDoSearchLinearLayout();
+//        this.openSearchLinearLayout = this.mainActivity.getOpenSearchLinearLayout();
+//        this.doSearchLinearLayout = this.mainActivity.getDoSearchLinearLayout();
         this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
-        this.searchVirusImageButton = this.mainActivity.getDoSearchImageButton();
+//        this.searchVirusImageButton = this.mainActivity.getDoSearchImageButton();
         this.closeSearchLinearLayout = this.mainActivity.getCloseSearchLinearLayout();
     }
 
@@ -185,26 +185,28 @@ public class VirusInfoListFragment extends Fragment {
         setGridViewItemVirusCardClickListener(virusModelInfoList);
 
         // show search button
-        MyAnimationBox.runFadeInAnimation(openSearchLinearLayout, 1000);
-        // set open search button on click listener
-        setOpenSearchOnClickListener();
+        mainActivity.onlyShowSearchIcon();
+        mainActivity.showSearchButton(true, true, 1000);
+
+//        // set open search button on click listener
+//        setOpenSearchOnClickListener();
 
     }
 
     // set open search button on click listener
-    private void setOpenSearchOnClickListener() {
-        openSearchLinearLayout.setOnClickListener(v -> {
-            // show search area
-            MyAnimationBox.runFoldViewAnimationByWidth(doSearchLinearLayout, doSearchLinearLayout.getWidth(), MainActivity.TOOLBAR_WIDTH, 500);
-
-            // set SearchEditText On Change Listener
-            setSearchEditOnTextChangeListener();
-            // set search image button on click listener
-            setSearchImageButtonOnClickListener();
-            // set close search button on click listener
-            setCloseSearchButtonOnClickListener();
-        });
-    }
+//    private void setOpenSearchOnClickListener() {
+//        openSearchLinearLayout.setOnClickListener(v -> {
+//            // show search area
+//            MyAnimationBox.runFoldViewAnimationByWidth(doSearchLinearLayout, doSearchLinearLayout.getWidth(), MainActivity.TOOLBAR_WIDTH, 500);
+//
+//            // set SearchEditText On Change Listener
+//            setSearchEditOnTextChangeListener();
+//            // set search image button on click listener
+//            setSearchImageButtonOnClickListener();
+//            // set close search button on click listener
+//            setCloseSearchButtonOnClickListener();
+//        });
+//    }
     // set search edit text on change listener
     private void setSearchEditOnTextChangeListener() {
         searchVirusEditText.addTextChangedListener(new TextWatcher() {
@@ -287,11 +289,10 @@ public class VirusInfoListFragment extends Fragment {
         super.onPause();
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
-        // hide search button
-        this.openSearchLinearLayout.setVisibility(View.GONE);
         // hide search area
-        RelativeLayout.LayoutParams layoutParams =(RelativeLayout.LayoutParams) this.doSearchLinearLayout.getLayoutParams();
-        layoutParams.width = 0;
-        this.doSearchLinearLayout.setLayoutParams(layoutParams);
+        mainActivity.showSearchButton(false, false, 0);
+//        RelativeLayout.LayoutParams layoutParams =(RelativeLayout.LayoutParams) this.doSearchLinearLayout.getLayoutParams();
+//        layoutParams.width = 0;
+//        this.doSearchLinearLayout.setLayoutParams(layoutParams);
     }
 }

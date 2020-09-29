@@ -65,7 +65,7 @@ public class NutrientFragment extends Fragment {
         // set title
         this.mainActivity.getTitleTextView().setText("Nutrient Deficiencies");
         // show search button
-        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
+//        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
@@ -249,6 +249,6 @@ public class NutrientFragment extends Fragment {
         this.nutrientViewModel.getNutrientListLD().removeObservers(requireActivity());
         this.nutrientViewModel.setNutrientListLD(new ArrayList<>());
         // hide search button
-        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
+//        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
     }
 }
