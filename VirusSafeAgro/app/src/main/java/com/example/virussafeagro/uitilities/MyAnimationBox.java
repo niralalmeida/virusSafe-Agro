@@ -96,6 +96,24 @@ public class MyAnimationBox {
     }
 
     // for fold the image in virus details
+    public static void runFoldViewAnimationByWidth(View view, int startWidth, int targetWidth, int duration){
+        //value animator
+        ValueAnimator valueAnimator = new ValueAnimator();
+        //hide view
+        valueAnimator = ValueAnimator.ofInt(startWidth, targetWidth);
+        valueAnimator.addUpdateListener(valueAnimator1 -> {
+            //get the current height value
+            int w =(Integer) valueAnimator1.getAnimatedValue();
+            // update the height of the view dynamically
+            view.getLayoutParams().width = w;
+            view.requestLayout();
+        });
+        valueAnimator.setDuration(duration);
+        // start animation
+        valueAnimator.start();
+    }
+
+    // for fold the image in virus details
     public static void runChangeViewSizeAnimation(TextView textView, float startSize, float targetSize, int duration){
         //value animator
         ObjectAnimator objectAnimator = new ObjectAnimator();

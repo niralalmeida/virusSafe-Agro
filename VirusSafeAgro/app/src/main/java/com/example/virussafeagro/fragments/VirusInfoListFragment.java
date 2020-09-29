@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.virussafeagro.MainActivity;
@@ -183,7 +185,7 @@ public class VirusInfoListFragment extends Fragment {
         setGridViewItemVirusCardClickListener(virusModelInfoList);
 
         // show search button
-        MyAnimationBox.runFadeInAnimation(mainActivity.getOpenSearchLinearLayout(), 1000);
+        MyAnimationBox.runFadeInAnimation(openSearchLinearLayout, 1000);
         // set open search button on click listener
         setOpenSearchOnClickListener();
 
@@ -192,13 +194,8 @@ public class VirusInfoListFragment extends Fragment {
     // set open search button on click listener
     private void setOpenSearchOnClickListener() {
         openSearchLinearLayout.setOnClickListener(v -> {
-
-            // test
-            titleLinearLayout.setVisibility(View.GONE);
-            // test
-            v.setVisibility(View.GONE);
-            // test
-            doSearchLinearLayout.setVisibility(View.VISIBLE);
+            // show search area
+            MyAnimationBox.runFoldViewAnimationByWidth(doSearchLinearLayout, doSearchLinearLayout.getWidth(), MainActivity.TOOLBAR_WIDTH, 500);
 
             // set SearchEditText On Change Listener
             setSearchEditOnTextChangeListener();
@@ -238,12 +235,8 @@ public class VirusInfoListFragment extends Fragment {
     // set close search button on click listener
     private void setCloseSearchButtonOnClickListener() {
         closeSearchLinearLayout.setOnClickListener(v -> {
-            // test
-            doSearchLinearLayout.setVisibility(View.GONE);
-            // test
-            titleLinearLayout.setVisibility(View.VISIBLE);
-            // test
-            openSearchLinearLayout.setVisibility(View.VISIBLE);
+            // hide search area
+            MyAnimationBox.runFoldViewAnimationByWidth(doSearchLinearLayout, doSearchLinearLayout.getWidth(), 0, 500);
             // hide keyboard
             KeyboardToggleUtils.hideKeyboard(mainActivity);
         });
@@ -295,8 +288,10 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
         // hide search button
-        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
-        this.doSearchLinearLayout.setVisibility(View.GONE);
-        this.titleLinearLayout.setVisibility(View.VISIBLE);
+        this.openSearchLinearLayout.setVisibility(View.GONE);
+        // hide search area
+        RelativeLayout.LayoutParams layoutParams =(RelativeLayout.LayoutParams) this.doSearchLinearLayout.getLayoutParams();
+        layoutParams.width = 0;
+        this.doSearchLinearLayout.setLayoutParams(layoutParams);
     }
 }

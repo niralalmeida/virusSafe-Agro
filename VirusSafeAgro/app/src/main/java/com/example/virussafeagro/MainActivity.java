@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // bottom bar
     private BottomNavigationView bottomNavigationView;
 
+    public static int TOOLBAR_WIDTH;
+
     public static final int PASSWORD_REQUEST_CODE = 9;
     public static final int PASSWORD_RESULT_OK = 24;
 
@@ -155,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // add toolbar
     private void configureToolbar() {
         setSupportActionBar(this.toolbar);
+        TOOLBAR_WIDTH = findViewById(R.id.rl_all_views_toolbar).getWidth();
 //        this.setOnTopMenuItemClickedListener();
     }
 
