@@ -80,9 +80,10 @@ public class VirusQuizQuestionFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_quiz_question, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Take Quiz");
-
+        this.mainActivity.getTitleTextView().setText("Take Quiz");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

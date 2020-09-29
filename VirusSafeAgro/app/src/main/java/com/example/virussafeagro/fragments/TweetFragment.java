@@ -60,9 +60,10 @@ public class TweetFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_tweet, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Tweets for Tomato");
-
+        this.mainActivity.getTitleTextView().setText("Tweets for Tomato");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

@@ -36,9 +36,10 @@ public class LearnFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_learn, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Learn");
-
+        this.mainActivity.getTitleTextView().setText("Learn");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

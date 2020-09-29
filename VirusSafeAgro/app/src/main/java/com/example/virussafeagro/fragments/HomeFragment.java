@@ -50,9 +50,10 @@ public class HomeFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("virusSafe Agro");
-
+        this.mainActivity.getTitleTextView().setText("virusSafe Agro");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

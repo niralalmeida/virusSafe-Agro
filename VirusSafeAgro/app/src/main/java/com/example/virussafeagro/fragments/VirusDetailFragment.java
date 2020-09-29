@@ -76,9 +76,10 @@ public class VirusDetailFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_virus_detail, container, false);
         this.initializeViews();
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus Details");
-
+        this.mainActivity.getTitleTextView().setText("Virus Details");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

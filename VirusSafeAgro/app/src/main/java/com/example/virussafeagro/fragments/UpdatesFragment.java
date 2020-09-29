@@ -32,9 +32,10 @@ public class UpdatesFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_updates, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("About virusSafe Agro");
-
+        this.mainActivity.getTitleTextView().setText("Future Updates");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

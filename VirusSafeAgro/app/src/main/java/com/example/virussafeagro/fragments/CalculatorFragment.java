@@ -31,9 +31,10 @@ public class CalculatorFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_calculator, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Calculator");
-
+        this.mainActivity.getTitleTextView().setText("Calculator");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

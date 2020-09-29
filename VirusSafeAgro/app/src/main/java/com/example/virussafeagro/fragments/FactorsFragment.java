@@ -34,9 +34,10 @@ public class FactorsFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_factors, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Factors");
-
+        this.mainActivity.getTitleTextView().setText("Factors");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

@@ -63,9 +63,10 @@ public class NutrientDetailFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_nutrient_detail, container, false);
         this.initializeViews();
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Nutrient Details");
-
+        this.mainActivity.getTitleTextView().setText("Nutrient Details");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

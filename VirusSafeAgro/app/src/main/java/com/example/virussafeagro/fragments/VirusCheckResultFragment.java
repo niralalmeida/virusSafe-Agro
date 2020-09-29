@@ -64,7 +64,10 @@ public class VirusCheckResultFragment extends Fragment {
 
         // set title
         Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus Check Result");
-
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
+        // set title
+        this.mainActivity.getTitleTextView().setText("Virus Check Result");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

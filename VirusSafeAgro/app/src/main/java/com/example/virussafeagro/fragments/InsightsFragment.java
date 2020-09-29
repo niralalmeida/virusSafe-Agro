@@ -37,9 +37,10 @@ public class InsightsFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_insights, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Insights");
-
+        this.mainActivity.getTitleTextView().setText("Insights");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

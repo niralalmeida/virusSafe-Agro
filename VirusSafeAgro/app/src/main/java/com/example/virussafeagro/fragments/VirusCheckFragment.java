@@ -74,9 +74,10 @@ public class VirusCheckFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_check, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus Check");
-
+        this.mainActivity.getTitleTextView().setText("Virus Check\"");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

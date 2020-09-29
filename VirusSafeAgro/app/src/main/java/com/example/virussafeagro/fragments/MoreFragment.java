@@ -38,9 +38,10 @@ public class MoreFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_more, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("More");
-
+        this.mainActivity.getTitleTextView().setText("More");
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
