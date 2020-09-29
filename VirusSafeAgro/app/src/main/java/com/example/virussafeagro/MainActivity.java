@@ -157,8 +157,37 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setSupportActionBar(this.toolbar);
 //        this.setOnTopMenuItemClickedListener();
     }
+
     public Toolbar getToolbar() {
         return toolbar;
+    }
+
+    public LinearLayout getTitleLinearLayout() {
+        return titleLinearLayout;
+    }
+
+    public TextView getTitleTextView() {
+        return titleTextView;
+    }
+
+    public LinearLayout getOpenSearchLinearLayout() {
+        return openSearchLinearLayout;
+    }
+
+    public LinearLayout getDoSearchLinearLayout() {
+        return doSearchLinearLayout;
+    }
+
+    public ImageButton getDoSearchImageButton() {
+        return doSearchImageButton;
+    }
+
+    public EditText getDoSearchEditText() {
+        return doSearchEditText;
+    }
+
+    public LinearLayout getCloseSearchLinearLayout() {
+        return closeSearchLinearLayout;
     }
     // set on top menu item clicked
 //    private void setOnTopMenuItemClickedListener() {

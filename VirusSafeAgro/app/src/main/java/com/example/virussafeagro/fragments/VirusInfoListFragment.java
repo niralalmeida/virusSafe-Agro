@@ -72,9 +72,9 @@ public class VirusInfoListFragment extends Fragment {
 
         this.mainActivity = (MainActivity)getActivity();
         // set title
-
+        this.mainActivity.getTitleTextView().setText("Virus List");
         // show search button
-
+        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
@@ -262,6 +262,6 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
         // hide search button
-
+        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
     }
 }
