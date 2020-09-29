@@ -18,6 +18,7 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import java.util.Objects;
 
 public class ContactUsFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private LinearLayout allViewLinearLayout;

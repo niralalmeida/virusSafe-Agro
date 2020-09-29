@@ -43,6 +43,7 @@ import java.util.Objects;
  * @author Haoyu Yang
  */
 public class VirusCheckFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
     private Camera camera;
 

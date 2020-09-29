@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class NewsDetailFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private NewsModel currentNewsModel;

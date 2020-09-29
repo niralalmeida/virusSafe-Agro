@@ -31,6 +31,7 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import java.util.Objects;
 
 public class NutrientDetailFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
     private NutrientModel currentNutrientModel;
     private String nutrientCorrectionMethodMessage;

@@ -20,6 +20,7 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import java.util.Objects;
 
 public class LearnFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private RelativeLayout allViewsRelativeLayout;

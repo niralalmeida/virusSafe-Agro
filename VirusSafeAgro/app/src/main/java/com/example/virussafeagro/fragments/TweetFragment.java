@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class TweetFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
     private boolean isFromInsights;
 

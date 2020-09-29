@@ -34,6 +34,7 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import java.util.Objects;
 
 public class VirusDetailFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
     private VirusModel currentVirusModel;
     private String preventionMessage;

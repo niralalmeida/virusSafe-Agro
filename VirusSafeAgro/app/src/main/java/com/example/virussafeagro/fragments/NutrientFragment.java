@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class NutrientFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private NutrientViewModel nutrientViewModel;

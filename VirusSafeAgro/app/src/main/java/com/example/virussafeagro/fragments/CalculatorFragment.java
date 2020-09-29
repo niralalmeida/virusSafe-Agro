@@ -17,6 +17,7 @@ import com.example.virussafeagro.R;
 import java.util.Objects;
 
 public class CalculatorFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private RelativeLayout allViewsRelativeLayout;
