@@ -17,7 +17,115 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <!-- top all views -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:orientation="vertical">
+
+                <!-- title -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Title"/>
+
+                </LinearLayout>
+
+                <!-- search -->
+                <LinearLayout
+                    android:id="@+id/ll_search_toolbar"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_edit_search_toolbar"
+                    android:orientation="horizontal">
+
+                    <!-- search icon -->
+                    <ImageButton
+                        android:id="@+id/imgbtn_search_toolbar"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.1"
+                        android:background="@drawable/ripple_btn_search_toolbar"
+                        android:src="@drawable/ic_search_green_30dp" />
+
+                    <!-- search edit -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.80"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_search_toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:cursorVisible="true"
+                            android:textCursorDrawable="@drawable/shape_cursor_search_toolbar"
+                            android:textColor="@color/colorBlack"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:background="@drawable/shape_edit_search_toolbar"
+                            android:hint="Search Tomato Virus" />
+
+                    </LinearLayout>
+
+                    <!-- search close -->
+                    <LinearLayout
+                        android:id="@+id/ll_close_btn_search_toolbar"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.1"
+                        android:padding="5dp"
+                        android:background="@drawable/ripple_close_btn_search_toolbar"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_close_white_30dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- search button -->
+                <LinearLayout
+                    android:id="@+id/ll_open_search_toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_search_white_30dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -77,7 +77,7 @@
                 android:layout_height="35dp"
                 android:layout_weight="0.15"
                 android:background="@drawable/ripple_img_btn_search_virus_info_list"
-                android:src="@drawable/ic_search_white_30dp" />
+                android:src="@drawable/ic_search_green_30dp" />
 
         </LinearLayout>
 

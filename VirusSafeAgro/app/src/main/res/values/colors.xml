@@ -43,4 +43,7 @@
     <color name="author">#d0d3d6</color>
     <color name="top_line">#808B96</color>
 
+    <!-- search -->
+    <color name="btnOnPress">#909497</color>
+
 </resources>
