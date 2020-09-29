@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.virussafeagro.fragments.CalculatorFragment;
 import com.example.virussafeagro.fragments.HomeFragment;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private boolean isFromOnBoardingActivity;
     private SharedPreferenceProcess spp;
 
-    private LinearLayout backgroundLinearLayout;
+    private Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
 
     public static final int PASSWORD_REQUEST_CODE = 9;
@@ -68,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private void initializeViews() {
         // initialize background image
+        this.toolbar = findViewById(R.id.toolbar);
         this.bottomNavigationView = findViewById(R.id.bottom_navigation);
-        this.backgroundLinearLayout = findViewById(R.id.ll_image_main);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -98,9 +99,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void displayAllMainActivityViews() {
+        // add toolbar
+        this.addToolbar();
         // show or not top action bar (back button + title)
         showTopActionBar(this);
-
         // initialize bottom navigation bar
         this.initializeBottomNavigationView();
     }
@@ -122,6 +124,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 this.showHomePage();
             }
         }
+    }
+
+    // add toolbar
+    private void addToolbar() {
+        setSupportActionBar(this.toolbar);
     }
 
     // show or not top action bar

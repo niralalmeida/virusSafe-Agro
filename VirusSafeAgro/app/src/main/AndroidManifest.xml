@@ -31,6 +31,7 @@
         <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode= "adjustPan" />
 
         <!-- PasswordActivity -->
