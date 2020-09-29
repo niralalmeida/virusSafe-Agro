@@ -69,6 +69,8 @@ public class VirusInfoListFragment extends Fragment {
 
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // show search button
+        MainActivity.showTopBarSearchButton((MainActivity)requireActivity());
 
         // initialize views
         this.initializeViews();

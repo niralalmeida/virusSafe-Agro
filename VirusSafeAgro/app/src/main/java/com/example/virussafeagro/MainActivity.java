@@ -20,7 +20,10 @@ import com.example.virussafeagro.fragments.CalculatorFragment;
 import com.example.virussafeagro.fragments.HomeFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
+import com.example.virussafeagro.fragments.NewsFragment;
+import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
+import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DragYRelativeLayout;
@@ -130,13 +133,32 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setSupportActionBar(this.toolbar);
         this.setOnTopMenuItemClickedListener();
     }
-
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
     // set on top menu item clicked
     private void setOnTopMenuItemClickedListener() {
         this.toolbar.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
             if (id == R.id.action_search){
-                Toast.makeText(this, "GOOD!", Toast.LENGTH_SHORT).show();
+
+                FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
+                Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+
+                boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
+                boolean isNutrientFragment = currentVisibleFragment instanceof NutrientFragment;
+                boolean isNewsFragment = currentVisibleFragment instanceof NewsFragment;
+
+                if (isVirusInfoListFragment){
+                    // test
+                    System.out.println("virus");
+                } else if (isNutrientFragment){
+                    // test
+                    System.out.println("nutrient");
+                } else if (isNewsFragment){
+                    // test
+                    System.out.println("news");
+                }
             }
             return true;
         });
@@ -154,10 +176,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     // show or not top bar search button
     public static void showTopBarSearchButton(MainActivity mainActivity) {
-        FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
-        Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
-
-//        boolean isVirusInfoF
+        mainActivity.getToolbar().getMenu().findItem(R.id.action_search).setVisible(true);
     }
 
     // show or not top bar back button

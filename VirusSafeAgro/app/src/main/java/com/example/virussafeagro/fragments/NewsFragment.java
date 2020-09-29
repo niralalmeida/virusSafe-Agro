@@ -66,6 +66,8 @@ public class NewsFragment extends Fragment {
 
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // show search button
+        MainActivity.showTopBarSearchButton((MainActivity)requireActivity());
 
         // initialize view model
         this.initializeNewsViewModel();
