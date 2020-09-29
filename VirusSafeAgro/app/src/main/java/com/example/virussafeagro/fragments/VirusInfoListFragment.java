@@ -4,10 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -26,13 +26,13 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Fragment with virus list for showing virus details
@@ -231,6 +231,8 @@ public class VirusInfoListFragment extends Fragment {
         searchVirusImageButton.setOnClickListener(view -> {
             // get the virus list by input keyword and display
             displayVirusModelListBySearching(searchVirusEditText.getText().toString());
+            // hide keyboard
+            KeyboardToggleUtils.hideKeyboard(mainActivity);
         });
     }
     // set close search button on click listener
@@ -242,6 +244,8 @@ public class VirusInfoListFragment extends Fragment {
             titleLinearLayout.setVisibility(View.VISIBLE);
             // test
             openSearchLinearLayout.setVisibility(View.VISIBLE);
+            // hide keyboard
+            KeyboardToggleUtils.hideKeyboard(mainActivity);
         });
     }
 
@@ -274,6 +278,8 @@ public class VirusInfoListFragment extends Fragment {
     // set card on click listener
     private void setGridViewItemVirusCardClickListener(List<VirusModel> virusModelListForListener){
         gridVirusInfoAdapter.setOnVirusCardClickListener(position -> {
+            // hide keyboard
+            KeyboardToggleUtils.hideKeyboard(mainActivity);
             Bundle bundle = new Bundle();
             VirusModel currentVirusModel = virusModelListForListener.get(position);
             bundle.putParcelable("currentVirusModel", currentVirusModel);
@@ -291,5 +297,6 @@ public class VirusInfoListFragment extends Fragment {
         // hide search button
         this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
         this.doSearchLinearLayout.setVisibility(View.GONE);
+        this.titleLinearLayout.setVisibility(View.VISIBLE);
     }
 }
