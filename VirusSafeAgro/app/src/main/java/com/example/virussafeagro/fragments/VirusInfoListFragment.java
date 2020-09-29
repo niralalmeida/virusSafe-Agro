@@ -67,9 +67,7 @@ public class VirusInfoListFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_info_list, container, false);
 
-        // set title
-//        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus List");
-
+        // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
         this.mainActivity.getTitleTextView().setText("Virus List");

@@ -62,9 +62,12 @@ public class NewsFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_news, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Agricultural News in VIC");
-
+        this.mainActivity.getTitleTextView().setText("Agricultural News in VIC");
+        // show search button
+        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
@@ -238,5 +241,8 @@ public class NewsFragment extends Fragment {
 
         assert getArguments() != null;
         getArguments().clear();
+
+        // hide search button
+        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
     }
 }

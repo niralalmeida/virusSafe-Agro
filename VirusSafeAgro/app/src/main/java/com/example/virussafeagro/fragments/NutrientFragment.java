@@ -60,9 +60,12 @@ public class NutrientFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_nutrient, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Nutrient Deficiencies");
-
+        this.mainActivity.getTitleTextView().setText("Nutrient Deficiencies");
+        // show search button
+        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
@@ -245,5 +248,7 @@ public class NutrientFragment extends Fragment {
         super.onPause();
         this.nutrientViewModel.getNutrientListLD().removeObservers(requireActivity());
         this.nutrientViewModel.setNutrientListLD(new ArrayList<>());
+        // hide search button
+        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
     }
 }
