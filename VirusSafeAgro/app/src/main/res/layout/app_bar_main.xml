@@ -93,7 +93,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <EditText
+                        <com.example.virussafeagro.uitilities.ExtendedEditText
                             android:id="@+id/et_do_search_toolbar"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

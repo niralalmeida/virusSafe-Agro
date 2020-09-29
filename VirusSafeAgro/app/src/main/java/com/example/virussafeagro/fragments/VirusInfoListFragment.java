@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
@@ -60,7 +61,7 @@ public class VirusInfoListFragment extends Fragment {
     private LinearLayout titleLinearLayout;
     private LinearLayout openSearchLinearLayout;
     private LinearLayout doSearchLinearLayout;
-    private EditText searchVirusEditText;
+    private com.example.virussafeagro.uitilities.ExtendedEditText searchVirusEditText;
     private ImageButton searchVirusImageButton;
     private LinearLayout closeSearchLinearLayout; // for button
 
@@ -193,6 +194,9 @@ public class VirusInfoListFragment extends Fragment {
         mainActivity.setCloseSearchOnClickListener();
         // set SearchEditText On Change Listener
         setSearchEditOnTextChangeListener();
+
+        // test
+        System.out.println("reach");
     }
 
     // set open search button on click listener
@@ -227,15 +231,6 @@ public class VirusInfoListFragment extends Fragment {
             }
         });
     }
-    //set SearchImageButton On Click Listener
-//    private void setSearchImageButtonOnClickListener(){
-//        searchVirusImageButton.setOnClickListener(view -> {
-//            // get the virus list by input keyword and display
-//            displayVirusModelListBySearching(searchVirusEditText.getText().toString());
-//            // hide keyboard
-//            KeyboardToggleUtils.hideKeyboard(mainActivity);
-//        });
-//    }
 
     // get the virus model list by search input keyword
     private void displayVirusModelListBySearching(String searchInput) {
@@ -281,12 +276,12 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
         // hide search area
-        mainActivity.hideSearchArea(500);
-        new Handler().postDelayed(()->{
-            mainActivity.showSearchButton(false, false, 0);
-        },500);
-//        RelativeLayout.LayoutParams layoutParams =(RelativeLayout.LayoutParams) this.doSearchLinearLayout.getLayoutParams();
-//        layoutParams.width = 0;
-//        this.doSearchLinearLayout.setLayoutParams(layoutParams);
+            // clear the edit text content
+        searchVirusEditText.clearTextChangedListeners();
+        searchVirusEditText.setText("");
+            // hide keyboard
+        KeyboardToggleUtils.hideKeyboard(mainActivity);
+            // set GONE to all search views
+        mainActivity.setAllSearchViewLinearLayoutVisibility(View.GONE);
     }
 }

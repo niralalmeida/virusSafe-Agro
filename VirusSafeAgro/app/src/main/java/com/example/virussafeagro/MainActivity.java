@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private LinearLayout allSearchViewLinearLayout;
     private LinearLayout searchLinearLayout;
     private ImageView searchImageView;
-    private EditText doSearchEditText;
+    private com.example.virussafeagro.uitilities.ExtendedEditText doSearchEditText;
     private LinearLayout closeSearchLinearLayout; // for button
     // bottom bar
     private BottomNavigationView bottomNavigationView;
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //    public ImageView getSearchImageView() {
 //        return searchImageView;
 //    }
-    public EditText getDoSearchEditText() {
+    public com.example.virussafeagro.uitilities.ExtendedEditText getDoSearchEditText() {
         return doSearchEditText;
     }
 //    public LinearLayout getCloseSearchLinearLayout() {
@@ -232,6 +232,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     // only show search button (hide edit and close button )
     public void onlyShowSearchIcon() {
+        // test
+        System.out.println("--> only show!");
         // change the search icon style
         searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
         searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
@@ -242,6 +244,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     // show search button
     public void showSearchButton(boolean showOrHide, boolean withFadeAnimation, int duration) {
+        // test
+        System.out.println("==> show!");
         if (showOrHide) {
             if (withFadeAnimation) {
                 MyAnimationBox.runFadeInAnimation(this.allSearchViewLinearLayout, duration);
@@ -304,6 +308,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
             searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
         }, duration);
+    }
+
+    public void setAllSearchViewLinearLayoutVisibility(int visibility) {
+        allSearchViewLinearLayout.setVisibility(visibility);
     }
 
     // show or not top bar back button
