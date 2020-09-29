@@ -55,8 +55,12 @@ public class VirusInfoListFragment extends Fragment {
     private GridVirusInfoAdapter gridVirusInfoAdapter;
 
     // search function
+    private LinearLayout titleLinearLayout;
+    private LinearLayout openSearchLinearLayout;
+    private LinearLayout doSearchLinearLayout;
     private EditText searchVirusEditText;
     private ImageButton searchVirusImageButton;
+    private LinearLayout closeSearchLinearLayout; // for button
 
     public VirusInfoListFragment() {
     }
@@ -71,8 +75,6 @@ public class VirusInfoListFragment extends Fragment {
         this.mainActivity = (MainActivity)getActivity();
         // set title
         this.mainActivity.getTitleTextView().setText("Virus List");
-        // show search button
-        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
@@ -129,21 +131,17 @@ public class VirusInfoListFragment extends Fragment {
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
-        this.searchVirusEditText = view.findViewById(R.id.et_search_virus_info);
-        this.searchVirusImageButton = view.findViewById(R.id.imgbtn_search_virus_info);
+        this.titleLinearLayout = this.mainActivity.getTitleLinearLayout();
+        this.openSearchLinearLayout = this.mainActivity.getOpenSearchLinearLayout();
+        this.doSearchLinearLayout = this.mainActivity.getDoSearchLinearLayout();
+        this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
+        this.searchVirusImageButton = this.mainActivity.getDoSearchImageButton();
+        this.closeSearchLinearLayout = this.mainActivity.getCloseSearchLinearLayout();
     }
 
     private void initializeVirusInfoViewModel() {
         this.virusInfoListViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoListViewModel.class);
         this.virusInfoListViewModel.initiateSharedPreferenceProcess(requireContext());
-    }
-
-    public LinearLayout getVirusDescriptionLinearLayout() {
-        return virusDescriptionLinearLayout;
-    }
-
-    public LinearLayout getVirusSearchLinearLayout() {
-        return virusSearchLinearLayout;
     }
 
     //    private void initializeSharedPreferenceProcess() {
@@ -184,12 +182,32 @@ public class VirusInfoListFragment extends Fragment {
         // set GridView Item VirusCard Click Listener
         setGridViewItemVirusCardClickListener(virusModelInfoList);
 
-        // set SearchEditText On Change Listener
-        setSearchEditOnTextChangeListener();
-        // set search image button on click listener
-        setSearchImageButtonOnClickListener();
+        // show search button
+        MyAnimationBox.runFadeInAnimation(mainActivity.getOpenSearchLinearLayout(), 1000);
+        // set open search button on click listener
+        setOpenSearchOnClickListener();
+
     }
 
+    // set open search button on click listener
+    private void setOpenSearchOnClickListener() {
+        openSearchLinearLayout.setOnClickListener(v -> {
+
+            // test
+            titleLinearLayout.setVisibility(View.GONE);
+            // test
+            v.setVisibility(View.GONE);
+            // test
+            doSearchLinearLayout.setVisibility(View.VISIBLE);
+
+            // set SearchEditText On Change Listener
+            setSearchEditOnTextChangeListener();
+            // set search image button on click listener
+            setSearchImageButtonOnClickListener();
+            // set close search button on click listener
+            setCloseSearchButtonOnClickListener();
+        });
+    }
     // set search edit text on change listener
     private void setSearchEditOnTextChangeListener() {
         searchVirusEditText.addTextChangedListener(new TextWatcher() {
@@ -208,11 +226,22 @@ public class VirusInfoListFragment extends Fragment {
             }
         });
     }
-
+    //set SearchImageButton On Click Listener
     private void setSearchImageButtonOnClickListener(){
         searchVirusImageButton.setOnClickListener(view -> {
             // get the virus list by input keyword and display
             displayVirusModelListBySearching(searchVirusEditText.getText().toString());
+        });
+    }
+    // set close search button on click listener
+    private void setCloseSearchButtonOnClickListener() {
+        closeSearchLinearLayout.setOnClickListener(v -> {
+            // test
+            doSearchLinearLayout.setVisibility(View.GONE);
+            // test
+            titleLinearLayout.setVisibility(View.VISIBLE);
+            // test
+            openSearchLinearLayout.setVisibility(View.VISIBLE);
         });
     }
 
@@ -261,5 +290,6 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
         // hide search button
         this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
+        this.doSearchLinearLayout.setVisibility(View.GONE);
     }
 }
