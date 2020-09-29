@@ -36,6 +36,7 @@ import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.DragYRelativeLayout;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -173,21 +174,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public TextView getTitleTextView() {
         return titleTextView;
     }
-    public LinearLayout getAllSearchViewLinearLayout() {
-        return allSearchViewLinearLayout;
-    }
-    public LinearLayout getSearchLinearLayout() {
-        return searchLinearLayout;
-    }
-    public ImageView getSearchImageView() {
-        return searchImageView;
-    }
+//    public LinearLayout getAllSearchViewLinearLayout() {
+//        return allSearchViewLinearLayout;
+//    }
+//    public LinearLayout getSearchLinearLayout() {
+//        return searchLinearLayout;
+//    }
+//    public ImageView getSearchImageView() {
+//        return searchImageView;
+//    }
     public EditText getDoSearchEditText() {
         return doSearchEditText;
     }
-    public LinearLayout getCloseSearchLinearLayout() {
-        return closeSearchLinearLayout;
-    }
+//    public LinearLayout getCloseSearchLinearLayout() {
+//        return closeSearchLinearLayout;
+//    }
     // set on top menu item clicked
 //    private void setOnTopMenuItemClickedListener() {
 //        this.toolbar.setOnMenuItemClickListener(item -> {
@@ -229,6 +230,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //        });
 //    }
 
+    // only show search button (hide edit and close button )
+    public void onlyShowSearchIcon() {
+        // change the search icon style
+        searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
+        searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
+        // hide EditText and close button
+        TOOLBAR_SEARCH_EDIT_AND_CLOSE = doSearchEditText.getWidth() + closeSearchLinearLayout.getWidth();
+        this.allSearchViewLinearLayout.setX(TOOLBAR_SEARCH_EDIT_AND_CLOSE + 1);
+    }
+
     // show search button
     public void showSearchButton(boolean showOrHide, boolean withFadeAnimation, int duration) {
         if (showOrHide) {
@@ -246,13 +257,53 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
-    public void onlyShowSearchIcon() {
-        // change the search icon style
-        searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
-        searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
-        // hide EditText and close button
-        TOOLBAR_SEARCH_EDIT_AND_CLOSE = doSearchEditText.getWidth() + closeSearchLinearLayout.getWidth();
-        this.allSearchViewLinearLayout.setTranslationX(TOOLBAR_SEARCH_EDIT_AND_CLOSE + 1);
+    // set search button on click listener
+    public void setSearchOnClickListener() {
+        this.searchLinearLayout.setOnClickListener(v -> {
+            if (this.allSearchViewLinearLayout.getX() != 0) {
+                showSearchArea(500);
+            }
+        });
+    }
+
+    // show search area
+    public void showSearchArea(int duration) {
+        // change the search icon style (green icon)
+        searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_search_toolbar);
+        searchImageView.setImageResource(R.drawable.ic_search_green_30dp);
+
+        // show search area
+        MyAnimationBox.runSlideInAnimationFromRight(
+                this.allSearchViewLinearLayout,
+                this.allSearchViewLinearLayout.getX(),
+                0,
+                duration);
+    }
+
+    // set close search button on click listener
+    public void setCloseSearchOnClickListener() {
+        this.closeSearchLinearLayout.setOnClickListener(v -> {
+            hideSearchArea(500);
+        });
+    }
+
+    // hide search area
+    public void hideSearchArea(int duration) {
+        // hide keyboard
+        KeyboardToggleUtils.hideKeyboard(mainActivity);
+        // clear the edit text content
+        doSearchEditText.setText("");
+        // hide search area
+        MyAnimationBox.runSlideInAnimationFromRight(
+                allSearchViewLinearLayout,
+                allSearchViewLinearLayout.getX(),
+                TOOLBAR_SEARCH_EDIT_AND_CLOSE + 1,
+                duration);
+        // change the search icon style (white icon)
+        new Handler().postDelayed(() ->{
+            searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
+            searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
+        }, duration);
     }
 
     // show or not top bar back button

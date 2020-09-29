@@ -51,6 +51,34 @@ public class MyAnimationBox {
         view.startAnimation(animate);
     }
 
+    public static void runSlideInAnimationFromRight1(View view, float from, float to, int duration) {
+        TranslateAnimation animate = new TranslateAnimation(
+                from,
+                to,
+                0,
+                0);
+        animate.setDuration(duration);
+        animate.setFillAfter(false);
+        view.startAnimation(animate);
+    }
+
+    // for fold the image in virus details
+    public static void runSlideInAnimationFromRight(View view, float from, float to, int duration){
+        //value animator
+        ValueAnimator valueAnimator = new ValueAnimator();
+        //hide view
+        valueAnimator = ValueAnimator.ofFloat(from, to);
+        valueAnimator.addUpdateListener(valueAnimator1 -> {
+            //get the current x value
+            float x =(float) valueAnimator1.getAnimatedValue();
+            // update the height of the view dynamically
+            view.setX(x);
+        });
+        valueAnimator.setDuration(duration);
+        // start animation
+        valueAnimator.start();
+    }
+
     public static void runFlickerAnimation(View view, int duration) {
         view.setVisibility(View.VISIBLE);
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1.0f);

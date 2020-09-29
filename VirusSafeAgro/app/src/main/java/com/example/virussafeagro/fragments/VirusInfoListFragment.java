@@ -133,12 +133,12 @@ public class VirusInfoListFragment extends Fragment {
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
-        this.titleLinearLayout = this.mainActivity.getTitleLinearLayout();
+//        this.titleLinearLayout = this.mainActivity.getTitleLinearLayout();
 //        this.openSearchLinearLayout = this.mainActivity.getOpenSearchLinearLayout();
 //        this.doSearchLinearLayout = this.mainActivity.getDoSearchLinearLayout();
         this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
 //        this.searchVirusImageButton = this.mainActivity.getDoSearchImageButton();
-        this.closeSearchLinearLayout = this.mainActivity.getCloseSearchLinearLayout();
+//        this.closeSearchLinearLayout = this.mainActivity.getCloseSearchLinearLayout();
     }
 
     private void initializeVirusInfoViewModel() {
@@ -187,10 +187,12 @@ public class VirusInfoListFragment extends Fragment {
         // show search button
         mainActivity.onlyShowSearchIcon();
         mainActivity.showSearchButton(true, true, 1000);
-
-//        // set open search button on click listener
-//        setOpenSearchOnClickListener();
-
+        // set search button on click listener
+        mainActivity.setSearchOnClickListener();
+        // set close search button on click listener
+        mainActivity.setCloseSearchOnClickListener();
+        // set SearchEditText On Change Listener
+        setSearchEditOnTextChangeListener();
     }
 
     // set open search button on click listener
@@ -226,23 +228,14 @@ public class VirusInfoListFragment extends Fragment {
         });
     }
     //set SearchImageButton On Click Listener
-    private void setSearchImageButtonOnClickListener(){
-        searchVirusImageButton.setOnClickListener(view -> {
-            // get the virus list by input keyword and display
-            displayVirusModelListBySearching(searchVirusEditText.getText().toString());
-            // hide keyboard
-            KeyboardToggleUtils.hideKeyboard(mainActivity);
-        });
-    }
-    // set close search button on click listener
-    private void setCloseSearchButtonOnClickListener() {
-        closeSearchLinearLayout.setOnClickListener(v -> {
-            // hide search area
-            MyAnimationBox.runFoldViewAnimationByWidth(doSearchLinearLayout, doSearchLinearLayout.getWidth(), 0, 500);
-            // hide keyboard
-            KeyboardToggleUtils.hideKeyboard(mainActivity);
-        });
-    }
+//    private void setSearchImageButtonOnClickListener(){
+//        searchVirusImageButton.setOnClickListener(view -> {
+//            // get the virus list by input keyword and display
+//            displayVirusModelListBySearching(searchVirusEditText.getText().toString());
+//            // hide keyboard
+//            KeyboardToggleUtils.hideKeyboard(mainActivity);
+//        });
+//    }
 
     // get the virus model list by search input keyword
     private void displayVirusModelListBySearching(String searchInput) {
@@ -273,8 +266,6 @@ public class VirusInfoListFragment extends Fragment {
     // set card on click listener
     private void setGridViewItemVirusCardClickListener(List<VirusModel> virusModelListForListener){
         gridVirusInfoAdapter.setOnVirusCardClickListener(position -> {
-            // hide keyboard
-            KeyboardToggleUtils.hideKeyboard(mainActivity);
             Bundle bundle = new Bundle();
             VirusModel currentVirusModel = virusModelListForListener.get(position);
             bundle.putParcelable("currentVirusModel", currentVirusModel);
@@ -290,7 +281,10 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
         // hide search area
-        mainActivity.showSearchButton(false, false, 0);
+        mainActivity.hideSearchArea(500);
+        new Handler().postDelayed(()->{
+            mainActivity.showSearchButton(false, false, 0);
+        },500);
 //        RelativeLayout.LayoutParams layoutParams =(RelativeLayout.LayoutParams) this.doSearchLinearLayout.getLayoutParams();
 //        layoutParams.width = 0;
 //        this.doSearchLinearLayout.setLayoutParams(layoutParams);
