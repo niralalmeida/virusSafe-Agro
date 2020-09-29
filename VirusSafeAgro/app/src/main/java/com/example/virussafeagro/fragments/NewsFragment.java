@@ -1,6 +1,5 @@
 package com.example.virussafeagro.fragments;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,26 +19,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.ListNewsAdapter;
-import com.example.virussafeagro.adapters.ListQuizResultAdapter;
 import com.example.virussafeagro.models.NewsModel;
-import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.viewModel.NewsViewModel;
-import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 import com.scwang.smart.refresh.footer.BallPulseFooter;
 import com.scwang.smart.refresh.header.BezierRadarHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class NewsFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
     private boolean isFromInsights;
 
@@ -68,11 +62,14 @@ public class NewsFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_news, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Agricultural News in VIC");
-
+        this.mainActivity.getTitleTextView().setText("Agricultural News in VIC");
+        // show search button
+//        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // initialize view model
         this.initializeNewsViewModel();
@@ -244,5 +241,8 @@ public class NewsFragment extends Fragment {
 
         assert getArguments() != null;
         getArguments().clear();
+
+        // hide search button
+//        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);
     }
 }

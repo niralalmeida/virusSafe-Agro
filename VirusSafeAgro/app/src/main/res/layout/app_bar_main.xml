@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <!-- top all views -->
+            <RelativeLayout
+                android:id="@+id/rl_all_views_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- title -->
+                <LinearLayout
+                    android:id="@+id/ll_title_toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_title_toolbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Title"/>
+
+                </LinearLayout>
+
+                <!-- search -->
+                <LinearLayout
+                    android:id="@+id/ll_all_search_views_toolbar"
+                    android:visibility="invisible"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_search_toolbar"
+                    android:orientation="horizontal">
+
+                    <!-- search icon -->
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/imgbtn_do_search_toolbar"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:layout_weight="0.1"-->
+<!--                        android:background="@drawable/ripple_btn_search_toolbar"-->
+<!--                        android:src="@drawable/ic_search_green_30dp" />-->
+
+                    <!-- search button -->
+                    <LinearLayout
+                        android:id="@+id/ll_search_toolbar"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.17"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ripple_btn_search_toolbar"
+                        android:orientation="vertical">
+                        <!--                    android:visibility="gone"-->
+
+                        <ImageView
+                            android:id="@+id/img_search_toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_search_green_30dp"/>
+
+                    </LinearLayout>
+
+                    <!-- search edit -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.70"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.example.virussafeagro.uitilities.ExtendedEditText
+                            android:id="@+id/et_do_search_toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:cursorVisible="true"
+                            android:textCursorDrawable="@drawable/shape_cursor_search_toolbar"
+                            android:textColor="@color/colorBlack"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:background="@drawable/shape_edit_search_toolbar"
+                            android:hint="Search Tomato Virus" />
+
+                    </LinearLayout>
+
+                    <!-- search close -->
+                    <LinearLayout
+                        android:id="@+id/ll_close_btn_search_toolbar"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.13"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:background="@drawable/ripple_close_btn_search_toolbar"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_close_white_30dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

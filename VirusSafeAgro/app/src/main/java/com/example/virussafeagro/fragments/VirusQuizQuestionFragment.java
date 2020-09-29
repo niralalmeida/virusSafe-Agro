@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,10 +40,9 @@ import com.example.virussafeagro.viewModel.VirusQuizResultViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class VirusQuizQuestionFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
     private VirusModel currentVirusModel;
 
@@ -82,11 +80,12 @@ public class VirusQuizQuestionFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_quiz_question, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Take Quiz");
-
+        this.mainActivity.getTitleTextView().setText("Take Quiz");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();

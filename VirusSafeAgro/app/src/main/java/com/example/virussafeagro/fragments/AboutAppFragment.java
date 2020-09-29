@@ -1,12 +1,9 @@
 package com.example.virussafeagro.fragments;
 
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -16,12 +13,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.networkConnection.NetworkConnectionToAWSTomatoS3;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
 
 public class AboutAppFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private LinearLayout allViewLinearLayout;
@@ -35,11 +32,12 @@ public class AboutAppFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_about_app, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("About virusSafe Agro");
-
+        this.mainActivity.getTitleTextView().setText("About virusSafe Agro");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // initialize Views
         this.initializeViews();

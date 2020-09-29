@@ -18,6 +18,7 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import java.util.Objects;
 
 public class ControlStrategiesFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private RelativeLayout allViewsRelativeLayout;
@@ -33,11 +34,12 @@ public class ControlStrategiesFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_control_strategies, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Control Strategies");
-
+        this.mainActivity.getTitleTextView().setText("Control Strategies");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // initialize Views
         this.initializeViews();

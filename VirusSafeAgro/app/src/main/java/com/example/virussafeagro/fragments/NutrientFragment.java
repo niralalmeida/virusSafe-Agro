@@ -1,6 +1,5 @@
 package com.example.virussafeagro.fragments;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,16 +21,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.GridNutrientAdapter;
-import com.example.virussafeagro.adapters.GridVirusInfoAdapter;
 import com.example.virussafeagro.models.NutrientModel;
-import com.example.virussafeagro.models.NutrientModel;
-import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
-import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.NutrientViewModel;
 
 import java.util.ArrayList;
@@ -39,6 +34,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class NutrientFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private NutrientViewModel nutrientViewModel;
@@ -52,8 +48,7 @@ public class NutrientFragment extends Fragment {
     private GridNutrientAdapter gridNutrientAdapter;
 
     // search function
-    private EditText searchNutrientEditText;
-    private ImageButton searchNutrientImageButton;
+    private com.example.virussafeagro.uitilities.ExtendedEditText searchVirusEditText;
 
     public NutrientFragment() {
     }
@@ -64,11 +59,14 @@ public class NutrientFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_nutrient, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Nutrient Deficiencies");
-
+        this.mainActivity.getTitleTextView().setText("Nutrient Deficiencies");
+        // show search button
+//        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // initialize views
         this.initializeViews();
@@ -124,8 +122,7 @@ public class NutrientFragment extends Fragment {
         this.nutrientsGridViewLinearLayout = view.findViewById(R.id.ll_list_nutrient_list);
         this.nutrientsGridView = view.findViewById(R.id.gv_list_nutrient_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_nutrient);
-        this.searchNutrientEditText = view.findViewById(R.id.et_search_nutrient);
-        this.searchNutrientImageButton= view.findViewById(R.id.imgbtn_search_nutrient);
+        this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
     }
 
     private void initializeNutrientViewModel() {
@@ -169,15 +166,16 @@ public class NutrientFragment extends Fragment {
         nutrientsGridView.setAdapter(gridNutrientAdapter);
         // set GridView Item NutrientCard Click Listener
         setGridViewItemNutrientCardClickListener(nutrientModelList);
+
+        // display search function
+        mainActivity.displaySearch();
         // set SearchEditText On Change Listener
         setSearchEditOnTextChangeListener();
-        // set search image button on click listener
-        setSearchImageButtonOnClickListener();
     }
 
     // set search edit text on change listener
     private void setSearchEditOnTextChangeListener() {
-        searchNutrientEditText.addTextChangedListener(new TextWatcher() {
+        searchVirusEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -191,13 +189,6 @@ public class NutrientFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });
-    }
-
-    private void setSearchImageButtonOnClickListener(){
-        searchNutrientImageButton.setOnClickListener(view -> {
-            // get the nutrient list by input keyword and display
-            displayNutrientModelListBySearching(searchNutrientEditText.getText().toString());
         });
     }
 
@@ -249,5 +240,8 @@ public class NutrientFragment extends Fragment {
         super.onPause();
         this.nutrientViewModel.getNutrientListLD().removeObservers(requireActivity());
         this.nutrientViewModel.setNutrientListLD(new ArrayList<>());
+
+        // close search function
+        mainActivity.closeSearch();
     }
 }

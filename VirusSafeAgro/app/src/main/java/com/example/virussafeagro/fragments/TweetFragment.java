@@ -20,8 +20,6 @@ import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.ListTweetAdapter;
 import com.example.virussafeagro.models.TweetModel;
-import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.viewModel.TweetViewModel;
@@ -34,6 +32,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class TweetFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
     private boolean isFromInsights;
 
@@ -61,11 +60,12 @@ public class TweetFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_tweet, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Tweets for Tomato");
-
+        this.mainActivity.getTitleTextView().setText("Tweets for Tomato");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // initialize view model
         this.initializeTweetViewModel();

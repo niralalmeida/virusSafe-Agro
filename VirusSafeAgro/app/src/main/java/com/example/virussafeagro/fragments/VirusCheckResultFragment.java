@@ -29,10 +29,10 @@ import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckResultViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class VirusCheckResultFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private SharedPreferenceProcess spp;
@@ -64,9 +64,12 @@ public class VirusCheckResultFragment extends Fragment {
 
         // set title
         Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus Check Result");
-
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
+        // set title
+        this.mainActivity.getTitleTextView().setText("Virus Check Result");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // initialize views
         this.initializeViews();

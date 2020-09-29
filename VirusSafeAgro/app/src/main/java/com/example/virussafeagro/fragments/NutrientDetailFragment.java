@@ -25,13 +25,13 @@ import com.example.virussafeagro.models.NutrientFactorModel;
 import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.NutrientReasonModel;
 import com.example.virussafeagro.models.NutrientSymptomModel;
-import com.example.virussafeagro.models.VirusSymptomModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
 
 public class NutrientDetailFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
     private NutrientModel currentNutrientModel;
     private String nutrientCorrectionMethodMessage;
@@ -63,11 +63,12 @@ public class NutrientDetailFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_nutrient_detail, container, false);
         this.initializeViews();
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Nutrient Details");
-
+        this.mainActivity.getTitleTextView().setText("Nutrient Details");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // get passed bundle and the NutrientModel within it
         Bundle bundle = getArguments();

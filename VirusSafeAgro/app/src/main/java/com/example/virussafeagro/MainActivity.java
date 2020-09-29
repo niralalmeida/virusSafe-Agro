@@ -9,22 +9,34 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.virussafeagro.fragments.CalculatorFragment;
 import com.example.virussafeagro.fragments.HomeFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
+import com.example.virussafeagro.fragments.NewsFragment;
 import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.DragYRelativeLayout;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,8 +49,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private boolean isFromOnBoardingActivity;
     private SharedPreferenceProcess spp;
 
-    private LinearLayout backgroundLinearLayout;
+    // toolbar
+    private Toolbar toolbar;
+    // toolbar - title
+    private LinearLayout titleLinearLayout;
+    private TextView titleTextView;
+    // toolbar - search area
+    private LinearLayout allSearchViewLinearLayout;
+    private LinearLayout searchLinearLayout;
+    private ImageView searchImageView;
+    private com.example.virussafeagro.uitilities.ExtendedEditText doSearchEditText;
+    private LinearLayout closeSearchLinearLayout; // for button
+    // bottom bar
     private BottomNavigationView bottomNavigationView;
+
+    public static int TOOLBAR_WIDTH;
+    public static int TOOLBAR_SEARCH_EDIT_AND_CLOSE;
 
     public static final int PASSWORD_REQUEST_CODE = 9;
     public static final int PASSWORD_RESULT_OK = 24;
@@ -68,8 +94,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private void initializeViews() {
         // initialize background image
+        this.toolbar = findViewById(R.id.toolbar);
+        this.titleLinearLayout = findViewById(R.id.ll_title_toolbar);
+        this.titleTextView = findViewById(R.id.tv_title_toolbar);
+        this.allSearchViewLinearLayout = findViewById(R.id.ll_all_search_views_toolbar);
+        this.searchLinearLayout = findViewById(R.id.ll_search_toolbar);
+        this.searchImageView = findViewById(R.id.img_search_toolbar);
+        this.doSearchEditText = findViewById(R.id.et_do_search_toolbar);
+        this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
         this.bottomNavigationView = findViewById(R.id.bottom_navigation);
-        this.backgroundLinearLayout = findViewById(R.id.ll_image_main);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -98,9 +131,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void displayAllMainActivityViews() {
+        // configure toolbar
+        this.configureToolbar();
         // show or not top action bar (back button + title)
-        showTopActionBar(this);
-
+        showTopBarBackButton(this);
         // initialize bottom navigation bar
         this.initializeBottomNavigationView();
     }
@@ -124,8 +158,187 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
-    // show or not top action bar
-    public static void showTopActionBar(MainActivity mainActivity) {
+    // add toolbar
+    private void configureToolbar() {
+        setSupportActionBar(this.toolbar);
+//        TOOLBAR_WIDTH = findViewById(R.id.rl_all_views_toolbar).getWidth();
+//        this.setOnTopMenuItemClickedListener();
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+    public LinearLayout getTitleLinearLayout() {
+        return titleLinearLayout;
+    }
+    public TextView getTitleTextView() {
+        return titleTextView;
+    }
+//    public LinearLayout getAllSearchViewLinearLayout() {
+//        return allSearchViewLinearLayout;
+//    }
+//    public LinearLayout getSearchLinearLayout() {
+//        return searchLinearLayout;
+//    }
+//    public ImageView getSearchImageView() {
+//        return searchImageView;
+//    }
+    public com.example.virussafeagro.uitilities.ExtendedEditText getDoSearchEditText() {
+        return doSearchEditText;
+    }
+//    public LinearLayout getCloseSearchLinearLayout() {
+//        return closeSearchLinearLayout;
+//    }
+    // set on top menu item clicked
+//    private void setOnTopMenuItemClickedListener() {
+//        this.toolbar.setOnMenuItemClickListener(item -> {
+//            int id = item.getItemId();
+//            if (id == R.id.action_search){
+//
+//                FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
+//                Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+//
+//                boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
+//                boolean isNutrientFragment = currentVisibleFragment instanceof NutrientFragment;
+//                boolean isNewsFragment = currentVisibleFragment instanceof NewsFragment;
+//
+//                if (isVirusInfoListFragment){
+//                    VirusInfoListFragment virusInfoListFragment = (VirusInfoListFragment)currentVisibleFragment;
+//                    LinearLayout virusDescriptionLinearLayout = virusInfoListFragment.getVirusDescriptionLinearLayout();
+//                    LinearLayout virusSearchLinearLayout = virusInfoListFragment.getVirusSearchLinearLayout();
+//                    if (virusSearchLinearLayout.getVisibility() == View.GONE){
+//                        MyAnimationBox.runSlideOutAnimationToTop(virusDescriptionLinearLayout, 500);
+//                        new Handler().postDelayed(() -> {
+//                            MyAnimationBox.runSlideInAnimationFromTop(virusSearchLinearLayout, 600);
+//                        },500);
+//
+//                    } else {
+//                        MyAnimationBox.runSlideOutAnimationToTop(virusSearchLinearLayout, 500);
+//                        new Handler().postDelayed(() -> {
+//                            MyAnimationBox.runSlideInAnimationFromTop(virusDescriptionLinearLayout, 600);
+//                        },500);
+//                    }
+//                } else if (isNutrientFragment){
+//                    // test
+//                    System.out.println("nutrient");
+//                } else if (isNewsFragment){
+//                    // test
+//                    System.out.println("news");
+//                }
+//            }
+//            return true;
+//        });
+//    }
+
+    // display search function
+    public void displaySearch() {
+        // show search button
+        mainActivity.onlyShowSearchIcon();
+        mainActivity.showSearchButton(true, true, 1000);
+        // set search button on click listener
+        mainActivity.setSearchOnClickListener();
+        // set close search button on click listener
+        mainActivity.setCloseSearchOnClickListener();
+    }
+
+    // close search function
+    public void closeSearch() {
+        // hide search area
+        // clear the edit text content
+        doSearchEditText.clearTextChangedListeners();
+        doSearchEditText.setText("");
+        // hide keyboard
+        KeyboardToggleUtils.hideKeyboard(mainActivity);
+        // set GONE to all search views
+        mainActivity.setAllSearchViewLinearLayoutVisibility(View.GONE);
+    }
+
+    // only show search button (hide edit and close button )
+    public void onlyShowSearchIcon() {
+        // test
+        System.out.println("--> only show!");
+        // change the search icon style
+        searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
+        searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
+        // hide EditText and close button
+        TOOLBAR_SEARCH_EDIT_AND_CLOSE = doSearchEditText.getWidth() + closeSearchLinearLayout.getWidth();
+        this.allSearchViewLinearLayout.setX(TOOLBAR_SEARCH_EDIT_AND_CLOSE + 1);
+    }
+
+    // show search button
+    public void showSearchButton(boolean showOrHide, boolean withFadeAnimation, int duration) {
+        // test
+        System.out.println("==> show!");
+        if (showOrHide) {
+            if (withFadeAnimation) {
+                MyAnimationBox.runFadeInAnimation(this.allSearchViewLinearLayout, duration);
+            } else {
+                this.allSearchViewLinearLayout.setVisibility(View.VISIBLE);
+            }
+        } else {
+            if (withFadeAnimation) {
+                MyAnimationBox.runFadeOutAnimation(this.allSearchViewLinearLayout, duration);
+            } else {
+                this.allSearchViewLinearLayout.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    // set search button on click listener
+    public void setSearchOnClickListener() {
+        this.searchLinearLayout.setOnClickListener(v -> {
+            if (this.allSearchViewLinearLayout.getX() != 0) {
+                showSearchArea(500);
+            }
+        });
+    }
+
+    // show search area
+    public void showSearchArea(int duration) {
+        // change the search icon style (green icon)
+        searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_search_toolbar);
+        searchImageView.setImageResource(R.drawable.ic_search_green_30dp);
+
+        // show search area
+        MyAnimationBox.runSlideInAnimationFromRight(
+                this.allSearchViewLinearLayout,
+                this.allSearchViewLinearLayout.getX(),
+                0,
+                duration);
+    }
+
+    // set close search button on click listener
+    public void setCloseSearchOnClickListener() {
+        this.closeSearchLinearLayout.setOnClickListener(v -> {
+            hideSearchArea(500);
+        });
+    }
+
+    // hide search area
+    public void hideSearchArea(int duration) {
+        // hide keyboard
+        KeyboardToggleUtils.hideKeyboard(mainActivity);
+        // clear the edit text content
+        doSearchEditText.setText("");
+        // hide search area
+        MyAnimationBox.runSlideInAnimationFromRight(
+                allSearchViewLinearLayout,
+                allSearchViewLinearLayout.getX(),
+                TOOLBAR_SEARCH_EDIT_AND_CLOSE + 1,
+                duration);
+        // change the search icon style (white icon)
+        new Handler().postDelayed(() ->{
+            searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
+            searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
+        }, duration);
+    }
+
+    public void setAllSearchViewLinearLayoutVisibility(int visibility) {
+        allSearchViewLinearLayout.setVisibility(visibility);
+    }
+
+    // show or not top bar back button
+    public static void showTopBarBackButton(MainActivity mainActivity) {
         FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
         Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
 

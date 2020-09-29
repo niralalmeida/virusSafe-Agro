@@ -18,6 +18,7 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import java.util.Objects;
 
 public class FactorsFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private RelativeLayout allViewsRelativeLayout;
@@ -33,11 +34,12 @@ public class FactorsFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_factors, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Factors");
-
+        this.mainActivity.getTitleTextView().setText("Factors");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // initialize Views
         this.initializeViews();

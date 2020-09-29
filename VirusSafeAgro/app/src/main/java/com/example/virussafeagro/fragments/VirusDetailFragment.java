@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,14 +13,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
@@ -37,6 +34,7 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import java.util.Objects;
 
 public class VirusDetailFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
     private VirusModel currentVirusModel;
     private String preventionMessage;
@@ -78,11 +76,12 @@ public class VirusDetailFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_virus_detail, container, false);
         this.initializeViews();
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus Details");
-
+        this.mainActivity.getTitleTextView().setText("Virus Details");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();

@@ -1,19 +1,14 @@
 package com.example.virussafeagro.fragments;
 
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -23,6 +18,8 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.virussafeagro.MainActivity;
@@ -32,20 +29,20 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
-import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Fragment with virus list for showing virus details
  * @author Haoyu Yang
  */
 public class VirusInfoListFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private VirusInfoListViewModel virusInfoListViewModel;
@@ -54,13 +51,14 @@ public class VirusInfoListFragment extends Fragment {
 
     private LinearLayout processBarLinearLayout;
     private LinearLayout networkErrorLinearLayout;
+    private LinearLayout virusDescriptionLinearLayout;
+    private LinearLayout virusSearchLinearLayout;
     private LinearLayout virusGridViewLinearLayout;
     private GridView virusGridView;
     private GridVirusInfoAdapter gridVirusInfoAdapter;
 
     // search function
-    private EditText searchVirusEditText;
-    private ImageButton searchVirusImageButton;
+    private com.example.virussafeagro.uitilities.ExtendedEditText searchVirusEditText;
 
     public VirusInfoListFragment() {
     }
@@ -71,11 +69,12 @@ public class VirusInfoListFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_info_list, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus List");
-
+        this.mainActivity.getTitleTextView().setText("Virus List");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // initialize views
         this.initializeViews();
@@ -125,11 +124,12 @@ public class VirusInfoListFragment extends Fragment {
 
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
+        this.virusDescriptionLinearLayout = view.findViewById(R.id.ll_description_virus_list);
+        this.virusSearchLinearLayout = view.findViewById(R.id.ll_search_virus_list);
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
-        this.searchVirusEditText = view.findViewById(R.id.et_search_virus_info);
-        this.searchVirusImageButton = view.findViewById(R.id.imgbtn_search_virus_info);
+        this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
     }
 
     private void initializeVirusInfoViewModel() {
@@ -137,7 +137,7 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.initiateSharedPreferenceProcess(requireContext());
     }
 
-//    private void initializeSharedPreferenceProcess() {
+    //    private void initializeSharedPreferenceProcess() {
 //        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireContext());
 //    }
 
@@ -175,10 +175,10 @@ public class VirusInfoListFragment extends Fragment {
         // set GridView Item VirusCard Click Listener
         setGridViewItemVirusCardClickListener(virusModelInfoList);
 
+        // display search function
+        mainActivity.displaySearch();
         // set SearchEditText On Change Listener
         setSearchEditOnTextChangeListener();
-        // set search image button on click listener
-        setSearchImageButtonOnClickListener();
     }
 
     // set search edit text on change listener
@@ -197,13 +197,6 @@ public class VirusInfoListFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });
-    }
-
-    private void setSearchImageButtonOnClickListener(){
-        searchVirusImageButton.setOnClickListener(view -> {
-            // get the virus list by input keyword and display
-            displayVirusModelListBySearching(searchVirusEditText.getText().toString());
         });
     }
 
@@ -250,5 +243,8 @@ public class VirusInfoListFragment extends Fragment {
         super.onPause();
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
+
+        // close search function
+        mainActivity.closeSearch();
     }
 }

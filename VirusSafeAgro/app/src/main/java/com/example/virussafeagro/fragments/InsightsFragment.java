@@ -20,6 +20,7 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import java.util.Objects;
 
 public class InsightsFragment extends Fragment {
+    private MainActivity mainActivity;
     private View view;
 
     private RelativeLayout allViewsRelativeLayout;
@@ -36,11 +37,12 @@ public class InsightsFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_insights, container, false);
 
+        // get main activity
+        this.mainActivity = (MainActivity)getActivity();
         // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Insights");
-
+        this.mainActivity.getTitleTextView().setText("Insights");
         // show back button
-        MainActivity.showTopActionBar((MainActivity)requireActivity());
+        MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
         // initialize Views
         this.initializeViews();
