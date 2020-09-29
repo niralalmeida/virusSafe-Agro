@@ -12,6 +12,8 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -150,8 +152,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 boolean isNewsFragment = currentVisibleFragment instanceof NewsFragment;
 
                 if (isVirusInfoListFragment){
-                    // test
-                    System.out.println("virus");
+                    VirusInfoListFragment virusInfoListFragment = (VirusInfoListFragment)currentVisibleFragment;
+                    LinearLayout virusDescriptionLinearLayout = virusInfoListFragment.getVirusDescriptionLinearLayout();
+                    LinearLayout virusSearchLinearLayout = virusInfoListFragment.getVirusSearchLinearLayout();
+                    if (virusSearchLinearLayout.getVisibility() == View.GONE){
+                        MyAnimationBox.runSlideOutAnimationToTop(virusDescriptionLinearLayout, 500);
+                        new Handler().postDelayed(() -> {
+                            MyAnimationBox.runSlideInAnimationFromTop(virusSearchLinearLayout, 600);
+                        },500);
+
+                    } else {
+                        MyAnimationBox.runSlideOutAnimationToTop(virusSearchLinearLayout, 500);
+                        new Handler().postDelayed(() -> {
+                            MyAnimationBox.runSlideInAnimationFromTop(virusDescriptionLinearLayout, 600);
+                        },500);
+                    }
                 } else if (isNutrientFragment){
                     // test
                     System.out.println("nutrient");

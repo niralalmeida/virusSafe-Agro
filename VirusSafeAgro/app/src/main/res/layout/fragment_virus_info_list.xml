@@ -16,7 +16,7 @@
 
         <!-- virus list description -->
         <LinearLayout
-            android:visibility="gone"
+            android:id="@+id/ll_description_virus_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_tile_text_container"
@@ -47,9 +47,10 @@
 
         <!-- virus search -->
         <LinearLayout
+            android:id="@+id/ll_search_virus_list"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="@drawable/shape_edit_search_virus_info_list"
             android:orientation="horizontal">
 
