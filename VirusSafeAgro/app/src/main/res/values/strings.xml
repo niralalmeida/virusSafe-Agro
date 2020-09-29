@@ -33,6 +33,7 @@
     <string name="menu_ic_virus_check">CHECK</string>
     <string name="menu_ic_calculator">CALCULATOR</string>
     <string name="menu_ic_more">MORE</string>
+    <string name="menu_ic_search">SEARCH</string>
 
     <!-- home -->
     <string name="text_description_title_home">Welcome to VirusSafe Agro</string>

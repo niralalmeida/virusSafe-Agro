@@ -9,19 +9,18 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.virussafeagro.fragments.CalculatorFragment;
 import com.example.virussafeagro.fragments.HomeFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
-import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
-import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DragYRelativeLayout;
@@ -99,10 +98,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void displayAllMainActivityViews() {
-        // add toolbar
-        this.addToolbar();
+        // configure toolbar
+        this.configureToolbar();
         // show or not top action bar (back button + title)
-        showTopActionBar(this);
+        showTopBarBackButton(this);
         // initialize bottom navigation bar
         this.initializeBottomNavigationView();
     }
@@ -127,12 +126,42 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     // add toolbar
-    private void addToolbar() {
+    private void configureToolbar() {
         setSupportActionBar(this.toolbar);
+        this.setOnTopMenuItemClickedListener();
     }
 
-    // show or not top action bar
-    public static void showTopActionBar(MainActivity mainActivity) {
+    // set on top menu item clicked
+    private void setOnTopMenuItemClickedListener() {
+        this.toolbar.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.action_search){
+                Toast.makeText(this, "GOOD!", Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.top_menu, menu);
+        this.toolbar.inflateMenu(R.menu.top_menu);
+        // hide the search button
+        this.toolbar.getMenu().findItem(R.id.action_search).setVisible(false);
+        return true;
+    }
+
+    // show or not top bar search button
+    public static void showTopBarSearchButton(MainActivity mainActivity) {
+        FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
+        Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+
+//        boolean isVirusInfoF
+    }
+
+    // show or not top bar back button
+    public static void showTopBarBackButton(MainActivity mainActivity) {
         FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
         Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
 
