@@ -182,13 +182,13 @@ public class MainActivity extends AppCompatActivity{
 
     private void setCalculatorOnClickListener() {
         calculatorRelativeLayout.setOnClickListener(v -> {
-            FragmentOperator.replaceFragmentNoBackStack(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
+            FragmentOperator.replaceFragment(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
         });
     }
 
     private void setMoreOnClickListener() {
         moreRelativeLayout.setOnClickListener(v -> {
-            FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+            FragmentOperator.replaceFragment(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
         });
     }
 
@@ -341,14 +341,12 @@ public class MainActivity extends AppCompatActivity{
         boolean isHomeFragment = currentVisibleFragment instanceof HomeFragment;
         boolean isLearnFragment = currentVisibleFragment instanceof LearnFragment;
         boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusCheckFragment;
-        boolean isCalculatorFragment = currentVisibleFragment instanceof CalculatorFragment;
-        boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
+//        boolean isCalculatorFragment = currentVisibleFragment instanceof CalculatorFragment;
+//        boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
         if ((currentVisibleFragment == null)
                 || isHomeFragment
                 || isLearnFragment
-                || isVirusIdentificationFragment
-                || isCalculatorFragment
-                || isMoreFragment){
+                || isVirusIdentificationFragment){
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
         } else {
