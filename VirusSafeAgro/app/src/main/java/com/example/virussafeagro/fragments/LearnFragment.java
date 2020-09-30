@@ -39,7 +39,7 @@ public class LearnFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Learn");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_learn);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

@@ -72,7 +72,7 @@ public class NewsDetailFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("News Content");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_news_detail);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

@@ -77,7 +77,7 @@ public class VirusCheckFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Virus Check\"");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_check);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

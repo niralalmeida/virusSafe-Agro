@@ -65,7 +65,7 @@ public class NewsFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Agricultural News in VIC");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_news);
         // show search button
 //        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button

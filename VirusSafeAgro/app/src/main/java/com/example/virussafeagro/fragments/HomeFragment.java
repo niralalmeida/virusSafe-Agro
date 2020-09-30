@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("virusSafe Agro");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_home);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

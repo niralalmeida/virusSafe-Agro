@@ -35,7 +35,7 @@ public class UpdatesFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Future Updates");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_updates);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

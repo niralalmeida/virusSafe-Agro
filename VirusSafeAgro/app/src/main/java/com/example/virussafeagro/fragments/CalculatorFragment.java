@@ -34,7 +34,7 @@ public class CalculatorFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Calculator");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_calculator);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

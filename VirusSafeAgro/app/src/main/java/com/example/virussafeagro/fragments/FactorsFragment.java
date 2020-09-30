@@ -37,7 +37,7 @@ public class FactorsFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Factors");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_factor);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

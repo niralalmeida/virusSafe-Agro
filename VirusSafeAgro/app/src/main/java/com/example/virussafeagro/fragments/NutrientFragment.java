@@ -62,7 +62,7 @@ public class NutrientFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Nutrient Deficiencies");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_nutrient);
         // show search button
 //        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button

@@ -40,7 +40,7 @@ public class InsightsFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Insights");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_insights);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

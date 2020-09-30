@@ -37,7 +37,7 @@ public class ControlStrategiesFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Control Strategies");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_control_strategies);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

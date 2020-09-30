@@ -35,7 +35,7 @@ public class ContactUsFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("About virusSafe Agro");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_contact_us);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

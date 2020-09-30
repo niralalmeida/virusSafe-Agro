@@ -79,7 +79,7 @@ public class VirusDetailFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Virus Details");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_detail);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

@@ -63,7 +63,7 @@ public class TweetFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Tweets for Tomato");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_tweet);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

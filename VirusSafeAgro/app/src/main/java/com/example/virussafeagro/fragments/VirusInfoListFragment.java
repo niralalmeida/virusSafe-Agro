@@ -72,7 +72,7 @@ public class VirusInfoListFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Virus List");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_info);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

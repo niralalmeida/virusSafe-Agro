@@ -83,7 +83,7 @@ public class VirusQuizQuestionFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Take Quiz");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_quiz);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

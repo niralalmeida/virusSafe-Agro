@@ -66,7 +66,7 @@ public class NutrientDetailFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("Nutrient Details");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_nutrient_detail);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

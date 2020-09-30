@@ -35,7 +35,7 @@ public class DisclaimerFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText("About virusSafe Agro");
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_disclaimer);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
