@@ -400,13 +400,19 @@ public class MainActivity extends AppCompatActivity{
         });
 
         floatingActionButton.setOnClickListener(view -> {
-            bottomNavigationViewEx.setCurrentItem(2);
+            bottomNavigationViewEx.setCurrentItem(1);
         });
     }
 
     private void switchFragments(int itemId) {
         switch (itemId) {
-            case R.id.ic_home:
+            case R.id.ic_learn:
+                FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                break;
+            case R.id.ic_virus_check:
+                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+                break;
+            case R.id.ic_toolkit:
                 FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
                 Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
                 if (currentVisibleFragment instanceof HomeFragment){ // if it is in home fragment now
@@ -425,19 +431,13 @@ public class MainActivity extends AppCompatActivity{
                     FragmentOperator.replaceFragmentNoBackStack(this, homeFragment, AppResources.FRAGMENT_TAG_HOME);
                 }
                 break;
-            case R.id.ic_learn:
-                FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
-                break;
-            case R.id.ic_virus_check:
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-                break;
-            case R.id.ic_calculator:
-//                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
-                FragmentOperator.replaceFragmentNoBackStack(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
-                break;
-            case R.id.ic_more:
-                FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
-                break;
+//            case R.id.ic_calculator:
+////                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
+//                FragmentOperator.replaceFragmentNoBackStack(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
+//                break;
+//            case R.id.ic_more:
+//                FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+//                break;
         }
     }
 

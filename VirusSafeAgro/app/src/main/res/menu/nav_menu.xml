@@ -4,11 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/ic_home"
-        android:icon="@drawable/ic_home"
-        android:title="@string/menu_ic_home" />
-
-    <item
         android:id="@+id/ic_learn"
         android:icon="@drawable/learn"
         android:title="@string/menu_ic_learn" />
@@ -18,13 +13,23 @@
         android:title="" />
 
     <item
-        android:id="@+id/ic_calculator"
-        android:icon="@drawable/calculator"
-        android:title="@string/menu_ic_calculator" />
+        android:id="@+id/ic_toolkit"
+        android:icon="@drawable/ic_toolkit"
+        android:title="@string/menu_ic_toolkit" />
 
-    <item
-        android:id="@+id/ic_more"
-        android:icon="@drawable/ic_more"
-        android:title="@string/menu_ic_more" />
+<!--    <item-->
+<!--        android:id="@+id/ic_home"-->
+<!--        android:icon="@drawable/ic_home"-->
+<!--        android:title="@string/menu_ic_home" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/ic_calculator"-->
+<!--        android:icon="@drawable/calculator"-->
+<!--        android:title="@string/menu_ic_calculator" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/ic_more"-->
+<!--        android:icon="@drawable/ic_more"-->
+<!--        android:title="@string/menu_ic_more" />-->
 
 </menu>

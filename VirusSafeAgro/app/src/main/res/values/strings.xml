@@ -50,6 +50,7 @@
 
     <!--  menu items  -->
     <string name="menu_ic_home">HOME</string>
+    <string name="menu_ic_toolkit">TOOLKIT</string>
     <string name="menu_ic_learn">LEARN</string>
     <string name="menu_ic_virus_check">CHECK</string>
     <string name="menu_ic_calculator">CALCULATOR</string>
