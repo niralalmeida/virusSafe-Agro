@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity{
     // toolbar - calculator / more
     private RelativeLayout calculatorRelativeLayout;
     private RelativeLayout moreRelativeLayout;
+    private View lineView;
     // bottom bar
 //    private BottomNavigationView bottomNavigationView;
     private BottomNavigationViewEx bottomNavigationViewEx;
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity{
         this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
         this.calculatorRelativeLayout = findViewById(R.id.rl_calculator_toolbar);
         this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
+        this.lineView = findViewById(R.id.v_line_vertical_toolbar);
 //        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
         this.bottomNavigationViewEx = findViewById(R.id.bottom_navigation);
         this.floatingActionButton = findViewById(R.id.fab);
@@ -186,24 +188,35 @@ public class MainActivity extends AppCompatActivity{
 
     private void setMoreOnClickListener() {
         moreRelativeLayout.setOnClickListener(v -> {
-            setMoreButton(true);
             FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
         });
     }
 
     public void setCalculatorButton(boolean isPress) {
         if (isPress) {
+            calculatorRelativeLayout.setActivated(true);
             calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
+            lineView.setVisibility(View.INVISIBLE);
         } else {
+            calculatorRelativeLayout.setActivated(false);
             calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
+            if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())){
+                lineView.setVisibility(View.VISIBLE);
+            }
         }
     }
 
     public void setMoreButton(boolean isPress) {
         if (isPress) {
+            moreRelativeLayout.setActivated(true);
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
+            lineView.setVisibility(View.INVISIBLE);
         } else {
+            moreRelativeLayout.setActivated(false);
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
+            if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())){
+                lineView.setVisibility(View.VISIBLE);
+            }
         }
     }
 
