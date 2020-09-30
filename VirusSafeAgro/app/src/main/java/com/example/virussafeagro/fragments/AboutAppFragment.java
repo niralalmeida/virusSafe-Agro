@@ -38,6 +38,8 @@ public class AboutAppFragment extends Fragment {
         this.mainActivity.getTitleTextView().setText(R.string.fragment_about);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // set more button
+        this.mainActivity.setMoreButton(true);
 
         // initialize Views
         this.initializeViews();
@@ -88,4 +90,12 @@ public class AboutAppFragment extends Fragment {
 //        }
 //    }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        // set more button
+        mainActivity.setMoreButton(false);
+    }
 }

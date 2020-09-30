@@ -37,6 +37,8 @@ public class CalculatorFragment extends Fragment {
         this.mainActivity.getTitleTextView().setText(R.string.fragment_calculator);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // set calculator button
+        this.mainActivity.setCalculatorButton(true);
 
         // initialize Views
         this.initializeViews();
@@ -61,5 +63,11 @@ public class CalculatorFragment extends Fragment {
 //        MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        mainActivity.setCalculatorButton(false);
+    }
 }
 

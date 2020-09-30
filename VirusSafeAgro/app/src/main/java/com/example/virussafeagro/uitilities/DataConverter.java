@@ -68,6 +68,10 @@ public class DataConverter {
         return imageViewDrawable.getConstantState().equals(drawableCs);
     }
 
+    public static Drawable getDrawableById(FragmentActivity fragmentActivity, int drawableId) {
+        return fragmentActivity.getResources().getDrawable(drawableId);
+    }
+
     public static String checkResultVirusRawNameToDisplayFormat(String resultVirusRawFullName) {
         String processedNameWithNoUnderline = resultVirusRawFullName.trim().replace('_', ' ');
         return processedNameWithNoUnderline;

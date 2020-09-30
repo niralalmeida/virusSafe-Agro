@@ -38,6 +38,8 @@ public class DisclaimerFragment extends Fragment {
         this.mainActivity.getTitleTextView().setText(R.string.fragment_disclaimer);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // set more button
+        this.mainActivity.setMoreButton(true);
 
         // initialize Views
         this.initializeViews();
@@ -60,6 +62,14 @@ public class DisclaimerFragment extends Fragment {
     // show ALl Views
     private void showAllViews() {
         MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        // set more button
+        mainActivity.setMoreButton(false);
     }
 
 }

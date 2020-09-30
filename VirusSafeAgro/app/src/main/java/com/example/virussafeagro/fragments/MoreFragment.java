@@ -44,6 +44,8 @@ public class MoreFragment extends Fragment {
         this.mainActivity.getTitleTextView().setText(R.string.fragment_more);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // set more button
+        this.mainActivity.setMoreButton(true);
 
         // initialize Views
         this.initializeViews();
@@ -106,4 +108,11 @@ public class MoreFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        // set more button
+        mainActivity.setMoreButton(false);
+    }
 }

@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity{
     private ImageView searchImageView;
     private com.example.virussafeagro.uitilities.ExtendedEditText doSearchEditText;
     private LinearLayout closeSearchLinearLayout; // for button
+    // toolbar - calculator / more
+    private RelativeLayout calculatorRelativeLayout;
+    private RelativeLayout moreRelativeLayout;
     // bottom bar
 //    private BottomNavigationView bottomNavigationView;
     private BottomNavigationViewEx bottomNavigationViewEx;
@@ -106,6 +109,8 @@ public class MainActivity extends AppCompatActivity{
         this.searchImageView = findViewById(R.id.img_search_toolbar);
         this.doSearchEditText = findViewById(R.id.et_do_search_toolbar);
         this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
+        this.calculatorRelativeLayout = findViewById(R.id.rl_calculator_toolbar);
+        this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
 //        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
         this.bottomNavigationViewEx = findViewById(R.id.bottom_navigation);
         this.floatingActionButton = findViewById(R.id.fab);
@@ -167,13 +172,43 @@ public class MainActivity extends AppCompatActivity{
     // add toolbar
     private void configureToolbar() {
         setSupportActionBar(this.toolbar);
+        // calculator
+        this.setCalculatorOnClickListener();
+        // more
+        this.setMoreOnClickListener();
+    }
+
+    private void setCalculatorOnClickListener() {
+        calculatorRelativeLayout.setOnClickListener(v -> {
+            FragmentOperator.replaceFragmentNoBackStack(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
+        });
+    }
+
+    private void setMoreOnClickListener() {
+        moreRelativeLayout.setOnClickListener(v -> {
+            setMoreButton(true);
+            FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+        });
+    }
+
+    public void setCalculatorButton(boolean isPress) {
+        if (isPress) {
+            calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
+        } else {
+            calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
+        }
+    }
+
+    public void setMoreButton(boolean isPress) {
+        if (isPress) {
+            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
+        } else {
+            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
+        }
     }
 
     public Toolbar getToolbar() {
         return toolbar;
-    }
-    public LinearLayout getTitleLinearLayout() {
-        return titleLinearLayout;
     }
     public TextView getTitleTextView() {
         return titleTextView;
