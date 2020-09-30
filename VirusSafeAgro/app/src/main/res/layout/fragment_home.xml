@@ -33,51 +33,6 @@
                 android:paddingEnd="25dp"
                 android:orientation="horizontal">
 
-                <!-- virus check -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/ll_virus_check_home"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/selector_green_tile_home"
-                            android:gravity="center"
-                            android:padding="13dp"
-                            android:layout_gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_photo_camera"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorWhite"
-                            android:layout_marginTop="5dp"
-                            android:layout_gravity="center"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:text="@string/text_virus_check_home"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
                 <!-- learn -->
                 <LinearLayout
                     android:layout_width="0dp"
@@ -89,7 +44,7 @@
                         android:id="@+id/ll_learn_home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="start"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -121,6 +76,51 @@
 
                     </LinearLayout>
 
+
+                </LinearLayout>
+
+                <!-- virus check -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_virus_check_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_green_tile_home"
+                            android:gravity="center"
+                            android:padding="13dp"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_photo_analysis"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorWhite"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:text="@string/text_virus_check_home"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
