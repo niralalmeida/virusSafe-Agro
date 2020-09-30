@@ -154,20 +154,6 @@ public class HomeFragment extends Fragment {
         });
     }
 
-//    private void changeTheIconInMenu(String fragmentTag) {
-//        BottomNavigationView bottomNavigationView = ((MainActivity) requireActivity()).getBottomNavigationView();
-//        switch (fragmentTag) {
-//            case AppResources.FRAGMENT_TAG_VIRUS_CHECK:
-//                bottomNavigationView.setSelectedItemId(R.id.ic_virus_check);
-//                break;
-//            case AppResources.FRAGMENT_TAG_LEARN:
-//                bottomNavigationView.setSelectedItemId(R.id.ic_learn);
-//                break;
-//            case AppResources.FRAGMENT_TAG_WATER_CALCULATOR:
-//                bottomNavigationView.setSelectedItemId(R.id.ic_calculator);
-//                break;
-//        }
-//    }
     private void changeTheIconInMenu(String fragmentTag) {
         BottomNavigationViewEx bottomNavigationViewEx = ((MainActivity) requireActivity()).getBottomNavigationViewEx();
         switch (fragmentTag) {

@@ -344,14 +344,11 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void setBottomNavigationViewExItemOnSelectedListener() {
-        bottomNavigationViewEx.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                // open fragment according to id
-                switchFragments(id);
-                return true;
-            }
+        bottomNavigationViewEx.setOnNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            // open fragment according to id
+            switchFragments(id);
+            return true;
         });
 
         floatingActionButton.setOnClickListener(view -> {
@@ -395,10 +392,6 @@ public class MainActivity extends AppCompatActivity{
                 break;
         }
     }
-
-//    public BottomNavigationView getBottomNavigationView() {
-//        return bottomNavigationView;
-//    }
 
 
     public BottomNavigationViewEx getBottomNavigationViewEx() {
