@@ -51,4 +51,12 @@ public class FragmentOperator {
             fragmentManager.popBackStackImmediate();
         }
     }
+
+    // remove the fragment view from the stack
+    public static void removeFragment(FragmentActivity fragmentActivity, Fragment fragmentToRemove){
+        fragmentActivity.getSupportFragmentManager()
+                .beginTransaction()
+                .remove(fragmentToRemove)
+                .commit();
+    }
 }

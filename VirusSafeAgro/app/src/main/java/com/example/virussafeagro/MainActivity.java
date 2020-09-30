@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -43,10 +44,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity{
     private MainActivity mainActivity = this;
+    private FragmentManager fragmentManager = getSupportFragmentManager();
     private boolean isFromPasswordActivity;
     private boolean isFromOnBoardingActivity;
     private SharedPreferenceProcess spp;
@@ -182,20 +185,27 @@ public class MainActivity extends AppCompatActivity{
 
     private void setCalculatorOnClickListener() {
         calculatorRelativeLayout.setOnClickListener(v -> {
+            // add new CalculatorFragment
             FragmentOperator.replaceFragment(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
         });
     }
 
     private void setMoreOnClickListener() {
         moreRelativeLayout.setOnClickListener(v -> {
+            // add new MoreFragment
             FragmentOperator.replaceFragment(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
         });
     }
 
     public void setCalculatorButton(boolean isPress) {
         if (isPress) {
+            // select none item of menu
+            bottomNavigationViewEx.setCurrentItem(3);
+            // set activated
             calculatorRelativeLayout.setActivated(true);
+            // change bg
             calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
+            // hide vertical line
             lineView.setVisibility(View.INVISIBLE);
         } else {
             calculatorRelativeLayout.setActivated(false);
@@ -208,8 +218,13 @@ public class MainActivity extends AppCompatActivity{
 
     public void setMoreButton(boolean isPress) {
         if (isPress) {
+            // select none item of menu
+            bottomNavigationViewEx.setCurrentItem(3);
+            // set activated
             moreRelativeLayout.setActivated(true);
+            // change bg
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
+            // hide vertical line
             lineView.setVisibility(View.INVISIBLE);
         } else {
             moreRelativeLayout.setActivated(false);
@@ -341,8 +356,6 @@ public class MainActivity extends AppCompatActivity{
         boolean isHomeFragment = currentVisibleFragment instanceof HomeFragment;
         boolean isLearnFragment = currentVisibleFragment instanceof LearnFragment;
         boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusCheckFragment;
-//        boolean isCalculatorFragment = currentVisibleFragment instanceof CalculatorFragment;
-//        boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
         if ((currentVisibleFragment == null)
                 || isHomeFragment
                 || isLearnFragment
@@ -378,7 +391,7 @@ public class MainActivity extends AppCompatActivity{
 
     // initialize BottomNavigationView and set OnNavigationItemSelectedListener
     private void initializeBottomNavigationView(){
-//        this.bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        this.bottomNavigationViewEx.setCurrentItem(2);
         this.bottomNavigationViewEx.enableItemShiftingMode(false);
         this.bottomNavigationViewEx.enableShiftingMode(false);
         this.setBottomNavigationViewExItemOnSelectedListener();
@@ -389,6 +402,7 @@ public class MainActivity extends AppCompatActivity{
         FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
     }
 
+    // listeners for BottomNavigationViewEx and floatingActionButton
     private void setBottomNavigationViewExItemOnSelectedListener() {
         bottomNavigationViewEx.setOnNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -411,7 +425,6 @@ public class MainActivity extends AppCompatActivity{
                 FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
                 break;
             case R.id.ic_toolkit:
-                FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
                 Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
                 if (currentVisibleFragment instanceof HomeFragment){ // if it is in home fragment now
                     HomeFragment currentHomeFragment = (HomeFragment)currentVisibleFragment;
@@ -438,7 +451,6 @@ public class MainActivity extends AppCompatActivity{
 //                break;
         }
     }
-
 
     public BottomNavigationViewEx getBottomNavigationViewEx() {
         return bottomNavigationViewEx;

@@ -17,6 +17,11 @@
         android:icon="@drawable/ic_toolkit"
         android:title="@string/menu_ic_toolkit" />
 
+    <item
+        android:id="@+id/ic_hide"
+        android:visible="false"
+        android:title="" />
+
 <!--    <item-->
 <!--        android:id="@+id/ic_home"-->
 <!--        android:icon="@drawable/ic_home"-->
