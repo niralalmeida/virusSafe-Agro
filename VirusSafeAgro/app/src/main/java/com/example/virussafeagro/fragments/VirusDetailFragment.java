@@ -62,7 +62,9 @@ public class VirusDetailFragment extends Fragment {
     private TextView middleContentTextView;
     // bottom quiz button views
     private LinearLayout takeQuizLinearLayout;
-    private Button takeQuizButton;
+//    private Button takeQuizButton;
+    private RelativeLayout takeQuizRelativeLayout;
+    private View lineView1;
 
     // coordinate
     private float startY;
@@ -74,7 +76,6 @@ public class VirusDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_detail, container, false);
-        this.initializeViews();
 
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
@@ -82,6 +83,11 @@ public class VirusDetailFragment extends Fragment {
         this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_detail);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+
+        // initialize views
+        this.initializeViews();
+
+        this.takeQuizRelativeLayout.setVisibility(View.VISIBLE);
 
         // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();
@@ -101,7 +107,10 @@ public class VirusDetailFragment extends Fragment {
 
         // show all virus details views
         MyAnimationBox.runFadeInAnimation(this.virusDetailLinearLayout, 1000);
-        MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
+        // show quiz button
+        MyAnimationBox.runFadeInAnimation(this.takeQuizRelativeLayout, 1000);
+        MyAnimationBox.runFadeInAnimation(this.lineView1, 1000);
+//        MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
         MyAnimationBox.runRepeatedAnimationBottomToTop(this.swipeUpImageView, 1000);
         this.showVirusDetails();
 
@@ -130,7 +139,9 @@ public class VirusDetailFragment extends Fragment {
         this.middleContentLinearLayout= view.findViewById(R.id.ll_middle_content_virus_detail);
         this.middleContentTextView = view.findViewById(R.id.tv_middle_content_virus_detail);
         this.takeQuizLinearLayout = view.findViewById(R.id.ll_take_quiz_virus_detail);
-        this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
+//        this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
+        this.takeQuizRelativeLayout = this.mainActivity.getQuizRelativeLayout();
+        this.lineView1 = this.mainActivity.getLineView1();
     }
 
     private void showDescriptionContent() {
@@ -289,7 +300,7 @@ public class VirusDetailFragment extends Fragment {
     }
 
     private void setTakeQuizButtonOnClickListener() {
-        this.takeQuizButton.setOnClickListener(view -> {
+        this.takeQuizRelativeLayout.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
             bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
@@ -307,5 +318,13 @@ public class VirusDetailFragment extends Fragment {
         } else {
             middleContentTextView.setText(itemContent);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // hide quiz button
+        this.takeQuizRelativeLayout.setVisibility(View.GONE);
+        this.lineView1.setVisibility(View.GONE);
     }
 }

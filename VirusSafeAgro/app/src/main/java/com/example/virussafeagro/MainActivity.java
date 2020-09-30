@@ -68,7 +68,10 @@ public class MainActivity extends AppCompatActivity{
     // toolbar - calculator / more
     private RelativeLayout calculatorRelativeLayout;
     private RelativeLayout moreRelativeLayout;
-    private View lineView;
+    private View lineView1;
+    // toolbar - quiz
+    private RelativeLayout quizRelativeLayout;
+    private View lineView2;
     // bottom bar
 //    private BottomNavigationView bottomNavigationView;
     private BottomNavigationViewEx bottomNavigationViewEx;
@@ -115,7 +118,9 @@ public class MainActivity extends AppCompatActivity{
         this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
         this.calculatorRelativeLayout = findViewById(R.id.rl_calculator_toolbar);
         this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
-        this.lineView = findViewById(R.id.v_line_vertical_toolbar);
+        this.lineView1 = findViewById(R.id.v_line1_vertical_toolbar);
+        this.lineView2 = findViewById(R.id.v_line2_vertical_toolbar);
+        this.quizRelativeLayout = findViewById(R.id.rl_quiz_toolbar);
 //        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
         this.bottomNavigationViewEx = findViewById(R.id.bottom_navigation);
         this.floatingActionButton = findViewById(R.id.fab);
@@ -206,12 +211,12 @@ public class MainActivity extends AppCompatActivity{
             // change bg
             calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
             // hide vertical line
-            lineView.setVisibility(View.INVISIBLE);
+            lineView2.setVisibility(View.INVISIBLE);
         } else {
             calculatorRelativeLayout.setActivated(false);
             calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
             if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())){
-                lineView.setVisibility(View.VISIBLE);
+                lineView2.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -225,12 +230,12 @@ public class MainActivity extends AppCompatActivity{
             // change bg
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
             // hide vertical line
-            lineView.setVisibility(View.INVISIBLE);
+            lineView2.setVisibility(View.INVISIBLE);
         } else {
             moreRelativeLayout.setActivated(false);
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
             if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())){
-                lineView.setVisibility(View.VISIBLE);
+                lineView2.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -243,6 +248,14 @@ public class MainActivity extends AppCompatActivity{
     }
     public com.example.virussafeagro.uitilities.ExtendedEditText getDoSearchEditText() {
         return doSearchEditText;
+    }
+
+    public RelativeLayout getQuizRelativeLayout() {
+        return quizRelativeLayout;
+    }
+
+    public View getLineView1() {
+        return lineView1;
     }
 
     // display search function
