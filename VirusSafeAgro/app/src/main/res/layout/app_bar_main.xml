@@ -42,7 +42,7 @@
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
                         android:textSize="20sp"
-                        android:text="Title"/>
+                        android:text="@string/app_name"/>
 
                 </LinearLayout>
 
