@@ -21,6 +21,7 @@ import com.example.virussafeagro.uitilities.DragYRelativeLayout;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.Objects;
 
@@ -154,16 +155,16 @@ public class HomeFragment extends Fragment {
     }
 
     private void changeTheIconInMenu(String fragmentTag) {
-        BottomNavigationView bottomNavigationView = ((MainActivity) requireActivity()).getBottomNavigationView();
+        BottomNavigationViewEx bottomNavigationViewEx = ((MainActivity) requireActivity()).getBottomNavigationViewEx();
         switch (fragmentTag) {
             case AppResources.FRAGMENT_TAG_VIRUS_CHECK:
-                bottomNavigationView.setSelectedItemId(R.id.ic_virus_check);
+                bottomNavigationViewEx.setCurrentItem(2);
                 break;
             case AppResources.FRAGMENT_TAG_LEARN:
-                bottomNavigationView.setSelectedItemId(R.id.ic_learn);
+                bottomNavigationViewEx.setCurrentItem(1);
                 break;
             case AppResources.FRAGMENT_TAG_WATER_CALCULATOR:
-                bottomNavigationView.setSelectedItemId(R.id.ic_calculator);
+                bottomNavigationViewEx.setCurrentItem(3);
                 break;
         }
     }

@@ -40,10 +40,12 @@ import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity{
     private MainActivity mainActivity = this;
     private boolean isFromPasswordActivity;
     private boolean isFromOnBoardingActivity;
@@ -61,7 +63,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private com.example.virussafeagro.uitilities.ExtendedEditText doSearchEditText;
     private LinearLayout closeSearchLinearLayout; // for button
     // bottom bar
-    private BottomNavigationView bottomNavigationView;
+//    private BottomNavigationView bottomNavigationView;
+    private BottomNavigationViewEx bottomNavigationViewEx;
+    private FloatingActionButton floatingActionButton;
 
     public static int TOOLBAR_WIDTH;
     public static int TOOLBAR_SEARCH_EDIT_AND_CLOSE;
@@ -102,7 +106,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         this.searchImageView = findViewById(R.id.img_search_toolbar);
         this.doSearchEditText = findViewById(R.id.et_do_search_toolbar);
         this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
-        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
+//        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
+        this.bottomNavigationViewEx = findViewById(R.id.bottom_navigation);
+        this.floatingActionButton = findViewById(R.id.fab);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -161,8 +167,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // add toolbar
     private void configureToolbar() {
         setSupportActionBar(this.toolbar);
-//        TOOLBAR_WIDTH = findViewById(R.id.rl_all_views_toolbar).getWidth();
-//        this.setOnTopMenuItemClickedListener();
     }
 
     public Toolbar getToolbar() {
@@ -174,61 +178,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public TextView getTitleTextView() {
         return titleTextView;
     }
-//    public LinearLayout getAllSearchViewLinearLayout() {
-//        return allSearchViewLinearLayout;
-//    }
-//    public LinearLayout getSearchLinearLayout() {
-//        return searchLinearLayout;
-//    }
-//    public ImageView getSearchImageView() {
-//        return searchImageView;
-//    }
     public com.example.virussafeagro.uitilities.ExtendedEditText getDoSearchEditText() {
         return doSearchEditText;
     }
-//    public LinearLayout getCloseSearchLinearLayout() {
-//        return closeSearchLinearLayout;
-//    }
-    // set on top menu item clicked
-//    private void setOnTopMenuItemClickedListener() {
-//        this.toolbar.setOnMenuItemClickListener(item -> {
-//            int id = item.getItemId();
-//            if (id == R.id.action_search){
-//
-//                FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
-//                Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
-//
-//                boolean isVirusInfoListFragment = currentVisibleFragment instanceof VirusInfoListFragment;
-//                boolean isNutrientFragment = currentVisibleFragment instanceof NutrientFragment;
-//                boolean isNewsFragment = currentVisibleFragment instanceof NewsFragment;
-//
-//                if (isVirusInfoListFragment){
-//                    VirusInfoListFragment virusInfoListFragment = (VirusInfoListFragment)currentVisibleFragment;
-//                    LinearLayout virusDescriptionLinearLayout = virusInfoListFragment.getVirusDescriptionLinearLayout();
-//                    LinearLayout virusSearchLinearLayout = virusInfoListFragment.getVirusSearchLinearLayout();
-//                    if (virusSearchLinearLayout.getVisibility() == View.GONE){
-//                        MyAnimationBox.runSlideOutAnimationToTop(virusDescriptionLinearLayout, 500);
-//                        new Handler().postDelayed(() -> {
-//                            MyAnimationBox.runSlideInAnimationFromTop(virusSearchLinearLayout, 600);
-//                        },500);
-//
-//                    } else {
-//                        MyAnimationBox.runSlideOutAnimationToTop(virusSearchLinearLayout, 500);
-//                        new Handler().postDelayed(() -> {
-//                            MyAnimationBox.runSlideInAnimationFromTop(virusDescriptionLinearLayout, 600);
-//                        },500);
-//                    }
-//                } else if (isNutrientFragment){
-//                    // test
-//                    System.out.println("nutrient");
-//                } else if (isNewsFragment){
-//                    // test
-//                    System.out.println("news");
-//                }
-//            }
-//            return true;
-//        });
-//    }
 
     // display search function
     public void displaySearch() {
@@ -255,8 +207,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     // only show search button (hide edit and close button )
     public void onlyShowSearchIcon() {
-        // test
-        System.out.println("--> only show!");
         // change the search icon style
         searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
         searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
@@ -267,8 +217,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     // show search button
     public void showSearchButton(boolean showOrHide, boolean withFadeAnimation, int duration) {
-        // test
-        System.out.println("==> show!");
         if (showOrHide) {
             if (withFadeAnimation) {
                 MyAnimationBox.runFadeInAnimation(this.allSearchViewLinearLayout, duration);
@@ -384,7 +332,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     // initialize BottomNavigationView and set OnNavigationItemSelectedListener
     private void initializeBottomNavigationView(){
-        this.bottomNavigationView.setOnNavigationItemSelectedListener(this);
+//        this.bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        this.bottomNavigationViewEx.enableItemShiftingMode(false);
+        this.bottomNavigationViewEx.enableShiftingMode(false);
+        this.setBottomNavigationViewExItemOnSelectedListener();
     }
 
     // show home page
@@ -392,13 +343,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        // open fragment according to id
-        this.switchFragments(id);
+    private void setBottomNavigationViewExItemOnSelectedListener() {
+        bottomNavigationViewEx.setOnNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            // open fragment according to id
+            switchFragments(id);
+            return true;
+        });
 
-        return true;
+        floatingActionButton.setOnClickListener(view -> {
+            bottomNavigationViewEx.setCurrentItem(2);
+        });
     }
 
     private void switchFragments(int itemId) {
@@ -438,7 +393,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
-    public BottomNavigationView getBottomNavigationView() {
-        return bottomNavigationView;
+
+    public BottomNavigationViewEx getBottomNavigationViewEx() {
+        return bottomNavigationViewEx;
     }
 }

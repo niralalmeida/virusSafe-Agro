@@ -68,6 +68,8 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     // Text view for justify
     implementation 'com.uncopt:android.justified:1.0'
+    // bottom navigation bar ex
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
 
     // twitter api
 //    implementation 'com.twitter.sdk.android:twitter:3.1.1'
