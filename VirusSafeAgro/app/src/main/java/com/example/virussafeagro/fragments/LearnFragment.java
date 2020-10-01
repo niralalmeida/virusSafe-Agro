@@ -55,6 +55,8 @@ public class LearnFragment extends Fragment {
 
         // show all views
         this.showAllViews();
+        // move Calculator And More To Right
+        this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
 
         // control all tiles on click listeners
         this.allTilesOnClickListener();

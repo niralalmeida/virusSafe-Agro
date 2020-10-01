@@ -79,6 +79,8 @@ public class HomeFragment extends Fragment {
 
         // show Home Views
         this.showHomeViews();
+        // move Calculator And More To Right
+        this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
 
         // control all tiles on click listeners
         this.allTilesOnClickListener();

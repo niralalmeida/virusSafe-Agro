@@ -52,6 +52,7 @@ public class CalculatorFragment extends Fragment {
 
         // show all views
 //        this.showAllViews();
+        this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 1000);
     }
 
     private void initializeViews() {

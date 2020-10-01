@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity{
 
     // toolbar
     private Toolbar toolbar;
+    private RelativeLayout toolbarAllViewsRelativeLayout;
     // toolbar - title
     private LinearLayout titleLinearLayout;
     private TextView titleTextView;
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity{
     private ImageView searchImageView;
     private com.example.virussafeagro.uitilities.ExtendedEditText doSearchEditText;
     private LinearLayout closeSearchLinearLayout; // for button
+    // toolbar - buttons
+    private LinearLayout topButtonsLinearLayout;
     // toolbar - calculator / more
     private RelativeLayout calculatorRelativeLayout;
     private RelativeLayout moreRelativeLayout;
@@ -78,7 +81,9 @@ public class MainActivity extends AppCompatActivity{
     private FloatingActionButton floatingActionButton;
 
     public static int TOOLBAR_WIDTH;
+    public static int TOOLBAR_SEARCH_BUTTON;
     public static int TOOLBAR_SEARCH_EDIT_AND_CLOSE;
+    public static boolean FROM_VIRUS_INFO_PAGE;
 
     public static final int PASSWORD_REQUEST_CODE = 9;
     public static final int PASSWORD_RESULT_OK = 24;
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity{
     private void initializeViews() {
         // initialize background image
         this.toolbar = findViewById(R.id.toolbar);
+        this.toolbarAllViewsRelativeLayout = findViewById(R.id.rl_all_views_toolbar);
         this.titleLinearLayout = findViewById(R.id.ll_title_toolbar);
         this.titleTextView = findViewById(R.id.tv_title_toolbar);
         this.allSearchViewLinearLayout = findViewById(R.id.ll_all_search_views_toolbar);
@@ -116,6 +122,7 @@ public class MainActivity extends AppCompatActivity{
         this.searchImageView = findViewById(R.id.img_search_toolbar);
         this.doSearchEditText = findViewById(R.id.et_do_search_toolbar);
         this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
+        this.topButtonsLinearLayout = findViewById(R.id.ll_buttons_toolbar);
         this.calculatorRelativeLayout = findViewById(R.id.rl_calculator_toolbar);
         this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
         this.lineView1 = findViewById(R.id.v_line1_vertical_toolbar);
@@ -261,12 +268,14 @@ public class MainActivity extends AppCompatActivity{
     // display search function
     public void displaySearch() {
         // show search button
-        mainActivity.onlyShowSearchIcon();
-        mainActivity.showSearchButton(true, true, 1000);
+        this.moveForOnlyShowSearchIcon(); // move search button
+        TOOLBAR_SEARCH_BUTTON = this.searchLinearLayout.getWidth();
+        this.moveCalculatorAndMoreToLeft(1000); // move calculator and more
+        this.setSearchButtonVisible(true, true, 1000); // show search button
         // set search button on click listener
-        mainActivity.setSearchOnClickListener();
+        this.setSearchOnClickListener();
         // set close search button on click listener
-        mainActivity.setCloseSearchOnClickListener();
+        this.setCloseSearchOnClickListener();
     }
 
     // close search function
@@ -279,10 +288,11 @@ public class MainActivity extends AppCompatActivity{
         KeyboardToggleUtils.hideKeyboard(mainActivity);
         // set GONE to all search views
         mainActivity.setAllSearchViewLinearLayoutVisibility(View.GONE);
+
     }
 
     // only show search button (hide edit and close button )
-    public void onlyShowSearchIcon() {
+    public void moveForOnlyShowSearchIcon() {
         // change the search icon style
         searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
         searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
@@ -291,8 +301,61 @@ public class MainActivity extends AppCompatActivity{
         this.allSearchViewLinearLayout.setX(TOOLBAR_SEARCH_EDIT_AND_CLOSE + 1);
     }
 
-    // show search button
-    public void showSearchButton(boolean showOrHide, boolean withFadeAnimation, int duration) {
+    // move the "calculator" and "more" buttons to left
+    public void moveCalculatorAndMoreToLeft(int duration) {
+        // move Calculator And More
+        MyAnimationBox.runSlideInAnimationFromRight(
+                this.topButtonsLinearLayout,
+                this.topButtonsLinearLayout.getX(),
+                this.toolbarAllViewsRelativeLayout.getWidth() - this.searchLinearLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
+                duration);
+    }
+
+    // move the "calculator" and "more" buttons to right
+    public void moveCalculatorAndMoreToRight(String fragmentTag, int duration) {
+        switch (fragmentTag) {
+            case AppResources.FRAGMENT_TAG_LEARN:
+            case AppResources.FRAGMENT_TAG_VIRUS_CHECK:
+            case AppResources.FRAGMENT_TAG_HOME:
+
+                if (FROM_VIRUS_INFO_PAGE) {
+                    FROM_VIRUS_INFO_PAGE = false;
+                    MyAnimationBox.runSlideInAnimationFromRight(
+                            this.topButtonsLinearLayout,
+                            this.topButtonsLinearLayout.getX() + TOOLBAR_SEARCH_BUTTON,
+                            this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth() + TOOLBAR_SEARCH_BUTTON,
+                            duration);
+                }
+                break;
+            case AppResources.FRAGMENT_TAG_WATER_CALCULATOR:
+            case AppResources.FRAGMENT_TAG_MORE:
+
+                if (FROM_VIRUS_INFO_PAGE) {
+                    FROM_VIRUS_INFO_PAGE = false;
+
+                    MyAnimationBox.runSlideInAnimationFromRight(
+                            this.topButtonsLinearLayout,
+                            this.topButtonsLinearLayout.getX() + TOOLBAR_SEARCH_BUTTON,
+                            this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
+                            duration);
+                }
+                break;
+            default:
+                if (FROM_VIRUS_INFO_PAGE) {
+                    FROM_VIRUS_INFO_PAGE = false;
+
+                    MyAnimationBox.runSlideInAnimationFromRight(
+                            this.topButtonsLinearLayout,
+                            this.topButtonsLinearLayout.getX(),
+                            this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
+                            duration);
+                }
+                break;
+        }
+    }
+
+    // set search button visible
+    public void setSearchButtonVisible(boolean showOrHide, boolean withFadeAnimation, int duration) {
         if (showOrHide) {
             if (withFadeAnimation) {
                 MyAnimationBox.runFadeInAnimation(this.allSearchViewLinearLayout, duration);

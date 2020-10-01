@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -86,7 +87,7 @@ public class VirusDetailFragment extends Fragment {
 
         // initialize views
         this.initializeViews();
-
+        // show quiz button in toolbar
         this.takeQuizRelativeLayout.setVisibility(View.VISIBLE);
 
         // get passed bundle and the VirusModel within it
@@ -107,9 +108,13 @@ public class VirusDetailFragment extends Fragment {
 
         // show all virus details views
         MyAnimationBox.runFadeInAnimation(this.virusDetailLinearLayout, 1000);
+        // move calculator and more to right
         // show quiz button
-        MyAnimationBox.runFadeInAnimation(this.takeQuizRelativeLayout, 1000);
-        MyAnimationBox.runFadeInAnimation(this.lineView1, 1000);
+        MyAnimationBox.runFadeInAnimation(this.takeQuizRelativeLayout, 500);
+        MyAnimationBox.runFadeInAnimation(this.lineView1, 500);
+        new Handler().postDelayed(()->{
+            this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
+        },500);
 //        MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
         MyAnimationBox.runRepeatedAnimationBottomToTop(this.swipeUpImageView, 1000);
         this.showVirusDetails();

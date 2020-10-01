@@ -246,5 +246,7 @@ public class VirusInfoListFragment extends Fragment {
 
         // close search function
         mainActivity.closeSearch();
+        // set from virus info
+        MainActivity.FROM_VIRUS_INFO_PAGE = true;
     }
 }
