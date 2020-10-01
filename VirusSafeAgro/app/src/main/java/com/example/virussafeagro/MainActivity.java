@@ -3,35 +3,29 @@ package com.example.virussafeagro;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.virussafeagro.fragments.CalculatorFragment;
-import com.example.virussafeagro.fragments.HomeFragment;
+import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
-import com.example.virussafeagro.fragments.NewsFragment;
-import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
-import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
@@ -40,11 +34,9 @@ import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity{
@@ -79,6 +71,11 @@ public class MainActivity extends AppCompatActivity{
 //    private BottomNavigationView bottomNavigationView;
     private BottomNavigationViewEx bottomNavigationViewEx;
     private FloatingActionButton floatingActionButton;
+    // swipe up image
+    private ImageView swipeImageView;
+    private DragYRelativeLayout swipeImageDragYRelativeLayout;
+
+    public static int INITIAL_PAGE_POSITION = 3; // empty -> check fragment
 
     public static int TOOLBAR_WIDTH;
     public static int TOOLBAR_SEARCH_BUTTON;
@@ -131,6 +128,8 @@ public class MainActivity extends AppCompatActivity{
 //        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
         this.bottomNavigationViewEx = findViewById(R.id.bottom_navigation);
         this.floatingActionButton = findViewById(R.id.fab);
+        this.swipeImageView = findViewById(R.id.img_swipe_app);
+        this.swipeImageDragYRelativeLayout = findViewById(R.id.drl_image_app);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -165,6 +164,8 @@ public class MainActivity extends AppCompatActivity{
         showTopBarBackButton(this);
         // initialize bottom navigation bar
         this.initializeBottomNavigationView();
+        // set swipe up animation
+        this.setSwipeUpAnimation();
     }
 
     @Override
@@ -173,17 +174,23 @@ public class MainActivity extends AppCompatActivity{
         if(requestCode == PASSWORD_REQUEST_CODE){
             if (resultCode == PASSWORD_RESULT_OK) { // from password activity
                 isFromPasswordActivity = true;
-                // show home page
-                this.showHomePage();
+                this.bottomNavigationViewEx.setCurrentItem(INITIAL_PAGE_POSITION);
+                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
             }
         }
         if(requestCode == ON_BOARDING_REQUEST_CODE){ // from on boarding activity
             if (resultCode == ON_BOARDING_RESULT_OK) {
                 isFromOnBoardingActivity = true;
-                // show home page
-                this.showHomePage();
+                this.bottomNavigationViewEx.setCurrentItem(INITIAL_PAGE_POSITION);
+                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
             }
         }
+    }
+
+    private void setSwipeUpAnimation() {
+        new Handler().postDelayed(() -> {
+            MyAnimationBox.runRepeatedAnimationBottomToTop(swipeImageView, 1000);
+        }, 1000);
     }
 
     // add toolbar
@@ -207,6 +214,21 @@ public class MainActivity extends AppCompatActivity{
             // add new MoreFragment
             FragmentOperator.replaceFragment(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
         });
+    }
+
+    public void setVirusCheckButton(boolean isPress) {
+        if (isPress) {
+            bottomNavigationViewEx.setCurrentItem(3);
+            // change bg
+            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryTile);
+            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+            floatingActionButton.setBackgroundTintList(colorStateList);
+        } else {
+            // change bg
+            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryLight);
+            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+            floatingActionButton.setBackgroundTintList(colorStateList);
+        }
     }
 
     public void setCalculatorButton(boolean isPress) {
@@ -429,7 +451,7 @@ public class MainActivity extends AppCompatActivity{
         FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
         Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
 
-        boolean isHomeFragment = currentVisibleFragment instanceof HomeFragment;
+        boolean isHomeFragment = currentVisibleFragment instanceof ToolkitFragment;
         boolean isLearnFragment = currentVisibleFragment instanceof LearnFragment;
         boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusCheckFragment;
         if ((currentVisibleFragment == null)
@@ -467,15 +489,10 @@ public class MainActivity extends AppCompatActivity{
 
     // initialize BottomNavigationView and set OnNavigationItemSelectedListener
     private void initializeBottomNavigationView(){
-        this.bottomNavigationViewEx.setCurrentItem(2);
+        this.bottomNavigationViewEx.setCurrentItem(3);
         this.bottomNavigationViewEx.enableItemShiftingMode(false);
         this.bottomNavigationViewEx.enableShiftingMode(false);
         this.setBottomNavigationViewExItemOnSelectedListener();
-    }
-
-    // show home page
-    private void showHomePage() {
-        FragmentOperator.replaceFragmentNoBackStack(this, new HomeFragment(), AppResources.FRAGMENT_TAG_HOME);
     }
 
     // listeners for BottomNavigationViewEx and floatingActionButton
@@ -488,7 +505,7 @@ public class MainActivity extends AppCompatActivity{
         });
 
         floatingActionButton.setOnClickListener(view -> {
-            bottomNavigationViewEx.setCurrentItem(1);
+            showVirusCheckFragment();
         });
     }
 
@@ -498,25 +515,10 @@ public class MainActivity extends AppCompatActivity{
                 FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                 break;
             case R.id.ic_virus_check:
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+                showVirusCheckFragment();
                 break;
             case R.id.ic_toolkit:
-                Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
-                if (currentVisibleFragment instanceof HomeFragment){ // if it is in home fragment now
-                    HomeFragment currentHomeFragment = (HomeFragment)currentVisibleFragment;
-                    DragYRelativeLayout homeImageDragYRelativeLayout = currentHomeFragment.getHomeImageDragYRelativeLayout();
-                    if (homeImageDragYRelativeLayout.getVisibility() == View.GONE){
-                        MyAnimationBox.runSlideInAnimationFromTop(homeImageDragYRelativeLayout, 500); // show
-                    } else {
-                        MyAnimationBox.runSlideOutAnimationToTop(homeImageDragYRelativeLayout, 500); // hide
-                    }
-                } else {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("from", "menu");
-                    HomeFragment homeFragment = new HomeFragment();
-                    homeFragment.setArguments(bundle);
-                    FragmentOperator.replaceFragmentNoBackStack(this, homeFragment, AppResources.FRAGMENT_TAG_HOME);
-                }
+                FragmentOperator.replaceFragmentNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_HOME);
                 break;
 //            case R.id.ic_calculator:
 ////                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
@@ -526,6 +528,11 @@ public class MainActivity extends AppCompatActivity{
 //                FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
 //                break;
         }
+    }
+
+    private void showVirusCheckFragment() {
+        bottomNavigationViewEx.setCurrentItem(3);
+        FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
     }
 
     public BottomNavigationViewEx getBottomNavigationViewEx() {

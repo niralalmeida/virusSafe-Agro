@@ -58,25 +58,25 @@
     <string name="menu_ic_search">SEARCH</string>
 
     <!-- home -->
-    <string name="text_description_title_home">Welcome to VirusSafe Agro</string>
-    <string name="text_description_content_home">This app aims to provide an easy reference to diagnose virus in tomato plants and a care guide for farmers in Victoria who are new to farming.</string>
-    <string name="text_description_read_more_home">Read More &gt;</string>
-    <string name="text_water_calculator_title_home">Calculate your water usage</string>
-    <string name="text_water_calculator_content_home">Click this calculator to get your estimated spending on water per year.</string>
-    <string name="text_water_calculator_home">Calculate</string>
-    <string name="text_control_home">CONTROL</string>
-    <string name="text_strategies_home">STRATEGIES</string>
-    <string name="text_non_chemical_control_home">Non-chemical Control</string>
-    <string name="text_environmental_condition_home">Environmental Conditions</string>
-    <string name="text_pesticide_home">PESTICIDE</string>
-    <string name="text_stores_home">STORES</string>
-    <string name="text_insights_home">INSIGHTS</string>
-    <string name="text_factors_1_home">FACTORS FOR</string>
-    <string name="text_factors_2_home">VIRUS SPREAD</string>
-    <string name="text_news_home">News</string>
-    <string name="text_tweets_home">Tweets</string>
-    <string name="text_virus_check_home">Check</string>
-    <string name="text_virus_info_home">Learn</string>
+    <string name="text_description_title_toolkit">Welcome to VirusSafe Agro</string>
+    <string name="text_description_content_toolkit">This app aims to provide an easy reference to diagnose virus in tomato plants and a care guide for farmers in Victoria who are new to farming.</string>
+    <string name="text_description_read_more_toolkit">Read More &gt;</string>
+    <string name="text_water_calculator_title_toolkit">Calculate your water usage</string>
+    <string name="text_water_calculator_content_toolkit">Click this calculator to get your estimated spending on water per year.</string>
+    <string name="text_water_calculator_toolkit">Calculate</string>
+    <string name="text_control_toolkit">CONTROL</string>
+    <string name="text_strategies_toolkit">STRATEGIES</string>
+    <string name="text_non_chemical_control_toolkit">Non-chemical Control</string>
+    <string name="text_environmental_condition_toolkit">Environmental Conditions</string>
+    <string name="text_pesticide_toolkit">PESTICIDE</string>
+    <string name="text_stores_toolkit">STORES</string>
+    <string name="text_insights_toolkit">INSIGHTS</string>
+    <string name="text_factors_1_toolkit">FACTORS FOR</string>
+    <string name="text_factors_2_toolkit">VIRUS SPREAD</string>
+    <string name="text_news_toolkit">News</string>
+    <string name="text_tweets_toolkit">Tweets</string>
+    <string name="text_virus_check_toolkit">Check</string>
+    <string name="text_virus_info_toolkit">Learn</string>
 
     <!-- control strategy -->
     <string name="text_title_chemical_control">CHEMICAL CONTROL</string>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rl_all_views_home"
+    android:id="@+id/rl_all_views_toolkit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimaryDarkBG"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.ToolkitFragment">
 
     <!-- tiles -->
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsv_all_tiles_home"
+        android:id="@+id/nsv_all_tiles_toolkit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp">
 
         <LinearLayout
-            android:id="@+id/ll_all_tiles_home"
+            android:id="@+id/ll_all_tiles_toolkit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_top_tile_home"
+                android:background="@drawable/shape_top_tile_toolkit"
                 android:layout_marginTop="10dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="15dp"
@@ -41,7 +41,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/ll_learn_home"
+                        android:id="@+id/ll_learn_toolkit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -50,7 +50,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/selector_green_tile_home"
+                            android:background="@drawable/selector_green_tile_toolkit"
                             android:gravity="center"
                             android:padding="13dp"
                             android:layout_gravity="center_horizontal"
@@ -72,7 +72,7 @@
                             android:layout_gravity="center"
                             android:textSize="12sp"
                             android:textStyle="bold"
-                            android:text="@string/text_virus_info_home"/>
+                            android:text="@string/text_virus_info_toolkit"/>
 
                     </LinearLayout>
 
@@ -87,7 +87,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/ll_virus_check_home"
+                        android:id="@+id/ll_virus_check_toolkit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -96,7 +96,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/selector_green_tile_home"
+                            android:background="@drawable/selector_green_tile_toolkit"
                             android:gravity="center"
                             android:padding="13dp"
                             android:layout_gravity="center"
@@ -118,7 +118,7 @@
                             android:layout_gravity="center"
                             android:textSize="12sp"
                             android:textStyle="bold"
-                            android:text="@string/text_virus_check_home"/>
+                            android:text="@string/text_virus_check_toolkit"/>
 
                     </LinearLayout>
 
@@ -132,7 +132,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/ll_water_calculator_home"
+                        android:id="@+id/ll_water_calculator_toolkit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -141,7 +141,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/selector_green_tile_home"
+                            android:background="@drawable/selector_green_tile_toolkit"
                             android:gravity="center"
                             android:padding="13dp"
                             android:layout_gravity="center_horizontal"
@@ -163,7 +163,7 @@
                             android:layout_gravity="center"
                             android:textSize="12sp"
                             android:textStyle="bold"
-                            android:text="@string/text_water_calculator_home"/>
+                            android:text="@string/text_water_calculator_toolkit"/>
 
                     </LinearLayout>
 
@@ -183,13 +183,13 @@
 
                 <!-- control strategies -->
                 <LinearLayout
-                    android:id="@+id/ll_control_strategies_home"
+                    android:id="@+id/ll_control_strategies_toolkit"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
                     android:layout_weight="1"
                     android:padding="18dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/ripple_tile_home">
+                    android:background="@drawable/ripple_tile_toolkit">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -232,7 +232,7 @@
                                     android:gravity="center_horizontal"
                                     android:textSize="13sp"
                                     android:textStyle="bold"
-                                    android:text="@string/text_control_home"/>
+                                    android:text="@string/text_control_toolkit"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -242,7 +242,7 @@
                                     android:gravity="center_horizontal"
                                     android:textSize="13sp"
                                     android:textStyle="bold"
-                                    android:text="@string/text_strategies_home"/>
+                                    android:text="@string/text_strategies_toolkit"/>
 
                         </LinearLayout>
 
@@ -254,7 +254,7 @@
 
                 <!-- pesticide store -->
                 <LinearLayout
-                    android:id="@+id/ll_pesticide_store_home"
+                    android:id="@+id/ll_pesticide_store_toolkit"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
                     android:layout_weight="1"
@@ -262,7 +262,7 @@
                     android:layout_marginLeft="10dp"
                     android:padding="18dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/ripple_tile_home">
+                    android:background="@drawable/ripple_tile_toolkit">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -305,7 +305,7 @@
                                     android:gravity="center_horizontal"
                                     android:textSize="13sp"
                                     android:textStyle="bold"
-                                    android:text="@string/text_pesticide_home"/>
+                                    android:text="@string/text_pesticide_toolkit"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -315,7 +315,7 @@
                                     android:gravity="center_horizontal"
                                     android:textSize="13sp"
                                     android:textStyle="bold"
-                                    android:text="@string/text_stores_home"/>
+                                    android:text="@string/text_stores_toolkit"/>
 
                             </LinearLayout>
 
@@ -332,7 +332,7 @@
 
             <!-- factors and insight -->
             <LinearLayout
-                android:id="@+id/ll_bottom_tiles_home"
+                android:id="@+id/ll_bottom_tiles_toolkit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -340,13 +340,13 @@
 
                 <!-- factors -->
                 <LinearLayout
-                    android:id="@+id/ll_factors_home"
+                    android:id="@+id/ll_factors_toolkit"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
                     android:layout_weight="1"
                     android:padding="18dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/ripple_tile_home">
+                    android:background="@drawable/ripple_tile_toolkit">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -389,7 +389,7 @@
                                 android:gravity="center_horizontal"
                                 android:textSize="13sp"
                                 android:textStyle="bold"
-                                android:text="@string/text_factors_1_home"/>
+                                android:text="@string/text_factors_1_toolkit"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -399,7 +399,7 @@
                                     android:gravity="center_horizontal"
                                     android:textSize="13sp"
                                     android:textStyle="bold"
-                                    android:text="@string/text_factors_2_home"/>
+                                    android:text="@string/text_factors_2_toolkit"/>
 
                             </LinearLayout>
 
@@ -411,7 +411,7 @@
 
                 <!-- insights -->
                 <LinearLayout
-                    android:id="@+id/ll_insights_home"
+                    android:id="@+id/ll_insights_toolkit"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
                     android:layout_weight="1"
@@ -419,7 +419,7 @@
                     android:layout_marginLeft="10dp"
                     android:padding="18dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/ripple_tile_home">
+                    android:background="@drawable/ripple_tile_toolkit">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -462,16 +462,13 @@
                                     android:gravity="center_horizontal"
                                     android:textSize="13sp"
                                     android:textStyle="bold"
-                                    android:text="@string/text_insights_home"/>
+                                    android:text="@string/text_insights_toolkit"/>
 
                             </LinearLayout>
 
                         </LinearLayout>
 
-
-
                     </LinearLayout>
-
 
                 </LinearLayout>
 
@@ -480,47 +477,5 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-    <!-- image -->
-    <com.example.virussafeagro.uitilities.DragYRelativeLayout
-        android:id="@+id/drl_image_home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/home_image_bg"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/home_image_logo"/>
-
-        <TextView
-            android:id="@+id/tv_swipe_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/img_swipe_home"
-            android:textSize="20sp"
-            android:textColor="@color/colorWhite"
-            android:text="Swipe Up"/>
-
-        <ImageView
-            android:id="@+id/img_swipe_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
-            android:src="@drawable/swipe_up"/>
-
-    </com.example.virussafeagro.uitilities.DragYRelativeLayout>
 
 </RelativeLayout>

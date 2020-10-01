@@ -57,6 +57,10 @@ public class LearnFragment extends Fragment {
         this.showAllViews();
         // move Calculator And More To Right
         this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
+        // set menu selected item
+        if (this.mainActivity.getBottomNavigationViewEx().getCurrentItem() != 0) {
+            this.mainActivity.getBottomNavigationViewEx().setCurrentItem(0);
+        }
 
         // control all tiles on click listeners
         this.allTilesOnClickListener();

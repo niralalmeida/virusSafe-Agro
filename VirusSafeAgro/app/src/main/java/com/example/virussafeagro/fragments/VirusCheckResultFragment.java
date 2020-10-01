@@ -86,6 +86,9 @@ public class VirusCheckResultFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // set check button
+        this.mainActivity.setVirusCheckButton(true);
+
         // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();
         assert bundle != null;
@@ -227,6 +230,9 @@ public class VirusCheckResultFragment extends Fragment {
         super.onPause();
         this.virusCheckResultViewModel.getVirusListLD().removeObservers(requireActivity());
         this.virusCheckResultViewModel.setVirusListLD(new ArrayList<>());
+
+        // set check button
+        this.mainActivity.setVirusCheckButton(false);
     }
 
     @Override

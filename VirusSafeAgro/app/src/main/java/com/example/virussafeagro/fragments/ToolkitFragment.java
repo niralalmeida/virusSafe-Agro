@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
@@ -20,18 +19,13 @@ import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DragYRelativeLayout;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-import java.util.Objects;
-
-public class HomeFragment extends Fragment {
+public class ToolkitFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
 
     private RelativeLayout allViewsRelativeLayout;
-    private ImageView swipeImageView;
-    private DragYRelativeLayout homeImageDragYRelativeLayout;
     // top
     private LinearLayout virusCheckLinearLayout;
     private LinearLayout learnLinearLayout;
@@ -42,14 +36,14 @@ public class HomeFragment extends Fragment {
     private LinearLayout factorsLinearLayout;
     private LinearLayout insightsLinearLayout;
 
-    public HomeFragment() {
+    public ToolkitFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
-        this.view = inflater.inflate(R.layout.fragment_home, container, false);
+        this.view = inflater.inflate(R.layout.fragment_toolkit, container, false);
 
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
@@ -60,15 +54,6 @@ public class HomeFragment extends Fragment {
 
         // initialize Views
         this.initializeViews();
-
-        // get the bundle for checking where from
-        Bundle bundle = getArguments();
-        if (bundle != null){
-            String fromString = bundle.getString("from", "back");
-            if (fromString.equals("back")){
-                this.homeImageDragYRelativeLayout.setVisibility(View.GONE);
-            }
-        }
 
         return this.view;
     }
@@ -81,36 +66,29 @@ public class HomeFragment extends Fragment {
         this.showHomeViews();
         // move Calculator And More To Right
         this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
+        // set menu selected item
+        if (this.mainActivity.getBottomNavigationViewEx().getCurrentItem() != 2) {
+            this.mainActivity.getBottomNavigationViewEx().setCurrentItem(2);
+        }
 
         // control all tiles on click listeners
         this.allTilesOnClickListener();
     }
 
     private void initializeViews() {
-        this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_home);
-        this.swipeImageView = view.findViewById(R.id.img_swipe_home);
-        this.homeImageDragYRelativeLayout = view.findViewById(R.id.drl_image_home);
-        this.virusCheckLinearLayout = view.findViewById(R.id.ll_virus_check_home);
-        this.learnLinearLayout = view.findViewById(R.id.ll_learn_home);
-        this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_home);
-        this.controlStrategiesLinearLayout = view.findViewById(R.id.ll_control_strategies_home);
-        this.pesticideStoresLinearLayout = view.findViewById(R.id.ll_pesticide_store_home);
-        this.factorsLinearLayout = view.findViewById(R.id.ll_factors_home);
-        this.insightsLinearLayout = view.findViewById(R.id.ll_insights_home);
-    }
-
-    public DragYRelativeLayout getHomeImageDragYRelativeLayout() {
-        return homeImageDragYRelativeLayout;
+        this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_toolkit);
+        this.virusCheckLinearLayout = view.findViewById(R.id.ll_virus_check_toolkit);
+        this.learnLinearLayout = view.findViewById(R.id.ll_learn_toolkit);
+        this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_toolkit);
+        this.controlStrategiesLinearLayout = view.findViewById(R.id.ll_control_strategies_toolkit);
+        this.pesticideStoresLinearLayout = view.findViewById(R.id.ll_pesticide_store_toolkit);
+        this.factorsLinearLayout = view.findViewById(R.id.ll_factors_toolkit);
+        this.insightsLinearLayout = view.findViewById(R.id.ll_insights_toolkit);
     }
 
     // show Home Views
     private void showHomeViews() {
         MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
-        if (homeImageDragYRelativeLayout.getVisibility() == View.VISIBLE) {
-            new Handler().postDelayed(() -> {
-                MyAnimationBox.runRepeatedAnimationBottomToTop(swipeImageView, 1000);
-            }, 1000);
-        }
     }
 
     private void allTilesOnClickListener() {
@@ -203,10 +181,5 @@ public class HomeFragment extends Fragment {
     public void onPause() {
         super.onPause();
         this.allViewsRelativeLayout.setVisibility(View.GONE);
-
-        // hide the image when back button is clicked
-        Bundle bundle = new Bundle();
-        bundle.putString("from", "back");
-        setArguments(bundle);
     }
 }

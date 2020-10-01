@@ -91,6 +91,9 @@ public class VirusCheckFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // set check button
+        this.mainActivity.setVirusCheckButton(true);
+
         // initialize SharedPreference
         this.initializeSharedPreference();
 
@@ -268,5 +271,7 @@ public class VirusCheckFragment extends Fragment {
         // clear all the observer for the LiveData
         LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
         this.virusCheckViewModel.getCheckFeedbackLD().removeObservers(lifecycleOwner);
+        // set check button
+        this.mainActivity.setVirusCheckButton(false);
     }
 }
