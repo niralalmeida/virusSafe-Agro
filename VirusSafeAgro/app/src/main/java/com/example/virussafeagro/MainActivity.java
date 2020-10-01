@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     // toolbar - quiz
     private RelativeLayout quizRelativeLayout;
     private View lineView2;
+    private View lineView3;
     // bottom bar
 //    private BottomNavigationView bottomNavigationView;
     private BottomNavigationViewEx bottomNavigationViewEx;
@@ -80,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
     public static boolean FROM_VIRUS_INFO_PAGE;
     public static boolean FROM_NUTRIENT_PAGE;
 
-    public static int TOOLBAR_WIDTH;
     public static int TOOLBAR_SEARCH_BUTTON;
     public static int TOOLBAR_SEARCH_EDIT_AND_CLOSE;
 
@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
         this.lineView1 = findViewById(R.id.v_line1_vertical_toolbar);
         this.lineView2 = findViewById(R.id.v_line2_vertical_toolbar);
+        this.lineView3 = findViewById(R.id.v_line3_vertical_toolbar);
         this.quizRelativeLayout = findViewById(R.id.rl_quiz_toolbar);
 //        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
         this.bottomNavigationViewEx = findViewById(R.id.bottom_navigation);
@@ -285,10 +286,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public Toolbar getToolbar() {
-        return toolbar;
-    }
-
     public TextView getTitleTextView() {
         return titleTextView;
     }
@@ -309,26 +306,33 @@ public class MainActivity extends AppCompatActivity {
     public void displaySearch() {
         // show search button
         this.moveForOnlyShowSearchIcon(); // move search button
+        // move calculator and more + show line 3
         TOOLBAR_SEARCH_BUTTON = this.searchLinearLayout.getWidth();
-        this.moveCalculatorAndMoreToLeft(1000); // move calculator and more
-        this.setSearchButtonVisible(true, true, 1000); // show search button
-        // set search button on click listener
-        this.setSearchOnClickListener();
-        // set close search button on click listener
-        this.setCloseSearchOnClickListener();
+        MyAnimationBox.runFadeInAnimation(this.lineView3, 800);
+        this.moveCalculatorAndMoreToLeft(800);
+
+        new Handler().postDelayed(()->{
+            // show search button
+            this.setSearchButtonVisible(true, true, 800);
+            // set search button on click listener
+            this.setSearchOnClickListener();
+            // set close search button on click listener
+            this.setCloseSearchOnClickListener();
+        }, 800);
+
     }
 
     // close search function
     public void closeSearch() {
+        // set GONE to all search views
+        this.lineView3.setVisibility(View.GONE);
+        mainActivity.setAllSearchViewLinearLayoutVisibility(View.GONE);
         // hide search area
         // clear the edit text content
         doSearchEditText.clearTextChangedListeners();
         doSearchEditText.setText("");
         // hide keyboard
         KeyboardToggleUtils.hideKeyboard(mainActivity);
-        // set GONE to all search views
-        mainActivity.setAllSearchViewLinearLayoutVisibility(View.GONE);
-
     }
 
     // only show search button (hide edit and close button )
@@ -338,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
         searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
         // hide EditText and close button
         TOOLBAR_SEARCH_EDIT_AND_CLOSE = doSearchEditText.getWidth() + closeSearchLinearLayout.getWidth();
-        this.allSearchViewLinearLayout.setX(TOOLBAR_SEARCH_EDIT_AND_CLOSE + 1);
+        this.allSearchViewLinearLayout.setX(TOOLBAR_SEARCH_EDIT_AND_CLOSE + 3);
     }
 
     // move the "calculator" and "more" buttons to left
@@ -387,7 +391,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
     // set search button visible
     public void setSearchButtonVisible(boolean showOrHide, boolean withFadeAnimation, int duration) {

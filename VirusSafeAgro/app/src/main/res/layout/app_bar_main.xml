@@ -89,6 +89,7 @@
 
                     </RelativeLayout>
 
+                    <!-- line1 -->
                     <View
                         android:id="@+id/v_line1_vertical_toolbar"
                         android:visibility="gone"
@@ -115,6 +116,7 @@
 
                     </RelativeLayout>
 
+                    <!-- line2 -->
                     <View
                         android:id="@+id/v_line2_vertical_toolbar"
                         android:layout_width="1dp"
@@ -138,6 +140,16 @@
                             android:src="@drawable/ic_more_vertical"/>
 
                     </RelativeLayout>
+
+                    <!-- line3 -->
+                    <View
+                        android:id="@+id/v_line3_vertical_toolbar"
+                        android:visibility="gone"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/top_line"/>
 
                 </LinearLayout>
 
