@@ -48,7 +48,7 @@ public class ToolkitFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText(R.string.fragment_home);
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_toolkit);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 

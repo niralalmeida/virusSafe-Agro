@@ -7,7 +7,7 @@
     <string name="fragment_control_strategies">Control Strategies</string>
     <string name="fragment_disclaimer">Disclaimer</string>
     <string name="fragment_factor">Factors</string>
-    <string name="fragment_home">Home</string>
+    <string name="fragment_toolkit">Toolkit</string>
     <string name="fragment_insights">Insights</string>
     <string name="fragment_learn">Learn</string>
     <string name="fragment_more">More</string>
@@ -63,7 +63,7 @@
     <string name="text_description_read_more_toolkit">Read More &gt;</string>
     <string name="text_water_calculator_title_toolkit">Calculate your water usage</string>
     <string name="text_water_calculator_content_toolkit">Click this calculator to get your estimated spending on water per year.</string>
-    <string name="text_water_calculator_toolkit">Calculate</string>
+    <string name="text_water_calculator_toolkit">Calculator</string>
     <string name="text_control_toolkit">CONTROL</string>
     <string name="text_strategies_toolkit">STRATEGIES</string>
     <string name="text_non_chemical_control_toolkit">Non-chemical Control</string>

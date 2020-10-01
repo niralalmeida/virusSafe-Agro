@@ -3,6 +3,7 @@ package com.example.virussafeagro.uitilities;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import android.os.Handler;
@@ -61,7 +62,7 @@ public class DragYRelativeLayout extends RelativeLayout {
             case MotionEvent.ACTION_UP: // when leaving
                 MyAnimationBox.runSlideOutAnimationToTop(this, 500);
                 new Handler().postDelayed(()->{
-                    this.setVisibility(GONE);
+                    this.setVisibility(View.GONE);
                 },600);
         }
         return true;

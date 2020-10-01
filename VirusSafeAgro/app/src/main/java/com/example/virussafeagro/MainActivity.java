@@ -202,15 +202,23 @@ public class MainActivity extends AppCompatActivity{
 
     private void setCalculatorOnClickListener() {
         calculatorRelativeLayout.setOnClickListener(v -> {
-            // add new CalculatorFragment
-            FragmentOperator.replaceFragment(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
+            // slide Up The Swipe Image And Make It Gone
+            slideUpTheSwipeImageAndMakeItGoneForTopButtons();
+            if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof CalculatorFragment)) {
+                // add new CalculatorFragment
+                FragmentOperator.replaceFragment(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
+            }
         });
     }
 
     private void setMoreOnClickListener() {
         moreRelativeLayout.setOnClickListener(v -> {
-            // add new MoreFragment
-            FragmentOperator.replaceFragment(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+            // slide Up The Swipe Image And Make It Gone
+            slideUpTheSwipeImageAndMakeItGoneForTopButtons();
+            if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof MoreFragment)) {
+                // add new MoreFragment
+                FragmentOperator.replaceFragment(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+            }
         });
     }
 
@@ -221,11 +229,19 @@ public class MainActivity extends AppCompatActivity{
             ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryTile);
             floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
             floatingActionButton.setBackgroundTintList(colorStateList);
+            // change ripple color
+            ColorStateList rippleColorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorDarkBackground);
+            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+            floatingActionButton.setRippleColor(rippleColorStateList);
         } else {
             // change bg
             ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryLight);
             floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
             floatingActionButton.setBackgroundTintList(colorStateList);
+            // change ripple color
+            ColorStateList rippleColorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryDark);
+            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+            floatingActionButton.setRippleColor(rippleColorStateList);
         }
     }
 
@@ -503,6 +519,7 @@ public class MainActivity extends AppCompatActivity{
         });
 
         floatingActionButton.setOnClickListener(view -> {
+            slideUpTheSwipeImageAndMakeItGone();
             if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null) {
                 showVirusCheckFragment();
             }
@@ -512,13 +529,18 @@ public class MainActivity extends AppCompatActivity{
     private void switchFragments(int itemId) {
         switch (itemId) {
             case R.id.ic_learn:
-                FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                slideUpTheSwipeImageAndMakeItGone();
+                if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof LearnFragment)) {
+                    FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                }
                 break;
             case R.id.ic_virus_check:
-                showVirusCheckFragment();
                 break;
             case R.id.ic_toolkit:
-                FragmentOperator.replaceFragmentNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_HOME);
+                slideUpTheSwipeImageAndMakeItGone();
+                if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof ToolkitFragment)) {
+                    FragmentOperator.replaceFragmentNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_HOME);
+                }
                 break;
 //            case R.id.ic_calculator:
 ////                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
@@ -533,6 +555,26 @@ public class MainActivity extends AppCompatActivity{
     private void showVirusCheckFragment() {
         bottomNavigationViewEx.setCurrentItem(3);
         FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+    }
+
+    private void slideUpTheSwipeImageAndMakeItGoneForTopButtons() {
+        if (swipeImageDragYRelativeLayout.getVisibility() != View.GONE) {
+            // set virus check fragment
+            FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+            MyAnimationBox.runSlideOutAnimationToTop(swipeImageDragYRelativeLayout, 500);
+            new Handler().postDelayed(()->{
+                this.swipeImageDragYRelativeLayout.setVisibility(View.GONE);
+            },600);
+        }
+    }
+
+    private void slideUpTheSwipeImageAndMakeItGone() {
+        if (swipeImageDragYRelativeLayout.getVisibility() != View.GONE) {
+            MyAnimationBox.runSlideOutAnimationToTop(swipeImageDragYRelativeLayout, 500);
+            new Handler().postDelayed(()->{
+                this.swipeImageDragYRelativeLayout.setVisibility(View.GONE);
+            },600);
+        }
     }
 
     public BottomNavigationViewEx getBottomNavigationViewEx() {
