@@ -99,20 +99,20 @@
                         android:layout_marginBottom="10dp"
                         android:background="@color/top_line"/>
 
-                    <!-- calculator -->
+                    <!-- Tip -->
                     <RelativeLayout
-                        android:id="@+id/rl_calculator_toolbar"
+                        android:id="@+id/rl_tip_toolbar"
                         android:background="@drawable/ripple_btn_green_bg_toolbar"
                         android:layout_width="60dp"
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/img_calculator"
+                            android:id="@+id/img_tip"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/calculator"/>
+                            android:src="@drawable/tip_question_mark"/>
 
                     </RelativeLayout>
 

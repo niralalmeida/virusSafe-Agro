@@ -56,7 +56,7 @@ public class LearnFragment extends Fragment {
         // show all views
         this.showAllViews();
         // move Calculator And More To Right
-        this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
+        this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
         // set menu selected item
         if (this.mainActivity.getBottomNavigationViewEx().getCurrentItem() != 0) {
             this.mainActivity.getBottomNavigationViewEx().setCurrentItem(0);

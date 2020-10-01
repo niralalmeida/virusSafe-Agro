@@ -103,7 +103,7 @@ public class VirusCheckFragment extends Fragment {
         // show All Views
         this.showAllViews();
         // move Calculator And More To Right
-        this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
+        this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
 
         // set camera button
         this.setCameraButtonOnClickListener();

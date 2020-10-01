@@ -44,7 +44,7 @@
                         android:id="@+id/ll_learn_toolkit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="start"
+                        android:layout_gravity="center_horizontal"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -123,54 +123,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <!-- water usage calculator -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/ll_water_calculator_toolkit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/selector_green_tile_toolkit"
-                            android:gravity="center"
-                            android:padding="13dp"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/calculator"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorWhite"
-                            android:layout_marginTop="5dp"
-                            android:layout_gravity="center"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:text="@string/text_water_calculator_toolkit"/>
-
-                    </LinearLayout>
-
-
-
-                </LinearLayout>
-
 
             </LinearLayout>
 
@@ -479,3 +431,50 @@
     </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>
+
+    <!-- water usage calculator -->
+    <!--                <LinearLayout-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:orientation="vertical">-->
+
+    <!--                    <LinearLayout-->
+    <!--                        android:id="@+id/ll_water_calculator_toolkit"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_gravity="end"-->
+    <!--                        android:orientation="vertical">-->
+
+    <!--                        <LinearLayout-->
+    <!--                            android:layout_width="wrap_content"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:background="@drawable/selector_green_tile_toolkit"-->
+    <!--                            android:gravity="center"-->
+    <!--                            android:padding="13dp"-->
+    <!--                            android:layout_gravity="center_horizontal"-->
+    <!--                            android:orientation="vertical">-->
+
+    <!--                            <ImageView-->
+    <!--                                android:layout_width="35dp"-->
+    <!--                                android:layout_height="35dp"-->
+    <!--                                android:layout_gravity="center"-->
+    <!--                                android:src="@drawable/calculator"/>-->
+
+    <!--                        </LinearLayout>-->
+
+    <!--                        <TextView-->
+    <!--                            android:layout_width="wrap_content"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:textColor="@color/colorWhite"-->
+    <!--                            android:layout_marginTop="5dp"-->
+    <!--                            android:layout_gravity="center"-->
+    <!--                            android:textSize="12sp"-->
+    <!--                            android:textStyle="bold"-->
+    <!--                            android:text="@string/text_water_calculator_toolkit"/>-->
+
+    <!--                    </LinearLayout>-->
+
+
+
+    <!--                </LinearLayout>-->

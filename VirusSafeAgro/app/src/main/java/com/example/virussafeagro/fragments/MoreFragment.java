@@ -60,7 +60,7 @@ public class MoreFragment extends Fragment {
         // show Home Views
         this.showHomeViews();
         // move the calculator and more to right
-        this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 1000);
+        this.mainActivity.moveTipAndMoreToRight(getTag(), 1000);
 
         // set all tiles On Click Listener
         this.allTilesOnClickListener();

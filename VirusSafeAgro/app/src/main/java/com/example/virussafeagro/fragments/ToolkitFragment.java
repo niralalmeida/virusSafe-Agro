@@ -29,7 +29,6 @@ public class ToolkitFragment extends Fragment {
     // top
     private LinearLayout virusCheckLinearLayout;
     private LinearLayout learnLinearLayout;
-    private LinearLayout waterCalculatorLinearLayout;
     // middle
     private LinearLayout controlStrategiesLinearLayout;
     private LinearLayout pesticideStoresLinearLayout;
@@ -65,7 +64,7 @@ public class ToolkitFragment extends Fragment {
         // show Home Views
         this.showHomeViews();
         // move Calculator And More To Right
-        this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
+        this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
         // set menu selected item
         if (this.mainActivity.getBottomNavigationViewEx().getCurrentItem() != 2) {
             this.mainActivity.getBottomNavigationViewEx().setCurrentItem(2);
@@ -79,7 +78,6 @@ public class ToolkitFragment extends Fragment {
         this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_toolkit);
         this.virusCheckLinearLayout = view.findViewById(R.id.ll_virus_check_toolkit);
         this.learnLinearLayout = view.findViewById(R.id.ll_learn_toolkit);
-        this.waterCalculatorLinearLayout = view.findViewById(R.id.ll_water_calculator_toolkit);
         this.controlStrategiesLinearLayout = view.findViewById(R.id.ll_control_strategies_toolkit);
         this.pesticideStoresLinearLayout = view.findViewById(R.id.ll_pesticide_store_toolkit);
         this.factorsLinearLayout = view.findViewById(R.id.ll_factors_toolkit);
@@ -97,8 +95,6 @@ public class ToolkitFragment extends Fragment {
         this.setVirusCheckTileOnClickListener();
         // virus info
         this.setLearnTileOnClickListener();
-        // water calculator
-        this.setWaterCalculatorOnClickListener();
 
         // control strategies
         this.setControlStrategiesOnClickListener();
@@ -123,14 +119,6 @@ public class ToolkitFragment extends Fragment {
         this.learnLinearLayout.setOnClickListener(llView -> {
             changeTheIconInMenu(AppResources.FRAGMENT_TAG_LEARN);
             FragmentOperator.replaceFragment(requireActivity(), new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
-        });
-    }
-
-    // [menu] water calculator
-    private void setWaterCalculatorOnClickListener() {
-        this.waterCalculatorLinearLayout.setOnClickListener(llView -> {
-            changeTheIconInMenu(AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
-            FragmentOperator.replaceFragment(requireActivity(), new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
         });
     }
 

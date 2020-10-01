@@ -21,7 +21,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.virussafeagro.fragments.CalculatorFragment;
 import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
@@ -60,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout closeSearchLinearLayout; // for button
     // toolbar - buttons
     private LinearLayout topButtonsLinearLayout;
-    // toolbar - calculator / more
-    private RelativeLayout calculatorRelativeLayout;
+    // toolbar - tip / more
+    private RelativeLayout tipRelativeLayout;
     private RelativeLayout moreRelativeLayout;
     private View lineView1;
     // toolbar - quiz
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         this.doSearchEditText = findViewById(R.id.et_do_search_toolbar);
         this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
         this.topButtonsLinearLayout = findViewById(R.id.ll_buttons_toolbar);
-        this.calculatorRelativeLayout = findViewById(R.id.rl_calculator_toolbar);
+        this.tipRelativeLayout = findViewById(R.id.rl_tip_toolbar);
         this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
         this.lineView1 = findViewById(R.id.v_line1_vertical_toolbar);
         this.lineView2 = findViewById(R.id.v_line2_vertical_toolbar);
@@ -197,27 +196,24 @@ public class MainActivity extends AppCompatActivity {
     // add toolbar
     private void configureToolbar() {
         setSupportActionBar(this.toolbar);
-        // calculator
-        this.setCalculatorOnClickListener();
+        // tip
+        this.setTipOnClickListener();
         // more
         this.setMoreOnClickListener();
     }
 
-    private void setCalculatorOnClickListener() {
-        calculatorRelativeLayout.setOnClickListener(v -> {
+    private void setTipOnClickListener() {
+        tipRelativeLayout.setOnClickListener(v -> {
+            setTipButton(!v.isActivated());
             // slide Up The Swipe Image And Make It Gone
-            slideUpTheSwipeImageAndMakeItGoneForTopButtons();
-            if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof CalculatorFragment)) {
-                // add new CalculatorFragment
-                FragmentOperator.replaceFragment(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
-            }
+            slideUpTheSwipeImageAndMakeItGoneForTopButtons(500);
         });
     }
 
     private void setMoreOnClickListener() {
         moreRelativeLayout.setOnClickListener(v -> {
             // slide Up The Swipe Image And Make It Gone
-            slideUpTheSwipeImageAndMakeItGoneForTopButtons();
+            slideUpTheSwipeImageAndMakeItGoneForTopButtons(500);
             if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof MoreFragment)) {
                 // add new MoreFragment
                 FragmentOperator.replaceFragment(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
@@ -248,20 +244,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setCalculatorButton(boolean isPress) {
+    public void setTipButton(boolean isPress) {
         if (isPress) {
-            // select none item of menu
-            bottomNavigationViewEx.setCurrentItem(3);
             // set activated
-            calculatorRelativeLayout.setActivated(true);
+            tipRelativeLayout.setActivated(true);
             // change bg
-            calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
+            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryTile));
             // hide vertical line
-            lineView2.setVisibility(View.INVISIBLE);
+            lineView2.setVisibility(View.GONE);
         } else {
-            calculatorRelativeLayout.setActivated(false);
-            calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
-            if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
+            tipRelativeLayout.setActivated(false);
+            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
+            if ((!tipRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
                 lineView2.setVisibility(View.VISIBLE);
             }
         }
@@ -276,11 +270,11 @@ public class MainActivity extends AppCompatActivity {
             // change bg
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
             // hide vertical line
-            lineView2.setVisibility(View.INVISIBLE);
+            lineView2.setVisibility(View.GONE);
         } else {
             moreRelativeLayout.setActivated(false);
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
-            if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
+            if ((!tipRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
                 lineView2.setVisibility(View.VISIBLE);
             }
         }
@@ -306,10 +300,10 @@ public class MainActivity extends AppCompatActivity {
     public void displaySearch() {
         // show search button
         this.moveForOnlyShowSearchIcon(); // move search button
-        // move calculator and more + show line 3
+        // move tip and more + show line 3
         TOOLBAR_SEARCH_BUTTON = this.searchLinearLayout.getWidth();
         MyAnimationBox.runFadeInAnimation(this.lineView3, 800);
-        this.moveCalculatorAndMoreToLeft(800);
+        this.moveTipAndMoreToLeft(800);
 
         new Handler().postDelayed(()->{
             // show search button
@@ -345,9 +339,9 @@ public class MainActivity extends AppCompatActivity {
         this.allSearchViewLinearLayout.setX(TOOLBAR_SEARCH_EDIT_AND_CLOSE + 3);
     }
 
-    // move the "calculator" and "more" buttons to left
-    public void moveCalculatorAndMoreToLeft(int duration) {
-        // move Calculator And More
+    // move the "tip" and "more" buttons to left
+    public void moveTipAndMoreToLeft(int duration) {
+        // move Tip And More
         MyAnimationBox.runSlideInAnimationFromRight(
                 this.topButtonsLinearLayout,
                 this.topButtonsLinearLayout.getX(),
@@ -355,8 +349,8 @@ public class MainActivity extends AppCompatActivity {
                 duration);
     }
 
-    // move the "calculator" and "more" buttons to right
-    public void moveCalculatorAndMoreToRight(String fragmentTag, int duration) {
+    // move the "tip" and "more" buttons to right
+    public void moveTipAndMoreToRight(String fragmentTag, int duration) {
         if (FROM_VIRUS_INFO_PAGE || FROM_NUTRIENT_PAGE) {
             FROM_VIRUS_INFO_PAGE = false;
             FROM_NUTRIENT_PAGE = false;
@@ -372,7 +366,6 @@ public class MainActivity extends AppCompatActivity {
                             duration);
                     break;
 
-                case AppResources.FRAGMENT_TAG_WATER_CALCULATOR:
                 case AppResources.FRAGMENT_TAG_MORE:
                     MyAnimationBox.runSlideInAnimationFromRight(
                             this.topButtonsLinearLayout,
@@ -521,8 +514,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         floatingActionButton.setOnClickListener(view -> {
-            slideUpTheSwipeImageAndMakeItGone();
-            if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null) {
+            slideUpTheSwipeImageAndMakeItGone(500);
+            if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null
+                || (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof VirusCheckFragment))) {
                 showVirusCheckFragment();
             }
         });
@@ -531,7 +525,7 @@ public class MainActivity extends AppCompatActivity {
     private void switchFragments(int itemId) {
         switch (itemId) {
             case R.id.ic_learn:
-                slideUpTheSwipeImageAndMakeItGone();
+                slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof LearnFragment)) {
                     FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                 }
@@ -539,14 +533,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.ic_virus_check:
                 break;
             case R.id.ic_toolkit:
-                slideUpTheSwipeImageAndMakeItGone();
+                slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof ToolkitFragment)) {
                     FragmentOperator.replaceFragmentNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_HOME);
                 }
                 break;
-//            case R.id.ic_calculator:
+//            case R.id.ic_tip:
 ////                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
-//                FragmentOperator.replaceFragmentNoBackStack(this, new CalculatorFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
+//                FragmentOperator.replaceFragmentNoBackStack(this, new TipFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
 //                break;
 //            case R.id.ic_more:
 //                FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
@@ -559,23 +553,23 @@ public class MainActivity extends AppCompatActivity {
         FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
     }
 
-    private void slideUpTheSwipeImageAndMakeItGoneForTopButtons() {
+    private void slideUpTheSwipeImageAndMakeItGoneForTopButtons(int duration) {
         if (swipeImageDragYRelativeLayout.getVisibility() != View.GONE) {
             // set virus check fragment
             FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-            MyAnimationBox.runSlideOutAnimationToTop(swipeImageDragYRelativeLayout, 500);
+            MyAnimationBox.runSlideOutAnimationToTop(swipeImageDragYRelativeLayout, duration);
             new Handler().postDelayed(()->{
                 this.swipeImageDragYRelativeLayout.setVisibility(View.GONE);
-            },600);
+            },duration + 100);
         }
     }
 
-    private void slideUpTheSwipeImageAndMakeItGone() {
+    private void slideUpTheSwipeImageAndMakeItGone(int duration) {
         if (swipeImageDragYRelativeLayout.getVisibility() != View.GONE) {
-            MyAnimationBox.runSlideOutAnimationToTop(swipeImageDragYRelativeLayout, 500);
+            MyAnimationBox.runSlideOutAnimationToTop(swipeImageDragYRelativeLayout, duration);
             new Handler().postDelayed(()->{
                 this.swipeImageDragYRelativeLayout.setVisibility(View.GONE);
-            },600);
+            },duration + 100);
         }
     }
 
