@@ -62,7 +62,7 @@ public class VirusDetailFragment extends Fragment {
     private LinearLayout middleContentLinearLayout;
     private TextView middleContentTextView;
     // bottom quiz button views
-    private LinearLayout takeQuizLinearLayout;
+//    private LinearLayout takeQuizLinearLayout;
 //    private Button takeQuizButton;
     private RelativeLayout takeQuizRelativeLayout;
     private View lineView1;
@@ -143,7 +143,7 @@ public class VirusDetailFragment extends Fragment {
         this.middleContentNestedScrollView = view.findViewById(R.id.nsv_middle_content_virus_detail);
         this.middleContentLinearLayout= view.findViewById(R.id.ll_middle_content_virus_detail);
         this.middleContentTextView = view.findViewById(R.id.tv_middle_content_virus_detail);
-        this.takeQuizLinearLayout = view.findViewById(R.id.ll_take_quiz_virus_detail);
+//        this.takeQuizLinearLayout = view.findViewById(R.id.ll_take_quiz_virus_detail);
 //        this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
         this.takeQuizRelativeLayout = this.mainActivity.getQuizRelativeLayout();
         this.lineView1 = this.mainActivity.getLineView1();
@@ -271,6 +271,9 @@ public class VirusDetailFragment extends Fragment {
                         isVirusDetailsShown = true;
                         // hide the swipe up
                         MyAnimationBox.runFoldViewAnimation(swipeUpRelativeLayout, swipeUpRelativeLayout.getHeight(), 0, 300);
+                        new Handler().postDelayed(()->{
+                            swipeUpRelativeLayout.setVisibility(View.GONE);
+                        },300);
                         // fold the top image
                         MyAnimationBox.runFoldViewAnimation(virusPictureImageView, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 800);
                         MyAnimationBox.runFoldViewAnimation(topRelativeLayout, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 800);
@@ -331,5 +334,6 @@ public class VirusDetailFragment extends Fragment {
         // hide quiz button
         this.takeQuizRelativeLayout.setVisibility(View.GONE);
         this.lineView1.setVisibility(View.GONE);
+        this.isVirusDetailsShown = false;
     }
 }
