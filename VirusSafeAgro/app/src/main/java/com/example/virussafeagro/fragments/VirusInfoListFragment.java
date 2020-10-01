@@ -244,9 +244,12 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
 
+        // hide keyboard
+        KeyboardToggleUtils.hideKeyboard(mainActivity);
         // close search function
         mainActivity.closeSearch();
         // set from virus info
         MainActivity.FROM_VIRUS_INFO_PAGE = true;
+
     }
 }

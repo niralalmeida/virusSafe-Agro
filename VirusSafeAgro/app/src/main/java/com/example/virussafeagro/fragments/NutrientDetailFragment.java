@@ -85,6 +85,7 @@ public class NutrientDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(this.nutrientDetailRelativeLayout, 1000);
         this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
         this.showNutrientDetails();
+        this.showSymptomsContent();
 
         // set top buttons listener
         this.setTopButtonsListener();

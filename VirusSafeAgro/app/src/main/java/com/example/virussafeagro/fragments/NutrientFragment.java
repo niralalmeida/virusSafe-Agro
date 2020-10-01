@@ -25,6 +25,7 @@ import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.viewModel.NutrientViewModel;
@@ -241,6 +242,8 @@ public class NutrientFragment extends Fragment {
         this.nutrientViewModel.getNutrientListLD().removeObservers(requireActivity());
         this.nutrientViewModel.setNutrientListLD(new ArrayList<>());
 
+        // hide keyboard
+        KeyboardToggleUtils.hideKeyboard(mainActivity);
         // close search function
         mainActivity.closeSearch();
         // set from nutrient
