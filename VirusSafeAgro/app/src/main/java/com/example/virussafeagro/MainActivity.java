@@ -174,20 +174,18 @@ public class MainActivity extends AppCompatActivity{
         if(requestCode == PASSWORD_REQUEST_CODE){
             if (resultCode == PASSWORD_RESULT_OK) { // from password activity
                 isFromPasswordActivity = true;
-                this.bottomNavigationViewEx.setCurrentItem(INITIAL_PAGE_POSITION);
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+
             }
         }
         if(requestCode == ON_BOARDING_REQUEST_CODE){ // from on boarding activity
             if (resultCode == ON_BOARDING_RESULT_OK) {
                 isFromOnBoardingActivity = true;
-                this.bottomNavigationViewEx.setCurrentItem(INITIAL_PAGE_POSITION);
-                FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
             }
         }
     }
 
     private void setSwipeUpAnimation() {
+        swipeImageDragYRelativeLayout.setFragmentActivityAndBottomNavigationViewEx(this, bottomNavigationViewEx);
         new Handler().postDelayed(() -> {
             MyAnimationBox.runRepeatedAnimationBottomToTop(swipeImageView, 1000);
         }, 1000);
@@ -505,7 +503,9 @@ public class MainActivity extends AppCompatActivity{
         });
 
         floatingActionButton.setOnClickListener(view -> {
-            showVirusCheckFragment();
+            if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null) {
+                showVirusCheckFragment();
+            }
         });
     }
 
