@@ -243,5 +243,7 @@ public class NutrientFragment extends Fragment {
 
         // close search function
         mainActivity.closeSearch();
+        // set from nutrient
+        MainActivity.FROM_NUTRIENT_PAGE = true;
     }
 }

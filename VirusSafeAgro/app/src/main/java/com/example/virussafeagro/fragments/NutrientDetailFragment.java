@@ -34,7 +34,6 @@ public class NutrientDetailFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
     private NutrientModel currentNutrientModel;
-    private String nutrientCorrectionMethodMessage;
 
     private RelativeLayout nutrientDetailRelativeLayout;
 
@@ -74,7 +73,6 @@ public class NutrientDetailFragment extends Fragment {
         Bundle bundle = getArguments();
         assert bundle != null;
         this.currentNutrientModel = bundle.getParcelable("currentNutrientModel");
-        this.nutrientCorrectionMethodMessage = bundle.getString("nutrientCorrectionMethod");
 
         return this.view;
     }
@@ -85,16 +83,8 @@ public class NutrientDetailFragment extends Fragment {
 
         // show nutrient details
         MyAnimationBox.runFadeInAnimation(this.nutrientDetailRelativeLayout, 1000);
+        this.mainActivity.moveCalculatorAndMoreToRight(getTag(), 500);
         this.showNutrientDetails();
-
-        // initialize nutrientSymptoms content / or nutrientCorrectionMethod content
-        if (this.nutrientCorrectionMethodMessage != null){
-            // show nutrientCorrectionMethod
-            this.showPreventionContent();
-        } else {
-            // show nutrientSymptoms
-            this.showDescriptionContent();
-        }
 
         // set top buttons listener
         this.setTopButtonsListener();
@@ -122,7 +112,30 @@ public class NutrientDetailFragment extends Fragment {
         this.nutrientCorrectionMethodTextView = view.findViewById(R.id.tv_correction_method_nutrient_detail);
     }
 
-    private void showDescriptionContent() {
+    private void setTopButtonsListener() {
+        this.nutrientSymptomsButton.setOnClickListener(buttonView -> {
+            if (buttonView.isEnabled()){
+                showSymptomsContent();
+            }
+        });
+        this.nutrientReasonsButton.setOnClickListener(buttonView -> {
+            if (buttonView.isEnabled()){
+                showReasonContent();
+            }
+        });
+        this.nutrientFactorsButton.setOnClickListener(buttonView -> {
+            if (buttonView.isEnabled()){
+                showFactorContent();
+            }
+        });
+        this.nutrientCorrectionMethodButton.setOnClickListener(buttonView -> {
+            if (buttonView.isEnabled()){
+                showCorrectionMethodContent();
+            }
+        });
+    }
+
+    private void showSymptomsContent() {
         nutrientSymptomsButton.setEnabled(false);
         nutrientReasonsButton.setEnabled(true);
         nutrientFactorsButton.setEnabled(true);
@@ -134,7 +147,31 @@ public class NutrientDetailFragment extends Fragment {
         nutrientCorrectionMethodNestedScrollView.setVisibility(View.GONE);
     }
 
-    private void showPreventionContent() {
+    private void showReasonContent() {
+        nutrientSymptomsButton.setEnabled(true);
+        nutrientReasonsButton.setEnabled(false);
+        nutrientFactorsButton.setEnabled(true);
+        nutrientCorrectionMethodButton.setEnabled(true);
+
+        nutrientSymptomsNestedScrollView.setVisibility(View.GONE);
+        MyAnimationBox.runFadeInAnimation(nutrientReasonsNestedScrollView, 1000);
+        nutrientFactorsNestedScrollView.setVisibility(View.GONE);
+        nutrientCorrectionMethodNestedScrollView.setVisibility(View.GONE);
+    }
+
+    private void showFactorContent() {
+        nutrientSymptomsButton.setEnabled(true);
+        nutrientReasonsButton.setEnabled(true);
+        nutrientFactorsButton.setEnabled(false);
+        nutrientCorrectionMethodButton.setEnabled(true);
+
+        nutrientSymptomsNestedScrollView.setVisibility(View.GONE);
+        nutrientReasonsNestedScrollView.setVisibility(View.GONE);
+        MyAnimationBox.runFadeInAnimation(nutrientFactorsNestedScrollView, 1000);
+        nutrientCorrectionMethodNestedScrollView.setVisibility(View.GONE);
+    }
+
+    private void showCorrectionMethodContent() {
         nutrientSymptomsButton.setEnabled(true);
         nutrientReasonsButton.setEnabled(true);
         nutrientFactorsButton.setEnabled(true);
@@ -144,45 +181,6 @@ public class NutrientDetailFragment extends Fragment {
         nutrientReasonsNestedScrollView.setVisibility(View.GONE);
         nutrientFactorsNestedScrollView.setVisibility(View.GONE);
         MyAnimationBox.runFadeInAnimation(nutrientCorrectionMethodNestedScrollView, 1000);
-    }
-
-    private void setTopButtonsListener() {
-        this.nutrientSymptomsButton.setOnClickListener(buttonView -> {
-            if (buttonView.isEnabled()){
-                showDescriptionContent();
-            }
-        });
-        this.nutrientReasonsButton.setOnClickListener(buttonView -> {
-            if (buttonView.isEnabled()){
-                nutrientSymptomsButton.setEnabled(true);
-                buttonView.setEnabled(false);
-                nutrientFactorsButton.setEnabled(true);
-                nutrientCorrectionMethodButton.setEnabled(true);
-
-                nutrientSymptomsNestedScrollView.setVisibility(View.GONE);
-                MyAnimationBox.runFadeInAnimation(nutrientReasonsNestedScrollView, 1000);
-                nutrientFactorsNestedScrollView.setVisibility(View.GONE);
-                nutrientCorrectionMethodNestedScrollView.setVisibility(View.GONE);
-            }
-        });
-        this.nutrientFactorsButton.setOnClickListener(buttonView -> {
-            if (buttonView.isEnabled()){
-                nutrientSymptomsButton.setEnabled(true);
-                nutrientReasonsButton.setEnabled(true);
-                buttonView.setEnabled(false);
-                nutrientCorrectionMethodButton.setEnabled(true);
-
-                nutrientSymptomsNestedScrollView.setVisibility(View.GONE);
-                nutrientReasonsNestedScrollView.setVisibility(View.GONE);
-                MyAnimationBox.runFadeInAnimation(nutrientFactorsNestedScrollView, 1000);
-                nutrientCorrectionMethodNestedScrollView.setVisibility(View.GONE);
-            }
-        });
-        this.nutrientCorrectionMethodButton.setOnClickListener(buttonView -> {
-            if (buttonView.isEnabled()){
-                showPreventionContent();
-            }
-        });
     }
 
     private void showNutrientDetails() {
@@ -227,7 +225,6 @@ public class NutrientDetailFragment extends Fragment {
         Bitmap nutrientPictureBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), nutrientPictureDrawableId);
         this.nutrientPictureImageView.setImageBitmap(nutrientPictureBitmap);
     }
-
 
     private void hideLinearLayoutIfItemIsEmpty(LinearLayout linearLayout, TextView textView, String itemContent) {
         if (itemContent == null || itemContent.isEmpty() || itemContent.trim().equals("")){

@@ -39,7 +39,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     private MainActivity mainActivity = this;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private boolean isFromPasswordActivity;
@@ -77,10 +77,12 @@ public class MainActivity extends AppCompatActivity{
 
     public static int INITIAL_PAGE_POSITION = 3; // empty -> check fragment
 
+    public static boolean FROM_VIRUS_INFO_PAGE;
+    public static boolean FROM_NUTRIENT_PAGE;
+
     public static int TOOLBAR_WIDTH;
     public static int TOOLBAR_SEARCH_BUTTON;
     public static int TOOLBAR_SEARCH_EDIT_AND_CLOSE;
-    public static boolean FROM_VIRUS_INFO_PAGE;
 
     public static final int PASSWORD_REQUEST_CODE = 9;
     public static final int PASSWORD_RESULT_OK = 24;
@@ -149,11 +151,11 @@ public class MainActivity extends AppCompatActivity{
         this.displayAllMainActivityViews();
 
         // check authentication
-        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())){
+        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())) {
             // set authentication as "no"
             AppAuthentication.setAuthenticationAsNo(this);
             // check the authentication --> show the PasswordActivity
-            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity),600);
+            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity), 600);
         }
     }
 
@@ -171,13 +173,13 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PASSWORD_REQUEST_CODE){
+        if (requestCode == PASSWORD_REQUEST_CODE) {
             if (resultCode == PASSWORD_RESULT_OK) { // from password activity
                 isFromPasswordActivity = true;
 
             }
         }
-        if(requestCode == ON_BOARDING_REQUEST_CODE){ // from on boarding activity
+        if (requestCode == ON_BOARDING_REQUEST_CODE) { // from on boarding activity
             if (resultCode == ON_BOARDING_RESULT_OK) {
                 isFromOnBoardingActivity = true;
             }
@@ -258,7 +260,7 @@ public class MainActivity extends AppCompatActivity{
         } else {
             calculatorRelativeLayout.setActivated(false);
             calculatorRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
-            if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())){
+            if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
                 lineView2.setVisibility(View.VISIBLE);
             }
         }
@@ -277,7 +279,7 @@ public class MainActivity extends AppCompatActivity{
         } else {
             moreRelativeLayout.setActivated(false);
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
-            if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())){
+            if ((!calculatorRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
                 lineView2.setVisibility(View.VISIBLE);
             }
         }
@@ -286,9 +288,11 @@ public class MainActivity extends AppCompatActivity{
     public Toolbar getToolbar() {
         return toolbar;
     }
+
     public TextView getTitleTextView() {
         return titleTextView;
     }
+
     public com.example.virussafeagro.uitilities.ExtendedEditText getDoSearchEditText() {
         return doSearchEditText;
     }
@@ -349,46 +353,41 @@ public class MainActivity extends AppCompatActivity{
 
     // move the "calculator" and "more" buttons to right
     public void moveCalculatorAndMoreToRight(String fragmentTag, int duration) {
-        switch (fragmentTag) {
-            case AppResources.FRAGMENT_TAG_LEARN:
-            case AppResources.FRAGMENT_TAG_VIRUS_CHECK:
-            case AppResources.FRAGMENT_TAG_HOME:
+        if (FROM_VIRUS_INFO_PAGE || FROM_NUTRIENT_PAGE) {
+            FROM_VIRUS_INFO_PAGE = false;
+            FROM_NUTRIENT_PAGE = false;
+            switch (fragmentTag) {
 
-                if (FROM_VIRUS_INFO_PAGE) {
-                    FROM_VIRUS_INFO_PAGE = false;
+                case AppResources.FRAGMENT_TAG_LEARN:
+                case AppResources.FRAGMENT_TAG_VIRUS_CHECK:
+                case AppResources.FRAGMENT_TAG_HOME:
                     MyAnimationBox.runSlideInAnimationFromRight(
                             this.topButtonsLinearLayout,
                             this.topButtonsLinearLayout.getX() + TOOLBAR_SEARCH_BUTTON,
                             this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth() + TOOLBAR_SEARCH_BUTTON,
                             duration);
-                }
-                break;
-            case AppResources.FRAGMENT_TAG_WATER_CALCULATOR:
-            case AppResources.FRAGMENT_TAG_MORE:
+                    break;
 
-                if (FROM_VIRUS_INFO_PAGE) {
-                    FROM_VIRUS_INFO_PAGE = false;
-
+                case AppResources.FRAGMENT_TAG_WATER_CALCULATOR:
+                case AppResources.FRAGMENT_TAG_MORE:
                     MyAnimationBox.runSlideInAnimationFromRight(
                             this.topButtonsLinearLayout,
                             this.topButtonsLinearLayout.getX() + TOOLBAR_SEARCH_BUTTON,
                             this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
                             duration);
-                }
-                break;
-            default:
-                if (FROM_VIRUS_INFO_PAGE) {
-                    FROM_VIRUS_INFO_PAGE = false;
+                    break;
 
+                default:
                     MyAnimationBox.runSlideInAnimationFromRight(
                             this.topButtonsLinearLayout,
                             this.topButtonsLinearLayout.getX(),
                             this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
                             duration);
-                }
-                break;
+                    break;
+            }
         }
     }
+
 
     // set search button visible
     public void setSearchButtonVisible(boolean showOrHide, boolean withFadeAnimation, int duration) {

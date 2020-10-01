@@ -13,7 +13,7 @@
     <string name="fragment_more">More</string>
     <string name="fragment_news">Agricultural News in VIC</string>
     <string name="fragment_news_detail">News Content</string>
-    <string name="fragment_nutrient">Nutrient Deficiencies</string>
+    <string name="fragment_nutrient">Nutrient</string>
     <string name="fragment_nutrient_detail">Nutrient Details</string>
     <string name="fragment_tweet">Tweets #Tomato</string>
     <string name="fragment_updates">Future Updates</string>
