@@ -15,14 +15,20 @@ import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class DragYRelativeLayout extends RelativeLayout {
+    private boolean isSwipeImage;
     private FragmentActivity fragmentActivity;
     private BottomNavigationViewEx bottomNavigationViewEx;
 
     private int mLastY;
 
-    public void setFragmentActivityAndBottomNavigationViewEx(FragmentActivity fragmentActivity, BottomNavigationViewEx bottomNavigationViewEx) {
+    public void setFragmentActivityAndBottomNavigationViewEx(boolean isSwipeImage, FragmentActivity fragmentActivity, BottomNavigationViewEx bottomNavigationViewEx) {
+        this.isSwipeImage = isSwipeImage;
         this.fragmentActivity = fragmentActivity;
         this.bottomNavigationViewEx = bottomNavigationViewEx;
+    }
+
+    public void setFragmentActivityAndBottomNavigationViewEx(FragmentActivity fragmentActivity) {
+        this.fragmentActivity = fragmentActivity;
     }
 
     public DragYRelativeLayout(Context context) {
@@ -44,10 +50,11 @@ public class DragYRelativeLayout extends RelativeLayout {
         switch (event.getAction()){
 
             case MotionEvent.ACTION_DOWN: // when touching
-                // open virus check page
-                this.bottomNavigationViewEx.setCurrentItem(MainActivity.INITIAL_PAGE_POSITION);
-                FragmentOperator.replaceFragmentNoBackStack(fragmentActivity, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-
+                if (isSwipeImage) {
+                    // open virus check page
+                    this.bottomNavigationViewEx.setCurrentItem(MainActivity.INITIAL_PAGE_POSITION);
+                    FragmentOperator.replaceFragmentNoBackStack(fragmentActivity, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+                }
                 mLastY = y;
                 break;
 

@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
     // swipe up image
     private ImageView swipeImageView;
     private DragYRelativeLayout swipeImageDragYRelativeLayout;
+    // app tips
+    private DragYRelativeLayout tipDragYRelativeLayout;
 
     public static int INITIAL_PAGE_POSITION = 3; // empty -> check fragment
 
@@ -132,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         this.floatingActionButton = findViewById(R.id.fab);
         this.swipeImageView = findViewById(R.id.img_swipe_app);
         this.swipeImageDragYRelativeLayout = findViewById(R.id.drl_image_app);
+        this.tipDragYRelativeLayout = findViewById(R.id.drl_tip_app);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -187,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setSwipeUpAnimation() {
-        swipeImageDragYRelativeLayout.setFragmentActivityAndBottomNavigationViewEx(this, bottomNavigationViewEx);
+        swipeImageDragYRelativeLayout.setFragmentActivityAndBottomNavigationViewEx(true, this, bottomNavigationViewEx);
         new Handler().postDelayed(() -> {
             MyAnimationBox.runRepeatedAnimationBottomToTop(swipeImageView, 1000);
         }, 1000);
@@ -197,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
     private void configureToolbar() {
         setSupportActionBar(this.toolbar);
         // tip
+        this.tipDragYRelativeLayout.setFragmentActivityAndBottomNavigationViewEx(this);
         this.setTipOnClickListener();
         // more
         this.setMoreOnClickListener();
@@ -204,10 +208,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTipOnClickListener() {
         tipRelativeLayout.setOnClickListener(v -> {
+            // set the button style
             setTipButton(!v.isActivated());
+            // show or hide the tip tile
+            showTopTip();
             // slide Up The Swipe Image And Make It Gone
             slideUpTheSwipeImageAndMakeItGoneForTopButtons(500);
         });
+    }
+
+    private void showTopTip() {
+        if (tipDragYRelativeLayout.getVisibility() == View.GONE) {
+            MyAnimationBox.runSlideInAnimationFromTop(tipDragYRelativeLayout, 300);
+        } else {
+            MyAnimationBox.runSlideOutAnimationToTop(tipDragYRelativeLayout, 300);
+        }
     }
 
     private void setMoreOnClickListener() {
@@ -249,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
             // set activated
             tipRelativeLayout.setActivated(true);
             // change bg
-            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryTile));
+            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorDarkBackground));
             // hide vertical line
             lineView2.setVisibility(View.GONE);
         } else {
