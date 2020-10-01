@@ -1,6 +1,7 @@
 <resources>
     <!--  titles  -->
     <string name="app_name">virusSafe Agro</string>
+    <string name="fragment_template">Template Page</string>
     <string name="fragment_about">About virusSafe Agro</string>
     <string name="fragment_calculator">Calculator</string>
     <string name="fragment_contact_us">Contact Us</string>
