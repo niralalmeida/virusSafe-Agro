@@ -1,5 +1,6 @@
 package com.example.virussafeagro.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -67,6 +68,7 @@ public class GridOptionAdapter extends BaseAdapter {
         return optionList.get(position).getChoiceOptionId();
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {

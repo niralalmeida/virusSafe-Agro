@@ -73,12 +73,12 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
 
         // question mark and background color
         if (DataComparison.checkTwoListHaveSameItems(choiceQuestionModel.getUserAnswerList(), choiceQuestionModel.getCorrectAnswerList())){
-            viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_right_circle_white_50dp);
-            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.rightAnswer));
+            viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_right_circle_black_50dp);
+            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.rightAnswerLight));
             viewHolder.correctAnswerLinearLayout.setVisibility(View.GONE);
         } else {
-            viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_wrong_circle_white_50dp);
-            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.wrongAnswer));
+            viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_wrong_circle_black_50dp);
+            viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.wrongAnswerLight));
             // correct answer
             StringBuilder correctAnswerStringBuilder = new StringBuilder();
             // get correct answer content by the label

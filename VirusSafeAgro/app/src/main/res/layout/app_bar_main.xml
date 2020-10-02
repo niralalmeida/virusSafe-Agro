@@ -14,9 +14,10 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimaryDarkBG"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <!-- top all views -->
@@ -79,7 +80,7 @@
                                 android:background="@drawable/shape_btn_quiz_toolbar"
                                 android:text="QUIZ"
                                 android:textStyle="bold"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/colorPrimaryDarkBG"
                                 android:layout_marginBottom="10dp"
                                 android:layout_centerHorizontal="true"
                                 android:layout_alignParentBottom="true"/>
@@ -233,5 +234,47 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />
+
+    <!-- image -->
+    <com.example.virussafeagro.uitilities.DragYRelativeLayout
+        android:id="@+id/drl_image_app"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/app_image_bg"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/app_image_logo"/>
+
+        <TextView
+            android:id="@+id/tv_swipe_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/img_swipe_app"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:text="Swipe Up"/>
+
+        <ImageView
+            android:id="@+id/img_swipe_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:src="@drawable/swipe_up"/>
+
+    </com.example.virussafeagro.uitilities.DragYRelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

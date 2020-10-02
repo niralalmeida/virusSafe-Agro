@@ -12,15 +12,15 @@
     <string name="fragment_insights">Insights</string>
     <string name="fragment_learn">Learn</string>
     <string name="fragment_more">More</string>
-    <string name="fragment_news">Agricultural News in VIC</string>
+    <string name="fragment_news">News</string>
     <string name="fragment_news_detail">News Content</string>
     <string name="fragment_nutrient">Nutrient</string>
     <string name="fragment_nutrient_detail">Nutrient Details</string>
-    <string name="fragment_tweet">Tweets #Tomato</string>
+    <string name="fragment_tweet">Tweets</string>
     <string name="fragment_updates">Future Updates</string>
     <string name="fragment_virus_check">Virus Check</string>
     <string name="fragment_virus_check_result">Virus Check Result</string>
-    <string name="fragment_virus_detail">Virus Details</string>
+    <string name="fragment_virus_detail">Virus Detail</string>
     <string name="fragment_virus_info">Virus List</string>
     <string name="fragment_virus_quiz">Take Quiz</string>
 

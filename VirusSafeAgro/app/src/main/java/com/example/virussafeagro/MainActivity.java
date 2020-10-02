@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
             lineView2.setVisibility(View.GONE);
         } else {
             tipRelativeLayout.setActivated(false);
-            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
+            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkBG));
             if ((!tipRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
                 lineView2.setVisibility(View.VISIBLE);
             }
@@ -283,16 +283,20 @@ public class MainActivity extends AppCompatActivity {
             // set activated
             moreRelativeLayout.setActivated(true);
             // change bg
-            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
+            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorDarkBackground));
             // hide vertical line
             lineView2.setVisibility(View.GONE);
         } else {
             moreRelativeLayout.setActivated(false);
-            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
+            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkBG));
             if ((!tipRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
                 lineView2.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
     }
 
     public TextView getTitleTextView() {
@@ -533,6 +537,9 @@ public class MainActivity extends AppCompatActivity {
             if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null
                 || (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof VirusCheckFragment))) {
                 showVirusCheckFragment();
+                if (toolbar.getVisibility() == View.GONE) {
+                    MyAnimationBox.runFadeInAnimation(toolbar, 500);
+                }
             }
         });
     }
@@ -543,6 +550,9 @@ public class MainActivity extends AppCompatActivity {
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof LearnFragment)) {
                     FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                    if (toolbar.getVisibility() == View.GONE) {
+                        MyAnimationBox.runFadeInAnimation(toolbar, 500);
+                    }
                 }
                 break;
             case R.id.ic_virus_check:
@@ -551,6 +561,9 @@ public class MainActivity extends AppCompatActivity {
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof ToolkitFragment)) {
                     FragmentOperator.replaceFragmentNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_HOME);
+                    if (toolbar.getVisibility() == View.GONE) {
+                        MyAnimationBox.runFadeInAnimation(toolbar, 500);
+                    }
                 }
                 break;
 //            case R.id.ic_tip:

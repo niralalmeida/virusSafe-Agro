@@ -39,7 +39,7 @@
         app:rippleColor="@color/colorPrimaryDark"
         app:maxImageSize="40dp"
         app:fabCustomSize="80dp"
-        app:borderWidth="0dp"
+        app:borderWidth="8dp"
         app:pressedTranslationZ="10dp"
         app:elevation="9dp"/>
 
