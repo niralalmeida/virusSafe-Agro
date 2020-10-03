@@ -538,7 +538,7 @@ public class MainActivity extends AppCompatActivity {
                 || (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof VirusCheckFragment))) {
                 showVirusCheckFragment();
                 if (toolbar.getVisibility() == View.GONE) {
-                    MyAnimationBox.runFadeInAnimation(toolbar, 500);
+                    new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
                 }
             }
         });
@@ -551,7 +551,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof LearnFragment)) {
                     FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                     if (toolbar.getVisibility() == View.GONE) {
-                        MyAnimationBox.runFadeInAnimation(toolbar, 500);
+                        new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
                     }
                 }
                 break;
@@ -562,7 +562,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof ToolkitFragment)) {
                     FragmentOperator.replaceFragmentNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_HOME);
                     if (toolbar.getVisibility() == View.GONE) {
-                        MyAnimationBox.runFadeInAnimation(toolbar, 500);
+                        new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
                     }
                 }
                 break;

@@ -147,7 +147,7 @@ public class ToolkitFragment extends Fragment {
     // pesticide stores
     private void setPesticideStoresTileOnClickListener() {
         this.pesticideStoresLinearLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new InsightsFragment(), AppResources.FRAGMENT_TAG_INSIGHTS);
+            FragmentOperator.replaceFragment(requireActivity(), new PesticideStoreMapFragment(), AppResources.FRAGMENT_TAG_PESTICIDE_STORES);
         });
     }
 
