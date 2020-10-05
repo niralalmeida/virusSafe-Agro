@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     private View lineView2;
     private View lineView3;
     // bottom bar
-//    private BottomNavigationView bottomNavigationView;
     private BottomNavigationViewEx bottomNavigationViewEx;
     private FloatingActionButton floatingActionButton;
     // swipe up image
@@ -134,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
         this.lineView2 = findViewById(R.id.v_line2_vertical_toolbar);
         this.lineView3 = findViewById(R.id.v_line3_vertical_toolbar);
         this.quizRelativeLayout = findViewById(R.id.rl_quiz_toolbar);
-//        this.bottomNavigationView = findViewById(R.id.bottom_navigation);
         this.bottomNavigationViewEx = findViewById(R.id.bottom_navigation);
         this.floatingActionButton = findViewById(R.id.fab);
         this.swipeImageView = findViewById(R.id.img_swipe_app);

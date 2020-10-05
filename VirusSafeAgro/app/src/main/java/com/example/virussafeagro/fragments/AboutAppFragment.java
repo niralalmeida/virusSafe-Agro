@@ -51,9 +51,6 @@ public class AboutAppFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show all views
-        this.showAllViews();
-
         // test
 //        this.testImageURL();
     }
@@ -62,10 +59,6 @@ public class AboutAppFragment extends Fragment {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_about_app);
     }
 
-    // show Home Views
-    private void showAllViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
-    }
 //
 //    // test
 //    private void testImageURL(){

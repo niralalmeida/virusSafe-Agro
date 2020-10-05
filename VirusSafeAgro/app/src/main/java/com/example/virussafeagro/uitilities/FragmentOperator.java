@@ -30,7 +30,7 @@ public class FragmentOperator {
     // replace the fragment view with slide in animation
     public static void replaceFragmentWithSlideFromRightAnimation(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
         FragmentTransaction fragmentTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.slide_in_from_right, 0);
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, 0, 0, R.anim.exit_to_right);
         fragmentTransaction.replace(R.id.fl_fragments, nextFragment, fragmentTag)
                 .addToBackStack(null)
                 .commit();

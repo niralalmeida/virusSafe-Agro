@@ -88,25 +88,25 @@ public class MoreFragment extends Fragment {
 
     private void setAboutAppLinearLayoutOnClickListener() {
         this.aboutAppLinearLayout.setOnClickListener(view -> {
-            FragmentOperator.replaceFragment(requireActivity(), new AboutAppFragment(), AppResources.FRAGMENT_TAG_ABOUT_APP);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new AboutAppFragment(), AppResources.FRAGMENT_TAG_ABOUT_APP);
         });
     }
 
     private void setUpdatesLinearLayoutOnClickListener() {
         this.updatesLinearLayout.setOnClickListener(view -> {
-            FragmentOperator.replaceFragment(requireActivity(), new UpdatesFragment(), AppResources.FRAGMENT_TAG_UPDATES);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new UpdatesFragment(), AppResources.FRAGMENT_TAG_UPDATES);
         });
     }
 
     private void setDisclaimerLinearLayoutOnClickListener() {
         this.disclaimerLinearLayout.setOnClickListener(view -> {
-            FragmentOperator.replaceFragment(requireActivity(), new DisclaimerFragment(), AppResources.FRAGMENT_TAG_DISCLAIMER);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new DisclaimerFragment(), AppResources.FRAGMENT_TAG_DISCLAIMER);
         });
     }
 
     private void setContactUsLinearLayoutOnClickListener() {
         this.contactUsLinearLayout.setOnClickListener(view -> {
-            FragmentOperator.replaceFragment(requireActivity(), new ContactUsFragment(), AppResources.FRAGMENT_TAG_CONTACT_US);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new ContactUsFragment(), AppResources.FRAGMENT_TAG_CONTACT_US);
         });
     }
 

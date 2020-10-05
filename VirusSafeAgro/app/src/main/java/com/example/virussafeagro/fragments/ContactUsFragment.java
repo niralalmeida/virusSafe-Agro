@@ -50,18 +50,10 @@ public class ContactUsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        // show all views
-        this.showAllViews();
     }
 
     private void initializeViews() {
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_contact_us);
-    }
-
-    // show All Views
-    private void showAllViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
     }
 
     @Override
