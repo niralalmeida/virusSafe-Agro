@@ -15,35 +15,35 @@
         android:orientation="vertical">
 
         <!-- virus list description -->
-        <LinearLayout
-            android:id="@+id/ll_description_virus_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_tile_text_container"
-            android:padding="8dp"
-            android:orientation="vertical">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/ll_description_virus_list"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/shape_tile_text_container"-->
+<!--            android:padding="8dp"-->
+<!--            android:orientation="vertical">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="@string/text_description_title_virus_info"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:text="@string/text_description_title_virus_info"/>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="10dp"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="10dp"/>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:textSize="15sp"
-                android:text="@string/text_description_content_virus_info"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:textSize="15sp"-->
+<!--                android:text="@string/text_description_content_virus_info"/>-->
 
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <!-- virus search -->
         <LinearLayout

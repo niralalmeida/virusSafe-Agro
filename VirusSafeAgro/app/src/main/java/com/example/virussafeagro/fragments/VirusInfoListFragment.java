@@ -51,7 +51,6 @@ public class VirusInfoListFragment extends Fragment {
 
     private LinearLayout processBarLinearLayout;
     private LinearLayout networkErrorLinearLayout;
-    private LinearLayout virusDescriptionLinearLayout;
     private LinearLayout virusSearchLinearLayout;
     private LinearLayout virusGridViewLinearLayout;
     private GridView virusGridView;
@@ -124,7 +123,6 @@ public class VirusInfoListFragment extends Fragment {
 
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
-        this.virusDescriptionLinearLayout = view.findViewById(R.id.ll_description_virus_list);
         this.virusSearchLinearLayout = view.findViewById(R.id.ll_search_virus_list);
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
