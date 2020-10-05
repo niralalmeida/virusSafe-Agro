@@ -57,8 +57,6 @@ public class MoreFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show Home Views
-        this.showHomeViews();
         // move the calculator and more to right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 1000);
 
@@ -72,11 +70,6 @@ public class MoreFragment extends Fragment {
         this.updatesLinearLayout = view.findViewById(R.id.ll_updates_more);
         this.disclaimerLinearLayout = view.findViewById(R.id.ll_disclaimer_more);
         this.contactUsLinearLayout = view.findViewById(R.id.ll_contact_us_more);
-    }
-
-    // show Home Views
-    private void showHomeViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewLinearLayout, 1000);
     }
 
     private void allTilesOnClickListener() {

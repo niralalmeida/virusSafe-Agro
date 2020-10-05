@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
             slideUpTheSwipeImageAndMakeItGoneForTopButtons(500);
             if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof MoreFragment)) {
                 // add new MoreFragment
-                FragmentOperator.replaceFragment(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+                FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
             }
         });
     }
@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
             // set activated
             moreRelativeLayout.setActivated(true);
             // change bg
-            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorDarkBackground));
+            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
             // hide vertical line
             lineView2.setVisibility(View.GONE);
         } else {
