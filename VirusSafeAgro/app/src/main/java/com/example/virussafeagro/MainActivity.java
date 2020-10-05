@@ -581,7 +581,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void showVirusCheckFragment() {
         bottomNavigationViewEx.setCurrentItem(3);
-        FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+//        FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+
+
     }
 
     private void slideUpTheSwipeImageAndMakeItGoneForTopButtons(int duration) {
