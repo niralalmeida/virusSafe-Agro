@@ -33,12 +33,11 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
 
     private MapView mapView;
     private GoogleMap googleMap;
-    private String userName;
-    private String currentUserAddress;
-    private List<String> cinemaAddressList;
+    private String userAddress;
+    private List<String> pesticideStoreAddressList;
 
-    private Bitmap homeMarkerBitmap;
-    private Bitmap cinemaMarkerBitmap;
+    private Bitmap userMarkerBitmap;
+    private Bitmap pesticideStoreMarkerBitmap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,8 +56,8 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         mapView = view.findViewById(R.id.map_widget);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
-        homeMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_user1);
-        cinemaMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_pesticide2);
+        userMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_user1);
+        pesticideStoreMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_pesticide2);
 
         try {
             MapsInitializer.initialize(Objects.requireNonNull(getActivity()).getApplicationContext());

@@ -65,4 +65,17 @@ public class NetworkConnectionToGoogleSearchAPI {
         return resultText;
     }
 
+    public String searchAddressInfo(String address) {
+        String textResult = "";
+        address = address.replace(" ", "+");
+        String searchURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "+Australia&key=" + API_KEY;
+        Request request = new Request.Builder().url(searchURL).build();
+        try {
+            Response response = this.okHttpClient.newCall(request).execute();
+            textResult = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return textResult;
+    }
 }
