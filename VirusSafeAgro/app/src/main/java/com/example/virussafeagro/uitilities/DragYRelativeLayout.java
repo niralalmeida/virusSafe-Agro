@@ -51,11 +51,11 @@ public class DragYRelativeLayout extends RelativeLayout {
         switch (event.getAction()){
 
             case MotionEvent.ACTION_DOWN: // when touching
-                if (isSwipeImage) {
-                    // open virus check page
-                    this.bottomNavigationViewEx.setCurrentItem(MainActivity.INITIAL_PAGE_POSITION);
-                    FragmentOperator.replaceFragmentNoBackStack(fragmentActivity, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-                }
+//                if (isSwipeImage) {
+//                    // open virus check page
+//                    this.bottomNavigationViewEx.setCurrentItem(MainActivity.INITIAL_PAGE_POSITION);
+//                    FragmentOperator.replaceFragmentNoBackStack(fragmentActivity, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+//                }
                 mLastY = y;
                 break;
 

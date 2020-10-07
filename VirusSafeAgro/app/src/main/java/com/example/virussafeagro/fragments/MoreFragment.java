@@ -109,5 +109,9 @@ public class MoreFragment extends Fragment {
 
         // set more button
         mainActivity.setMoreButton(false);
+        // set default title and remove back button
+        this.mainActivity.getTitleTextView().setText(R.string.app_name);
+        Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
     }
 }

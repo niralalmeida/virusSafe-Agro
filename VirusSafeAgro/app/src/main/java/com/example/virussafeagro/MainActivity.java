@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
     private DragYRelativeLayout swipeImageDragYRelativeLayout;
     // app tips
     private DragYRelativeLayout tipDragYRelativeLayout;
+    // app lottie animation
+    private com.airbnb.lottie.LottieAnimationView lottieAnimationView;
 
     public static int INITIAL_PAGE_POSITION = 3; // empty -> check fragment
     public static int CURRENT_PAGE_POSITION = -1;
@@ -142,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         this.swipeImageView = findViewById(R.id.img_swipe_app);
         this.swipeImageDragYRelativeLayout = findViewById(R.id.drl_image_app);
         this.tipDragYRelativeLayout = findViewById(R.id.drl_tip_app);
+        this.lottieAnimationView = findViewById(R.id.lottieAnimationView);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -555,6 +558,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
         switch (itemId) {
             case R.id.ic_learn:
+                lottieAnimationView.setVisibility(View.GONE);
                 CURRENT_PAGE_POSITION = 0;
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(foundFragment instanceof LearnFragment)) {
@@ -567,6 +571,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.ic_virus_check:
                 break;
             case R.id.ic_toolkit:
+                lottieAnimationView.setVisibility(View.GONE);
                 CURRENT_PAGE_POSITION = 2;
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(foundFragment instanceof ToolkitFragment)) {
