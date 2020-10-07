@@ -43,8 +43,8 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_pesticide_store_map, container, false);
-//        this.initiateMap(savedInstanceState);
-//        this.mapView.getMapAsync(this);
+        this.initiateMap(savedInstanceState);
+        this.mapView.getMapAsync(this);
 
 //        this.initiateGeoCodingAPIViewModel();
 //        this.initiateMovieInfoFromSPViewModel();
@@ -57,14 +57,14 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         mapView = view.findViewById(R.id.map_widget);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
-//        homeMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.mipmap.my_home);
-//        cinemaMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.mipmap.cinema_red);
+        homeMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_user1);
+        cinemaMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_pesticide2);
 
-//        try {
-//            MapsInitializer.initialize(Objects.requireNonNull(getActivity()).getApplicationContext());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            MapsInitializer.initialize(Objects.requireNonNull(getActivity()).getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
