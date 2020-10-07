@@ -65,6 +65,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private LinearLayout cameraLinearLayout;
     private LinearLayout selectImageLinearLayout;
 
+    private RelativeLayout closeButtonRelativeLayout;
     private ImageView uploadImageImageView;
     private Button uploadImageButton;
     private LinearLayout allVirusCheckLinearLayout;
@@ -157,6 +158,8 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
 
+        // set close button
+        this.setCloseButtonClickListener();
         // set camera button
         this.setCameraButtonOnClickListener();
         // set selectImageButton on click listener
@@ -170,6 +173,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
     private void initializeViews() {
         this.isUploadImageButtonClicked = false;
+        this.closeButtonRelativeLayout = view.findViewById(R.id.rl_close_button_virus_check);
         this.cameraLinearLayout = view.findViewById(R.id.ll_camera);
         this.selectImageLinearLayout = view.findViewById(R.id.ll_select_image);
         this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
@@ -189,6 +193,12 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
     private void showAllViews() {
         MyAnimationBox.runFadeInAnimation(allVirusCheckLinearLayout, 1000);
+    }
+
+    private void setCloseButtonClickListener() {
+        this.closeButtonRelativeLayout.setOnClickListener(v -> {
+            dismiss();
+        });
     }
 
     private void setCameraButtonOnClickListener() {
