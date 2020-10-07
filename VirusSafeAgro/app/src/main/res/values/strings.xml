@@ -144,4 +144,8 @@
     <!-- FAB -->
     <string name="transition_name_fab_main">fab_transition_name</string>
 
+    <!-- pesticide store map -->
+    <string name="text_location_permission_title">Location Permission</string>
+    <string name="text_location_permission_content">Dear user, the location service should be open if you want to try our map for showing your nearest pesticide stores location.</string>
+    <string name="btn_location_permission_button">OK</string>
 </resources>

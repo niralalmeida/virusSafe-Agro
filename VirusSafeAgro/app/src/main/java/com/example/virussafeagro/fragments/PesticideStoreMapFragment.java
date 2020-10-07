@@ -1,7 +1,9 @@
 package com.example.virussafeagro.fragments;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,11 +18,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -31,7 +34,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -42,6 +46,8 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     private LocationManager locationManager;
     private String provider;
     private LatLng userLocationLatLng;
+
+    public static final int PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE = 99;
 
 //    private GeoCodingAPIViewModel geoCodingAPIViewModel;
 //    private CurrentMovieInfoFromSPViewModel currentMovieInfoFromSPViewModel;
@@ -92,10 +98,8 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap myMap) {
         this.googleMap = myMap;
-        // get user current location
-        this.getUserCurrentLocation();
-        // show user location
-        this.showUserLocation();
+        // ask for location permission and show the user location if getting permission
+        this.checkLocationPermission();
 
 //        this.getCinemaAddressesFromDB(); // call the cinema address to DB
 //
@@ -106,7 +110,7 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     }
 
     // user location listener
-    LocationListener locationListener = new LocationListener() {
+    private LocationListener locationListener = new LocationListener() {
 
         @Override
         public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
@@ -128,11 +132,51 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         }
     };
 
+    private void checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                    requestPermissions(
+                            new String[]{
+                                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                                    android.Manifest.permission.ACCESS_FINE_LOCATION},
+                            PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE);
+
+        } else { // grant the permission
+            // get and listen user current location
+            getUserCurrentLocation();
+            // show user current location in the map
+            showUserLocation();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults){
+        if (requestCode == PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(
+                        mainActivity,
+                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+                    // get and listen user current location
+                    getUserCurrentLocation();
+                    // show user current location in the map
+                    showUserLocation();
+                }
+            } else {
+                Toast.makeText(mainActivity, "Location Permission Denied", Toast.LENGTH_SHORT).show();
+                // close this page
+                FragmentOperator.backToLastFragment(mainActivity);
+            }
+        }
+    }
+
     // get user current location
     private void getUserCurrentLocation() {
         // get location service
         locationManager = (LocationManager) mainActivity.getSystemService(Context.LOCATION_SERVICE);
         // get current available location controller
+        assert locationManager != null;
         List<String> list = locationManager.getProviders(true);
 
         // location by GPS
@@ -306,4 +350,15 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
 //        super.onLowMemory();
 //        mapView.onLowMemory();
 //    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (ContextCompat.checkSelfPermission(mainActivity,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+
+            locationManager.removeUpdates(locationListener);
+        }
+    }
 }

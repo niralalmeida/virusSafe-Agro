@@ -518,10 +518,6 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         } else {
             FragmentOperator.backToLastFragment(this);
-            if (count == 1){
-                // set title
-                Objects.requireNonNull(getSupportActionBar()).setTitle("virusSafe Agro");
-            }
         }
     }
 
