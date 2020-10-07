@@ -185,6 +185,11 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         this.uploadingProgressBarRelativeLayout = view.findViewById(R.id.rl_process_bar_virus_check);
         this.virusCheckRelativeLayout = view.findViewById(R.id.rl_virus_check);
         this.imageFormatTipTextView = view.findViewById(R.id.tv_image_format_tip_virus_check);
+
+        // set the height of the progress bar
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)this.uploadingProgressBarRelativeLayout.getLayoutParams();
+        layoutParams.height = getResources().getDisplayMetrics().heightPixels * 2 / 5;
+        this.uploadingProgressBarRelativeLayout.setLayoutParams(layoutParams);
     }
 
     private void initializeSharedPreference() {

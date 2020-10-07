@@ -233,7 +233,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/pb_uploading_virus_check"
             android:textStyle="bold"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textColor="@color/colorWhite"
             android:text="@string/process_bar_text_virus_check" />
 
