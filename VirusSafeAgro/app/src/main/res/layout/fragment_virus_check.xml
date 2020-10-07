@@ -104,7 +104,7 @@
                 android:paddingEnd="20dp"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:text="Upload Image"/>
+                android:text="Analyse Virus"/>
 
             <TextView
                 android:layout_width="wrap_content"

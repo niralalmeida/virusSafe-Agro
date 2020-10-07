@@ -44,13 +44,13 @@ public class VirusCheckViewModel extends ViewModel {
             Bitmap uploadImageBitmap = bitmaps[0];
             String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
             ImageObject imageObject = new ImageObject(uploadImageBitmapString);
-            try {
-                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
-                feedback = MyJsonParser.imageCheckFeedbackJsonParser(rawFeedback);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-//            feedback = "Tomato_Mosaic_Virus";
+//            try {
+//                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
+//                feedback = MyJsonParser.imageCheckFeedbackJsonParser(rawFeedback);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+            feedback = "Tomato_Mosaic_Virus";
             return feedback;
         }
 
