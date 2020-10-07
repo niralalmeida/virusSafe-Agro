@@ -23,6 +23,7 @@
     <string name="fragment_virus_detail">Virus Detail</string>
     <string name="fragment_virus_info">Virus List</string>
     <string name="fragment_virus_quiz">Take Quiz</string>
+    <string name="fragment_pesticide_store_map">pesticides map</string>
 
     <!-- for on boarding  -->
     <string name="button_launch_app">Enter</string>

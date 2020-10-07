@@ -1,16 +1,25 @@
 package com.example.virussafeagro.fragments;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,6 +28,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -26,14 +36,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCallback {
+    private MainActivity mainActivity;
     private View view;
+
+    private LocationManager locationManager;
+    private String provider;
+    private LatLng userLocationLatLng;
+
 //    private GeoCodingAPIViewModel geoCodingAPIViewModel;
 //    private CurrentMovieInfoFromSPViewModel currentMovieInfoFromSPViewModel;
 //    private MainMovieMemoirDBViewModel mainMovieMemoirDBViewModel;
 
     private MapView mapView;
     private GoogleMap googleMap;
-    private String userAddress;
     private List<String> pesticideStoreAddressList;
 
     private Bitmap userMarkerBitmap;
@@ -42,6 +57,14 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_pesticide_store_map, container, false);
+
+        // get main activity
+        this.mainActivity = (MainActivity) getActivity();
+        // set title
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_pesticide_store_map);
+        // show back button
+        MainActivity.showTopBarBackButton((MainActivity) requireActivity());
+
         this.initiateMap(savedInstanceState);
         this.mapView.getMapAsync(this);
 
@@ -69,14 +92,100 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap myMap) {
         this.googleMap = myMap;
-//        this.getUserHomeAddressFromSP();// call the home address to SP
+        // get user current location
+        this.getUserCurrentLocation();
+        // show user location
+        this.showUserLocation();
+
 //        this.getCinemaAddressesFromDB(); // call the cinema address to DB
 //
 //        this.observeHomeAddressStrLiveData(); // get home address from SP --> call GeoCoding API
 //        this.observeHomeAddressLagLngLiveData(); // get home address LagLng
 //        this.observeAllCinemaListLiveData(); // get cinema addresses from SP --> call GeoCoding API
 //        this.observeCinemaAddressesLagLngLiveData();// get cinema addresses LagLng
+    }
 
+    // user location listener
+    LocationListener locationListener = new LocationListener() {
+
+        @Override
+        public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+        }
+
+        @Override
+        public void onProviderEnabled(String arg0) {
+        }
+
+        @Override
+        public void onProviderDisabled(String arg0) {
+        }
+
+        @Override
+        public void onLocationChanged(Location location) {
+            if (location != null) {
+                userLocationLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+            }
+        }
+    };
+
+    // get user current location
+    private void getUserCurrentLocation() {
+        // get location service
+        locationManager = (LocationManager) mainActivity.getSystemService(Context.LOCATION_SERVICE);
+        // get current available location controller
+        List<String> list = locationManager.getProviders(true);
+
+        // location by GPS
+        if (list.contains(LocationManager.GPS_PROVIDER)) {
+            provider = LocationManager.GPS_PROVIDER;
+        } else if (list.contains(LocationManager.NETWORK_PROVIDER)) { // location by network
+            provider = LocationManager.NETWORK_PROVIDER;
+        } else {
+            Toast.makeText(mainActivity, "Please check your network or GPS!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        // check the location permission
+        if (ActivityCompat.checkSelfPermission(
+                mainActivity,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mainActivity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(provider);
+        if (location != null) {
+            // get current location
+            userLocationLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+        } else {
+            // bind location event, listen whether the location changed
+            // parameter 1 : location provider type (GPS or Network)
+            // parameter 2 : time interval
+            // parameter 3 : location interval
+            // parameter 4 : location listener
+            locationManager.requestLocationUpdates(provider, 2000, 2, locationListener);
+        }
+    }
+
+    // show user location in the map
+    private void showUserLocation() {
+        if (userLocationLatLng != null) {
+            googleMap.addMarker(
+                    new MarkerOptions()
+                            .position(userLocationLatLng)
+                            .title("Current Location")
+//                            .snippet(currentUserAddress)
+                            .icon(BitmapDescriptorFactory.fromBitmap(userMarkerBitmap))
+            );
+            CameraPosition cameraPosition = new CameraPosition.Builder().target(userLocationLatLng).zoom(10).build();
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        } else {
+            Toast.makeText(requireActivity(), "Can not get your current address!!!", Toast.LENGTH_LONG).show();
+        }
     }
 
 //    private void initiateGeoCodingAPIViewModel(){
