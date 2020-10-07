@@ -48,5 +48,6 @@
 
     <!-- virus check -->
     <color name="bottomSheetBG">#474747</color>
+    <color name="swipe_tip_view">#808B96</color>
 
 </resources>

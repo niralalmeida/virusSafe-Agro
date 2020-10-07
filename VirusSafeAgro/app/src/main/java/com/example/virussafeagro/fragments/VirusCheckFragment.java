@@ -56,6 +56,9 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private View view;
     private Camera camera;
 
+    // bottom sheet views
+    private BottomSheetBehavior<FrameLayout> behavior;
+
     private SharedPreferenceProcess spp;
     private VirusCheckViewModel virusCheckViewModel;
 
@@ -99,10 +102,10 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
             layoutParams.height = getPeekHeight();
             //modify the max height of the window, do not allow to swipe up (default is allow)
             bottomSheet.setLayoutParams(layoutParams);
-
-            final BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
+            // set the height of the bottom sheet
+            behavior = BottomSheetBehavior.from(bottomSheet);
             //peekHeight is the windows's max height
-            behavior.setPeekHeight(getPeekHeight());
+            behavior.setPeekHeight(getResources().getDisplayMetrics().heightPixels);
             // the initial state is an open state
             behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
@@ -117,7 +120,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_check);
+//        this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_check);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
@@ -128,9 +131,11 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     }
 
     protected int getPeekHeight() {
-        int peekHeight = getResources().getDisplayMetrics().heightPixels;
-        // set the window height as the 3/4 of the full screen
-        return peekHeight - peekHeight / 5;
+//        int peekHeight = getResources().getDisplayMetrics().heightPixels;
+        int peekHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+//        int peekHeight = virusCheckRelativeLayout.getMinimumHeight();
+//        return peekHeight - peekHeight / 5;
+        return peekHeight;
     }
 
 
