@@ -17,7 +17,7 @@
         <RelativeLayout
             android:id="@+id/rl_virus_learn"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
@@ -73,7 +73,7 @@
         <RelativeLayout
             android:id="@+id/rl_nutrient_learn"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/rl_virus_learn"
             android:layout_marginTop="15dp"
             android:paddingTop="15dp"
