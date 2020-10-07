@@ -383,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case AppResources.FRAGMENT_TAG_LEARN:
                 case AppResources.FRAGMENT_TAG_VIRUS_CHECK:
-                case AppResources.FRAGMENT_TAG_HOME:
+                case AppResources.FRAGMENT_TAG_TOOLKIT:
                     MyAnimationBox.runSlideInAnimationFromRight(
                             this.topButtonsLinearLayout,
                             this.topButtonsLinearLayout.getX() + TOOLBAR_SEARCH_BUTTON,
@@ -551,25 +551,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void switchFragments(int itemId) {
+        Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
         switch (itemId) {
             case R.id.ic_learn:
                 slideUpTheSwipeImageAndMakeItGone(500);
-                if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof LearnFragment)) {
-                    FragmentOperator.replaceFragmentNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                if (!(foundFragment instanceof LearnFragment)) {
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                     if (toolbar.getVisibility() == View.GONE) {
                         new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
                     }
+                } else {
+                    FragmentOperator.closeFragmentWithSlideToBottomAnimation(this, foundFragment);
                 }
                 break;
             case R.id.ic_virus_check:
                 break;
             case R.id.ic_toolkit:
                 slideUpTheSwipeImageAndMakeItGone(500);
-                if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof ToolkitFragment)) {
-                    FragmentOperator.replaceFragmentNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_HOME);
+                if (!(foundFragment instanceof ToolkitFragment)) {
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
                     if (toolbar.getVisibility() == View.GONE) {
                         new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
                     }
+                } else {
+                    FragmentOperator.closeFragmentWithSlideToBottomAnimation(this, foundFragment);
                 }
                 break;
 //            case R.id.ic_tip:

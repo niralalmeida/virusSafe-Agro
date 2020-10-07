@@ -11,7 +11,7 @@ public class AppResources {
     public final static int COlOR_RESULT_ITEM_RIGHT_BG = Color.rgb(212, 239, 223 );
     public final static int COlOR_RESULT_ITEM_WRONG_BG = Color.rgb(250, 219, 216);
 
-    public final static String FRAGMENT_TAG_HOME = "home";
+    public final static String FRAGMENT_TAG_TOOLKIT = "toolkit";
     public final static String FRAGMENT_TAG_VIRUS_INFO = "virus_info";
     public final static String FRAGMENT_TAG_VIRUS_CHECK = "virus_check";
     public final static String FRAGMENT_TAG_VIRUS_QUIZ = "virus_quiz";

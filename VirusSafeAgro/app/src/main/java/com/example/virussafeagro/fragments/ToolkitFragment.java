@@ -62,7 +62,7 @@ public class ToolkitFragment extends Fragment {
         super.onResume();
 
         // show Home Views
-        this.showHomeViews();
+//        this.showHomeViews();
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
         // set menu selected item
@@ -168,6 +168,6 @@ public class ToolkitFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        this.allViewsRelativeLayout.setVisibility(View.GONE);
+//        this.allViewsRelativeLayout.setVisibility(View.GONE);
     }
 }

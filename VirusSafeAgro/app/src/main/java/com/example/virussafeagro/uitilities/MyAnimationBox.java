@@ -39,6 +39,18 @@ public class MyAnimationBox {
         view.setVisibility(View.GONE);
     }
 
+    public static void runSlideOutAnimationToBottom(View view, int duration) {
+        TranslateAnimation animate = new TranslateAnimation(
+                0,
+                0,
+                0,
+                view.getHeight());
+        animate.setDuration(duration);
+        animate.setFillAfter(false);
+        view.startAnimation(animate);
+        view.setVisibility(View.GONE);
+    }
+
     public static void runSlideInAnimationFromTop(View view, int duration) {
         view.setVisibility(View.VISIBLE);
         TranslateAnimation animate = new TranslateAnimation(

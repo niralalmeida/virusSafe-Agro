@@ -45,6 +45,21 @@ public class FragmentOperator {
                 .commit();
     }
 
+    // replace the fragment view with slide in animation
+    public static void replaceFragmentWithSlideFromBottomAnimationNoBackStack(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
+        FragmentTransaction fragmentTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_bottom, 0);
+        fragmentTransaction.replace(R.id.fl_fragments, nextFragment, fragmentTag).commit();
+    }
+
+    public static void closeFragmentWithSlideToBottomAnimation(FragmentActivity fragmentActivity, Fragment fragmentToRemove){
+        fragmentActivity.getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(0, R.anim.exit_to_bottom)
+                .remove(fragmentToRemove)
+                .commit();
+    }
+
     // replace the fragment view
     public static void replaceFragmentNoBackStack(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
         fragmentActivity.getSupportFragmentManager()

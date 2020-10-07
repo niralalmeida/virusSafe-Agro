@@ -348,7 +348,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
                         bundle.putString("resultCheckFeedback", resultCheckFeedback);
                         VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
                         virusCheckResultFragment.setArguments(bundle);
-                        FragmentOperator.replaceFragment(requireActivity(), virusCheckResultFragment, AppResources.FRAGMENT_TAG_VIRUS_CHECK_RESULT);
+                        FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusCheckResultFragment, AppResources.FRAGMENT_TAG_VIRUS_CHECK_RESULT);
                         dismiss();
                     } else {
                         // show this virus check page and hide the process bar
