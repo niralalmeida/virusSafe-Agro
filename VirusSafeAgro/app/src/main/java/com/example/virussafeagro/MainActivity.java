@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private DragYRelativeLayout tipDragYRelativeLayout;
 
     public static int INITIAL_PAGE_POSITION = 3; // empty -> check fragment
+    public static int CURRENT_PAGE_POSITION = -1;
 
     public static boolean FROM_VIRUS_INFO_PAGE;
     public static boolean FROM_NUTRIENT_PAGE;
@@ -554,27 +555,25 @@ public class MainActivity extends AppCompatActivity {
         Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
         switch (itemId) {
             case R.id.ic_learn:
+                CURRENT_PAGE_POSITION = 0;
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(foundFragment instanceof LearnFragment)) {
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                    FragmentOperator.replaceFragmentWithFadeInAnimationNoStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                     if (toolbar.getVisibility() == View.GONE) {
                         new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
                     }
-                } else {
-                    FragmentOperator.closeFragmentWithSlideToBottomAnimation(this, foundFragment);
                 }
                 break;
             case R.id.ic_virus_check:
                 break;
             case R.id.ic_toolkit:
+                CURRENT_PAGE_POSITION = 2;
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(foundFragment instanceof ToolkitFragment)) {
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
+                    FragmentOperator.replaceFragmentWithFadeInAnimationNoStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
                     if (toolbar.getVisibility() == View.GONE) {
                         new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
                     }
-                } else {
-                    FragmentOperator.closeFragmentWithSlideToBottomAnimation(this, foundFragment);
                 }
                 break;
 //            case R.id.ic_tip:
@@ -588,13 +587,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showVirusCheckFragment() {
-        bottomNavigationViewEx.setCurrentItem(3);
-//        FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-
         VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
         virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-
-
     }
 
     private void slideUpTheSwipeImageAndMakeItGoneForTopButtons(int duration) {

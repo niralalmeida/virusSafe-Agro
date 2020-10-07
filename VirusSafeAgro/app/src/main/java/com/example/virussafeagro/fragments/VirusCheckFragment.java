@@ -2,6 +2,7 @@ package com.example.virussafeagro.fragments;
 
 import android.app.Dialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -359,6 +360,12 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
                 }, 1000);
             }
         });
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        mainActivity.getBottomNavigationViewEx().setCurrentItem(MainActivity.CURRENT_PAGE_POSITION);
     }
 
     @Override

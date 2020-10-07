@@ -63,10 +63,10 @@ public class VirusCheckResultFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_virus_check_result, container, false);
 
-        // set title
-        Objects.requireNonNull(Objects.requireNonNull((AppCompatActivity) getActivity()).getSupportActionBar()).setTitle("Virus Check Result");
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
+        // get current menu item
+        mainActivity.getBottomNavigationViewEx().setCurrentItem(3);
         // set title
         this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_check_result);
         // show back button

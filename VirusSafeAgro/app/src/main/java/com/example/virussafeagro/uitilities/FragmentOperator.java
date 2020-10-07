@@ -19,12 +19,10 @@ public class FragmentOperator {
     }
 
     // replace the fragment view with fade in animation
-    public static void replaceFragmentWithFadeAnimation(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
+    public static void replaceFragmentWithFadeInAnimationNoStack(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
         FragmentTransaction fragmentTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-        fragmentTransaction.replace(R.id.fl_fragments, nextFragment, fragmentTag)
-                .addToBackStack(null)
-                .commit();
+        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, 0);
+        fragmentTransaction.replace(R.id.fl_fragments, nextFragment, fragmentTag).commit();
     }
 
     // replace the fragment view with slide in animation
