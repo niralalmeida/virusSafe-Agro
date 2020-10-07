@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textStyle="bold"
+            android:textSize="20sp"
             android:textColor="@color/colorWhite"
             android:text="Select an image to analyse:" />
 
@@ -169,6 +170,7 @@
 
             <!-- image format tip -->
             <TextView
+                android:id="@+id/tv_image_format_tip_virus_check"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
@@ -186,8 +188,8 @@
         android:id="@+id/rl_close_button_virus_check"
         android:layout_alignEnd="@id/nsv_all_view_virus_check"
         android:layout_alignTop="@id/ll_choose_image_title_virus_check"
-        android:layout_width="20dp"
-        android:layout_height="20dp">
+        android:layout_width="25dp"
+        android:layout_height="25dp">
 
         <ImageView
             android:id="@+id/btn_close_virus_check"

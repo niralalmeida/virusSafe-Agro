@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -67,10 +68,12 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
     private RelativeLayout closeButtonRelativeLayout;
     private ImageView uploadImageImageView;
+    private RelativeLayout uploadImageButtonRelativeLayout;
     private Button uploadImageButton;
     private LinearLayout allVirusCheckLinearLayout;
     private RelativeLayout uploadingProgressBarRelativeLayout;
     private RelativeLayout virusCheckRelativeLayout;
+    private TextView imageFormatTipTextView;
 
     private boolean isUploadImageButtonClicked;
 
@@ -139,7 +142,6 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         return peekHeight;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -177,10 +179,12 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         this.cameraLinearLayout = view.findViewById(R.id.ll_camera);
         this.selectImageLinearLayout = view.findViewById(R.id.ll_select_image);
         this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
+        this.uploadImageButtonRelativeLayout = view.findViewById(R.id.rl_upload_image_button_virus_check);
         this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
         this.allVirusCheckLinearLayout = view.findViewById(R.id.ll_all_virus_check);
         this.uploadingProgressBarRelativeLayout = view.findViewById(R.id.rl_process_bar_virus_check);
         this.virusCheckRelativeLayout = view.findViewById(R.id.rl_virus_check);
+        this.imageFormatTipTextView = view.findViewById(R.id.tv_image_format_tip_virus_check);
     }
 
     private void initializeSharedPreference() {
@@ -261,6 +265,24 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
                 }
             }else{
                 Log.i("VirusCheck", "operation error");
+            }
+        }
+
+        // display the image and upload button
+        if (requestCode == Camera.REQUEST_TAKE_PHOTO || requestCode == REQUEST_CHOOSE_GALLERY){
+            uploadImageImageView.setVisibility(View.VISIBLE);
+            uploadImageButtonRelativeLayout.setVisibility(View.VISIBLE);
+            imageFormatTipTextView.setVisibility(View.GONE);
+            // get dialog object
+            BottomSheetDialog dialog = (BottomSheetDialog) getDialog();
+            //get dialog's root layout
+            FrameLayout bottomSheet = dialog.getDelegate().findViewById(R.id.design_bottom_sheet);
+            if (bottomSheet != null) {
+                //get root layout's LayoutParams object
+                CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomSheet.getLayoutParams();
+                layoutParams.height = getPeekHeight();
+                //modify the max height of the window, do not allow to swipe up (default is allow)
+                bottomSheet.setLayoutParams(layoutParams);
             }
         }
     }

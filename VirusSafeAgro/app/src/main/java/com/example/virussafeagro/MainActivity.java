@@ -30,6 +30,7 @@ import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
+import com.example.virussafeagro.fragments.VirusCheckResultFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
@@ -484,13 +485,13 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
         Fragment currentVisibleFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
 
-        boolean isHomeFragment = currentVisibleFragment instanceof ToolkitFragment;
+        boolean isToolkitFragment = currentVisibleFragment instanceof ToolkitFragment;
         boolean isLearnFragment = currentVisibleFragment instanceof LearnFragment;
-        boolean isVirusIdentificationFragment = currentVisibleFragment instanceof VirusCheckFragment;
+        boolean isVirusCheckResultFragment = currentVisibleFragment instanceof VirusCheckResultFragment;
         if ((currentVisibleFragment == null)
-                || isHomeFragment
+                || isToolkitFragment
                 || isLearnFragment
-                || isVirusIdentificationFragment){
+                || isVirusCheckResultFragment){
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
         } else {
