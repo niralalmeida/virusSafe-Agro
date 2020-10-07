@@ -225,7 +225,7 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
 //                            .snippet(currentUserAddress)
                             .icon(BitmapDescriptorFactory.fromBitmap(userMarkerBitmap))
             );
-            CameraPosition cameraPosition = new CameraPosition.Builder().target(userLocationLatLng).zoom(10).build();
+            CameraPosition cameraPosition = new CameraPosition.Builder().target(userLocationLatLng).zoom(15).build();
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         } else {
             Toast.makeText(requireActivity(), "Can not get your current address!!!", Toast.LENGTH_LONG).show();
