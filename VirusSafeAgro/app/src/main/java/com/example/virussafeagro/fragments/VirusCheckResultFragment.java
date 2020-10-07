@@ -1,5 +1,6 @@
 package com.example.virussafeagro.fragments;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckResultViewModel;
+import com.mindorks.paracamera.Camera;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -51,7 +53,6 @@ public class VirusCheckResultFragment extends Fragment {
     private LinearLayout buttonProcessBarLinearLayout;
 
     private boolean isInfected = false;
-
 
     public VirusCheckResultFragment() {
     }
@@ -87,7 +88,7 @@ public class VirusCheckResultFragment extends Fragment {
         super.onResume();
 
         // set check button
-        this.mainActivity.setVirusCheckButton(true);
+//        this.mainActivity.setVirusCheckButton(true);
 
         // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();
@@ -113,7 +114,9 @@ public class VirusCheckResultFragment extends Fragment {
             uploadedImageImageView.setImageBitmap(uploadedImageBitmap);
 
             // show all views
-            showAllViews();
+            if (getFragmentManager().findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null) {
+                showAllViews();
+            }
 
             // control the resultCheckFeedback display
             controlResultCheckFeedback();

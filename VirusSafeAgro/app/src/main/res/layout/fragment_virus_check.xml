@@ -192,7 +192,7 @@
     <RelativeLayout
         android:id="@+id/rl_close_button_virus_check"
         android:layout_alignEnd="@id/nsv_all_view_virus_check"
-        android:layout_alignTop="@id/ll_choose_image_title_virus_check"
+        android:layout_marginTop="10dp"
         android:layout_width="25dp"
         android:layout_height="25dp">
 

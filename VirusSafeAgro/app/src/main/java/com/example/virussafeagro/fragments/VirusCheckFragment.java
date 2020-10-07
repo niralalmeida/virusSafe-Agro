@@ -66,6 +66,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private LinearLayout cameraLinearLayout;
     private LinearLayout selectImageLinearLayout;
 
+    private LinearLayout titleLinearLayout;
     private RelativeLayout closeButtonRelativeLayout;
     private ImageView uploadImageImageView;
     private RelativeLayout uploadImageButtonRelativeLayout;
@@ -79,7 +80,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
     private final int RESULT_OK = -1;
     public final int REQUEST_OPEN_CAMERA = Camera.REQUEST_TAKE_PHOTO;
-    public final int REQUEST_CHOOSE_GALLERY = 5678;
+    public final static int REQUEST_CHOOSE_GALLERY = 5678;
 
     public VirusCheckFragment() {
     }
@@ -175,6 +176,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
     private void initializeViews() {
         this.isUploadImageButtonClicked = false;
+        this.titleLinearLayout = view.findViewById(R.id.ll_choose_image_title_virus_check);
         this.closeButtonRelativeLayout = view.findViewById(R.id.rl_close_button_virus_check);
         this.cameraLinearLayout = view.findViewById(R.id.ll_camera);
         this.selectImageLinearLayout = view.findViewById(R.id.ll_select_image);
@@ -302,6 +304,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
             if (!DataConverter.isSameImage(uploadImageImageViewBitmapDrawable, requireActivity(), R.drawable.default_leaf)) {
                 // hide this virus check page and show the process bar
                 this.allVirusCheckLinearLayout.setVisibility(View.GONE);
+                this.titleLinearLayout.setVisibility(View.GONE);
                 this.uploadingProgressBarRelativeLayout.setVisibility(View.VISIBLE);
                 // save the image into SharedPreference
                 Bitmap uploadImageBitmap = uploadImageImageViewBitmapDrawable.getBitmap();
