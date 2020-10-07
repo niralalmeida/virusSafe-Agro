@@ -139,4 +139,8 @@
 
     <!-- general tool -->
     <string name="dot_with_space">&#160;•&#160;</string>
+
+    <!-- FAB -->
+    <string name="transition_name_fab_main">fab_transition_name</string>
+
 </resources>

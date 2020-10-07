@@ -1,10 +1,13 @@
 package com.example.virussafeagro.fragments;
 
+import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
@@ -33,6 +38,9 @@ import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.mindorks.paracamera.Camera;
 
 import java.io.FileNotFoundException;
@@ -42,7 +50,7 @@ import java.util.Objects;
  * Fragment for uploading tomato pictures to identify whether they are infected by some viruses
  * @author Haoyu Yang
  */
-public class VirusCheckFragment extends Fragment {
+public class VirusCheckFragment extends BottomSheetDialogFragment {
     private MainActivity mainActivity;
     private View view;
     private Camera camera;
@@ -68,6 +76,37 @@ public class VirusCheckFragment extends Fragment {
     public VirusCheckFragment() {
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        return new BottomSheetDialog(Objects.requireNonNull(getContext()));
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // get dialog object
+        BottomSheetDialog dialog = (BottomSheetDialog) getDialog();
+        // set background as transparent
+        dialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackground(new ColorDrawable(Color.TRANSPARENT));
+        //get dialog's root layout
+        FrameLayout bottomSheet = dialog.getDelegate().findViewById(R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            //get root layout's LayoutParams object
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomSheet.getLayoutParams();
+            layoutParams.height = getPeekHeight();
+            //modify the max height of the window, do not allow to swipe up (default is allow)
+            bottomSheet.setLayoutParams(layoutParams);
+
+            final BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
+            //peekHeight is the windows's max height
+            behavior.setPeekHeight(getPeekHeight());
+            // the initial state is an open state
+            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -87,6 +126,13 @@ public class VirusCheckFragment extends Fragment {
         return this.view;
     }
 
+    protected int getPeekHeight() {
+        int peekHeight = getResources().getDisplayMetrics().heightPixels;
+        // set the window height as the 3/4 of the full screen
+        return peekHeight - peekHeight / 5;
+    }
+
+
     @Override
     public void onResume() {
         super.onResume();
@@ -101,7 +147,7 @@ public class VirusCheckFragment extends Fragment {
         this.initializeVirusCheckViewModel();
 
         // show All Views
-        this.showAllViews();
+//        this.showAllViews();
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
 

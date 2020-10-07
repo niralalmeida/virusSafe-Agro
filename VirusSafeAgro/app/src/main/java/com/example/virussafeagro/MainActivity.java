@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -37,6 +38,7 @@ import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -583,13 +585,19 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationViewEx.setCurrentItem(3);
 //        FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
 
+        VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
+        virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+
 
     }
 
     private void slideUpTheSwipeImageAndMakeItGoneForTopButtons(int duration) {
         if (swipeImageDragYRelativeLayout.getVisibility() != View.GONE) {
             // set virus check fragment
-            FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+//            FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+            VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
+            virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+
             MyAnimationBox.runSlideOutAnimationToTop(swipeImageDragYRelativeLayout, duration);
             new Handler().postDelayed(()->{
                 this.swipeImageDragYRelativeLayout.setVisibility(View.GONE);

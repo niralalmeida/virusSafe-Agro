@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_virus_check"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDarkBG">
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_virus_check_fragment_bg">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_all_view_virus_check"
+        android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -14,8 +15,8 @@
             android:id="@+id/ll_all_virus_check"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/img_upload_check"
                 android:src="@drawable/default_leaf"

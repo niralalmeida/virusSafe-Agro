@@ -46,4 +46,7 @@
     <!-- search -->
     <color name="btnOnPress">#909497</color>
 
+    <!-- virus check -->
+    <color name="bottomSheetBG">#474747</color>
+
 </resources>
