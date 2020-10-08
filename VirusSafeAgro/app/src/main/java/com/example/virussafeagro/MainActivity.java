@@ -243,6 +243,8 @@ public class MainActivity extends AppCompatActivity {
             if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof MoreFragment)) {
                 // add new MoreFragment
                 FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+            } else {
+                FragmentOperator.backToLastFragment(this);
             }
         });
     }
