@@ -327,38 +327,36 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
 //        });
 //    }
 //
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        mapView.onResume();
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        mapView.onPause();
-//    }
-//
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        mapView.onDestroy();
-//    }
-//
-//    @Override
-//    public void onLowMemory() {
-//        super.onLowMemory();
-//        mapView.onLowMemory();
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
 
     @Override
     public void onPause() {
         super.onPause();
+        mapView.onPause();
         if (ContextCompat.checkSelfPermission(mainActivity,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
 
-            locationManager.removeUpdates(locationListener);
+            if (locationManager != null) {
+                locationManager.removeUpdates(locationListener);
+            }
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
 }
