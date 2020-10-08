@@ -7,18 +7,15 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -40,7 +37,6 @@ import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -84,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
     // app tips
     private DragYRelativeLayout tipDragYRelativeLayout;
     // app lottie animation
-    private com.airbnb.lottie.LottieAnimationView lottieAnimationView;
+    private RelativeLayout animationImageRelativeLayout;
+//    private com.airbnb.lottie.LottieAnimationView plantLottieAnimationView;
+//    private com.airbnb.lottie.LottieAnimationView cloudLottieAnimationView;
 
     public static int INITIAL_PAGE_POSITION = 3; // empty -> check fragment
     public static int CURRENT_PAGE_POSITION = -1;
@@ -145,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
         this.swipeImageView = findViewById(R.id.img_swipe_app);
         this.swipeImageDragYRelativeLayout = findViewById(R.id.drl_image_app);
         this.tipDragYRelativeLayout = findViewById(R.id.drl_tip_app);
-        this.lottieAnimationView = findViewById(R.id.lottieAnimationView);
+        this.animationImageRelativeLayout = findViewById(R.id.rl_animation_image_main);
+//        this.plantLottieAnimationView = findViewById(R.id.lav_plant_main);
+//        this.cloudLottieAnimationView = findViewById(R.id.lav_cloud_main);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -328,8 +328,10 @@ public class MainActivity extends AppCompatActivity {
         return lineView1;
     }
 
-    public LottieAnimationView getLottieAnimationView() {
-        return lottieAnimationView;
+    public void hideTheLottieAnimationView() {
+        this.animationImageRelativeLayout.setVisibility(View.GONE);
+//        this.plantLottieAnimationView.setVisibility(View.GONE);
+//        this.cloudLottieAnimationView.setVisibility(View.GONE);
     }
 
     // display search function
@@ -499,10 +501,12 @@ public class MainActivity extends AppCompatActivity {
         boolean isToolkitFragment = currentVisibleFragment instanceof ToolkitFragment;
         boolean isLearnFragment = currentVisibleFragment instanceof LearnFragment;
         boolean isVirusCheckResultFragment = currentVisibleFragment instanceof VirusCheckResultFragment;
+        boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
         if ((currentVisibleFragment == null)
                 || isToolkitFragment
                 || isLearnFragment
-                || isVirusCheckResultFragment){
+                || isVirusCheckResultFragment
+                || isMoreFragment ){
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
         } else {
@@ -561,7 +565,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
         switch (itemId) {
             case R.id.ic_learn:
-                lottieAnimationView.setVisibility(View.GONE);
+                hideTheLottieAnimationView();
                 CURRENT_PAGE_POSITION = 0;
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(foundFragment instanceof LearnFragment)) {
@@ -574,7 +578,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.ic_virus_check:
                 break;
             case R.id.ic_toolkit:
-                lottieAnimationView.setVisibility(View.GONE);
+                hideTheLottieAnimationView();
                 CURRENT_PAGE_POSITION = 2;
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(foundFragment instanceof ToolkitFragment)) {

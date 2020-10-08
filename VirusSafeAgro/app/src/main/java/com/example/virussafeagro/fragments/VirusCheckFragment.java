@@ -27,9 +27,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -345,7 +343,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
                 new Handler().postDelayed(() -> {
                     if (!resultCheckFeedback.isEmpty()){
                         // hide the json animation
-                        mainActivity.getLottieAnimationView().setVisibility(View.GONE);
+                        mainActivity.hideTheLottieAnimationView();
                         // save the feedback into bundle and send it to the result fragment
                         Bundle bundle = new Bundle();
                         bundle.putString("resultCheckFeedback", resultCheckFeedback);

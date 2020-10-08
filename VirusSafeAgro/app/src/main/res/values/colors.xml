@@ -38,6 +38,7 @@
 
     <!-- home -->
     <color name="tilePressed">#515A5A</color>
+    <color name="ground">#784212</color>
 
     <!-- news -->
     <color name="author">#d0d3d6</color>
