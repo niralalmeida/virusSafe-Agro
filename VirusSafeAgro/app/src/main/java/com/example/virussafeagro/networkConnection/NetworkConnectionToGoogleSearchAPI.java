@@ -78,4 +78,23 @@ public class NetworkConnectionToGoogleSearchAPI {
         }
         return textResult;
     }
+
+    public String getPesticideStoreList(double latitude, double longitude, double radius){
+        String textResult = "";
+        String searchURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
+                "location=" + latitude + "," + longitude +
+                "&radius=" + radius +
+                "&type=store" +
+                "&keyword=pesticide" +
+                "&key=" + API_KEY +
+                "&language=en-AU";
+        Request request = new Request.Builder().url(searchURL).build();
+        try {
+            Response response = this.okHttpClient.newCall(request).execute();
+            textResult = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return textResult;
+    }
 }

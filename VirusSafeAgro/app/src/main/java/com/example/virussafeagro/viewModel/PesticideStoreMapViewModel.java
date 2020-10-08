@@ -30,22 +30,22 @@ public class PesticideStoreMapViewModel extends ViewModel {
         return this.pesticideStoreListLD;
     }
 
-    public void processFindingPesticideStoreList(int radius) {
+    public void processFindingPesticideStoreList(double latitude, double longitude, double radius) {
         try{
             FindPesticideStoreListAsyncTask findPesticideStoreListAsyncTask = new FindPesticideStoreListAsyncTask();
-            findPesticideStoreListAsyncTask.execute(radius);
+            findPesticideStoreListAsyncTask.execute(latitude, longitude, radius);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private class FindPesticideStoreListAsyncTask extends AsyncTask<Integer, Void, List<PesticideStoreModel>> {
+    private class FindPesticideStoreListAsyncTask extends AsyncTask<Double, Void, List<PesticideStoreModel>> {
 
         @Override
-        protected List<PesticideStoreModel> doInBackground(Integer... integers) {
+        protected List<PesticideStoreModel> doInBackground(Double... doubles) {
             List<PesticideStoreModel> pesticideStoreList = new ArrayList<>();
             try {
-                String pesticideStoreListResult = networkConnectionToGoogleSearchAPI.getPesticideStoreList(integers[0]);
+                String pesticideStoreListResult = networkConnectionToGoogleSearchAPI.getPesticideStoreList(doubles[0], doubles[1], doubles[2]);
                 pesticideStoreList = MyJsonParser.pesticideStoreListParser(pesticideStoreListResult);
             } catch (Exception e){
                 e.printStackTrace();
