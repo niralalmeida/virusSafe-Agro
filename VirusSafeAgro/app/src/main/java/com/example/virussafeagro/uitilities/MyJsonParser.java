@@ -32,7 +32,7 @@ import java.util.List;
 
 public class MyJsonParser {
     public final static String CONNECTION_ERROR_MESSAGE = "Fail to connect to the server! Something wrong with the network!";
-    public final static String PLACE_API_ERROR_MESSAGE = "Fail to get the pesticide result! Something wrong with the Google service!\nThe status code is \"";
+    public static String PLACE_API_ERROR_MESSAGE = "Fail to get the pesticide result! Something wrong with the Google service!\nThe status code is \"";
 
     // get data to store viruses into virus model list
     public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
@@ -683,7 +683,8 @@ public class MyJsonParser {
                         pesticideStoreModel.setBusinessStatus(businessStatus);
 
                         // location
-                        JSONObject locationJSONObject = pesticideStoreJsonObject.getJSONObject("location");
+                        JSONObject geometryJSONObject = pesticideStoreJsonObject.getJSONObject("geometry");
+                        JSONObject locationJSONObject = geometryJSONObject.getJSONObject("location");
                         double latitude = locationJSONObject.getDouble("lat");
                         double longitude = locationJSONObject.getDouble("lng");
                         LatLng locationLatLng = new LatLng(latitude, longitude);
@@ -724,6 +725,7 @@ public class MyJsonParser {
                                 String openingHoursKeyString = openingHoursKeys.next();
                                 if (openingHoursKeyString.equals("open_now")) {
                                     boolean isOpenNow = openingHoursJSONObject.getBoolean("open_now");
+                                    pesticideStoreModel.setHasOpeningHours(true);
                                     pesticideStoreModel.setOpenNow(isOpenNow);
                                 }
                             }
@@ -735,7 +737,8 @@ public class MyJsonParser {
                 }
             } else {
                 // check API result status
-                PesticideStoreModel pesticideStoreModel = new PesticideStoreModel(PLACE_API_ERROR_MESSAGE + resultStatus + "\"");
+                PLACE_API_ERROR_MESSAGE += resultStatus + "\"";
+                PesticideStoreModel pesticideStoreModel = new PesticideStoreModel(PLACE_API_ERROR_MESSAGE);
                 pesticideStoreModelList.add(pesticideStoreModel);
             }
         }

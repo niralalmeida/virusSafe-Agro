@@ -14,6 +14,7 @@ public class PesticideStoreModel implements Parcelable {
     private double rating;
     private int userRatingsCount;
     private List<String> storeTypeList;
+    private boolean hasOpeningHours;
     private boolean isOpenNow;
 
     public PesticideStoreModel() {
@@ -23,13 +24,14 @@ public class PesticideStoreModel implements Parcelable {
         this.storeName = storeName;
     }
 
-    public PesticideStoreModel(String businessStatus, LatLng locationLatLng, String storeName, double rating, int userRatingsCount, List<String> storeTypeList, boolean isOpenNow) {
+    public PesticideStoreModel(String businessStatus, LatLng locationLatLng, String storeName, double rating, int userRatingsCount, List<String> storeTypeList, boolean hasOpeningHours, boolean isOpenNow) {
         this.businessStatus = businessStatus;
         this.locationLatLng = locationLatLng;
         this.storeName = storeName;
         this.rating = rating;
         this.userRatingsCount = userRatingsCount;
         this.storeTypeList = storeTypeList;
+        this.hasOpeningHours = hasOpeningHours;
         this.isOpenNow = isOpenNow;
     }
 
@@ -40,6 +42,7 @@ public class PesticideStoreModel implements Parcelable {
         rating = in.readDouble();
         userRatingsCount = in.readInt();
         storeTypeList = in.createStringArrayList();
+        hasOpeningHours = in.readByte() != 0;
         isOpenNow = in.readByte() != 0;
     }
 
@@ -51,6 +54,7 @@ public class PesticideStoreModel implements Parcelable {
         dest.writeDouble(rating);
         dest.writeInt(userRatingsCount);
         dest.writeStringList(storeTypeList);
+        dest.writeByte((byte) (hasOpeningHours ? 1 : 0));
         dest.writeByte((byte) (isOpenNow ? 1 : 0));
     }
 
@@ -117,6 +121,14 @@ public class PesticideStoreModel implements Parcelable {
 
     public void setStoreTypeList(List<String> storeTypeList) {
         this.storeTypeList = storeTypeList;
+    }
+
+    public boolean isHasOpeningHours() {
+        return hasOpeningHours;
+    }
+
+    public void setHasOpeningHours(boolean hasOpeningHours) {
+        this.hasOpeningHours = hasOpeningHours;
     }
 
     public boolean isOpenNow() {

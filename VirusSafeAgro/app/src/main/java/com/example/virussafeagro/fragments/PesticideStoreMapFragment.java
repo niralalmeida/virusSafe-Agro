@@ -20,11 +20,16 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.PesticideStoreModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.uitilities.MyJsonParser;
+import com.example.virussafeagro.viewModel.NewsDetailViewModel;
+import com.example.virussafeagro.viewModel.PesticideStoreMapViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -37,6 +42,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,14 +60,11 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     private static final int PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE = 99;
 
     // for pesticide store location
-    private List<PesticideStoreModel> pesticideStoreList;
+    private List<PesticideStoreModel> pesticideStoreList = new ArrayList<>();
+    private PesticideStoreMapViewModel pesticideStoreMapViewModel;
 
-//    private GeoCodingAPIViewModel geoCodingAPIViewModel;
-//    private CurrentMovieInfoFromSPViewModel currentMovieInfoFromSPViewModel;
-//    private MainMovieMemoirDBViewModel mainMovieMemoirDBViewModel;
-
+    // marker icon bitmap
     private Bitmap userMarkerBitmap;
-    private Bitmap pesticideStoreMarkerBitmap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,12 +77,12 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         // show back button
         MainActivity.showTopBarBackButton((MainActivity) requireActivity());
 
+        // initialize PesticideStoreMapViewModel
+        this.initializePesticideStoreMapViewModel();
+
+        // initialize the map
         this.initiateMap(savedInstanceState);
         this.mapView.getMapAsync(this);
-
-//        this.initiateGeoCodingAPIViewModel();
-//        this.initiateMovieInfoFromSPViewModel();
-//        this.initiateMainMovieMemoirDBViewModel();
 
         return view;
     }
@@ -88,8 +91,7 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         mapView = view.findViewById(R.id.map_widget);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
-        userMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_user1);
-        pesticideStoreMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_pesticide2);
+        userMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_user2);
 
         try {
             MapsInitializer.initialize(Objects.requireNonNull(getActivity()).getApplicationContext());
@@ -103,13 +105,10 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         this.googleMap = myMap;
         // ask for location permission and show the user location if getting permission
         this.checkLocationPermission();
+    }
 
-//        this.getCinemaAddressesFromDB(); // call the cinema address to DB
-//
-//        this.observeHomeAddressStrLiveData(); // get home address from SP --> call GeoCoding API
-//        this.observeHomeAddressLagLngLiveData(); // get home address LagLng
-//        this.observeAllCinemaListLiveData(); // get cinema addresses from SP --> call GeoCoding API
-//        this.observeCinemaAddressesLagLngLiveData();// get cinema addresses LagLng
+    private void initializePesticideStoreMapViewModel() {
+        this.pesticideStoreMapViewModel = new ViewModelProvider(requireActivity()).get(PesticideStoreMapViewModel.class);
     }
 
     // user location listener
@@ -131,6 +130,12 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         public void onLocationChanged(Location location) {
             if (location != null) {
                 userLocationLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                // remove the listener
+                locationManager.removeUpdates(locationListener);
+                // find the pesticide stores by Place API
+                findPesticideStoreList();
+                // observe PesticideStoreList live data
+                observePesticideStoreListLD();
             }
         }
     };
@@ -209,6 +214,13 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         if (location != null) {
             // get current location
             userLocationLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+            // remove the listener
+            locationManager.removeUpdates(locationListener);
+
+            // find the pesticide stores by Place API
+            this.findPesticideStoreList();
+            // observe PesticideStoreList live data
+            this.observePesticideStoreListLD();
         } else {
             // bind location event, listen whether the location changed
             // parameter 1 : location provider type (GPS or Network)
@@ -223,114 +235,78 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     private void showUserLocation() {
         if (userLocationLatLng != null) {
             googleMap.addMarker(
-                    new MarkerOptions()
-                            .position(userLocationLatLng)
-                            .title("Current Location")
+                new MarkerOptions()
+                        .position(userLocationLatLng)
+                        .title("Current Location")
 //                            .snippet(currentUserAddress)
-                            .icon(BitmapDescriptorFactory.fromBitmap(userMarkerBitmap))
+                        .icon(BitmapDescriptorFactory.fromBitmap(userMarkerBitmap))
             );
-            CameraPosition cameraPosition = new CameraPosition.Builder().target(userLocationLatLng).zoom(15).build();
+            CameraPosition cameraPosition = new CameraPosition.Builder().target(userLocationLatLng).zoom(13).build();
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         } else {
             Toast.makeText(requireActivity(), "Can not get your current address!!!", Toast.LENGTH_LONG).show();
         }
     }
 
-//    private void initiateGeoCodingAPIViewModel(){
-//        this.geoCodingAPIViewModel = new ViewModelProvider(requireActivity()).get(GeoCodingAPIViewModel.class);
-//    }
-//
-//    private void initiateMainMovieMemoirDBViewModel() {
-//        this.mainMovieMemoirDBViewModel = new ViewModelProvider(requireActivity()).get(MainMovieMemoirDBViewModel.class);
-//        this.mainMovieMemoirDBViewModel.initiateTheContext(requireActivity());
-//    }
-//
-//    private void initiateMovieInfoFromSPViewModel() {
-//        this.currentMovieInfoFromSPViewModel = new ViewModelProvider(requireActivity()).get(CurrentMovieInfoFromSPViewModel.class);
-//        this.currentMovieInfoFromSPViewModel.initiateTheContext(requireActivity());
-//    }
-//
-//    private void getUserHomeAddressFromSP() {
-//        this.currentMovieInfoFromSPViewModel.processFindingCurrentUserAddressStr();
-//    }
-//
-//    private void getCinemaAddressesFromDB(){
-//        this.mainMovieMemoirDBViewModel.processFindingAllCinemaList();
-//    }
-//
-//    private void observeHomeAddressStrLiveData() {
-//        this.currentMovieInfoFromSPViewModel.getCurrentUserAddressStrText().observe(getViewLifecycleOwner(), currentUserAddressStr -> {
-//            if ((currentUserAddressStr != null) && (!currentUserAddressStr.isEmpty())){
-//                String[] userInfo = currentUserAddressStr.split("\\^");
-//                userName = userInfo[0];
-//                currentUserAddress = userInfo[1];
-//                geoCodingAPIViewModel.getCurrentUserAddressLatLng(currentUserAddress);
-//            } else {
-//                Toast.makeText(requireActivity(), "Can not get your home address!!!", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
-//
-//    private void observeHomeAddressLagLngLiveData(){
-//        this.geoCodingAPIViewModel.getCurrentUserAddressLatLngText().observe(getViewLifecycleOwner(), resultCurrentUserAddress -> {
-//            if (resultCurrentUserAddress != null) {
-//                googleMap.addMarker(
-//                        new MarkerOptions()
-//                                .position(resultCurrentUserAddress)
-//                                .title(userName + "'s home")
-//                                .snippet(currentUserAddress)
-//                                .icon(BitmapDescriptorFactory.fromBitmap(homeMarkerBitmap))
-//                );
-//                CameraPosition cameraPosition = new CameraPosition.Builder().target(resultCurrentUserAddress).zoom(10).build();
-//                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//            } else {
-//                Toast.makeText(requireActivity(), "Can not parse your home address to LagLng!!!", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
-//
-//    private void observeAllCinemaListLiveData() {
-//        this.mainMovieMemoirDBViewModel.getCinemaListMessage().observe(getViewLifecycleOwner(), resultCinemaList -> {
-//            if ((resultCinemaList != null) && (resultCinemaList.size() != 0)) {
-//                cinemaAddressList = new ArrayList<>();
-//                for(Cinema c : resultCinemaList) {
-//                    String cinemaName = c.getCinemaName();
-//                    String cinemaPostcode = c.getCinemaPostcode();
-//                    String cinemaAddress = cinemaName + " " + cinemaPostcode;
-//                    cinemaAddressList.add(cinemaAddress);
-//                }
-//                geoCodingAPIViewModel.getAllCinemaAddressLatLng(cinemaAddressList);
-//            } else {
-//                Toast.makeText(requireActivity(), "There is no cinema in the DB !!!", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
-//
-//    private void observeCinemaAddressesLagLngLiveData() {
-//        this.geoCodingAPIViewModel.getAllCinemaAddressLatLngListText().observe(getViewLifecycleOwner(), resultCinemaLatLngs ->{
-//            if ((resultCinemaLatLngs != null) && (resultCinemaLatLngs.size() != 0)) {
-//                int listSize = resultCinemaLatLngs.size();
-//                for(int i = 0; i< listSize; i++) {
-//                    if ((resultCinemaLatLngs.get(i).latitude != 0) && (resultCinemaLatLngs.get(i).longitude != 0)) {
-//                        int spaceIndex = cinemaAddressList.get(i).lastIndexOf(" ");
-//                        String selectCinemaName = cinemaAddressList.get(i).substring(0, spaceIndex);
-//                        String selectCinemaPostcode = cinemaAddressList.get(i).substring(spaceIndex + 1);
-//                        googleMap.addMarker(
-//                                new MarkerOptions()
-//                                        .position(resultCinemaLatLngs.get(i))
-//                                        .title(selectCinemaName)
-//                                        .snippet(selectCinemaPostcode)
-//                                        .icon(BitmapDescriptorFactory.fromBitmap(cinemaMarkerBitmap))
-//                        );
-//                    }
-//                }
-//
-//            } else{
-//                Toast.makeText(requireActivity(), "Something wrong when parsing the address !!!", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
-//
+    // find Pesticide Store List by view model
+    private void findPesticideStoreList() {
+        // get radius
+        double radius = 3000;
+
+        // get location
+        if (userLocationLatLng != null) {
+            double latitude = userLocationLatLng.latitude;
+            double longitude = userLocationLatLng.longitude;
+
+            // find by view model
+            this.pesticideStoreMapViewModel.processFindingPesticideStoreList(latitude, longitude, radius);
+        }
+    }
+
+    // observe PesticideStoreList live data
+    private void observePesticideStoreListLD() {
+        this.pesticideStoreMapViewModel.getPesticideStoreListLD().observe(getViewLifecycleOwner(), resultPesticideStoreList -> {
+            // check network connection
+            if (resultPesticideStoreList.get(0).getStoreName().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+            } // check result status
+            else if (resultPesticideStoreList.get(0).getStoreName().equals(MyJsonParser.PLACE_API_ERROR_MESSAGE)) {
+                Toast.makeText(requireActivity(),MyJsonParser.PLACE_API_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+            } else {
+                pesticideStoreList.clear();
+                pesticideStoreList = resultPesticideStoreList;
+
+                showPesticideStoreLocations();
+            }
+        });
+    }
+
+    // show Pesticide Store Locations
+    private void showPesticideStoreLocations() {
+        for (PesticideStoreModel pesticideStoreModel : pesticideStoreList){
+            Bitmap pesticideStoreMarkerBitmap;
+            String snippet = "";
+            if (pesticideStoreModel.isHasOpeningHours()){
+                snippet = pesticideStoreModel.isOpenNow() ? "is open now : yes" : "is open now : no";
+                if (pesticideStoreModel.isOpenNow()) {
+                    pesticideStoreMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_pesticide8);
+                } else {
+                    pesticideStoreMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_pesticide9);
+                }
+            } else {
+                snippet = "business status : " + pesticideStoreModel.getBusinessStatus();
+                pesticideStoreMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_pesticide8);
+            }
+            googleMap.addMarker(
+                new MarkerOptions()
+                    .position(pesticideStoreModel.getLocationLatLng())
+                    .title(pesticideStoreModel.getStoreName())
+                    .snippet(snippet)
+                    .icon(BitmapDescriptorFactory.fromBitmap(pesticideStoreMarkerBitmap))
+            );
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
