@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -24,6 +26,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.adapters.MapInfoWindowAdapter;
 import com.example.virussafeagro.models.PesticideStoreModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
@@ -38,12 +41,15 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCallback {
@@ -62,6 +68,7 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     // for pesticide store location
     private List<PesticideStoreModel> pesticideStoreList = new ArrayList<>();
     private PesticideStoreMapViewModel pesticideStoreMapViewModel;
+    private Map<Marker, PesticideStoreModel> pesticideStoreMarkerMap = new HashMap<>();
 
     // marker icon bitmap
     private Bitmap userMarkerBitmap;
@@ -233,12 +240,12 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
 
     // show user location in the map
     private void showUserLocation() {
+        googleMap.clear();
         if (userLocationLatLng != null) {
             googleMap.addMarker(
                 new MarkerOptions()
                         .position(userLocationLatLng)
                         .title("Current Location")
-//                            .snippet(currentUserAddress)
                         .icon(BitmapDescriptorFactory.fromBitmap(userMarkerBitmap))
             );
             CameraPosition cameraPosition = new CameraPosition.Builder().target(userLocationLatLng).zoom(13).build();
@@ -251,7 +258,7 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     // find Pesticide Store List by view model
     private void findPesticideStoreList() {
         // get radius
-        double radius = 3000;
+        double radius = 3500;
 
         // get location
         if (userLocationLatLng != null) {
@@ -297,14 +304,28 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
                 snippet = "business status : " + pesticideStoreModel.getBusinessStatus();
                 pesticideStoreMarkerBitmap = BitmapFactory.decodeResource(requireActivity().getResources(), R.drawable.location_pesticide8);
             }
-            googleMap.addMarker(
+
+            Marker pesticideStoreMarker = googleMap.addMarker(
                 new MarkerOptions()
                     .position(pesticideStoreModel.getLocationLatLng())
                     .title(pesticideStoreModel.getStoreName())
                     .snippet(snippet)
                     .icon(BitmapDescriptorFactory.fromBitmap(pesticideStoreMarkerBitmap))
             );
+
+            pesticideStoreMarkerMap.put(pesticideStoreMarker, pesticideStoreModel);
         }
+
+        // set the bottom right toolbar enabled
+        googleMap.getUiSettings().setMapToolbarEnabled(true);
+
+        // set a custom info window adapter for the google map
+        MapInfoWindowAdapter mapInfoWindowAdapter = new MapInfoWindowAdapter(mainActivity, pesticideStoreMarkerMap);
+        googleMap.setInfoWindowAdapter(mapInfoWindowAdapter);
+
+        // set info window on click listener
+        googleMap.setOnInfoWindowClickListener(Marker::hideInfoWindow);
+
     }
 
     @Override

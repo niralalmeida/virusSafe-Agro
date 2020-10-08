@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
@@ -323,6 +324,10 @@ public class MainActivity extends AppCompatActivity {
 
     public View getLineView1() {
         return lineView1;
+    }
+
+    public LottieAnimationView getLottieAnimationView() {
+        return lottieAnimationView;
     }
 
     // display search function

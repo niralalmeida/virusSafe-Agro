@@ -50,4 +50,12 @@
     <color name="bottomSheetBG">#474747</color>
     <color name="swipe_tip_view">#808B96</color>
 
+    <!-- map -->
+    <color name="text_rating">#90ffffff</color>
+    <color name="rating_bar_normal">#90ffffff</color>
+    <color name="rating_bar_Activated">#F4D03F</color>
+    <color name="is_closed">#C0392B</color>
+    <color name="is_open">#2bb565</color>
+    <color name="is_unknown">#2E86C1</color>
+
 </resources>

@@ -344,6 +344,8 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
                 // test
                 new Handler().postDelayed(() -> {
                     if (!resultCheckFeedback.isEmpty()){
+                        // hide the json animation
+                        mainActivity.getLottieAnimationView().setVisibility(View.GONE);
                         // save the feedback into bundle and send it to the result fragment
                         Bundle bundle = new Bundle();
                         bundle.putString("resultCheckFeedback", resultCheckFeedback);

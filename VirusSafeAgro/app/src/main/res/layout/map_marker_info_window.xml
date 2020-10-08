@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_top_map_window"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="20dp"
+        android:layout_above="@id/rl_up_map_window"
+        android:background="@drawable/shape_marker_dialog_up_window_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- name -->
+        <RelativeLayout
+            android:id="@+id/rl_store_name_map_window"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_store_name_map_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:text="Shop Name" />
+
+        </RelativeLayout>
+
+        <!-- rating bar -->
+        <LinearLayout
+            android:id="@+id/ll_store_rating_map_window"
+            android:layout_below="@id/rl_store_name_map_window"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_store_rating_map_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/text_rating"
+                android:text="0.0" />
+
+            <RatingBar
+                android:id="@+id/rb_store_rating_map_window"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rating="0"
+                android:numStars="5"
+                android:stepSize="0.1"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:theme="@style/MapRatingBar"
+                android:isIndicator="true"/>
+
+            <TextView
+                android:id="@+id/tv_store_rating_count_map_window"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/text_rating"
+                android:text="(0)" />
+
+        </LinearLayout>
+
+        <!-- is open now -->
+        <LinearLayout
+            android:id="@+id/ll_is_open_now_map_window"
+            android:layout_below="@id/ll_store_rating_map_window"
+            android:orientation="horizontal"
+            android:gravity="top"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_is_open_now_map_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/is_unknown"
+                android:text="#Unknown" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/text_rating"
+                android:text="@string/dot_with_space" />
+
+            <TextView
+                android:id="@+id/tv_business_status_map_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/text_rating"
+                android:text="#OPERATIONAL" />
+
+        </LinearLayout>
+
+        <!-- type tags -->
+        <LinearLayout
+            android:id="@+id/ll_store_type_tags_map_window"
+            android:layout_below="@id/ll_is_open_now_map_window"
+            android:orientation="horizontal"
+            android:layout_marginTop="3dp"
+            android:gravity="top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_rating"
+                    android:text="store type : " />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_store_type_tag_items_map_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.uncopt.android.widget.text.justify.JustifiedTextView
+                    android:id="@+id/tv_store_type_tags_map_window"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_rating"
+                    android:text="#store" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_up_map_window"
+        android:background="@drawable/shape_marker_dialog_down_window_map"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="30dp"
+        android:layout_height="30dp">
+    </RelativeLayout>
+
+</RelativeLayout>
