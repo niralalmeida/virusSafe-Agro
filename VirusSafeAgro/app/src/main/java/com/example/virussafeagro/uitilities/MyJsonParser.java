@@ -9,12 +9,14 @@ import com.example.virussafeagro.models.NutrientFactorModel;
 import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.NutrientReasonModel;
 import com.example.virussafeagro.models.NutrientSymptomModel;
+import com.example.virussafeagro.models.PesticideStoreModel;
 import com.example.virussafeagro.models.TweetModel;
 import com.example.virussafeagro.models.VirusCauseModel;
 import com.example.virussafeagro.models.VirusDescriptionModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.models.VirusPreventionModel;
 import com.example.virussafeagro.models.VirusSymptomModel;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +32,7 @@ import java.util.List;
 
 public class MyJsonParser {
     public final static String CONNECTION_ERROR_MESSAGE = "Fail to connect to the server! Something wrong with the network!";
+    public final static String PLACE_API_ERROR_MESSAGE = "Fail to get the pesticide result! Something wrong with the Google service!\nThe status code is \"";
 
     // get data to store viruses into virus model list
     public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
@@ -614,5 +617,128 @@ public class MyJsonParser {
             }
         }
         return tweetModelList;
+    }
+
+    public static List<PesticideStoreModel> pesticideStoreListParser(String resultText) throws JSONException{
+        List<PesticideStoreModel> pesticideStoreModelList = new ArrayList<>();
+        // check network connection
+        if (resultText.isEmpty() || (!resultText.substring(0, 1).equals("{"))){
+            PesticideStoreModel pesticideStoreModel = new PesticideStoreModel(CONNECTION_ERROR_MESSAGE);
+            pesticideStoreModelList.add(pesticideStoreModel);
+        } else {
+            JSONObject resultTextJsonObject = new JSONObject(resultText);
+            String resultStatus = resultTextJsonObject.getString("status");
+            // check API result status
+            if (resultStatus.equals("OK")){
+                JSONArray resultListJSONArray = resultTextJsonObject.getJSONArray("results");
+
+                // get all pesticide store item results
+                int listSize = resultListJSONArray.length();
+                for (int i = 0; i < listSize; i++){
+                    // get a pesticide store JSONObject
+                    JSONObject pesticideStoreJsonObject = resultListJSONArray.getJSONObject(i);
+                    // create a pesticide store model
+                    PesticideStoreModel pesticideStoreModel = new PesticideStoreModel();
+
+                    // check keys existence
+                    boolean hasBusinessStatus = false;
+                    boolean hasGeometry = false;
+                    boolean hasName = false;
+                    boolean hasRating = false;
+                    boolean hasUserRatingsTotal = false;
+                    boolean hasTypes = false;
+                    boolean hasOpeningHours = false;
+                    // get all keys of pesticideStoreJsonObject
+                    Iterator<String> pesticideStoreKeys = pesticideStoreJsonObject.keys();
+                    // check keys
+                    while (pesticideStoreKeys.hasNext()) {
+                        String pesticideStoreKeyString = pesticideStoreKeys.next();
+                        if (pesticideStoreKeyString.equals("business_status")) {
+                            hasBusinessStatus = true;
+                        }
+                        if (pesticideStoreKeyString.equals("geometry")) {
+                            hasGeometry = true;
+                        }
+                        if (pesticideStoreKeyString.equals("name")) {
+                            hasName = true;
+                        }
+                        if (pesticideStoreKeyString.equals("rating")) {
+                            hasRating = true;
+                        }
+                        if (pesticideStoreKeyString.equals("user_ratings_total")) {
+                            hasUserRatingsTotal = true;
+                        }
+                        if (pesticideStoreKeyString.equals("types")) {
+                            hasTypes = true;
+                        }
+                        if (pesticideStoreKeyString.equals("opening_hours")) {
+                            hasOpeningHours = true;
+                        }
+                    }
+
+                    // set attributes for pesticide store model
+                    if (hasBusinessStatus && hasGeometry && hasName){
+                        // business status
+                        String businessStatus = pesticideStoreJsonObject.getString("business_status").replace("_", " ");
+                        pesticideStoreModel.setBusinessStatus(businessStatus);
+
+                        // location
+                        JSONObject locationJSONObject = pesticideStoreJsonObject.getJSONObject("location");
+                        double latitude = locationJSONObject.getDouble("lat");
+                        double longitude = locationJSONObject.getDouble("lng");
+                        LatLng locationLatLng = new LatLng(latitude, longitude);
+                        pesticideStoreModel.setLocationLatLng(locationLatLng);
+
+                        // store name
+                        String storeName = pesticideStoreJsonObject.getString("name");
+                        pesticideStoreModel.setStoreName(storeName);
+
+                        // rating + rating count
+                        if (hasRating && hasUserRatingsTotal){
+                            // rating
+                            double rating = pesticideStoreJsonObject.getDouble("rating");
+                            pesticideStoreModel.setRating(rating);
+                            // rating count
+                            int ratingCount = pesticideStoreJsonObject.getInt("user_ratings_total");
+                            pesticideStoreModel.setUserRatingsCount(ratingCount);
+                        }
+
+                        // store types
+                        if (hasTypes){
+                            List<String> storeTypeList = new ArrayList<>();
+                            JSONArray typesJSONArray = pesticideStoreJsonObject.getJSONArray("types");
+                            for (int typesIndex = 0; typesIndex < typesJSONArray.length(); typesIndex++){
+                                String type = typesJSONArray.getString(typesIndex).replace("_", " ");
+                                storeTypeList.add(type);
+                            }
+                            pesticideStoreModel.setStoreTypeList(storeTypeList);
+                        }
+
+                        // is open now
+                        if (hasOpeningHours){
+                            JSONObject openingHoursJSONObject = pesticideStoreJsonObject.getJSONObject("opening_hours");
+                            // get all keys of opening hours
+                            Iterator<String> openingHoursKeys = openingHoursJSONObject.keys();
+                            // check "open_now" key
+                            while (openingHoursKeys.hasNext()) {
+                                String openingHoursKeyString = openingHoursKeys.next();
+                                if (openingHoursKeyString.equals("open_now")) {
+                                    boolean isOpenNow = openingHoursJSONObject.getBoolean("open_now");
+                                    pesticideStoreModel.setOpenNow(isOpenNow);
+                                }
+                            }
+                        }
+
+                        // add the pesticide store model into the list
+                        pesticideStoreModelList.add(pesticideStoreModel);
+                    }
+                }
+            } else {
+                // check API result status
+                PesticideStoreModel pesticideStoreModel = new PesticideStoreModel(PLACE_API_ERROR_MESSAGE + resultStatus + "\"");
+                pesticideStoreModelList.add(pesticideStoreModel);
+            }
+        }
+            return pesticideStoreModelList;
     }
 }

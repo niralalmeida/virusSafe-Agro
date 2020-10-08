@@ -8,42 +8,50 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
 public class PesticideStoreModel implements Parcelable {
-    private LatLng locationLatLng;
-    private String businessStatus;
-    private String storeName;
+    private String businessStatus; // [ must ] - OPERATIONAL, CLOSED_TEMPORARILY, CLOSED_PERMANENTLY
+    private LatLng locationLatLng; // [ must ]
+    private String storeName; // [ must ]
     private double rating;
-    private int userRatingsTotal;
+    private int userRatingsCount;
     private List<String> storeTypeList;
+    private boolean isOpenNow;
 
     public PesticideStoreModel() {
     }
 
-    public PesticideStoreModel(LatLng locationLatLng, String businessStatus, String storeName, double rating, int userRatingsTotal, List<String> storeTypeList) {
-        this.locationLatLng = locationLatLng;
+    public PesticideStoreModel(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public PesticideStoreModel(String businessStatus, LatLng locationLatLng, String storeName, double rating, int userRatingsCount, List<String> storeTypeList, boolean isOpenNow) {
         this.businessStatus = businessStatus;
+        this.locationLatLng = locationLatLng;
         this.storeName = storeName;
         this.rating = rating;
-        this.userRatingsTotal = userRatingsTotal;
+        this.userRatingsCount = userRatingsCount;
         this.storeTypeList = storeTypeList;
+        this.isOpenNow = isOpenNow;
     }
 
     protected PesticideStoreModel(Parcel in) {
-        locationLatLng = in.readParcelable(LatLng.class.getClassLoader());
         businessStatus = in.readString();
+        locationLatLng = in.readParcelable(LatLng.class.getClassLoader());
         storeName = in.readString();
         rating = in.readDouble();
-        userRatingsTotal = in.readInt();
+        userRatingsCount = in.readInt();
         storeTypeList = in.createStringArrayList();
+        isOpenNow = in.readByte() != 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(locationLatLng, flags);
         dest.writeString(businessStatus);
+        dest.writeParcelable(locationLatLng, flags);
         dest.writeString(storeName);
         dest.writeDouble(rating);
-        dest.writeInt(userRatingsTotal);
+        dest.writeInt(userRatingsCount);
         dest.writeStringList(storeTypeList);
+        dest.writeByte((byte) (isOpenNow ? 1 : 0));
     }
 
     @Override
@@ -63,20 +71,20 @@ public class PesticideStoreModel implements Parcelable {
         }
     };
 
-    public LatLng getLocationLatLng() {
-        return locationLatLng;
-    }
-
-    public void setLocationLatLng(LatLng locationLatLng) {
-        this.locationLatLng = locationLatLng;
-    }
-
     public String getBusinessStatus() {
         return businessStatus;
     }
 
     public void setBusinessStatus(String businessStatus) {
         this.businessStatus = businessStatus;
+    }
+
+    public LatLng getLocationLatLng() {
+        return locationLatLng;
+    }
+
+    public void setLocationLatLng(LatLng locationLatLng) {
+        this.locationLatLng = locationLatLng;
     }
 
     public String getStoreName() {
@@ -95,12 +103,12 @@ public class PesticideStoreModel implements Parcelable {
         this.rating = rating;
     }
 
-    public int getUserRatingsTotal() {
-        return userRatingsTotal;
+    public int getUserRatingsCount() {
+        return userRatingsCount;
     }
 
-    public void setUserRatingsTotal(int userRatingsTotal) {
-        this.userRatingsTotal = userRatingsTotal;
+    public void setUserRatingsCount(int userRatingsCount) {
+        this.userRatingsCount = userRatingsCount;
     }
 
     public List<String> getStoreTypeList() {
@@ -109,5 +117,13 @@ public class PesticideStoreModel implements Parcelable {
 
     public void setStoreTypeList(List<String> storeTypeList) {
         this.storeTypeList = storeTypeList;
+    }
+
+    public boolean isOpenNow() {
+        return isOpenNow;
+    }
+
+    public void setOpenNow(boolean openNow) {
+        isOpenNow = openNow;
     }
 }
