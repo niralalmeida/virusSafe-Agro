@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.models.PesticideStoreModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,20 +43,22 @@ import java.util.Objects;
 public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCallback {
     private MainActivity mainActivity;
     private View view;
+    private MapView mapView;
+    private GoogleMap googleMap;
 
+    // for user location
     private LocationManager locationManager;
     private String provider;
     private LatLng userLocationLatLng;
 
-    public static final int PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE = 99;
+    private static final int PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE = 99;
+
+    // for pesticide store location
+    private List<PesticideStoreModel> pesticideStoreList;
 
 //    private GeoCodingAPIViewModel geoCodingAPIViewModel;
 //    private CurrentMovieInfoFromSPViewModel currentMovieInfoFromSPViewModel;
 //    private MainMovieMemoirDBViewModel mainMovieMemoirDBViewModel;
-
-    private MapView mapView;
-    private GoogleMap googleMap;
-    private List<String> pesticideStoreAddressList;
 
     private Bitmap userMarkerBitmap;
     private Bitmap pesticideStoreMarkerBitmap;
@@ -132,6 +135,7 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         }
     };
 
+    // ask for getting user's current location permission
     private void checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
