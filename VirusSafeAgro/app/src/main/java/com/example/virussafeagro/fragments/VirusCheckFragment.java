@@ -340,24 +340,24 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
             if (isUploadImageButtonClicked) {
                 // test
-                new Handler().postDelayed(() -> {
-                    if (!resultCheckFeedback.isEmpty()){
-                        // hide the json animation
-                        mainActivity.hideTheLottieAnimationView();
-                        // save the feedback into bundle and send it to the result fragment
-                        Bundle bundle = new Bundle();
-                        bundle.putString("resultCheckFeedback", resultCheckFeedback);
-                        VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
-                        virusCheckResultFragment.setArguments(bundle);
-                        FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusCheckResultFragment, AppResources.FRAGMENT_TAG_VIRUS_CHECK_RESULT);
-                        dismiss();
-                    } else {
-                        // show this virus check page and hide the process bar
-                        this.showAllViews();
-                        this.uploadingProgressBarRelativeLayout.setVisibility(View.GONE);
-                        Toast.makeText(requireActivity(), "The remote service stop working!!!", Toast.LENGTH_LONG).show();
-                    }
-                }, 1000);
+//                new Handler().postDelayed(() -> {
+                if (!resultCheckFeedback.isEmpty()){
+                    // hide the json animation
+                    mainActivity.hideTheLottieAnimationView();
+                    // save the feedback into bundle and send it to the result fragment
+                    Bundle bundle = new Bundle();
+                    bundle.putString("resultCheckFeedback", resultCheckFeedback);
+                    VirusCheckResultFragment virusCheckResultFragment = new VirusCheckResultFragment();
+                    virusCheckResultFragment.setArguments(bundle);
+                    FragmentOperator.replaceFragmentNoBackStack(requireActivity(), virusCheckResultFragment, AppResources.FRAGMENT_TAG_VIRUS_CHECK_RESULT);
+                    dismiss();
+                } else {
+                    // show this virus check page and hide the process bar
+                    this.showAllViews();
+                    this.uploadingProgressBarRelativeLayout.setVisibility(View.GONE);
+                    Toast.makeText(requireActivity(), "The remote service stop working!!!", Toast.LENGTH_LONG).show();
+                }
+//                }, 1000);
             }
         });
     }
