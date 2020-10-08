@@ -64,6 +64,7 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     private LatLng userLocationLatLng;
 
     private static final int PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE = 99;
+    public static final String USER_MARKER_NAME_FOR_HASH_MAP = "Current Location";
 
     // for pesticide store location
     private List<PesticideStoreModel> pesticideStoreList = new ArrayList<>();
@@ -242,12 +243,14 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     private void showUserLocation() {
         googleMap.clear();
         if (userLocationLatLng != null) {
-            googleMap.addMarker(
+            Marker userMarker = googleMap.addMarker(
                 new MarkerOptions()
                         .position(userLocationLatLng)
                         .title("Current Location")
                         .icon(BitmapDescriptorFactory.fromBitmap(userMarkerBitmap))
             );
+            PesticideStoreModel pesticideStoreModel = new PesticideStoreModel(USER_MARKER_NAME_FOR_HASH_MAP);
+            pesticideStoreMarkerMap.put(userMarker, pesticideStoreModel);
             CameraPosition cameraPosition = new CameraPosition.Builder().target(userLocationLatLng).zoom(13).build();
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         } else {
