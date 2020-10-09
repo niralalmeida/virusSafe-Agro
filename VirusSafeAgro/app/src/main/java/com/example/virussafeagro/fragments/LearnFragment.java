@@ -87,14 +87,14 @@ public class LearnFragment extends Fragment {
     // virus
     private void setVirusTileOnClickListener() {
         this.virusRelativeLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new VirusInfoListFragment(), AppResources.FRAGMENT_TAG_VIRUS_INFO);
         });
     }
 
     // nutrient
     private void setNutrientTileOnClickListener() {
         this.nutrientRelativeLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new NutrientFragment(), AppResources.FRAGMENT_TAG_NUTRIENT);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new NutrientFragment(), AppResources.FRAGMENT_TAG_NUTRIENT);
         });
     }
 }

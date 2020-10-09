@@ -35,6 +35,7 @@
             app:lottie_autoPlay="true" />
 
         <View
+            android:visibility="gone"
             android:id="@+id/v_ground_top_main"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -42,6 +43,7 @@
             android:layout_below="@id/lav_plant_main"/>
 
         <View
+            android:visibility="gone"
             android:id="@+id/v_ground_bottom_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,6 +52,7 @@
             android:layout_below="@id/lav_plant_main"/>
 
         <ImageView
+            android:visibility="gone"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_toEndOf="@id/lav_plant_main"

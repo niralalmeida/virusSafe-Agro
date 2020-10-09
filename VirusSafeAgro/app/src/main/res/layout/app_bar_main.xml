@@ -64,8 +64,8 @@
                         android:layout_height="match_parent">
 
                         <RelativeLayout
-                            android:layout_width="45dp"
-                            android:layout_height="35dp"
+                            android:layout_width="40dp"
+                            android:layout_height="33dp"
                             android:layout_centerHorizontal="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginTop="13dp"
@@ -73,11 +73,12 @@
 
                             <TextView
                                 android:id="@+id/img_quiz"
-                                android:layout_width="35dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="18dp"
                                 android:gravity="center"
                                 android:background="@drawable/shape_btn_quiz_toolbar"
                                 android:text="QUIZ"
+                                android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/colorPrimaryDarkBG"
                                 android:layout_marginBottom="10dp"
