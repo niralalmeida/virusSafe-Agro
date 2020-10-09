@@ -17,6 +17,7 @@ import java.util.List;
 
 public class VirusInfoListViewModel extends ViewModel {
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
+    private FindVirusInfoListAsyncTask currentFindVirusInfoListAsyncTask;
     private SharedPreferenceProcess spp;
 
     private MutableLiveData<List<VirusModel>> virusInfoListLD;
@@ -41,15 +42,18 @@ public class VirusInfoListViewModel extends ViewModel {
     // for find all virus by AsyncTask
     public void processFindingVirusInfoList() {
         try {
-            FindVirusInfoListAsyncTask findVirusInfoListAsyncTask = new FindVirusInfoListAsyncTask();
-            findVirusInfoListAsyncTask.execute();
+            currentFindVirusInfoListAsyncTask = new FindVirusInfoListAsyncTask();
+            currentFindVirusInfoListAsyncTask.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private class FindVirusInfoListAsyncTask extends AsyncTask<Void, Void, List<VirusModel>> {
+    public class FindVirusInfoListAsyncTask extends AsyncTask<Void, Void, List<VirusModel>> {
         @Override
         protected List<VirusModel> doInBackground(Void... voids) {
+            if (isCancelled()){
+                return null;
+            }
             List<VirusModel> virusModelInfoList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToTomatoVirusDB.getAllVirus();
@@ -69,5 +73,9 @@ public class VirusInfoListViewModel extends ViewModel {
         protected void onPostExecute(List<VirusModel> resultVirusModelInfoList) {
             setVirusInfoListLD(resultVirusModelInfoList);
         }
+    }
+
+    public FindVirusInfoListAsyncTask getCurrentFindVirusInfoListAsyncTask() {
+        return currentFindVirusInfoListAsyncTask;
     }
 }

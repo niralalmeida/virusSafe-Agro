@@ -233,12 +233,16 @@ public class VirusInfoListFragment extends Fragment {
             VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
             virusDetailFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
-//            FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
         });
     }
 
     @Override
     public void onPause() {
+
+        // cancel the AsyncTask
+        VirusInfoListViewModel.FindVirusInfoListAsyncTask findVirusInfoListAsyncTask = this.virusInfoListViewModel.getCurrentFindVirusInfoListAsyncTask();
+        findVirusInfoListAsyncTask.cancel(true);
+
         super.onPause();
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
