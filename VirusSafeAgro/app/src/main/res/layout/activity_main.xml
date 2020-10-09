@@ -12,10 +12,11 @@
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation"/>
+        android:layout_above="@id/ll_bottom_bar"/>
 
     <!-- bottom bar -->
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+        android:visibility="gone"
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +35,97 @@
 
 <!--    app:itemBackground="@color/color_selector_item_bg_bottom_bar_items"-->
 
+    <!-- bottom bar -->
+    <LinearLayout
+        android:id="@+id/ll_bottom_bar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- learn -->
+        <RelativeLayout
+            android:id="@+id/rl_learn_bottom_bar"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/bar_bg_bottom_bar">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="100dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_learn_bottom_bar"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_gravity="center_horizontal"
+                    android:tint="@color/item_not_checked"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/learn"/>
+
+                <TextView
+                    android:id="@+id/tv_learn_bottom_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/item_not_checked"
+                    android:textSize="12sp"
+                    android:text="@string/menu_ic_learn"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!-- toolkit -->
+        <RelativeLayout
+            android:id="@+id/rl_toolkit_bottom_bar"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/bar_bg_bottom_bar">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="100dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_toolkit_bottom_bar"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_gravity="center_horizontal"
+                    android:tint="@color/item_not_checked"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_toolkit"/>
+
+                <TextView
+                    android:id="@+id/tv_toolkit_bottom_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/item_not_checked"
+                    android:textSize="12sp"
+                    android:text="@string/menu_ic_toolkit"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    
     <!-- FAB -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

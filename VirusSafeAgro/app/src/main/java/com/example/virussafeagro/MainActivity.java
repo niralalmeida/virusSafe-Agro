@@ -79,9 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout quizRelativeLayout;
     private View lineView2;
     private View lineView3;
-    // bottom bar
-    private BottomNavigationViewEx bottomNavigationViewEx;
-    private FloatingActionButton floatingActionButton;
+    
     // swipe up image
     private ImageView swipeImageView;
     private DragYRelativeLayout swipeImageDragYRelativeLayout;
@@ -91,6 +89,18 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout animationImageRelativeLayout;
 //    private com.airbnb.lottie.LottieAnimationView plantLottieAnimationView;
 //    private com.airbnb.lottie.LottieAnimationView cloudLottieAnimationView;
+
+    // bottom bar
+    private BottomNavigationViewEx bottomNavigationViewEx;
+    private FloatingActionButton floatingActionButton;
+    // bottom bar - custom
+    private LinearLayout bottomBarLinearLayout;
+    private RelativeLayout learnRelativeLayout; // learn
+    private ImageView learnImageView;
+    private TextView learnTextView;
+    private RelativeLayout toolkitRelativeLayout; // toolkit
+    private ImageView toolkitImageView;
+    private TextView toolkitTextView;
 
     public static int INITIAL_PAGE_POSITION = 3; // empty -> check fragment
     public static int CURRENT_PAGE_POSITION = -1;
@@ -152,6 +162,14 @@ public class MainActivity extends AppCompatActivity {
         this.swipeImageDragYRelativeLayout = findViewById(R.id.drl_image_app);
         this.tipDragYRelativeLayout = findViewById(R.id.drl_tip_app);
         this.animationImageRelativeLayout = findViewById(R.id.rl_animation_image_main);
+        // bottom bar
+        this.bottomBarLinearLayout = findViewById(R.id.ll_bottom_bar);
+        this.learnRelativeLayout = findViewById(R.id.rl_learn_bottom_bar);
+        this.learnImageView = findViewById(R.id.img_learn_bottom_bar);
+        this.learnTextView = findViewById(R.id.tv_learn_bottom_bar);
+        this.toolkitRelativeLayout = findViewById(R.id.rl_toolkit_bottom_bar);
+        this.toolkitImageView = findViewById(R.id.img_toolkit_bottom_bar);
+        this.toolkitTextView = findViewById(R.id.tv_toolkit_bottom_bar);
 //        this.plantLottieAnimationView = findViewById(R.id.lav_plant_main);
 //        this.cloudLottieAnimationView = findViewById(R.id.lav_cloud_main);
     }
