@@ -27,11 +27,16 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.virussafeagro.fragments.NutrientDetailFragment;
+import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusCheckResultFragment;
+import com.example.virussafeagro.fragments.VirusDetailFragment;
+import com.example.virussafeagro.fragments.VirusInfoListFragment;
+import com.example.virussafeagro.fragments.VirusQuizQuestionFragment;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
@@ -243,11 +248,12 @@ public class MainActivity extends AppCompatActivity {
         moreRelativeLayout.setOnClickListener(v -> {
             // slide Up The Swipe Image And Make It Gone
             slideUpTheSwipeImageAndMakeItGoneForTopButtons(500);
-            if (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof MoreFragment)) {
+            if (fragmentManager.findFragmentById(R.id.fl_fragments) instanceof MoreFragment) {
+                FragmentOperator.backToLastFragment(this);
+            } else {
                 // add new MoreFragment
                 FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
-            } else {
-                FragmentOperator.backToLastFragment(this);
+
             }
         });
     }
@@ -573,12 +579,11 @@ public class MainActivity extends AppCompatActivity {
                 hideTheLottieAnimationView();
                 CURRENT_PAGE_POSITION = 0;
                 slideUpTheSwipeImageAndMakeItGone(500);
-                if (!(foundFragment instanceof LearnFragment)) {
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
-                    if (toolbar.getVisibility() == View.GONE) {
-                        new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
-                    }
-                } else {
+                // check current fragment
+                if (foundFragment instanceof LearnFragment) { // is learn --> hide "learn" show main page
+                    // test
+                    System.out.println("is learn");
+
                     // disable the icon
                     bottomNavigationViewEx.setCurrentItem(2);
                     makeItemChecked = false;
@@ -589,6 +594,29 @@ public class MainActivity extends AppCompatActivity {
                     // show the animation
                     new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
 
+                } else if(
+                            (foundFragment instanceof VirusInfoListFragment) ||
+                            (foundFragment instanceof VirusDetailFragment) ||
+                            (foundFragment instanceof VirusQuizQuestionFragment) ||
+                            (foundFragment instanceof NutrientFragment) ||
+                            (foundFragment instanceof NutrientDetailFragment)
+                         ){ // is sub-fragment of "learn" --> hide all fragment in stack to right, show "learn"
+
+                    // test
+                    System.out.println("is sub learn");
+
+                    // pop All Fragments In Stack
+                    FragmentOperator.popAllFragmentsInStack(mainActivity);
+
+                } else { // not from "learn" fragment --> show "learn" from bottom
+
+                    // test
+                    System.out.println("not learn");
+
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                    if (toolbar.getVisibility() == View.GONE) {
+                        new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
+                    }
                 }
                 break;
 //            case R.id.ic_virus_check:
@@ -597,12 +625,8 @@ public class MainActivity extends AppCompatActivity {
                 hideTheLottieAnimationView();
                 CURRENT_PAGE_POSITION = 1;
                 slideUpTheSwipeImageAndMakeItGone(500);
-                if (!(foundFragment instanceof ToolkitFragment)) {
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
-                    if (toolbar.getVisibility() == View.GONE) {
-                        new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
-                    }
-                } else {
+                // check current fragment
+                if (foundFragment instanceof ToolkitFragment) {
                     // disable the icon
                     bottomNavigationViewEx.setCurrentItem(2);
                     makeItemChecked = false;
@@ -612,6 +636,13 @@ public class MainActivity extends AppCompatActivity {
                     titleTextView.setText(R.string.app_name);
                     // show the animation
                     new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
+
+                } else {
+
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
+                    if (toolbar.getVisibility() == View.GONE) {
+                        new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
+                    }
                 }
                 break;
 //            case R.id.ic_tip:

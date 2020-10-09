@@ -74,6 +74,16 @@ public class FragmentOperator {
         }
     }
 
+    // pop All Fragments In Stack
+    public static void popAllFragmentsInStack(FragmentActivity fragmentActivity){
+        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
+        int count = fragmentManager.getBackStackEntryCount();
+        while(count > 0){
+            fragmentManager.popBackStackImmediate();
+            count--;
+        }
+    }
+
     // remove the fragment view from the stack
     public static void removeFragment(FragmentActivity fragmentActivity, Fragment fragmentToRemove){
         fragmentActivity.getSupportFragmentManager()

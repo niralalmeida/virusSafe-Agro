@@ -232,7 +232,8 @@ public class VirusInfoListFragment extends Fragment {
             bundle.putParcelable("currentVirusModel", currentVirusModel);
             VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
             virusDetailFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
+//            FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
         });
     }
 
