@@ -341,6 +341,11 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     public void onPause() {
         super.onPause();
         mapView.onPause();
+
+        // cancel the AsyncTask
+        PesticideStoreMapViewModel.FindPesticideStoreListAsyncTask findPesticideStoreListAsyncTask = this.pesticideStoreMapViewModel.getCurrentFindPesticideStoreListAsyncTask();
+        findPesticideStoreListAsyncTask.cancel(true);
+
         if (ContextCompat.checkSelfPermission(mainActivity,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {

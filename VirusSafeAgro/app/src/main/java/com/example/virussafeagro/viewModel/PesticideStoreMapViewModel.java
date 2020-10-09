@@ -15,6 +15,7 @@ import java.util.List;
 
 public class PesticideStoreMapViewModel extends ViewModel {
     private NetworkConnectionToGoogleSearchAPI networkConnectionToGoogleSearchAPI;
+    private FindPesticideStoreListAsyncTask currentFindPesticideStoreListAsyncTask;
 
     private MutableLiveData<List<PesticideStoreModel>> pesticideStoreListLD;
 
@@ -32,17 +33,20 @@ public class PesticideStoreMapViewModel extends ViewModel {
 
     public void processFindingPesticideStoreList(double latitude, double longitude, double radius) {
         try{
-            FindPesticideStoreListAsyncTask findPesticideStoreListAsyncTask = new FindPesticideStoreListAsyncTask();
-            findPesticideStoreListAsyncTask.execute(latitude, longitude, radius);
+            currentFindPesticideStoreListAsyncTask = new FindPesticideStoreListAsyncTask();
+            currentFindPesticideStoreListAsyncTask.execute(latitude, longitude, radius);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private class FindPesticideStoreListAsyncTask extends AsyncTask<Double, Void, List<PesticideStoreModel>> {
+    public class FindPesticideStoreListAsyncTask extends AsyncTask<Double, Void, List<PesticideStoreModel>> {
 
         @Override
         protected List<PesticideStoreModel> doInBackground(Double... doubles) {
+            if (isCancelled()){
+                return null;
+            }
             List<PesticideStoreModel> pesticideStoreList = new ArrayList<>();
             try {
                 String pesticideStoreListResult = networkConnectionToGoogleSearchAPI.getPesticideStoreList(doubles[0], doubles[1], doubles[2]);
@@ -57,5 +61,9 @@ public class PesticideStoreMapViewModel extends ViewModel {
         protected void onPostExecute(List<PesticideStoreModel> resultPesticideStoreList) {
             setPesticideStoreListLD(resultPesticideStoreList);
         }
+    }
+
+    public FindPesticideStoreListAsyncTask getCurrentFindPesticideStoreListAsyncTask() {
+        return currentFindPesticideStoreListAsyncTask;
     }
 }
