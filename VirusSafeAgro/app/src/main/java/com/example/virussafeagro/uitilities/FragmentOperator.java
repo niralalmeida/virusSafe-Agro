@@ -21,7 +21,7 @@ public class FragmentOperator {
     // replace the fragment view with fade in animation
     public static void replaceFragmentWithFadeInAnimationNoStack(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
         FragmentTransaction fragmentTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, 0);
+        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, 0, 0, android.R.anim.fade_out);
         fragmentTransaction.replace(R.id.fl_fragments, nextFragment, fragmentTag).commit();
     }
 
@@ -78,6 +78,7 @@ public class FragmentOperator {
     public static void removeFragment(FragmentActivity fragmentActivity, Fragment fragmentToRemove){
         fragmentActivity.getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(0, R.anim.exit_to_bottom)
                 .remove(fragmentToRemove)
                 .commit();
     }

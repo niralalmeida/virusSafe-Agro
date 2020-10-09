@@ -549,8 +549,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationViewEx.setOnNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             // open fragment according to id
-            switchFragments(id);
-            return true;
+//            switchFragments(id);
+            return switchFragments(id);
         });
 
         floatingActionButton.setOnClickListener(view -> {
@@ -565,7 +565,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void switchFragments(int itemId) {
+    private boolean switchFragments(int itemId) {
+        boolean makeItemChecked = true;
         Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
         switch (itemId) {
             case R.id.ic_learn:
@@ -573,10 +574,21 @@ public class MainActivity extends AppCompatActivity {
                 CURRENT_PAGE_POSITION = 0;
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(foundFragment instanceof LearnFragment)) {
-                    FragmentOperator.replaceFragmentWithFadeInAnimationNoStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(this, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                     if (toolbar.getVisibility() == View.GONE) {
                         new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
                     }
+                } else {
+                    // disable the icon
+                    bottomNavigationViewEx.setCurrentItem(2);
+                    makeItemChecked = false;
+                    // hide the fragment
+                    FragmentOperator.removeFragment(mainActivity, foundFragment);
+                    // set title
+                    titleTextView.setText(R.string.app_name);
+                    // show the animation
+                    new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
+
                 }
                 break;
 //            case R.id.ic_virus_check:
@@ -586,10 +598,20 @@ public class MainActivity extends AppCompatActivity {
                 CURRENT_PAGE_POSITION = 1;
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(foundFragment instanceof ToolkitFragment)) {
-                    FragmentOperator.replaceFragmentWithFadeInAnimationNoStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
                     if (toolbar.getVisibility() == View.GONE) {
                         new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
                     }
+                } else {
+                    // disable the icon
+                    bottomNavigationViewEx.setCurrentItem(2);
+                    makeItemChecked = false;
+                    // hide the fragment
+                    FragmentOperator.removeFragment(mainActivity, foundFragment);
+                    // set title
+                    titleTextView.setText(R.string.app_name);
+                    // show the animation
+                    new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
                 }
                 break;
 //            case R.id.ic_tip:
@@ -600,6 +622,7 @@ public class MainActivity extends AppCompatActivity {
 //                FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
 //                break;
         }
+        return makeItemChecked;
     }
 
     public void showVirusCheckFragment() {
