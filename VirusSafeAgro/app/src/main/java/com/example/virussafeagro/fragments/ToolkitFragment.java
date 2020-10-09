@@ -61,8 +61,6 @@ public class ToolkitFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show Home Views
-//        this.showHomeViews();
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
         // set menu selected item
@@ -82,11 +80,6 @@ public class ToolkitFragment extends Fragment {
         this.pesticideStoresLinearLayout = view.findViewById(R.id.ll_pesticide_store_toolkit);
         this.factorsLinearLayout = view.findViewById(R.id.ll_factors_toolkit);
         this.insightsLinearLayout = view.findViewById(R.id.ll_insights_toolkit);
-    }
-
-    // show Home Views
-    private void showHomeViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
     }
 
     private void allTilesOnClickListener() {
@@ -109,7 +102,6 @@ public class ToolkitFragment extends Fragment {
     // [menu] virus check
     private void setVirusCheckTileOnClickListener() {
         this.virusCheckLinearLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
             mainActivity.showVirusCheckFragment();
         });
     }
@@ -117,42 +109,41 @@ public class ToolkitFragment extends Fragment {
     // [menu] learn
     private void setLearnTileOnClickListener() {
         this.learnLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+            FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(requireActivity(), new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
         });
     }
 
     // control strategies
     private void setControlStrategiesOnClickListener() {
         this.controlStrategiesLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new ControlStrategiesFragment(), AppResources.FRAGMENT_TAG_CONTROL_STRATEGIES);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new ControlStrategiesFragment(), AppResources.FRAGMENT_TAG_CONTROL_STRATEGIES);
         });
     }
 
     // pesticide stores
     private void setPesticideStoresTileOnClickListener() {
         this.pesticideStoresLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new PesticideStoreMapFragment(), AppResources.FRAGMENT_TAG_PESTICIDE_STORES);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new PesticideStoreMapFragment(), AppResources.FRAGMENT_TAG_PESTICIDE_STORES);
         });
     }
 
     // factors
     private void setFactorsTileOnClickListener() {
         this.factorsLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new FactorsFragment(), AppResources.FRAGMENT_TAG_FACTORS);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new FactorsFragment(), AppResources.FRAGMENT_TAG_FACTORS);
         });
     }
 
     // insights
     private void setInsightsTileOnClickListener() {
         this.insightsLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragment(requireActivity(), new InsightsFragment(), AppResources.FRAGMENT_TAG_INSIGHTS);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new InsightsFragment(), AppResources.FRAGMENT_TAG_INSIGHTS);
         });
     }
 
     @Override
     public void onPause() {
         super.onPause();
-//        this.allViewsRelativeLayout.setVisibility(View.GONE);
         this.mainActivity.setToolkitButton(false);
     }
 }

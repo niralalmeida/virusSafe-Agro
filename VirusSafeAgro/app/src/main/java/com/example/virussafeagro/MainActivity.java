@@ -241,11 +241,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void setMoreOnClickListener() {
         moreRelativeLayout.setOnClickListener(v -> {
-            if (fragmentManager.findFragmentById(R.id.fl_fragments) instanceof MoreFragment) {
+            Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+            if (foundFragment instanceof MoreFragment) {
                 FragmentOperator.backToLastFragment(this);
             } else {
-                // add new MoreFragment
-                FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+                if ((foundFragment instanceof LearnFragment) || (foundFragment instanceof ToolkitFragment)) {
+                    // hide the fragment
+                    FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                    new Handler().postDelayed(() -> {
+                        FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+                    }, 200);
+                } else {
+                    // add new MoreFragment
+                    FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+                }
             }
         });
     }
@@ -566,7 +575,15 @@ public class MainActivity extends AppCompatActivity {
                 // test
                 System.out.println("[ others ]");
 
-                FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                if (foundFragment instanceof ToolkitFragment) {
+                    // hide the fragment
+                    FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                    new Handler().postDelayed(() -> {
+                        FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                    }, 200);
+                } else {
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                }
             }
         });
 
