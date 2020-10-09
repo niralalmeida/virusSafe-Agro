@@ -145,10 +145,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        // set check button
-        this.mainActivity.setVirusCheckButton(true);
-
+        
         // initialize SharedPreference
         this.initializeSharedPreference();
 
@@ -366,7 +363,6 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
-        mainActivity.getBottomNavigationViewEx().setCurrentItem(MainActivity.CURRENT_PAGE_POSITION);
     }
 
     @Override
@@ -375,7 +371,5 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         // clear all the observer for the LiveData
         LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
         this.virusCheckViewModel.getCheckFeedbackLD().removeObservers(lifecycleOwner);
-        // set check button
-        this.mainActivity.setVirusCheckButton(false);
     }
 }

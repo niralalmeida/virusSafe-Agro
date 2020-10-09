@@ -58,8 +58,8 @@ public class LearnFragment extends Fragment {
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
         // set menu selected item
-        if (this.mainActivity.getBottomNavigationViewEx().getCurrentItem() != 0) {
-            this.mainActivity.getBottomNavigationViewEx().setCurrentItem(0);
+        if (!this.mainActivity.isLearnIconClicked()) {
+            this.mainActivity.setLearnButton(true);
         }
 
         // control all tiles on click listeners
@@ -96,5 +96,11 @@ public class LearnFragment extends Fragment {
         this.nutrientRelativeLayout.setOnClickListener(llView -> {
             FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new NutrientFragment(), AppResources.FRAGMENT_TAG_NUTRIENT);
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.mainActivity.setLearnButton(false);
     }
 }

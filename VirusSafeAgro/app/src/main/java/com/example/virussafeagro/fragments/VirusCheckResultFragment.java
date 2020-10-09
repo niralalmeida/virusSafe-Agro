@@ -65,8 +65,6 @@ public class VirusCheckResultFragment extends Fragment {
 
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
-        // get current menu item
-        mainActivity.getBottomNavigationViewEx().setCurrentItem(3);
         // set title
         this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_check_result);
         // show back button
@@ -233,9 +231,6 @@ public class VirusCheckResultFragment extends Fragment {
         super.onPause();
         this.virusCheckResultViewModel.getVirusListLD().removeObservers(requireActivity());
         this.virusCheckResultViewModel.setVirusListLD(new ArrayList<>());
-
-        // set check button
-        this.mainActivity.setVirusCheckButton(false);
     }
 
     @Override

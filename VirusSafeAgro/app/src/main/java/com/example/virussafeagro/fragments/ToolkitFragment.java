@@ -66,8 +66,8 @@ public class ToolkitFragment extends Fragment {
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
         // set menu selected item
-        if (this.mainActivity.getBottomNavigationViewEx().getCurrentItem() != 1) {
-            this.mainActivity.getBottomNavigationViewEx().setCurrentItem(1);
+        if (!this.mainActivity.isToolkitIconClicked()) {
+            this.mainActivity.setToolkitButton(true);
         }
 
         // control all tiles on click listeners
@@ -109,7 +109,6 @@ public class ToolkitFragment extends Fragment {
     // [menu] virus check
     private void setVirusCheckTileOnClickListener() {
         this.virusCheckLinearLayout.setOnClickListener(llView -> {
-            changeTheIconInMenu(AppResources.FRAGMENT_TAG_VIRUS_CHECK);
 //            FragmentOperator.replaceFragment(requireActivity(), new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
             mainActivity.showVirusCheckFragment();
         });
@@ -118,21 +117,8 @@ public class ToolkitFragment extends Fragment {
     // [menu] learn
     private void setLearnTileOnClickListener() {
         this.learnLinearLayout.setOnClickListener(llView -> {
-            changeTheIconInMenu(AppResources.FRAGMENT_TAG_LEARN);
             FragmentOperator.replaceFragment(requireActivity(), new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
         });
-    }
-
-    private void changeTheIconInMenu(String fragmentTag) {
-        BottomNavigationViewEx bottomNavigationViewEx = ((MainActivity) requireActivity()).getBottomNavigationViewEx();
-        switch (fragmentTag) {
-            case AppResources.FRAGMENT_TAG_VIRUS_CHECK:
-                bottomNavigationViewEx.setCurrentItem(2);
-                break;
-            case AppResources.FRAGMENT_TAG_LEARN:
-                bottomNavigationViewEx.setCurrentItem(0);
-                break;
-        }
     }
 
     // control strategies
@@ -167,5 +153,6 @@ public class ToolkitFragment extends Fragment {
     public void onPause() {
         super.onPause();
 //        this.allViewsRelativeLayout.setVisibility(View.GONE);
+        this.mainActivity.setToolkitButton(false);
     }
 }

@@ -12,13 +12,9 @@ import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -26,7 +22,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.virussafeagro.fragments.NutrientDetailFragment;
 import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.ToolkitFragment;
@@ -46,7 +41,6 @@ import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.Objects;
 
@@ -87,11 +81,8 @@ public class MainActivity extends AppCompatActivity {
     private DragYRelativeLayout tipDragYRelativeLayout;
     // app lottie animation
     private RelativeLayout animationImageRelativeLayout;
-//    private com.airbnb.lottie.LottieAnimationView plantLottieAnimationView;
-//    private com.airbnb.lottie.LottieAnimationView cloudLottieAnimationView;
 
     // bottom bar
-    private BottomNavigationViewEx bottomNavigationViewEx;
     private FloatingActionButton floatingActionButton;
     // bottom bar - custom
     private LinearLayout bottomBarLinearLayout;
@@ -101,9 +92,8 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout toolkitRelativeLayout; // toolkit
     private ImageView toolkitImageView;
     private TextView toolkitTextView;
-
-    public static int INITIAL_PAGE_POSITION = 3; // empty -> check fragment
-    public static int CURRENT_PAGE_POSITION = -1;
+    private boolean isLearnIconClicked;
+    private boolean isToolkitIconClicked;
 
     public static boolean FROM_VIRUS_INFO_PAGE;
     public static boolean FROM_NUTRIENT_PAGE;
@@ -156,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
         this.lineView2 = findViewById(R.id.v_line2_vertical_toolbar);
         this.lineView3 = findViewById(R.id.v_line3_vertical_toolbar);
         this.quizRelativeLayout = findViewById(R.id.rl_quiz_toolbar);
-        this.bottomNavigationViewEx = findViewById(R.id.bottom_navigation);
         this.floatingActionButton = findViewById(R.id.fab);
         this.swipeImageView = findViewById(R.id.img_swipe_app);
         this.swipeImageDragYRelativeLayout = findViewById(R.id.drl_image_app);
@@ -170,8 +159,6 @@ public class MainActivity extends AppCompatActivity {
         this.toolkitRelativeLayout = findViewById(R.id.rl_toolkit_bottom_bar);
         this.toolkitImageView = findViewById(R.id.img_toolkit_bottom_bar);
         this.toolkitTextView = findViewById(R.id.tv_toolkit_bottom_bar);
-//        this.plantLottieAnimationView = findViewById(R.id.lav_plant_main);
-//        this.cloudLottieAnimationView = findViewById(R.id.lav_cloud_main);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -205,9 +192,7 @@ public class MainActivity extends AppCompatActivity {
         // show or not top action bar (back button + title)
         showTopBarBackButton(this);
         // initialize bottom navigation bar
-        this.initializeBottomNavigationView();
-        // set swipe up animation
-        this.setSwipeUpAnimation();
+        this.initializeMyBottomBar();
     }
 
     @Override
@@ -226,13 +211,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setSwipeUpAnimation() {
-        swipeImageDragYRelativeLayout.setFragmentActivityAndBottomNavigationViewEx(true, this, bottomNavigationViewEx);
-        new Handler().postDelayed(() -> {
-            MyAnimationBox.runRepeatedAnimationBottomToTop(swipeImageView, 1000);
-        }, 1000);
-    }
-
     // add toolbar
     private void configureToolbar() {
         setSupportActionBar(this.toolbar);
@@ -249,8 +227,6 @@ public class MainActivity extends AppCompatActivity {
             setTipButton(!v.isActivated());
             // show or hide the tip tile
             showTopTip();
-            // slide Up The Swipe Image And Make It Gone
-            slideUpTheSwipeImageAndMakeItGoneForTopButtons(500);
         });
     }
 
@@ -264,40 +240,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setMoreOnClickListener() {
         moreRelativeLayout.setOnClickListener(v -> {
-            // slide Up The Swipe Image And Make It Gone
-            slideUpTheSwipeImageAndMakeItGoneForTopButtons(500);
             if (fragmentManager.findFragmentById(R.id.fl_fragments) instanceof MoreFragment) {
                 FragmentOperator.backToLastFragment(this);
             } else {
                 // add new MoreFragment
                 FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
-
             }
         });
-    }
-
-    public void setVirusCheckButton(boolean isPress) {
-        if (isPress) {
-            bottomNavigationViewEx.setCurrentItem(2);
-//            // change bg
-//            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryTile);
-//            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
-//            floatingActionButton.setBackgroundTintList(colorStateList);
-//            // change ripple color
-//            ColorStateList rippleColorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorDarkBackground);
-//            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
-//            floatingActionButton.setRippleColor(rippleColorStateList);
-        }
-//        else {
-            // change bg
-//            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryDark);
-//            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
-//            floatingActionButton.setBackgroundTintList(colorStateList);
-//            // change ripple color
-//            ColorStateList rippleColorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryLight);
-//            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
-//            floatingActionButton.setRippleColor(rippleColorStateList);
-//        }
     }
 
     public void setTipButton(boolean isPress) {
@@ -317,10 +266,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setMoreButton(boolean isPress) {
-        if (isPress) {
-            // select none item of menu
-            bottomNavigationViewEx.setCurrentItem(2);
+    public void setMoreButton(boolean toPress) {
+        if (toPress) {
             // set activated
             moreRelativeLayout.setActivated(true);
             // change bg
@@ -560,25 +507,74 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // initialize BottomNavigationView and set OnNavigationItemSelectedListener
-    private void initializeBottomNavigationView(){
-        this.bottomNavigationViewEx.setCurrentItem(2);
-        this.bottomNavigationViewEx.enableItemShiftingMode(false);
-        this.bottomNavigationViewEx.enableShiftingMode(false);
+    private void initializeMyBottomBar() {
         this.setBottomNavigationViewExItemOnSelectedListener();
     }
 
     // listeners for BottomNavigationViewEx and floatingActionButton
     private void setBottomNavigationViewExItemOnSelectedListener() {
-        bottomNavigationViewEx.setOnNavigationItemSelectedListener(item -> {
-            int id = item.getItemId();
-            // open fragment according to id
-//            switchFragments(id);
-            return switchFragments(id);
+
+        learnRelativeLayout.setOnClickListener(v -> {
+            // get the current fragment
+            Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+            // hide the main animation
+            hideTheLottieAnimationView();
+            // check current fragment
+            if (foundFragment instanceof LearnFragment) { // is learn --> hide "learn" show main page
+
+                // hide the fragment
+                FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                // set title
+                titleTextView.setText(R.string.app_name);
+                // show the animation
+                new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
+
+            }
+            else if( // is sub-fragment of "learn" --> hide all fragment in stack to right, show "learn"
+                        (foundFragment instanceof VirusInfoListFragment) ||
+                        (foundFragment instanceof VirusDetailFragment) ||
+                        (foundFragment instanceof VirusQuizQuestionFragment) ||
+                        (foundFragment instanceof NutrientFragment) ||
+                        (foundFragment instanceof NutrientDetailFragment)
+                    ){
+
+                // pop All Fragments In Stack
+                FragmentOperator.popAllFragmentsInStack(mainActivity);
+
+            }
+            else if (foundFragment instanceof MoreFragment) { // is more fragment --> hide more fragment, show "learn"
+                // hide more fragment
+                FragmentOperator.backToLastFragment(mainActivity);
+                // remove all fragment in stack
+                FragmentOperator.removeAllFragments(mainActivity);
+                // show the learn fragment
+                FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+            }
+            else { // not from "learn" fragment --> show "learn" from bottom
+                FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+            }
         });
 
-        floatingActionButton.setOnClickListener(view -> {
-            slideUpTheSwipeImageAndMakeItGone(500);
+        toolkitRelativeLayout.setOnClickListener(v -> {
+            // get the current fragment
+            Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+            // hide the main animation
+            hideTheLottieAnimationView();
+            // check current fragment
+            if (foundFragment instanceof ToolkitFragment) {
+                // hide the fragment
+                FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                // set title
+                titleTextView.setText(R.string.app_name);
+                // show the animation
+                new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
+
+            } else {
+                FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
+            }
+        });
+
+        floatingActionButton.setOnClickListener(v -> {
             if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null
                 || (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof VirusCheckFragment))) {
                 showVirusCheckFragment();
@@ -589,120 +585,58 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private boolean switchFragments(int itemId) {
-        boolean makeItemChecked = true;
-        Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
-        switch (itemId) {
-            case R.id.ic_learn:
-                hideTheLottieAnimationView();
-                CURRENT_PAGE_POSITION = 0;
-                slideUpTheSwipeImageAndMakeItGone(500);
-                // check current fragment
-                if (foundFragment instanceof LearnFragment) { // is learn --> hide "learn" show main page
-                    // test
-                    System.out.println("is learn");
+    public boolean isLearnIconClicked() {
+        return isLearnIconClicked;
+    }
 
-                    // disable the icon
-                    bottomNavigationViewEx.setCurrentItem(2);
-                    makeItemChecked = false;
-                    // hide the fragment
-                    FragmentOperator.removeFragment(mainActivity, foundFragment);
-                    // set title
-                    titleTextView.setText(R.string.app_name);
-                    // show the animation
-                    new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
+    public boolean isToolkitIconClicked() {
+        return isToolkitIconClicked;
+    }
 
-                } else if(
-                            (foundFragment instanceof VirusInfoListFragment) ||
-                            (foundFragment instanceof VirusDetailFragment) ||
-                            (foundFragment instanceof VirusQuizQuestionFragment) ||
-                            (foundFragment instanceof NutrientFragment) ||
-                            (foundFragment instanceof NutrientDetailFragment)
-                         ){ // is sub-fragment of "learn" --> hide all fragment in stack to right, show "learn"
-
-                    // test
-                    System.out.println("is sub learn");
-
-                    // pop All Fragments In Stack
-                    FragmentOperator.popAllFragmentsInStack(mainActivity);
-
-                } else { // not from "learn" fragment --> show "learn" from bottom
-
-                    // test
-                    System.out.println("not learn");
-
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
-                    if (toolbar.getVisibility() == View.GONE) {
-                        new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
-                    }
-                }
-                break;
-//            case R.id.ic_virus_check:
-//                break;
-            case R.id.ic_toolkit:
-                hideTheLottieAnimationView();
-                CURRENT_PAGE_POSITION = 1;
-                slideUpTheSwipeImageAndMakeItGone(500);
-                // check current fragment
-                if (foundFragment instanceof ToolkitFragment) {
-                    // disable the icon
-                    bottomNavigationViewEx.setCurrentItem(2);
-                    makeItemChecked = false;
-                    // hide the fragment
-                    FragmentOperator.removeFragment(mainActivity, foundFragment);
-                    // set title
-                    titleTextView.setText(R.string.app_name);
-                    // show the animation
-                    new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
-
-                } else {
-
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
-                    if (toolbar.getVisibility() == View.GONE) {
-                        new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
-                    }
-                }
-                break;
-//            case R.id.ic_tip:
-////                FragmentOperator.replaceFragmentNoBackStack(this, new VirusQuizListFragment(), AppResources.FRAGMENT_TAG_VIRUS_QUIZ);
-//                FragmentOperator.replaceFragmentNoBackStack(this, new TipFragment(), AppResources.FRAGMENT_TAG_WATER_CALCULATOR);
-//                break;
-//            case R.id.ic_more:
-//                FragmentOperator.replaceFragmentNoBackStack(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
-//                break;
+    // set the learn button style
+    public void setLearnButton(boolean toPressed) {
+        if (toPressed){ // set clicked
+            isLearnIconClicked = true;
+            // change image tint color
+            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_checked);
+            learnImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            learnImageView.setImageTintList(colorStateList);
+            // change the text color
+            learnTextView.setTextColor(this.mainActivity.getResources().getColor(R.color.item_checked));
+        } else { // set not clicked
+            isLearnIconClicked = false;
+            // change image tint color
+            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_not_checked);
+            learnImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            learnImageView.setImageTintList(colorStateList);
+            // change the text color
+            learnTextView.setTextColor(this.mainActivity.getResources().getColor(R.color.item_not_checked));
         }
-        return makeItemChecked;
+    }
+
+    // set the toolkit button style
+    public void setToolkitButton(boolean toPressed) {
+        if (toPressed){ // set clicked
+            isToolkitIconClicked = true;
+            // change image tint color
+            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_checked);
+            toolkitImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            toolkitImageView.setImageTintList(colorStateList);
+            // change the text color
+            toolkitTextView.setTextColor(this.mainActivity.getResources().getColor(R.color.item_checked));
+        } else { // set not clicked
+            isToolkitIconClicked = false;
+            // change image tint color
+            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_not_checked);
+            toolkitImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            toolkitImageView.setImageTintList(colorStateList);
+            // change the text color
+            toolkitTextView.setTextColor(this.mainActivity.getResources().getColor(R.color.item_not_checked));
+        }
     }
 
     public void showVirusCheckFragment() {
         VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
         virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-    }
-
-    private void slideUpTheSwipeImageAndMakeItGoneForTopButtons(int duration) {
-        if (swipeImageDragYRelativeLayout.getVisibility() != View.GONE) {
-            // set virus check fragment
-//            FragmentOperator.replaceFragmentNoBackStack(this, new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-            VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
-            virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-
-            MyAnimationBox.runSlideOutAnimationToTop(swipeImageDragYRelativeLayout, duration);
-            new Handler().postDelayed(()->{
-                this.swipeImageDragYRelativeLayout.setVisibility(View.GONE);
-            },duration + 100);
-        }
-    }
-
-    private void slideUpTheSwipeImageAndMakeItGone(int duration) {
-        if (swipeImageDragYRelativeLayout.getVisibility() != View.GONE) {
-            MyAnimationBox.runSlideOutAnimationToTop(swipeImageDragYRelativeLayout, duration);
-            new Handler().postDelayed(()->{
-                this.swipeImageDragYRelativeLayout.setVisibility(View.GONE);
-            },duration + 100);
-        }
-    }
-
-    public BottomNavigationViewEx getBottomNavigationViewEx() {
-        return bottomNavigationViewEx;
     }
 }

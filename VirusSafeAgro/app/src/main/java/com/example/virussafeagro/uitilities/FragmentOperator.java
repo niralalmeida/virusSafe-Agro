@@ -84,12 +84,23 @@ public class FragmentOperator {
         }
     }
 
-    // remove the fragment view from the stack
-    public static void removeFragment(FragmentActivity fragmentActivity, Fragment fragmentToRemove){
+    // remove the fragment view from the stack with slide to bottom animation
+    public static void removeFragmentWithSlideToBottomAnimation(FragmentActivity fragmentActivity, Fragment fragmentToRemove){
         fragmentActivity.getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(0, R.anim.exit_to_bottom)
                 .remove(fragmentToRemove)
                 .commit();
+    }
+
+    // remove all fragments view from the stack
+    public static void removeAllFragments(FragmentActivity fragmentActivity){
+        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
+        for (Fragment fragment : fragmentManager.getFragments()){
+            fragmentManager
+                    .beginTransaction()
+                    .remove(fragment)
+                    .commit();
+        }
     }
 }
