@@ -16,6 +16,7 @@ import java.util.List;
 
 public class NewsViewModel extends ViewModel {
     private NetworkConnectionToGoogleSearchAPI networkConnectionToGoogleSearchAPI;
+    private Find10MoreNewsAsyncTask currentFind10MoreNewsAsyncTask;
 
     private MutableLiveData<List<NewsModel>> newsListLD;
     private MutableLiveData<List<NewsModel>> more10NewsListLD;
@@ -80,16 +81,19 @@ public class NewsViewModel extends ViewModel {
     // load 10 more news items
     public void processFinding10MoreNewsList(int fromNo) {
         try {
-            Find10MoreNewsAsyncTask find10MoreNewsAsyncTask = new Find10MoreNewsAsyncTask();
-            find10MoreNewsAsyncTask.execute(fromNo);
+            currentFind10MoreNewsAsyncTask = new Find10MoreNewsAsyncTask();
+            currentFind10MoreNewsAsyncTask.execute(fromNo);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private class Find10MoreNewsAsyncTask extends AsyncTask<Integer, Void, List<NewsModel>> {
+    public class Find10MoreNewsAsyncTask extends AsyncTask<Integer, Void, List<NewsModel>> {
         @Override
         protected List<NewsModel> doInBackground(Integer... integers) {
+            if (isCancelled()){
+                return null;
+            }
             List<NewsModel> newsModelList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToGoogleSearchAPI.getAllNews("vic",integers[0]);
@@ -109,5 +113,9 @@ public class NewsViewModel extends ViewModel {
         protected void onPostExecute(List<NewsModel> resultMore10NewsList) {
             setMore10NewsListLD(resultMore10NewsList);
         }
+    }
+
+    public Find10MoreNewsAsyncTask getCurrentFind10MoreNewsAsyncTask() {
+        return currentFind10MoreNewsAsyncTask;
     }
 }

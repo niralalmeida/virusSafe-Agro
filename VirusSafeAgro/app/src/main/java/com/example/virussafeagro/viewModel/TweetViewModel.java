@@ -20,6 +20,8 @@ import java.util.List;
 public class TweetViewModel extends ViewModel {
     private NetworkConnectionToGoogleSearchAPI networkConnectionToGoogleSearchAPI;
     private FragmentActivity fragmentActivity;
+    private FindTweetListAsyncTask currentFindTweetListAsyncTask;
+    private Find10MoreTweetAsyncTask currentFind10MoreTweetAsyncTask;
 
     private MutableLiveData<List<TweetModel>> tweetListLD;
     private MutableLiveData<List<TweetModel>> more10TweetListLD;
@@ -55,15 +57,18 @@ public class TweetViewModel extends ViewModel {
     // for first find 10 tweet by AsyncTask
     public void processFindingTweetList(int fromNo) {
         try {
-            TweetViewModel.FindTweetListAsyncTask findTweetListAsyncTask = new TweetViewModel.FindTweetListAsyncTask();
-            findTweetListAsyncTask.execute(fromNo);
+            currentFindTweetListAsyncTask = new TweetViewModel.FindTweetListAsyncTask();
+            currentFindTweetListAsyncTask.execute(fromNo);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private class FindTweetListAsyncTask extends AsyncTask<Integer, Void, List<TweetModel>> {
+    public class FindTweetListAsyncTask extends AsyncTask<Integer, Void, List<TweetModel>> {
         @Override
         protected List<TweetModel> doInBackground(Integer... integers) {
+            if (isCancelled()){
+                return null;
+            }
             List<TweetModel> tweetModelList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToGoogleSearchAPI.getAllTweet("tomato",integers[0]);
@@ -94,16 +99,19 @@ public class TweetViewModel extends ViewModel {
     // load 10 more tweet items
     public void processFinding10MoreTweetList(int fromNo) {
         try {
-            TweetViewModel.Find10MoreTweetAsyncTask find10MoreTweetAsyncTask = new TweetViewModel.Find10MoreTweetAsyncTask();
-            find10MoreTweetAsyncTask.execute(fromNo);
+            currentFind10MoreTweetAsyncTask = new TweetViewModel.Find10MoreTweetAsyncTask();
+            currentFind10MoreTweetAsyncTask.execute(fromNo);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private class Find10MoreTweetAsyncTask extends AsyncTask<Integer, Void, List<TweetModel>> {
+    public class Find10MoreTweetAsyncTask extends AsyncTask<Integer, Void, List<TweetModel>> {
         @Override
         protected List<TweetModel> doInBackground(Integer... integers) {
+            if (isCancelled()){
+                return null;
+            }
             List<TweetModel> tweetModelList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToGoogleSearchAPI.getAllTweet("tomato",integers[0]);
@@ -129,5 +137,13 @@ public class TweetViewModel extends ViewModel {
         protected void onPostExecute(List<TweetModel> resultMore10TweetList) {
             setMore10TweetListLD(resultMore10TweetList);
         }
+    }
+
+    public FindTweetListAsyncTask getCurrentFindTweetListAsyncTask() {
+        return currentFindTweetListAsyncTask;
+    }
+
+    public Find10MoreTweetAsyncTask getCurrentFind10MoreTweetAsyncTask() {
+        return currentFind10MoreTweetAsyncTask;
     }
 }

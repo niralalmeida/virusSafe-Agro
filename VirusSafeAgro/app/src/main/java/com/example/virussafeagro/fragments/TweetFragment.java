@@ -213,6 +213,12 @@ public class TweetFragment extends Fragment {
         super.onPause();
         this.allViewLinearLayout.setVisibility(View.GONE);
 
+        // cancel the 2 AsyncTask
+        TweetViewModel.FindTweetListAsyncTask findTweetListAsyncTask = this.tweetViewModel.getCurrentFindTweetListAsyncTask();
+        findTweetListAsyncTask.cancel(true);
+        TweetViewModel.Find10MoreTweetAsyncTask find10MoreTweetAsyncTask = this.tweetViewModel.getCurrentFind10MoreTweetAsyncTask();
+        find10MoreTweetAsyncTask.cancel(true);
+
         this.tweetViewModel.getTweetListLD().removeObservers(getViewLifecycleOwner());
         List<TweetModel> tweetModelList = new ArrayList<>();
         this.tweetViewModel.setTweetListLD(tweetModelList);
