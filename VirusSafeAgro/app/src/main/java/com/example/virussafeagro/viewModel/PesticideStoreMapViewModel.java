@@ -22,6 +22,7 @@ public class PesticideStoreMapViewModel extends ViewModel {
     public PesticideStoreMapViewModel() {
         this.networkConnectionToGoogleSearchAPI = new NetworkConnectionToGoogleSearchAPI();
         this.pesticideStoreListLD = new MutableLiveData<>();
+        this.currentFindPesticideStoreListAsyncTask = new FindPesticideStoreListAsyncTask();
     }
 
     public void setPesticideStoreListLD(List<PesticideStoreModel> pesticideStoreList) {

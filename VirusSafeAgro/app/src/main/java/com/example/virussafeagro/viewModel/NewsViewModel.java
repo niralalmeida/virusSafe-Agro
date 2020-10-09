@@ -16,6 +16,7 @@ import java.util.List;
 
 public class NewsViewModel extends ViewModel {
     private NetworkConnectionToGoogleSearchAPI networkConnectionToGoogleSearchAPI;
+    private FindNewsListAsyncTask currentFindNewsListAsyncTask;
     private Find10MoreNewsAsyncTask currentFind10MoreNewsAsyncTask;
 
     private MutableLiveData<List<NewsModel>> newsListLD;
@@ -25,6 +26,8 @@ public class NewsViewModel extends ViewModel {
         this.networkConnectionToGoogleSearchAPI = new NetworkConnectionToGoogleSearchAPI();
         this.newsListLD = new MutableLiveData<>();
         this.more10NewsListLD = new MutableLiveData<>();
+        this.currentFindNewsListAsyncTask = new NewsViewModel.FindNewsListAsyncTask();
+        this.currentFind10MoreNewsAsyncTask = new Find10MoreNewsAsyncTask();
     }
 
     // for first 10 news live data
@@ -48,15 +51,18 @@ public class NewsViewModel extends ViewModel {
     // for first find 10 news by AsyncTask
     public void processFindingNewsList(int fromNo) {
         try {
-            NewsViewModel.FindNewsListAsyncTask findNewsListAsyncTask = new NewsViewModel.FindNewsListAsyncTask();
-            findNewsListAsyncTask.execute(fromNo);
+            currentFindNewsListAsyncTask = new NewsViewModel.FindNewsListAsyncTask();
+            currentFindNewsListAsyncTask.execute(fromNo);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private class FindNewsListAsyncTask extends AsyncTask<Integer, Void, List<NewsModel>> {
+    public class FindNewsListAsyncTask extends AsyncTask<Integer, Void, List<NewsModel>> {
         @Override
         protected List<NewsModel> doInBackground(Integer... integers) {
+            if (isCancelled()){
+                return null;
+            }
             List<NewsModel> newsModelList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToGoogleSearchAPI.getAllNews("vic",integers[0]);
@@ -113,6 +119,10 @@ public class NewsViewModel extends ViewModel {
         protected void onPostExecute(List<NewsModel> resultMore10NewsList) {
             setMore10NewsListLD(resultMore10NewsList);
         }
+    }
+
+    public FindNewsListAsyncTask getCurrentFindNewsListAsyncTask() {
+        return currentFindNewsListAsyncTask;
     }
 
     public Find10MoreNewsAsyncTask getCurrentFind10MoreNewsAsyncTask() {

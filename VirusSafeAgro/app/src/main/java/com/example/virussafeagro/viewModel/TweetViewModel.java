@@ -30,6 +30,9 @@ public class TweetViewModel extends ViewModel {
         this.networkConnectionToGoogleSearchAPI = new NetworkConnectionToGoogleSearchAPI();
         this.tweetListLD = new MutableLiveData<>();
         this.more10TweetListLD = new MutableLiveData<>();
+        this.currentFindTweetListAsyncTask = new TweetViewModel.FindTweetListAsyncTask();
+        this.currentFind10MoreTweetAsyncTask = new TweetViewModel.Find10MoreTweetAsyncTask();
+
     }
 
     public void setFragmentActivity(FragmentActivity fragmentActivity) {

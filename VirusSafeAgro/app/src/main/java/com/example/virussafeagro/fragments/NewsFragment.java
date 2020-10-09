@@ -231,7 +231,9 @@ public class NewsFragment extends Fragment {
         super.onPause();
         this.allViewLinearLayout.setVisibility(View.GONE);
 
-        // cancel the AsyncTask
+        // cancel the 2 AsyncTask
+        NewsViewModel.FindNewsListAsyncTask findNewsListAsyncTask = this.newsViewModel.getCurrentFindNewsListAsyncTask();
+        findNewsListAsyncTask.cancel(true);
         NewsViewModel.Find10MoreNewsAsyncTask find10MoreNewsAsyncTask = this.newsViewModel.getCurrentFind10MoreNewsAsyncTask();
         find10MoreNewsAsyncTask.cancel(true);
 

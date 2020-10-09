@@ -23,6 +23,7 @@ public class NutrientViewModel extends ViewModel {
     public NutrientViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
         this.nutrientListLD = new MutableLiveData<>();
+        this.currentFindNutrientListAsyncTask = new NutrientViewModel.FindNutrientListAsyncTask();
     }
 
 //    public void initiateSharedPreferenceProcess(Context context) {

@@ -25,6 +25,7 @@ public class VirusInfoListViewModel extends ViewModel {
     public VirusInfoListViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
         this.virusInfoListLD = new MutableLiveData<>();
+        this.currentFindVirusInfoListAsyncTask = new FindVirusInfoListAsyncTask();
     }
 
     public void initiateSharedPreferenceProcess(Context context) {

@@ -32,6 +32,7 @@ public class VirusQuizQuestionViewModel extends ViewModel {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
         this.networkConnectionToAWSTomatoS3 = new NetworkConnectionToAWSTomatoS3();
         this.quizQuestionModelListLD = new MutableLiveData<>();
+        this.currentFindVirusQuizQuestionsAsyncTask = new FindVirusQuizQuestionsAsyncTask();
     }
 
     public void setProgressBar(ProgressBar progressBar) {
