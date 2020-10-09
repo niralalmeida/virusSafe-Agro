@@ -28,6 +28,7 @@ import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
+import com.example.virussafeagro.viewModel.NewsViewModel;
 import com.example.virussafeagro.viewModel.NutrientViewModel;
 
 import java.util.ArrayList;
@@ -239,6 +240,12 @@ public class NutrientFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+
+        // cancel the AsyncTask
+        NutrientViewModel.FindNutrientListAsyncTask findNutrientListAsyncTask = this.nutrientViewModel.getCurrentFindNutrientListAsyncTask();
+        findNutrientListAsyncTask.cancel(true);
+
+        // remove the observer
         this.nutrientViewModel.getNutrientListLD().removeObservers(requireActivity());
         this.nutrientViewModel.setNutrientListLD(new ArrayList<>());
 
