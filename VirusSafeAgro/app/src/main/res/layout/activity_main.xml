@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:background="@color/bar_bg_bottom_bar">
+            android:background="@drawable/ripple_btn_item_bottom_bar">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:background="@color/bar_bg_bottom_bar">
+            android:background="@drawable/ripple_btn_item_bottom_bar">
 
             <LinearLayout
                 android:layout_width="wrap_content"
