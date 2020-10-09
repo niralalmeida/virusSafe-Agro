@@ -66,8 +66,8 @@ public class ToolkitFragment extends Fragment {
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
         // set menu selected item
-        if (this.mainActivity.getBottomNavigationViewEx().getCurrentItem() != 2) {
-            this.mainActivity.getBottomNavigationViewEx().setCurrentItem(2);
+        if (this.mainActivity.getBottomNavigationViewEx().getCurrentItem() != 1) {
+            this.mainActivity.getBottomNavigationViewEx().setCurrentItem(1);
         }
 
         // control all tiles on click listeners
@@ -110,7 +110,8 @@ public class ToolkitFragment extends Fragment {
     private void setVirusCheckTileOnClickListener() {
         this.virusCheckLinearLayout.setOnClickListener(llView -> {
             changeTheIconInMenu(AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-            FragmentOperator.replaceFragment(requireActivity(), new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+//            FragmentOperator.replaceFragment(requireActivity(), new VirusCheckFragment(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+            mainActivity.showVirusCheckFragment();
         });
     }
 
@@ -129,10 +130,7 @@ public class ToolkitFragment extends Fragment {
                 bottomNavigationViewEx.setCurrentItem(2);
                 break;
             case AppResources.FRAGMENT_TAG_LEARN:
-                bottomNavigationViewEx.setCurrentItem(1);
-                break;
-            case AppResources.FRAGMENT_TAG_WATER_CALCULATOR:
-                bottomNavigationViewEx.setCurrentItem(3);
+                bottomNavigationViewEx.setCurrentItem(0);
                 break;
         }
     }

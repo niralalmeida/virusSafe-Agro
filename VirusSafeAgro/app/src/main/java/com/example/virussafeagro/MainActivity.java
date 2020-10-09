@@ -12,8 +12,11 @@ import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -251,25 +254,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void setVirusCheckButton(boolean isPress) {
         if (isPress) {
-            bottomNavigationViewEx.setCurrentItem(3);
-            // change bg
-            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryTile);
-            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
-            floatingActionButton.setBackgroundTintList(colorStateList);
-            // change ripple color
-            ColorStateList rippleColorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorDarkBackground);
-            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
-            floatingActionButton.setRippleColor(rippleColorStateList);
-        } else {
-            // change bg
-            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryLight);
-            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
-            floatingActionButton.setBackgroundTintList(colorStateList);
-            // change ripple color
-            ColorStateList rippleColorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryDark);
-            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
-            floatingActionButton.setRippleColor(rippleColorStateList);
+            bottomNavigationViewEx.setCurrentItem(2);
+//            // change bg
+//            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryTile);
+//            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+//            floatingActionButton.setBackgroundTintList(colorStateList);
+//            // change ripple color
+//            ColorStateList rippleColorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorDarkBackground);
+//            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+//            floatingActionButton.setRippleColor(rippleColorStateList);
         }
+//        else {
+            // change bg
+//            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryDark);
+//            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+//            floatingActionButton.setBackgroundTintList(colorStateList);
+//            // change ripple color
+//            ColorStateList rippleColorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryLight);
+//            floatingActionButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+//            floatingActionButton.setRippleColor(rippleColorStateList);
+//        }
     }
 
     public void setTipButton(boolean isPress) {
@@ -292,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
     public void setMoreButton(boolean isPress) {
         if (isPress) {
             // select none item of menu
-            bottomNavigationViewEx.setCurrentItem(3);
+            bottomNavigationViewEx.setCurrentItem(2);
             // set activated
             moreRelativeLayout.setActivated(true);
             // change bg
@@ -534,7 +538,7 @@ public class MainActivity extends AppCompatActivity {
 
     // initialize BottomNavigationView and set OnNavigationItemSelectedListener
     private void initializeBottomNavigationView(){
-        this.bottomNavigationViewEx.setCurrentItem(3);
+        this.bottomNavigationViewEx.setCurrentItem(2);
         this.bottomNavigationViewEx.enableItemShiftingMode(false);
         this.bottomNavigationViewEx.enableShiftingMode(false);
         this.setBottomNavigationViewExItemOnSelectedListener();
@@ -575,11 +579,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 break;
-            case R.id.ic_virus_check:
-                break;
+//            case R.id.ic_virus_check:
+//                break;
             case R.id.ic_toolkit:
                 hideTheLottieAnimationView();
-                CURRENT_PAGE_POSITION = 2;
+                CURRENT_PAGE_POSITION = 1;
                 slideUpTheSwipeImageAndMakeItGone(500);
                 if (!(foundFragment instanceof ToolkitFragment)) {
                     FragmentOperator.replaceFragmentWithFadeInAnimationNoStack(this, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
@@ -598,7 +602,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showVirusCheckFragment() {
+    public void showVirusCheckFragment() {
         VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
         virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
     }

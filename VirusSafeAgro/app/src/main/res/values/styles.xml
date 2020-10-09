@@ -27,11 +27,13 @@
 
     <!-- bottom navigation bar -->
     <style name="navTextInactive">
-        <item name="android:textSize">11sp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="navTextActive">
         <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- progress bar -->

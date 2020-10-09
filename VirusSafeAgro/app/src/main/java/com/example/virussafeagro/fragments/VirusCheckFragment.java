@@ -354,6 +354,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
                 } else {
                     // show this virus check page and hide the process bar
                     this.showAllViews();
+                    this.titleLinearLayout.setVisibility(View.VISIBLE);
                     this.uploadingProgressBarRelativeLayout.setVisibility(View.GONE);
                     Toast.makeText(requireActivity(), "The remote service stop working!!!", Toast.LENGTH_LONG).show();
                 }
