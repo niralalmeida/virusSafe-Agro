@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/shape_learn_toolkit_fragment_bg_main"
     tools:context=".fragments.LearnFragment">
 
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/rl_all_views_learn"
         android:paddingTop="20dp"
         android:layout_width="match_parent"
@@ -16,6 +15,7 @@
         <RelativeLayout
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
+            android:paddingBottom="40dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -45,7 +45,7 @@
 
                 <RelativeLayout
                     android:id="@+id/iv_virus_learn"
-                    android:layout_below="@+id/tv_title_virus_learn"
+                    android:layout_below="@id/tv_title_virus_learn"
                     android:layout_marginTop="10dp"
                     android:layout_width="75dp"
                     android:layout_height="75dp">
@@ -191,14 +191,13 @@
 
         </RelativeLayout>
 
-        <!-- bottom shadow -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/shape_swipe_up_bg_virus_detail" />
+    </androidx.core.widget.NestedScrollView>
 
-    </RelativeLayout>
+    <!-- bottom shadow -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_swipe_up_bg_virus_detail" />
 
-
-</androidx.core.widget.NestedScrollView>
+</RelativeLayout>

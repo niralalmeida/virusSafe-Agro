@@ -39,6 +39,7 @@
     <LinearLayout
         android:id="@+id/ll_bottom_bar"
         android:layout_alignParentBottom="true"
+        android:elevation="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -140,7 +141,7 @@
         android:backgroundTint="@color/colorPrimaryDark"
         app:backgroundTint="@color/bar_bg_bottom_bar"
         app:rippleColor="@color/ripple_fab"
-        app:elevation="0dp"
+        app:elevation="20dp"
         app:maxImageSize="30dp"
         app:fabCustomSize="80dp"
         app:pressedTranslationZ="10dp"/>

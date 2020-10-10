@@ -23,7 +23,6 @@ public class LearnFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
 
-    private RelativeLayout allViewsRelativeLayout;
     private RelativeLayout virusRelativeLayout;
     private RelativeLayout nutrientRelativeLayout;
 
@@ -68,7 +67,6 @@ public class LearnFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_learn);
         this.virusRelativeLayout = view.findViewById(R.id.rl_virus_learn);
         this.nutrientRelativeLayout = view.findViewById(R.id.rl_nutrient_learn);
     }

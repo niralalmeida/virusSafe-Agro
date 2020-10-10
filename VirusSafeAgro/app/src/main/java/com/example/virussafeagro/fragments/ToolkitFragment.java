@@ -20,7 +20,6 @@ public class ToolkitFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
 
-    private RelativeLayout allViewsRelativeLayout;
     // top
     private LinearLayout virusCheckLinearLayout;
     private LinearLayout learnLinearLayout;
@@ -71,7 +70,6 @@ public class ToolkitFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_toolkit);
         this.virusCheckLinearLayout = view.findViewById(R.id.ll_virus_check_toolkit);
         this.learnLinearLayout = view.findViewById(R.id.ll_learn_toolkit);
         this.controlStrategiesLinearLayout = view.findViewById(R.id.ll_control_strategies_toolkit);
@@ -107,6 +105,8 @@ public class ToolkitFragment extends Fragment {
     // [menu] learn
     private void setLearnTileOnClickListener() {
         this.learnLinearLayout.setOnClickListener(llView -> {
+            // remove all fragment in stack
+            FragmentOperator.popAllFragmentsInStack(getChildFragmentManager());
             FragmentOperator.replaceFragmentWithSlideFromBottomAnimation(requireActivity(), new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
         });
     }

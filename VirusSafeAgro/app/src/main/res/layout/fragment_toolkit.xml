@@ -4,7 +4,6 @@
     android:id="@+id/rl_all_views_toolkit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/shape_learn_toolkit_fragment_bg_main"
     tools:context=".fragments.ToolkitFragment">
 
@@ -12,13 +11,17 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_all_tiles_toolkit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:layout_height="match_parent"
+        android:paddingTop="20dp">
 
+        <!-- all tiles -->
         <LinearLayout
             android:id="@+id/ll_all_tiles_toolkit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="40dp"
             android:orientation="vertical">
 
             <!-- top tile -->
@@ -26,7 +29,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_top_tile_toolkit"
-                android:layout_marginTop="10dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="15dp"
                 android:paddingStart="25dp"
@@ -368,7 +370,6 @@
                     android:layout_height="130dp"
                     android:layout_weight="1"
                     android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
                     android:padding="18dp"
                     android:orientation="horizontal"
                     android:background="@drawable/ripple_tile_toolkit">
@@ -430,51 +431,11 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <!-- bottom shadow -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_swipe_up_bg_virus_detail" />
+
 </RelativeLayout>
-
-    <!-- water usage calculator -->
-    <!--                <LinearLayout-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_weight="1"-->
-    <!--                    android:orientation="vertical">-->
-
-    <!--                    <LinearLayout-->
-    <!--                        android:id="@+id/ll_water_calculator_toolkit"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_gravity="end"-->
-    <!--                        android:orientation="vertical">-->
-
-    <!--                        <LinearLayout-->
-    <!--                            android:layout_width="wrap_content"-->
-    <!--                            android:layout_height="wrap_content"-->
-    <!--                            android:background="@drawable/selector_green_tile_toolkit"-->
-    <!--                            android:gravity="center"-->
-    <!--                            android:padding="13dp"-->
-    <!--                            android:layout_gravity="center_horizontal"-->
-    <!--                            android:orientation="vertical">-->
-
-    <!--                            <ImageView-->
-    <!--                                android:layout_width="35dp"-->
-    <!--                                android:layout_height="35dp"-->
-    <!--                                android:layout_gravity="center"-->
-    <!--                                android:src="@drawable/calculator"/>-->
-
-    <!--                        </LinearLayout>-->
-
-    <!--                        <TextView-->
-    <!--                            android:layout_width="wrap_content"-->
-    <!--                            android:layout_height="wrap_content"-->
-    <!--                            android:textColor="@color/colorWhite"-->
-    <!--                            android:layout_marginTop="5dp"-->
-    <!--                            android:layout_gravity="center"-->
-    <!--                            android:textSize="12sp"-->
-    <!--                            android:textStyle="bold"-->
-    <!--                            android:text="@string/text_water_calculator_toolkit"/>-->
-
-    <!--                    </LinearLayout>-->
-
-
-
-    <!--                </LinearLayout>-->
