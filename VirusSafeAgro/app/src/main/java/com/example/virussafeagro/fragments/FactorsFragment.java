@@ -44,6 +44,11 @@ public class FactorsFragment extends Fragment {
         // initialize Views
         this.initializeViews();
 
+        // set menu selected item
+        if (!this.mainActivity.isToolkitIconClicked()) {
+            this.mainActivity.setToolkitButton(true);
+        }
+
         return this.view;
     }
 
@@ -88,5 +93,12 @@ public class FactorsFragment extends Fragment {
         this.environmentalConditionsRelativeLayout.setOnClickListener(llView -> {
 //            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        this.mainActivity.setToolkitButton(false);
     }
 }

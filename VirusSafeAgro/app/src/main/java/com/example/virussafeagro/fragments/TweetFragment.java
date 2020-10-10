@@ -96,6 +96,11 @@ public class TweetFragment extends Fragment {
             observeMore10TweetListLD();
         }
 
+        // set menu selected item
+        if (!this.mainActivity.isToolkitIconClicked()) {
+            this.mainActivity.setToolkitButton(true);
+        }
+
         return this.view;
     }
 
@@ -229,5 +234,7 @@ public class TweetFragment extends Fragment {
 
         assert getArguments() != null;
         getArguments().clear();
+
+        this.mainActivity.setToolkitButton(false);
     }
 }

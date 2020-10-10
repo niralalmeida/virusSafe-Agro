@@ -44,6 +44,11 @@ public class ControlStrategiesFragment extends Fragment {
         // initialize Views
         this.initializeViews();
 
+        // set menu selected item
+        if (!this.mainActivity.isToolkitIconClicked()) {
+            this.mainActivity.setToolkitButton(true);
+        }
+
         return this.view;
     }
 
@@ -88,5 +93,12 @@ public class ControlStrategiesFragment extends Fragment {
         this.nonChemicalRelativeLayout.setOnClickListener(llView -> {
 //            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        this.mainActivity.setToolkitButton(false);
     }
 }

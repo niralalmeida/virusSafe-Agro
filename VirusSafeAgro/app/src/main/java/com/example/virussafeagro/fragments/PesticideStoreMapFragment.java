@@ -92,6 +92,11 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         this.initiateMap(savedInstanceState);
         this.mapView.getMapAsync(this);
 
+        // set menu selected item
+        if (!this.mainActivity.isToolkitIconClicked()) {
+            this.mainActivity.setToolkitButton(true);
+        }
+
         return view;
     }
 
@@ -354,6 +359,8 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
                 locationManager.removeUpdates(locationListener);
             }
         }
+
+        this.mainActivity.setToolkitButton(false);
     }
 
     @Override

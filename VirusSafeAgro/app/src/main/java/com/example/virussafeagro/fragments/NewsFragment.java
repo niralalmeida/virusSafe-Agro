@@ -102,6 +102,11 @@ public class NewsFragment extends Fragment {
             observeMore10NewsListLD();
         }
 
+        // set menu selected item
+        if (!this.mainActivity.isToolkitIconClicked()) {
+            this.mainActivity.setToolkitButton(true);
+        }
+
         return this.view;
     }
 
@@ -247,6 +252,8 @@ public class NewsFragment extends Fragment {
 
         assert getArguments() != null;
         getArguments().clear();
+
+        this.mainActivity.setToolkitButton(false);
 
         // hide search button
 //        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.GONE);

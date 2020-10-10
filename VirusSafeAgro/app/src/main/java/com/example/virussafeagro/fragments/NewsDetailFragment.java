@@ -87,6 +87,11 @@ public class NewsDetailFragment extends Fragment {
         this.initializeViews();
         this.allViewLinearLayout.setVisibility(View.GONE);
 
+        // set menu selected item
+        if (!this.mainActivity.isToolkitIconClicked()) {
+            this.mainActivity.setToolkitButton(true);
+        }
+
         return this.view;
     }
 
@@ -262,5 +267,7 @@ public class NewsDetailFragment extends Fragment {
 
         this.newsDetailViewModel.getNewsArticleBodyLD().removeObservers(getViewLifecycleOwner());
         this.newsDetailViewModel.setNewsArticleBodyLD(new ArrayList<>());
+
+        this.mainActivity.setToolkitButton(false);
     }
 }
