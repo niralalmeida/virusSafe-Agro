@@ -537,9 +537,6 @@ public class MainActivity extends AppCompatActivity {
             // check current fragment
             if (foundFragment instanceof LearnFragment) { // is learn --> hide "learn" show main page
 
-                // test
-                System.out.println("is learn");
-
                 // hide the fragment
                 FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
                 // set title
@@ -556,17 +553,11 @@ public class MainActivity extends AppCompatActivity {
                         (foundFragment instanceof NutrientDetailFragment)
                     ){
 
-                // test
-                System.out.println("is sub-learn");
-
                 // pop All Fragments In Stack
                 FragmentOperator.popAllFragmentsInStack(fragmentManager);
 
             }
             else if (foundFragment instanceof MoreFragment) { // is more fragment --> hide more fragment, show "learn"
-
-                // test
-                System.out.println("--> more");
 
                 // hide more fragment
                 FragmentOperator.backToLastFragment(mainActivity);
@@ -577,20 +568,13 @@ public class MainActivity extends AppCompatActivity {
                     FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                 }, 200);
             }
-            else if (foundFragment instanceof ToolkitFragment) {
+            else {
                 // hide the fragment
-                FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                FragmentOperator.removeAllFragmentsForBottomItem(mainActivity);
                 new Handler().postDelayed(() -> {
+                    // show learn fragment
                     FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                 }, 200);
-            }
-            else { // not from "learn" fragment --> show "learn" from bottom
-
-                // test
-                System.out.println("[ others ]");
-                // remove all fragment in stack
-                FragmentOperator.removeAllFragments(mainActivity);
-                FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
             }
         });
 
@@ -603,6 +587,7 @@ public class MainActivity extends AppCompatActivity {
             if (foundFragment instanceof ToolkitFragment) {
                 // hide the fragment
                 FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+
                 // set title
                 titleTextView.setText(R.string.app_name);
                 // show the animation
@@ -633,17 +618,12 @@ public class MainActivity extends AppCompatActivity {
                     FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
                 }, 200);
             }
-            else if (foundFragment instanceof LearnFragment) {
-
+            else {
                 // hide the fragment
-                FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                FragmentOperator.removeAllFragmentsForBottomItem(mainActivity);
                 new Handler().postDelayed(() -> {
                     FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
                 }, 200);
-            } else {
-                // remove all fragment in stack
-                FragmentOperator.removeAllFragments(mainActivity);
-                FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
             }
         });
 

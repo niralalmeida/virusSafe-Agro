@@ -60,8 +60,6 @@ public class LearnFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show all views
-//        this.showAllViews();
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
 
@@ -73,11 +71,6 @@ public class LearnFragment extends Fragment {
         this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_learn);
         this.virusRelativeLayout = view.findViewById(R.id.rl_virus_learn);
         this.nutrientRelativeLayout = view.findViewById(R.id.rl_nutrient_learn);
-    }
-
-    // show All Views
-    private void showAllViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
     }
 
     private void allTilesOnClickListener() {

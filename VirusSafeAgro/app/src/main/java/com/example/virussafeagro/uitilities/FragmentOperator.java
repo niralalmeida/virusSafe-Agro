@@ -7,6 +7,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.fragments.LearnFragment;
+import com.example.virussafeagro.fragments.ToolkitFragment;
+
+import java.util.List;
 
 public class FragmentOperator {
     // replace the fragment view with back stack
@@ -100,6 +104,22 @@ public class FragmentOperator {
                     .beginTransaction()
                     .remove(fragment)
                     .commit();
+        }
+    }
+
+    // remove all fragments view from the stack
+    public static void removeAllFragmentsForBottomItem(FragmentActivity fragmentActivity){
+        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
+        List<Fragment> fragmentList = fragmentManager.getFragments();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        int count = fragmentList.size();
+        for (int i = 0; i < count; i++){
+            Fragment fragment = fragmentList.get(i);
+            if ((fragment instanceof LearnFragment) || (fragment instanceof ToolkitFragment)){
+                fragmentTransaction.setCustomAnimations(0, R.anim.exit_to_bottom).remove(fragment).commit();
+            } else {
+                fragmentTransaction.remove(fragment).commit();
+            }
         }
     }
 }
