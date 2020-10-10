@@ -36,15 +36,14 @@ public class LearnFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_learn, container, false);
 
-        // remove all fragment in the stack
-        FragmentOperator.removeAllFragments(mainActivity);
-
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title
         this.mainActivity.getTitleTextView().setText(R.string.fragment_learn);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // pop all fragment in the stack
+        FragmentOperator.popAllFragmentsInStack(getChildFragmentManager());
 
         // initialize Views
         this.initializeViews();

@@ -75,8 +75,7 @@ public class FragmentOperator {
     }
 
     // pop All Fragments In Stack
-    public static void popAllFragmentsInStack(FragmentActivity fragmentActivity){
-        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
+    public static void popAllFragmentsInStack(FragmentManager fragmentManager){
         int count = fragmentManager.getBackStackEntryCount();
         while(count > 0){
             fragmentManager.popBackStackImmediate();

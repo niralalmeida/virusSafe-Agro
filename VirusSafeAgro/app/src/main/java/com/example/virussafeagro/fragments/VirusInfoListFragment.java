@@ -80,6 +80,11 @@ public class VirusInfoListFragment extends Fragment {
         this.processBarLinearLayout.setVisibility(View.VISIBLE);
         this.virusGridViewLinearLayout.setVisibility(View.GONE);
 
+        // set menu selected item
+        if (!this.mainActivity.isLearnIconClicked()) {
+            this.mainActivity.setLearnButton(true);
+        }
+
         return this.view;
     }
 

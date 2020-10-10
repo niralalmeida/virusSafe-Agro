@@ -22,11 +22,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.virussafeagro.fragments.ControlStrategiesFragment;
+import com.example.virussafeagro.fragments.FactorsFragment;
+import com.example.virussafeagro.fragments.InsightsFragment;
+import com.example.virussafeagro.fragments.NewsDetailFragment;
+import com.example.virussafeagro.fragments.NewsFragment;
 import com.example.virussafeagro.fragments.NutrientDetailFragment;
 import com.example.virussafeagro.fragments.NutrientFragment;
+import com.example.virussafeagro.fragments.PesticideStoreMapFragment;
 import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
+import com.example.virussafeagro.fragments.TweetFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusCheckResultFragment;
 import com.example.virussafeagro.fragments.VirusDetailFragment;
@@ -315,8 +322,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void hideTheLottieAnimationView() {
         this.animationImageRelativeLayout.setVisibility(View.GONE);
-//        this.plantLottieAnimationView.setVisibility(View.GONE);
-//        this.cloudLottieAnimationView.setVisibility(View.GONE);
     }
 
     // display search function
@@ -555,7 +560,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("is sub-learn");
 
                 // pop All Fragments In Stack
-                FragmentOperator.popAllFragmentsInStack(mainActivity);
+                FragmentOperator.popAllFragmentsInStack(fragmentManager);
 
             }
             else if (foundFragment instanceof MoreFragment) { // is more fragment --> hide more fragment, show "learn"
@@ -567,23 +572,25 @@ public class MainActivity extends AppCompatActivity {
                 FragmentOperator.backToLastFragment(mainActivity);
                 // remove all fragment in stack
                 FragmentOperator.removeAllFragments(mainActivity);
-                // show the learn fragment
-                FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                new Handler().postDelayed(() -> {
+                    // show the learn fragment
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                }, 200);
+            }
+            else if (foundFragment instanceof ToolkitFragment) {
+                // hide the fragment
+                FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                new Handler().postDelayed(() -> {
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                }, 200);
             }
             else { // not from "learn" fragment --> show "learn" from bottom
 
                 // test
                 System.out.println("[ others ]");
-
-                if (foundFragment instanceof ToolkitFragment) {
-                    // hide the fragment
-                    FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
-                    new Handler().postDelayed(() -> {
-                        FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
-                    }, 200);
-                } else {
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
-                }
+                // remove all fragment in stack
+                FragmentOperator.removeAllFragments(mainActivity);
+                FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
             }
         });
 
@@ -601,7 +608,41 @@ public class MainActivity extends AppCompatActivity {
                 // show the animation
                 new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
 
+            } else if( // is sub-fragment of "toolkit" --> hide all fragment in stack to right, show "toolkit"
+                        (foundFragment instanceof ControlStrategiesFragment) ||
+                        (foundFragment instanceof PesticideStoreMapFragment) ||
+                        (foundFragment instanceof FactorsFragment) ||
+                        (foundFragment instanceof InsightsFragment) ||
+                        (foundFragment instanceof NewsFragment) ||
+                        (foundFragment instanceof NewsDetailFragment) ||
+                        (foundFragment instanceof TweetFragment)
+                    ){
+
+                // pop All Fragments In Stack
+                FragmentOperator.popAllFragmentsInStack(fragmentManager);
+
+            }
+            else if (foundFragment instanceof MoreFragment) { // is more fragment --> hide more fragment, show "toolkit"
+
+                // hide more fragment
+                FragmentOperator.backToLastFragment(mainActivity);
+                // remove all fragment in stack
+                FragmentOperator.removeAllFragments(mainActivity);
+                new Handler().postDelayed(() -> {
+                    // show the learn fragment
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
+                }, 200);
+            }
+            else if (foundFragment instanceof LearnFragment) {
+
+                // hide the fragment
+                FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                new Handler().postDelayed(() -> {
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
+                }, 200);
             } else {
+                // remove all fragment in stack
+                FragmentOperator.removeAllFragments(mainActivity);
                 FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
             }
         });
