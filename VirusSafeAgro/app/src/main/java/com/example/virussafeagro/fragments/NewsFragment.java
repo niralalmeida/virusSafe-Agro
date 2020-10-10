@@ -189,7 +189,7 @@ public class NewsFragment extends Fragment {
             bundle.putParcelable("currentNewsModel", currentNewsModel);
             NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
             newsDetailFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), newsDetailFragment, AppResources.FRAGMENT_TAG_NEWS_DETAIL);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), newsDetailFragment, AppResources.FRAGMENT_TAG_NEWS_DETAIL);
         });
     }
 

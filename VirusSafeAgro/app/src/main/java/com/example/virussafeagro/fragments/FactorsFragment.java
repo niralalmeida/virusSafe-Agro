@@ -56,9 +56,6 @@ public class FactorsFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show all views
-        this.showAllViews();
-
         // control all tiles on click listeners
         this.allTilesOnClickListener();
     }
@@ -67,11 +64,6 @@ public class FactorsFragment extends Fragment {
         this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_factors);
         this.causeRelativeLayout = view.findViewById(R.id.rl_cause_factors);
         this.environmentalConditionsRelativeLayout = view.findViewById(R.id.rl_environmental_conditions_factors);
-    }
-
-    // show All Views
-    private void showAllViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
     }
 
     private void allTilesOnClickListener() {

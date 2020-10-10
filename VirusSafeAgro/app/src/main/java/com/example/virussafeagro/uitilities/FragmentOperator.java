@@ -87,4 +87,16 @@ public class FragmentOperator {
         }
     }
 
+    // pop All Fragments In Stack except learn and toolkit
+    public static void popAllFragmentsInStackExceptLearnToolkit(FragmentManager fragmentManager){
+        int count = fragmentManager.getBackStackEntryCount();
+        while(count > 0){
+            Fragment foundFragment =  fragmentManager.findFragmentById(R.id.fl_fragments);
+            if(!((foundFragment instanceof LearnFragment) || (foundFragment instanceof ToolkitFragment))){
+                fragmentManager.popBackStackImmediate();
+            }
+            count--;
+        }
+    }
+
 }

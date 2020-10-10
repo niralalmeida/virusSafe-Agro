@@ -59,9 +59,6 @@ public class InsightsFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show all views
-        this.showAllViews();
-
         // control all tiles on click listeners
         this.allTilesOnClickListener();
     }
@@ -71,11 +68,6 @@ public class InsightsFragment extends Fragment {
         this.newsRelativeLayout = view.findViewById(R.id.rl_news_insights);
         this.tweetsRelativeLayout = view.findViewById(R.id.rl_tweets_insights);
         this.videosRelativeLayout = view.findViewById(R.id.rl_videos_insights);
-    }
-
-    // show All Views
-    private void showAllViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
     }
 
     private void allTilesOnClickListener() {
@@ -94,7 +86,7 @@ public class InsightsFragment extends Fragment {
             bundle.putBoolean("fromInsights", true);
             NewsFragment newsFragment = new NewsFragment();
             newsFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), newsFragment, AppResources.FRAGMENT_TAG_NEWS_LIST);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), newsFragment, AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
     }
 
@@ -105,14 +97,14 @@ public class InsightsFragment extends Fragment {
             bundle.putBoolean("fromInsights", true);
             TweetFragment tweetFragment = new TweetFragment();
             tweetFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), tweetFragment, AppResources.FRAGMENT_TAG_TWEET_LIST);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), tweetFragment, AppResources.FRAGMENT_TAG_TWEET_LIST);
         });
     }
 
     // videos
     private void setVideosTileOnClickListener() {
         this.videosRelativeLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
     }
 

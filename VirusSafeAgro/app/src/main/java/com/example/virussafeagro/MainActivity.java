@@ -554,7 +554,7 @@ public class MainActivity extends AppCompatActivity {
                     ){
 
                 // pop All Fragments In Stack
-                FragmentOperator.popAllFragmentsInStack(fragmentManager);
+                FragmentOperator.popAllFragmentsInStackExceptLearnToolkit(fragmentManager);
 
             }
             else if (foundFragment instanceof MoreFragment) { // is more fragment --> hide more fragment, show "learn"
@@ -604,7 +604,7 @@ public class MainActivity extends AppCompatActivity {
                     ){
 
                 // pop All Fragments In Stack
-                FragmentOperator.popAllFragmentsInStack(fragmentManager);
+                FragmentOperator.popAllFragmentsInStackExceptLearnToolkit(fragmentManager);
 
             }
             else if (foundFragment instanceof MoreFragment) { // is more fragment --> hide more fragment, show "toolkit"

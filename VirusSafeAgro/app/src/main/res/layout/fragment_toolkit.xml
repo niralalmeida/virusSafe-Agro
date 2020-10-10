@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDarkBG"
+    android:background="@drawable/shape_learn_toolkit_fragment_bg_main"
     tools:context=".fragments.ToolkitFragment">
 
     <!-- tiles -->

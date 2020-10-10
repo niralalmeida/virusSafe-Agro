@@ -56,9 +56,6 @@ public class ControlStrategiesFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // show all views
-        this.showAllViews();
-
         // control all tiles on click listeners
         this.allTilesOnClickListener();
     }
@@ -67,11 +64,6 @@ public class ControlStrategiesFragment extends Fragment {
         this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_control);
         this.chemicalRelativeLayout = view.findViewById(R.id.rl_chemical_control);
         this.nonChemicalRelativeLayout = view.findViewById(R.id.rl_non_chemical_control);
-    }
-
-    // show All Views
-    private void showAllViews() {
-        MyAnimationBox.runFadeInAnimation(this.allViewsRelativeLayout, 1000);
     }
 
     private void allTilesOnClickListener() {
