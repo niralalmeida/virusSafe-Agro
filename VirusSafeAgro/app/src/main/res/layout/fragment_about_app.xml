@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp"
     android:layout_marginBottom="40dp"
+    android:paddingBottom="20dp"
+    android:scrollbars="vertical"
+    android:scrollbarThumbVertical="@android:color/white"
     android:background="@drawable/shape_more_fragment_bg_main"
     tools:context=".fragments.AboutAppFragment">
 
-    <LinearLayout
-        android:id="@+id/ll_all_view_about_app"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_aus_map_about_app"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/map" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/img_aus_map_about_app"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/map" />
 
                 <com.uncopt.android.widget.text.justify.JustifiedTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="start"
                     android:lineSpacingExtra="8dp"
                     android:text="@string/fragment_c1_app_description_about"
                     android:textColor="@color/colorWhite"
@@ -42,8 +39,8 @@
 
             </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
 
-</RelativeLayout>
+        </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
