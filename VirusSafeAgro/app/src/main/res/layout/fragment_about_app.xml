@@ -2,8 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDarkBG"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:layout_marginBottom="40dp"
+    android:background="@drawable/shape_more_fragment_bg_main"
     tools:context=".fragments.AboutAppFragment">
 
     <LinearLayout
@@ -19,9 +21,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_tile_virus_detail_contents"
-                android:padding="10dp"
-                android:layout_margin="15dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -31,7 +30,7 @@
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/map" />
 
-                <TextView
+                <com.uncopt.android.widget.text.justify.JustifiedTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

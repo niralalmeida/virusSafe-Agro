@@ -22,8 +22,6 @@ public class ContactUsFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
 
-    private LinearLayout allViewLinearLayout;
-
     public ContactUsFragment() {
     }
 
@@ -42,19 +40,7 @@ public class ContactUsFragment extends Fragment {
         // set more button
         this.mainActivity.setMoreButton(true);
 
-        // initialize Views
-        this.initializeViews();
-
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    private void initializeViews() {
-        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_contact_us);
     }
 
     @Override

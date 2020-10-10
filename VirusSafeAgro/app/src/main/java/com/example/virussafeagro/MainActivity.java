@@ -22,7 +22,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.virussafeagro.fragments.AboutAppFragment;
+import com.example.virussafeagro.fragments.ContactUsFragment;
 import com.example.virussafeagro.fragments.ControlStrategiesFragment;
+import com.example.virussafeagro.fragments.DisclaimerFragment;
 import com.example.virussafeagro.fragments.FactorsFragment;
 import com.example.virussafeagro.fragments.InsightsFragment;
 import com.example.virussafeagro.fragments.NewsDetailFragment;
@@ -34,6 +37,7 @@ import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.TweetFragment;
+import com.example.virussafeagro.fragments.UpdatesFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusCheckResultFragment;
 import com.example.virussafeagro.fragments.VirusDetailFragment;
@@ -255,19 +259,24 @@ public class MainActivity extends AppCompatActivity {
     private void setMoreOnClickListener() {
         moreRelativeLayout.setOnClickListener(v -> {
             Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
-            if (foundFragment instanceof MoreFragment) {
+            if ((foundFragment instanceof MoreFragment) ||
+                (foundFragment instanceof AboutAppFragment) ||
+                (foundFragment instanceof UpdatesFragment) ||
+                (foundFragment instanceof DisclaimerFragment) ||
+                (foundFragment instanceof ContactUsFragment)
+                ){
                 FragmentOperator.backToLastFragment(this);
-            } else {
-                if ((foundFragment instanceof LearnFragment) || (foundFragment instanceof ToolkitFragment)) {
-                    // hide the fragment
-                    FragmentOperator.popAllFragmentsInStack(fragmentManager);
+
+            }else if ((foundFragment instanceof LearnFragment) || (foundFragment instanceof ToolkitFragment)) {
+                // hide the fragment
+                FragmentOperator.popAllFragmentsInStack(fragmentManager);
                     new Handler().postDelayed(() -> {
                         FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
                     }, 200);
-                } else {
-                    // add new MoreFragment
-                    FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
-                }
+
+            } else {
+                // add new MoreFragment
+                FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
             }
         });
     }
