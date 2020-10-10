@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     // toolbar - tip / more
     private RelativeLayout tipRelativeLayout;
     private RelativeLayout moreRelativeLayout;
+    private ImageView moreImageView;
     private View lineView1;
     // toolbar - quiz
     private RelativeLayout quizRelativeLayout;
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         this.topButtonsLinearLayout = findViewById(R.id.ll_buttons_toolbar);
         this.tipRelativeLayout = findViewById(R.id.rl_tip_toolbar);
         this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
+        this.moreImageView = findViewById(R.id.img_more_toolbar);
         this.lineView1 = findViewById(R.id.v_line1_vertical_toolbar);
         this.lineView2 = findViewById(R.id.v_line2_vertical_toolbar);
         this.lineView3 = findViewById(R.id.v_line3_vertical_toolbar);
@@ -184,8 +186,12 @@ public class MainActivity extends AppCompatActivity {
 
         this.displayAllMainActivityViews();
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
         // check authentication
+        this.checkAuthentication();
+    }
+
+////////////////////////////////////////////////// -- Pass word -- /////////////////////////////////////////////////////
+    private void checkAuthentication() {
 //        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())) {
 //            // set authentication as "no"
 //            AppAuthentication.setAuthenticationAsNo(this);
@@ -288,12 +294,21 @@ public class MainActivity extends AppCompatActivity {
             // set activated
             moreRelativeLayout.setActivated(true);
             // change bg
-            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDark));
+            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkTheme));
+            // change image tint color
+//            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_checked);
+//            moreImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+//            moreImageView.setImageTintList(colorStateList);
             // hide vertical line
             lineView2.setVisibility(View.GONE);
         } else {
             moreRelativeLayout.setActivated(false);
+            // change bg
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkBG));
+            // change image tint color
+//            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorWhite);
+//            moreImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+//            moreImageView.setImageTintList(colorStateList);
             if ((!tipRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
                 lineView2.setVisibility(View.VISIBLE);
             }
