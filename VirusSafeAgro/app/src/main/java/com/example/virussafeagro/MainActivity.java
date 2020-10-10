@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
             lineView2.setVisibility(View.GONE);
         } else {
             tipRelativeLayout.setActivated(false);
-            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkBG));
+            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkTheme));
             if ((!tipRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
                 lineView2.setVisibility(View.VISIBLE);
             }
@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
             // set activated
             moreRelativeLayout.setActivated(true);
             // change bg
-            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkTheme));
+            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
             // change image tint color
 //            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_checked);
 //            moreImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             moreRelativeLayout.setActivated(false);
             // change bg
-            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkBG));
+            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkTheme));
             // change image tint color
 //            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorWhite);
 //            moreImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);

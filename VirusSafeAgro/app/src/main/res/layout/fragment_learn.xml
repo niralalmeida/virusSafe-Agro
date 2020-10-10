@@ -3,30 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape_learn_toolkit_fragment_bg_main"
+    android:background="@color/colorBlack"
     tools:context=".fragments.LearnFragment">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/rl_all_views_learn"
-        android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
             android:paddingBottom="40dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <!-- sub title : virus knowledge -->
+            <RelativeLayout
+                android:id="@+id/rl_virus_sub_title_learn"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSubTitle"
+                    android:textSize="13sp"
+                    android:text="@string/text_sub_title_for_virus_learn"/>
+
+            </RelativeLayout>
 
             <!-- virus -->
             <RelativeLayout
                 android:id="@+id/rl_virus_learn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
+                android:layout_below="@id/rl_virus_sub_title_learn"
+                android:paddingTop="20dp"
+                android:paddingBottom="25dp"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
                 android:background="@drawable/ripple_tile_rectangle">
@@ -36,42 +54,66 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
                     android:text="@string/text_title_virus_learn"/>
 
+                <!-- icon + content -->
                 <RelativeLayout
-                    android:id="@+id/iv_virus_learn"
-                    android:layout_below="@id/tv_title_virus_learn"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_title_virus_learn"
+                    android:layout_marginTop="10dp">
 
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                    <RelativeLayout
+                        android:id="@+id/iv_virus_learn"
+                        android:layout_width="65dp"
+                        android:layout_height="45dp">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true"
+                            android:tint="@color/iconVirus"
+                            android:src="@drawable/virus"/>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_content_virus_learn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/iv_virus_learn"
+                        android:layout_alignTop="@id/tv_content_virus_learn"
+                        android:layout_alignBottom="@id/tv_content_virus_learn"
                         android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/virus"/>
+                        android:textColor="@color/colorPrimaryDescriptionContent"
+                        android:textSize="13sp"
+                        android:text="@string/text_content_virus_learn" />
 
                 </RelativeLayout>
 
+            </RelativeLayout>
+
+            <!-- sub title : nutrient knowledge -->
+            <RelativeLayout
+                android:id="@+id/rl_nutrient_sub_title_learn"
+                android:layout_below="@id/rl_virus_learn"
+                android:paddingTop="15dp"
+                android:paddingBottom="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
                 <TextView
-                    android:id="@+id/tv_content_virus_learn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_title_virus_learn"
-                    android:layout_toRightOf="@+id/iv_virus_learn"
-                    android:layout_toEndOf="@+id/iv_virus_learn"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorSubTitle"
                     android:textSize="13sp"
-                    android:text="@string/text_content_virus_learn" />
+                    android:text="@string/text_sub_title_for_others_learn"/>
 
             </RelativeLayout>
 
@@ -80,10 +122,9 @@
                 android:id="@+id/rl_nutrient_learn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_virus_learn"
-                android:layout_marginTop="15dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
+                android:layout_below="@+id/rl_nutrient_sub_title_learn"
+                android:paddingTop="20dp"
+                android:paddingBottom="25dp"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
                 android:background="@drawable/ripple_tile_rectangle">
@@ -93,43 +134,46 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
                     android:text="@string/text_title_nutrient_learn"/>
 
+                <!-- icon + content -->
                 <RelativeLayout
-                    android:id="@+id/iv_nutrient_learn"
-                    android:layout_below="@+id/tv_title_nutrient_learn"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp">
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/nutrient"/>
-
-                </RelativeLayout>
-
-
-                <TextView
-                    android:id="@+id/tv_content_nutrient_learn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_title_nutrient_learn"
-                    android:layout_toRightOf="@+id/iv_nutrient_learn"
-                    android:layout_toEndOf="@+id/iv_nutrient_learn"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="13sp"
-                    android:text="@string/text_content_nutrient_learn" />
+                    android:layout_marginTop="10dp">
+
+                    <RelativeLayout
+                        android:id="@+id/iv_nutrient_learn"
+                        android:layout_width="65dp"
+                        android:layout_height="45dp"
+                        android:layout_alignTop="@id/tv_content_nutrient_learn"
+                        android:layout_alignBottom="@id/tv_content_nutrient_learn">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/nutrient"
+                            android:tint="@color/iconNutrient" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_content_nutrient_learn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/iv_nutrient_learn"
+                        android:text="@string/text_content_nutrient_learn"
+                        android:textColor="@color/colorPrimaryDescriptionContent"
+                        android:textSize="13sp" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
@@ -141,8 +185,8 @@
                 android:layout_below="@+id/rl_nutrient_learn"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="40dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="25dp"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
                 android:background="@drawable/ripple_tile_rectangle">
@@ -155,37 +199,44 @@
                     android:layout_alignParentTop="true"
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
                     android:text="@string/text_title_tomato_growth_tip_learn"/>
 
+                <!-- icon + content -->
                 <RelativeLayout
-                    android:id="@+id/iv_tomato_growth_tip_learn"
                     android:layout_below="@+id/tv_title_tomato_growth_tip_learn"
                     android:layout_marginTop="10dp"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/tip_i"/>
+                    <RelativeLayout
+                        android:id="@+id/iv_tomato_growth_tip_learn"
+                        android:layout_alignTop="@id/tv_content_tomato_growth_tip_learn"
+                        android:layout_alignBottom="@id/tv_content_tomato_growth_tip_learn"
+                        android:layout_width="65dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true"
+                            android:tint="@color/iconTomatoTip"
+                            android:src="@drawable/tomato_tip_simple2"/>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_content_tomato_growth_tip_learn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/iv_tomato_growth_tip_learn"
+                        android:textColor="@color/colorPrimaryDescriptionContent"
+                        android:textSize="13sp"
+                        android:text="@string/text_content_tomato_growth_tip_learn" />
 
                 </RelativeLayout>
 
-
-                <TextView
-                    android:id="@+id/tv_content_tomato_growth_tip_learn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_title_tomato_growth_tip_learn"
-                    android:layout_toEndOf="@+id/iv_tomato_growth_tip_learn"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="13sp"
-                    android:text="@string/text_content_tomato_growth_tip_learn" />
 
             </RelativeLayout>
 

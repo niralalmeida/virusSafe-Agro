@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:paddingTop="15dp"
     android:paddingBottom="20dp"
-    android:background="@drawable/shape_more_fragment_bg_main"
+    android:background="@color/colorBlack"
     tools:context=".fragments.MoreFragment">
 
     <LinearLayout

@@ -4,7 +4,7 @@
     android:id="@+id/rl_all_views_toolkit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape_learn_toolkit_fragment_bg_main"
+    android:background="@color/colorBlack"
     tools:context=".fragments.ToolkitFragment">
 
     <!-- tiles -->

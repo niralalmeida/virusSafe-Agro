@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDarkBG"
+            android:background="@color/colorPrimaryDarkTheme"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <!-- top all views -->
@@ -39,7 +39,7 @@
                         android:id="@+id/tv_title_toolbar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorPrimaryTitle"
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:text="@string/app_name"/>
@@ -80,7 +80,7 @@
                                 android:text="QUIZ"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/colorPrimaryDarkBG"
+                                android:textColor="@color/colorPrimaryDarkTheme"
                                 android:layout_marginBottom="10dp"
                                 android:layout_centerHorizontal="true"
                                 android:layout_alignParentBottom="true"/>
