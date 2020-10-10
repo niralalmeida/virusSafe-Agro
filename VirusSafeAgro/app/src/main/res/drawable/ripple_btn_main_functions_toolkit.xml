@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/item_checked_bg">
+
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/item_checked_bg" />
+            <corners android:radius="15dp"/>
+        </shape>
+    </item>
+
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+<!--            <solid android:color="@color/bar_bg_bottom_bar" />-->
+            <solid android:color="@color/btnMainFunctionBgToolkit" />
+            <corners android:radius="15dp"/>
+<!--            <gradient-->
+<!--                android:angle="-90"-->
+<!--                android:startColor="@color/bar_bg_bottom_bar"-->
+<!--                android:centerColor="@color/bar_bg_bottom_bar"-->
+<!--                android:endColor="@color/btn_shadow"-->
+<!--                android:type="linear" />-->
+        </shape>
+    </item>
+
+</ripple>
