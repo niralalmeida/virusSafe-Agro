@@ -259,5 +259,7 @@ public class VirusInfoListFragment extends Fragment {
         // set from virus info
         MainActivity.FROM_VIRUS_INFO_PAGE = true;
 
+        this.mainActivity.setLearnButton(false);
+
     }
 }

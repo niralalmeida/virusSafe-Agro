@@ -74,6 +74,11 @@ public class NutrientDetailFragment extends Fragment {
         assert bundle != null;
         this.currentNutrientModel = bundle.getParcelable("currentNutrientModel");
 
+        // set menu selected item
+        if (!this.mainActivity.isLearnIconClicked()) {
+            this.mainActivity.setLearnButton(true);
+        }
+
         return this.view;
     }
 
@@ -236,5 +241,11 @@ public class NutrientDetailFragment extends Fragment {
         } else {
             textView.setText(itemContent);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.mainActivity.setLearnButton(false);
     }
 }

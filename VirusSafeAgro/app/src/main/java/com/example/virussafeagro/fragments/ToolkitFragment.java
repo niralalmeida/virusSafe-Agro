@@ -56,6 +56,11 @@ public class ToolkitFragment extends Fragment {
         // initialize Views
         this.initializeViews();
 
+        // set menu selected item
+        if (!this.mainActivity.isToolkitIconClicked()) {
+            this.mainActivity.setToolkitButton(true);
+        }
+
         return this.view;
     }
 
@@ -65,10 +70,6 @@ public class ToolkitFragment extends Fragment {
 
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
-        // set menu selected item
-        if (!this.mainActivity.isToolkitIconClicked()) {
-            this.mainActivity.setToolkitButton(true);
-        }
 
         // control all tiles on click listeners
         this.allTilesOnClickListener();

@@ -96,6 +96,11 @@ public class VirusDetailFragment extends Fragment {
         this.currentVirusModel = bundle.getParcelable("currentVirusModel");
         this.preventionMessage = bundle.getString("prevention");
 
+        // set menu selected item
+        if (!this.mainActivity.isLearnIconClicked()) {
+            this.mainActivity.setLearnButton(true);
+        }
+
         return this.view;
     }
 
@@ -335,5 +340,7 @@ public class VirusDetailFragment extends Fragment {
         this.takeQuizRelativeLayout.setVisibility(View.GONE);
         this.lineView1.setVisibility(View.GONE);
         this.isVirusDetailsShown = false;
+
+        this.mainActivity.setLearnButton(false);
     }
 }

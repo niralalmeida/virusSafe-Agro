@@ -75,6 +75,11 @@ public class NutrientFragment extends Fragment {
         this.processBarLinearLayout.setVisibility(View.VISIBLE);
         this.nutrientsGridViewLinearLayout.setVisibility(View.GONE);
 
+        // set menu selected item
+        if (!this.mainActivity.isLearnIconClicked()) {
+            this.mainActivity.setLearnButton(true);
+        }
+
         return this.view;
     }
 
@@ -255,5 +260,7 @@ public class NutrientFragment extends Fragment {
         mainActivity.closeSearch();
         // set from nutrient
         MainActivity.FROM_NUTRIENT_PAGE = true;
+
+        this.mainActivity.setLearnButton(false);
     }
 }

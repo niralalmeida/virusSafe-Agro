@@ -92,6 +92,11 @@ public class VirusQuizQuestionFragment extends Fragment {
         assert bundle != null;
         this.currentVirusModel = bundle.getParcelable("currentVirusModel");
 
+        // set menu selected item
+        if (!this.mainActivity.isLearnIconClicked()) {
+            this.mainActivity.setLearnButton(true);
+        }
+
         return this.view;
     }
 
@@ -327,5 +332,7 @@ public class VirusQuizQuestionFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         AppAuthentication.setAuthenticationAsNo((AppCompatActivity)requireActivity());
+
+        this.mainActivity.setLearnButton(false);
     }
 }

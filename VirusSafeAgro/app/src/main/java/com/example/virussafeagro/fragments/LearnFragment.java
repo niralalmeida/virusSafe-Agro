@@ -48,6 +48,11 @@ public class LearnFragment extends Fragment {
         // initialize Views
         this.initializeViews();
 
+        // set menu selected item
+        if (!this.mainActivity.isLearnIconClicked()) {
+            this.mainActivity.setLearnButton(true);
+        }
+
         return this.view;
     }
 
@@ -59,10 +64,6 @@ public class LearnFragment extends Fragment {
 //        this.showAllViews();
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
-        // set menu selected item
-        if (!this.mainActivity.isLearnIconClicked()) {
-            this.mainActivity.setLearnButton(true);
-        }
 
         // control all tiles on click listeners
         this.allTilesOnClickListener();
