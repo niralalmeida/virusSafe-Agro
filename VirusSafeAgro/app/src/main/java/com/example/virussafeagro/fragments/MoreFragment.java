@@ -58,7 +58,7 @@ public class MoreFragment extends Fragment {
         super.onResume();
 
         // move the calculator and more to right
-        this.mainActivity.moveTipAndMoreToRight(getTag(), 1000);
+        this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
 
         // set all tiles On Click Listener
         this.allTilesOnClickListener();

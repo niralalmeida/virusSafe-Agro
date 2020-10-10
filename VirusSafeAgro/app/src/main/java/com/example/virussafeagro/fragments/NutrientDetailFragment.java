@@ -88,7 +88,7 @@ public class NutrientDetailFragment extends Fragment {
 
         // show nutrient details
         MyAnimationBox.runFadeInAnimation(this.nutrientDetailRelativeLayout, 1000);
-        this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
+        this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
         this.showNutrientDetails();
         this.showSymptomsContent();
 

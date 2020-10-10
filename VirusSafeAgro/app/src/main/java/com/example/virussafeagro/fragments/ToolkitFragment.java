@@ -63,7 +63,7 @@ public class ToolkitFragment extends Fragment {
         super.onResume();
 
         // move Calculator And More To Right
-        this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
+        this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
 
         // control all tiles on click listeners
         this.allTilesOnClickListener();

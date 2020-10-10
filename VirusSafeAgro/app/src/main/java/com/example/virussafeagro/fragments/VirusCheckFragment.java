@@ -155,7 +155,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         // show All Views
 //        this.showAllViews();
         // move Calculator And More To Right
-        this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
+        this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
 
         // set close button
         this.setCloseButtonClickListener();

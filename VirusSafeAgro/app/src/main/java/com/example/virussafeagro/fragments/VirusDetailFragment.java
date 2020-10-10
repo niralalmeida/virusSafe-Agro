@@ -65,7 +65,6 @@ public class VirusDetailFragment extends Fragment {
 //    private LinearLayout takeQuizLinearLayout;
 //    private Button takeQuizButton;
     private RelativeLayout takeQuizRelativeLayout;
-    private View lineView1;
 
     // coordinate
     private float startY;
@@ -116,9 +115,8 @@ public class VirusDetailFragment extends Fragment {
         // move calculator and more to right
         // show quiz button
         MyAnimationBox.runFadeInAnimation(this.takeQuizRelativeLayout, 500);
-        MyAnimationBox.runFadeInAnimation(this.lineView1, 500);
         new Handler().postDelayed(()->{
-            this.mainActivity.moveTipAndMoreToRight(getTag(), 500);
+            this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
         },500);
 //        MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
         MyAnimationBox.runRepeatedAnimationBottomToTop(this.swipeUpImageView, 1000);
@@ -151,7 +149,6 @@ public class VirusDetailFragment extends Fragment {
 //        this.takeQuizLinearLayout = view.findViewById(R.id.ll_take_quiz_virus_detail);
 //        this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
         this.takeQuizRelativeLayout = this.mainActivity.getQuizRelativeLayout();
-        this.lineView1 = this.mainActivity.getLineView1();
     }
 
     private void showDescriptionContent() {
@@ -338,7 +335,6 @@ public class VirusDetailFragment extends Fragment {
         super.onPause();
         // hide quiz button
         this.takeQuizRelativeLayout.setVisibility(View.GONE);
-        this.lineView1.setVisibility(View.GONE);
         this.isVirusDetailsShown = false;
 
         this.mainActivity.setLearnButton(false);

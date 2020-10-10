@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:elevation="15dp"
             android:outlineProvider="bounds"
+            app:contentInsetStart="0dp"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimaryDarkTheme"
             app:popupTheme="@style/AppTheme.PopupOverlay">
@@ -26,14 +27,36 @@
                 android:id="@+id/rl_all_views_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
                 android:orientation="vertical">
+
+                <!-- back button -->
+                <RelativeLayout
+                    android:id="@+id/rl_back_button_toolbar"
+                    android:visibility="gone"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:adjustViewBounds="false"
+                        android:scaleType="fitXY"
+                        android:tint="@color/colorPrimaryTitle"
+                        android:src="@drawable/back2"/>
+
+                </RelativeLayout>
+
 
                 <!-- title -->
                 <LinearLayout
                     android:id="@+id/ll_title_toolbar"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="40dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -55,6 +78,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
                     android:orientation="horizontal">
 
                     <!-- take quiz -->
@@ -62,7 +86,7 @@
                         android:id="@+id/rl_quiz_toolbar"
                         android:visibility="gone"
                         android:background="@drawable/ripple_btn_green_bg_toolbar"
-                        android:layout_width="60dp"
+                        android:layout_width="45dp"
                         android:layout_height="match_parent">
 
                         <RelativeLayout
@@ -71,6 +95,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginTop="13dp"
+                            android:backgroundTint="@color/colorPrimaryMainButtonBg"
                             android:background="@drawable/msg">
 
                             <TextView
@@ -78,6 +103,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="18dp"
                                 android:gravity="center"
+                                android:backgroundTint="@color/colorPrimaryMainButtonBg"
                                 android:background="@drawable/shape_btn_quiz_toolbar"
                                 android:text="QUIZ"
                                 android:textSize="12sp"
@@ -92,21 +118,11 @@
 
                     </RelativeLayout>
 
-                    <!-- line1 -->
-                    <View
-                        android:id="@+id/v_line1_vertical_toolbar"
-                        android:visibility="gone"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/top_line"/>
-
                     <!-- Tip -->
                     <RelativeLayout
                         android:id="@+id/rl_tip_toolbar"
                         android:background="@drawable/ripple_btn_green_bg_toolbar"
-                        android:layout_width="60dp"
+                        android:layout_width="45dp"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -115,23 +131,15 @@
                             android:layout_height="30dp"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/tip_question_mark"/>
+                            android:tint="@color/colorPrimaryTitle"
+                            android:src="@drawable/tip_i"/>
 
                     </RelativeLayout>
-
-                    <!-- line2 -->
-                    <View
-                        android:id="@+id/v_line2_vertical_toolbar"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/top_line"/>
 
                     <!-- more -->
                     <RelativeLayout
                         android:id="@+id/rl_more_toolbar"
-                        android:layout_width="45dp"
+                        android:layout_width="40dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/ripple_btn_green_bg_toolbar">
 
@@ -141,58 +149,50 @@
                             android:layout_height="30dp"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
+                            android:tint="@color/colorPrimaryTitle"
                             android:src="@drawable/ic_more_vertical"/>
 
                     </RelativeLayout>
 
-                    <!-- line3 -->
-                    <View
-                        android:id="@+id/v_line3_vertical_toolbar"
-                        android:visibility="gone"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/top_line"/>
-
                 </LinearLayout>
 
                 <!-- search -->
-                <LinearLayout
-                    android:id="@+id/ll_all_search_views_toolbar"
+                <RelativeLayout
+                    android:id="@+id/rl_all_search_views_toolbar"
                     android:visibility="invisible"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="match_parent"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:background="@drawable/shape_search_toolbar"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="40dp"
+                    android:background="@drawable/shape_search_toolbar">
 
                     <!-- search button -->
-                    <LinearLayout
-                        android:id="@+id/ll_search_toolbar"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.17"
+                    <RelativeLayout
+                        android:id="@+id/rl_search_button_toolbar"
+                        android:layout_width="45dp"
                         android:layout_height="match_parent"
-                        android:background="@drawable/ripple_btn_search_toolbar"
-                        android:orientation="vertical">
-                        <!--                    android:visibility="gone"-->
+                        android:layout_alignParentStart="true"
+                        android:background="@drawable/ripple_btn_search_toolbar">
 
                         <ImageView
-                            android:id="@+id/img_search_toolbar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
+                            android:id="@+id/img_search_button_toolbar"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
                             android:background="@android:color/transparent"
+                            android:tint="@color/colorPrimaryDark"
                             android:src="@drawable/ic_search_green_30dp"/>
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <!-- search edit -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="0.70"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_toEndOf="@id/rl_search_button_toolbar"
+                        android:layout_toStartOf="@id/rl_close_btn_search_toolbar"
                         android:orientation="vertical">
 
                         <com.example.virussafeagro.uitilities.ExtendedEditText
@@ -205,29 +205,31 @@
                             android:paddingStart="5dp"
                             android:paddingEnd="5dp"
                             android:background="@drawable/shape_edit_search_toolbar"
-                            android:hint="Search Tomato Virus" />
+                            android:textColorHint="@color/colorPrimarySearchHint"
+                            android:hint="Search xxx" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <!-- search close -->
-                    <LinearLayout
-                        android:id="@+id/ll_close_btn_search_toolbar"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.13"
+                    <RelativeLayout
+                        android:id="@+id/rl_close_btn_search_toolbar"
+                        android:layout_width="50dp"
                         android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
                         android:padding="5dp"
-                        android:background="@drawable/ripple_close_btn_search_toolbar"
-                        android:orientation="vertical">
+                        android:background="@drawable/ripple_close_btn_search_toolbar">
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
                             android:background="@android:color/transparent"
                             android:src="@drawable/ic_close_white_30dp" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
             </RelativeLayout>
 

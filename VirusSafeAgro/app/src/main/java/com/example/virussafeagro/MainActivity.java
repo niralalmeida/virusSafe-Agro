@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
@@ -66,30 +67,27 @@ public class MainActivity extends AppCompatActivity {
     // toolbar
     private Toolbar toolbar;
     private RelativeLayout toolbarAllViewsRelativeLayout;
+    // toolbar - back button
+    private RelativeLayout backButtonRelativeLayout;
     // toolbar - title
-    private LinearLayout titleLinearLayout;
     private TextView titleTextView;
     // toolbar - search area
-    private LinearLayout allSearchViewLinearLayout;
-    private LinearLayout searchLinearLayout;
+    private RelativeLayout allSearchViewRelativeLayout;
+    private RelativeLayout searchButtonRelativeLayout;
     private ImageView searchImageView;
     private com.example.virussafeagro.uitilities.ExtendedEditText doSearchEditText;
-    private LinearLayout closeSearchLinearLayout; // for button
+    private RelativeLayout closeSearchButtonRelativeLayout; // for button
     // toolbar - buttons
     private LinearLayout topButtonsLinearLayout;
     // toolbar - tip / more
     private RelativeLayout tipRelativeLayout;
     private RelativeLayout moreRelativeLayout;
     private ImageView moreImageView;
-    private View lineView1;
     // toolbar - quiz
     private RelativeLayout quizRelativeLayout;
-    private View lineView2;
-    private View lineView3;
+//    private View lineView2;
+//    private View lineView3;
     
-    // swipe up image
-    private ImageView swipeImageView;
-    private DragYRelativeLayout swipeImageDragYRelativeLayout;
     // app tips
     private DragYRelativeLayout tipDragYRelativeLayout;
     // app lottie animation
@@ -111,7 +109,10 @@ public class MainActivity extends AppCompatActivity {
     public static boolean FROM_VIRUS_INFO_PAGE;
     public static boolean FROM_NUTRIENT_PAGE;
 
-    public static int TOOLBAR_SEARCH_BUTTON;
+    public static int TOOLBAR_BACK_BUTTON_WIDTH;
+    public static int TOOLBAR_SEARCH_BUTTON_WIDTH;
+    public static int TOOLBAR_SEARCH_CLOSE_BUTTON_WIDTH;
+    public static int TOOLBAR_TIP_MORE_BUTTONS_WIDTH;
     public static int TOOLBAR_SEARCH_EDIT_AND_CLOSE;
 
     public static final int PASSWORD_REQUEST_CODE = 9;
@@ -146,24 +147,19 @@ public class MainActivity extends AppCompatActivity {
         // initialize background image
         this.toolbar = findViewById(R.id.toolbar);
         this.toolbarAllViewsRelativeLayout = findViewById(R.id.rl_all_views_toolbar);
-        this.titleLinearLayout = findViewById(R.id.ll_title_toolbar);
+        this.backButtonRelativeLayout = findViewById(R.id.rl_back_button_toolbar);
         this.titleTextView = findViewById(R.id.tv_title_toolbar);
-        this.allSearchViewLinearLayout = findViewById(R.id.ll_all_search_views_toolbar);
-        this.searchLinearLayout = findViewById(R.id.ll_search_toolbar);
-        this.searchImageView = findViewById(R.id.img_search_toolbar);
+        this.allSearchViewRelativeLayout = findViewById(R.id.rl_all_search_views_toolbar);
+        this.searchButtonRelativeLayout = findViewById(R.id.rl_search_button_toolbar);
+        this.searchImageView = findViewById(R.id.img_search_button_toolbar);
         this.doSearchEditText = findViewById(R.id.et_do_search_toolbar);
-        this.closeSearchLinearLayout = findViewById(R.id.ll_close_btn_search_toolbar);
+        this.closeSearchButtonRelativeLayout = findViewById(R.id.rl_close_btn_search_toolbar);
         this.topButtonsLinearLayout = findViewById(R.id.ll_buttons_toolbar);
         this.tipRelativeLayout = findViewById(R.id.rl_tip_toolbar);
         this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
         this.moreImageView = findViewById(R.id.img_more_toolbar);
-        this.lineView1 = findViewById(R.id.v_line1_vertical_toolbar);
-        this.lineView2 = findViewById(R.id.v_line2_vertical_toolbar);
-        this.lineView3 = findViewById(R.id.v_line3_vertical_toolbar);
         this.quizRelativeLayout = findViewById(R.id.rl_quiz_toolbar);
         this.floatingActionButton = findViewById(R.id.fab);
-        this.swipeImageView = findViewById(R.id.img_swipe_app);
-        this.swipeImageDragYRelativeLayout = findViewById(R.id.drl_image_app);
         this.tipDragYRelativeLayout = findViewById(R.id.drl_tip_app);
         this.animationImageRelativeLayout = findViewById(R.id.rl_animation_image_main);
         // bottom bar
@@ -174,6 +170,11 @@ public class MainActivity extends AppCompatActivity {
         this.toolkitRelativeLayout = findViewById(R.id.rl_toolkit_bottom_bar);
         this.toolkitImageView = findViewById(R.id.img_toolkit_bottom_bar);
         this.toolkitTextView = findViewById(R.id.tv_toolkit_bottom_bar);
+
+        TOOLBAR_BACK_BUTTON_WIDTH = DataConverter.dip2px(this, 40);
+        TOOLBAR_SEARCH_BUTTON_WIDTH = DataConverter.dip2px(this, 45);
+        TOOLBAR_SEARCH_CLOSE_BUTTON_WIDTH = DataConverter.dip2px(this, 50);
+        TOOLBAR_TIP_MORE_BUTTONS_WIDTH = DataConverter.dip2px(this, 85);
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -289,14 +290,9 @@ public class MainActivity extends AppCompatActivity {
             tipRelativeLayout.setActivated(true);
             // change bg
             tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorDarkBackground));
-            // hide vertical line
-            lineView2.setVisibility(View.GONE);
         } else {
             tipRelativeLayout.setActivated(false);
             tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkTheme));
-            if ((!tipRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
-                lineView2.setVisibility(View.VISIBLE);
-            }
         }
     }
 
@@ -310,8 +306,6 @@ public class MainActivity extends AppCompatActivity {
 //            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_checked);
 //            moreImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
 //            moreImageView.setImageTintList(colorStateList);
-            // hide vertical line
-            lineView2.setVisibility(View.GONE);
         } else {
             moreRelativeLayout.setActivated(false);
             // change bg
@@ -320,9 +314,6 @@ public class MainActivity extends AppCompatActivity {
 //            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorWhite);
 //            moreImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
 //            moreImageView.setImageTintList(colorStateList);
-            if ((!tipRelativeLayout.isActivated()) && (!moreRelativeLayout.isActivated())) {
-                lineView2.setVisibility(View.VISIBLE);
-            }
         }
     }
 
@@ -342,10 +333,6 @@ public class MainActivity extends AppCompatActivity {
         return quizRelativeLayout;
     }
 
-    public View getLineView1() {
-        return lineView1;
-    }
-
     public void hideTheLottieAnimationView() {
         this.animationImageRelativeLayout.setVisibility(View.GONE);
     }
@@ -355,25 +342,22 @@ public class MainActivity extends AppCompatActivity {
         // show search button
         this.moveForOnlyShowSearchIcon(); // move search button
         // move tip and more + show line 3
-        TOOLBAR_SEARCH_BUTTON = this.searchLinearLayout.getWidth();
-        MyAnimationBox.runFadeInAnimation(this.lineView3, 800);
-        this.moveTipAndMoreToLeft(800);
+        this.moveTipAndMoreToLeft(200);
 
         new Handler().postDelayed(()->{
             // show search button
-            this.setSearchButtonVisible(true, true, 800);
+            this.setSearchButtonVisible(true, true, 200);
             // set search button on click listener
             this.setSearchOnClickListener();
             // set close search button on click listener
             this.setCloseSearchOnClickListener();
-        }, 800);
+        }, 200);
 
     }
 
     // close search function
     public void closeSearch() {
         // set GONE to all search views
-        this.lineView3.setVisibility(View.GONE);
         mainActivity.setAllSearchViewLinearLayoutVisibility(View.GONE);
         // hide search area
         // clear the edit text content
@@ -386,11 +370,15 @@ public class MainActivity extends AppCompatActivity {
     // only show search button (hide edit and close button )
     public void moveForOnlyShowSearchIcon() {
         // change the search icon style
-        searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
-        searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
+        searchButtonRelativeLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
+
+        // change image tint color
+        ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryTitle);
+        searchImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+        searchImageView.setImageTintList(colorStateList);
+
         // hide EditText and close button
-        TOOLBAR_SEARCH_EDIT_AND_CLOSE = doSearchEditText.getWidth() + closeSearchLinearLayout.getWidth();
-        this.allSearchViewLinearLayout.setX(TOOLBAR_SEARCH_EDIT_AND_CLOSE + 3);
+        this.allSearchViewRelativeLayout.setX(this.toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_SEARCH_BUTTON_WIDTH);
     }
 
     // move the "tip" and "more" buttons to left
@@ -399,7 +387,7 @@ public class MainActivity extends AppCompatActivity {
         MyAnimationBox.runSlideInAnimationFromRight(
                 this.topButtonsLinearLayout,
                 this.topButtonsLinearLayout.getX(),
-                this.toolbarAllViewsRelativeLayout.getWidth() - this.searchLinearLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
+                this.toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_SEARCH_BUTTON_WIDTH - this.topButtonsLinearLayout.getWidth(),
                 duration);
     }
 
@@ -408,33 +396,18 @@ public class MainActivity extends AppCompatActivity {
         if (FROM_VIRUS_INFO_PAGE || FROM_NUTRIENT_PAGE) {
             FROM_VIRUS_INFO_PAGE = false;
             FROM_NUTRIENT_PAGE = false;
-            switch (fragmentTag) {
-
-                case AppResources.FRAGMENT_TAG_LEARN:
-                case AppResources.FRAGMENT_TAG_VIRUS_CHECK:
-                case AppResources.FRAGMENT_TAG_TOOLKIT:
-                    MyAnimationBox.runSlideInAnimationFromRight(
-                            this.topButtonsLinearLayout,
-                            this.topButtonsLinearLayout.getX() + TOOLBAR_SEARCH_BUTTON,
-                            this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth() + TOOLBAR_SEARCH_BUTTON,
-                            duration);
-                    break;
-
-                case AppResources.FRAGMENT_TAG_MORE:
-                    MyAnimationBox.runSlideInAnimationFromRight(
-                            this.topButtonsLinearLayout,
-                            this.topButtonsLinearLayout.getX() + TOOLBAR_SEARCH_BUTTON,
-                            this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
-                            duration);
-                    break;
-
-                default:
-                    MyAnimationBox.runSlideInAnimationFromRight(
-                            this.topButtonsLinearLayout,
-                            this.topButtonsLinearLayout.getX(),
-                            this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
-                            duration);
-                    break;
+            if (AppResources.FRAGMENT_TAG_VIRUS_DETAIL.equals(fragmentTag)) {
+                MyAnimationBox.runSlideInAnimationFromRight(
+                        this.topButtonsLinearLayout,
+                        this.topButtonsLinearLayout.getX(),
+                        this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
+                        duration);
+            } else {// hide search button -> move to right
+                MyAnimationBox.runSlideInAnimationFromRight(
+                        this.topButtonsLinearLayout,
+                        this.topButtonsLinearLayout.getX(),
+                        this.toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_TIP_MORE_BUTTONS_WIDTH - 10,
+                        duration);
             }
         }
     }
@@ -443,24 +416,24 @@ public class MainActivity extends AppCompatActivity {
     public void setSearchButtonVisible(boolean showOrHide, boolean withFadeAnimation, int duration) {
         if (showOrHide) {
             if (withFadeAnimation) {
-                MyAnimationBox.runFadeInAnimation(this.allSearchViewLinearLayout, duration);
+                MyAnimationBox.runFadeInAnimation(this.allSearchViewRelativeLayout, duration);
             } else {
-                this.allSearchViewLinearLayout.setVisibility(View.VISIBLE);
+                this.allSearchViewRelativeLayout.setVisibility(View.VISIBLE);
             }
         } else {
             if (withFadeAnimation) {
-                MyAnimationBox.runFadeOutAnimation(this.allSearchViewLinearLayout, duration);
+                MyAnimationBox.runFadeOutAnimation(this.allSearchViewRelativeLayout, duration);
             } else {
-                this.allSearchViewLinearLayout.setVisibility(View.GONE);
+                this.allSearchViewRelativeLayout.setVisibility(View.GONE);
             }
         }
     }
 
     // set search button on click listener
     public void setSearchOnClickListener() {
-        this.searchLinearLayout.setOnClickListener(v -> {
-            if (this.allSearchViewLinearLayout.getX() != 0) {
-                showSearchArea(500);
+        this.searchButtonRelativeLayout.setOnClickListener(v -> {
+            if (this.allSearchViewRelativeLayout.getX() != TOOLBAR_BACK_BUTTON_WIDTH) {
+                showSearchArea(200);
             }
         });
     }
@@ -468,21 +441,24 @@ public class MainActivity extends AppCompatActivity {
     // show search area
     public void showSearchArea(int duration) {
         // change the search icon style (green icon)
-        searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_search_toolbar);
-        searchImageView.setImageResource(R.drawable.ic_search_green_30dp);
+        searchButtonRelativeLayout.setBackgroundResource(R.drawable.ripple_btn_search_toolbar);
+        // change image tint color
+        ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.btnSearch);
+        searchImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+        searchImageView.setImageTintList(colorStateList);
 
         // show search area
         MyAnimationBox.runSlideInAnimationFromRight(
-                this.allSearchViewLinearLayout,
-                this.allSearchViewLinearLayout.getX(),
-                0,
+                this.allSearchViewRelativeLayout,
+                this.allSearchViewRelativeLayout.getX(),
+                TOOLBAR_BACK_BUTTON_WIDTH,
                 duration);
     }
 
     // set close search button on click listener
     public void setCloseSearchOnClickListener() {
-        this.closeSearchLinearLayout.setOnClickListener(v -> {
-            hideSearchArea(500);
+        this.closeSearchButtonRelativeLayout.setOnClickListener(v -> {
+            hideSearchArea(200);
         });
     }
 
@@ -494,19 +470,22 @@ public class MainActivity extends AppCompatActivity {
         doSearchEditText.setText("");
         // hide search area
         MyAnimationBox.runSlideInAnimationFromRight(
-                allSearchViewLinearLayout,
-                allSearchViewLinearLayout.getX(),
-                TOOLBAR_SEARCH_EDIT_AND_CLOSE + 1,
+                allSearchViewRelativeLayout,
+                allSearchViewRelativeLayout.getX(),
+                toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_SEARCH_BUTTON_WIDTH,
                 duration);
         // change the search icon style (white icon)
         new Handler().postDelayed(() ->{
-            searchLinearLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
-            searchImageView.setImageResource(R.drawable.ic_search_white_30dp);
+            searchButtonRelativeLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
+            // change image tint color
+            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryTitle);
+            searchImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            searchImageView.setImageTintList(colorStateList);
         }, duration);
     }
 
     public void setAllSearchViewLinearLayoutVisibility(int visibility) {
-        allSearchViewLinearLayout.setVisibility(visibility);
+        allSearchViewRelativeLayout.setVisibility(visibility);
     }
 
     // show or not top bar back button
@@ -527,8 +506,8 @@ public class MainActivity extends AppCompatActivity {
             Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
         } else {
             // add back button
-            Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-            Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(true);
+            Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+            Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
         }
     }
 
