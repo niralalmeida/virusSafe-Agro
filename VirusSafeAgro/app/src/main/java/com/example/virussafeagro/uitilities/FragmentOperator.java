@@ -48,10 +48,10 @@ public class FragmentOperator {
     }
 
     // replace the fragment view with slide in animation
-    public static void replaceFragmentWithSlideFromBottomAnimationNoBackStack(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
+    public static void replaceFragmentWithSlideFromBottomAnimation(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
         FragmentTransaction fragmentTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.enter_from_bottom, 0);
-        fragmentTransaction.replace(R.id.fl_fragments, nextFragment, fragmentTag).commit();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_bottom, 0,0, R.anim.exit_to_bottom);
+        fragmentTransaction.replace(R.id.fl_fragments, nextFragment, fragmentTag).addToBackStack(null).commit();
     }
 
     public static void closeFragmentWithSlideToBottomAnimation(FragmentActivity fragmentActivity, Fragment fragmentToRemove){
@@ -87,39 +87,4 @@ public class FragmentOperator {
         }
     }
 
-    // remove the fragment view from the stack with slide to bottom animation
-    public static void removeFragmentWithSlideToBottomAnimation(FragmentActivity fragmentActivity, Fragment fragmentToRemove){
-        fragmentActivity.getSupportFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(0, R.anim.exit_to_bottom)
-                .remove(fragmentToRemove)
-                .commit();
-    }
-
-    // remove all fragments view from the stack
-    public static void removeAllFragments(FragmentActivity fragmentActivity){
-        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
-        for (Fragment fragment : fragmentManager.getFragments()){
-            fragmentManager
-                    .beginTransaction()
-                    .remove(fragment)
-                    .commit();
-        }
-    }
-
-    // remove all fragments view from the stack
-    public static void removeAllFragmentsForBottomItem(FragmentActivity fragmentActivity){
-        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
-        List<Fragment> fragmentList = fragmentManager.getFragments();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        int count = fragmentList.size();
-        for (int i = 0; i < count; i++){
-            Fragment fragment = fragmentList.get(i);
-            if ((fragment instanceof LearnFragment) || (fragment instanceof ToolkitFragment)){
-                fragmentTransaction.setCustomAnimations(0, R.anim.exit_to_bottom).remove(fragment).commit();
-            } else {
-                fragmentTransaction.remove(fragment).commit();
-            }
-        }
-    }
 }

@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 if ((foundFragment instanceof LearnFragment) || (foundFragment instanceof ToolkitFragment)) {
                     // hide the fragment
-                    FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                    FragmentOperator.popAllFragmentsInStack(fragmentManager);
                     new Handler().postDelayed(() -> {
                         FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
                     }, 200);
@@ -538,7 +538,7 @@ public class MainActivity extends AppCompatActivity {
             if (foundFragment instanceof LearnFragment) { // is learn --> hide "learn" show main page
 
                 // hide the fragment
-                FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                FragmentOperator.popAllFragmentsInStack(fragmentManager);
                 // set title
                 titleTextView.setText(R.string.app_name);
                 // show the animation
@@ -562,18 +562,18 @@ public class MainActivity extends AppCompatActivity {
                 // hide more fragment
                 FragmentOperator.backToLastFragment(mainActivity);
                 // remove all fragment in stack
-                FragmentOperator.removeAllFragments(mainActivity);
+                FragmentOperator.popAllFragmentsInStack(fragmentManager);
                 new Handler().postDelayed(() -> {
                     // show the learn fragment
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimation(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                 }, 200);
             }
             else {
                 // hide the fragment
-                FragmentOperator.removeAllFragmentsForBottomItem(mainActivity);
+                FragmentOperator.popAllFragmentsInStack(fragmentManager);
                 new Handler().postDelayed(() -> {
                     // show learn fragment
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimation(mainActivity, new LearnFragment(), AppResources.FRAGMENT_TAG_LEARN);
                 }, 200);
             }
         });
@@ -586,7 +586,7 @@ public class MainActivity extends AppCompatActivity {
             // check current fragment
             if (foundFragment instanceof ToolkitFragment) {
                 // hide the fragment
-                FragmentOperator.removeFragmentWithSlideToBottomAnimation(mainActivity, foundFragment);
+                FragmentOperator.popAllFragmentsInStack(fragmentManager);
 
                 // set title
                 titleTextView.setText(R.string.app_name);
@@ -612,17 +612,17 @@ public class MainActivity extends AppCompatActivity {
                 // hide more fragment
                 FragmentOperator.backToLastFragment(mainActivity);
                 // remove all fragment in stack
-                FragmentOperator.removeAllFragments(mainActivity);
+                FragmentOperator.popAllFragmentsInStack(fragmentManager);
                 new Handler().postDelayed(() -> {
                     // show the learn fragment
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimation(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
                 }, 200);
             }
             else {
                 // hide the fragment
-                FragmentOperator.removeAllFragmentsForBottomItem(mainActivity);
+                FragmentOperator.popAllFragmentsInStack(fragmentManager);
                 new Handler().postDelayed(() -> {
-                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimationNoBackStack(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
+                    FragmentOperator.replaceFragmentWithSlideFromBottomAnimation(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
                 }, 200);
             }
         });
