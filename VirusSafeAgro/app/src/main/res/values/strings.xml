@@ -105,6 +105,8 @@
     <string name="text_content_virus_learn">There are 9 types of viruses in tomato plants. Tap on the tile to learn something about them.</string>
     <string name="text_title_nutrient_learn">NUTRIENT DEFICIENCIES</string>
     <string name="text_content_nutrient_learn">There are 11 types of nutrient deficiencies in tomato plants. Tap on the tile to read about the nutrient deficiencies in tomato plants.</string>
+    <string name="text_title_tomato_growth_tip_learn">TIPS FOR GROWING TOMATOES</string>
+    <string name="text_content_tomato_growth_tip_learn">Know about the favorable conditions, fertilizers and much more about growing the tomato plants. Tap on the tile to read about the tips to grow tomato plants.</string>
 
     <!-- tweet -->
     <string name="text_site_dot_tweet">\@stockandland&#160;•&#160;</string>

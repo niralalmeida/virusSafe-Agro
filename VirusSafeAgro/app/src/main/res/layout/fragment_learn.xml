@@ -11,9 +11,10 @@
         android:id="@+id/rl_all_views_learn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:padding="15dp">
 
-        <!-- timing of virus -->
+        <!-- virus -->
         <RelativeLayout
             android:id="@+id/rl_virus_learn"
             android:layout_width="match_parent"
@@ -69,7 +70,7 @@
 
         </RelativeLayout>
 
-        <!-- non-virus learn -->
+        <!-- nutrient -->
         <RelativeLayout
             android:id="@+id/rl_nutrient_learn"
             android:layout_width="match_parent"
@@ -124,6 +125,61 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="13sp"
                 android:text="@string/text_content_nutrient_learn" />
+
+        </RelativeLayout>
+
+        <!-- tomato growth tip -->
+        <RelativeLayout
+            android:id="@+id/rl_tomato_growth_tip_learn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_nutrient_learn"
+            android:layout_marginTop="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:background="@drawable/ripple_tile_rectangle">
+
+            <TextView
+                android:id="@+id/tv_title_tomato_growth_tip_learn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:text="@string/text_title_tomato_growth_tip_learn"/>
+
+            <RelativeLayout
+                android:id="@+id/iv_tomato_growth_tip_learn"
+                android:layout_below="@+id/tv_title_tomato_growth_tip_learn"
+                android:layout_marginTop="10dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/tip_i"/>
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_content_tomato_growth_tip_learn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title_tomato_growth_tip_learn"
+                android:layout_toEndOf="@+id/iv_tomato_growth_tip_learn"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp"
+                android:text="@string/text_content_tomato_growth_tip_learn" />
 
         </RelativeLayout>
 
