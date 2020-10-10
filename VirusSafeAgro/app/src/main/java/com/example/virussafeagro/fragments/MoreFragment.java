@@ -109,8 +109,6 @@ public class MoreFragment extends Fragment {
 
         // set more button
         mainActivity.setMoreButton(false);
-        // remove all fragment in the stack
-        FragmentOperator.removeAllFragments(mainActivity);
         // set default title and remove back button
         this.mainActivity.getTitleTextView().setText(R.string.app_name);
         Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);

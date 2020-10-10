@@ -44,6 +44,9 @@ public class ToolkitFragment extends Fragment {
         // Inflate the View for this fragment
         this.view = inflater.inflate(R.layout.fragment_toolkit, container, false);
 
+        // remove all fragment in the stack
+        FragmentOperator.removeAllFragments(mainActivity);
+
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
         // set title

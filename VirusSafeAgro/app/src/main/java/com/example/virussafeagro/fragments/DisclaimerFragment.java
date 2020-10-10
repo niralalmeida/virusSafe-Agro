@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
