@@ -45,10 +45,9 @@
                         android:adjustViewBounds="false"
                         android:scaleType="fitXY"
                         android:tint="@color/colorPrimaryTitle"
-                        android:src="@drawable/back2"/>
+                        android:src="@drawable/back1"/>
 
                 </RelativeLayout>
-
 
                 <!-- title -->
                 <LinearLayout

@@ -240,6 +240,8 @@ public class MainActivity extends AppCompatActivity {
         this.setTipOnClickListener();
         // more
         this.setMoreOnClickListener();
+        // back button
+        this.setBackButtonOnClickListener();
     }
 
     private void setTipOnClickListener() {
@@ -494,34 +496,51 @@ public class MainActivity extends AppCompatActivity {
         boolean isVirusCheckResultFragment = currentVisibleFragment instanceof VirusCheckResultFragment;
         boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
         if ((currentVisibleFragment == null)
-                || isToolkitFragment
-                || isLearnFragment
-                || isVirusCheckResultFragment
-                || isMoreFragment ){
-            Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
-            Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
+            || isToolkitFragment
+            || isLearnFragment
+            || isVirusCheckResultFragment
+            || isMoreFragment ){
+//            Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+//            Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
+
+            // hide back button
+            if (mainActivity.backButtonRelativeLayout.getVisibility() != View.GONE){
+                MyAnimationBox.runFadeOutAnimation(mainActivity.backButtonRelativeLayout, 200);
+            }
+
         } else {
-            // add back button
-            Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
-            Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
+            // show back button
+            if (mainActivity.backButtonRelativeLayout.getVisibility() == View.GONE) {
+                MyAnimationBox.runFadeInAnimation(mainActivity.backButtonRelativeLayout, 200);
+            }
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        FragmentOperator.backToLastFragment(this);
-        return super.onOptionsItemSelected(item);
+    // se on click listener for back button in toolbar
+    private void setBackButtonOnClickListener() {
+        backButtonRelativeLayout.setOnClickListener(v -> {
+            int fragmentCount = fragmentManager.getBackStackEntryCount();
+            if (fragmentCount > 0) {
+                FragmentOperator.backToLastFragment(this);
+            }
+        });
     }
 
-    @Override
-    public void onBackPressed() {
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-        if (count == 0) {
-            super.onBackPressed();
-        } else {
-            FragmentOperator.backToLastFragment(this);
-        }
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        FragmentOperator.backToLastFragment(this);
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        int count = getSupportFragmentManager().getBackStackEntryCount();
+//        if (count == 0) {
+//            super.onBackPressed();
+//        } else {
+//            FragmentOperator.backToLastFragment(this);
+//        }
+//    }
 
     private void initializeMyBottomBar() {
         this.setBottomNavigationViewExItemOnSelectedListener();
