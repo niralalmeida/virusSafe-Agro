@@ -7,15 +7,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.virussafeagro.adapters.OnBoardingSlideAdapter;
 import com.example.virussafeagro.uitilities.AppAuthentication;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
@@ -24,7 +28,7 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     private ViewPager slideViewPager;
     private LinearLayout dotButtonsLinearLayout;
-    private TextView[] bottomDotsTextViewArray;
+    private ImageView[] bottomDotsImageViewArray; // store dots
     private Button skipButton;
     private TextView swipeTextView;
     private Button backButton;
@@ -32,7 +36,7 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     private OnBoardingSlideAdapter onBoardingSlideAdapter;
     private int currentPagePosition;
-    private boolean isLaunchAppListenerSet;
+    private static boolean IS_LAUNCH_BUTTON_LISTENER_ON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +55,14 @@ public class OnBoardingActivity extends AppCompatActivity {
         // show swipe tip
         this.showSwipe();
 
-        // configure dots
-            // add dots
+        // configure dots + add dots
         this.addDotsIndicator(0);
-            // add dots listener
-        this.slideViewPager.addOnPageChangeListener(this.viewPagerListener);
 
         // configure back and next buttons
         this.configureButtons();
+
+        // add view pager on change listener
+        this.slideViewPager.addOnPageChangeListener(this.viewPagerListener);
 
         // show password activity
         new Handler().postDelayed(this::showPasswordActivity,200);
@@ -107,20 +111,29 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     private void addDotsIndicator(int position) {
 
-        this.bottomDotsTextViewArray = new TextView[OnBoardingSlideAdapter.slide_headings.length];
+        this.bottomDotsImageViewArray = new ImageView[OnBoardingSlideAdapter.slide_headings.length];
         this.dotButtonsLinearLayout.removeAllViews();
 
-        for (int i = 0; i < this.bottomDotsTextViewArray.length; i++) {
-            this.bottomDotsTextViewArray[i] = new TextView(this);
-            this.bottomDotsTextViewArray[i].setText(Html.fromHtml("&#8226&nbsp"));
-            this.bottomDotsTextViewArray[i].setTextSize(50);
-            this.bottomDotsTextViewArray[i].setTextColor(getResources().getColor(R.color.colorGreyForDots));
+        for (int i = 0; i < this.bottomDotsImageViewArray.length; i++) {
+            this.bottomDotsImageViewArray[i] = new ImageView(this);
+            this.bottomDotsImageViewArray[i].setImageResource(R.drawable.shape_dot_unchecked_on_boarding);
+            // add dot into the linear layout
+            dotButtonsLinearLayout.addView(this.bottomDotsImageViewArray[i]);
 
-            dotButtonsLinearLayout.addView(this.bottomDotsTextViewArray[i]);
+            // set attributes for dot
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) this.bottomDotsImageViewArray[i].getLayoutParams();
+            // set vertical center
+            layoutParams.gravity = Gravity.CENTER_VERTICAL;
+            // set interval for each 2 dots
+            if (i != 0){
+                layoutParams.setMarginStart(DataConverter.dip2px(this, 5));
+            }
+            this.bottomDotsImageViewArray[i].setLayoutParams(layoutParams);
         }
 
-        if (this.bottomDotsTextViewArray.length > 0) {
-            bottomDotsTextViewArray[position].setTextColor(getResources().getColor(R.color.colorWhite));
+        // set dot selected
+        if (this.bottomDotsImageViewArray.length > 0) {
+            this.bottomDotsImageViewArray[position].setImageResource(R.drawable.shape_dot_checked_on_boarding);
         }
     }
 
@@ -128,9 +141,9 @@ public class OnBoardingActivity extends AppCompatActivity {
         for (int dotIndex = 0; dotIndex < OnBoardingSlideAdapter.slide_headings.length; dotIndex++) {
             // add on click listener
             if (dotIndex != currentPagePosition) {
-                TextView tv = bottomDotsTextViewArray[dotIndex];
+                ImageView imageView = bottomDotsImageViewArray[dotIndex];
                 int finalDotIndex = dotIndex;
-                tv.setOnClickListener(view -> {
+                imageView.setOnClickListener(view -> {
                     slideViewPager.setCurrentItem(finalDotIndex);
                 });
             }
@@ -150,8 +163,8 @@ public class OnBoardingActivity extends AppCompatActivity {
             currentPagePosition = position;
 
             // set launch app button on click listener
-            if ((onBoardingSlideAdapter.getLaunchAppButton() != null) && (!isLaunchAppListenerSet)){
-                isLaunchAppListenerSet = true;
+            if ((position == OnBoardingSlideAdapter.slide_headings.length - 1) && (!IS_LAUNCH_BUTTON_LISTENER_ON)){
+                IS_LAUNCH_BUTTON_LISTENER_ON = true;
                 setLaunchAppButtonOnClickListener();
             }
 
