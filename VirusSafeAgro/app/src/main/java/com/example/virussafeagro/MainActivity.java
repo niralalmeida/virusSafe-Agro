@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         this.toolkitTextView = findViewById(R.id.tv_toolkit_bottom_bar);
 
         TOOLBAR_BACK_BUTTON_WIDTH = DataConverter.dip2px(this, 40);
-        TOOLBAR_SEARCH_BUTTON_WIDTH = DataConverter.dip2px(this, 45);
+        TOOLBAR_SEARCH_BUTTON_WIDTH = DataConverter.dip2px(this, 55);
         TOOLBAR_SEARCH_CLOSE_BUTTON_WIDTH = DataConverter.dip2px(this, 50);
         TOOLBAR_TIP_MORE_BUTTONS_WIDTH = DataConverter.dip2px(this, 85);
     }
@@ -370,7 +370,7 @@ public class MainActivity extends AppCompatActivity {
         // change the search icon style
         searchButtonRelativeLayout.setBackgroundResource(R.drawable.ripple_btn_open_search_toolbar);
 
-        // change image tint color
+        // change search button image tint color
         ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryTitle);
         searchImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
         searchImageView.setImageTintList(colorStateList);
@@ -441,7 +441,7 @@ public class MainActivity extends AppCompatActivity {
         // change the search icon style (green icon)
         searchButtonRelativeLayout.setBackgroundResource(R.drawable.ripple_btn_search_toolbar);
         // change image tint color
-        ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.btnSearch);
+        ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimarySearchHint);
         searchImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
         searchImageView.setImageTintList(colorStateList);
 

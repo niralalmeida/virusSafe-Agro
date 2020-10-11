@@ -69,6 +69,9 @@
     <color name="btnSearch">#2E86C1</color>
     <color name="btnOnPress">#909497</color>
     <color name="btnNotOnPress">#474747</color>
+    <color name="etBorder">#1E1E1E</color>
+    <color name="etFill">#000000</color>
+<!--    <color name="etFill">#373737</color>-->
 
     <!-- virus check -->
     <color name="bottomSheetBG">#474747</color>

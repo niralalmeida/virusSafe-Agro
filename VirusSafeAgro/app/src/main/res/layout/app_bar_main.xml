@@ -166,44 +166,47 @@
                     android:layout_marginStart="40dp"
                     android:background="@drawable/shape_search_toolbar">
 
-                    <!-- search button -->
-                    <RelativeLayout
-                        android:id="@+id/rl_search_button_toolbar"
-                        android:layout_width="45dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentStart="true"
-                        android:background="@drawable/ripple_btn_search_toolbar">
-
-                        <ImageView
-                            android:id="@+id/img_search_button_toolbar"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_centerVertical="true"
-                            android:layout_centerHorizontal="true"
-                            android:background="@android:color/transparent"
-                            android:tint="@color/colorPrimaryDark"
-                            android:src="@drawable/ic_search_green_30dp"/>
-
-                    </RelativeLayout>
-
-                    <!-- search edit -->
+                    <!-- search button + search edit  -->
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/rl_search_button_toolbar"
+                        android:layout_alignParentStart="true"
                         android:layout_toStartOf="@id/rl_close_btn_search_toolbar"
+                        android:background="@drawable/shape_edit_search_toolbar"
                         android:orientation="vertical">
 
+                        <!-- search button -->
+                        <RelativeLayout
+                            android:id="@+id/rl_search_button_toolbar"
+                            android:layout_width="55dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:background="@drawable/ripple_btn_search_toolbar">
+
+                            <ImageView
+                                android:id="@+id/img_search_button_toolbar"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true"
+                                android:background="@android:color/transparent"
+                                android:tint="@color/colorPrimaryDark"
+                                android:src="@drawable/ic_search_green_30dp"/>
+
+                        </RelativeLayout>
+
+                        <!-- search edit  -->
                         <com.example.virussafeagro.uitilities.ExtendedEditText
                             android:id="@+id/et_do_search_toolbar"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_toEndOf="@id/rl_search_button_toolbar"
                             android:cursorVisible="true"
                             android:textCursorDrawable="@drawable/shape_cursor_search_toolbar"
                             android:textColor="@color/colorBlack"
                             android:paddingStart="5dp"
                             android:paddingEnd="5dp"
-                            android:background="@drawable/shape_edit_search_toolbar"
+                            android:background="@android:color/transparent"
                             android:textColorHint="@color/colorPrimarySearchHint"
                             android:hint="Search xxx" />
 

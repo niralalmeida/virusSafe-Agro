@@ -131,7 +131,7 @@ public class VirusInfoListFragment extends Fragment {
         this.virusSearchLinearLayout = view.findViewById(R.id.ll_search_virus_list);
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
-        this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_quiz_question);
+        this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_info_list);
         this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
     }
 

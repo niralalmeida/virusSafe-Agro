@@ -35,8 +35,6 @@ public class NutrientDetailFragment extends Fragment {
     private View view;
     private NutrientModel currentNutrientModel;
 
-    private RelativeLayout nutrientDetailRelativeLayout;
-
     private TextView nutrientNameTextView;
     private ImageView nutrientPictureImageView;
 
@@ -87,7 +85,6 @@ public class NutrientDetailFragment extends Fragment {
         super.onResume();
 
         // show nutrient details
-        MyAnimationBox.runFadeInAnimation(this.nutrientDetailRelativeLayout, 1000);
         this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
         this.showNutrientDetails();
         this.showSymptomsContent();
@@ -97,8 +94,6 @@ public class NutrientDetailFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.nutrientDetailRelativeLayout = view.findViewById(R.id.rl_nutrient_detail);
-
         this.nutrientNameTextView = view.findViewById(R.id.tv_name_nutrient_detail);
         this.nutrientPictureImageView = view.findViewById(R.id.img_top_pic_nutrient_detail);
 
