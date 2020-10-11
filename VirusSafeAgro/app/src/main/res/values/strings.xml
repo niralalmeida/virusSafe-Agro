@@ -26,10 +26,10 @@
     <string name="fragment_pesticide_store_map">Pesticide Map</string>
 
     <!-- for on boarding  -->
-    <string name="button_launch_app">Enter</string>
-    <string name="text_swipe">&lt;&lt; Swipe &gt;&gt;</string>
-    <string name="btn_back">Back</string>
-    <string name="btn_next">Next</string>
+    <string name="button_launch_app_boarding">Enter</string>
+    <string name="text_swipe_boarding">&lt;&lt; Swipe &gt;&gt;</string>
+    <string name="btn_back_boarding">Back</string>
+    <string name="btn_next_boarding">Next</string>
 
     <!--  subtitles  -->
     <string name="fragment_virus_single_choice">Single Choice Questions</string>

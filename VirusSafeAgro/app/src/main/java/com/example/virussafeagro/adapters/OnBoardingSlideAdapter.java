@@ -4,27 +4,25 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.uitilities.DataConverter;
 
 public class OnBoardingSlideAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
     private View view;
 
-    private CardView slideImageCardView;
     private ImageView slideImageView;
     private TextView slideHeadingTextView;
     private TextView slideDescriptionTextView;
+    private Button launchAppButton;
 
     // icon id Arrays
     public static int[] slide_images = {
@@ -35,17 +33,17 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
     };
     // String heading Arrays
     public static String[] slide_headings = {
-            "Easy Virus Detection",
-            "Viruses and Nutrient Deficiency",
-            "News and Tweets",
-            "Causes and Control Strategies"
+        "Easy Virus Detection",
+        "Viruses and Nutrient Deficiency",
+        "News and Tweets",
+        "Causes and Control Strategies"
     };
     // String description Arrays
     public static String[] slide_descriptions = {
-            "Upload the image of your tomato plant to \ncheck if it is infected or not.",
-            "Read about virus and nutrient deficiencies in tomato plants.",
-            "Streaming of latest news updates in the field of agriculture.",
-            "Environmental conditions and causes of viral diseases in tomato plants.\n\nChemical and non-chemical strategies to control the spread of virus"
+        "Upload the image of your tomato plant to check if it is infected or not.",
+        "Read about virus and nutrient deficiencies in tomato plants.",
+        "Streaming of latest news updates in the field of agriculture.",
+        "Environmental conditions and causes of viral diseases in tomato plants.\nChemical and non-chemical strategies to control the spread of virus"
     };
 
     public OnBoardingSlideAdapter(Context context) {
@@ -69,6 +67,7 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
         assert layoutInflater != null;
         this.view = layoutInflater.inflate(R.layout.slide_on_boarding, container, false);
 
+        // initialize views
         this.initiateViews();
         this.setContentOfViewsByPosition(position);
         container.addView(this.view);
@@ -77,16 +76,25 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
     }
 
     private void initiateViews() {
-        this.slideImageCardView = view.findViewById(R.id.cv_icon_slide_boarding);
         this.slideImageView = view.findViewById(R.id.img_icon_slide_boarding);
         this.slideHeadingTextView = view.findViewById(R.id.tv_heading_slide_boarding);
         this.slideDescriptionTextView = view.findViewById(R.id.tv_description_slide_boarding);
+        this.launchAppButton = view.findViewById(R.id.btn_launch_app_boarding);
     }
 
     private void setContentOfViewsByPosition(int position) {
         this.slideImageView.setImageResource(slide_images[position]);
         this.slideHeadingTextView.setText(slide_headings[position]);
         this.slideDescriptionTextView.setText(slide_descriptions[position]);
+        if (position == slide_headings.length - 1){
+            this.launchAppButton.setVisibility(View.VISIBLE);
+        } else {
+            this.launchAppButton.setVisibility(View.GONE);
+        }
+    }
+
+    public Button getLaunchAppButton() {
+        return launchAppButton;
     }
 
     @Override

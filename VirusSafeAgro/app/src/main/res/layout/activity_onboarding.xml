@@ -55,7 +55,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="100dp"
             android:textColor="@color/colorWhite"
-            android:text="@string/text_swipe"
+            android:text="@string/text_swipe_boarding"
             android:visibility="gone"/>
 
 
@@ -79,7 +79,6 @@
             android:textColor="@color/colorWhite"
             android:visibility="visible"
             android:background="@android:color/transparent"
-            android:text="@string/btn_back"
             android:layout_toStartOf="@id/ll_dot_button_boarding" />
 
         <Button
@@ -91,7 +90,6 @@
             android:layout_alignParentEnd="true"
             android:textColor="@color/colorWhite"
             android:background="@android:color/transparent"
-            android:text="@string/btn_next"
             android:layout_toEndOf="@id/ll_dot_button_boarding" />
 
     </RelativeLayout>
