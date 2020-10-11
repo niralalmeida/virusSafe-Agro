@@ -270,16 +270,12 @@ public class MainActivity extends AppCompatActivity {
                 ){
                 FragmentOperator.backToLastFragment(this);
 
-            }else if ((foundFragment instanceof LearnFragment) || (foundFragment instanceof ToolkitFragment)) {
-                // hide the fragment
-                FragmentOperator.popAllFragmentsInStack(fragmentManager);
-                    new Handler().postDelayed(() -> {
-                        FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
-                    }, 200);
-
-            } else {
+            }
+            else {
                 // add new MoreFragment
-                FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+                new Handler().postDelayed(() -> {
+                    FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
+                }, 200);
             }
         });
     }
@@ -406,7 +402,7 @@ public class MainActivity extends AppCompatActivity {
                 MyAnimationBox.runSlideInAnimationFromRight(
                         this.topButtonsLinearLayout,
                         this.topButtonsLinearLayout.getX(),
-                        this.toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_TIP_MORE_BUTTONS_WIDTH - 10,
+                        this.toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_TIP_MORE_BUTTONS_WIDTH - DataConverter.dip2px(mainActivity,10),
                         duration);
             }
         }

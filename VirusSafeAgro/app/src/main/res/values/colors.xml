@@ -9,6 +9,7 @@
     <color name="colorPrimaryDarkTheme">#1E1E1E</color>
     <color name="colorPrimaryTitle">#E2E2E2</color>
     <color name="colorPrimarySubTitle">#E0E0E0</color>
+<!--    <color name="colorPrimaryMainButtonBg">#BB86FC</color>-->
     <color name="colorPrimaryMainButtonBg">#5DADE2</color>
     <color name="colorPrimaryDescriptionContent">#A4A4A4</color>
     <color name="colorPrimarySearchHint">#C2C2C2</color>
