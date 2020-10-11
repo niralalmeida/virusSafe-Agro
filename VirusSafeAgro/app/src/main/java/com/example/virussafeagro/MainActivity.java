@@ -45,6 +45,7 @@ import com.example.virussafeagro.fragments.VirusCheckResultFragment;
 import com.example.virussafeagro.fragments.VirusDetailFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizQuestionFragment;
+import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
@@ -219,12 +220,9 @@ public class MainActivity extends AppCompatActivity {
 ////////////////////////////////////////////////// -- Test Quiz -- /////////////////////////////////////////////////////
         this.quizRelativeLayout.setOnClickListener(view -> {
             Intent intent = new Intent(mainActivity, QuizActivity.class);
-//            Bundle bundle = new Bundle();
-//            bundle.putParcelable("currentVirusModel", currentVirusModel);
-//            intent.putExtras(bundle);
+            intent.putExtra("currentVirusModelId", 1);
             mainActivity.startActivity(intent);
             mainActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
-
         });
     }
 
