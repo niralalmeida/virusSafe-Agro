@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
     public static int TOOLBAR_TIP_MORE_BUTTONS_WIDTH;
     public static int TOOLBAR_SEARCH_EDIT_AND_CLOSE;
 
+    // request and result code
     public static final int PASSWORD_REQUEST_CODE = 9;
     public static final int PASSWORD_RESULT_OK = 24;
 
@@ -214,6 +215,17 @@ public class MainActivity extends AppCompatActivity {
         showTopBarBackButton(this);
         // initialize bottom navigation bar
         this.initializeMyBottomBar();
+
+////////////////////////////////////////////////// -- Test Quiz -- /////////////////////////////////////////////////////
+        this.quizRelativeLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(mainActivity, QuizActivity.class);
+//            Bundle bundle = new Bundle();
+//            bundle.putParcelable("currentVirusModel", currentVirusModel);
+//            intent.putExtras(bundle);
+            mainActivity.startActivity(intent);
+            mainActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
+
+        });
     }
 
     @Override

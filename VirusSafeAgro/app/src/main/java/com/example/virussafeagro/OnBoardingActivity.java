@@ -44,7 +44,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_onboarding);
         // hide top status bar
-        this.hideTopStatusBar();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // initialize Views
         this.initializeViews();
@@ -76,10 +76,6 @@ public class OnBoardingActivity extends AppCompatActivity {
             startActivity(intent);
             overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
         }
-    }
-
-    private void hideTopStatusBar() {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void initializeViews() {

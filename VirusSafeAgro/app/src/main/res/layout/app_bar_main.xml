@@ -83,7 +83,7 @@
                     <!-- take quiz -->
                     <RelativeLayout
                         android:id="@+id/rl_quiz_toolbar"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:background="@drawable/ripple_btn_green_bg_toolbar"
                         android:layout_width="45dp"
                         android:layout_height="match_parent">
@@ -94,7 +94,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginTop="13dp"
-                            android:backgroundTint="@color/colorPrimaryMainButtonBg"
+                            android:backgroundTint="@color/colorPrimaryTitle"
                             android:background="@drawable/msg">
 
                             <TextView
@@ -102,7 +102,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="18dp"
                                 android:gravity="center"
-                                android:backgroundTint="@color/colorPrimaryMainButtonBg"
+                                android:backgroundTint="@color/colorPrimaryTitle"
                                 android:background="@drawable/shape_btn_quiz_toolbar"
                                 android:text="QUIZ"
                                 android:textSize="12sp"

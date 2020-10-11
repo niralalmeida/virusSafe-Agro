@@ -5,12 +5,9 @@
     <!-- connect Internet permission -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- camera  + external storage permission -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <!-- location permission for map -->
-        <!-- 2 providers' permission -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-        <!-- only location permission by network -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- location permission for map -->
+    <!-- 2 providers' permission -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- only location permission by network -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
@@ -38,32 +35,33 @@
         <activity
             android:name=".LaunchActivity"
             android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode= "adjustPan" />
-
+            android:windowSoftInputMode="adjustPan" />
         <!-- PasswordActivity -->
         <activity
             android:name=".PasswordActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <!-- OnBoardingActivity -->
         <activity
             android:name=".OnBoardingActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
+        <!-- QuizActivity -->
+        <activity
+            android:name=".QuizActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>

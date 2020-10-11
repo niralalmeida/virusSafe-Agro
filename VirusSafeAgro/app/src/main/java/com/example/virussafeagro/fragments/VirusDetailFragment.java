@@ -62,8 +62,6 @@ public class VirusDetailFragment extends Fragment {
     private LinearLayout middleContentLinearLayout;
     private TextView middleContentTextView;
     // bottom quiz button views
-//    private LinearLayout takeQuizLinearLayout;
-//    private Button takeQuizButton;
     private RelativeLayout takeQuizRelativeLayout;
 
     // coordinate
@@ -118,7 +116,6 @@ public class VirusDetailFragment extends Fragment {
         new Handler().postDelayed(()->{
             this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
         },500);
-//        MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
         MyAnimationBox.runRepeatedAnimationBottomToTop(this.swipeUpImageView, 1000);
         this.showVirusDetails();
 
@@ -146,8 +143,6 @@ public class VirusDetailFragment extends Fragment {
         this.middleContentNestedScrollView = view.findViewById(R.id.nsv_middle_content_virus_detail);
         this.middleContentLinearLayout= view.findViewById(R.id.ll_middle_content_virus_detail);
         this.middleContentTextView = view.findViewById(R.id.tv_middle_content_virus_detail);
-//        this.takeQuizLinearLayout = view.findViewById(R.id.ll_take_quiz_virus_detail);
-//        this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
         this.takeQuizRelativeLayout = this.mainActivity.getQuizRelativeLayout();
     }
 
