@@ -28,6 +28,8 @@
     <!-- for on boarding  -->
     <string name="button_launch_app">Enter</string>
     <string name="text_swipe">&lt;&lt; Swipe &gt;&gt;</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_next">Next</string>
 
     <!--  subtitles  -->
     <string name="fragment_virus_single_choice">Single Choice Questions</string>

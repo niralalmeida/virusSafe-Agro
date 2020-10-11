@@ -9,25 +9,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.DataConverter;
 
 public class OnBoardingSlideAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
     private View view;
 
+    private CardView slideImageCardView;
     private ImageView slideImageView;
     private TextView slideHeadingTextView;
     private TextView slideDescriptionTextView;
 
     // icon id Arrays
     public static int[] slide_images = {
-            R.drawable.screen_1_easy_virus_detection,
-            R.drawable.screen_2_virus_and_nutrient_deficiency,
-            R.drawable.screen_3_news_tweets,
-            R.drawable.screen_4_causes
+            R.drawable.iteration3screen1,
+            R.drawable.iteration3screen2,
+            R.drawable.iteration3screen3,
+            R.drawable.iteration3screen4
     };
     // String heading Arrays
     public static String[] slide_headings = {
@@ -73,6 +77,7 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
     }
 
     private void initiateViews() {
+        this.slideImageCardView = view.findViewById(R.id.cv_icon_slide_boarding);
         this.slideImageView = view.findViewById(R.id.img_icon_slide_boarding);
         this.slideHeadingTextView = view.findViewById(R.id.tv_heading_slide_boarding);
         this.slideDescriptionTextView = view.findViewById(R.id.tv_description_slide_boarding);
@@ -86,6 +91,6 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((RelativeLayout) object);
+        container.removeView((ConstraintLayout) object);
     }
 }
