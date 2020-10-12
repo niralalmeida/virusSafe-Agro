@@ -1,6 +1,7 @@
 package com.example.virussafeagro.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -18,10 +19,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
+import com.example.virussafeagro.QuizActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.VirusCauseModel;
 import com.example.virussafeagro.models.VirusDescriptionModel;
@@ -62,9 +66,8 @@ public class VirusDetailFragment extends Fragment {
     private LinearLayout middleContentLinearLayout;
     private TextView middleContentTextView;
     // bottom quiz button views
-//    private LinearLayout takeQuizLinearLayout;
-//    private Button takeQuizButton;
     private RelativeLayout takeQuizRelativeLayout;
+    private Button quizButton;
 
     // coordinate
     private float startY;
@@ -118,7 +121,6 @@ public class VirusDetailFragment extends Fragment {
         new Handler().postDelayed(()->{
             this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
         },500);
-//        MyAnimationBox.runFadeInAnimation(this.takeQuizLinearLayout, 1000);
         MyAnimationBox.runRepeatedAnimationBottomToTop(this.swipeUpImageView, 1000);
         this.showVirusDetails();
 
@@ -146,9 +148,8 @@ public class VirusDetailFragment extends Fragment {
         this.middleContentNestedScrollView = view.findViewById(R.id.nsv_middle_content_virus_detail);
         this.middleContentLinearLayout= view.findViewById(R.id.ll_middle_content_virus_detail);
         this.middleContentTextView = view.findViewById(R.id.tv_middle_content_virus_detail);
-//        this.takeQuizLinearLayout = view.findViewById(R.id.ll_take_quiz_virus_detail);
-//        this.takeQuizButton = view.findViewById(R.id.btn_take_quiz_virus_detail);
         this.takeQuizRelativeLayout = this.mainActivity.getQuizRelativeLayout();
+        this.quizButton = this.mainActivity.getQuizButton();
     }
 
     private void showDescriptionContent() {
@@ -310,12 +311,19 @@ public class VirusDetailFragment extends Fragment {
     }
 
     private void setTakeQuizButtonOnClickListener() {
-        this.takeQuizRelativeLayout.setOnClickListener(view -> {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("currentVirusModel", currentVirusModel);
-            VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
-            virusQuizQuestionFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), virusQuizQuestionFragment, AppResources.FRAGMENT_TAG_VIRUS_QUIZ_QUESTION);
+        this.quizButton.setOnClickListener(quizButtonView -> {
+            Intent intent = new Intent(mainActivity, QuizActivity.class);
+            intent.putExtra("currentVirusModelId", currentVirusModel.getVirusId());
+            // animation
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, virusPictureImageView, ViewCompat.getTransitionName(virusPictureImageView));
+            mainActivity.startActivity(intent, options.toBundle());
+
+//            mainActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
+//            Bundle bundle = new Bundle();
+//            bundle.putParcelable("currentVirusModel", currentVirusModel);
+//            VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
+//            virusQuizQuestionFragment.setArguments(bundle);
+//            FragmentOperator.replaceFragment(requireActivity(), virusQuizQuestionFragment, AppResources.FRAGMENT_TAG_VIRUS_QUIZ_QUESTION);
         });
     }
 
