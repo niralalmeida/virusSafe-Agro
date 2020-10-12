@@ -96,4 +96,12 @@
     <color name="item_not_checked_bg">#E1E1E1</color>
     <color name="item_checked_bg">#A5A5A5</color>
 
+
+    <!-- quiz activity -->
+    <color name="text_quiz_title">#074A44</color>
+    <color name="btn_beginner_bg">#2E86C1</color>
+    <color name="btn_intermediate_bg">#7D3C98</color>
+
+
+
 </resources>

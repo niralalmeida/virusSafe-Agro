@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition app:duration="300"
+        app:constraintSetEnd="@id/end_beginner"
+        app:constraintSetStart="@id/start_beginner">
+
+<!--        <OnClick-->
+<!--            app:clickAction="transitionToEnd"-->
+<!--            app:targetId="@id/btn_beginner_quiz_activity" />-->
+
+    </Transition>
+
+    <!--  beginner start -->
+    <ConstraintSet android:id="@+id/start_beginner">
+        <Constraint
+            android:id="@+id/btn_beginner_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/tv_virus_full_name_quiz_quiz_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_intermediate_quiz_activity"
+            app:layout_constraintStart_toStartOf="parent" >
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@color/btn_beginner_bg"/>
+        </Constraint>
+        <Constraint
+            android:id="@+id/btn_intermediate_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_virus_full_name_quiz_quiz_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_beginner_quiz_activity">
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@color/btn_intermediate_bg"/>
+        </Constraint>
+    </ConstraintSet>
+    <!--  beginner end -->
+    <ConstraintSet android:id="@+id/end_beginner">
+        <Constraint
+            android:id="@+id/btn_beginner_quiz_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@color/btn_beginner_bg"/>
+        </Constraint>
+        <Constraint
+            android:id="@+id/btn_intermediate_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"
+                android:alpha="0"/>
+        </Constraint>
+    </ConstraintSet>
+
+
+    <!--  intermediate start -->
+    <ConstraintSet android:id="@+id/start_intermediate">
+        <Constraint
+            android:id="@+id/btn_beginner_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/tv_virus_full_name_quiz_quiz_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_intermediate_quiz_activity"
+            app:layout_constraintStart_toStartOf="parent" >
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@color/btn_beginner_bg"/>
+        </Constraint>
+        <Constraint
+            android:id="@+id/btn_intermediate_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_virus_full_name_quiz_quiz_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_beginner_quiz_activity">
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@color/btn_intermediate_bg"/>
+        </Constraint>
+    </ConstraintSet>
+    <!-- intermediate end -->
+    <ConstraintSet android:id="@+id/end_intermediate">
+        <Constraint
+            android:id="@+id/btn_beginner_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" >
+            <PropertySet
+                android:visibility="invisible"
+                android:alpha="0"/>
+        </Constraint>
+        <Constraint
+            android:id="@+id/btn_intermediate_quiz_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@color/btn_intermediate_bg"/>
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>
