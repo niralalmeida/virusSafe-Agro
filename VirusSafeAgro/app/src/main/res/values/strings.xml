@@ -156,4 +156,7 @@
     <string name="text_location_permission_title">Location Permission</string>
     <string name="text_location_permission_content">Dear user, the location service should be open if you want to try our map for showing your nearest pesticide stores location.</string>
     <string name="btn_location_permission_button">OK</string>
+
+    <!-- transition name -->
+    <string name="quiz_activity_transition_name">quiz</string>
 </resources>

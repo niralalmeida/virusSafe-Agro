@@ -3,7 +3,9 @@ package com.example.virussafeagro;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView moreImageView;
     // toolbar - quiz
     private RelativeLayout quizRelativeLayout;
+    private Button quizButton;
 //    private View lineView2;
 //    private View lineView3;
     
@@ -161,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
         this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
         this.moreImageView = findViewById(R.id.img_more_toolbar);
         this.quizRelativeLayout = findViewById(R.id.rl_quiz_toolbar);
+        this.quizButton = findViewById(R.id.btn_quiz_toolbar);
         this.floatingActionButton = findViewById(R.id.fab);
         this.tipDragYRelativeLayout = findViewById(R.id.drl_tip_app);
         this.animationImageRelativeLayout = findViewById(R.id.rl_animation_image_main);
@@ -218,12 +223,14 @@ public class MainActivity extends AppCompatActivity {
         this.initializeMyBottomBar();
 
 ////////////////////////////////////////////////// -- Test Quiz -- /////////////////////////////////////////////////////
-        this.quizRelativeLayout.setOnClickListener(view -> {
-            Intent intent = new Intent(mainActivity, QuizActivity.class);
-            intent.putExtra("currentVirusModelId", 1);
-            mainActivity.startActivity(intent);
-            mainActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
-        });
+//        this.quizButton.setOnClickListener(quizButtonView -> {
+//            Intent intent = new Intent(mainActivity, QuizActivity.class);
+//            intent.putExtra("currentVirusModelId", 1);
+//            // animation
+//            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, quizButtonView, ViewCompat.getTransitionName(quizButtonView));
+//            mainActivity.startActivity(intent, options.toBundle());
+////            mainActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
+//        });
     }
 
     @Override
@@ -339,6 +346,10 @@ public class MainActivity extends AppCompatActivity {
 
     public RelativeLayout getQuizRelativeLayout() {
         return quizRelativeLayout;
+    }
+
+    public Button getQuizButton() {
+        return quizButton;
     }
 
     public void hideTheLottieAnimationView() {

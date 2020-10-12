@@ -83,36 +83,48 @@
                     <!-- take quiz -->
                     <RelativeLayout
                         android:id="@+id/rl_quiz_toolbar"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:background="@drawable/ripple_btn_green_bg_toolbar"
-                        android:layout_width="45dp"
+                        android:layout_width="65dp"
                         android:layout_height="match_parent">
 
-                        <RelativeLayout
-                            android:layout_width="40dp"
-                            android:layout_height="33dp"
+                        <Button
+                            android:id="@+id/btn_quiz_toolbar"
+                            android:layout_width="55dp"
+                            android:layout_height="30dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginTop="13dp"
-                            android:backgroundTint="@color/colorPrimaryTitle"
-                            android:background="@drawable/msg">
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/ripple_quiz_button_toolbar"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDarkTheme"
+                            android:text="QUIZ"/>
 
-                            <TextView
-                                android:id="@+id/img_quiz"
-                                android:layout_width="30dp"
-                                android:layout_height="18dp"
-                                android:gravity="center"
-                                android:backgroundTint="@color/colorPrimaryTitle"
-                                android:background="@drawable/shape_btn_quiz_toolbar"
-                                android:text="QUIZ"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:textColor="@color/colorPrimaryDarkTheme"
-                                android:layout_marginBottom="10dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_alignParentBottom="true"/>
+<!--                        <RelativeLayout-->
+<!--                            android:layout_width="40dp"-->
+<!--                            android:layout_height="33dp"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:layout_alignParentTop="true"-->
+<!--                            android:layout_marginTop="13dp"-->
+<!--                            android:backgroundTint="@color/colorPrimaryTitle"-->
+<!--                            android:background="@drawable/msg">-->
 
-                        </RelativeLayout>
+<!--                            <TextView-->
+<!--                                android:id="@+id/tv_quiz"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="18dp"-->
+<!--                                android:gravity="center"-->
+<!--                                android:backgroundTint="@color/colorPrimaryTitle"-->
+<!--                                android:background="@drawable/shape_btn_quiz_toolbar"-->
+<!--                                android:text="QUIZ"-->
+<!--                                android:textSize="12sp"-->
+<!--                                android:textStyle="bold"-->
+<!--                                android:textColor="@color/colorPrimaryDarkTheme"-->
+<!--                                android:layout_marginBottom="10dp"-->
+<!--                                android:layout_centerHorizontal="true"-->
+<!--                                android:layout_alignParentBottom="true"/>-->
+
+<!--                        </RelativeLayout>-->
 
 
                     </RelativeLayout>

@@ -31,6 +31,7 @@
                     android:id="@+id/img_top_pic_virus_detail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:transitionName="@string/quiz_activity_transition_name"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
                     android:src="@drawable/one" />
