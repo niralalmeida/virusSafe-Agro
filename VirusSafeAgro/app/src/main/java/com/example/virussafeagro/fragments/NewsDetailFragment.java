@@ -16,7 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -29,7 +28,6 @@ import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.viewModel.NewsDetailViewModel;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class NewsDetailFragment extends Fragment {
     private MainActivity mainActivity;
@@ -199,7 +197,7 @@ public class NewsDetailFragment extends Fragment {
                                 MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 30f, 22f, 130);
                             }, 80);
                             new Handler().postDelayed(() -> {
-                                MyAnimationBox.runFoldViewAnimation(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 130);
+                                MyAnimationBox.runFoldViewAnimationByHeight(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 130);
                             }, 190);
                             new Handler().postDelayed(() -> {
                                 isImageFolded = true;
@@ -208,7 +206,7 @@ public class NewsDetailFragment extends Fragment {
                         } else {
                             MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 30f, 22f, 130);
                             new Handler().postDelayed(() -> {
-                                MyAnimationBox.runFoldViewAnimation(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 130);
+                                MyAnimationBox.runFoldViewAnimationByHeight(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 130);
                             }, 110);
 
                             new Handler().postDelayed(() -> {
@@ -237,7 +235,7 @@ public class NewsDetailFragment extends Fragment {
                         topRelativeLayout.setClickable(true);
                         topRelativeLayout.setActivated(true);
                         MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 22f, 30f, 200);
-                        MyAnimationBox.runFoldViewAnimation(newsImageView, newsImageView.getHeight(), originalImageHeight, 200);
+                        MyAnimationBox.runFoldViewAnimationByHeight(newsImageView, newsImageView.getHeight(), originalImageHeight, 200);
                     }
                 }
             }

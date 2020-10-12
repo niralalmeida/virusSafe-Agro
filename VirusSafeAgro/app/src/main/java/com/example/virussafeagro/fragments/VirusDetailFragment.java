@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
@@ -33,10 +32,7 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.models.VirusPreventionModel;
 import com.example.virussafeagro.models.VirusSymptomModel;
 import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
-
-import java.util.Objects;
 
 public class VirusDetailFragment extends Fragment {
     private MainActivity mainActivity;
@@ -273,13 +269,13 @@ public class VirusDetailFragment extends Fragment {
                     if (currentY <= startY) {
                         isVirusDetailsShown = true;
                         // hide the swipe up
-                        MyAnimationBox.runFoldViewAnimation(swipeUpRelativeLayout, swipeUpRelativeLayout.getHeight(), 0, 300);
+                        MyAnimationBox.runFoldViewAnimationByHeight(swipeUpRelativeLayout, swipeUpRelativeLayout.getHeight(), 0, 300);
                         new Handler().postDelayed(()->{
                             swipeUpRelativeLayout.setVisibility(View.GONE);
                         },300);
                         // fold the top image
-                        MyAnimationBox.runFoldViewAnimation(virusPictureImageView, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 800);
-                        MyAnimationBox.runFoldViewAnimation(topRelativeLayout, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 800);
+                        MyAnimationBox.runFoldViewAnimationByHeight(virusPictureImageView, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 800);
+                        MyAnimationBox.runFoldViewAnimationByHeight(topRelativeLayout, virusPictureImageView.getHeight(), virusFullNameLinearLayout.getHeight(), 800);
                         middleContentNestedScrollView.setVisibility(View.VISIBLE);
 
                         // initialize description content / or prevention content
@@ -297,11 +293,11 @@ public class VirusDetailFragment extends Fragment {
                     if (startY < virusFullNameLinearLayout.getHeight() && currentY >= startY) {
                         isVirusDetailsShown = false;
                         // fold the top image
-                        MyAnimationBox.runFoldViewAnimation(virusPictureImageView, virusPictureImageView.getHeight(), virusDetailLinearLayout.getHeight(), 800);
-                        MyAnimationBox.runFoldViewAnimation(topRelativeLayout, virusPictureImageView.getHeight(), virusDetailLinearLayout.getHeight(), 800);
+                        MyAnimationBox.runFoldViewAnimationByHeight(virusPictureImageView, virusPictureImageView.getHeight(), virusDetailLinearLayout.getHeight(), 800);
+                        MyAnimationBox.runFoldViewAnimationByHeight(topRelativeLayout, virusPictureImageView.getHeight(), virusDetailLinearLayout.getHeight(), 800);
                         middleContentNestedScrollView.setVisibility(View.GONE);
                         // show the swipe up
-                        MyAnimationBox.runFoldViewAnimation(swipeUpRelativeLayout, swipeUpRelativeLayout.getHeight(), 200, 300);
+                        MyAnimationBox.runFoldViewAnimationByHeight(swipeUpRelativeLayout, swipeUpRelativeLayout.getHeight(), 200, 300);
                     }
                 }
             }
@@ -314,6 +310,7 @@ public class VirusDetailFragment extends Fragment {
         this.quizButton.setOnClickListener(quizButtonView -> {
             Intent intent = new Intent(mainActivity, QuizActivity.class);
             intent.putExtra("currentVirusModelId", currentVirusModel.getVirusId());
+            intent.putExtra("currentVirusModelFullName", currentVirusModel.getVirusFullName());
             // animation
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, virusPictureImageView, ViewCompat.getTransitionName(virusPictureImageView));
             mainActivity.startActivity(intent, options.toBundle());

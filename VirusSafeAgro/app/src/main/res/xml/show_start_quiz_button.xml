@@ -15,6 +15,7 @@
 
     <!--  beginner start -->
     <ConstraintSet android:id="@+id/start_beginner">
+        <!-- beginner button -->
         <Constraint
             android:id="@+id/btn_beginner_quiz_activity"
             android:layout_width="wrap_content"
@@ -28,6 +29,7 @@
                 motion:attributeName="backgroundColor"
                 motion:customColorValue="@color/btn_beginner_bg"/>
         </Constraint>
+        <!-- intermediate button -->
         <Constraint
             android:id="@+id/btn_intermediate_quiz_activity"
             android:layout_width="wrap_content"
@@ -41,9 +43,45 @@
                 motion:attributeName="backgroundColor"
                 motion:customColorValue="@color/btn_intermediate_bg"/>
         </Constraint>
+        <!-- envelope card -->
+        <Constraint
+            android:id="@+id/cv_envelope_quiz_activity"
+            android:layout_width="330dp"
+            android:layout_height="230dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardBackgroundColor="@color/bg_envelope_light">
+        </Constraint>
+        <!-- virus image card -->
+        <Constraint
+            android:id="@+id/cv_pic_virus_quiz_activity"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="100dp"
+            android:transitionName="@string/quiz_activity_transition_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </Constraint>
+        <!-- virus full name -->
+        <Constraint
+            android:id="@+id/tv_virus_full_name_quiz_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_pic_virus_quiz_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
     </ConstraintSet>
     <!--  beginner end -->
     <ConstraintSet android:id="@+id/end_beginner">
+        <!-- beginner button -->
         <Constraint
             android:id="@+id/btn_beginner_quiz_activity"
             android:layout_width="match_parent"
@@ -55,6 +93,7 @@
                 motion:attributeName="backgroundColor"
                 motion:customColorValue="@color/btn_beginner_bg"/>
         </Constraint>
+        <!-- intermediate button -->
         <Constraint
             android:id="@+id/btn_intermediate_quiz_activity"
             android:layout_width="wrap_content"
@@ -66,11 +105,47 @@
                 android:visibility="invisible"
                 android:alpha="0"/>
         </Constraint>
+        <!-- envelope card -->
+        <Constraint
+            android:id="@+id/cv_envelope_quiz_activity"
+            android:layout_width="330dp"
+            android:layout_height="230dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_quiz_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardBackgroundColor="@color/bg_envelope_light">
+        </Constraint>
+        <!-- virus image card -->
+        <Constraint
+            android:id="@+id/cv_pic_virus_quiz_activity"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="25dp"
+            android:transitionName="@string/quiz_activity_transition_name"
+            android:layout_marginTop="110dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_quiz_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        </Constraint>
+        <!-- virus full name -->
+        <Constraint
+            android:id="@+id/tv_virus_full_name_quiz_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_envelope_quiz_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
     </ConstraintSet>
 
 
     <!--  intermediate start -->
     <ConstraintSet android:id="@+id/start_intermediate">
+        <!-- beginner button -->
         <Constraint
             android:id="@+id/btn_beginner_quiz_activity"
             android:layout_width="wrap_content"
@@ -96,6 +171,41 @@
             <CustomAttribute
                 motion:attributeName="backgroundColor"
                 motion:customColorValue="@color/btn_intermediate_bg"/>
+        </Constraint>
+        <!-- envelope card -->
+        <Constraint
+            android:id="@+id/cv_envelope_quiz_activity"
+            android:layout_width="330dp"
+            android:layout_height="230dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardBackgroundColor="@color/bg_envelope_light">
+        </Constraint>
+        <!-- virus image card -->
+        <Constraint
+            android:id="@+id/cv_pic_virus_quiz_activity"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="100dp"
+            android:transitionName="@string/quiz_activity_transition_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </Constraint>
+        <!-- virus full name -->
+        <Constraint
+            android:id="@+id/tv_virus_full_name_quiz_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_pic_virus_quiz_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
     </ConstraintSet>
     <!-- intermediate end -->
@@ -121,6 +231,41 @@
             <CustomAttribute
                 motion:attributeName="backgroundColor"
                 motion:customColorValue="@color/btn_intermediate_bg"/>
+        </Constraint>
+        <!-- envelope card -->
+        <Constraint
+            android:id="@+id/cv_envelope_quiz_activity"
+            android:layout_width="330dp"
+            android:layout_height="230dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_quiz_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardBackgroundColor="@color/bg_envelope_light">
+        </Constraint>
+        <!-- virus image card -->
+        <Constraint
+            android:id="@+id/cv_pic_virus_quiz_activity"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="25dp"
+            android:transitionName="@string/quiz_activity_transition_name"
+            android:layout_marginTop="110dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_quiz_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        </Constraint>
+        <!-- virus full name -->
+        <Constraint
+            android:id="@+id/tv_virus_full_name_quiz_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_envelope_quiz_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
     </ConstraintSet>
 

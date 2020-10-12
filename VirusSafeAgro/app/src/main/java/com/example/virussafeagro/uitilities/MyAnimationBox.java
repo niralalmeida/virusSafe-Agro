@@ -118,7 +118,7 @@ public class MyAnimationBox {
     }
 
     // for fold the image in virus details
-    public static void runFoldViewAnimation(View view, int startHeight, int targetHeight, int duration){
+    public static void runFoldViewAnimationByHeight(View view, int startHeight, int targetHeight, int duration){
         //value animator
         ValueAnimator valueAnimator = new ValueAnimator();
         //hide view
@@ -153,7 +153,7 @@ public class MyAnimationBox {
         valueAnimator.start();
     }
 
-    // for fold the image in virus details
+    // for changing the text size
     public static void runChangeViewSizeAnimation(TextView textView, float startSize, float targetSize, int duration){
         //value animator
         ObjectAnimator objectAnimator = new ObjectAnimator();
