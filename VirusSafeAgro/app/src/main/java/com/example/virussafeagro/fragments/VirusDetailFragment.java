@@ -309,19 +309,19 @@ public class VirusDetailFragment extends Fragment {
 
     private void setTakeQuizButtonOnClickListener() {
         this.quizButton.setOnClickListener(quizButtonView -> {
-//            Intent intent = new Intent(mainActivity, QuizActivity.class);
-//            intent.putExtra("currentVirusModelId", currentVirusModel.getVirusId());
-//            intent.putExtra("currentVirusModelFullName", currentVirusModel.getVirusFullName());
-//            // animation
-//            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, virusPictureImageView, ViewCompat.getTransitionName(virusPictureImageView));
-//            mainActivity.startActivity(intent, options.toBundle());
+            Intent intent = new Intent(mainActivity, QuizActivity.class);
+            intent.putExtra("currentVirusModelId", currentVirusModel.getVirusId());
+            intent.putExtra("currentVirusModelFullName", currentVirusModel.getVirusFullName());
+            // animation
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, virusPictureImageView, ViewCompat.getTransitionName(virusPictureImageView));
+            mainActivity.startActivity(intent, options.toBundle());
 
-            mainActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("currentVirusModel", currentVirusModel);
-            VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
-            virusQuizQuestionFragment.setArguments(bundle);
-            FragmentOperator.replaceFragment(requireActivity(), virusQuizQuestionFragment, AppResources.FRAGMENT_TAG_VIRUS_QUIZ_QUESTION);
+//            mainActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
+//            Bundle bundle = new Bundle();
+//            bundle.putParcelable("currentVirusModel", currentVirusModel);
+//            VirusQuizQuestionFragment virusQuizQuestionFragment = new VirusQuizQuestionFragment();
+//            virusQuizQuestionFragment.setArguments(bundle);
+//            FragmentOperator.replaceFragment(requireActivity(), virusQuizQuestionFragment, AppResources.FRAGMENT_TAG_VIRUS_QUIZ_QUESTION);
         });
     }
 
