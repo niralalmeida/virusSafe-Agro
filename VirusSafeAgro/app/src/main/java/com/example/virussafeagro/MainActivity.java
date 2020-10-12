@@ -206,12 +206,12 @@ public class MainActivity extends AppCompatActivity {
 
 ////////////////////////////////////////////////// -- Pass word -- /////////////////////////////////////////////////////
     private void checkAuthentication() {
-//        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())) {
-//            // set authentication as "no"
-//            AppAuthentication.setAuthenticationAsNo(this);
-//            // check the authentication --> show the PasswordActivity
-//            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity), 600);
-//        }
+        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())) {
+            // set authentication as "no"
+            AppAuthentication.setAuthenticationAsNo(this);
+            // check the authentication --> show the PasswordActivity
+            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity), 600);
+        }
     }
 
     private void displayAllMainActivityViews() {
@@ -221,16 +221,6 @@ public class MainActivity extends AppCompatActivity {
         showTopBarBackButton(this);
         // initialize bottom navigation bar
         this.initializeMyBottomBar();
-
-////////////////////////////////////////////////// -- Test Quiz -- /////////////////////////////////////////////////////
-//        this.quizButton.setOnClickListener(quizButtonView -> {
-//            Intent intent = new Intent(mainActivity, QuizActivity.class);
-//            intent.putExtra("currentVirusModelId", 1);
-//            // animation
-//            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, quizButtonView, ViewCompat.getTransitionName(quizButtonView));
-//            mainActivity.startActivity(intent, options.toBundle());
-////            mainActivity.overridePendingTransition(R.anim.activity_slide_in_bottom, 0);
-//        });
     }
 
     @Override

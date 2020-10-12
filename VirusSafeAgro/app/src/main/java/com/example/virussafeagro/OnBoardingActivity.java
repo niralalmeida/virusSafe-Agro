@@ -36,7 +36,7 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     private OnBoardingSlideAdapter onBoardingSlideAdapter;
     private int currentPagePosition;
-    private static boolean IS_LAUNCH_BUTTON_LISTENER_ON;
+//    private static boolean IS_LAUNCH_BUTTON_LISTENER_ON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,10 +159,13 @@ public class OnBoardingActivity extends AppCompatActivity {
             currentPagePosition = position;
 
             // set launch app button on click listener
-            if ((position == OnBoardingSlideAdapter.slide_headings.length - 1) && (!IS_LAUNCH_BUTTON_LISTENER_ON)){
-                IS_LAUNCH_BUTTON_LISTENER_ON = true;
+            if (position == OnBoardingSlideAdapter.slide_headings.length - 1){
                 setLaunchAppButtonOnClickListener();
             }
+//            if ((position == OnBoardingSlideAdapter.slide_headings.length - 1) && (!IS_LAUNCH_BUTTON_LISTENER_ON)){
+//                IS_LAUNCH_BUTTON_LISTENER_ON = true;
+//                setLaunchAppButtonOnClickListener();
+//            }
 
             // set dots
             addDotsIndicator(position);

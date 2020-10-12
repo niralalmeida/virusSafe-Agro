@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/on_boarding_bg2" />
+            android:src="@drawable/on_boarding_bg4" />
 
 
         <androidx.viewpager.widget.ViewPager
