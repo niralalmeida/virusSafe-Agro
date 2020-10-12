@@ -185,7 +185,7 @@ public class VirusCheckResultFragment extends Fragment {
         this.virusCheckResultViewModel.getVirusListLD().observe(getViewLifecycleOwner(), resultVirusList -> {
             if (resultVirusList != null && resultVirusList.size() == 9 && isInfected ){
                 // set virus detail button visible
-                this.virusDetailsButton.setVisibility(View.VISIBLE);
+//                this.virusDetailsButton.setVisibility(View.VISIBLE);
                 this.buttonProcessBarLinearLayout.setVisibility(View.INVISIBLE);
                 // get result virus id
 //                if ((!this.resultCheckFeedback.equals("json error")) && (!this.resultCheckFeedback.equals("healthy"))){

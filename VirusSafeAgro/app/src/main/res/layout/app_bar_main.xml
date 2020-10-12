@@ -216,12 +216,12 @@
                             android:layout_toEndOf="@id/rl_search_button_toolbar"
                             android:cursorVisible="true"
                             android:textCursorDrawable="@drawable/shape_cursor_search_toolbar"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/colorWhite"
                             android:paddingStart="5dp"
                             android:paddingEnd="5dp"
                             android:background="@android:color/transparent"
                             android:textColorHint="@color/colorPrimarySearchHint"
-                            android:hint="Search xxx" />
+                            android:hint="Enter Search Content" />
 
                     </RelativeLayout>
 
