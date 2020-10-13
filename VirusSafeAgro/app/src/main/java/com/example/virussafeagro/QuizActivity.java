@@ -3,31 +3,25 @@ package com.example.virussafeagro;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 public class QuizActivity extends AppCompatActivity {
     private int currentVirusModelId;
@@ -42,11 +36,14 @@ public class QuizActivity extends AppCompatActivity {
     private Button beginnerButton;
     private Button intermediateButton;
     private TextView quizInfoTextView;
+    private RelativeLayout envelopeCoverClosedRelativeLayout;
+    private RelativeLayout envelopeCoverOpenedRelativeLayout;
+    private CardView paperCardView;
 
     // button names
     private String BUTTON_NAME_BEGINNER;
     private String BUTTON_NAME_INTERMEDIATE;
-    private String BUTTON_NAME_START_QUIZ;
+    private String BUTTON_NAME_OPEN_QUIZ;
     private String TEXT_SIMPLE_TIP;
     private String TEXT_TRICKY_TIP;
 
@@ -75,7 +72,7 @@ public class QuizActivity extends AppCompatActivity {
     private void initializeVariables() {
         BUTTON_NAME_BEGINNER = getResources().getString(R.string.btn_beginner);
         BUTTON_NAME_INTERMEDIATE = getResources().getString(R.string.btn_intermediate);
-        BUTTON_NAME_START_QUIZ = getResources().getString(R.string.btn_start_quiz);
+        BUTTON_NAME_OPEN_QUIZ = getResources().getString(R.string.btn_open_quiz);
         TEXT_SIMPLE_TIP = getResources().getString(R.string.text_simple_tip);
         TEXT_TRICKY_TIP = getResources().getString(R.string.text_tricky_tip);
     }
@@ -89,6 +86,9 @@ public class QuizActivity extends AppCompatActivity {
         this.beginnerButton = findViewById(R.id.btn_beginner_quiz_activity);
         this.intermediateButton = findViewById(R.id.btn_intermediate_quiz_activity);
         this.quizInfoTextView = findViewById(R.id.tv_info_quiz_activity);
+        this.envelopeCoverClosedRelativeLayout = findViewById(R.id.cv_envelope_cover_closed_quiz_activity);
+        this.envelopeCoverOpenedRelativeLayout = findViewById(R.id.cv_envelope_cover_opened_quiz_activity);
+        this.paperCardView = findViewById(R.id.cv_envelope_paper_quiz_activity);
     }
 
     private void showActivityViews() {
@@ -101,29 +101,52 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void beginnerOnClick(View v){
-        if (!beginnerButton.getText().toString().equals(BUTTON_NAME_START_QUIZ)) {
+        if (!beginnerButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)) {
             // set the current page identification
             currentPageName = BUTTON_NAME_BEGINNER;
             // move beginner Button + hide intermediate Button
-            configureTheAnimation(R.id.start_beginner, R.id.end_beginner);
+            configureTheAnimation(R.id.start_beginner, R.id.end_beginner, 500);
             // set the button text
-            beginnerButton.setText(BUTTON_NAME_START_QUIZ);
+            beginnerButton.setText(BUTTON_NAME_OPEN_QUIZ);
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_BEGINNER);
+        } else { // start the quiz
+            // open the envelope cover
+            openTheEnvelopeCover();
+            // move down the envelope
+            new Handler().postDelayed(()->{
+                configureTheAnimation(R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
+            }, 300);
         }
     }
 
     public void intermediateOnClick(View v){
-        if (!intermediateButton.getText().toString().equals(BUTTON_NAME_START_QUIZ)) {
+        if (!intermediateButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)) {
             // set the current page identification
             currentPageName = BUTTON_NAME_INTERMEDIATE;
             // move intermediate Button + hide beginner Button
-            configureTheAnimation(R.id.start_intermediate, R.id.end_intermediate);
+            configureTheAnimation(R.id.start_intermediate, R.id.end_intermediate, 500);
             // set the button text
-            intermediateButton.setText(BUTTON_NAME_START_QUIZ);
+            intermediateButton.setText(BUTTON_NAME_OPEN_QUIZ);
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_INTERMEDIATE);
+        } else { // start the quiz
+            // open the envelope cover
+            openTheEnvelopeCover();
+            // move down the envelope
+            new Handler().postDelayed(()->{
+                configureTheAnimation(R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
+            }, 300);
+
         }
+    }
+
+    // open the envelope cover when click "start quiz" button
+    private void openTheEnvelopeCover() {
+        // hide bottom cover
+        envelopeCoverClosedRelativeLayout.setVisibility(View.INVISIBLE);
+        // show top cover
+        envelopeCoverOpenedRelativeLayout.setVisibility(View.VISIBLE);
     }
 
     // change the style when the 2 buttons are clicked
@@ -157,18 +180,18 @@ public class QuizActivity extends AppCompatActivity {
     public void closeOnClick(View v) {
         // animation
         this.finish();
-        this.overridePendingTransition(0, R.anim.activity_fade_out);
+        this.overridePendingTransition(0, R.anim.activity_slide_out_top);
     }
 
     public void backOnClick(View v){
         if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
             // move beginner Button + show intermediate Button
-            configureTheAnimation(R.id.end_beginner, R.id.start_beginner);
+            configureTheAnimation(R.id.end_beginner, R.id.start_beginner, 500);
             // set the button text
             beginnerButton.setText(BUTTON_NAME_BEGINNER);
         } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)){
             // move intermediate Button + show beginner Button
-            configureTheAnimation(R.id.end_intermediate, R.id.start_intermediate);
+            configureTheAnimation(R.id.end_intermediate, R.id.start_intermediate, 500);
             // set the button text
             intermediateButton.setText(BUTTON_NAME_INTERMEDIATE);
         }
@@ -195,10 +218,11 @@ public class QuizActivity extends AppCompatActivity {
         closeImageButton.setImageTintList(colorStateList);
     }
 
-    private void configureTheAnimation(int start, int end) {
+    private void configureTheAnimation(int start, int end, int duration) {
         // move beginner Button + show intermediate Button
         containerMotionLayout.clearAnimation();
         containerMotionLayout.setTransition(start, end);
+        containerMotionLayout.setTransitionDuration(duration);
         containerMotionLayout.transitionToEnd();
     }
 }
