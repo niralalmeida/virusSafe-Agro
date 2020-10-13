@@ -36,7 +36,6 @@ public class QuizActivity extends AppCompatActivity {
     // views
     private MotionLayout containerMotionLayout;
     private ImageButton closeImageButton;
-    private ImageButton backImageButton;
     private TextView quizTitleTextView;
     private TextView virusFullNameTextView;
     private ImageView virusImageView;
@@ -45,8 +44,14 @@ public class QuizActivity extends AppCompatActivity {
     private TextView quizInfoTextView;
 
     // button names
-    private final String BUTTON_NAME_BEGINNER = "beginner";
-    private final String BUTTON_NAME_INTERMEDIATE = "intermediate";
+    private String BUTTON_NAME_BEGINNER;
+    private String BUTTON_NAME_INTERMEDIATE;
+    private String BUTTON_NAME_START_QUIZ;
+    private String TEXT_SIMPLE_TIP;
+    private String TEXT_TRICKY_TIP;
+
+    // current page identification tags
+    private String currentPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,8 @@ public class QuizActivity extends AppCompatActivity {
         // get current virus model id and full name
         this.currentVirusModelId = getIntent().getIntExtra("currentVirusModelId", -1);
         this.currentVirusModelFullName = getIntent().getStringExtra("currentVirusModelFullName");
+        // initialize variables
+        this.initializeVariables();
         // initialize views
         this.initializeViews();
         // show activity views
@@ -65,10 +72,17 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    private void initializeVariables() {
+        BUTTON_NAME_BEGINNER = getResources().getString(R.string.btn_beginner);
+        BUTTON_NAME_INTERMEDIATE = getResources().getString(R.string.btn_intermediate);
+        BUTTON_NAME_START_QUIZ = getResources().getString(R.string.btn_start_quiz);
+        TEXT_SIMPLE_TIP = getResources().getString(R.string.text_simple_tip);
+        TEXT_TRICKY_TIP = getResources().getString(R.string.text_tricky_tip);
+    }
+
     private void initializeViews() {
         this.containerMotionLayout = findViewById(R.id.ml_container_quiz_activity);
         this.closeImageButton = findViewById(R.id.imgbtn_close_quiz_activity);
-        this.backImageButton = findViewById(R.id.imgbtn_back_quiz_activity);
         this.quizTitleTextView = findViewById(R.id.tv_title_quiz_activity);
         this.virusFullNameTextView = findViewById(R.id.tv_virus_full_name_quiz_quiz_activity);
         this.virusImageView = findViewById(R.id.img_pic_virus_quiz_activity);
@@ -87,24 +101,28 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void beginnerOnClick(View v){
-        if (!beginnerButton.getText().toString().equals("Start Quiz")) {
+        if (!beginnerButton.getText().toString().equals(BUTTON_NAME_START_QUIZ)) {
+            // set the current page identification
+            currentPage = BUTTON_NAME_BEGINNER;
             // move beginner Button + hide intermediate Button
             containerMotionLayout.clearAnimation();
             containerMotionLayout.setTransition(R.id.start_beginner, R.id.end_beginner);
             containerMotionLayout.transitionToEnd();
-            beginnerButton.setText("Start Quiz");
+            beginnerButton.setText(BUTTON_NAME_START_QUIZ);
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_BEGINNER);
         }
     }
 
     public void intermediateOnClick(View v){
-        if (!intermediateButton.getText().toString().equals("Start Quiz")) {
+        if (!intermediateButton.getText().toString().equals(BUTTON_NAME_START_QUIZ)) {
+            // set the current page identification
+            currentPage = BUTTON_NAME_INTERMEDIATE;
             // move intermediate Button + hide beginner Button
             containerMotionLayout.clearAnimation();
             containerMotionLayout.setTransition(R.id.start_intermediate, R.id.end_intermediate);
             containerMotionLayout.transitionToEnd();
-            intermediateButton.setText("Start Quiz");
+            intermediateButton.setText(BUTTON_NAME_START_QUIZ);
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_INTERMEDIATE);
         }
@@ -122,11 +140,11 @@ public class QuizActivity extends AppCompatActivity {
         if(buttonName.equals(BUTTON_NAME_BEGINNER)) {
             quizTitleTextView.setTextColor(getResources().getColor(R.color.btn_beginner_bg));
             quizInfoTextView.setTextColor(getResources().getColor(R.color.btn_beginner_bg));
-            quizInfoTextView.setText("< 5 Simple Questions >");
+            quizInfoTextView.setText(TEXT_SIMPLE_TIP);
         } else if(buttonName.equals(BUTTON_NAME_INTERMEDIATE)){
             quizTitleTextView.setTextColor(getResources().getColor(R.color.btn_intermediate_bg));
             quizInfoTextView.setTextColor(getResources().getColor(R.color.btn_intermediate_bg));
-            quizInfoTextView.setText("< 5 Tricky Questions >");
+            quizInfoTextView.setText(TEXT_TRICKY_TIP);
         }
         // change the virus full name color and style (cancel bold)
         virusFullNameTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDarkBG));
@@ -149,6 +167,18 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void back(View v){
-
+        if (currentPage.equals(BUTTON_NAME_BEGINNER)) {
+            // move beginner Button + show intermediate Button
+            containerMotionLayout.clearAnimation();
+            containerMotionLayout.setTransition(R.id.end_beginner, R.id.start_beginner);
+            containerMotionLayout.transitionToEnd();
+            intermediateButton.setText(BUTTON_NAME_BEGINNER);
+        } else if (currentPage.equals(BUTTON_NAME_INTERMEDIATE)){
+            // move intermediate Button + show beginner Button
+            containerMotionLayout.clearAnimation();
+            containerMotionLayout.setTransition(R.id.end_intermediate, R.id.start_intermediate);
+            containerMotionLayout.transitionToEnd();
+            intermediateButton.setText(BUTTON_NAME_INTERMEDIATE);
+        }
     }
 }

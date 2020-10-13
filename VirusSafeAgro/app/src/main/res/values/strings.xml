@@ -157,6 +157,13 @@
     <string name="text_location_permission_content">Dear user, the location service should be open if you want to try our map for showing your nearest pesticide stores location.</string>
     <string name="btn_location_permission_button">OK</string>
 
+    <!-- quiz activity -->
+    <string name="btn_beginner">beginner</string>
+    <string name="btn_intermediate">intermediate</string>
+    <string name="btn_start_quiz">start quiz</string>
+    <string name="text_simple_tip">&lt; 5 Simple Questions &gt;</string>
+    <string name="text_tricky_tip">&lt; 5 Tricky Questions &gt;</string>
+
     <!-- transition name -->
     <string name="quiz_activity_transition_name">quiz</string>
 </resources>
