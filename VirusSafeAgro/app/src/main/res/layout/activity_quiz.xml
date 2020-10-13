@@ -43,7 +43,7 @@
         android:adjustViewBounds="false"
         android:scaleType="centerCrop"
         android:background="@android:color/transparent"
-        android:tint="@color/colorPrimaryTitle"
+        android:tint="@color/colorPrimaryDarkBG"
         android:src="@drawable/back1"/>
 
     <TextView

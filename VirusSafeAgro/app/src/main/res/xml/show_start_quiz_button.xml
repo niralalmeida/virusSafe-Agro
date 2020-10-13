@@ -78,7 +78,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
+        <!-- back button -->
+        <Constraint
+            android:id="@+id/imgbtn_back_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
     </ConstraintSet>
+
     <!--  beginner end -->
     <ConstraintSet android:id="@+id/end_beginner">
         <!-- beginner button -->
@@ -142,7 +155,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
+        <!-- back button -->
+        <Constraint
+            android:id="@+id/imgbtn_back_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <PropertySet
+                android:visibility="visible"/>
+        </Constraint>
     </ConstraintSet>
+
 
 
     <!--  intermediate start -->
@@ -209,7 +235,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
+        <!-- back button -->
+        <Constraint
+            android:id="@+id/imgbtn_back_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
     </ConstraintSet>
+
     <!-- intermediate end -->
     <ConstraintSet android:id="@+id/end_intermediate">
         <Constraint
@@ -270,6 +309,18 @@
             app:layout_constraintBottom_toTopOf="@id/btn_intermediate_quiz_activity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- back button -->
+        <Constraint
+            android:id="@+id/imgbtn_back_quiz_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <PropertySet
+                android:visibility="visible"/>
         </Constraint>
     </ConstraintSet>
 

@@ -36,6 +36,7 @@ public class QuizActivity extends AppCompatActivity {
     // views
     private MotionLayout containerMotionLayout;
     private ImageButton closeImageButton;
+    private ImageButton backImageButton;
     private TextView quizTitleTextView;
     private TextView virusFullNameTextView;
     private ImageView virusImageView;
@@ -67,6 +68,7 @@ public class QuizActivity extends AppCompatActivity {
     private void initializeViews() {
         this.containerMotionLayout = findViewById(R.id.ml_container_quiz_activity);
         this.closeImageButton = findViewById(R.id.imgbtn_close_quiz_activity);
+        this.backImageButton = findViewById(R.id.imgbtn_back_quiz_activity);
         this.quizTitleTextView = findViewById(R.id.tv_title_quiz_activity);
         this.virusFullNameTextView = findViewById(R.id.tv_virus_full_name_quiz_quiz_activity);
         this.virusImageView = findViewById(R.id.img_pic_virus_quiz_activity);
