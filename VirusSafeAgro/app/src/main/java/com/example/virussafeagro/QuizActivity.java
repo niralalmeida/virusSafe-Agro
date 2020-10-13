@@ -105,9 +105,8 @@ public class QuizActivity extends AppCompatActivity {
             // set the current page identification
             currentPage = BUTTON_NAME_BEGINNER;
             // move beginner Button + hide intermediate Button
-            containerMotionLayout.clearAnimation();
-            containerMotionLayout.setTransition(R.id.start_beginner, R.id.end_beginner);
-            containerMotionLayout.transitionToEnd();
+            configureTheAnimation(R.id.start_beginner, R.id.end_beginner);
+            // set the button text
             beginnerButton.setText(BUTTON_NAME_START_QUIZ);
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_BEGINNER);
@@ -119,15 +118,15 @@ public class QuizActivity extends AppCompatActivity {
             // set the current page identification
             currentPage = BUTTON_NAME_INTERMEDIATE;
             // move intermediate Button + hide beginner Button
-            containerMotionLayout.clearAnimation();
-            containerMotionLayout.setTransition(R.id.start_intermediate, R.id.end_intermediate);
-            containerMotionLayout.transitionToEnd();
+            configureTheAnimation(R.id.start_intermediate, R.id.end_intermediate);
+            // set the button text
             intermediateButton.setText(BUTTON_NAME_START_QUIZ);
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_INTERMEDIATE);
         }
     }
 
+    // change the style when the 2 buttons are clicked
     private void changeOtherViewsStyle(String buttonName) {
         // change the background
         ColorDrawable[] colorDrawablesForBG = {
@@ -169,16 +168,26 @@ public class QuizActivity extends AppCompatActivity {
     public void back(View v){
         if (currentPage.equals(BUTTON_NAME_BEGINNER)) {
             // move beginner Button + show intermediate Button
-            containerMotionLayout.clearAnimation();
-            containerMotionLayout.setTransition(R.id.end_beginner, R.id.start_beginner);
-            containerMotionLayout.transitionToEnd();
+            configureTheAnimation(R.id.end_beginner, R.id.start_beginner);
+            // set the button text
             intermediateButton.setText(BUTTON_NAME_BEGINNER);
         } else if (currentPage.equals(BUTTON_NAME_INTERMEDIATE)){
             // move intermediate Button + show beginner Button
-            containerMotionLayout.clearAnimation();
-            containerMotionLayout.setTransition(R.id.end_intermediate, R.id.start_intermediate);
-            containerMotionLayout.transitionToEnd();
+            configureTheAnimation(R.id.end_intermediate, R.id.start_intermediate);
+            // set the button text
             intermediateButton.setText(BUTTON_NAME_INTERMEDIATE);
         }
+    }
+
+    // resume the style when the back buttons are clicked
+    private void resumeOtherViewsStyle(String buttonName) {
+
+    }
+
+    private void configureTheAnimation(int start, int end) {
+        // move beginner Button + show intermediate Button
+        containerMotionLayout.clearAnimation();
+        containerMotionLayout.setTransition(start, end);
+        containerMotionLayout.transitionToEnd();
     }
 }
