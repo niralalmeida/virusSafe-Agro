@@ -13,12 +13,13 @@
     app:layoutDescription="@xml/show_start_quiz_button"
     tools:context=".QuizActivity">
 
+    <!-- close button -->
     <ImageButton
         android:id="@+id/imgbtn_close_quiz_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="closeOnClick"
-        android:elevation="5dp"
+        android:elevation="11dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,13 +30,14 @@
         android:tint="@color/colorPrimaryTitle"
         android:src="@drawable/ic_wrong_circle_black_50dp"/>
 
+    <!-- back button -->
     <ImageButton
         android:id="@+id/imgbtn_back_quiz_activity"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="backOnClick"
-        android:elevation="5dp"
+        android:elevation="11dp"
         android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +48,7 @@
         android:tint="@color/colorPrimaryDarkBG"
         android:src="@drawable/back1"/>
 
+    <!-- quiz title -->
     <TextView
         android:id="@+id/tv_title_quiz_activity"
         android:layout_width="wrap_content"
@@ -60,49 +63,40 @@
         android:text="Quiz"/>
 
     <!-- envelope cover opened -->
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:id="@+id/cv_envelope_cover_opened_quiz_activity"
         android:layout_width="250dp"
-        android:layout_height="360dp"
-        app:cardElevation="13dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="310dp"
+        android:elevation="10dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/cv_envelope_back_quiz_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:cardBackgroundColor="@android:color/transparent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/envelope_cover_opened" />
-    </androidx.cardview.widget.CardView>
+        android:background="@drawable/envelope_cover_opened">
+    </RelativeLayout>
     <!-- envelope cover closed -->
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:id="@+id/cv_envelope_cover_closed_quiz_activity"
         android:layout_width="250dp"
-        android:layout_height="360dp"
-        app:cardElevation="13dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_quiz_activity"
+        android:layout_height="310dp"
+        android:elevation="16dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/cv_envelope_cover_opened_quiz_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:cardBackgroundColor="@android:color/transparent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/envelope_cover_closed" />
-    </androidx.cardview.widget.CardView>
+        android:background="@drawable/envelope_cover_closed">
+    </RelativeLayout>
     <!-- envelope front -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_envelope_quiz_activity"
         android:layout_width="250dp"
-        android:layout_height="400dp"
-        app:cardCornerRadius="15dp"
+        android:layout_height="310dp"
         app:cardElevation="12dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_quiz_activity"
+        app:layout_constraintTop_toBottomOf="@id/cv_envelope_cover_opened_quiz_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:cardBackgroundColor="@color/bg_envelope_light">
+        app:cardBackgroundColor="@android:color/transparent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -127,31 +121,27 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_envelope_paper_quiz_activity"
         android:layout_width="200dp"
-        android:layout_height="360dp"
+        android:layout_height="270dp"
         app:cardElevation="11dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_quiz_activity"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/cv_envelope_cover_opened_quiz_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:cardBackgroundColor="@color/colorWhite">
     </androidx.cardview.widget.CardView>
     <!-- envelope back -->
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:id="@+id/cv_envelope_back_quiz_activity"
         android:layout_width="250dp"
-        android:layout_height="400dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="10dp"
+        android:layout_height="310dp"
+        android:elevation="10dp"
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@id/tv_title_quiz_activity"
+        app:layout_constraintBottom_toTopOf="@id/tv_virus_full_name_quiz_quiz_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:cardBackgroundColor="@color/bg_envelope_light">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/envelope_back" />
-    </androidx.cardview.widget.CardView>
+        android:background="@drawable/envelope_back">
+    </RelativeLayout>
 
 
     <androidx.cardview.widget.CardView
@@ -159,7 +149,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:cardCornerRadius="100dp"
-        app:cardElevation="15dp"
+        app:cardElevation="18dp"
         android:transitionName="@string/quiz_activity_transition_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

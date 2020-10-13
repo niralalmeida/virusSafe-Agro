@@ -103,6 +103,7 @@
     <color name="btn_intermediate_bg">#7D3C98</color>
     <color name="bg_envelope_light">#F8CC6E</color>
     <color name="bg_envelope_dark">#EEBA61</color>
+    <color name="bg_envelope_bg">#D9A246</color>
     <color name="bg_virus_full_name_tag">#C2C2C2</color>
 
 </resources>
