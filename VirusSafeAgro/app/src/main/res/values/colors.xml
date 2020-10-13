@@ -46,10 +46,15 @@
     <color name="iconTomatoTip">#B03A2E</color>
     <color name="iconLearn">#000000</color>
     <color name="iconCheck">#2E86C1</color>
-    <color name="iconControlStrategy">#DC7633</color>
+    <color name="iconControlStrategy">#E06857</color>
+    <color name="iconControlStrategySub">#2E86C1</color>
     <color name="iconMap">#58D68D</color>
     <color name="iconFactor">#3498DB</color>
+    <color name="iconFactorHand">#F0B27A</color>
     <color name="iconInsight">#F1C40F</color>
+    <color name="iconInsightNews">#cfcacf</color>
+    <color name="iconInsightTweets">#49A1EB</color>
+    <color name="iconInsightVideo">#EB3223</color>
 
     <!-- virus detail -->
     <color name="colorSubTitle">#d0d3d6</color>

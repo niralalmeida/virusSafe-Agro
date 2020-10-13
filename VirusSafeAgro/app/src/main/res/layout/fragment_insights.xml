@@ -49,6 +49,7 @@
                     android:layout_height="45dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
+                    android:tint="@color/iconInsightNews"
                     android:src="@drawable/news"/>
 
             </RelativeLayout>
@@ -106,6 +107,7 @@
                     android:layout_height="45dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
+                    android:tint="@color/iconInsightTweets"
                     android:src="@drawable/twitter"/>
 
             </RelativeLayout>

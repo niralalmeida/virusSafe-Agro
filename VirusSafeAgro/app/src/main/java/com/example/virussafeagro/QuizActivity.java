@@ -196,6 +196,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void backOnClick(View v){
+        // the start button is not shown
         if (startQuizButton.getVisibility() != View.VISIBLE) {
             if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
                 // move beginner Button + show intermediate Button
@@ -210,7 +211,8 @@ public class QuizActivity extends AppCompatActivity {
             }
             // resume other views' style
             resumeOtherViewsStyle();
-        } else {
+        } // the start button is shown
+        else {
             if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
                 // back to the envelope page
                 configureTheAnimation(R.id.end_open_quiz_beginner, R.id.start_open_quiz_beginner, 500);
