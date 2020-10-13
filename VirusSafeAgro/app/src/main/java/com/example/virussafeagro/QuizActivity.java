@@ -155,10 +155,20 @@ public class QuizActivity extends AppCompatActivity {
 
     // open the envelope cover when click "start quiz" button
     private void openTheEnvelopeCover() {
+        containerMotionLayout.clearAnimation();
         // hide bottom cover
         envelopeCoverClosedRelativeLayout.setVisibility(View.INVISIBLE);
         // show top cover
         envelopeCoverOpenedRelativeLayout.setVisibility(View.VISIBLE);
+    }
+
+    // close the envelope cover when click "back" button
+    private void closeTheEnvelopeCover() {
+        containerMotionLayout.clearAnimation();
+        // hide top cover
+        envelopeCoverOpenedRelativeLayout.setVisibility(View.INVISIBLE);
+        // show bottom cover
+        envelopeCoverClosedRelativeLayout.setVisibility(View.VISIBLE);
     }
 
     // change the style when the 2 buttons are clicked
@@ -220,6 +230,7 @@ public class QuizActivity extends AppCompatActivity {
                 // back to the envelope page
                 configureTheAnimation(R.id.end_open_quiz_intermediate, R.id.start_open_quiz_intermediate, 500);
             }
+            new Handler().postDelayed(this::closeTheEnvelopeCover, 800);
         }
     }
 
