@@ -68,6 +68,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         new Handler().postDelayed(this::showPasswordActivity,200);
     }
 
+////////////////////////////////////////////////// -- Pass word -- /////////////////////////////////////////////////////
     private void showPasswordActivity() {
         Intent returnIntent = getIntent();
         String whereFromString = returnIntent.getStringExtra("whereFrom");
