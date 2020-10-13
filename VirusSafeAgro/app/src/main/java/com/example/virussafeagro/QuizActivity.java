@@ -145,4 +145,8 @@ public class QuizActivity extends AppCompatActivity {
         this.finish();
         this.overridePendingTransition(0, R.anim.activity_fade_out);
     }
+
+    public void back(View v){
+
+    }
 }

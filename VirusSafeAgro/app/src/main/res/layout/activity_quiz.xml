@@ -29,6 +29,23 @@
         android:tint="@color/colorPrimaryTitle"
         android:src="@drawable/ic_wrong_circle_black_50dp"/>
 
+    <ImageButton
+        android:id="@+id/imgbtn_back_quiz_activity"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="back"
+        android:elevation="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"
+        android:tint="@color/colorPrimaryTitle"
+        android:src="@drawable/back1"/>
+
     <TextView
         android:id="@+id/tv_title_quiz_activity"
         android:layout_width="wrap_content"
@@ -146,20 +163,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_beginner_quiz_activity"/>
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_start_quiz_activity"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textColor="@color/colorWhite"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        android:background="@color/colorPrimaryDark"-->
-<!--        android:padding="20dp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textSize="20sp"-->
-<!--        android:text="start"/>-->
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
