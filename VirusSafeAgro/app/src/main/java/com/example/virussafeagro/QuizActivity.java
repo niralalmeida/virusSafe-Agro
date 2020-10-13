@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 public class QuizActivity extends AppCompatActivity {
     private int currentVirusModelId;
@@ -35,6 +36,7 @@ public class QuizActivity extends AppCompatActivity {
     private ImageView virusImageView;
     private Button beginnerButton;
     private Button intermediateButton;
+    private Button startQuizButton;
     private TextView quizInfoTextView;
     private RelativeLayout envelopeCoverClosedRelativeLayout;
     private RelativeLayout envelopeCoverOpenedRelativeLayout;
@@ -85,6 +87,7 @@ public class QuizActivity extends AppCompatActivity {
         this.virusImageView = findViewById(R.id.img_pic_virus_quiz_activity);
         this.beginnerButton = findViewById(R.id.btn_beginner_quiz_activity);
         this.intermediateButton = findViewById(R.id.btn_intermediate_quiz_activity);
+        this.startQuizButton = findViewById(R.id.btn_start_quiz_activity);
         this.quizInfoTextView = findViewById(R.id.tv_info_quiz_activity);
         this.envelopeCoverClosedRelativeLayout = findViewById(R.id.cv_envelope_cover_closed_quiz_activity);
         this.envelopeCoverOpenedRelativeLayout = findViewById(R.id.cv_envelope_cover_opened_quiz_activity);
@@ -113,6 +116,9 @@ public class QuizActivity extends AppCompatActivity {
         } else { // start the quiz
             // open the envelope cover
             openTheEnvelopeCover();
+
+            // change the start button color
+            startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_beginner_quiz_activity);
             // move down the envelope
             new Handler().postDelayed(()->{
                 configureTheAnimation(R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
@@ -133,12 +139,18 @@ public class QuizActivity extends AppCompatActivity {
         } else { // start the quiz
             // open the envelope cover
             openTheEnvelopeCover();
+
+            // change the start button color
+            startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_intermediate_quiz_activity);
             // move down the envelope
             new Handler().postDelayed(()->{
                 configureTheAnimation(R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
             }, 300);
-
         }
+    }
+
+    public void startQuizOnClick(View v){
+
     }
 
     // open the envelope cover when click "start quiz" button
@@ -184,19 +196,29 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void backOnClick(View v){
-        if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
-            // move beginner Button + show intermediate Button
-            configureTheAnimation(R.id.end_beginner, R.id.start_beginner, 500);
-            // set the button text
-            beginnerButton.setText(BUTTON_NAME_BEGINNER);
-        } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)){
-            // move intermediate Button + show beginner Button
-            configureTheAnimation(R.id.end_intermediate, R.id.start_intermediate, 500);
-            // set the button text
-            intermediateButton.setText(BUTTON_NAME_INTERMEDIATE);
+        if (startQuizButton.getVisibility() != View.VISIBLE) {
+            if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
+                // move beginner Button + show intermediate Button
+                configureTheAnimation(R.id.end_beginner, R.id.start_beginner, 500);
+                // set the button text
+                beginnerButton.setText(BUTTON_NAME_BEGINNER);
+            } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)) {
+                // move intermediate Button + show beginner Button
+                configureTheAnimation(R.id.end_intermediate, R.id.start_intermediate, 500);
+                // set the button text
+                intermediateButton.setText(BUTTON_NAME_INTERMEDIATE);
+            }
+            // resume other views' style
+            resumeOtherViewsStyle();
+        } else {
+            if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
+                // back to the envelope page
+                configureTheAnimation(R.id.end_open_quiz_beginner, R.id.start_open_quiz_beginner, 500);
+            } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)) {
+                // back to the envelope page
+                configureTheAnimation(R.id.end_open_quiz_intermediate, R.id.start_open_quiz_intermediate, 500);
+            }
         }
-        // resume other views' style
-        resumeOtherViewsStyle();
     }
 
     // resume the style when the back buttons are clicked
