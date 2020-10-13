@@ -51,7 +51,7 @@ public class QuizActivity extends AppCompatActivity {
     private String TEXT_TRICKY_TIP;
 
     // current page identification tags
-    private String currentPage;
+    private String currentPageName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +103,7 @@ public class QuizActivity extends AppCompatActivity {
     public void beginnerOnClick(View v){
         if (!beginnerButton.getText().toString().equals(BUTTON_NAME_START_QUIZ)) {
             // set the current page identification
-            currentPage = BUTTON_NAME_BEGINNER;
+            currentPageName = BUTTON_NAME_BEGINNER;
             // move beginner Button + hide intermediate Button
             configureTheAnimation(R.id.start_beginner, R.id.end_beginner);
             // set the button text
@@ -116,7 +116,7 @@ public class QuizActivity extends AppCompatActivity {
     public void intermediateOnClick(View v){
         if (!intermediateButton.getText().toString().equals(BUTTON_NAME_START_QUIZ)) {
             // set the current page identification
-            currentPage = BUTTON_NAME_INTERMEDIATE;
+            currentPageName = BUTTON_NAME_INTERMEDIATE;
             // move intermediate Button + hide beginner Button
             configureTheAnimation(R.id.start_intermediate, R.id.end_intermediate);
             // set the button text
@@ -145,13 +145,8 @@ public class QuizActivity extends AppCompatActivity {
             quizInfoTextView.setTextColor(getResources().getColor(R.color.btn_intermediate_bg));
             quizInfoTextView.setText(TEXT_TRICKY_TIP);
         }
-        // change the virus full name color and style (cancel bold)
+        // change the virus full name color
         virusFullNameTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDarkBG));
-        Paint paint = virusFullNameTextView.getPaint();
-        if (paint != null) {
-            paint.setFakeBoldText(false);
-        }
-        virusFullNameTextView.postInvalidate();
 
         // change the close button color
         ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryDarkBG);
@@ -159,29 +154,45 @@ public class QuizActivity extends AppCompatActivity {
         closeImageButton.setImageTintList(colorStateList);
     }
 
-    public void close(View v) {
+    public void closeOnClick(View v) {
         // animation
         this.finish();
         this.overridePendingTransition(0, R.anim.activity_fade_out);
     }
 
-    public void back(View v){
-        if (currentPage.equals(BUTTON_NAME_BEGINNER)) {
+    public void backOnClick(View v){
+        if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
             // move beginner Button + show intermediate Button
             configureTheAnimation(R.id.end_beginner, R.id.start_beginner);
             // set the button text
-            intermediateButton.setText(BUTTON_NAME_BEGINNER);
-        } else if (currentPage.equals(BUTTON_NAME_INTERMEDIATE)){
+            beginnerButton.setText(BUTTON_NAME_BEGINNER);
+        } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)){
             // move intermediate Button + show beginner Button
             configureTheAnimation(R.id.end_intermediate, R.id.start_intermediate);
             // set the button text
             intermediateButton.setText(BUTTON_NAME_INTERMEDIATE);
         }
+        // resume other views' style
+        resumeOtherViewsStyle();
     }
 
     // resume the style when the back buttons are clicked
-    private void resumeOtherViewsStyle(String buttonName) {
-
+    private void resumeOtherViewsStyle() {
+        // change the background
+        ColorDrawable[] colorDrawablesForBG = {
+                new ColorDrawable(getResources().getColor(R.color.colorWhite)),
+                new ColorDrawable(getResources().getColor(R.color.colorPrimaryDarkBG))};
+        TransitionDrawable transitionDrawable = new TransitionDrawable(colorDrawablesForBG);
+        containerMotionLayout.setBackground(transitionDrawable);
+        transitionDrawable.startTransition(300);
+        // change the quiz title color
+        quizTitleTextView.setTextColor(getResources().getColor(R.color.colorPrimaryTitle));
+        // change the virus full name color
+        virusFullNameTextView.setTextColor(getResources().getColor(R.color.colorPrimaryTitle));
+        // change the close button color
+        ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryTitle);
+        closeImageButton.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+        closeImageButton.setImageTintList(colorStateList);
     }
 
     private void configureTheAnimation(int start, int end) {
