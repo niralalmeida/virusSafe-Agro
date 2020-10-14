@@ -112,12 +112,6 @@ public class QuizQuestionSlideAdapter extends PagerAdapter {
 
         // question image
         List<Bitmap> currentQuestionImageList = currentChoiceQuestionModel.getChoiceQuestionImageList();
-        // test
-//        System.out.println("[[[[[ question id ]]]]]: (" + currentChoiceQuestionModel.getChoiceQuestionId() + ")");
-        // test
-//        System.out.println(" ==> currentQuestionImageList:<" + currentQuestionImageList +">");
-        // test
-//        System.out.println(" ==> currentQuestionImageList size :" + currentQuestionImageList.size());
         if (currentQuestionImageList != null && currentQuestionImageList.size() != 0 && (currentQuestionImageList.get(0) != null)){
             // just one image can be shown for now
             this.quizQuestionImageView.setImageBitmap(currentQuestionImageList.get(0));

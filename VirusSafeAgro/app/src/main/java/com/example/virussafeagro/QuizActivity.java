@@ -2,8 +2,6 @@ package com.example.virussafeagro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -25,14 +23,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.viewModel.QuizActivityViewModel;
-import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,9 +136,12 @@ public class QuizActivity extends AppCompatActivity {
         this.quizActivityViewModel.getQuizQuestionModelListLD().observe(this, resultQuizQuestionModelList -> {
             // set the question model list
             choiceQuestionModelList = resultQuizQuestionModelList;
-            // hide the progress bar if it is shown
+            // when the "open quiz paper" button shows
             if (loadQuestionProgressBar.getVisibility() == View.VISIBLE){
+                // hide the progress bar if it is shown
                 loadQuestionProgressBar.setVisibility(View.INVISIBLE);
+                // configure the question type list
+                setPaperContent();
                 // run the animation if clicking the "open quiz paper" button
                 if (beginnerButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)){
                     // open the envelope cover
@@ -190,6 +189,8 @@ public class QuizActivity extends AppCompatActivity {
             changeOtherViewsStyle(BUTTON_NAME_BEGINNER);
         } else { // open the quiz paper
             if (!choiceQuestionModelList.isEmpty()) {
+                // configure the question type list
+                setPaperContent();
                 // open the envelope cover
                 openTheEnvelopeCover();
                 // change the start button color
@@ -218,6 +219,8 @@ public class QuizActivity extends AppCompatActivity {
             changeOtherViewsStyle(BUTTON_NAME_INTERMEDIATE);
         } else { // open the quiz paper
             if (!choiceQuestionModelList.isEmpty()) {
+                // configure the question type list
+                setPaperContent();
                 // open the envelope cover
                 openTheEnvelopeCover();
                 // change the start button color
@@ -282,9 +285,6 @@ public class QuizActivity extends AppCompatActivity {
         ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryDarkBG);
         closeImageButton.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
         closeImageButton.setImageTintList(colorStateList);
-
-        // configure the question type list
-        setPaperContent();
     }
 
     // question type list
@@ -299,7 +299,7 @@ public class QuizActivity extends AppCompatActivity {
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
             // text for "Q# - "
             TextView questionNoTextView = new TextView(this);
-            String questionNoString = "Q" + id;
+            String questionNoString = "Q" + id + ". ";
             questionNoTextView.setText(questionNoString);
             questionNoTextView.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD);
             questionNoTextView.setTextSize(15);
@@ -308,12 +308,18 @@ public class QuizActivity extends AppCompatActivity {
             } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)) {
                 questionNoTextView.setTextColor(getResources().getColor(R.color.btn_intermediate_bg));
             }
-            // question type
+            // question type items
             TextView questionTypeTextView = new TextView(this);
-            String questionTypeString = " - " + TEXT_SINGLE_CHOICE_QUESTION;
+            String questionTypeString = "";
+            if (choiceQuestionModelList.get(i).getChoiceQuestionType().equals("single")) {
+                questionTypeString = TEXT_SINGLE_CHOICE_QUESTION;
+            } else if (choiceQuestionModelList.get(i).getChoiceQuestionType().equals("multiple")){
+                questionTypeString = TEXT_MULTIPLE_CHOICE_QUESTION;
+            }
             questionTypeTextView.setText(questionTypeString);
             questionTypeTextView.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD);
-            questionTypeTextView.setTextSize(13);
+            questionTypeTextView.setTextSize(12);
+
             // add the text views and linear layout
             linearLayout.addView(questionNoTextView);
             linearLayout.addView(questionTypeTextView);

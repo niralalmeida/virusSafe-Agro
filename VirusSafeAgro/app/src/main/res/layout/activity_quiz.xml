@@ -218,7 +218,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <ImageView
             android:id="@+id/img_pic_virus_quiz_activity"
             android:layout_width="match_parent"
@@ -226,9 +225,7 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/default_leaf" />
-
     </androidx.cardview.widget.CardView>
-
     <!-- virus full name -->
     <TextView
         android:id="@+id/tv_virus_full_name_quiz_quiz_activity"
@@ -295,5 +292,12 @@
         app:layout_constraintEnd_toEndOf="@id/cv_envelope_back_quiz_activity"
         app:layout_constraintTop_toTopOf="@id/cv_envelope_back_quiz_activity"
         app:layout_constraintBottom_toBottomOf="@id/cv_envelope_back_quiz_activity"/>
+
+    <!-- fragments for questions -->
+    <FrameLayout
+        android:id="@+id/fl_quiz_fragments"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

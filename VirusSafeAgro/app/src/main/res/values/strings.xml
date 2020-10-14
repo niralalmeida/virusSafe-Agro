@@ -160,7 +160,7 @@
     <!-- quiz activity -->
     <string name="btn_beginner">beginner</string>
     <string name="btn_intermediate">intermediate</string>
-    <string name="btn_start_quiz">start</string>
+    <string name="btn_start_quiz">start!</string>
     <string name="btn_open_quiz">open quiz paper</string>
     <string name="text_simple_tip">5 Simple Questions</string>
     <string name="text_tricky_tip">5 Tricky Questions</string>
