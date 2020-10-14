@@ -207,4 +207,25 @@ public class DataConverter {
         return (int) (dpValue * scale + 0.5f);
     }
 
+    public static int getQuizQuestionId(int questionNo) {
+        int id = -1;
+        switch (questionNo){
+            case 1:
+                id = R.id.question_1_quiz;
+                break;
+            case 2:
+                id = R.id.question_2_quiz;
+                break;
+            case 3:
+                id = R.id.question_3_quiz;
+                break;
+            case 4:
+                id = R.id.question_4_quiz;
+                break;
+            case 5:
+                id = R.id.question_5_quiz;
+                break;
+        }
+        return id;
+    }
 }

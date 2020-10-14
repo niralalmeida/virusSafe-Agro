@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <item name="question_1_quiz" type="id">question_1_quiz</item>-->
+<!--    <item name="question_2_quiz" type="id">question_2_quiz</item>-->
+<!--    <item name="question_3_quiz" type="id">question_3_quiz</item>-->
+<!--    <item name="question_4_quiz" type="id">question_4_quiz</item>-->
+<!--    <item name="question_5_quiz" type="id">question_5_quiz</item>-->
+    <item name="question_1_quiz" type="id"/>
+    <item name="question_2_quiz" type="id"/>
+    <item name="question_3_quiz" type="id"/>
+    <item name="question_4_quiz" type="id"/>
+    <item name="question_5_quiz" type="id"/>
+</resources>

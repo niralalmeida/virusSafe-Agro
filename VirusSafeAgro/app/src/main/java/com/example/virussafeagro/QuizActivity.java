@@ -1,14 +1,16 @@
 package com.example.virussafeagro;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
@@ -18,24 +20,23 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.uitilities.DataConverter;
 
 public class QuizActivity extends AppCompatActivity {
     private int currentVirusModelId;
     private String currentVirusModelFullName;
-
-    // question type list
-    private StringBuilder questionTypeListStringBuilder;
 
     // views
     private MotionLayout containerMotionLayout;
     private ImageButton closeImageButton;
     private TextView quizTitleTextView;
     private TextView virusFullNameTextView;
+    private TextView virusFullNamePaperTextView;
     private ImageView virusImageView;
     private Button beginnerButton;
     private Button intermediateButton;
@@ -43,7 +44,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView quizInfoTextView;
     private RelativeLayout envelopeCoverClosedRelativeLayout;
     private RelativeLayout envelopeCoverOpenedRelativeLayout;
-    private TextView paperContentTextView;
+    private LinearLayout paperContentLinearLayout;
 
     // button names
     private String BUTTON_NAME_BEGINNER;
@@ -51,10 +52,12 @@ public class QuizActivity extends AppCompatActivity {
     private String BUTTON_NAME_OPEN_QUIZ;
     private String TEXT_SIMPLE_TIP;
     private String TEXT_TRICKY_TIP;
+    private String TEXT_SINGLE_CHOICE_QUESTION;
+    private String TEXT_MULTIPLE_CHOICE_QUESTION;
 
     // current page identification tags
     private String currentPageName;
-    private final int questionCount = 5;
+    private final int QUESTION_COUNT = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +84,8 @@ public class QuizActivity extends AppCompatActivity {
         BUTTON_NAME_OPEN_QUIZ = getResources().getString(R.string.btn_open_quiz);
         TEXT_SIMPLE_TIP = getResources().getString(R.string.text_simple_tip);
         TEXT_TRICKY_TIP = getResources().getString(R.string.text_tricky_tip);
-
-        questionTypeListStringBuilder = new StringBuilder();
+        TEXT_SINGLE_CHOICE_QUESTION = getResources().getString(R.string.text_single_choice_quiz);
+        TEXT_MULTIPLE_CHOICE_QUESTION = getResources().getString(R.string.text_multiple_choice_quiz);
     }
 
     private void initializeViews() {
@@ -90,6 +93,7 @@ public class QuizActivity extends AppCompatActivity {
         this.closeImageButton = findViewById(R.id.imgbtn_close_quiz_activity);
         this.quizTitleTextView = findViewById(R.id.tv_title_quiz_activity);
         this.virusFullNameTextView = findViewById(R.id.tv_virus_full_name_quiz_quiz_activity);
+        this.virusFullNamePaperTextView = findViewById(R.id.tv_virus_full_name_paper_quiz_activity);
         this.virusImageView = findViewById(R.id.img_pic_virus_quiz_activity);
         this.beginnerButton = findViewById(R.id.btn_beginner_quiz_activity);
         this.intermediateButton = findViewById(R.id.btn_intermediate_quiz_activity);
@@ -97,7 +101,7 @@ public class QuizActivity extends AppCompatActivity {
         this.quizInfoTextView = findViewById(R.id.tv_info_quiz_activity);
         this.envelopeCoverClosedRelativeLayout = findViewById(R.id.cv_envelope_cover_closed_quiz_activity);
         this.envelopeCoverOpenedRelativeLayout = findViewById(R.id.cv_envelope_cover_opened_quiz_activity);
-        this.paperContentTextView = findViewById(R.id.tv_paper_content_quiz_activity);
+        this.paperContentLinearLayout= findViewById(R.id.ll_paper_content_quiz_activity);
     }
 
     private void showActivityViews() {
@@ -107,15 +111,7 @@ public class QuizActivity extends AppCompatActivity {
         this.virusImageView.setImageBitmap(virusPictureBitmap);
         // virus full name
         this.virusFullNameTextView.setText(this.currentVirusModelFullName);
-        // question type list
-        for (int i = 0; i < questionCount; i++) {
-            this.questionTypeListStringBuilder
-                    .append("Q").append((i+1))
-                    .append(" - ")
-                    .append(getResources().getString(R.string.text_single_choice_quiz))
-                    .append("\n\n");
-        }
-        this.paperContentTextView.setText(this.questionTypeListStringBuilder.toString());
+        this.virusFullNamePaperTextView.setText(this.currentVirusModelFullName);
     }
 
     public void beginnerOnClick(View v){
@@ -128,7 +124,7 @@ public class QuizActivity extends AppCompatActivity {
             beginnerButton.setText(BUTTON_NAME_OPEN_QUIZ);
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_BEGINNER);
-        } else { // start the quiz
+        } else { // open the quiz paper
             // open the envelope cover
             openTheEnvelopeCover();
 
@@ -138,6 +134,8 @@ public class QuizActivity extends AppCompatActivity {
             new Handler().postDelayed(()->{
                 configureTheAnimation(R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
             }, 300);
+            // change the virus full name size
+            virusFullNameTextView.setTextSize(12);
         }
     }
 
@@ -151,7 +149,7 @@ public class QuizActivity extends AppCompatActivity {
             intermediateButton.setText(BUTTON_NAME_OPEN_QUIZ);
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_INTERMEDIATE);
-        } else { // start the quiz
+        } else { // open the quiz paper
             // open the envelope cover
             openTheEnvelopeCover();
 
@@ -161,6 +159,8 @@ public class QuizActivity extends AppCompatActivity {
             new Handler().postDelayed(()->{
                 configureTheAnimation(R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
             }, 300);
+            // change the virus full name size
+            virusFullNameTextView.setTextSize(12);
         }
     }
 
@@ -212,6 +212,47 @@ public class QuizActivity extends AppCompatActivity {
         ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryDarkBG);
         closeImageButton.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
         closeImageButton.setImageTintList(colorStateList);
+
+        // configure the question type list
+        setPaperContent();
+    }
+
+    // question type list
+    private void setPaperContent() {
+        paperContentLinearLayout.removeAllViews();
+        for (int i = 0; i < QUESTION_COUNT; i++) {
+            int id = i + 1;
+            // line LinearLayout
+            LinearLayout linearLayout = new LinearLayout(this);
+            int linearLayoutId = DataConverter.getQuizQuestionId(id);
+            linearLayout.setId(linearLayoutId);
+            linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+            // text for "Q# - "
+            TextView questionNoTextView = new TextView(this);
+            String questionNoString = "Q" + id;
+            questionNoTextView.setText(questionNoString);
+            questionNoTextView.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD);
+            questionNoTextView.setTextSize(15);
+            if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
+                questionNoTextView.setTextColor(getResources().getColor(R.color.btn_beginner_bg));
+            } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)) {
+                questionNoTextView.setTextColor(getResources().getColor(R.color.btn_intermediate_bg));
+            }
+            // question type
+            TextView questionTypeTextView = new TextView(this);
+            String questionTypeString = " - " + TEXT_SINGLE_CHOICE_QUESTION;
+            questionTypeTextView.setText(questionTypeString);
+            questionTypeTextView.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD);
+            questionTypeTextView.setTextSize(13);
+            // add the text views and linear layout
+            linearLayout.addView(questionNoTextView);
+            linearLayout.addView(questionTypeTextView);
+            paperContentLinearLayout.addView(linearLayout);
+            // set margin top
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
+            layoutParams.topMargin = 5;
+            linearLayout.setLayoutParams(layoutParams);
+        }
     }
 
     public void closeOnClick(View v) {
