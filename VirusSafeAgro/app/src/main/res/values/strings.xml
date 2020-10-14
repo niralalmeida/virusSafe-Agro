@@ -162,10 +162,11 @@
     <string name="btn_intermediate">intermediate</string>
     <string name="btn_start_quiz">start</string>
     <string name="btn_open_quiz">open quiz paper</string>
-    <string name="text_simple_tip">&lt; 5 Simple Questions &gt;</string>
-    <string name="text_tricky_tip">&lt; 5 Tricky Questions &gt;</string>
+    <string name="text_simple_tip">5 Simple Questions</string>
+    <string name="text_tricky_tip">5 Tricky Questions</string>
     <string name="text_single_choice_quiz">single choice question</string>
     <string name="text_multiple_choice_quiz">multiple choice question</string>
+    <string name="text_quiz_paper_tip">1 MIN EACH QUESTION!</string>
 
     <!-- transition name -->
     <string name="quiz_activity_transition_name">quiz</string>

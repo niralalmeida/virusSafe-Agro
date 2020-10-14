@@ -310,8 +310,9 @@ public class VirusDetailFragment extends Fragment {
     private void setTakeQuizButtonOnClickListener() {
         this.quizButton.setOnClickListener(quizButtonView -> {
             Intent intent = new Intent(mainActivity, QuizActivity.class);
-            intent.putExtra("currentVirusModelId", currentVirusModel.getVirusId());
-            intent.putExtra("currentVirusModelFullName", currentVirusModel.getVirusFullName());
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("currentVirusModel", currentVirusModel);
+            intent.putExtras(bundle);
             // animation
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, virusPictureImageView, ViewCompat.getTransitionName(virusPictureImageView));
             mainActivity.startActivity(intent, options.toBundle());

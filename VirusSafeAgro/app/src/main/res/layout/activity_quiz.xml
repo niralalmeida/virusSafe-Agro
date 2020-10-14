@@ -157,6 +157,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:orientation="vertical"/>
+            <TextView
+                android:id="@+id/tv_tip_paper_quiz_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/ll_paper_content_quiz_activity"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_quiz_paper_tip"
+                android:text="@string/text_quiz_paper_tip"/>
         </androidx.constraintlayout.widget.ConstraintLayout >
     </androidx.cardview.widget.CardView>
     <!-- envelope back -->

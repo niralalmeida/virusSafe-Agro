@@ -112,5 +112,6 @@
     <color name="bg_envelope_dark">#EEBA61</color>
     <color name="bg_envelope_bg">#D9A246</color>
     <color name="bg_virus_full_name_tag">#C2C2C2</color>
+    <color name="text_quiz_paper_tip">#C0392B</color>
 
 </resources>

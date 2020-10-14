@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.virussafeagro.models.ChoiceQuestionModel;
+import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.viewModel.QuizActivityViewModel;
@@ -35,12 +36,11 @@ import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class QuizActivity extends AppCompatActivity {
-    private int currentVirusModelId;
-    private String currentVirusModelFullName;
-
-    // view model
+    // data
+    private VirusModel currentVirusModel;
     private QuizActivityViewModel quizActivityViewModel;
     private List<ChoiceQuestionModel> choiceQuestionModelList;
 
@@ -80,9 +80,8 @@ public class QuizActivity extends AppCompatActivity {
         // hide top status bar
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        // get current virus model id and full name
-        this.currentVirusModelId = getIntent().getIntExtra("currentVirusModelId", -1);
-        this.currentVirusModelFullName = getIntent().getStringExtra("currentVirusModelFullName");
+        // get current virus model
+        this.currentVirusModel = Objects.requireNonNull(getIntent().getExtras()).getParcelable("currentVirusModel");
         // initialize variables and data
         this.initializeVariablesAndData();
         // initialize VirusQuizQuestionViewModel
@@ -133,7 +132,7 @@ public class QuizActivity extends AppCompatActivity {
     // start processing the finding question list process
     private void findVirusQuizQuestionsFromDB() {
         this.choiceQuestionModelList = new ArrayList<>();
-        this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModelId);
+        this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
     }
 
     // observe VirusQuizQuestionArray live data
@@ -171,12 +170,12 @@ public class QuizActivity extends AppCompatActivity {
     // show all initial views
     private void showActivityViews() {
         // virus image
-        int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(currentVirusModelId);
+        int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(currentVirusModel.getVirusId());
         Bitmap virusPictureBitmap = BitmapFactory.decodeResource(getResources(), virusPictureDrawableId);
         this.virusImageView.setImageBitmap(virusPictureBitmap);
         // virus full name
-        this.virusFullNameTextView.setText(this.currentVirusModelFullName);
-        this.virusFullNamePaperTextView.setText(this.currentVirusModelFullName);
+        this.virusFullNameTextView.setText(currentVirusModel.getVirusFullName());
+        this.virusFullNamePaperTextView.setText(currentVirusModel.getVirusFullName());
     }
 
     public void beginnerOnClick(View v){
