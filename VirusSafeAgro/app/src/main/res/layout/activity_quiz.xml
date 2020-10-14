@@ -269,4 +269,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_beginner_quiz_activity"/>
 
+    <!-- progress bar for loading questions -->
+    <ProgressBar
+        android:id="@+id/pb_load_question_quiz_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        android:elevation="20dp"
+        android:indeterminateDrawable="@drawable/rotate_progress_bar_beginner_load_question_quiz_activity"
+        app:layout_constraintStart_toStartOf="@id/cv_envelope_back_quiz_activity"
+        app:layout_constraintEnd_toEndOf="@id/cv_envelope_back_quiz_activity"
+        app:layout_constraintTop_toTopOf="@id/cv_envelope_back_quiz_activity"
+        app:layout_constraintBottom_toBottomOf="@id/cv_envelope_back_quiz_activity"/>
+
 </androidx.constraintlayout.motion.widget.MotionLayout>

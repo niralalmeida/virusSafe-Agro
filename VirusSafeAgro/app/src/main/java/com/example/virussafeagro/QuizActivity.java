@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,6 +46,7 @@ public class QuizActivity extends AppCompatActivity {
     private RelativeLayout envelopeCoverClosedRelativeLayout;
     private RelativeLayout envelopeCoverOpenedRelativeLayout;
     private LinearLayout paperContentLinearLayout;
+    private ProgressBar loadQuestionProgressBar;
 
     // button names
     private String BUTTON_NAME_BEGINNER;
@@ -102,6 +104,7 @@ public class QuizActivity extends AppCompatActivity {
         this.envelopeCoverClosedRelativeLayout = findViewById(R.id.cv_envelope_cover_closed_quiz_activity);
         this.envelopeCoverOpenedRelativeLayout = findViewById(R.id.cv_envelope_cover_opened_quiz_activity);
         this.paperContentLinearLayout= findViewById(R.id.ll_paper_content_quiz_activity);
+        this.loadQuestionProgressBar= findViewById(R.id.pb_load_question_quiz_activity);
     }
 
     private void showActivityViews() {
@@ -134,8 +137,6 @@ public class QuizActivity extends AppCompatActivity {
             new Handler().postDelayed(()->{
                 configureTheAnimation(R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
             }, 300);
-            // change the virus full name size
-            virusFullNameTextView.setTextSize(12);
         }
     }
 
@@ -159,8 +160,6 @@ public class QuizActivity extends AppCompatActivity {
             new Handler().postDelayed(()->{
                 configureTheAnimation(R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
             }, 300);
-            // change the virus full name size
-            virusFullNameTextView.setTextSize(12);
         }
     }
 
