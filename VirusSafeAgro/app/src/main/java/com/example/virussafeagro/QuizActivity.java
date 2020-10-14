@@ -28,6 +28,9 @@ public class QuizActivity extends AppCompatActivity {
     private int currentVirusModelId;
     private String currentVirusModelFullName;
 
+    // question type list
+    private StringBuilder questionTypeListStringBuilder;
+
     // views
     private MotionLayout containerMotionLayout;
     private ImageButton closeImageButton;
@@ -40,7 +43,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView quizInfoTextView;
     private RelativeLayout envelopeCoverClosedRelativeLayout;
     private RelativeLayout envelopeCoverOpenedRelativeLayout;
-    private CardView paperCardView;
+    private TextView paperContentTextView;
 
     // button names
     private String BUTTON_NAME_BEGINNER;
@@ -51,6 +54,7 @@ public class QuizActivity extends AppCompatActivity {
 
     // current page identification tags
     private String currentPageName;
+    private final int questionCount = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +66,8 @@ public class QuizActivity extends AppCompatActivity {
         // get current virus model id and full name
         this.currentVirusModelId = getIntent().getIntExtra("currentVirusModelId", -1);
         this.currentVirusModelFullName = getIntent().getStringExtra("currentVirusModelFullName");
-        // initialize variables
-        this.initializeVariables();
+        // initialize variables and data
+        this.initializeVariablesAndData();
         // initialize views
         this.initializeViews();
         // show activity views
@@ -71,12 +75,14 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
-    private void initializeVariables() {
+    private void initializeVariablesAndData() {
         BUTTON_NAME_BEGINNER = getResources().getString(R.string.btn_beginner);
         BUTTON_NAME_INTERMEDIATE = getResources().getString(R.string.btn_intermediate);
         BUTTON_NAME_OPEN_QUIZ = getResources().getString(R.string.btn_open_quiz);
         TEXT_SIMPLE_TIP = getResources().getString(R.string.text_simple_tip);
         TEXT_TRICKY_TIP = getResources().getString(R.string.text_tricky_tip);
+
+        questionTypeListStringBuilder = new StringBuilder();
     }
 
     private void initializeViews() {
@@ -91,7 +97,7 @@ public class QuizActivity extends AppCompatActivity {
         this.quizInfoTextView = findViewById(R.id.tv_info_quiz_activity);
         this.envelopeCoverClosedRelativeLayout = findViewById(R.id.cv_envelope_cover_closed_quiz_activity);
         this.envelopeCoverOpenedRelativeLayout = findViewById(R.id.cv_envelope_cover_opened_quiz_activity);
-        this.paperCardView = findViewById(R.id.cv_envelope_paper_quiz_activity);
+        this.paperContentTextView = findViewById(R.id.tv_paper_content_quiz_activity);
     }
 
     private void showActivityViews() {
@@ -101,6 +107,15 @@ public class QuizActivity extends AppCompatActivity {
         this.virusImageView.setImageBitmap(virusPictureBitmap);
         // virus full name
         this.virusFullNameTextView.setText(this.currentVirusModelFullName);
+        // question type list
+        for (int i = 0; i < questionCount; i++) {
+            this.questionTypeListStringBuilder
+                    .append("Q").append((i+1))
+                    .append(" - ")
+                    .append(getResources().getString(R.string.text_single_choice_quiz))
+                    .append("\n\n");
+        }
+        this.paperContentTextView.setText(this.questionTypeListStringBuilder.toString());
     }
 
     public void beginnerOnClick(View v){
