@@ -5,6 +5,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
@@ -24,13 +25,24 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
+import com.example.virussafeagro.viewModel.QuizActivityViewModel;
+import com.example.virussafeagro.viewModel.VirusQuizQuestionViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
     private int currentVirusModelId;
     private String currentVirusModelFullName;
+
+    // view model
+    private QuizActivityViewModel quizActivityViewModel;
+    private List<ChoiceQuestionModel> choiceQuestionModelList;
 
     // views
     private MotionLayout containerMotionLayout;
@@ -73,11 +85,18 @@ public class QuizActivity extends AppCompatActivity {
         this.currentVirusModelFullName = getIntent().getStringExtra("currentVirusModelFullName");
         // initialize variables and data
         this.initializeVariablesAndData();
+        // initialize VirusQuizQuestionViewModel
+        this.initializeVirusQuizQuestionViewModel();
         // initialize views
         this.initializeViews();
+
+        // start processing the finding question list process
+        this.findVirusQuizQuestionsFromDB();
+        // set observer for observing VirusQuizQuestionArrayLD
+        this.observeVirusQuizQuestionArrayLD();
+
         // show activity views
         this.showActivityViews();
-
     }
 
     private void initializeVariablesAndData() {
@@ -88,6 +107,10 @@ public class QuizActivity extends AppCompatActivity {
         TEXT_TRICKY_TIP = getResources().getString(R.string.text_tricky_tip);
         TEXT_SINGLE_CHOICE_QUESTION = getResources().getString(R.string.text_single_choice_quiz);
         TEXT_MULTIPLE_CHOICE_QUESTION = getResources().getString(R.string.text_multiple_choice_quiz);
+    }
+
+    private void initializeVirusQuizQuestionViewModel() {
+        this.quizActivityViewModel = new ViewModelProvider(this).get(QuizActivityViewModel.class);
     }
 
     private void initializeViews() {
@@ -107,6 +130,45 @@ public class QuizActivity extends AppCompatActivity {
         this.loadQuestionProgressBar= findViewById(R.id.pb_load_question_quiz_activity);
     }
 
+    // start processing the finding question list process
+    private void findVirusQuizQuestionsFromDB() {
+        this.choiceQuestionModelList = new ArrayList<>();
+        this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModelId);
+    }
+
+    // observe VirusQuizQuestionArray live data
+    private void observeVirusQuizQuestionArrayLD() {
+        this.quizActivityViewModel.getQuizQuestionModelListLD().observe(this, resultQuizQuestionModelList -> {
+            // set the question model list
+            choiceQuestionModelList = resultQuizQuestionModelList;
+            // hide the progress bar if it is shown
+            if (loadQuestionProgressBar.getVisibility() == View.VISIBLE){
+                loadQuestionProgressBar.setVisibility(View.INVISIBLE);
+                // run the animation if clicking the "open quiz paper" button
+                if (beginnerButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)){
+                    // open the envelope cover
+                    openTheEnvelopeCover();
+                    // change the start button color
+                    startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_beginner_quiz_activity);
+                    // move down the envelope
+                    new Handler().postDelayed(()->{
+                        configureTheAnimation(R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
+                    }, 300);
+                } else if (intermediateButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)){
+                    // open the envelope cover
+                    openTheEnvelopeCover();
+                    // change the start button color
+                    startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_intermediate_quiz_activity);
+                    // move down the envelope
+                    new Handler().postDelayed(()->{
+                        configureTheAnimation(R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
+                    }, 300);
+                }
+            }
+        });
+    }
+
+    // show all initial views
     private void showActivityViews() {
         // virus image
         int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(currentVirusModelId);
@@ -128,15 +190,20 @@ public class QuizActivity extends AppCompatActivity {
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_BEGINNER);
         } else { // open the quiz paper
-            // open the envelope cover
-            openTheEnvelopeCover();
-
-            // change the start button color
-            startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_beginner_quiz_activity);
-            // move down the envelope
-            new Handler().postDelayed(()->{
-                configureTheAnimation(R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
-            }, 300);
+            if (!choiceQuestionModelList.isEmpty()) {
+                // open the envelope cover
+                openTheEnvelopeCover();
+                // change the start button color
+                startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_beginner_quiz_activity);
+                // move down the envelope
+                new Handler().postDelayed(() -> {
+                    configureTheAnimation(R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
+                }, 300);
+            } else {
+                // show the progress bar
+                loadQuestionProgressBar.setIndeterminateDrawable(getDrawable(R.drawable.rotate_progress_bar_beginner_load_question_quiz_activity));
+                loadQuestionProgressBar.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -151,15 +218,20 @@ public class QuizActivity extends AppCompatActivity {
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_INTERMEDIATE);
         } else { // open the quiz paper
-            // open the envelope cover
-            openTheEnvelopeCover();
-
-            // change the start button color
-            startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_intermediate_quiz_activity);
-            // move down the envelope
-            new Handler().postDelayed(()->{
-                configureTheAnimation(R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
-            }, 300);
+            if (!choiceQuestionModelList.isEmpty()) {
+                // open the envelope cover
+                openTheEnvelopeCover();
+                // change the start button color
+                startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_intermediate_quiz_activity);
+                // move down the envelope
+                new Handler().postDelayed(() -> {
+                    configureTheAnimation(R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
+                }, 300);
+            } else {
+                // show the progress bar
+                loadQuestionProgressBar.setIndeterminateDrawable(getDrawable(R.drawable.rotate_progress_bar_intermediate_load_question_quiz_activity));
+                loadQuestionProgressBar.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -314,5 +386,18 @@ public class QuizActivity extends AppCompatActivity {
         containerMotionLayout.setTransition(start, end);
         containerMotionLayout.setTransitionDuration(duration);
         containerMotionLayout.transitionToEnd();
+    }
+
+    // cancel the Current Finding Virus Quiz Questions AsyncTask
+    private void cancelCurrentFindVirusQuizQuestionsAsyncTask() {
+        // cancel the AsyncTask
+        QuizActivityViewModel.FindVirusQuizQuestionsAsyncTask f = this.quizActivityViewModel.getCurrentFindVirusQuizQuestionsAsyncTask();
+        f.cancel(true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.cancelCurrentFindVirusQuizQuestionsAsyncTask();
     }
 }
