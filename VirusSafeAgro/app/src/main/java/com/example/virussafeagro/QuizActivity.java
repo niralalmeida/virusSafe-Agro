@@ -1,8 +1,10 @@
 package com.example.virussafeagro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.res.ColorStateList;
@@ -14,9 +16,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.ChangeImageTransform;
+import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,10 +29,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.virussafeagro.fragments.QuizFragment;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.viewModel.QuizActivityViewModel;
 
 import java.util.ArrayList;
@@ -38,14 +45,16 @@ public class QuizActivity extends AppCompatActivity {
     // data
     private VirusModel currentVirusModel;
     private QuizActivityViewModel quizActivityViewModel;
-    private List<ChoiceQuestionModel> choiceQuestionModelList;
+    public static List<ChoiceQuestionModel> choiceQuestionModelList;
 
     // views
     private MotionLayout containerMotionLayout;
+    private FrameLayout quizFragmentsFrameLayout;
     private ImageButton closeImageButton;
     private TextView quizTitleTextView;
     private TextView virusFullNameTextView;
     private TextView virusFullNamePaperTextView;
+    private CardView virusImageCardView;
     private ImageView virusImageView;
     private Button beginnerButton;
     private Button intermediateButton;
@@ -110,10 +119,12 @@ public class QuizActivity extends AppCompatActivity {
 
     private void initializeViews() {
         this.containerMotionLayout = findViewById(R.id.ml_container_quiz_activity);
+        this.quizFragmentsFrameLayout = findViewById(R.id.fl_quiz_fragments);
         this.closeImageButton = findViewById(R.id.imgbtn_close_quiz_activity);
         this.quizTitleTextView = findViewById(R.id.tv_title_quiz_activity);
         this.virusFullNameTextView = findViewById(R.id.tv_virus_full_name_quiz_quiz_activity);
         this.virusFullNamePaperTextView = findViewById(R.id.tv_virus_full_name_paper_quiz_activity);
+        this.virusImageCardView = findViewById(R.id.cv_pic_virus_quiz_activity);
         this.virusImageView = findViewById(R.id.img_pic_virus_quiz_activity);
         this.beginnerButton = findViewById(R.id.btn_beginner_quiz_activity);
         this.intermediateButton = findViewById(R.id.btn_intermediate_quiz_activity);
@@ -127,8 +138,10 @@ public class QuizActivity extends AppCompatActivity {
 
     // start processing the finding question list process
     private void findVirusQuizQuestionsFromDB() {
-        this.choiceQuestionModelList = new ArrayList<>();
-        this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
+        if (choiceQuestionModelList == null) {
+            choiceQuestionModelList = new ArrayList<>();
+            this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
+        }
     }
 
     // observe VirusQuizQuestionArray live data
@@ -238,7 +251,19 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void startQuizOnClick(View v){
+        // or create directly
+        ChangeImageTransform changeImageTransform = new ChangeImageTransform();
+        getWindow().setSharedElementEnterTransition(changeImageTransform);
+        // add quiz fragment
 
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.fl_quiz_fragments, new QuizFragment())
+//                .addSharedElement(virusImageCardView, getString(R.string.quiz_activity_transition_name))
+//                .commit();
+//        FragmentOperator.replaceFragmentForQuizActivity(
+//                this,
+//                new QuizFragment(),
+//                AppResources.FRAGMENT_TAG_QUIZ);
     }
 
     // open the envelope cover when click "start quiz" button
@@ -403,6 +428,9 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // cancel the Current FindVirusQuizQuestionsAsyncTask
         this.cancelCurrentFindVirusQuizQuestionsAsyncTask();
+//        // clear the question list
+//        choiceQuestionModelList = null;
     }
 }

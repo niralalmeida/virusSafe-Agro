@@ -1,6 +1,8 @@
 package com.example.virussafeagro.uitilities;
 
 
+import android.view.View;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -97,6 +99,15 @@ public class FragmentOperator {
             }
             count--;
         }
+    }
+
+    // replace the fragment view with back stack for quiz activity
+    public static void replaceFragmentForQuizActivity(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
+        fragmentActivity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_quiz_fragments, nextFragment, fragmentTag)
+                .addToBackStack(null)
+                .commit();
     }
 
 }

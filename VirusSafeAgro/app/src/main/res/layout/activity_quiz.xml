@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDarkBG"
     tools:showPaths="true"
-    app:layoutDescription="@xml/show_start_quiz_button"
+    app:layoutDescription="@xml/ms_quiz_activity"
     tools:context=".QuizActivity">
 
     <!-- close button -->
@@ -296,7 +296,7 @@
     <!-- fragments for questions -->
     <FrameLayout
         android:id="@+id/fl_quiz_fragments"
-        android:visibility="invisible"
+        android:elevation="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
