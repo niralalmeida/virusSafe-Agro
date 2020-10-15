@@ -1,6 +1,5 @@
 package com.example.virussafeagro.fragments;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -25,13 +23,11 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckResultViewModel;
-import com.mindorks.paracamera.Camera;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class VirusCheckResultFragment extends Fragment {
     private MainActivity mainActivity;

@@ -4,19 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
-import com.example.virussafeagro.uitilities.FragmentOperator;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
-
-import java.util.Objects;
 
 public class UpdatesFragment extends Fragment {
     private MainActivity mainActivity;

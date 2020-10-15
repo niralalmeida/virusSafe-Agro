@@ -1,4 +1,4 @@
-package com.example.virussafeagro.uitilities;
+package com.example.virussafeagro.animation;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;

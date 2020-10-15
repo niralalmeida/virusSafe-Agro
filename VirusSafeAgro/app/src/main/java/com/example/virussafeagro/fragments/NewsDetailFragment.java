@@ -24,7 +24,7 @@ import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.uitilities.DataConverter;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.viewModel.NewsDetailViewModel;
 
 import java.util.ArrayList;

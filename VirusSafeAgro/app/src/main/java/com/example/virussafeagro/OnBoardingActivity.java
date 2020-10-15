@@ -6,10 +6,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -20,7 +18,7 @@ import android.widget.TextView;
 import com.example.virussafeagro.adapters.OnBoardingSlideAdapter;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.DataConverter;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 
 public class OnBoardingActivity extends AppCompatActivity {

@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -22,7 +21,7 @@ import com.example.virussafeagro.adapters.ListNewsAdapter;
 import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.viewModel.NewsViewModel;
 import com.scwang.smart.refresh.footer.BallPulseFooter;
@@ -31,7 +30,6 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class NewsFragment extends Fragment {
     private MainActivity mainActivity;

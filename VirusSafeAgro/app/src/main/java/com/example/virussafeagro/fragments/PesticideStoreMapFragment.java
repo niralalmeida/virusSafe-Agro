@@ -1,9 +1,7 @@
 package com.example.virussafeagro.fragments;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,12 +9,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -29,9 +24,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.MapInfoWindowAdapter;
 import com.example.virussafeagro.models.PesticideStoreModel;
 import com.example.virussafeagro.uitilities.FragmentOperator;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
-import com.example.virussafeagro.viewModel.NewsDetailViewModel;
 import com.example.virussafeagro.viewModel.PesticideStoreMapViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

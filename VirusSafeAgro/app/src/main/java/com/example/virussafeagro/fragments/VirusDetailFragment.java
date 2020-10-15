@@ -32,8 +32,7 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.models.VirusPreventionModel;
 import com.example.virussafeagro.models.VirusSymptomModel;
 import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.FragmentOperator;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
+import com.example.virussafeagro.animation.MyAnimationBox;
 
 public class VirusDetailFragment extends Fragment {
     private MainActivity mainActivity;

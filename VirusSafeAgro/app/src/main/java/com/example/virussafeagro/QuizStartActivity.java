@@ -6,21 +6,14 @@ import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.airbnb.lottie.LottieDrawable;
 import com.example.virussafeagro.adapters.QuestionSlideAdapter;
 import com.example.virussafeagro.models.VirusModel;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
 
 import java.util.Objects;
 

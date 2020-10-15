@@ -9,12 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
@@ -26,9 +24,7 @@ import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.NutrientReasonModel;
 import com.example.virussafeagro.models.NutrientSymptomModel;
 import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.MyAnimationBox;
-
-import java.util.Objects;
+import com.example.virussafeagro.animation.MyAnimationBox;
 
 public class NutrientDetailFragment extends Fragment {
     private MainActivity mainActivity;

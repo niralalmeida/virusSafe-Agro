@@ -12,7 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.virussafeagro.MainActivity;
-import com.example.virussafeagro.fragments.VirusCheckFragment;
+import com.example.virussafeagro.animation.MyAnimationBox;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class DragYRelativeLayout extends RelativeLayout {
