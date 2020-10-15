@@ -685,7 +685,7 @@ public class QuizQuestionFragment extends Fragment {
             // change the button to "next"
             submitButton.setText("Close");
         }
-        MyAnimationBox.runFadeInAnimation(submitButton, 100);
+        submitButton.setVisibility(View.VISIBLE);
     }
 
     // multiple result

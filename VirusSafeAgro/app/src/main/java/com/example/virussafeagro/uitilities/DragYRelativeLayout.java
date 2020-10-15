@@ -68,10 +68,9 @@ public class DragYRelativeLayout extends RelativeLayout {
                 break;
 
             case MotionEvent.ACTION_UP: // when leaving
-                MyAnimationBox.runSlideOutAnimationToTop(this, 500);
-                new Handler().postDelayed(() -> {
-                    this.setVisibility(View.GONE);
-                }, 500);
+                if (this.getVisibility() == VISIBLE) {
+                    MyAnimationBox.runSlideOutAnimationToTop(this, 500);
+                }
                 if (fragmentActivity instanceof MainActivity) {
                     new Handler().postDelayed(() -> {
                         Toolbar toolbar = ((MainActivity) fragmentActivity).getToolbar();
