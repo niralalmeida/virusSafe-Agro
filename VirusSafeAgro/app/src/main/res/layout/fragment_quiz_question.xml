@@ -144,9 +144,10 @@
 
                 <TextView
                     android:id="@+id/tv_option_a_quiz_question_fragment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
@@ -154,7 +155,17 @@
                     android:textStyle="bold"
                     android:textSize="14sp" />
 
-                <!--  -->
+                <!-- radio button -->
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbtn_option_a_quiz_question_fragment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/selector_radio_button_beginner_option_quiz_question_fragment"
+                    android:button="@null"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -195,15 +206,28 @@
 
                 <TextView
                     android:id="@+id/tv_option_b_quiz_question_fragment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
                     android:text="xxxxxxxxxxxx"
                     android:textStyle="bold"
                     android:textSize="14sp" />
+
+                <!-- radio button -->
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbtn_option_b_quiz_question_fragment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/selector_radio_button_beginner_option_quiz_question_fragment"
+                    android:button="@null"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -244,15 +268,28 @@
 
                 <TextView
                     android:id="@+id/tv_option_c_quiz_question_fragment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:padding="10dp"
+                    android:gravity="center"
                     android:textColor="@color/colorWhite"
                     android:text="xxxxxxxxxxxx"
                     android:textStyle="bold"
                     android:textSize="14sp" />
+
+                <!-- radio button -->
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbtn_option_c_quiz_question_fragment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/selector_radio_button_beginner_option_quiz_question_fragment"
+                    android:button="@null"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -294,15 +331,28 @@
 
                 <TextView
                     android:id="@+id/tv_option_d_quiz_question_fragment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
                     android:text="xxxxxxxxxxxx"
                     android:textStyle="bold"
                     android:textSize="14sp" />
+
+                <!-- radio button -->
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbtn_option_d_quiz_question_fragment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/selector_radio_button_beginner_option_quiz_question_fragment"
+                    android:button="@null"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -343,15 +393,28 @@
 
                 <TextView
                     android:id="@+id/tv_option_e_quiz_question_fragment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
                     android:text="xxxxxxxxxxxx"
                     android:textStyle="bold"
                     android:textSize="14sp" />
+
+                <!-- radio button -->
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbtn_option_e_quiz_question_fragment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/selector_radio_button_beginner_option_quiz_question_fragment"
+                    android:button="@null"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -393,15 +456,28 @@
 
                 <TextView
                     android:id="@+id/tv_option_f_quiz_question_fragment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
                     android:text="xxxxxxxxxxxx"
                     android:textStyle="bold"
                     android:textSize="14sp" />
+
+                <!-- radio button -->
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbtn_option_f_quiz_question_fragment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/selector_radio_button_beginner_option_quiz_question_fragment"
+                    android:button="@null"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

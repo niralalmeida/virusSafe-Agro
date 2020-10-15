@@ -108,9 +108,11 @@
 
     <!-- quiz activity -->
     <color name="text_quiz_title">#004D40</color>
+    <color name="btn_option_bg_checked">#474747</color>
     <color name="btn_beginner_bg">#2E86C1</color>
     <color name="btn_beginner_ripple_bg">#61bcfa</color>
     <color name="btn_intermediate_bg">#7D3C98</color>
+<!--    <color name="btn_intermediate_bg_checked">#c68cde</color>-->
     <color name="btn_intermediate_ripple_bg">#a04fc2</color>
     <color name="bg_envelope_light">#F8CC6E</color>
     <color name="bg_envelope_dark">#EEBA61</color>
@@ -121,6 +123,7 @@
     <color name="bg_quiz_start">#77B175</color>
     <color name="btn_ripple_option">#A4A4A4</color>
     <color name="bg_option_no">#000000</color>
+    <color name="bg_text_shade_bg_option">#70474747</color>
     <color name="btn_bg_a_option">#2E86C1</color>
     <color name="btn_bg_b_option">#2E86C1</color>
     <color name="btn_bg_c_option">#2E86C1</color>
