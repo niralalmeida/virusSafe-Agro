@@ -9,9 +9,18 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
+import androidx.constraintlayout.motion.widget.MotionLayout;
+
 import java.util.logging.Handler;
 
 public class MyAnimationBox {
+    public static void configureTheAnimation(MotionLayout motionLayout, int start, int end, int duration) {
+        // move beginner Button + show intermediate Button
+        motionLayout.clearAnimation();
+        motionLayout.setTransition(start, end);
+        motionLayout.setTransitionDuration(duration);
+        motionLayout.transitionToEnd();
+    }
 
     public static void runFadeInAnimation(View view, int duration) {
         view.setVisibility(View.VISIBLE);

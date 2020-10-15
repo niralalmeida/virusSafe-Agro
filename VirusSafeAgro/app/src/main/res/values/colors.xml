@@ -3,8 +3,10 @@
     <color name="colorPrimary">#6200EE</color>
 <!--    <color name="colorPrimaryDark">#148F77</color>-->
     <color name="colorPrimaryDark">#074A44</color>
+<!--    <color name="colorPrimaryDark">#148F77</color>-->
 <!--    <color name="colorPrimaryDark">#03DAC5</color>-->
-    <color name="colorPrimaryLight">#0d9488</color>
+    <color name="colorPrimaryLight">#69B4AC</color>
+<!--    <color name="colorPrimaryLight">#0d9488</color>-->
     <color name="colorPrimaryDarkBG">#121212</color>
     <color name="colorPrimaryDarkTheme">#1E1E1E</color>
     <color name="colorPrimaryTitle">#E2E2E2</color>
@@ -16,7 +18,8 @@
     <color name="colorPrimarySearchHint">#C2C2C2</color>
 <!--    <color name="colorPrimaryTile">#353437</color>-->
     <color name="colorPrimaryTile">#2C2C2C</color>
-    <color name="colorAccent">#03DAC5</color>
+<!--    <color name="colorAccent">#03DAC5</color>-->
+    <color name="colorAccent">#69B4AC</color>
 <!--    <color name="colorDarkBackground">#707B7C</color>-->
     <color name="colorDarkBackground">#515A5A</color>
 
@@ -48,7 +51,8 @@
     <color name="iconCheck">#2E86C1</color>
     <color name="iconControlStrategy">#E06857</color>
     <color name="iconControlStrategySub">#2E86C1</color>
-    <color name="iconMap">#58D68D</color>
+<!--    <color name="iconMap">#58D68D</color>-->
+    <color name="iconMap">#148F77</color>
     <color name="iconFactor">#3498DB</color>
     <color name="iconFactorHand">#F0B27A</color>
     <color name="iconInsight">#F1C40F</color>
@@ -92,18 +96,18 @@
     <color name="is_unknown">#2E86C1</color>
 
     <!-- bottom bar -->
-    <color name="bar_bg_bottom_bar">#ffE1E1E1</color>
+    <color name="bar_bg_bottom_bar">#383838</color>
     <color name="ripple_fab">#474747</color>
     <color name="btn_shadow">#808080</color>
 <!--    <color name="item_not_checked">#A5A5A5</color>-->
     <color name="item_not_checked">#919090</color>
-    <color name="item_checked">#074A44</color>
+    <color name="item_checked">#69B4AC</color>
     <color name="item_not_checked_bg">#E1E1E1</color>
     <color name="item_checked_bg">#A5A5A5</color>
 
 
     <!-- quiz activity -->
-    <color name="text_quiz_title">#074A44</color>
+    <color name="text_quiz_title">#004D40</color>
     <color name="btn_beginner_bg">#2E86C1</color>
     <color name="btn_beginner_ripple_bg">#61bcfa</color>
     <color name="btn_intermediate_bg">#7D3C98</color>
@@ -113,5 +117,7 @@
     <color name="bg_envelope_bg">#D9A246</color>
     <color name="bg_virus_full_name_tag">#C2C2C2</color>
     <color name="text_quiz_paper_tip">#C0392B</color>
+    <!-- quiz start activity -->
+    <color name="bg_quiz_start">#77B175</color>
 
 </resources>

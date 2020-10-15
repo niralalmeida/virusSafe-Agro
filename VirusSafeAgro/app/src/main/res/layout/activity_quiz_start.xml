@@ -3,48 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ml_container_quiz_activity"
+    android:id="@+id/ml_container_quiz_start_activity"
     android:clipChildren="false"
     android:elevation="1dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimaryDarkBG"
     tools:showPaths="true"
     app:layoutDescription="@xml/ms_quiz_start_activity"
     tools:context=".QuizStartActivity">
 
-    <RelativeLayout
-        android:id="@+id/rl_time_counter_quiz_start"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lav_count_down_quiz_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
+        android:transitionName="@string/quiz_start_activity_transition_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:transitionName="@string/quiz_start_activity_transition_name"
-        android:background="@drawable/shape_time_counter_bg_quiz_start">
-
-        <TextView
-            android:id="@+id/tv_time_counter_quiz_start"
-            android:visibility="invisible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textSize="70sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorBlack"
-            android:text="3" />
-
-    </RelativeLayout>
+        app:lottie_fileName="countDown2.json"
+        android:hardwareAccelerated="true"
+        app:lottie_loop="false"
+        app:lottie_autoPlay="true" />
 
 
-    <!-- fragments for questions -->
-    <FrameLayout
-        android:id="@+id/fl_quiz_fragments_quiz_start"
-        android:elevation="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <!-- view pager for questions -->
+    
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
