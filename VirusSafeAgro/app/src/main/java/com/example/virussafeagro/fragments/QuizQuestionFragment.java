@@ -38,6 +38,7 @@ public class QuizQuestionFragment extends Fragment {
 
     // data
     private ChoiceQuestionModel currentChoiceQuestionModel;
+    private List<String> userAnswerList;
 
     // views
     private MotionLayout containerMotionLayout;
@@ -445,24 +446,33 @@ public class QuizQuestionFragment extends Fragment {
                     appCompatRadioButton.setChecked(true);
                 }
             }
+            // store user's answer
+            userAnswerList = new ArrayList<>();
+            userAnswerList.add(currentOptionNoString);
+            currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
         });
 
         // click radio button
         currentAppCompatRadioButton.setOnClickListener(v -> {
             // set checked border
             currentCheckedBorderView.setVisibility(View.VISIBLE);
-            // get selected option index
+            // disable the other radio buttons
             for (AppCompatRadioButton appCompatRadioButton : optionAppCompatRadioButtonList) {
                 if (!appCompatRadioButton.equals(currentAppCompatRadioButton)){
                     appCompatRadioButton.setClickable(false);
                 }
             }
+            // set card view style
             for (CardView cardView : optionCardViewList){
                 if (!optionLabelCardViewBoxMap.get(currentOptionNoString).equals(cardView)){
                     cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
                     cardView.setClickable(false);
                 }
             }
+            // store user's answer
+            userAnswerList = new ArrayList<>();
+            userAnswerList.add(currentOptionNoString);
+            currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
         });
     }
 
@@ -471,8 +481,6 @@ public class QuizQuestionFragment extends Fragment {
                                                    View currentCheckedBorderView,
                                                    String currentOptionNoString
                                                   ) {
-        // get current option label
-
         // click card
         currentCardView.setOnClickListener(v -> {
             // set checked border
@@ -490,4 +498,6 @@ public class QuizQuestionFragment extends Fragment {
             currentCheckedBorderView.setVisibility((currentCheckedBorderView.getVisibility() == View.INVISIBLE) ? View.VISIBLE : View.INVISIBLE);
         });
     }
+
+
 }
