@@ -32,6 +32,7 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
+import com.example.virussafeagro.uitilities.DataComparison;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -594,7 +595,9 @@ public class QuizQuestionFragment extends Fragment {
                 // check multiple Choice Question Answer
                 isAnswerRight = checkMultipleChoiceQuestionAnswer();
                 // show the result style
-
+                new Handler().postDelayed(() -> {
+                    showResultStyleForMultiple();
+                }, 500);
                 // change the button to "next"
                 submitButton.setText("next");
             } else if (submitButton.getText().toString().equals("next")) {
@@ -607,15 +610,21 @@ public class QuizQuestionFragment extends Fragment {
     private boolean checkSingleChoiceQuestionAnswer(String selectedOptionLabel) {
         return currentChoiceQuestionModel.getCorrectAnswerList().get(0).equals(selectedOptionLabel);
     }
-    
+
     // check multiple Choice Question Answer
     private boolean checkMultipleChoiceQuestionAnswer() {
-
+        // check the answer
+        return DataComparison.checkTwoListHaveSameItems(currentChoiceQuestionModel.getCorrectAnswerList(), currentChoiceQuestionModel.getUserAnswerList());
     }
 
     // single result
     private void showResultStyleForSingle() {
+        // hide all the radio button
+        for (AppCompatRadioButton appCompatRadioButton : optionAppCompatRadioButtonList){
+            appCompatRadioButton.setVisibility(View.INVISIBLE);
+        }
         if (isAnswerRight){
+            // get the right answer label
             String rightAnswerString = currentChoiceQuestionModel.getCorrectAnswerList().get(0);
             // set option right icon
             ImageView rightWrongIconImageView = optionLabelRightWrongIconMap.get(rightAnswerString);
@@ -652,10 +661,63 @@ public class QuizQuestionFragment extends Fragment {
             // set right option label
             optionLabelOptionNoMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_no_right_quiz_question_fragment);
         }
+
+        // change the button to "next"
+        submitButton.setText("next");
+        MyAnimationBox.runFadeInAnimation(submitButton, 100);
     }
 
     // multiple result
     private void showResultStyleForMultiple(){
-
+        // hide all the checkbox
+        for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList){
+            appCompatCheckBox.setVisibility(View.INVISIBLE);
+        }
+        if (isAnswerRight){
+            for (String correctAnswerString : currentChoiceQuestionModel.getCorrectAnswerList()) {
+                // set option right icon
+                ImageView rightWrongIconImageView = optionLabelRightWrongIconMap.get(correctAnswerString);
+                rightWrongIconImageView.setImageResource(R.drawable.ic_right_circle_white_50dp);
+                ColorStateList colorStateList = ContextCompat.getColorStateList(quizStartActivity, R.color.rightAnswer);
+                rightWrongIconImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+                rightWrongIconImageView.setImageTintList(colorStateList);
+                rightWrongIconImageView.setVisibility(View.VISIBLE);
+                // set option border
+                optionLabelCheckedBorderMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_border_right_quiz_question_fragment);
+                // set option label
+                optionLabelOptionNoMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_no_right_quiz_question_fragment);
+            }
+        } else {
+            for (String correctAnswerString : currentChoiceQuestionModel.getCorrectAnswerList()) {
+                // set option right icon
+                ImageView rightWrongIconImageView = optionLabelRightWrongIconMap.get(correctAnswerString);
+                rightWrongIconImageView.setImageResource(R.drawable.ic_right_circle_white_50dp);
+                ColorStateList colorStateList = ContextCompat.getColorStateList(quizStartActivity, R.color.rightAnswer);
+                rightWrongIconImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+                rightWrongIconImageView.setImageTintList(colorStateList);
+                rightWrongIconImageView.setVisibility(View.VISIBLE);
+                // set option border
+                if (currentChoiceQuestionModel.getUserAnswerList().contains(correctAnswerString)) {
+                    optionLabelCheckedBorderMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_border_right_quiz_question_fragment);
+                }
+                // set option label
+                optionLabelOptionNoMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_no_right_quiz_question_fragment);
+            }
+            for (String userWrongAnswerString : currentChoiceQuestionModel.getUserAnswerList()){
+                if (!currentChoiceQuestionModel.getCorrectAnswerList().contains(userWrongAnswerString)) {
+                    // set option wrong icon
+                    ImageView wrongIconImageView = optionLabelRightWrongIconMap.get(userWrongAnswerString);
+                    wrongIconImageView.setImageResource(R.drawable.ic_wrong_circle_black_50dp);
+                    ColorStateList colorStateList = ContextCompat.getColorStateList(quizStartActivity, R.color.wrongAnswer);
+                    wrongIconImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+                    wrongIconImageView.setImageTintList(colorStateList);
+                    wrongIconImageView.setVisibility(View.VISIBLE);
+                    // set wrong option border
+                    optionLabelCheckedBorderMap.get(userWrongAnswerString).setBackgroundResource(R.drawable.shape_option_border_wrong_quiz_question_fragment);
+                    // set wrong option label
+                    optionLabelOptionNoMap.get(userWrongAnswerString).setBackgroundResource(R.drawable.shape_option_no_wrong_quiz_question_fragment);
+                }
+            }
+        }
     }
 }
