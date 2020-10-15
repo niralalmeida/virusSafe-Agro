@@ -139,7 +139,7 @@
                     android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
                     android:textStyle="bold"
                     android:textSize="15sp"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:text="A"/>
 
                 <TextView
@@ -153,6 +153,8 @@
                     android:text="xxxxxxxxxxxx"
                     android:textStyle="bold"
                     android:textSize="14sp" />
+
+                <!--  -->
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -188,7 +190,7 @@
                     android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
                     android:textStyle="bold"
                     android:textSize="15sp"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:text="B"/>
 
                 <TextView
@@ -237,7 +239,7 @@
                     android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
                     android:textStyle="bold"
                     android:textSize="15sp"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:text="C"/>
 
                 <TextView
@@ -287,7 +289,7 @@
                     android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
                     android:textStyle="bold"
                     android:textSize="15sp"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:text="D"/>
 
                 <TextView
@@ -336,7 +338,7 @@
                     android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
                     android:textStyle="bold"
                     android:textSize="15sp"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:text="E"/>
 
                 <TextView
@@ -386,7 +388,7 @@
                     android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
                     android:textStyle="bold"
                     android:textSize="15sp"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:text="F"/>
 
                 <TextView

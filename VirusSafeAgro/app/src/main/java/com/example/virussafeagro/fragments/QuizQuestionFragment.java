@@ -184,8 +184,34 @@ public class QuizQuestionFragment extends Fragment {
 
     private void showOptions() {
         // set option card background
-//        if ()
-//        optionACardView.setBackgroundResource(R.color.);
+        if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_BEGINNER)){
+            optionACardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
+            optionBCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
+            optionCCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
+            optionDCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
+            optionECardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
+            optionFCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
+            optionANoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
+            optionBNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
+            optionCNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
+            optionDNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
+            optionENoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
+            optionFNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
+        } else if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_INTERMEDIATE)){
+            optionACardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
+            optionBCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
+            optionCCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
+            optionDCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
+            optionECardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
+            optionFCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
+            optionANoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
+            optionBNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
+            optionCNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
+            optionDNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
+            optionENoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
+            optionFNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
+        }
+
         for (ChoiceOptionModel choiceOptionModel : currentChoiceQuestionModel.getChoiceQuestionOptionList()) {
             switch (choiceOptionModel.getChoiceOptionLabel()){
                 case "A":
