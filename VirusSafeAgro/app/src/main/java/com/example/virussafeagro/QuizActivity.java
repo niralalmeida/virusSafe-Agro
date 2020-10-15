@@ -42,7 +42,8 @@ public class QuizActivity extends AppCompatActivity {
     // data
     private VirusModel currentVirusModel;
     private QuizActivityViewModel quizActivityViewModel;
-    public static List<ChoiceQuestionModel> choiceQuestionModelList;
+    public static List<ChoiceQuestionModel> choiceQuestionModelList; // all questions
+    public static List<ChoiceQuestionModel> choiceQuestionModelFinalList; // 5 questions
 
     // views
     private MotionLayout containerMotionLayout;
@@ -134,6 +135,7 @@ public class QuizActivity extends AppCompatActivity {
     private void findVirusQuizQuestionsFromDB() {
         if (choiceQuestionModelList == null) {
             choiceQuestionModelList = new ArrayList<>();
+            choiceQuestionModelFinalList = new ArrayList<>();
             this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
         }
     }
@@ -143,6 +145,8 @@ public class QuizActivity extends AppCompatActivity {
         this.quizActivityViewModel.getQuizQuestionModelListLD().observe(this, resultQuizQuestionModelList -> {
             // set the question model list
             choiceQuestionModelList = resultQuizQuestionModelList;
+            // get final list
+            choiceQuestionModelFinalList = getFinalChoiceQuestionModelList();
             // when the "open quiz paper" button shows
             if (loadQuestionProgressBar.getVisibility() == View.VISIBLE){
                 // hide the progress bar if it is shown
@@ -173,6 +177,12 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
+//////////////////////////////// test //////////////////////////////////////////////////////
+    private List<ChoiceQuestionModel> getFinalChoiceQuestionModelList() {
+        List<ChoiceQuestionModel> finalList = choiceQuestionModelList;
+        return finalList;
+    }
+
     // show all initial views
     private void showActivityViews() {
         // virus image
@@ -195,7 +205,7 @@ public class QuizActivity extends AppCompatActivity {
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_BEGINNER);
         } else { // open the quiz paper
-            if (!choiceQuestionModelList.isEmpty()) {
+            if (!choiceQuestionModelFinalList.isEmpty()) {
                 // configure the question type list
                 setPaperContent();
                 // open the envelope cover
@@ -225,7 +235,7 @@ public class QuizActivity extends AppCompatActivity {
             // change other views' style
             changeOtherViewsStyle(BUTTON_NAME_INTERMEDIATE);
         } else { // open the quiz paper
-            if (!choiceQuestionModelList.isEmpty()) {
+            if (!choiceQuestionModelFinalList.isEmpty()) {
                 // configure the question type list
                 setPaperContent();
                 // open the envelope cover
@@ -333,9 +343,9 @@ public class QuizActivity extends AppCompatActivity {
             // question type items
             TextView questionTypeTextView = new TextView(this);
             String questionTypeString = "";
-            if (choiceQuestionModelList.get(i).getChoiceQuestionType().equals("single")) {
+            if (choiceQuestionModelFinalList.get(i).getChoiceQuestionType().equals("single")) {
                 questionTypeString = TEXT_SINGLE_CHOICE_QUESTION;
-            } else if (choiceQuestionModelList.get(i).getChoiceQuestionType().equals("multiple")){
+            } else if (choiceQuestionModelFinalList.get(i).getChoiceQuestionType().equals("multiple")){
                 questionTypeString = TEXT_MULTIPLE_CHOICE_QUESTION;
             }
             questionTypeTextView.setText(questionTypeString);

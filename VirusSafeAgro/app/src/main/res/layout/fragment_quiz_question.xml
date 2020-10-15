@@ -110,7 +110,8 @@
 
         <!-- a -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_option_a_quiz_question_fragment"
+            android:id="@+id/cv_option_a_quiz_question_fragment"
+            android:visibility="gone"
             app:cardCornerRadius="10dp"
             app:cardElevation="15dp"
             app:cardBackgroundColor="@color/btn_bg_a_option"
@@ -154,10 +155,10 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-
         <!-- b -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_option_b_quiz_question_fragment"
+            android:id="@+id/cv_option_b_quiz_question_fragment"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/btn_bg_b_option"
             app:cardCornerRadius="10dp"
             app:cardElevation="15dp"
@@ -187,7 +188,7 @@
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:textColor="@color/colorBlack"
-                    android:text="A"/>
+                    android:text="B"/>
 
                 <TextView
                     android:id="@+id/tv_option_b_quiz_question_fragment"
@@ -204,7 +205,8 @@
         </androidx.cardview.widget.CardView>
         <!-- c -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_option_c_quiz_question_fragment"
+            android:id="@+id/cv_option_c_quiz_question_fragment"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/btn_bg_c_option"
             app:cardCornerRadius="10dp"
             app:cardElevation="15dp"
@@ -234,7 +236,7 @@
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:textColor="@color/colorBlack"
-                    android:text="A"/>
+                    android:text="C"/>
 
                 <TextView
                     android:id="@+id/tv_option_c_quiz_question_fragment"
@@ -251,7 +253,8 @@
         </androidx.cardview.widget.CardView>
         <!-- d -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_option_d_quiz_question_fragment"
+            android:id="@+id/cv_option_d_quiz_question_fragment"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/btn_bg_d_option"
             app:cardCornerRadius="10dp"
             app:cardElevation="15dp"
@@ -299,7 +302,8 @@
         </androidx.cardview.widget.CardView>
         <!-- e -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_option_e_quiz_question_fragment"
+            android:id="@+id/cv_option_e_quiz_question_fragment"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/btn_bg_e_option"
             app:cardCornerRadius="10dp"
             app:cardElevation="15dp"
@@ -346,7 +350,8 @@
         </androidx.cardview.widget.CardView>
         <!-- f -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_option_f_quiz_question_fragment"
+            android:id="@+id/cv_option_f_quiz_question_fragment"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/btn_bg_f_option"
             app:cardCornerRadius="10dp"
             app:cardElevation="15dp"
