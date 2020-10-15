@@ -97,7 +97,7 @@ public class QuizQuestionFragment extends Fragment {
     }
 
     private void initializeData() {
-        this.currentChoiceQuestionModel = QuizActivity.choiceQuestionModelFinalList.get(this.questionNo - 1);
+        this.currentChoiceQuestionModel = QuizStartActivity.choiceQuestionModelFinalList.get(this.questionNo - 1);
     }
 
     private void initializeViews() {
@@ -178,8 +178,8 @@ public class QuizQuestionFragment extends Fragment {
         String questionNoString = "Question " + this.questionNo;
         this.questionNoTextView.setText(questionNoString);
         // show question title
-        this.questionTextView.setText(QuizActivity.choiceQuestionModelFinalList.get(questionNo - 1).getChoiceQuestionContent());
-        this.questionForLayoutTextView.setText(QuizActivity.choiceQuestionModelFinalList.get(questionNo - 1).getChoiceQuestionContent());
+        this.questionTextView.setText(QuizStartActivity.choiceQuestionModelFinalList.get(questionNo - 1).getChoiceQuestionContent());
+        this.questionForLayoutTextView.setText(QuizStartActivity.choiceQuestionModelFinalList.get(questionNo - 1).getChoiceQuestionContent());
     }
 
     private void showOptions() {

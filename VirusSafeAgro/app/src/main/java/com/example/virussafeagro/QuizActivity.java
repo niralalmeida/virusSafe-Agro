@@ -133,11 +133,9 @@ public class QuizActivity extends AppCompatActivity {
 
     // start processing the finding question list process
     private void findVirusQuizQuestionsFromDB() {
-        if (choiceQuestionModelList == null) {
-            choiceQuestionModelList = new ArrayList<>();
-            choiceQuestionModelFinalList = new ArrayList<>();
-            this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
-        }
+        choiceQuestionModelList = new ArrayList<>();
+        choiceQuestionModelFinalList = new ArrayList<>();
+        this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
     }
 
     // observe VirusQuizQuestionArray live data

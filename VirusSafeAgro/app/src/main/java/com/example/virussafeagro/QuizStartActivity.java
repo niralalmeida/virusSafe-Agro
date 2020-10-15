@@ -15,13 +15,16 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.virussafeagro.adapters.QuestionSlideAdapter;
 import com.example.virussafeagro.animation.DepthPageTransformer;
 import com.example.virussafeagro.animation.ZoomOutPageTransformer;
+import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
 
+import java.util.List;
 import java.util.Objects;
 
 public class QuizStartActivity extends AppCompatActivity {
     // data
     private VirusModel currentVirusModel;
+    public static List<ChoiceQuestionModel> choiceQuestionModelFinalList; // 5 questions
 
     // views
     private MotionLayout containerMotionLayout;
@@ -46,11 +49,17 @@ public class QuizStartActivity extends AppCompatActivity {
         // get current virus model
         this.currentVirusModel = Objects.requireNonNull(getIntent().getExtras()).getParcelable("currentVirusModel");
 
+        // initialize data
+        this.initializeData();
         // initialize views
         this.initializeViews();
 
         // start count down
         this.showQuestion();
+    }
+
+    private void initializeData() {
+        choiceQuestionModelFinalList = QuizActivity.choiceQuestionModelFinalList;
     }
 
     private void initializeViews() {
