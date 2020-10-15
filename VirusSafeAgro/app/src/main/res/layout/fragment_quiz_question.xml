@@ -10,7 +10,7 @@
     android:background="@color/colorPrimaryDark"
     tools:showPaths="true"
     app:layoutDescription="@xml/ms_quiz_fragment"
-    tools:context=".fragments.QuizFragment">
+    tools:context=".fragments.QuizQuestionFragment">
 
     <!-- virus image -->
     <androidx.cardview.widget.CardView

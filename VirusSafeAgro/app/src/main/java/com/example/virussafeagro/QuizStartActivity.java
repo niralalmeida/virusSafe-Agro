@@ -2,6 +2,8 @@ package com.example.virussafeagro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.virussafeagro.adapters.QuestionSlideAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 
@@ -26,6 +29,13 @@ public class QuizStartActivity extends AppCompatActivity {
     // views
     private MotionLayout containerMotionLayout;
     private LottieAnimationView countDownLottieAnimationView;
+    private ViewPager2 questionViewPager2;
+
+    // adapter
+    private FragmentStateAdapter questionSlideAdapter;
+
+    // tools
+    public static final int NUM_PAGES = QuizActivity.QUESTION_COUNT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +57,7 @@ public class QuizStartActivity extends AppCompatActivity {
     private void initializeViews() {
         this.containerMotionLayout = findViewById(R.id.ml_container_quiz_start_activity);
         this.countDownLottieAnimationView = findViewById(R.id.lav_count_down_quiz_start);
+        this.questionViewPager2 = findViewById(R.id.vp2_questions_quiz_start);
     }
 
     // control count down animation
@@ -71,6 +82,8 @@ public class QuizStartActivity extends AppCompatActivity {
         // hide the lottie
         new Handler().postDelayed(() ->{
             countDownLottieAnimationView.setVisibility(View.GONE);
+            questionSlideAdapter = new QuestionSlideAdapter(this);
+            questionViewPager2.setAdapter(questionSlideAdapter);
         },4600);
     }
 }

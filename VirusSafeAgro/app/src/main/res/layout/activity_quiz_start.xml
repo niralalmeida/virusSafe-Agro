@@ -29,6 +29,10 @@
 
 
     <!-- view pager for questions -->
-    
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2_questions_quiz_start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

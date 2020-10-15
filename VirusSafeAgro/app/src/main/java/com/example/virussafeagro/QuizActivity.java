@@ -1,9 +1,7 @@
 package com.example.virussafeagro;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
@@ -19,12 +17,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.transition.ChangeImageTransform;
-import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,12 +27,10 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.virussafeagro.fragments.QuizFragment;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
-import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
 import com.example.virussafeagro.viewModel.QuizActivityViewModel;
 
@@ -78,7 +71,7 @@ public class QuizActivity extends AppCompatActivity {
 
     // current page identification tags
     private String currentPageName;
-    private final int QUESTION_COUNT = 5;
+    public final static int QUESTION_COUNT = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -264,7 +257,7 @@ public class QuizActivity extends AppCompatActivity {
 //        getWindow().setSharedElementEnterTransition(changeImageTransform);
         // add quiz fragment
 //        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.fl_quiz_fragments, new QuizFragment())
+//                .replace(R.id.fl_quiz_fragments, new QuizQuestionFragment())
 //                .addSharedElement(virusImageCardView, getString(R.string.quiz_activity_transition_name))
 //                .commit();
     }

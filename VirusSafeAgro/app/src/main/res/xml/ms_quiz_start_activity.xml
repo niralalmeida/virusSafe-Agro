@@ -38,36 +38,36 @@
 
 
 
-    <!-- count down shrink start -->
-    <ConstraintSet android:id="@+id/start_count_down_shrink">
-        <!-- count down -->
-        <Constraint
-            android:id="@+id/rl_count_down_quiz_start"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:alpha="0"/>
-        </Constraint>
-    </ConstraintSet>
+<!--    &lt;!&ndash; count down shrink start &ndash;&gt;-->
+<!--    <ConstraintSet android:id="@+id/start_count_down_shrink">-->
+<!--        &lt;!&ndash; count down &ndash;&gt;-->
+<!--        <Constraint-->
+<!--            android:id="@+id/rl_count_down_quiz_start"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent">-->
+<!--            <PropertySet-->
+<!--                android:alpha="0"/>-->
+<!--        </Constraint>-->
+<!--    </ConstraintSet>-->
 
-    <!-- count down shrink end -->
-    <ConstraintSet android:id="@+id/end_count_down_shrink">
-        <!-- count down -->
-        <Constraint
-            android:id="@+id/rl_count_down_quiz_start"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:alpha="1"/>
-        </Constraint>
-    </ConstraintSet>
+<!--    &lt;!&ndash; count down shrink end &ndash;&gt;-->
+<!--    <ConstraintSet android:id="@+id/end_count_down_shrink">-->
+<!--        &lt;!&ndash; count down &ndash;&gt;-->
+<!--        <Constraint-->
+<!--            android:id="@+id/rl_count_down_quiz_start"-->
+<!--            android:layout_width="130dp"-->
+<!--            android:layout_height="130dp"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent">-->
+<!--            <PropertySet-->
+<!--                android:alpha="1"/>-->
+<!--        </Constraint>-->
+<!--    </ConstraintSet>-->
 
 </MotionScene>
