@@ -20,7 +20,7 @@
         app:cardElevation="2dp"
         android:layout_marginBottom="-15dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/rl_question_quiz_question_fragment"
+        app:layout_constraintBottom_toTopOf="@id/cl_question_quiz_question_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <ImageView
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@id/rl_question_quiz_question_fragment"
+        app:layout_constraintBottom_toTopOf="@id/cl_question_quiz_question_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/colorWhite"
@@ -47,8 +47,8 @@
         android:text="Question 0"/>
 
     <!-- question with bg -->
-    <RelativeLayout
-        android:id="@+id/rl_question_quiz_question_fragment"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_question_quiz_question_fragment"
         android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:elevation="5dp"
@@ -60,18 +60,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
         <!-- question text -->
         <com.uncopt.android.widget.text.justify.JustifiedTextView
             android:id="@+id/tv_question_quiz_question_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="@color/colorBlack"
             android:text="question content question content question content"/>
-    </RelativeLayout>
+        <!-- submit / next button-->
+        <Button
+            android:id="@+id/btn_submit_next_quiz_question_fragment"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:elevation="10dp"
+            android:background="@color/colorBlack"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="submit" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- question text for layout -->
     <com.uncopt.android.widget.text.justify.JustifiedTextView
@@ -87,7 +108,7 @@
         android:textSize="18sp"
         android:textColor="@color/colorBlack"
         android:text="question content question content question content"
-        app:layout_constraintTop_toTopOf="@id/rl_question_quiz_question_fragment"
+        app:layout_constraintTop_toTopOf="@id/cl_question_quiz_question_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -100,9 +121,10 @@
         android:elevation="9dp"
         android:columnCount="2"
         android:rowCount="3"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="100dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintTop_toBottomOf="@id/tv_question_for_layout_quiz_question_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

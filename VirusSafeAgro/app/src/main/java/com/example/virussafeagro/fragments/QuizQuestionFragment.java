@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -18,6 +19,7 @@ import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.QuizActivity;
@@ -42,7 +44,7 @@ public class QuizQuestionFragment extends Fragment {
 
     // views
     private MotionLayout containerMotionLayout;
-    private RelativeLayout questionRelativeLayout;
+    private ConstraintLayout questionConstraintLayout;
     private GridLayout optionsGridLayout;
     private ProgressBar readQuestionProgressBar;
     private TextView questionNoTextView;
@@ -95,8 +97,8 @@ public class QuizQuestionFragment extends Fragment {
     private View optionFCheckedBorderView;
     private Map<String, CardView> optionLabelCardViewBoxMap;
     private Map<String, AppCompatRadioButton> optionLabelAppCompatRadioButtonMap;
-    private Map<String, AppCompatCheckBox> optionLabelAppCompatCheckBoxMap;
-
+    private Map<AppCompatCheckBox, String> appCompatCheckBoxOptionLabelButtonMap;
+    private Button submitButton;
 
     // tools
     private int questionNo;
@@ -125,6 +127,9 @@ public class QuizQuestionFragment extends Fragment {
         // show question content
         showQuestionContent();
 
+        // set SubmitButton On Click Listener
+        this.setSubmitButtonOnClickListener();
+
         return this.view;
     }
 
@@ -136,7 +141,7 @@ public class QuizQuestionFragment extends Fragment {
     private void initializeViews() {
         this.containerMotionLayout = view.findViewById(R.id.ml_container_quiz_question_fragment);
         this.containerMotionLayout.setBackgroundResource(QuizStartActivity.backgroundResourceId);
-        this.questionRelativeLayout = view.findViewById(R.id.rl_question_quiz_question_fragment);
+        this.questionConstraintLayout = view.findViewById(R.id.cl_question_quiz_question_fragment);
         this.optionsGridLayout = view.findViewById(R.id.gl_options_quiz_question_fragment);
         this.readQuestionProgressBar = view.findViewById(R.id.pb_read_question_quiz_question_fragment);
         this.questionNoTextView = view.findViewById(R.id.tv_no_quiz_question_fragment);
@@ -220,13 +225,14 @@ public class QuizQuestionFragment extends Fragment {
         this.optionLabelAppCompatRadioButtonMap.put("D", optionDAppCompatRadioButton);
         this.optionLabelAppCompatRadioButtonMap.put("E", optionEAppCompatRadioButton);
         this.optionLabelAppCompatRadioButtonMap.put("F", optionFAppCompatRadioButton);
-        this.optionLabelAppCompatCheckBoxMap = new HashMap<>();
-        this.optionLabelAppCompatCheckBoxMap.put("A", optionAAppCompatCheckBox);
-        this.optionLabelAppCompatCheckBoxMap.put("B", optionBAppCompatCheckBox);
-        this.optionLabelAppCompatCheckBoxMap.put("C", optionCAppCompatCheckBox);
-        this.optionLabelAppCompatCheckBoxMap.put("D", optionDAppCompatCheckBox);
-        this.optionLabelAppCompatCheckBoxMap.put("E", optionEAppCompatCheckBox);
-        this.optionLabelAppCompatCheckBoxMap.put("F", optionFAppCompatCheckBox);
+        this.appCompatCheckBoxOptionLabelButtonMap = new HashMap<>();
+        this.appCompatCheckBoxOptionLabelButtonMap.put(optionAAppCompatCheckBox, "A");
+        this.appCompatCheckBoxOptionLabelButtonMap.put(optionBAppCompatCheckBox, "B");
+        this.appCompatCheckBoxOptionLabelButtonMap.put(optionCAppCompatCheckBox, "C");
+        this.appCompatCheckBoxOptionLabelButtonMap.put(optionDAppCompatCheckBox, "D");
+        this.appCompatCheckBoxOptionLabelButtonMap.put(optionEAppCompatCheckBox, "E");
+        this.appCompatCheckBoxOptionLabelButtonMap.put(optionFAppCompatCheckBox, "F");
+        this.submitButton = view.findViewById(R.id.btn_submit_next_quiz_question_fragment);
     }
 
     @Override
@@ -485,17 +491,52 @@ public class QuizQuestionFragment extends Fragment {
         currentCardView.setOnClickListener(v -> {
             // set checked border
             currentCheckedBorderView.setVisibility((currentCheckedBorderView.getVisibility() == View.INVISIBLE) ? View.VISIBLE : View.INVISIBLE);
-            for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList) {
-                if (optionLabelAppCompatCheckBoxMap.get(currentOptionNoString).equals(appCompatCheckBox)){
-                    appCompatCheckBox.setChecked(!appCompatCheckBox.isChecked());
-                }
-            }
+            currentAppCompatCheckBox.setChecked(!currentAppCompatCheckBox.isChecked());
+            // show or hide the submit button
+            showOrHideSubmitButton(currentAppCompatCheckBox);
         });
 
         // click checkbox
         currentAppCompatCheckBox.setOnClickListener(v -> {
             // set checked border
             currentCheckedBorderView.setVisibility((currentCheckedBorderView.getVisibility() == View.INVISIBLE) ? View.VISIBLE : View.INVISIBLE);
+            // show or hide the submit button
+            showOrHideSubmitButton(currentAppCompatCheckBox);
+        });
+    }
+
+    // show or hide the submit button
+    private void showOrHideSubmitButton(AppCompatCheckBox currentAppCompatCheckBox) {
+        // show the submit button
+        if (currentAppCompatCheckBox.isChecked()) {
+            if (submitButton.getVisibility() == View.GONE) {
+                submitButton.clearAnimation();
+                MyAnimationBox.runFadeInAnimation(submitButton, 100);
+            }
+        } else {
+            boolean hasCheckedBox = false;
+            for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList){
+                if (appCompatCheckBox.isChecked()){
+                    hasCheckedBox = true;
+                }
+            }
+            if (!hasCheckedBox){
+                submitButton.clearAnimation();
+                MyAnimationBox.runFadeOutAnimation(submitButton, 100);
+            }
+        }
+    }
+
+    public void setSubmitButtonOnClickListener() {
+        submitButton.setOnClickListener(submitButtonView -> {
+            // store users' answer
+            userAnswerList = new ArrayList<>();
+            for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList){
+                if (appCompatCheckBox.isChecked()){
+                    userAnswerList.add(appCompatCheckBoxOptionLabelButtonMap.get(appCompatCheckBox));
+                }
+            }
+            currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
         });
     }
 
