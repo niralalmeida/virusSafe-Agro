@@ -1,6 +1,7 @@
 package com.example.virussafeagro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
@@ -61,8 +62,8 @@ public class QuizActivity extends AppCompatActivity {
     private ProgressBar loadQuestionProgressBar;
 
     // button names
-    private String BUTTON_NAME_BEGINNER;
-    private String BUTTON_NAME_INTERMEDIATE;
+    public static String BUTTON_NAME_BEGINNER;
+    public static String BUTTON_NAME_INTERMEDIATE;
     private String BUTTON_NAME_OPEN_QUIZ;
     private String TEXT_SIMPLE_TIP;
     private String TEXT_TRICKY_TIP;
@@ -70,7 +71,7 @@ public class QuizActivity extends AppCompatActivity {
     private String TEXT_MULTIPLE_CHOICE_QUESTION;
 
     // current page identification tags
-    private String currentPageName;
+    public static String currentPageName;
     public final static int QUESTION_COUNT = 5;
 
     @Override
@@ -99,6 +100,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void initializeVariablesAndData() {
+        currentPageName = "";
         BUTTON_NAME_BEGINNER = getResources().getString(R.string.btn_beginner);
         BUTTON_NAME_INTERMEDIATE = getResources().getString(R.string.btn_intermediate);
         BUTTON_NAME_OPEN_QUIZ = getResources().getString(R.string.btn_open_quiz);
@@ -249,7 +251,7 @@ public class QuizActivity extends AppCompatActivity {
         bundle.putParcelable("currentVirusModel", currentVirusModel);
         intent.putExtras(bundle);
         // animation
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.containerMotionLayout, ViewCompat.getTransitionName(this.containerMotionLayout));
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.startQuizButton, ViewCompat.getTransitionName(this.startQuizButton));
         startActivity(intent, options.toBundle());
 
         // or create directly

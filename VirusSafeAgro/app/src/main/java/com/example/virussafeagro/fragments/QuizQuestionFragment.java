@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.QuizStartActivity;
@@ -16,6 +18,8 @@ public class QuizQuestionFragment extends Fragment {
     private QuizStartActivity quizStartActivity;
     private View view;
 
+    private MotionLayout containerMotionLayout;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,7 +28,14 @@ public class QuizQuestionFragment extends Fragment {
 
         // initialize quizActivity
         this.quizStartActivity = (QuizStartActivity)requireActivity();
+        // initialize views
+        this.initializeViews();
 
         return this.view;
+    }
+
+    private void initializeViews() {
+        this.containerMotionLayout = view.findViewById(R.id.ml_container_quiz_question_fragment);
+        this.containerMotionLayout.setBackgroundResource(QuizStartActivity.backgroundResourceId);
     }
 }

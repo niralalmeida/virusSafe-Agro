@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ml_container_quiz_fragment"
+    android:id="@+id/ml_container_quiz_question_fragment"
     android:clipChildren="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +14,7 @@
 
     <!-- virus image -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_pic_virus_quiz_fragment"
+        android:id="@+id/cv_pic_virus_quiz_question_fragment"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:cardCornerRadius="100dp"
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <ImageView
-            android:id="@+id/img_pic_virus_quiz_fragment"
+            android:id="@+id/img_pic_virus_quiz_question_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"

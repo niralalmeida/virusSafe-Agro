@@ -1,5 +1,6 @@
 package com.example.virussafeagro;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieDrawable;
 import com.example.virussafeagro.adapters.QuestionSlideAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.MyAnimationBox;
@@ -36,6 +38,8 @@ public class QuizStartActivity extends AppCompatActivity {
 
     // tools
     public static final int NUM_PAGES = QuizActivity.QUESTION_COUNT;
+    @DrawableRes
+    public static int backgroundResourceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,12 @@ public class QuizStartActivity extends AppCompatActivity {
 
     private void initializeViews() {
         this.containerMotionLayout = findViewById(R.id.ml_container_quiz_start_activity);
+        if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_BEGINNER)) {
+            backgroundResourceId = R.color.btn_beginner_bg;
+        } else if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_INTERMEDIATE)) {
+            backgroundResourceId = R.color.btn_intermediate_bg;
+        }
+        this.containerMotionLayout.setBackgroundResource(backgroundResourceId);
         this.countDownLottieAnimationView = findViewById(R.id.lav_count_down_quiz_start);
         this.questionViewPager2 = findViewById(R.id.vp2_questions_quiz_start);
     }
@@ -63,27 +73,12 @@ public class QuizStartActivity extends AppCompatActivity {
     // control count down animation
     private void showQuestion() {
         new Handler().postDelayed(() ->{
-            // expand the lottie
-            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_count_down_expand, R.id.end_count_down_expand, 500);
-        },4000);
-
-        new Handler().postDelayed(() ->{
-            containerMotionLayout.clearAnimation();
-            // change the background
-            ColorDrawable[] colorDrawablesForBG = {
-                    new ColorDrawable(getResources().getColor(R.color.colorPrimaryDarkBG)),
-                    new ColorDrawable(getResources().getColor(R.color.bg_quiz_start))};
-            TransitionDrawable transitionDrawable = new TransitionDrawable(colorDrawablesForBG);
-            containerMotionLayout.setBackground(transitionDrawable);
-            transitionDrawable.startTransition(100);
-        },4500);
-
-
-        // hide the lottie
-        new Handler().postDelayed(() ->{
+            // hide lottie
             countDownLottieAnimationView.setVisibility(View.GONE);
+            // set view pager and adapter
             questionSlideAdapter = new QuestionSlideAdapter(this);
             questionViewPager2.setAdapter(questionSlideAdapter);
-        },4600);
+        },3000);
+
     }
 }
