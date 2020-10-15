@@ -4,21 +4,101 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition app:duration="300"
-        app:constraintSetEnd="@id/end"
-        app:constraintSetStart="@id/start">
-
-        <!--        <OnClick-->
-        <!--            app:clickAction="transitionToEnd"-->
-        <!--            app:targetId="@id/btn_beginner_quiz_activity" />-->
-
+        app:constraintSetEnd="@id/end_show_question_content"
+        app:constraintSetStart="@id/start_show_question_content">
     </Transition>
 
-    <ConstraintSet android:id="@+id/start">
-
+    <!-- show question content -->
+    <ConstraintSet android:id="@+id/start_show_question_content">
+        <!-- question bg -->
+        <Constraint
+            android:id="@+id/rl_question_quiz_question_fragment"
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- question image -->
+        <Constraint
+            android:id="@+id/cv_virus_quiz_question_fragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="-10dp"
+            app:layout_constraintBottom_toTopOf="@id/rl_question_quiz_question_fragment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- options grid layout -->
+        <Constraint
+            android:id="@+id/gl_options_quiz_question_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:elevation="9dp"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_question_for_layout_quiz_question_fragment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/end">
-
+    <!-- show question content -->
+    <ConstraintSet android:id="@+id/end_show_question_content">
+        <!-- question bg -->
+        <Constraint
+            android:id="@+id/rl_question_quiz_question_fragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginTop="180dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- question image -->
+        <Constraint
+            android:id="@+id/cv_virus_quiz_question_fragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="-10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/rl_question_quiz_question_fragment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- options grid layout -->
+        <Constraint
+            android:id="@+id/gl_options_quiz_question_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:elevation="9dp"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_question_for_layout_quiz_question_fragment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+        </Constraint>
     </ConstraintSet>
 
 </MotionScene>

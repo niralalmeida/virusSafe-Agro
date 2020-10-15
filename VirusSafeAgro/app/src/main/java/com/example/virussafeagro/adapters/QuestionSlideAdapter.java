@@ -14,7 +14,7 @@ public class QuestionSlideAdapter extends FragmentStateAdapter {
 
     @Override
     public Fragment createFragment(int position) {
-        return new QuizQuestionFragment();
+        return new QuizQuestionFragment(position + 1);
     }
 
     @Override
