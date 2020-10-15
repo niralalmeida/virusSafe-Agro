@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
 import com.example.virussafeagro.uitilities.DataConverter;
@@ -51,8 +52,16 @@ public class QuizActivityViewModel extends ViewModel {
             List<ChoiceQuestionModel> quizQuestionModelList = new ArrayList<>();
             int virusId = integers[0];
             try {
+                // get all questions
                 String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
                 quizQuestionModelList = MyJsonParser.choiceQuestionModelListJsonParser(resultTextForQuestions);
+                // get all options
+                for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
+                    String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
+                    List<ChoiceOptionModel> optionModelList = MyJsonParser.choiceOptionListJsonParser(resultTextForOptions);
+                    // set the option list into question model
+                    choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

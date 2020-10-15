@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <!-- question text -->
-        <TextView
+        <com.uncopt.android.widget.text.justify.JustifiedTextView
             android:id="@+id/tv_question_quiz_question_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
     </RelativeLayout>
 
     <!-- question text for layout -->
-    <TextView
+    <com.uncopt.android.widget.text.justify.JustifiedTextView
         android:id="@+id/tv_question_for_layout_quiz_question_fragment"
         android:layout_width="390dp"
         android:layout_height="wrap_content"
@@ -177,6 +177,7 @@
             android:layout_height="0dp"/>
     </GridLayout>
 
+    <!-- read question progress bar -->
     <ProgressBar
         android:id="@+id/pb_read_question_quiz_question_fragment"
         style="@android:style/Widget.ProgressBar.Horizontal"

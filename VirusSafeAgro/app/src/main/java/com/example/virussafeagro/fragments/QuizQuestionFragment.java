@@ -18,6 +18,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
+import com.example.virussafeagro.QuizActivity;
 import com.example.virussafeagro.QuizStartActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.animation.MyAnimationBox;
@@ -32,6 +33,8 @@ public class QuizQuestionFragment extends Fragment {
     private GridLayout optionsGridLayout;
     private ProgressBar readQuestionProgressBar;
     private TextView questionNoTextView;
+    private com.uncopt.android.widget.text.justify.JustifiedTextView questionTextView;
+    private com.uncopt.android.widget.text.justify.JustifiedTextView questionForLayoutTextView;
 
     // tools
     private int questionNo;
@@ -67,6 +70,8 @@ public class QuizQuestionFragment extends Fragment {
         this.optionsGridLayout = view.findViewById(R.id.gl_options_quiz_question_fragment);
         this.readQuestionProgressBar = view.findViewById(R.id.pb_read_question_quiz_question_fragment);
         this.questionNoTextView = view.findViewById(R.id.tv_no_quiz_question_fragment);
+        this.questionTextView = view.findViewById(R.id.tv_question_quiz_question_fragment);
+        this.questionForLayoutTextView = view.findViewById(R.id.tv_question_for_layout_quiz_question_fragment);
     }
 
     @Override
@@ -78,13 +83,15 @@ public class QuizQuestionFragment extends Fragment {
         // show question no
         String questionNoString = "Question " + this.questionNo;
         this.questionNoTextView.setText(questionNoString);
+        // show question title
+        this.questionTextView.setText(QuizActivity.choiceQuestionModelList.get(questionNo - 1).getChoiceQuestionContent());
+        this.questionForLayoutTextView.setText(QuizActivity.choiceQuestionModelList.get(questionNo - 1).getChoiceQuestionContent());
         // count down for reading question
         this.readQuestionCountDown(3);
         // show the question content
         new Handler().postDelayed(() -> {
             MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_content, R.id.end_show_question_content, 300);
         }, 3000);
-
     }
 
     private void readQuestionCountDown(int timeForCountDown) {
