@@ -12,6 +12,62 @@
     app:layoutDescription="@xml/ms_quiz_fragment"
     tools:context=".fragments.QuizQuestionFragment">
 
+    <!-- result top sheet -->
+    <com.example.virussafeagro.uitilities.DragYRelativeLayout
+        android:id="@+id/dyrl_result_top_sheet_quiz_question_fragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:elevation="20dp"
+        android:background="@color/rightAnswer"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- result title -->
+        <TextView
+            android:id="@+id/tv_result_title_quiz_question_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryTitle"
+            android:text="~RIGHTN~"/>
+
+        <!-- question explanation -->
+        <TextView
+            android:id="@+id/tv_result_explanation_title_quiz_question_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_result_title_quiz_question_fragment"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryTitle"
+            android:text="EXPLANATION : "/>
+
+        <!-- question explanation content -->
+        <TextView
+            android:id="@+id/tv_result_explanation_content_quiz_question_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_result_explanation_title_quiz_question_fragment"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryTitle"
+            android:text="Exxx xxxx xxxx"/>
+
+
+    </com.example.virussafeagro.uitilities.DragYRelativeLayout>
+
     <!-- question image -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_virus_quiz_question_fragment"

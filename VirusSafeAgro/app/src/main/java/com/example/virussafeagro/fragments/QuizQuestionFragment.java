@@ -33,6 +33,7 @@ import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.uitilities.DataComparison;
+import com.example.virussafeagro.uitilities.DragYRelativeLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -113,6 +114,9 @@ public class QuizQuestionFragment extends Fragment {
     private Map<String, ImageView> optionLabelRightWrongIconMap;
     private Map<String, View> optionLabelCheckedBorderMap;
     private Map<String, TextView> optionLabelOptionNoMap;
+    private DragYRelativeLayout questionExplanationDragYRelativeLayout;
+    private TextView resultTitleTextView;
+    private TextView questionExplanationTextView;
 
     // tools
     private int questionNo;
@@ -275,6 +279,9 @@ public class QuizQuestionFragment extends Fragment {
         this.optionLabelOptionNoMap.put("D", optionDNoTextView);
         this.optionLabelOptionNoMap.put("E", optionENoTextView);
         this.optionLabelOptionNoMap.put("F", optionFNoTextView);
+        this.questionExplanationDragYRelativeLayout = view.findViewById(R.id.dyrl_result_top_sheet_quiz_question_fragment);
+        this.resultTitleTextView = view.findViewById(R.id.tv_result_title_quiz_question_fragment);
+        this.questionExplanationTextView = view.findViewById(R.id.tv_result_explanation_content_quiz_question_fragment);
     }
 
     @Override
@@ -595,9 +602,7 @@ public class QuizQuestionFragment extends Fragment {
                 // check multiple Choice Question Answer
                 isAnswerRight = checkMultipleChoiceQuestionAnswer();
                 // show the result style
-                new Handler().postDelayed(() -> {
-                    showResultStyleForMultiple();
-                }, 500);
+                new Handler().postDelayed(this::showResultStyleForMultiple, 500);
                 // change the button to "next"
                 submitButton.setText("next");
             } else if (submitButton.getText().toString().equals("next")) {
@@ -619,6 +624,8 @@ public class QuizQuestionFragment extends Fragment {
 
     // single result
     private void showResultStyleForSingle() {
+        // show the result top sheet
+        showResultTopSheet(300);
         // hide all the radio button
         for (AppCompatRadioButton appCompatRadioButton : optionAppCompatRadioButtonList){
             appCompatRadioButton.setVisibility(View.INVISIBLE);
@@ -669,6 +676,9 @@ public class QuizQuestionFragment extends Fragment {
 
     // multiple result
     private void showResultStyleForMultiple(){
+        // show the result top sheet
+        showResultTopSheet(300);
+
         // hide all the checkbox
         for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList){
             appCompatCheckBox.setVisibility(View.INVISIBLE);
@@ -719,5 +729,18 @@ public class QuizQuestionFragment extends Fragment {
                 }
             }
         }
+    }
+
+    private void showResultTopSheet(int duration) {
+        if (isAnswerRight) {
+            questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.rightAnswer);
+            resultTitleTextView.setText("~RIGHT~");
+        } else {
+            questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.wrongAnswer);
+            resultTitleTextView.setText("WRONG !!!");
+        }
+        questionExplanationTextView.setText(currentChoiceQuestionModel.getChoiceQuestionExplanation());
+        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_result, R.id.end_show_question_result, 300);
+//        MyAnimationBox.runSlideInAnimationFromTop(questionExplanationDragYRelativeLayout, duration);
     }
 }

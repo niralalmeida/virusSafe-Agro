@@ -139,7 +139,7 @@
         android:tint="@color/colorBlack"
         android:src="@drawable/ic_photo_analysis"
         app:borderWidth="5dp"
-        android:backgroundTint="@color/colorPrimaryLight"
+        android:backgroundTint="@color/colorWhite"
         app:backgroundTint="@color/bar_bg_bottom_bar"
         app:rippleColor="@color/ripple_fab"
         app:elevation="20dp"
