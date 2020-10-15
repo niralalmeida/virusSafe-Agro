@@ -604,9 +604,18 @@ public class QuizQuestionFragment extends Fragment {
                 // show the result style
                 new Handler().postDelayed(this::showResultStyleForMultiple, 500);
                 // change the button to "next"
-                submitButton.setText("next");
+                if (questionNo != 5) {
+                    submitButton.setText("next");
+                } else {
+                    // change the button to "next"
+                    submitButton.setText("Close");
+                }
             } else if (submitButton.getText().toString().equals("next")) {
-
+                quizStartActivity.getQuestionViewPager2().setCurrentItem(questionNo);
+            } else if (submitButton.getText().toString().equals("Close")) {
+                // animation
+                quizStartActivity.finish();
+                quizStartActivity.overridePendingTransition(0, R.anim.activity_slide_out_top);
             }
         });
     }
@@ -670,7 +679,12 @@ public class QuizQuestionFragment extends Fragment {
         }
 
         // change the button to "next"
-        submitButton.setText("next");
+        if (questionNo != 5) {
+            submitButton.setText("next");
+        } else {
+            // change the button to "next"
+            submitButton.setText("Close");
+        }
         MyAnimationBox.runFadeInAnimation(submitButton, 100);
     }
 
@@ -741,6 +755,5 @@ public class QuizQuestionFragment extends Fragment {
         }
         questionExplanationTextView.setText(currentChoiceQuestionModel.getChoiceQuestionExplanation());
         MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_result, R.id.end_show_question_result, 300);
-//        MyAnimationBox.runSlideInAnimationFromTop(questionExplanationDragYRelativeLayout, duration);
     }
 }

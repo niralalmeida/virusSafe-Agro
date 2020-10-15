@@ -80,13 +80,17 @@ public class QuizStartActivity extends AppCompatActivity {
             // set view pager and adapter
             questionSlideAdapter = new QuestionSlideAdapter(this);
             questionViewPager2.setAdapter(questionSlideAdapter);
-//            questionViewPager2.setPageTransformer(new DepthPageTransformer());
+            questionViewPager2.setUserInputEnabled(false); // deny swiping
             questionViewPager2.setPageTransformer(new ZoomOutPageTransformer());
+//            questionViewPager2.setOffscreenPageLimit(1);
             // hide lottie
             countDownLottieAnimationView.setVisibility(View.GONE);
             // set activity background
             this.containerMotionLayout.setBackgroundResource(R.color.colorPrimaryDarkBG);
         },3000);
+    }
 
+    public ViewPager2 getQuestionViewPager2() {
+        return questionViewPager2;
     }
 }
