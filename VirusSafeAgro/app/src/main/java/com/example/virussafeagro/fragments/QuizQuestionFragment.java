@@ -1,12 +1,16 @@
 package com.example.virussafeagro.fragments;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,10 +30,11 @@ public class QuizQuestionFragment extends Fragment {
     private MotionLayout containerMotionLayout;
     private RelativeLayout questionRelativeLayout;
     private GridLayout optionsGridLayout;
+    private ProgressBar readQuestionProgressBar;
+    private TextView questionNoTextView;
 
     // tools
     private int questionNo;
-    private int questionTextInitialBottomPosition;
 
     public QuizQuestionFragment(int questionNo) {
         this.questionNo = questionNo;
@@ -49,6 +54,9 @@ public class QuizQuestionFragment extends Fragment {
         // initialize views
         this.initializeViews();
 
+        // show question content
+        showQuestionContent();
+
         return this.view;
     }
 
@@ -57,27 +65,45 @@ public class QuizQuestionFragment extends Fragment {
         this.containerMotionLayout.setBackgroundResource(QuizStartActivity.backgroundResourceId);
         this.questionRelativeLayout = view.findViewById(R.id.rl_question_quiz_question_fragment);
         this.optionsGridLayout = view.findViewById(R.id.gl_options_quiz_question_fragment);
+        this.readQuestionProgressBar = view.findViewById(R.id.pb_read_question_quiz_question_fragment);
+        this.questionNoTextView = view.findViewById(R.id.tv_no_quiz_question_fragment);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        // show question content
-        showQuestionContent();
     }
 
     private void showQuestionContent() {
-        // set the option top margin
-//        questionTextInitialBottomPosition = questionRelativeLayout.getBottom();
-//        ConstraintSet constraintSet = new ConstraintSet();
-//        constraintSet.clone(containerMotionLayout);
-//        constraintSet.setMargin(optionsGridLayout.getId(), ConstraintSet.TOP, questionTextInitialBottomPosition);
-//        constraintSet.applyTo(containerMotionLayout);
+        // show question no
+        String questionNoString = "Question " + this.questionNo;
+        this.questionNoTextView.setText(questionNoString);
+        // count down for reading question
+        this.readQuestionCountDown(3);
         // show the question content
         new Handler().postDelayed(() -> {
             MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_content, R.id.end_show_question_content, 300);
-        }, 2000);
+        }, 3000);
 
     }
+
+    private void readQuestionCountDown(int timeForCountDown) {
+        CountDownTimer mCountDownTimer;
+        readQuestionProgressBar.setProgress(100);
+        mCountDownTimer = new CountDownTimer(timeForCountDown * 1000,10) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                readQuestionProgressBar.setProgress((int) millisUntilFinished * 100 / (timeForCountDown * 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                readQuestionProgressBar.setProgress(0);
+                readQuestionProgressBar.setVisibility(View.GONE);
+            }
+        };
+        mCountDownTimer.start();
+    }
+
 }
