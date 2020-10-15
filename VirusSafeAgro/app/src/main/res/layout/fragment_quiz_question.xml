@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/default_leaf" />
+            android:src="@drawable/default_tomato" />
     </androidx.cardview.widget.CardView>
 
     <!-- question no -->
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:elevation="10dp"
-            android:background="@color/colorBlack"
+            android:background="@drawable/ripple_btn_submit_next_quiz_question_fragment"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -211,6 +211,20 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_option_checked_border_quiz_question_fragment" />
 
+                <!-- right/wrong icon -->
+                <ImageView
+                    android:id="@+id/img_icon_right_wrong_option_a"
+                    android:visibility="invisible"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_radio_button_beginner_option_normal"
+                    android:tint="@color/wrongAnswer"
+                    android:src="@drawable/ic_wrong_circle_black_50dp"/>
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
         <!-- b -->
@@ -295,6 +309,19 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_option_checked_border_quiz_question_fragment" />
 
+                <!-- right/wrong icon -->
+                <ImageView
+                    android:id="@+id/img_icon_right_wrong_option_b"
+                    android:visibility="invisible"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_radio_button_beginner_option_normal"
+                    android:tint="@color/wrongAnswer"
+                    android:src="@drawable/ic_wrong_circle_black_50dp"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -380,6 +407,19 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_option_checked_border_quiz_question_fragment" />
 
+                <!-- right/wrong icon -->
+                <ImageView
+                    android:id="@+id/img_icon_right_wrong_option_c"
+                    android:visibility="invisible"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_radio_button_beginner_option_normal"
+                    android:tint="@color/wrongAnswer"
+                    android:src="@drawable/ic_wrong_circle_black_50dp"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -466,6 +506,19 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_option_checked_border_quiz_question_fragment" />
 
+                <!-- right/wrong icon -->
+                <ImageView
+                    android:id="@+id/img_icon_right_wrong_option_d"
+                    android:visibility="invisible"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_radio_button_beginner_option_normal"
+                    android:tint="@color/wrongAnswer"
+                    android:src="@drawable/ic_wrong_circle_black_50dp"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -551,6 +604,19 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_option_checked_border_quiz_question_fragment" />
 
+                <!-- right/wrong icon -->
+                <ImageView
+                    android:id="@+id/img_icon_right_wrong_option_e"
+                    android:visibility="invisible"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_radio_button_beginner_option_normal"
+                    android:tint="@color/wrongAnswer"
+                    android:src="@drawable/ic_wrong_circle_black_50dp"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -637,6 +703,19 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_option_checked_border_quiz_question_fragment" />
 
+                <!-- right/wrong icon -->
+                <ImageView
+                    android:id="@+id/img_icon_right_wrong_option_f"
+                    android:visibility="invisible"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_radio_button_beginner_option_normal"
+                    android:tint="@color/wrongAnswer"
+                    android:src="@drawable/ic_wrong_circle_black_50dp"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

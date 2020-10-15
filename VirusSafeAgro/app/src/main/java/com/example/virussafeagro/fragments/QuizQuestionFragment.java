@@ -1,8 +1,11 @@
 package com.example.virussafeagro.fragments;
 
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,7 @@ import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.QuizActivity;
@@ -99,10 +103,20 @@ public class QuizQuestionFragment extends Fragment {
     private Map<String, AppCompatRadioButton> optionLabelAppCompatRadioButtonMap;
     private Map<AppCompatCheckBox, String> appCompatCheckBoxOptionLabelButtonMap;
     private Button submitButton;
+    private ImageView optionARightWrongIconImageView;
+    private ImageView optionBRightWrongIconImageView;
+    private ImageView optionCRightWrongIconImageView;
+    private ImageView optionDRightWrongIconImageView;
+    private ImageView optionERightWrongIconImageView;
+    private ImageView optionFRightWrongIconImageView;
+    private Map<String, ImageView> optionLabelRightWrongIconMap;
+    private Map<String, View> optionLabelCheckedBorderMap;
+    private Map<String, TextView> optionLabelOptionNoMap;
 
     // tools
     private int questionNo;
     private int questionTypeNo; // 1 = single, 2 = multiple
+    private boolean isAnswerRight;
 
     public QuizQuestionFragment(int questionNo) {
         this.questionNo = questionNo;
@@ -233,6 +247,33 @@ public class QuizQuestionFragment extends Fragment {
         this.appCompatCheckBoxOptionLabelButtonMap.put(optionEAppCompatCheckBox, "E");
         this.appCompatCheckBoxOptionLabelButtonMap.put(optionFAppCompatCheckBox, "F");
         this.submitButton = view.findViewById(R.id.btn_submit_next_quiz_question_fragment);
+        this.optionARightWrongIconImageView = view.findViewById(R.id.img_icon_right_wrong_option_a);
+        this.optionBRightWrongIconImageView = view.findViewById(R.id.img_icon_right_wrong_option_b);
+        this.optionCRightWrongIconImageView = view.findViewById(R.id.img_icon_right_wrong_option_c);
+        this.optionDRightWrongIconImageView = view.findViewById(R.id.img_icon_right_wrong_option_d);
+        this.optionERightWrongIconImageView = view.findViewById(R.id.img_icon_right_wrong_option_e);
+        this.optionFRightWrongIconImageView = view.findViewById(R.id.img_icon_right_wrong_option_f);
+        this.optionLabelRightWrongIconMap = new HashMap<>();
+        this.optionLabelRightWrongIconMap.put("A", optionARightWrongIconImageView);
+        this.optionLabelRightWrongIconMap.put("B", optionBRightWrongIconImageView);
+        this.optionLabelRightWrongIconMap.put("C", optionCRightWrongIconImageView);
+        this.optionLabelRightWrongIconMap.put("D", optionDRightWrongIconImageView);
+        this.optionLabelRightWrongIconMap.put("E", optionERightWrongIconImageView);
+        this.optionLabelRightWrongIconMap.put("F", optionFRightWrongIconImageView);
+        this.optionLabelCheckedBorderMap = new HashMap<>();
+        this.optionLabelCheckedBorderMap.put("A", optionACheckedBorderView);
+        this.optionLabelCheckedBorderMap.put("B", optionBCheckedBorderView);
+        this.optionLabelCheckedBorderMap.put("C", optionCCheckedBorderView);
+        this.optionLabelCheckedBorderMap.put("D", optionDCheckedBorderView);
+        this.optionLabelCheckedBorderMap.put("E", optionECheckedBorderView);
+        this.optionLabelCheckedBorderMap.put("F", optionFCheckedBorderView);
+        this.optionLabelOptionNoMap = new HashMap<>();
+        this.optionLabelOptionNoMap.put("A", optionANoTextView);
+        this.optionLabelOptionNoMap.put("B", optionBNoTextView);
+        this.optionLabelOptionNoMap.put("C", optionCNoTextView);
+        this.optionLabelOptionNoMap.put("D", optionDNoTextView);
+        this.optionLabelOptionNoMap.put("E", optionENoTextView);
+        this.optionLabelOptionNoMap.put("F", optionFNoTextView);
     }
 
     @Override
@@ -456,6 +497,12 @@ public class QuizQuestionFragment extends Fragment {
             userAnswerList = new ArrayList<>();
             userAnswerList.add(currentOptionNoString);
             currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
+            // check Single Choice Question Answer
+            isAnswerRight = checkSingleChoiceQuestionAnswer(currentOptionNoString);
+            // show result style for single
+            new Handler().postDelayed(() -> {
+                showResultStyleForSingle();
+            }, 500);
         });
 
         // click radio button
@@ -479,6 +526,12 @@ public class QuizQuestionFragment extends Fragment {
             userAnswerList = new ArrayList<>();
             userAnswerList.add(currentOptionNoString);
             currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
+            // check Single Choice Question Answer
+            isAnswerRight = checkSingleChoiceQuestionAnswer(currentOptionNoString);
+            // show result style for single
+            new Handler().postDelayed(() -> {
+                showResultStyleForSingle();
+            }, 500);
         });
     }
 
@@ -529,16 +582,80 @@ public class QuizQuestionFragment extends Fragment {
 
     public void setSubmitButtonOnClickListener() {
         submitButton.setOnClickListener(submitButtonView -> {
-            // store users' answer
-            userAnswerList = new ArrayList<>();
-            for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList){
-                if (appCompatCheckBox.isChecked()){
-                    userAnswerList.add(appCompatCheckBoxOptionLabelButtonMap.get(appCompatCheckBox));
+            if (submitButton.getText().toString().equals("submit")) {
+                // store users' answer
+                userAnswerList = new ArrayList<>();
+                for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList) {
+                    if (appCompatCheckBox.isChecked()) {
+                        userAnswerList.add(appCompatCheckBoxOptionLabelButtonMap.get(appCompatCheckBox));
+                    }
                 }
+                currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
+                // check multiple Choice Question Answer
+                isAnswerRight = checkMultipleChoiceQuestionAnswer();
+                // show the result style
+
+                // change the button to "next"
+                submitButton.setText("next");
+            } else if (submitButton.getText().toString().equals("next")) {
+
             }
-            currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
         });
     }
 
+    // check Single Choice Question Answer
+    private boolean checkSingleChoiceQuestionAnswer(String selectedOptionLabel) {
+        return currentChoiceQuestionModel.getCorrectAnswerList().get(0).equals(selectedOptionLabel);
+    }
+    
+    // check multiple Choice Question Answer
+    private boolean checkMultipleChoiceQuestionAnswer() {
 
+    }
+
+    // single result
+    private void showResultStyleForSingle() {
+        if (isAnswerRight){
+            String rightAnswerString = currentChoiceQuestionModel.getCorrectAnswerList().get(0);
+            // set option right icon
+            ImageView rightWrongIconImageView = optionLabelRightWrongIconMap.get(rightAnswerString);
+            rightWrongIconImageView.setImageResource(R.drawable.ic_right_circle_white_50dp);
+            ColorStateList colorStateList = ContextCompat.getColorStateList(quizStartActivity, R.color.rightAnswer);
+            rightWrongIconImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            rightWrongIconImageView.setImageTintList(colorStateList);
+            rightWrongIconImageView.setVisibility(View.VISIBLE);
+            // set option border
+            optionLabelCheckedBorderMap.get(rightAnswerString).setBackgroundResource(R.drawable.shape_option_border_right_quiz_question_fragment);
+            // set option label
+            optionLabelOptionNoMap.get(rightAnswerString).setBackgroundResource(R.drawable.shape_option_no_right_quiz_question_fragment);
+        } else {
+            String correctAnswerString = currentChoiceQuestionModel.getCorrectAnswerList().get(0);
+            String userAnswerString = currentChoiceQuestionModel.getUserAnswerList().get(0);
+            // set option wrong icon
+            ImageView wrongIconImageView = optionLabelRightWrongIconMap.get(userAnswerString);
+            wrongIconImageView.setImageResource(R.drawable.ic_wrong_circle_black_50dp);
+            ColorStateList colorStateList = ContextCompat.getColorStateList(quizStartActivity, R.color.wrongAnswer);
+            wrongIconImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            wrongIconImageView.setImageTintList(colorStateList);
+            wrongIconImageView.setVisibility(View.VISIBLE);
+            // set option right icon
+            ImageView rightIconImageView = optionLabelRightWrongIconMap.get(correctAnswerString);
+            rightIconImageView.setImageResource(R.drawable.ic_right_circle_white_50dp);
+            ColorStateList rightColorStateList = ContextCompat.getColorStateList(quizStartActivity, R.color.rightAnswer);
+            rightIconImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            rightIconImageView.setImageTintList(rightColorStateList);
+            rightIconImageView.setVisibility(View.VISIBLE);
+            // set wrong option border
+            optionLabelCheckedBorderMap.get(userAnswerString).setBackgroundResource(R.drawable.shape_option_border_wrong_quiz_question_fragment);
+            // set wrong option label
+            optionLabelOptionNoMap.get(userAnswerString).setBackgroundResource(R.drawable.shape_option_no_wrong_quiz_question_fragment);
+            // set right option label
+            optionLabelOptionNoMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_no_right_quiz_question_fragment);
+        }
+    }
+
+    // multiple result
+    private void showResultStyleForMultiple(){
+
+    }
 }
