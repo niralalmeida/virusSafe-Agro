@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
@@ -27,7 +28,9 @@ import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class QuizQuestionFragment extends Fragment {
     private QuizStartActivity quizStartActivity;
@@ -76,9 +79,27 @@ public class QuizQuestionFragment extends Fragment {
     private AppCompatRadioButton optionEAppCompatRadioButton;
     private AppCompatRadioButton optionFAppCompatRadioButton;
     private List<AppCompatRadioButton> optionAppCompatRadioButtonList;
+    private AppCompatCheckBox optionAAppCompatCheckBox;
+    private AppCompatCheckBox optionBAppCompatCheckBox;
+    private AppCompatCheckBox optionCAppCompatCheckBox;
+    private AppCompatCheckBox optionDAppCompatCheckBox;
+    private AppCompatCheckBox optionEAppCompatCheckBox;
+    private AppCompatCheckBox optionFAppCompatCheckBox;
+    private List<AppCompatCheckBox> optionAppCompatCheckBoxList;
+    private View optionACheckedBorderView;
+    private View optionBCheckedBorderView;
+    private View optionCCheckedBorderView;
+    private View optionDCheckedBorderView;
+    private View optionECheckedBorderView;
+    private View optionFCheckedBorderView;
+    private Map<String, CardView> optionLabelCardViewBoxMap;
+    private Map<String, AppCompatRadioButton> optionLabelAppCompatRadioButtonMap;
+    private Map<String, AppCompatCheckBox> optionLabelAppCompatCheckBoxMap;
+
 
     // tools
     private int questionNo;
+    private int questionTypeNo; // 1 = single, 2 = multiple
 
     public QuizQuestionFragment(int questionNo) {
         this.questionNo = questionNo;
@@ -108,6 +129,7 @@ public class QuizQuestionFragment extends Fragment {
 
     private void initializeData() {
         this.currentChoiceQuestionModel = QuizStartActivity.choiceQuestionModelFinalList.get(this.questionNo - 1);
+        this.questionTypeNo = this.currentChoiceQuestionModel.getChoiceQuestionType().equals("single") ? 1 : 2;
     }
 
     private void initializeViews() {
@@ -164,6 +186,46 @@ public class QuizQuestionFragment extends Fragment {
         this.optionAppCompatRadioButtonList.add(optionDAppCompatRadioButton);
         this.optionAppCompatRadioButtonList.add(optionEAppCompatRadioButton);
         this.optionAppCompatRadioButtonList.add(optionFAppCompatRadioButton);
+        this.optionAAppCompatCheckBox = view.findViewById(R.id.cb_option_a_quiz_question_fragment);
+        this.optionBAppCompatCheckBox = view.findViewById(R.id.cb_option_b_quiz_question_fragment);
+        this.optionCAppCompatCheckBox = view.findViewById(R.id.cb_option_c_quiz_question_fragment);
+        this.optionDAppCompatCheckBox = view.findViewById(R.id.cb_option_d_quiz_question_fragment);
+        this.optionEAppCompatCheckBox = view.findViewById(R.id.cb_option_e_quiz_question_fragment);
+        this.optionFAppCompatCheckBox = view.findViewById(R.id.cb_option_f_quiz_question_fragment);
+        this.optionAppCompatCheckBoxList = new ArrayList<>();
+        this.optionAppCompatCheckBoxList.add(optionAAppCompatCheckBox);
+        this.optionAppCompatCheckBoxList.add(optionBAppCompatCheckBox);
+        this.optionAppCompatCheckBoxList.add(optionCAppCompatCheckBox);
+        this.optionAppCompatCheckBoxList.add(optionDAppCompatCheckBox);
+        this.optionAppCompatCheckBoxList.add(optionEAppCompatCheckBox);
+        this.optionAppCompatCheckBoxList.add(optionFAppCompatCheckBox);
+        this.optionACheckedBorderView = view.findViewById(R.id.v_option_a_checked_border_quiz_question_fragment);
+        this.optionBCheckedBorderView = view.findViewById(R.id.v_option_b_checked_border_quiz_question_fragment);
+        this.optionCCheckedBorderView = view.findViewById(R.id.v_option_c_checked_border_quiz_question_fragment);
+        this.optionDCheckedBorderView = view.findViewById(R.id.v_option_d_checked_border_quiz_question_fragment);
+        this.optionECheckedBorderView = view.findViewById(R.id.v_option_e_checked_border_quiz_question_fragment);
+        this.optionFCheckedBorderView = view.findViewById(R.id.v_option_f_checked_border_quiz_question_fragment);
+        this.optionLabelCardViewBoxMap = new HashMap<>();
+        this.optionLabelCardViewBoxMap.put("A", optionACardView);
+        this.optionLabelCardViewBoxMap.put("B", optionBCardView);
+        this.optionLabelCardViewBoxMap.put("C", optionCCardView);
+        this.optionLabelCardViewBoxMap.put("D", optionDCardView);
+        this.optionLabelCardViewBoxMap.put("E", optionECardView);
+        this.optionLabelCardViewBoxMap.put("F", optionFCardView);
+        this.optionLabelAppCompatRadioButtonMap = new HashMap<>();
+        this.optionLabelAppCompatRadioButtonMap.put("A", optionAAppCompatRadioButton);
+        this.optionLabelAppCompatRadioButtonMap.put("B", optionBAppCompatRadioButton);
+        this.optionLabelAppCompatRadioButtonMap.put("C", optionCAppCompatRadioButton);
+        this.optionLabelAppCompatRadioButtonMap.put("D", optionDAppCompatRadioButton);
+        this.optionLabelAppCompatRadioButtonMap.put("E", optionEAppCompatRadioButton);
+        this.optionLabelAppCompatRadioButtonMap.put("F", optionFAppCompatRadioButton);
+        this.optionLabelAppCompatCheckBoxMap = new HashMap<>();
+        this.optionLabelAppCompatCheckBoxMap.put("A", optionAAppCompatCheckBox);
+        this.optionLabelAppCompatCheckBoxMap.put("B", optionBAppCompatCheckBox);
+        this.optionLabelAppCompatCheckBoxMap.put("C", optionCAppCompatCheckBox);
+        this.optionLabelAppCompatCheckBoxMap.put("D", optionDAppCompatCheckBox);
+        this.optionLabelAppCompatCheckBoxMap.put("E", optionEAppCompatCheckBox);
+        this.optionLabelAppCompatCheckBoxMap.put("F", optionFAppCompatCheckBox);
     }
 
     @Override
@@ -217,6 +279,23 @@ public class QuizQuestionFragment extends Fragment {
 
     // show options
     private void showOptions() {
+        if (questionTypeNo == 1){
+            // single
+            optionAAppCompatRadioButton.setVisibility(View.VISIBLE);
+            optionBAppCompatRadioButton.setVisibility(View.VISIBLE);
+            optionCAppCompatRadioButton.setVisibility(View.VISIBLE);
+            optionDAppCompatRadioButton.setVisibility(View.VISIBLE);
+            optionEAppCompatRadioButton.setVisibility(View.VISIBLE);
+            optionFAppCompatRadioButton.setVisibility(View.VISIBLE);
+        } else if (questionTypeNo == 2){
+            // multiple
+            optionAAppCompatCheckBox.setVisibility(View.VISIBLE);
+            optionBAppCompatCheckBox.setVisibility(View.VISIBLE);
+            optionCAppCompatCheckBox.setVisibility(View.VISIBLE);
+            optionDAppCompatCheckBox.setVisibility(View.VISIBLE);
+            optionEAppCompatCheckBox.setVisibility(View.VISIBLE);
+            optionFAppCompatCheckBox.setVisibility(View.VISIBLE);
+        }
         // set option card background
         if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_BEGINNER)){
             optionACardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
@@ -231,12 +310,23 @@ public class QuizQuestionFragment extends Fragment {
             optionDNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
             optionENoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
             optionFNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
-            optionAAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
-            optionBAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
-            optionCAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
-            optionDAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
-            optionEAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
-            optionFAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
+            if (questionTypeNo == 1) {
+                // single
+                optionAAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
+                optionBAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
+                optionCAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
+                optionDAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
+                optionEAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
+                optionFAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_beginner_option_quiz_question_fragment);
+            } else if (questionTypeNo == 2) {
+                // multiple
+                optionAAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_beginner_option_quiz_question_fragment);
+                optionBAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_beginner_option_quiz_question_fragment);
+                optionCAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_beginner_option_quiz_question_fragment);
+                optionDAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_beginner_option_quiz_question_fragment);
+                optionEAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_beginner_option_quiz_question_fragment);
+                optionFAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_beginner_option_quiz_question_fragment);
+            }
         } else if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_INTERMEDIATE)){
             optionACardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
             optionBCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
@@ -250,12 +340,23 @@ public class QuizQuestionFragment extends Fragment {
             optionDNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
             optionENoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
             optionFNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
-            optionAAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-            optionBAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-            optionCAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-            optionDAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-            optionEAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-            optionFAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
+            if (questionTypeNo == 1) {
+                // single
+                optionAAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
+                optionBAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
+                optionCAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
+                optionDAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
+                optionEAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
+                optionFAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
+            } else if (questionTypeNo == 2) {
+                // multiple
+                optionAAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
+                optionBAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
+                optionCAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
+                optionDAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
+                optionEAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
+                optionFAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
+            }
         }
 
         for (ChoiceOptionModel choiceOptionModel : currentChoiceQuestionModel.getChoiceQuestionOptionList()) {
@@ -263,32 +364,56 @@ public class QuizQuestionFragment extends Fragment {
                 case "A":
                     optionACardView.setVisibility(View.VISIBLE);
                     optionATextView.setText(choiceOptionModel.getChoiceOptionContent());
-                    setCardOnClickListenerForSingle(optionACardView, optionAAppCompatRadioButton);
+                    if (questionTypeNo == 1) {
+                        setCardOnClickListenerForSingle(optionACardView, optionAAppCompatRadioButton, optionACheckedBorderView, "A");
+                    } else if (questionTypeNo == 2){
+                        setCardOnClickListenerForMultiple(optionACardView, optionAAppCompatCheckBox, optionACheckedBorderView, "A");
+                    }
                     break;
                 case "B":
                     optionBCardView.setVisibility(View.VISIBLE);
                     optionBTextView.setText(choiceOptionModel.getChoiceOptionContent());
-                    setCardOnClickListenerForSingle(optionBCardView, optionBAppCompatRadioButton);
+                    if (questionTypeNo == 1) {
+                        setCardOnClickListenerForSingle(optionBCardView, optionBAppCompatRadioButton, optionBCheckedBorderView, "B");
+                    } else if (questionTypeNo == 2){
+                        setCardOnClickListenerForMultiple(optionBCardView, optionBAppCompatCheckBox, optionBCheckedBorderView, "B");
+                    }
                     break;
                 case "C":
                     optionCCardView.setVisibility(View.VISIBLE);
                     optionCTextView.setText(choiceOptionModel.getChoiceOptionContent());
-                    setCardOnClickListenerForSingle(optionCCardView, optionCAppCompatRadioButton);
+                    if (questionTypeNo == 1) {
+                        setCardOnClickListenerForSingle(optionCCardView, optionCAppCompatRadioButton, optionCCheckedBorderView, "C");
+                    } else if (questionTypeNo == 2){
+                        setCardOnClickListenerForMultiple(optionCCardView, optionCAppCompatCheckBox, optionCCheckedBorderView, "C");
+                    }
                     break;
                 case "D":
                     optionDCardView.setVisibility(View.VISIBLE);
                     optionDTextView.setText(choiceOptionModel.getChoiceOptionContent());
-                    setCardOnClickListenerForSingle(optionDCardView, optionDAppCompatRadioButton);
+                    if (questionTypeNo == 1) {
+                        setCardOnClickListenerForSingle(optionDCardView, optionDAppCompatRadioButton, optionDCheckedBorderView, "D");
+                    } else if (questionTypeNo == 2){
+                        setCardOnClickListenerForMultiple(optionDCardView, optionDAppCompatCheckBox, optionDCheckedBorderView, "D");
+                    }
                     break;
                 case "E":
                     optionECardView.setVisibility(View.VISIBLE);
                     optionETextView.setText(choiceOptionModel.getChoiceOptionContent());
-                    setCardOnClickListenerForSingle(optionECardView, optionEAppCompatRadioButton);
+                    if (questionTypeNo == 1) {
+                        setCardOnClickListenerForSingle(optionECardView, optionEAppCompatRadioButton, optionECheckedBorderView, "E");
+                    } else if (questionTypeNo == 2){
+                        setCardOnClickListenerForMultiple(optionECardView, optionEAppCompatCheckBox, optionECheckedBorderView, "E");
+                    }
                     break;
                 case "F":
                     optionFCardView.setVisibility(View.VISIBLE);
                     optionFTextView.setText(choiceOptionModel.getChoiceOptionContent());
-                    setCardOnClickListenerForSingle(optionFCardView, optionFAppCompatRadioButton);
+                    if (questionTypeNo == 1) {
+                        setCardOnClickListenerForSingle(optionFCardView, optionFAppCompatRadioButton, optionFCheckedBorderView, "F");
+                    } else if (questionTypeNo == 2){
+                        setCardOnClickListenerForMultiple(optionFCardView, optionFAppCompatCheckBox, optionFCheckedBorderView, "F");
+                    }
                     break;
                 default:
                     break;
@@ -296,22 +421,25 @@ public class QuizQuestionFragment extends Fragment {
         }
     }
 
-    private void setCardOnClickListenerForSingle(CardView currentCardView, AppCompatRadioButton currentAppCompatRadioButton) {
+    private void setCardOnClickListenerForSingle(CardView currentCardView,
+                                                 AppCompatRadioButton currentAppCompatRadioButton,
+                                                 View currentCheckedBorderView,
+                                                 String currentOptionNoString
+                                                ) {
         // click card
         currentCardView.setOnClickListener(v -> {
-            int optionIndex = -1;
+            // set checked border
+            currentCheckedBorderView.setVisibility(View.VISIBLE);
             // set card view style
             for (CardView cardView : optionCardViewList){
-                if (!cardView.equals(currentCardView)){
+                if (!cardView.equals(currentCardView)) {
                     cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
                     cardView.setClickable(false);
-                } else {
-                    optionIndex = optionCardViewList.indexOf(cardView);
                 }
             }
             // set radio button style
             for (AppCompatRadioButton appCompatRadioButton : optionAppCompatRadioButtonList) {
-                if (optionIndex != optionAppCompatRadioButtonList.indexOf(appCompatRadioButton)) {
+                if (!optionLabelAppCompatRadioButtonMap.get(currentOptionNoString).equals(appCompatRadioButton)) {
                     appCompatRadioButton.setClickable(false);
                 } else {
                     appCompatRadioButton.setChecked(true);
@@ -321,15 +449,16 @@ public class QuizQuestionFragment extends Fragment {
 
         // click radio button
         currentAppCompatRadioButton.setOnClickListener(v -> {
-            int optionIndex = -1;
+            // set checked border
+            currentCheckedBorderView.setVisibility(View.VISIBLE);
             // get selected option index
             for (AppCompatRadioButton appCompatRadioButton : optionAppCompatRadioButtonList) {
-                if (appCompatRadioButton.equals(currentAppCompatRadioButton)){
-                    optionIndex = optionAppCompatRadioButtonList.indexOf(appCompatRadioButton);
+                if (!appCompatRadioButton.equals(currentAppCompatRadioButton)){
+                    appCompatRadioButton.setClickable(false);
                 }
             }
             for (CardView cardView : optionCardViewList){
-                if (optionIndex != optionCardViewList.indexOf(cardView)){
+                if (!optionLabelCardViewBoxMap.get(currentOptionNoString).equals(cardView)){
                     cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
                     cardView.setClickable(false);
                 }
@@ -337,4 +466,28 @@ public class QuizQuestionFragment extends Fragment {
         });
     }
 
+    private void setCardOnClickListenerForMultiple(CardView currentCardView,
+                                                   AppCompatCheckBox currentAppCompatCheckBox,
+                                                   View currentCheckedBorderView,
+                                                   String currentOptionNoString
+                                                  ) {
+        // get current option label
+
+        // click card
+        currentCardView.setOnClickListener(v -> {
+            // set checked border
+            currentCheckedBorderView.setVisibility((currentCheckedBorderView.getVisibility() == View.INVISIBLE) ? View.VISIBLE : View.INVISIBLE);
+            for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList) {
+                if (optionLabelAppCompatCheckBoxMap.get(currentOptionNoString).equals(appCompatCheckBox)){
+                    appCompatCheckBox.setChecked(!appCompatCheckBox.isChecked());
+                }
+            }
+        });
+
+        // click checkbox
+        currentAppCompatCheckBox.setOnClickListener(v -> {
+            // set checked border
+            currentCheckedBorderView.setVisibility((currentCheckedBorderView.getVisibility() == View.INVISIBLE) ? View.VISIBLE : View.INVISIBLE);
+        });
+    }
 }
