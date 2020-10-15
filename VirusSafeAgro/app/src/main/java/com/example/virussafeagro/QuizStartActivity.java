@@ -13,6 +13,8 @@ import android.view.WindowManager;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.virussafeagro.adapters.QuestionSlideAdapter;
+import com.example.virussafeagro.animation.DepthPageTransformer;
+import com.example.virussafeagro.animation.ZoomOutPageTransformer;
 import com.example.virussafeagro.models.VirusModel;
 
 import java.util.Objects;
@@ -66,11 +68,15 @@ public class QuizStartActivity extends AppCompatActivity {
     // control count down animation
     private void showQuestion() {
         new Handler().postDelayed(() ->{
-            // hide lottie
-            countDownLottieAnimationView.setVisibility(View.GONE);
             // set view pager and adapter
             questionSlideAdapter = new QuestionSlideAdapter(this);
             questionViewPager2.setAdapter(questionSlideAdapter);
+//            questionViewPager2.setPageTransformer(new DepthPageTransformer());
+            questionViewPager2.setPageTransformer(new ZoomOutPageTransformer());
+            // hide lottie
+            countDownLottieAnimationView.setVisibility(View.GONE);
+            // set activity background
+            this.containerMotionLayout.setBackgroundResource(R.color.colorPrimaryDarkBG);
         },3000);
 
     }
