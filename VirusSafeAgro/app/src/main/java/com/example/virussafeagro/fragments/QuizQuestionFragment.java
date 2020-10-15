@@ -183,6 +183,9 @@ public class QuizQuestionFragment extends Fragment {
     }
 
     private void showOptions() {
+        // set option card background
+//        if ()
+//        optionACardView.setBackgroundResource(R.color.);
         for (ChoiceOptionModel choiceOptionModel : currentChoiceQuestionModel.getChoiceQuestionOptionList()) {
             switch (choiceOptionModel.getChoiceOptionLabel()){
                 case "A":

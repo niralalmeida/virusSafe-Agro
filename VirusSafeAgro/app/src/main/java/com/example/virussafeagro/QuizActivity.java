@@ -133,6 +133,8 @@ public class QuizActivity extends AppCompatActivity {
 
     // start processing the finding question list process
     private void findVirusQuizQuestionsFromDB() {
+        // test
+        System.out.println("yes");
         choiceQuestionModelList = new ArrayList<>();
         choiceQuestionModelFinalList = new ArrayList<>();
         this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());

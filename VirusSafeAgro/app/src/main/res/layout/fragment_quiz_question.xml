@@ -146,6 +146,7 @@
                     android:id="@+id/tv_option_a_quiz_question_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
@@ -194,6 +195,7 @@
                     android:id="@+id/tv_option_b_quiz_question_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
@@ -244,6 +246,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:padding="10dp"
                     android:textColor="@color/colorWhite"
                     android:text="xxxxxxxxxxxx"
                     android:textStyle="bold"
@@ -291,6 +294,7 @@
                     android:id="@+id/tv_option_d_quiz_question_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
@@ -339,6 +343,7 @@
                     android:id="@+id/tv_option_e_quiz_question_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
@@ -388,6 +393,7 @@
                     android:id="@+id/tv_option_f_quiz_question_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorWhite"
@@ -397,6 +403,7 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
     </GridLayout>
 
     <!-- read question progress bar -->
