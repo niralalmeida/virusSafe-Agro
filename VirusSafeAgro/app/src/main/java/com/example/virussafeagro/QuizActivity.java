@@ -3,10 +3,12 @@ package com.example.virussafeagro;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -49,12 +51,10 @@ public class QuizActivity extends AppCompatActivity {
 
     // views
     private MotionLayout containerMotionLayout;
-    private FrameLayout quizFragmentsFrameLayout;
     private ImageButton closeImageButton;
     private TextView quizTitleTextView;
     private TextView virusFullNameTextView;
     private TextView virusFullNamePaperTextView;
-    private CardView virusImageCardView;
     private ImageView virusImageView;
     private Button beginnerButton;
     private Button intermediateButton;
@@ -119,12 +119,10 @@ public class QuizActivity extends AppCompatActivity {
 
     private void initializeViews() {
         this.containerMotionLayout = findViewById(R.id.ml_container_quiz_activity);
-        this.quizFragmentsFrameLayout = findViewById(R.id.fl_quiz_fragments);
         this.closeImageButton = findViewById(R.id.imgbtn_close_quiz_activity);
         this.quizTitleTextView = findViewById(R.id.tv_title_quiz_activity);
         this.virusFullNameTextView = findViewById(R.id.tv_virus_full_name_quiz_quiz_activity);
         this.virusFullNamePaperTextView = findViewById(R.id.tv_virus_full_name_paper_quiz_activity);
-        this.virusImageCardView = findViewById(R.id.cv_pic_virus_quiz_activity);
         this.virusImageView = findViewById(R.id.img_pic_virus_quiz_activity);
         this.beginnerButton = findViewById(R.id.btn_beginner_quiz_activity);
         this.intermediateButton = findViewById(R.id.btn_intermediate_quiz_activity);
@@ -251,19 +249,22 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void startQuizOnClick(View v){
-        // or create directly
-        ChangeImageTransform changeImageTransform = new ChangeImageTransform();
-        getWindow().setSharedElementEnterTransition(changeImageTransform);
-        // add quiz fragment
+        Intent intent = new Intent(QuizActivity.this, QuizStartActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("currentVirusModel", currentVirusModel);
+        intent.putExtras(bundle);
+        // animation
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.containerMotionLayout, ViewCompat.getTransitionName(this.containerMotionLayout));
+        startActivity(intent, options.toBundle());
 
+        // or create directly
+//        ChangeImageTransform changeImageTransform = new ChangeImageTransform();
+//        getWindow().setSharedElementEnterTransition(changeImageTransform);
+        // add quiz fragment
 //        getSupportFragmentManager().beginTransaction()
 //                .replace(R.id.fl_quiz_fragments, new QuizFragment())
 //                .addSharedElement(virusImageCardView, getString(R.string.quiz_activity_transition_name))
 //                .commit();
-//        FragmentOperator.replaceFragmentForQuizActivity(
-//                this,
-//                new QuizFragment(),
-//                AppResources.FRAGMENT_TAG_QUIZ);
     }
 
     // open the envelope cover when click "start quiz" button

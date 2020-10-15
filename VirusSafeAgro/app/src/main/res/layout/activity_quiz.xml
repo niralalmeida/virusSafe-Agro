@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ml_container_quiz_activity"
+    android:transitionName="@string/quiz_start_activity_transition_name"
     android:clipChildren="false"
     android:elevation="1dp"
     android:layout_width="match_parent"
@@ -292,12 +293,5 @@
         app:layout_constraintEnd_toEndOf="@id/cv_envelope_back_quiz_activity"
         app:layout_constraintTop_toTopOf="@id/cv_envelope_back_quiz_activity"
         app:layout_constraintBottom_toBottomOf="@id/cv_envelope_back_quiz_activity"/>
-
-    <!-- fragments for questions -->
-    <FrameLayout
-        android:id="@+id/fl_quiz_fragments"
-        android:elevation="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

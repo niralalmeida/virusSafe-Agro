@@ -18,7 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -29,9 +28,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <!-- LaunchActivity -->
+            android:value="@string/google_maps_key" /> <!-- LaunchActivity -->
         <activity
             android:name=".LaunchActivity"
             android:screenOrientation="fullSensor"
@@ -41,27 +38,27 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- MainActivity -->
+        </activity> <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <!-- PasswordActivity -->
+            android:windowSoftInputMode="adjustPan" /> <!-- PasswordActivity -->
         <activity
             android:name=".PasswordActivity"
             android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- OnBoardingActivity -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- OnBoardingActivity -->
         <activity
             android:name=".OnBoardingActivity"
             android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- QuizActivity -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- QuizActivity -->
         <activity
             android:name=".QuizActivity"
             android:screenOrientation="fullSensor"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".QuizStartActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

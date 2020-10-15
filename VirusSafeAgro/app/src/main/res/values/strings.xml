@@ -170,4 +170,5 @@
 
     <!-- transition name -->
     <string name="quiz_activity_transition_name">quiz</string>
+    <string name="quiz_start_activity_transition_name">quiz_start</string>
 </resources>

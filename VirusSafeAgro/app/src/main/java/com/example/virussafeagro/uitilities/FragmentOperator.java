@@ -103,11 +103,11 @@ public class FragmentOperator {
 
     // replace the fragment view with back stack for quiz activity
     public static void replaceFragmentForQuizActivity(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
-        fragmentActivity.getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fl_quiz_fragments, nextFragment, fragmentTag)
-                .addToBackStack(null)
-                .commit();
+//        fragmentActivity.getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.fl_quiz_fragments, nextFragment, fragmentTag)
+//                .addToBackStack(null)
+//                .commit();
     }
 
 }
