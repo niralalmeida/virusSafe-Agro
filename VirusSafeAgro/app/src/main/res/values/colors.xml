@@ -120,11 +120,18 @@
     <!-- quiz start activity -->
     <color name="bg_quiz_start">#77B175</color>
     <color name="btn_ripple_option">#A4A4A4</color>
-    <color name="btn_bg_a_option">#2B69C8</color>
-    <color name="btn_bg_b_option">#CE3542</color>
-    <color name="btn_bg_c_option">#458528</color>
-    <color name="btn_bg_d_option">#D09F36</color>
-    <color name="btn_bg_e_option">#D35400</color>
-    <color name="btn_bg_f_option">#7D3C98</color>
+    <color name="bg_option_no">#000000</color>
+    <color name="btn_bg_a_option">#2E86C1</color>
+    <color name="btn_bg_b_option">#2E86C1</color>
+    <color name="btn_bg_c_option">#2E86C1</color>
+    <color name="btn_bg_d_option">#2E86C1</color>
+    <color name="btn_bg_e_option">#2E86C1</color>
+    <color name="btn_bg_f_option">#2E86C1</color>
+<!--    <color name="btn_bg_a_option">#2B69C8</color>-->
+<!--    <color name="btn_bg_b_option">#CE3542</color>-->
+<!--    <color name="btn_bg_c_option">#458528</color>-->
+<!--    <color name="btn_bg_d_option">#D09F36</color>-->
+<!--    <color name="btn_bg_e_option">#D35400</color>-->
+<!--    <color name="btn_bg_f_option">#607D3C98</color>-->
 
 </resources>

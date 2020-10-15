@@ -117,7 +117,44 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_option_a_quiz_question_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:id="@+id/tv_option_a_no_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="10dp"
+                    android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="A"/>
+
+                <TextView
+                    android:id="@+id/tv_option_a_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorWhite"
+                    android:text="xxxxxxxxxxxx"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
         <!-- b -->
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_option_b_quiz_question_fragment"
@@ -128,7 +165,43 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_width="0dp"
-            android:layout_height="0dp" />
+            android:layout_height="0dp" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_option_b_quiz_question_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:id="@+id/tv_option_b_no_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="10dp"
+                    android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="A"/>
+
+                <TextView
+                    android:id="@+id/tv_option_b_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorWhite"
+                    android:text="xxxxxxxxxxxx"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
         <!-- c -->
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_option_c_quiz_question_fragment"
@@ -139,7 +212,43 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_option_c_quiz_question_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:id="@+id/tv_option_c_no_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="10dp"
+                    android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="A"/>
+
+                <TextView
+                    android:id="@+id/tv_option_c_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorWhite"
+                    android:text="xxxxxxxxxxxx"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
         <!-- d -->
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_option_d_quiz_question_fragment"
@@ -151,7 +260,43 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_width="0dp"
-            android:layout_height="0dp" />
+            android:layout_height="0dp" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_option_d_quiz_question_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:id="@+id/tv_option_d_no_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="10dp"
+                    android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="D"/>
+
+                <TextView
+                    android:id="@+id/tv_option_d_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorWhite"
+                    android:text="xxxxxxxxxxxx"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
         <!-- e -->
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_option_e_quiz_question_fragment"
@@ -162,7 +307,43 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_option_e_quiz_question_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:id="@+id/tv_option_e_no_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="10dp"
+                    android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="E"/>
+
+                <TextView
+                    android:id="@+id/tv_option_e_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorWhite"
+                    android:text="xxxxxxxxxxxx"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
         <!-- f -->
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_option_f_quiz_question_fragment"
@@ -174,7 +355,43 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_option_f_quiz_question_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:id="@+id/tv_option_f_no_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="10dp"
+                    android:background="@drawable/shape_beginner_option_no_quiz_question_fragment"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="F"/>
+
+                <TextView
+                    android:id="@+id/tv_option_f_quiz_question_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorWhite"
+                    android:text="xxxxxxxxxxxx"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
     </GridLayout>
 
     <!-- read question progress bar -->
