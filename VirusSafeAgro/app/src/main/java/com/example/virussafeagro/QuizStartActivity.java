@@ -3,6 +3,7 @@ package com.example.virussafeagro;
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -38,6 +39,7 @@ public class QuizStartActivity extends AppCompatActivity {
     public static final int NUM_PAGES = QuizActivity.QUESTION_COUNT;
     @DrawableRes
     public static int backgroundResourceId;
+    public static int currentQuestionNo = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +81,29 @@ public class QuizStartActivity extends AppCompatActivity {
         new Handler().postDelayed(() ->{
             // set view pager and adapter
             questionSlideAdapter = new QuestionSlideAdapter(this);
+            questionViewPager2.setOffscreenPageLimit(ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT);
+            ((RecyclerView)questionViewPager2.getChildAt(0)).getLayoutManager().setItemPrefetchEnabled(false);
             questionViewPager2.setAdapter(questionSlideAdapter);
             questionViewPager2.setUserInputEnabled(false); // deny swiping
             questionViewPager2.setPageTransformer(new ZoomOutPageTransformer());
-//            questionViewPager2.setOffscreenPageLimit(1);
+            // set current page on change listener
+            questionViewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                    currentQuestionNo = position + 1;
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+                    super.onPageScrollStateChanged(state);
+                }
+            });
             // hide lottie
             countDownLottieAnimationView.setVisibility(View.GONE);
             // set activity background

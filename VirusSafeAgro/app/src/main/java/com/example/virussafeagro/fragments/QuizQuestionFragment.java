@@ -143,9 +143,6 @@ public class QuizQuestionFragment extends Fragment {
         // initialize views
         this.initializeViews();
 
-        // show question content
-        showQuestionContent();
-
         // set SubmitButton On Click Listener
         this.setSubmitButtonOnClickListener();
 
@@ -287,6 +284,9 @@ public class QuizQuestionFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        // show question content
+        showQuestionContent();
     }
 
     private void showQuestionContent() {
@@ -305,6 +305,11 @@ public class QuizQuestionFragment extends Fragment {
 
     // count down for reading question title
     private void readQuestionCountDown(int timeForCountDown) {
+        // test
+        System.out.println("current ==> [" + quizStartActivity.getQuestionViewPager2().getCurrentItem() + "]");
+        // test
+        System.out.println("   no --> <" + questionNo + ">");
+
         CountDownTimer mCountDownTimer;
         readQuestionProgressBar.setProgress(100);
         mCountDownTimer = new CountDownTimer(timeForCountDown * 1000,10) {
@@ -748,12 +753,13 @@ public class QuizQuestionFragment extends Fragment {
     private void showResultTopSheet(int duration) {
         if (isAnswerRight) {
             questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.rightAnswer);
-            resultTitleTextView.setText("~RIGHT~");
+            resultTitleTextView.setText("RIGHT");
         } else {
             questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.wrongAnswer);
-            resultTitleTextView.setText("WRONG !!!");
+            resultTitleTextView.setText("WRONG");
         }
         questionExplanationTextView.setText(currentChoiceQuestionModel.getChoiceQuestionExplanation());
-        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_result, R.id.end_show_question_result, 300);
+        questionExplanationDragYRelativeLayout.setVisibility(View.VISIBLE);
+        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_result, R.id.end_show_question_result, duration);
     }
 }
