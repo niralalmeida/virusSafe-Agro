@@ -54,6 +54,7 @@ public class QuizQuestionFragment extends Fragment {
     private GridLayout optionsGridLayout;
     private ProgressBar readQuestionProgressBar;
     private ProgressBar doQuestionProgressBar;
+    private TextView doQuestionTextView;
     private TextView questionNoTextView;
     private com.uncopt.android.widget.text.justify.JustifiedTextView questionTextView;
     private com.uncopt.android.widget.text.justify.JustifiedTextView questionForLayoutTextView;
@@ -163,6 +164,7 @@ public class QuizQuestionFragment extends Fragment {
         this.optionsGridLayout = view.findViewById(R.id.gl_options_quiz_question_fragment);
         this.readQuestionProgressBar = view.findViewById(R.id.pb_read_question_quiz_question_fragment);
         this.doQuestionProgressBar = view.findViewById(R.id.pb_do_question_quiz_question_fragment);
+        this.doQuestionTextView = view.findViewById(R.id.tv_do_question_quiz_question_fragment);
         this.questionNoTextView = view.findViewById(R.id.tv_no_quiz_question_fragment);
         this.questionTextView = view.findViewById(R.id.tv_question_quiz_question_fragment);
         this.questionForLayoutTextView = view.findViewById(R.id.tv_question_for_layout_quiz_question_fragment);
@@ -359,11 +361,13 @@ public class QuizQuestionFragment extends Fragment {
         doQuestionProgressBar.setProgressDrawable(drawable);
         doQuestionProgressBar.setProgress(100);
         doQuestionProgressBar.setVisibility(View.VISIBLE);
-        mCountDownTimer = new CountDownTimer(timeForCountDown * 1000,1) {
+        mCountDownTimer = new CountDownTimer(timeForCountDown * 1000,5) {
 
             @Override
             public void onTick(long millisUntilFinished) {
                 doQuestionProgressBar.setProgress((int) millisUntilFinished * 100 / (timeForCountDown * 1000));
+                String counterNoString = millisUntilFinished * 60 / (timeForCountDown * 1000) + "s";
+                doQuestionTextView.setText(counterNoString);
             }
 
             @Override
