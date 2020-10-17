@@ -77,6 +77,7 @@ public class QuizQuestionFragment extends Fragment {
     private TextView optionDNoTextView;
     private TextView optionENoTextView;
     private TextView optionFNoTextView;
+    private List<TextView> optionNoTextViewList;
     private TextView optionATextView;
     private TextView optionBTextView;
     private TextView optionCTextView;
@@ -119,12 +120,13 @@ public class QuizQuestionFragment extends Fragment {
     private DragYRelativeLayout questionExplanationDragYRelativeLayout;
     private TextView resultTitleTextView;
     private TextView questionExplanationTextView;
+    private Map<CardView, String> optionCardViewLabelMap;
 
     // tools
     private int questionNo;
     private boolean isOptionsShown;
     private int questionTypeNo; // 1 = single, 2 = multiple
-    private boolean isSubmitted;
+    private boolean isAnswered;
     private boolean isAnswerRight;
 
     public QuizQuestionFragment(int questionNo) {
@@ -183,6 +185,13 @@ public class QuizQuestionFragment extends Fragment {
         this.optionCardViewList.add(this.optionDCardView);
         this.optionCardViewList.add(this.optionECardView);
         this.optionCardViewList.add(this.optionFCardView);
+        this.optionCardViewLabelMap = new HashMap<>();
+        this.optionCardViewLabelMap.put(optionACardView, "A");
+        this.optionCardViewLabelMap.put(optionBCardView, "B");
+        this.optionCardViewLabelMap.put(optionCCardView, "C");
+        this.optionCardViewLabelMap.put(optionDCardView, "D");
+        this.optionCardViewLabelMap.put(optionECardView, "E");
+        this.optionCardViewLabelMap.put(optionFCardView, "F");
         this.optionAImageView = view.findViewById(R.id.img_option_a_quiz_question_fragment);
         this.optionBImageView = view.findViewById(R.id.img_option_b_quiz_question_fragment);
         this.optionCImageView = view.findViewById(R.id.img_option_c_quiz_question_fragment);
@@ -195,6 +204,13 @@ public class QuizQuestionFragment extends Fragment {
         this.optionDNoTextView = view.findViewById(R.id.tv_option_d_no_quiz_question_fragment);
         this.optionENoTextView = view.findViewById(R.id.tv_option_e_no_quiz_question_fragment);
         this.optionFNoTextView = view.findViewById(R.id.tv_option_f_no_quiz_question_fragment);
+        this.optionNoTextViewList = new ArrayList<>();
+        this.optionNoTextViewList.add(optionANoTextView);
+        this.optionNoTextViewList.add(optionBNoTextView);
+        this.optionNoTextViewList.add(optionCNoTextView);
+        this.optionNoTextViewList.add(optionDNoTextView);
+        this.optionNoTextViewList.add(optionENoTextView);
+        this.optionNoTextViewList.add(optionFNoTextView);
         this.optionATextView = view.findViewById(R.id.tv_option_a_quiz_question_fragment);
         this.optionBTextView = view.findViewById(R.id.tv_option_b_quiz_question_fragment);
         this.optionCTextView = view.findViewById(R.id.tv_option_c_quiz_question_fragment);
@@ -368,15 +384,17 @@ public class QuizQuestionFragment extends Fragment {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                if (!isSubmitted) {
+                if (!isAnswered) {
                     doQuestionProgressBar.setProgress((int) millisUntilFinished * 100 / (timeForCountDown * 1000));
                     currentTime = (int)millisUntilFinished * 60 / (timeForCountDown * 1000);
                     String counterNoString = currentTime + "s";
                     doQuestionTextView.setText(counterNoString);
+                    // change the count text color
                     if (currentTime == 31){
                         doQuestionTextView.setTextColor(getResources().getColor(R.color.colorBlack));
                     }
                 } else {
+                    // stop counter
                     cancel();
                     doQuestionProgressBar.setVisibility(View.INVISIBLE);
                     doQuestionTextView.setVisibility(View.INVISIBLE);
@@ -385,10 +403,16 @@ public class QuizQuestionFragment extends Fragment {
 
             @Override
             public void onFinish() {
-                if (currentTime == 0) {
-                    doQuestionProgressBar.setProgress(0);
-                    doQuestionProgressBar.setVisibility(View.INVISIBLE);
-                    doQuestionTextView.setVisibility(View.INVISIBLE);
+                doQuestionProgressBar.setProgress(0);
+                doQuestionProgressBar.setVisibility(View.INVISIBLE);
+                doQuestionTextView.setVisibility(View.INVISIBLE);
+                // show time out in top sheet
+                showResultTopSheet(300);
+                // show the answers
+                if (questionTypeNo == 1){ // single
+                    showResultStyleForSingleWhenTimeOut();
+                } else if (questionTypeNo == 2) { // multiple
+                    showResultStyleForMultipleWhenTimeOut();
                 }
             }
         };
@@ -677,11 +701,18 @@ public class QuizQuestionFragment extends Fragment {
 
     // single result
     private void showResultStyleForSingle() {
+        // set isSubmitted as true to stop the counter
+        stopDoQuestionCountDown();
         // show the result top sheet
         showResultTopSheet(300);
         // hide all the radio button
         for (AppCompatRadioButton appCompatRadioButton : optionAppCompatRadioButtonList){
             appCompatRadioButton.setVisibility(View.INVISIBLE);
+        }
+        // set all question label bg
+        for (TextView optionNoTextView: optionNoTextViewList){
+            // set not selected right option label
+            optionNoTextView.setBackgroundResource(R.drawable.shape_not_selected_option_no_right_quiz_question_fragment);
         }
         if (isAnswerRight){
             // get the right answer label
@@ -696,7 +727,7 @@ public class QuizQuestionFragment extends Fragment {
             // set option border
             optionLabelCheckedBorderMap.get(rightAnswerString).setBackgroundResource(R.drawable.shape_option_border_right_quiz_question_fragment);
             // set option label
-            optionLabelOptionNoMap.get(rightAnswerString).setBackgroundResource(R.drawable.shape_option_no_right_quiz_question_fragment);
+            optionLabelOptionNoMap.get(rightAnswerString).setBackgroundResource(R.drawable.shape_selected_option_no_right_quiz_question_fragment);
         } else {
             String correctAnswerString = currentChoiceQuestionModel.getCorrectAnswerList().get(0);
             String userAnswerString = currentChoiceQuestionModel.getUserAnswerList().get(0);
@@ -717,9 +748,7 @@ public class QuizQuestionFragment extends Fragment {
             // set wrong option border
             optionLabelCheckedBorderMap.get(userAnswerString).setBackgroundResource(R.drawable.shape_option_border_wrong_quiz_question_fragment);
             // set wrong option label
-            optionLabelOptionNoMap.get(userAnswerString).setBackgroundResource(R.drawable.shape_option_no_wrong_quiz_question_fragment);
-            // set right option label
-            optionLabelOptionNoMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_no_right_quiz_question_fragment);
+            optionLabelOptionNoMap.get(userAnswerString).setBackgroundResource(R.drawable.shape_selected_option_no_wrong_quiz_question_fragment);
         }
 
         // change the button to "next"
@@ -734,12 +763,25 @@ public class QuizQuestionFragment extends Fragment {
 
     // multiple result
     private void showResultStyleForMultiple(){
+        // set isSubmitted as true to stop the counter
+        stopDoQuestionCountDown();
         // show the result top sheet
         showResultTopSheet(300);
 
         // hide all the checkbox
         for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList){
             appCompatCheckBox.setVisibility(View.INVISIBLE);
+        }
+        // set all question label bg
+        for (TextView optionNoTextView: optionNoTextViewList){
+            optionNoTextView.setBackgroundResource(R.drawable.shape_not_selected_option_no_right_quiz_question_fragment);
+        }
+        // disable all unselected tiles
+        for (CardView cardView : optionCardViewList){
+            if (!currentChoiceQuestionModel.getUserAnswerList().contains(optionCardViewLabelMap.get(cardView))) {
+                cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
+                cardView.setClickable(false);
+            }
         }
         if (isAnswerRight){
             for (String correctAnswerString : currentChoiceQuestionModel.getCorrectAnswerList()) {
@@ -753,7 +795,7 @@ public class QuizQuestionFragment extends Fragment {
                 // set option border
                 optionLabelCheckedBorderMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_border_right_quiz_question_fragment);
                 // set option label
-                optionLabelOptionNoMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_no_right_quiz_question_fragment);
+                optionLabelOptionNoMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_selected_option_no_right_quiz_question_fragment);
             }
         } else {
             for (String correctAnswerString : currentChoiceQuestionModel.getCorrectAnswerList()) {
@@ -767,9 +809,9 @@ public class QuizQuestionFragment extends Fragment {
                 // set option border
                 if (currentChoiceQuestionModel.getUserAnswerList().contains(correctAnswerString)) {
                     optionLabelCheckedBorderMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_border_right_quiz_question_fragment);
+                    // set option label
+                    optionLabelOptionNoMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_selected_option_no_right_quiz_question_fragment);
                 }
-                // set option label
-                optionLabelOptionNoMap.get(correctAnswerString).setBackgroundResource(R.drawable.shape_option_no_right_quiz_question_fragment);
             }
             for (String userWrongAnswerString : currentChoiceQuestionModel.getUserAnswerList()){
                 if (!currentChoiceQuestionModel.getCorrectAnswerList().contains(userWrongAnswerString)) {
@@ -783,22 +825,25 @@ public class QuizQuestionFragment extends Fragment {
                     // set wrong option border
                     optionLabelCheckedBorderMap.get(userWrongAnswerString).setBackgroundResource(R.drawable.shape_option_border_wrong_quiz_question_fragment);
                     // set wrong option label
-                    optionLabelOptionNoMap.get(userWrongAnswerString).setBackgroundResource(R.drawable.shape_option_no_wrong_quiz_question_fragment);
+                    optionLabelOptionNoMap.get(userWrongAnswerString).setBackgroundResource(R.drawable.shape_selected_option_no_wrong_quiz_question_fragment);
                 }
             }
         }
     }
 
     private void showResultTopSheet(int duration) {
-        // set isSubmitted as true to stop the counter
-        stopDoQuestionCountDown();
-        // check the result and show it
-        if (isAnswerRight) {
-            questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.rightAnswer);
-            resultTitleTextView.setText("RIGHT");
+        if (isAnswered) {
+            // check the result and show it
+            if (isAnswerRight) {
+                questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.rightAnswer);
+                resultTitleTextView.setText("RIGHT");
+            } else {
+                questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.wrongAnswer);
+                resultTitleTextView.setText("WRONG");
+            }
         } else {
-            questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.wrongAnswer);
-            resultTitleTextView.setText("WRONG");
+            questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.colorBlack);
+            resultTitleTextView.setText("TIME OUT");
         }
         questionExplanationTextView.setText(currentChoiceQuestionModel.getChoiceQuestionExplanation());
         questionExplanationDragYRelativeLayout.setVisibility(View.VISIBLE);
@@ -806,6 +851,83 @@ public class QuizQuestionFragment extends Fragment {
     }
 
     private void stopDoQuestionCountDown() {
-        isSubmitted = true;
+        isAnswered = true;
+    }
+
+    // time out - single result
+    private void showResultStyleForSingleWhenTimeOut() {
+        // show the result top sheet
+        showResultTopSheet(300);
+        // hide all the radio button
+        for (AppCompatRadioButton appCompatRadioButton : optionAppCompatRadioButtonList){
+            appCompatRadioButton.setVisibility(View.INVISIBLE);
+        }
+        // disable all tiles
+        for (CardView cardView : optionCardViewList){
+            cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
+            cardView.setClickable(false);
+        }
+        // show answers
+        // get the correct answer label
+        String correctAnswerString = currentChoiceQuestionModel.getCorrectAnswerList().get(0);
+        for (TextView optionNoTextView : optionNoTextViewList){
+            if (optionNoTextView.getText().toString().equals(correctAnswerString)) {
+                // set option right icon
+                ImageView rightIconImageView = optionLabelRightWrongIconMap.get(correctAnswerString);
+                rightIconImageView.setImageResource(R.drawable.ic_right_circle_white_50dp);
+                ColorStateList rightColorStateList = ContextCompat.getColorStateList(quizStartActivity, R.color.rightAnswer);
+                rightIconImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+                rightIconImageView.setImageTintList(rightColorStateList);
+                rightIconImageView.setVisibility(View.VISIBLE);
+            }
+        }
+
+        // change the button to "next"
+        if (questionNo != 5) {
+            submitButton.setText("next");
+        } else {
+            // change the button to "next"
+            submitButton.setText("Close");
+        }
+        submitButton.setVisibility(View.VISIBLE);
+    }
+
+    // time out - multiple result
+    private void showResultStyleForMultipleWhenTimeOut() {
+        // show the result top sheet
+        showResultTopSheet(300);
+        // hide all the checkbox
+        for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList){
+            appCompatCheckBox.setVisibility(View.INVISIBLE);
+        }
+        // set all question label bg
+        for (TextView optionNoTextView: optionNoTextViewList){
+            optionNoTextView.setBackgroundResource(R.drawable.shape_not_selected_option_no_right_quiz_question_fragment);
+        }
+        // disable all tiles
+        for (CardView cardView : optionCardViewList){
+            cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
+            cardView.setClickable(false);
+        }
+        // show correct answers
+        for (TextView optionNoTextView : optionNoTextViewList){
+            if (currentChoiceQuestionModel.getCorrectAnswerList().contains(optionNoTextView.getText().toString())) {
+                // set option right icon
+                ImageView rightIconImageView = optionLabelRightWrongIconMap.get(optionNoTextView.getText().toString());
+                rightIconImageView.setImageResource(R.drawable.ic_right_circle_white_50dp);
+                ColorStateList rightColorStateList = ContextCompat.getColorStateList(quizStartActivity, R.color.rightAnswer);
+                rightIconImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+                rightIconImageView.setImageTintList(rightColorStateList);
+                rightIconImageView.setVisibility(View.VISIBLE);
+            }
+        }
+        // change the button to "next"
+        if (questionNo != 5) {
+            submitButton.setText("next");
+        } else {
+            // change the button to "next"
+            submitButton.setText("Close");
+        }
+        submitButton.setVisibility(View.VISIBLE);
     }
 }
