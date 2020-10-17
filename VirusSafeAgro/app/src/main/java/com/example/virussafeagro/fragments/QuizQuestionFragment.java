@@ -403,6 +403,11 @@ public class QuizQuestionFragment extends Fragment {
 
             @Override
             public void onFinish() {
+                // set user answer
+                List<String> timeOutUserAnswerList = new ArrayList<>();
+                timeOutUserAnswerList.add("Z");
+                currentChoiceQuestionModel.setUserAnswerList(timeOutUserAnswerList);
+                // set progress bar and text view invisible
                 doQuestionProgressBar.setProgress(0);
                 doQuestionProgressBar.setVisibility(View.INVISIBLE);
                 doQuestionTextView.setVisibility(View.INVISIBLE);
