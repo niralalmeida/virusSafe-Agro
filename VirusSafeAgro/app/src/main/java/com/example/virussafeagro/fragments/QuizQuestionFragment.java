@@ -118,6 +118,7 @@ public class QuizQuestionFragment extends Fragment {
 
     // tools
     private int questionNo;
+    private boolean isOptionsShown;
     private int questionTypeNo; // 1 = single, 2 = multiple
     private boolean isAnswerRight;
 
@@ -292,13 +293,33 @@ public class QuizQuestionFragment extends Fragment {
         this.showQuestion();
         // count down for reading question
         this.readQuestionCountDown(3);
+        // set Container On Click Listener For Showing Options In Advance
+        this.setContainerOnClickListenerForShowingOptionsInAdvance();
         // show the question content
         new Handler().postDelayed(() -> {
-            // show the options
-            showOptions();
-            // move the views
-            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_content, R.id.end_show_question_content, 300);
+            if (!isOptionsShown) {
+                // show the options
+                showOptions();
+                // move the views
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_content, R.id.end_show_question_content, 300);
+                new Handler().postDelayed(() -> {
+                    isOptionsShown = true;
+                }, 300);
+            }
         }, 3000);
+    }
+
+    // set Container On Click Listener For Showing Options In Advance
+    public void setContainerOnClickListenerForShowingOptionsInAdvance(){
+        containerMotionLayout.setOnClickListener(containerView -> {
+            if (!isOptionsShown){
+                // show the options
+                showOptions();
+                // move the views
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_content, R.id.end_show_question_content, 300);
+                isOptionsShown = true;
+            }
+        });
     }
 
     // count down for reading question title
