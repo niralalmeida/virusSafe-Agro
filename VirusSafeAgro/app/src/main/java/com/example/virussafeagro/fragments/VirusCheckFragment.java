@@ -254,19 +254,23 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         }
         // for album result
         if(requestCode == REQUEST_CHOOSE_GALLERY){
-            if(!data.toString().equals("Intent {  }") && resultCode == RESULT_OK){
-                Uri uri = data.getData();
-                Log.e("uri", uri.toString());
-                ContentResolver cr = requireActivity().getContentResolver();
-                try {
-                    Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
-                    this.uploadImageImageView.setImageBitmap(bitmap);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(requireActivity(), "The image file you select is corrupted! Please choose another one!!", Toast.LENGTH_SHORT).show();
-                    Log.e("Exception", e.getMessage(),e);
+            if (data != null) {
+                if (!data.toString().equals("Intent {  }") && resultCode == RESULT_OK) {
+                    Uri uri = data.getData();
+                    Log.e("uri", uri.toString());
+                    ContentResolver cr = requireActivity().getContentResolver();
+                    try {
+                        Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                        this.uploadImageImageView.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        Toast.makeText(requireActivity(), "The image file you select is corrupted! Please choose another one!!", Toast.LENGTH_SHORT).show();
+                        Log.e("Exception", e.getMessage(), e);
+                    }
+                } else {
+                    Log.i("VirusCheck", "operation error");
                 }
-            }else{
-                Log.i("VirusCheck", "operation error");
+            } else {
+                Toast.makeText(mainActivity, "Not Select an Image", Toast.LENGTH_SHORT).show();
             }
         }
 

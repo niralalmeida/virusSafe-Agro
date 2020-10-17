@@ -19,6 +19,7 @@ import android.view.WindowManager;
 
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.ImageStorage;
+import com.google.android.gms.common.internal.ISignInButtonCreator;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,8 +28,6 @@ import java.io.OutputStream;
 import java.util.Objects;
 
 public class LaunchActivity extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,7 @@ public class LaunchActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // store image for testing virus check
-        //this.storeImageForTestingVirusCheck();
+//        this.storeImageForTestingVirusCheck();
 
         // open main activity after 4 seconds
         new Handler().postDelayed(() -> {
@@ -52,17 +51,12 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     private void storeImageForTestingVirusCheck(){
-        Bitmap bitmap = DataConverter.drawableImageToBitmap(this, R.drawable.one);
-//        storeImageMethod1();
-
-//        storeImageMethod2();
-
+        Bitmap bitmap = DataConverter.drawableImageToBitmap(this, R.drawable.map);
         try {
-            ImageStorage.storeImageMethod3(this, bitmap, "tomato_image_1");
-        } catch (Exception e) {
+            ImageStorage.saveImage(this, bitmap, "myApp");
+        } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
 }

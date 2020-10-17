@@ -69,6 +69,12 @@ public class DataConverter {
         return imageViewDrawable.getConstantState().equals(drawableCs);
     }
 
+    public static byte[] bitmapToBytes(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        return baos.toByteArray();
+    }
+
     public static Drawable getDrawableById(FragmentActivity fragmentActivity, int drawableId) {
         return fragmentActivity.getResources().getDrawable(drawableId);
     }
