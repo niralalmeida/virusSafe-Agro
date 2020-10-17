@@ -22,7 +22,7 @@ public class InsightsFragment extends Fragment {
     private RelativeLayout allViewsRelativeLayout;
     private RelativeLayout newsRelativeLayout;
     private RelativeLayout tweetsRelativeLayout;
-    private RelativeLayout videosRelativeLayout;
+//    private RelativeLayout videosRelativeLayout;
 
     public InsightsFragment() {
     }
@@ -63,7 +63,7 @@ public class InsightsFragment extends Fragment {
         this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_insights);
         this.newsRelativeLayout = view.findViewById(R.id.rl_news_insights);
         this.tweetsRelativeLayout = view.findViewById(R.id.rl_tweets_insights);
-        this.videosRelativeLayout = view.findViewById(R.id.rl_videos_insights);
+//        this.videosRelativeLayout = view.findViewById(R.id.rl_videos_insights);
     }
 
     private void allTilesOnClickListener() {
@@ -72,7 +72,7 @@ public class InsightsFragment extends Fragment {
         // tweets
         this.setTweetsTileOnClickListener();
         // videos
-        this.setVideosTileOnClickListener();
+//        this.setVideosTileOnClickListener();
     }
 
     // news
@@ -98,11 +98,11 @@ public class InsightsFragment extends Fragment {
     }
 
     // videos
-    private void setVideosTileOnClickListener() {
-        this.videosRelativeLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
-        });
-    }
+//    private void setVideosTileOnClickListener() {
+//        this.videosRelativeLayout.setOnClickListener(llView -> {
+////            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+//        });
+//    }
 
     @Override
     public void onPause() {

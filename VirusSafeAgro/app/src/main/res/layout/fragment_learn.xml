@@ -19,30 +19,30 @@
             android:layout_height="match_parent">
 
             <!-- sub title : virus knowledge -->
-            <RelativeLayout
-                android:id="@+id/rl_virus_sub_title_learn"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/rl_virus_sub_title_learn"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorSubTitle"
-                    android:textSize="13sp"
-                    android:text="@string/text_sub_title_for_virus_learn"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/colorSubTitle"-->
+<!--                    android:textSize="13sp"-->
+<!--                    android:text="@string/text_sub_title_for_virus_learn"/>-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
 
             <!-- virus -->
             <RelativeLayout
                 android:id="@+id/rl_virus_learn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_virus_sub_title_learn"
+                android:layout_marginTop="15dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="25dp"
                 android:paddingStart="30dp"
@@ -98,31 +98,32 @@
 
             </RelativeLayout>
 
-            <!-- sub title : nutrient knowledge -->
-            <RelativeLayout
-                android:id="@+id/rl_nutrient_sub_title_learn"
-                android:layout_below="@id/rl_virus_learn"
-                android:paddingTop="15dp"
-                android:paddingBottom="5dp"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+<!--            &lt;!&ndash; sub title : nutrient knowledge &ndash;&gt;-->
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/rl_nutrient_sub_title_learn"-->
+<!--                android:layout_below="@id/rl_virus_learn"-->
+<!--                android:paddingTop="15dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorSubTitle"
-                    android:textSize="13sp"
-                    android:text="@string/text_sub_title_for_others_learn"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/colorSubTitle"-->
+<!--                    android:textSize="13sp"-->
+<!--                    android:text="@string/text_sub_title_for_others_learn"/>-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
 
             <!-- nutrient -->
             <RelativeLayout
                 android:id="@+id/rl_nutrient_learn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_nutrient_sub_title_learn"
+                android:layout_below="@+id/rl_virus_learn"
+                android:layout_marginTop="15dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="25dp"
                 android:paddingStart="30dp"
