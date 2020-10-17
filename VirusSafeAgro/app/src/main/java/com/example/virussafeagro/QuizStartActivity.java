@@ -10,7 +10,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.virussafeagro.adapters.QuestionSlideAdapter;
@@ -29,6 +31,7 @@ public class QuizStartActivity extends AppCompatActivity {
     // views
     private MotionLayout containerMotionLayout;
     private LottieAnimationView countDownLottieAnimationView;
+    private LinearLayout quizTopProgressLinearLayout;
     private ViewPager2 questionViewPager2;
 
     // adapter
@@ -36,9 +39,8 @@ public class QuizStartActivity extends AppCompatActivity {
 
     // tools
     public static final int NUM_PAGES = QuizActivity.QUESTION_COUNT;
-    @DrawableRes
-    public static int backgroundResourceId;
     public static int currentQuestionNo = -1;
+    public static int[] quizResultArray; // 0 -> not reach; 1 -> right; 2 -> wrong
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,22 +57,49 @@ public class QuizStartActivity extends AppCompatActivity {
         // initialize views
         this.initializeViews();
 
+        // configure Top Quiz Progress LinearLayout
+        this.configureTopQuizProgressLinearLayout();
         // start count down
         this.showQuestion();
     }
 
     private void initializeData() {
         choiceQuestionModelFinalList = QuizActivity.choiceQuestionModelFinalList;
+        quizResultArray = new int[QuizActivity.QUESTION_COUNT];
     }
 
     private void initializeViews() {
         this.containerMotionLayout = findViewById(R.id.ml_container_quiz_start_activity);
-        if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_SHOW_ENVELOPE)) {
-            backgroundResourceId = R.color.btn_show_envelope_bg;
-        }
-        this.containerMotionLayout.setBackgroundResource(backgroundResourceId);
         this.countDownLottieAnimationView = findViewById(R.id.lav_count_down_quiz_start);
+        this.quizTopProgressLinearLayout = findViewById(R.id.ll_quiz_progress_quiz_start);
         this.questionViewPager2 = findViewById(R.id.vp2_questions_quiz_start);
+    }
+
+    // configure Top Quiz Progress LinearLayout
+    private void configureTopQuizProgressLinearLayout() {
+        for (int i = 0; i < QuizActivity.QUESTION_COUNT; i++) {
+            // add progress view
+            View progressView = new View(this);
+            quizTopProgressLinearLayout.addView(progressView);
+            // set the attribute for the progressView
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) progressView.getLayoutParams();
+            layoutParams.weight = 1;
+            layoutParams.width = 0;
+            layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            progressView.setLayoutParams(layoutParams);
+
+            // add vertical line view
+            if (i != QuizActivity.QUESTION_COUNT - 1) {
+                View verticalLineView = new View(this);
+                quizTopProgressLinearLayout.addView(verticalLineView);
+                // set the attribute for the verticalLineView
+                LinearLayout.LayoutParams layoutParamsForLine = (LinearLayout.LayoutParams) verticalLineView.getLayoutParams();
+                layoutParamsForLine.width = 3;
+                layoutParamsForLine.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                verticalLineView.setLayoutParams(layoutParamsForLine);
+                verticalLineView.setBackgroundResource(R.color.colorWhite);
+            }
+        }
     }
 
     // control count down animation
@@ -110,5 +139,13 @@ public class QuizStartActivity extends AppCompatActivity {
 
     public ViewPager2 getQuestionViewPager2() {
         return questionViewPager2;
+    }
+
+    public static int[] getQuizResultArray() {
+        return quizResultArray;
+    }
+
+    public LinearLayout getQuizTopProgressLinearLayout() {
+        return quizTopProgressLinearLayout;
     }
 }

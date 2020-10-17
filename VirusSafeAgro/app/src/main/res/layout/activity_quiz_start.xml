@@ -8,11 +8,12 @@
     android:elevation="1dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDarkBG"
+    android:background="@color/btn_show_envelope_bg"
     tools:showPaths="true"
     app:layoutDescription="@xml/ms_quiz_start_activity"
     tools:context=".QuizStartActivity">
 
+    <!-- 3 sec counter lottie animation -->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lav_count_down_quiz_start"
         android:layout_width="wrap_content"
@@ -27,12 +28,42 @@
         app:lottie_loop="false"
         app:lottie_autoPlay="true" />
 
+    <!-- quiz process -->
+    <View
+        android:id="@+id/v_top_horizontal_line1_quiz_start"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorWhite"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:id="@+id/ll_quiz_progress_quiz_start"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:orientation="horizontal"
+        android:background="@color/colorBlack"
+        app:layout_constraintTop_toBottomOf="@id/v_top_horizontal_line1_quiz_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <View
+        android:id="@+id/v_top_horizontal_line2_quiz_start"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@id/ll_quiz_progress_quiz_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- view pager for questions -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp2_questions_quiz_start"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/v_top_horizontal_line2_quiz_start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

@@ -162,7 +162,6 @@ public class QuizQuestionFragment extends Fragment {
 
     private void initializeViews() {
         this.containerMotionLayout = view.findViewById(R.id.ml_container_quiz_question_fragment);
-        this.containerMotionLayout.setBackgroundResource(QuizStartActivity.backgroundResourceId);
         this.questionConstraintLayout = view.findViewById(R.id.cl_question_quiz_question_fragment);
         this.optionsGridLayout = view.findViewById(R.id.gl_options_quiz_question_fragment);
         this.readQuestionProgressBar = view.findViewById(R.id.pb_read_question_quiz_question_fragment);
@@ -312,6 +311,8 @@ public class QuizQuestionFragment extends Fragment {
     }
 
     private void showQuestionContent() {
+        // show top progress color
+        this.showTopProgressColor();
         // show question
         this.showQuestion();
         // count down for reading question
@@ -332,6 +333,22 @@ public class QuizQuestionFragment extends Fragment {
                 }, 300);
             }
         }, 3000);
+    }
+
+    private void showTopProgressColor() {
+        int currentPageArrayIndex = 2 * (questionNo - 1); // 0, 2, 4, 6, 8
+        int lastPageArrayIndex = currentPageArrayIndex - 2;
+        // set current page as white
+        quizStartActivity.getQuizTopProgressLinearLayout().getChildAt(currentPageArrayIndex).setBackgroundResource(R.color.colorWhite);
+        if (questionNo != 1) {
+            if (quizStartActivity.getQuizResultArray()[questionNo - 2] == 1) {
+                // set last right page as green
+                quizStartActivity.getQuizTopProgressLinearLayout().getChildAt(lastPageArrayIndex).setBackgroundResource(R.color.rightAnswer);
+            } else if (quizStartActivity.getQuizResultArray()[questionNo - 2] == 2) {
+                // set last wrong page as green
+                quizStartActivity.getQuizTopProgressLinearLayout().getChildAt(lastPageArrayIndex).setBackgroundResource(R.color.wrongAnswer);
+            }
+        }
     }
 
     // set Container On Click Listener For Showing Options In Advance
@@ -561,8 +578,8 @@ public class QuizQuestionFragment extends Fragment {
             for (CardView cardView : optionCardViewList){
                 if (!cardView.equals(currentCardView)) {
                     cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
-                    cardView.setClickable(false);
                 }
+                cardView.setClickable(false);
             }
             // set radio button style
             for (AppCompatRadioButton appCompatRadioButton : optionAppCompatRadioButtonList) {
@@ -598,8 +615,8 @@ public class QuizQuestionFragment extends Fragment {
             for (CardView cardView : optionCardViewList){
                 if (!optionLabelCardViewBoxMap.get(currentOptionNoString).equals(cardView)){
                     cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
-                    cardView.setClickable(false);
                 }
+                cardView.setClickable(false);
             }
             // store user's answer
             userAnswerList = new ArrayList<>();
@@ -781,12 +798,12 @@ public class QuizQuestionFragment extends Fragment {
         for (TextView optionNoTextView: optionNoTextViewList){
             optionNoTextView.setBackgroundResource(R.drawable.shape_not_selected_option_no_right_quiz_question_fragment);
         }
-        // disable all unselected tiles
+        // disable all tiles
         for (CardView cardView : optionCardViewList){
             if (!currentChoiceQuestionModel.getUserAnswerList().contains(optionCardViewLabelMap.get(cardView))) {
                 cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
-                cardView.setClickable(false);
             }
+            cardView.setClickable(false);
         }
         if (isAnswerRight){
             for (String correctAnswerString : currentChoiceQuestionModel.getCorrectAnswerList()) {
@@ -836,7 +853,20 @@ public class QuizQuestionFragment extends Fragment {
         }
     }
 
+    // show top result sheet
     private void showResultTopSheet(int duration) {
+        // save the result into the result array and show the result immediately
+        int currentPageArrayIndex = 2 * (questionNo - 1);
+        if (isAnswered && isAnswerRight){
+            // right
+            QuizStartActivity.quizResultArray[questionNo - 1] = 1;
+            quizStartActivity.getQuizTopProgressLinearLayout().getChildAt(currentPageArrayIndex).setBackgroundResource(R.color.rightAnswer);
+        } else {
+            // wrong
+            QuizStartActivity.quizResultArray[questionNo - 1] = 2;
+            quizStartActivity.getQuizTopProgressLinearLayout().getChildAt(currentPageArrayIndex).setBackgroundResource(R.color.wrongAnswer);
+        }
+
         if (isAnswered) {
             // check the result and show it
             if (isAnswerRight) {
@@ -861,8 +891,6 @@ public class QuizQuestionFragment extends Fragment {
 
     // time out - single result
     private void showResultStyleForSingleWhenTimeOut() {
-        // show the result top sheet
-        showResultTopSheet(300);
         // hide all the radio button
         for (AppCompatRadioButton appCompatRadioButton : optionAppCompatRadioButtonList){
             appCompatRadioButton.setVisibility(View.INVISIBLE);
@@ -899,8 +927,6 @@ public class QuizQuestionFragment extends Fragment {
 
     // time out - multiple result
     private void showResultStyleForMultipleWhenTimeOut() {
-        // show the result top sheet
-        showResultTopSheet(300);
         // hide all the checkbox
         for (AppCompatCheckBox appCompatCheckBox : optionAppCompatCheckBoxList){
             appCompatCheckBox.setVisibility(View.INVISIBLE);
