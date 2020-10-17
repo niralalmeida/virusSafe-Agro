@@ -305,11 +305,6 @@ public class QuizQuestionFragment extends Fragment {
 
     // count down for reading question title
     private void readQuestionCountDown(int timeForCountDown) {
-        // test
-        System.out.println("current ==> [" + quizStartActivity.getQuestionViewPager2().getCurrentItem() + "]");
-        // test
-        System.out.println("   no --> <" + questionNo + ">");
-
         CountDownTimer mCountDownTimer;
         readQuestionProgressBar.setProgress(100);
         mCountDownTimer = new CountDownTimer(timeForCountDown * 1000,10) {

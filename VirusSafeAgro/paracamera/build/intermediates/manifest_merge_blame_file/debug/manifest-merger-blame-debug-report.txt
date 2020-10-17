@@ -7,7 +7,7 @@
 7    <uses-sdk
 8        android:minSdkVersion="16"
 8-->/Users/hoy/Desktop/GitHub-TA24-IEProject/virusSafe-Agro/VirusSafeAgro/paracamera/src/main/AndroidManifest.xml
-9        android:targetSdkVersion="25" />
+9        android:targetSdkVersion="26" />
 9-->/Users/hoy/Desktop/GitHub-TA24-IEProject/virusSafe-Agro/VirusSafeAgro/paracamera/src/main/AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

@@ -133,8 +133,6 @@ public class QuizActivity extends AppCompatActivity {
 
     // start processing the finding question list process
     private void findVirusQuizQuestionsFromDB() {
-        // test
-        System.out.println("yes");
         choiceQuestionModelList = new ArrayList<>();
         choiceQuestionModelFinalList = new ArrayList<>();
         this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
@@ -217,8 +215,9 @@ public class QuizActivity extends AppCompatActivity {
                     MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
                 }, 300);
             } else {
+                containerMotionLayout.clearAnimation();
                 // show the progress bar
-                loadQuestionProgressBar.setIndeterminateDrawable(getDrawable(R.drawable.rotate_progress_bar_beginner_load_question_quiz_activity));
+//                loadQuestionProgressBar.setIndeterminateDrawable(getDrawable(R.drawable.rotate_progress_bar_beginner_load_question_quiz_activity));
                 loadQuestionProgressBar.setVisibility(View.VISIBLE);
             }
         }
@@ -247,6 +246,7 @@ public class QuizActivity extends AppCompatActivity {
                     MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
                 }, 300);
             } else {
+                containerMotionLayout.clearAnimation();
                 // show the progress bar
                 loadQuestionProgressBar.setIndeterminateDrawable(getDrawable(R.drawable.rotate_progress_bar_intermediate_load_question_quiz_activity));
                 loadQuestionProgressBar.setVisibility(View.VISIBLE);
