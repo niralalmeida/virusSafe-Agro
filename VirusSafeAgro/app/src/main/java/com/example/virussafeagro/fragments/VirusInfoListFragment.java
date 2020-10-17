@@ -1,9 +1,12 @@
 package com.example.virussafeagro.fragments;
 
+import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -23,6 +26,7 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.ImageStorage;
 import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.MyJsonParser;
@@ -45,7 +49,6 @@ public class VirusInfoListFragment extends Fragment {
 
     private LinearLayout processBarLinearLayout;
     private LinearLayout networkErrorLinearLayout;
-    private LinearLayout virusSearchLinearLayout;
     private LinearLayout virusGridViewLinearLayout;
     private GridView virusGridView;
     private GridVirusInfoAdapter gridVirusInfoAdapter;
@@ -122,7 +125,6 @@ public class VirusInfoListFragment extends Fragment {
 
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
-        this.virusSearchLinearLayout = view.findViewById(R.id.ll_search_virus_list);
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_info_list);

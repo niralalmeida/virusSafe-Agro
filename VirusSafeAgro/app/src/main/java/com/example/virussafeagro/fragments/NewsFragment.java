@@ -1,7 +1,12 @@
 package com.example.virussafeagro.fragments;
 
+import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -9,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -22,12 +28,18 @@ import com.example.virussafeagro.models.NewsModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.animation.MyAnimationBox;
+import com.example.virussafeagro.uitilities.ImageStorage;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.viewModel.NewsViewModel;
+import com.huantansheng.easyphotos.EasyPhotos;
+import com.huantansheng.easyphotos.utils.bitmap.SaveBitmapCallBack;
 import com.scwang.smart.refresh.footer.BallPulseFooter;
 import com.scwang.smart.refresh.header.BezierRadarHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,10 +120,10 @@ public class NewsFragment extends Fragment {
         return this.view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onResume() {
         super.onResume();
-
 
         // observe NewsListLD
         this.observeNewsListLD();
@@ -137,6 +149,7 @@ public class NewsFragment extends Fragment {
         this.newsViewModel.processFindingNewsList(fromNo);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void observeNewsListLD() {
         this.newsViewModel.getNewsListLD().observe(getViewLifecycleOwner(), resultNewsList -> {
             if ((resultNewsList != null) && (resultNewsList.size() != 0)) {

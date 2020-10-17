@@ -1,31 +1,16 @@
 package com.example.virussafeagro;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.ImageStorage;
-import com.google.android.gms.common.internal.ISignInButtonCreator;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Objects;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -53,7 +38,7 @@ public class LaunchActivity extends AppCompatActivity {
     private void storeImageForTestingVirusCheck(){
         Bitmap bitmap = DataConverter.drawableImageToBitmap(this, R.drawable.map);
         try {
-            ImageStorage.saveImage(this, bitmap, "myApp");
+//            ImageStorage.saveImageOld(this, bitmap, "myApp");
         } catch (Exception e){
             e.printStackTrace();
         }
