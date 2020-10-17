@@ -14,7 +14,6 @@ import android.view.WindowManager;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.virussafeagro.adapters.QuestionSlideAdapter;
-import com.example.virussafeagro.animation.DepthPageTransformer;
 import com.example.virussafeagro.animation.ZoomOutPageTransformer;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
@@ -66,10 +65,8 @@ public class QuizStartActivity extends AppCompatActivity {
 
     private void initializeViews() {
         this.containerMotionLayout = findViewById(R.id.ml_container_quiz_start_activity);
-        if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_BEGINNER)) {
-            backgroundResourceId = R.color.btn_beginner_bg;
-        } else if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_INTERMEDIATE)) {
-            backgroundResourceId = R.color.btn_intermediate_bg;
+        if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_SHOW_ENVELOPE)) {
+            backgroundResourceId = R.color.btn_show_envelope_bg;
         }
         this.containerMotionLayout.setBackgroundResource(backgroundResourceId);
         this.countDownLottieAnimationView = findViewById(R.id.lav_count_down_quiz_start);

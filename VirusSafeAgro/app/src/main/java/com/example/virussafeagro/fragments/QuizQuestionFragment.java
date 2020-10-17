@@ -5,7 +5,6 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -353,13 +351,13 @@ public class QuizQuestionFragment extends Fragment {
             optionFAppCompatCheckBox.setVisibility(View.VISIBLE);
         }
         // set option card background
-        if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_BEGINNER)){
-            optionACardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
-            optionBCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
-            optionCCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
-            optionDCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
-            optionECardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
-            optionFCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_beginner_bg));
+        if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_SHOW_ENVELOPE)){
+            optionACardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
+            optionBCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
+            optionCCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
+            optionDCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
+            optionECardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
+            optionFCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
             optionANoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
             optionBNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
             optionCNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
@@ -382,36 +380,6 @@ public class QuizQuestionFragment extends Fragment {
                 optionDAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_beginner_option_quiz_question_fragment);
                 optionEAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_beginner_option_quiz_question_fragment);
                 optionFAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_beginner_option_quiz_question_fragment);
-            }
-        } else if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_INTERMEDIATE)){
-            optionACardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
-            optionBCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
-            optionCCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
-            optionDCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
-            optionECardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
-            optionFCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_intermediate_bg));
-            optionANoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
-            optionBNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
-            optionCNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
-            optionDNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
-            optionENoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
-            optionFNoTextView.setBackgroundResource(R.drawable.shape_intermediate_option_no_quiz_question_fragment);
-            if (questionTypeNo == 1) {
-                // single
-                optionAAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-                optionBAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-                optionCAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-                optionDAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-                optionEAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-                optionFAppCompatRadioButton.setBackgroundResource(R.drawable.selector_radio_button_intermediate_option_quiz_question_fragment);
-            } else if (questionTypeNo == 2) {
-                // multiple
-                optionAAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
-                optionBAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
-                optionCAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
-                optionDAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
-                optionEAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
-                optionFAppCompatCheckBox.setBackgroundResource(R.drawable.selector_checkbox_intermediate_option_quiz_question_fragment);
             }
         }
 

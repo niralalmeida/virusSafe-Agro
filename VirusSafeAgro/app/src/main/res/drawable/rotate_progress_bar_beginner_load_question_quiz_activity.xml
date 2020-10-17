@@ -19,7 +19,7 @@
             android:type="sweep"
             android:useLevel="false"
             android:startColor="@android:color/transparent"
-            android:endColor="@color/btn_beginner_bg"
+            android:endColor="@color/btn_show_envelope_bg"
             android:angle="0"/>
 
     </shape>

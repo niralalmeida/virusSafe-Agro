@@ -52,8 +52,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView virusFullNameTextView;
     private TextView virusFullNamePaperTextView;
     private ImageView virusImageView;
-    private Button beginnerButton;
-    private Button intermediateButton;
+    private Button showEnvelopeButton;
     private Button startQuizButton;
     private TextView quizInfoTextView;
     private RelativeLayout envelopeCoverClosedRelativeLayout;
@@ -62,8 +61,7 @@ public class QuizActivity extends AppCompatActivity {
     private ProgressBar loadQuestionProgressBar;
 
     // button names
-    public static String BUTTON_NAME_BEGINNER;
-    public static String BUTTON_NAME_INTERMEDIATE;
+    public static String BUTTON_NAME_SHOW_ENVELOPE;
     private String BUTTON_NAME_OPEN_QUIZ;
     private String TEXT_SIMPLE_TIP;
     private String TEXT_TRICKY_TIP;
@@ -101,8 +99,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private void initializeVariablesAndData() {
         currentPageName = "";
-        BUTTON_NAME_BEGINNER = getResources().getString(R.string.btn_beginner);
-        BUTTON_NAME_INTERMEDIATE = getResources().getString(R.string.btn_intermediate);
+        BUTTON_NAME_SHOW_ENVELOPE = getResources().getString(R.string.btn_show_envelope);
         BUTTON_NAME_OPEN_QUIZ = getResources().getString(R.string.btn_open_quiz);
         TEXT_SIMPLE_TIP = getResources().getString(R.string.text_simple_tip);
         TEXT_TRICKY_TIP = getResources().getString(R.string.text_tricky_tip);
@@ -121,8 +118,7 @@ public class QuizActivity extends AppCompatActivity {
         this.virusFullNameTextView = findViewById(R.id.tv_virus_full_name_quiz_quiz_activity);
         this.virusFullNamePaperTextView = findViewById(R.id.tv_virus_full_name_paper_quiz_activity);
         this.virusImageView = findViewById(R.id.img_pic_virus_quiz_activity);
-        this.beginnerButton = findViewById(R.id.btn_beginner_quiz_activity);
-        this.intermediateButton = findViewById(R.id.btn_intermediate_quiz_activity);
+        this.showEnvelopeButton = findViewById(R.id.btn_show_envelope_quiz_activity);
         this.startQuizButton = findViewById(R.id.btn_start_quiz_activity);
         this.quizInfoTextView = findViewById(R.id.tv_info_quiz_activity);
         this.envelopeCoverClosedRelativeLayout = findViewById(R.id.cv_envelope_cover_closed_quiz_activity);
@@ -152,23 +148,14 @@ public class QuizActivity extends AppCompatActivity {
                 // configure the question type list
                 setPaperContent();
                 // run the animation if clicking the "open quiz paper" button
-                if (beginnerButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)){
+                if (showEnvelopeButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)){
                     // open the envelope cover
                     openTheEnvelopeCover();
                     // change the start button color
                     startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_beginner_quiz_activity);
                     // move down the envelope
                     new Handler().postDelayed(()->{
-                        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
-                    }, 300);
-                } else if (intermediateButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)){
-                    // open the envelope cover
-                    openTheEnvelopeCover();
-                    // change the start button color
-                    startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_intermediate_quiz_activity);
-                    // move down the envelope
-                    new Handler().postDelayed(()->{
-                        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
+                        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_open_quiz, R.id.end_open_quiz, 650);
                     }, 300);
                 }
             }
@@ -193,15 +180,15 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void beginnerOnClick(View v){
-        if (!beginnerButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)) {
+        if (!showEnvelopeButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)) {
             // set the current page identification
-            currentPageName = BUTTON_NAME_BEGINNER;
+            currentPageName = BUTTON_NAME_SHOW_ENVELOPE;
             // move beginner Button + hide intermediate Button
-            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_beginner, R.id.end_beginner, 500);
+            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_envelope, R.id.end_show_envelope, 500);
             // set the button text
-            beginnerButton.setText(BUTTON_NAME_OPEN_QUIZ);
+            showEnvelopeButton.setText(BUTTON_NAME_OPEN_QUIZ);
             // change other views' style
-            changeOtherViewsStyle(BUTTON_NAME_BEGINNER);
+            changeOtherViewsStyle(BUTTON_NAME_SHOW_ENVELOPE);
         } else { // open the quiz paper
             if (!choiceQuestionModelFinalList.isEmpty()) {
                 // configure the question type list
@@ -212,43 +199,12 @@ public class QuizActivity extends AppCompatActivity {
                 startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_beginner_quiz_activity);
                 // move down the envelope
                 new Handler().postDelayed(() -> {
-                    MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_open_quiz_beginner, R.id.end_open_quiz_beginner, 650);
+                    MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_open_quiz, R.id.end_open_quiz, 650);
                 }, 300);
             } else {
                 containerMotionLayout.clearAnimation();
                 // show the progress bar
 //                loadQuestionProgressBar.setIndeterminateDrawable(getDrawable(R.drawable.rotate_progress_bar_beginner_load_question_quiz_activity));
-                loadQuestionProgressBar.setVisibility(View.VISIBLE);
-            }
-        }
-    }
-
-    public void intermediateOnClick(View v){
-        if (!intermediateButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)) {
-            // set the current page identification
-            currentPageName = BUTTON_NAME_INTERMEDIATE;
-            // move intermediate Button + hide beginner Button
-            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_intermediate, R.id.end_intermediate, 500);
-            // set the button text
-            intermediateButton.setText(BUTTON_NAME_OPEN_QUIZ);
-            // change other views' style
-            changeOtherViewsStyle(BUTTON_NAME_INTERMEDIATE);
-        } else { // open the quiz paper
-            if (!choiceQuestionModelFinalList.isEmpty()) {
-                // configure the question type list
-                setPaperContent();
-                // open the envelope cover
-                openTheEnvelopeCover();
-                // change the start button color
-                startQuizButton.setBackgroundResource(R.drawable.ripple_btn_start_intermediate_quiz_activity);
-                // move down the envelope
-                new Handler().postDelayed(() -> {
-                    MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_open_quiz_intermediate, R.id.end_open_quiz_intermediate, 650);
-                }, 300);
-            } else {
-                containerMotionLayout.clearAnimation();
-                // show the progress bar
-                loadQuestionProgressBar.setIndeterminateDrawable(getDrawable(R.drawable.rotate_progress_bar_intermediate_load_question_quiz_activity));
                 loadQuestionProgressBar.setVisibility(View.VISIBLE);
             }
         }
@@ -301,14 +257,10 @@ public class QuizActivity extends AppCompatActivity {
         containerMotionLayout.setBackground(transitionDrawable);
         transitionDrawable.startTransition(300);
         // change the quiz title color + quiz info text/color
-        if(buttonName.equals(BUTTON_NAME_BEGINNER)) {
-            quizTitleTextView.setTextColor(getResources().getColor(R.color.btn_beginner_bg));
-            quizInfoTextView.setTextColor(getResources().getColor(R.color.btn_beginner_bg));
+        if(buttonName.equals(BUTTON_NAME_SHOW_ENVELOPE)) {
+            quizTitleTextView.setTextColor(getResources().getColor(R.color.btn_show_envelope_bg));
+            quizInfoTextView.setTextColor(getResources().getColor(R.color.btn_show_envelope_bg));
             quizInfoTextView.setText(TEXT_SIMPLE_TIP);
-        } else if(buttonName.equals(BUTTON_NAME_INTERMEDIATE)){
-            quizTitleTextView.setTextColor(getResources().getColor(R.color.btn_intermediate_bg));
-            quizInfoTextView.setTextColor(getResources().getColor(R.color.btn_intermediate_bg));
-            quizInfoTextView.setText(TEXT_TRICKY_TIP);
         }
         // change the virus full name color
         virusFullNameTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDarkBG));
@@ -335,10 +287,8 @@ public class QuizActivity extends AppCompatActivity {
             questionNoTextView.setText(questionNoString);
             questionNoTextView.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD);
             questionNoTextView.setTextSize(15);
-            if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
-                questionNoTextView.setTextColor(getResources().getColor(R.color.btn_beginner_bg));
-            } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)) {
-                questionNoTextView.setTextColor(getResources().getColor(R.color.btn_intermediate_bg));
+            if (currentPageName.equals(BUTTON_NAME_SHOW_ENVELOPE)) {
+                questionNoTextView.setTextColor(getResources().getColor(R.color.btn_show_envelope_bg));
             }
             // question type items
             TextView questionTypeTextView = new TextView(this);
@@ -372,27 +322,19 @@ public class QuizActivity extends AppCompatActivity {
     public void backOnClick(View v){
         // the start button is not shown
         if (startQuizButton.getVisibility() != View.VISIBLE) {
-            if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
+            if (currentPageName.equals(BUTTON_NAME_SHOW_ENVELOPE)) {
                 // move beginner Button + show intermediate Button
-                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_beginner, R.id.start_beginner, 500);
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_envelope, R.id.start_show_envelope, 500);
                 // set the button text
-                beginnerButton.setText(BUTTON_NAME_BEGINNER);
-            } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)) {
-                // move intermediate Button + show beginner Button
-                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_intermediate, R.id.start_intermediate, 500);
-                // set the button text
-                intermediateButton.setText(BUTTON_NAME_INTERMEDIATE);
+                showEnvelopeButton.setText(BUTTON_NAME_SHOW_ENVELOPE);
             }
             // resume other views' style
             resumeOtherViewsStyle();
         } // the start button is shown
         else {
-            if (currentPageName.equals(BUTTON_NAME_BEGINNER)) {
+            if (currentPageName.equals(BUTTON_NAME_SHOW_ENVELOPE)) {
                 // back to the envelope page
-                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_open_quiz_beginner, R.id.start_open_quiz_beginner, 500);
-            } else if (currentPageName.equals(BUTTON_NAME_INTERMEDIATE)) {
-                // back to the envelope page
-                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_open_quiz_intermediate, R.id.start_open_quiz_intermediate, 500);
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_open_quiz, R.id.start_open_quiz, 500);
             }
             new Handler().postDelayed(this::closeTheEnvelopeCover, 800);
         }

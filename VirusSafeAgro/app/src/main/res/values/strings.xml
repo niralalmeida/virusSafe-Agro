@@ -158,6 +158,7 @@
     <string name="btn_location_permission_button">OK</string>
 
     <!-- quiz activity -->
+    <string name="btn_show_envelope">get quiz questions</string>
     <string name="btn_beginner">beginner</string>
     <string name="btn_intermediate">intermediate</string>
     <string name="btn_start_quiz">start!</string>

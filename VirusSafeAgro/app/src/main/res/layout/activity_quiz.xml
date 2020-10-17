@@ -111,7 +111,7 @@
                 android:layout_marginBottom="30dp"
                 android:textSize="19sp"
                 android:textStyle="bold"
-                android:textColor="@color/btn_beginner_bg"
+                android:textColor="@color/btn_show_envelope_bg"
                 android:gravity="center"
                 android:text="5 Simple Questions"/>
 
@@ -243,9 +243,9 @@
         android:textColor="@color/colorPrimaryTitle"
         android:text="Virus Full Name Virus Full Name"/>
 
-    <!-- beginner button -->
+    <!-- show envelope button -->
     <Button
-        android:id="@+id/btn_beginner_quiz_activity"
+        android:id="@+id/btn_show_envelope_quiz_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="5dp"
@@ -253,32 +253,13 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="@color/colorWhite"
-        android:text="@string/btn_beginner"
+        android:text="@string/btn_show_envelope"
         android:onClick="beginnerOnClick"
-        android:background="@color/btn_beginner_bg"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintTop_toBottomOf="@id/tv_virus_full_name_quiz_quiz_activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_intermediate_quiz_activity"
-        app:layout_constraintStart_toStartOf="parent" />
-    <!-- intermediate button -->
-    <Button
-        android:id="@+id/btn_intermediate_quiz_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="5dp"
-        android:padding="20dp"
-        android:text="@string/btn_intermediate"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/colorWhite"
-        android:onClick="intermediateOnClick"
-        android:background="@color/btn_intermediate_bg"
-        android:layout_marginStart="20dp"
+        android:background="@color/btn_show_envelope_bg"
         app:layout_constraintTop_toBottomOf="@id/tv_virus_full_name_quiz_quiz_activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_beginner_quiz_activity"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- progress bar for loading questions -->
     <ProgressBar
