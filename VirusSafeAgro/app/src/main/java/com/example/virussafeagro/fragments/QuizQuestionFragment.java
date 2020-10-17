@@ -2,6 +2,7 @@ package com.example.virussafeagro.fragments;
 
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -31,6 +32,7 @@ import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.models.ChoiceOptionModel;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.uitilities.DataComparison;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.DragYRelativeLayout;
 
 import java.util.ArrayList;
@@ -51,6 +53,7 @@ public class QuizQuestionFragment extends Fragment {
     private ConstraintLayout questionConstraintLayout;
     private GridLayout optionsGridLayout;
     private ProgressBar readQuestionProgressBar;
+    private ProgressBar doQuestionProgressBar;
     private TextView questionNoTextView;
     private com.uncopt.android.widget.text.justify.JustifiedTextView questionTextView;
     private com.uncopt.android.widget.text.justify.JustifiedTextView questionForLayoutTextView;
@@ -159,6 +162,7 @@ public class QuizQuestionFragment extends Fragment {
         this.questionConstraintLayout = view.findViewById(R.id.cl_question_quiz_question_fragment);
         this.optionsGridLayout = view.findViewById(R.id.gl_options_quiz_question_fragment);
         this.readQuestionProgressBar = view.findViewById(R.id.pb_read_question_quiz_question_fragment);
+        this.doQuestionProgressBar = view.findViewById(R.id.pb_do_question_quiz_question_fragment);
         this.questionNoTextView = view.findViewById(R.id.tv_no_quiz_question_fragment);
         this.questionTextView = view.findViewById(R.id.tv_question_quiz_question_fragment);
         this.questionForLayoutTextView = view.findViewById(R.id.tv_question_for_layout_quiz_question_fragment);
@@ -304,6 +308,8 @@ public class QuizQuestionFragment extends Fragment {
                 MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_content, R.id.end_show_question_content, 300);
                 new Handler().postDelayed(() -> {
                     isOptionsShown = true;
+                    // show the count down progress bar for doing a question
+                    doQuestionCountDown(60);
                 }, 300);
             }
         }, 3000);
@@ -318,6 +324,10 @@ public class QuizQuestionFragment extends Fragment {
                 // move the views
                 MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_content, R.id.end_show_question_content, 300);
                 isOptionsShown = true;
+                new Handler().postDelayed(() -> {
+                    // show the count down progress bar for doing a question
+                    doQuestionCountDown(60);
+                }, 300);
             }
         });
     }
@@ -337,6 +347,29 @@ public class QuizQuestionFragment extends Fragment {
             public void onFinish() {
                 readQuestionProgressBar.setProgress(0);
                 readQuestionProgressBar.setVisibility(View.GONE);
+            }
+        };
+        mCountDownTimer.start();
+    }
+
+    // count down for doing a question
+    private void doQuestionCountDown(int timeForCountDown) {
+        CountDownTimer mCountDownTimer;
+        Drawable drawable = DataConverter.getDrawableById(quizStartActivity, R.drawable.layer_list_dark_progress_bar_horizontal_quiz_question_fragment);
+        doQuestionProgressBar.setProgressDrawable(drawable);
+        doQuestionProgressBar.setProgress(100);
+        doQuestionProgressBar.setVisibility(View.VISIBLE);
+        mCountDownTimer = new CountDownTimer(timeForCountDown * 1000,1) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                doQuestionProgressBar.setProgress((int) millisUntilFinished * 100 / (timeForCountDown * 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                doQuestionProgressBar.setProgress(0);
+                doQuestionProgressBar.setVisibility(View.GONE);
             }
         };
         mCountDownTimer.start();
@@ -572,7 +605,7 @@ public class QuizQuestionFragment extends Fragment {
             }
             if (!hasCheckedBox){
                 submitButton.clearAnimation();
-                MyAnimationBox.runFadeOutAnimation(submitButton, 100);
+                MyAnimationBox.runFadeOutAnimationToInvisible(submitButton, 100);
             }
         }
     }

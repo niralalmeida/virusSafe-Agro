@@ -43,6 +43,12 @@
         <item name="android:height">15dip</item>
     </style>
 
+    <!-- progress bar - do quiz question -->
+    <style name="DoQuizQuestionProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:height">10dip</item>
+        <item name="minHeight">10dip</item>
+    </style>
+
     <!-- rating bar -->
     <style name="MapRatingBar" parent="android:Widget.Material.RatingBar.Small">
         <item name="colorControlNormal">@color/rating_bar_normal</item>
