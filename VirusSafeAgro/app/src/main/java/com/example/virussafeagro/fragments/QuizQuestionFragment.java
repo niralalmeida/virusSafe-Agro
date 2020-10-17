@@ -124,6 +124,7 @@ public class QuizQuestionFragment extends Fragment {
     private int questionNo;
     private boolean isOptionsShown;
     private int questionTypeNo; // 1 = single, 2 = multiple
+    private boolean isSubmitted;
     private boolean isAnswerRight;
 
     public QuizQuestionFragment(int questionNo) {
@@ -361,19 +362,34 @@ public class QuizQuestionFragment extends Fragment {
         doQuestionProgressBar.setProgressDrawable(drawable);
         doQuestionProgressBar.setProgress(100);
         doQuestionProgressBar.setVisibility(View.VISIBLE);
+        doQuestionTextView.setVisibility(View.VISIBLE);
         mCountDownTimer = new CountDownTimer(timeForCountDown * 1000,5) {
+            int currentTime = timeForCountDown * 1000;
 
             @Override
             public void onTick(long millisUntilFinished) {
-                doQuestionProgressBar.setProgress((int) millisUntilFinished * 100 / (timeForCountDown * 1000));
-                String counterNoString = millisUntilFinished * 60 / (timeForCountDown * 1000) + "s";
-                doQuestionTextView.setText(counterNoString);
+                if (!isSubmitted) {
+                    doQuestionProgressBar.setProgress((int) millisUntilFinished * 100 / (timeForCountDown * 1000));
+                    currentTime = (int)millisUntilFinished * 60 / (timeForCountDown * 1000);
+                    String counterNoString = currentTime + "s";
+                    doQuestionTextView.setText(counterNoString);
+                    if (currentTime == 31){
+                        doQuestionTextView.setTextColor(getResources().getColor(R.color.colorBlack));
+                    }
+                } else {
+                    cancel();
+                    doQuestionProgressBar.setVisibility(View.INVISIBLE);
+                    doQuestionTextView.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
             public void onFinish() {
-                doQuestionProgressBar.setProgress(0);
-                doQuestionProgressBar.setVisibility(View.GONE);
+                if (currentTime == 0) {
+                    doQuestionProgressBar.setProgress(0);
+                    doQuestionProgressBar.setVisibility(View.INVISIBLE);
+                    doQuestionTextView.setVisibility(View.INVISIBLE);
+                }
             }
         };
         mCountDownTimer.start();
@@ -596,8 +612,9 @@ public class QuizQuestionFragment extends Fragment {
     private void showOrHideSubmitButton(AppCompatCheckBox currentAppCompatCheckBox) {
         // show the submit button
         if (currentAppCompatCheckBox.isChecked()) {
-            if (submitButton.getVisibility() == View.GONE) {
+            if (submitButton.getVisibility() == View.INVISIBLE) {
                 submitButton.clearAnimation();
+//                submitButton.setVisibility(View.VISIBLE);
                 MyAnimationBox.runFadeInAnimation(submitButton, 100);
             }
         } else {
@@ -609,6 +626,7 @@ public class QuizQuestionFragment extends Fragment {
             }
             if (!hasCheckedBox){
                 submitButton.clearAnimation();
+//                submitButton.setVisibility(View.INVISIBLE);
                 MyAnimationBox.runFadeOutAnimationToInvisible(submitButton, 100);
             }
         }
@@ -772,6 +790,9 @@ public class QuizQuestionFragment extends Fragment {
     }
 
     private void showResultTopSheet(int duration) {
+        // set isSubmitted as true to stop the counter
+        stopDoQuestionCountDown();
+        // check the result and show it
         if (isAnswerRight) {
             questionExplanationDragYRelativeLayout.setBackgroundResource(R.color.rightAnswer);
             resultTitleTextView.setText("RIGHT");
@@ -782,5 +803,9 @@ public class QuizQuestionFragment extends Fragment {
         questionExplanationTextView.setText(currentChoiceQuestionModel.getChoiceQuestionExplanation());
         questionExplanationDragYRelativeLayout.setVisibility(View.VISIBLE);
         MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_question_result, R.id.end_show_question_result, duration);
+    }
+
+    private void stopDoQuestionCountDown() {
+        isSubmitted = true;
     }
 }
