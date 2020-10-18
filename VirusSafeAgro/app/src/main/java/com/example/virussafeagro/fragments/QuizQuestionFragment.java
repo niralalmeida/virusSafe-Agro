@@ -376,7 +376,11 @@ public class QuizQuestionFragment extends Fragment {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                readQuestionProgressBar.setProgress((int) millisUntilFinished * 100 / (timeForCountDown * 1000));
+                if (!QuizStartActivity.isQuizQuestionActivityClosed) {
+                    readQuestionProgressBar.setProgress((int) millisUntilFinished * 100 / (timeForCountDown * 1000));
+                } else {
+                    cancel();
+                }
             }
 
             @Override
@@ -401,7 +405,7 @@ public class QuizQuestionFragment extends Fragment {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                if (!isAnswered) {
+                if ((!isAnswered) && (!QuizStartActivity.isQuizQuestionActivityClosed)) {
                     doQuestionProgressBar.setProgress((int) millisUntilFinished * 100 / (timeForCountDown * 1000));
                     currentTime = (int)millisUntilFinished * 60 / (timeForCountDown * 1000);
                     String counterNoString = currentTime + "s";
@@ -503,6 +507,7 @@ public class QuizQuestionFragment extends Fragment {
             }
         }
 
+        // show options
         for (ChoiceOptionModel choiceOptionModel : currentChoiceQuestionModel.getChoiceQuestionOptionList()) {
             switch (choiceOptionModel.getChoiceOptionLabel()){
                 case "A":

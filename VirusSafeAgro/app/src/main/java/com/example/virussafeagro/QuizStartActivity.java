@@ -41,6 +41,7 @@ public class QuizStartActivity extends AppCompatActivity {
     public static final int NUM_PAGES = QuizActivity.QUESTION_COUNT;
     public static int currentQuestionNo = -1;
     public static int[] quizResultArray; // 0 -> not reach; 1 -> right; 2 -> wrong
+    public static boolean isQuizQuestionActivityClosed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,12 @@ public class QuizStartActivity extends AppCompatActivity {
         this.configureTopQuizProgressLinearLayout();
         // start count down
         this.showQuestion();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isQuizQuestionActivityClosed = false;
     }
 
     private void initializeData() {
@@ -147,5 +154,12 @@ public class QuizStartActivity extends AppCompatActivity {
 
     public LinearLayout getQuizTopProgressLinearLayout() {
         return quizTopProgressLinearLayout;
+    }
+
+    public void closeOnClick(View v) {
+        // animation
+        isQuizQuestionActivityClosed = true;
+        this.finish();
+        this.overridePendingTransition(0, R.anim.activity_slide_out_top);
     }
 }

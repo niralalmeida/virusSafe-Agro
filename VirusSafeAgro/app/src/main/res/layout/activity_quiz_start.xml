@@ -40,7 +40,7 @@
     <LinearLayout
         android:id="@+id/ll_quiz_progress_quiz_start"
         android:layout_width="0dp"
-        android:layout_height="10dp"
+        android:layout_height="5dp"
         android:orientation="horizontal"
         android:background="@color/colorBlack"
         app:layout_constraintTop_toBottomOf="@id/v_top_horizontal_line1_quiz_start"
@@ -54,6 +54,23 @@
         app:layout_constraintTop_toBottomOf="@id/ll_quiz_progress_quiz_start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- close button -->
+    <ImageButton
+        android:id="@+id/imgbtn_close_quiz_start_activity"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:elevation="10dp"
+        android:onClick="closeOnClick"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
+        android:background="@drawable/shape_btn_close_quiz_start"
+        android:tint="@color/colorPrimaryTitle"
+        android:src="@drawable/ic_wrong_circle_black_50dp"/>
 
     <!-- view pager for questions -->
     <androidx.viewpager2.widget.ViewPager2
