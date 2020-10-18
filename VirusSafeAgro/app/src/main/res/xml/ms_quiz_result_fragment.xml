@@ -7,6 +7,12 @@
         app:duration="300"
         app:constraintSetEnd="@id/end_show_quiz_result_title"
         app:constraintSetStart="@id/start_show_quiz_result_title">
+
+<!--        <OnSwipe-->
+<!--            motion:dragDirection="dragUp"-->
+<!--            motion:touchAnchorId="@+id/lav_star_quiz_result"-->
+<!--            motion:touchAnchorSide="bottom" />-->
+
     </Transition>
 
     <!-- show quiz result title start -->
@@ -37,6 +43,15 @@
             android:id="@+id/tv_subtitle_quiz_result"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result overview nsv -->
+        <Constraint
+            android:id="@+id/nsv_overview_container_quiz_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -72,6 +87,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/lav_star_quiz_result"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result overview nsv -->
+        <Constraint
+            android:id="@+id/nsv_overview_container_quiz_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
@@ -114,6 +138,15 @@
                 android:alpha="1"
                 android:visibility="visible" />
         </Constraint>
+        <!-- result overview nsv -->
+        <Constraint
+            android:id="@+id/nsv_overview_container_quiz_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
     </ConstraintSet>
 
     <!-- show quiz result overview end -->
@@ -149,5 +182,16 @@
                 android:alpha="0"
                 android:visibility="invisible" />
         </Constraint>
+        <!-- result overview nsv -->
+        <Constraint
+            android:id="@+id/nsv_overview_container_quiz_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/lav_star_quiz_result"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
     </ConstraintSet>
+
+
 </MotionScene>

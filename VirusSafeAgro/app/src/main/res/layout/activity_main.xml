@@ -8,6 +8,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.3"
+        android:src="@drawable/bg" />
+
     <include
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
@@ -118,7 +124,7 @@
         android:tint="@color/colorBlack"
         android:src="@drawable/ic_detect_leaf"
         app:borderWidth="5dp"
-        android:backgroundTint="@color/colorWhite"
+        android:backgroundTint="#69B588"
         app:backgroundTint="@color/bar_bg_bottom_bar"
         app:rippleColor="@color/ripple_fab"
         app:elevation="20dp"

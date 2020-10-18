@@ -32,6 +32,8 @@ public class QuizResultFragment extends Fragment {
         this.quizStartActivity = (QuizStartActivity)requireActivity();
         // initialize Views
         this.initializeViews();
+        // hide the top progress bar
+        this.quizStartActivity.getQuizTopProgressLinearLayout().setVisibility(View.GONE);
 
         return view;
     }
@@ -43,7 +45,7 @@ public class QuizResultFragment extends Fragment {
         // show titles
         this.showResultTitles(1000);
         // show overview
-        this.showResultOverview(3000);
+        this.showResultOverview(2800);
     }
 
     private void initializeViews(){
@@ -58,6 +60,7 @@ public class QuizResultFragment extends Fragment {
 
     private void showResultOverview(int duration) {
         new Handler().postDelayed(() -> {
+
             MyAnimationBox.configureTheAnimation(this.containerMotionLayout, R.id.start_show_quiz_result_overview, R.id.end_show_quiz_result_overview, 300);
         }, duration);
     }

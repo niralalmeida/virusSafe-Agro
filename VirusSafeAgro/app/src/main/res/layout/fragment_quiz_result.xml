@@ -58,4 +58,42 @@
         android:textSize="25sp"
         android:textColor="@color/colorWhite" />
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_overview_container_quiz_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/shape_overview_bg_quiz_result">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="22dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:text="Your quiz result:
+                \na\na\na\na\na\na\na\na\na\na\na\na\na\na\na
+                \na\na\na\na\na\na\na\na\na\na\na\na\na\na\na
+                \na\na\na\na\na\na\na\na\na\na\na\na\na\na\na
+                \na\na\na\na\na\na\na\na\na\na\na\na\na\na\na
+                \na\na\na\na\na\na\na\na\na\na\na\na"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.motion.widget.MotionLayout>
