@@ -6,6 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.virussafeagro.QuizStartActivity;
 import com.example.virussafeagro.fragments.QuizQuestionFragment;
+import com.example.virussafeagro.fragments.QuizResultFragment;
 
 public class QuestionSlideAdapter extends FragmentStateAdapter {
     public QuestionSlideAdapter(FragmentActivity fa) {
@@ -14,11 +15,15 @@ public class QuestionSlideAdapter extends FragmentStateAdapter {
 
     @Override
     public Fragment createFragment(int position) {
-        return new QuizQuestionFragment(position + 1);
+        if (position != QuizStartActivity.NUM_PAGES) { // other fragments
+            return new QuizQuestionFragment(position + 1);
+        } else {
+            return new QuizResultFragment(); // quiz result fragment
+        }
     }
 
     @Override
     public int getItemCount() {
-        return QuizStartActivity.NUM_PAGES;
+        return QuizStartActivity.NUM_PAGES + 1;
     }
 }

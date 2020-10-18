@@ -64,6 +64,10 @@ public class QuizStartActivity extends AppCompatActivity {
         this.showQuestion();
     }
 
+    public VirusModel getCurrentVirusModel() {
+        return currentVirusModel;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();

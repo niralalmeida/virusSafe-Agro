@@ -702,15 +702,11 @@ public class QuizQuestionFragment extends Fragment {
                 if (questionNo != 5) {
                     submitButton.setText("next");
                 } else {
-                    // change the button to "next"
-                    submitButton.setText("Close");
+                    // change the button to "finish"
+                    submitButton.setText("Finish");
                 }
-            } else if (submitButton.getText().toString().equals("next")) {
+            } else if (submitButton.getText().toString().equals("next") || submitButton.getText().toString().equals("Finish")) {
                 quizStartActivity.getQuestionViewPager2().setCurrentItem(questionNo);
-            } else if (submitButton.getText().toString().equals("Close")) {
-                // animation
-                quizStartActivity.finish();
-                quizStartActivity.overridePendingTransition(0, R.anim.activity_slide_out_top);
             }
         });
     }
@@ -783,7 +779,7 @@ public class QuizQuestionFragment extends Fragment {
             submitButton.setText("next");
         } else {
             // change the button to "next"
-            submitButton.setText("Close");
+            submitButton.setText("Finish");
         }
         submitButton.setVisibility(View.VISIBLE);
     }
@@ -925,7 +921,7 @@ public class QuizQuestionFragment extends Fragment {
             submitButton.setText("next");
         } else {
             // change the button to "next"
-            submitButton.setText("Close");
+            submitButton.setText("Finish");
         }
         submitButton.setVisibility(View.VISIBLE);
     }
@@ -962,7 +958,7 @@ public class QuizQuestionFragment extends Fragment {
             submitButton.setText("next");
         } else {
             // change the button to "next"
-            submitButton.setText("Close");
+            submitButton.setText("Finish");
         }
         submitButton.setVisibility(View.VISIBLE);
     }
