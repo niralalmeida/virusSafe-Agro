@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:duration="300"
+        app:constraintSetEnd="@id/end_show_quiz_result_title"
+        app:constraintSetStart="@id/start_show_quiz_result_title">
+    </Transition>
+
+    <!-- show quiz result title start -->
+    <ConstraintSet android:id="@+id/start_show_quiz_result_title">
+        <!-- result title -->
+        <Constraint
+            android:id="@+id/tv_title_quiz_result"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result animation -->
+        <Constraint
+            android:id="@+id/lav_star_quiz_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result subtitle -->
+        <Constraint
+            android:id="@+id/tv_subtitle_quiz_result"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+    </ConstraintSet>
+
+    <!-- show quiz result title end -->
+    <ConstraintSet android:id="@+id/end_show_quiz_result_title">
+        <!-- result title -->
+        <Constraint
+            android:id="@+id/tv_title_quiz_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/lav_star_quiz_result"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result animation -->
+        <Constraint
+            android:id="@+id/lav_star_quiz_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result subtitle -->
+        <Constraint
+            android:id="@+id/tv_subtitle_quiz_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/lav_star_quiz_result"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+    </ConstraintSet>
+
+
+
+    <!-- show quiz result overview start -->
+    <ConstraintSet android:id="@+id/start_show_quiz_result_overview">
+        <!-- result title -->
+        <Constraint
+            android:id="@+id/tv_title_quiz_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/lav_star_quiz_result"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result animation -->
+        <Constraint
+            android:id="@+id/lav_star_quiz_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result subtitle -->
+        <Constraint
+            android:id="@+id/tv_subtitle_quiz_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/lav_star_quiz_result"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:alpha="1"
+                android:visibility="visible" />
+        </Constraint>
+    </ConstraintSet>
+
+    <!-- show quiz result overview end -->
+    <ConstraintSet android:id="@+id/end_show_quiz_result_overview">
+        <!-- result title -->
+        <Constraint
+            android:id="@+id/tv_title_quiz_result"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result animation -->
+        <Constraint
+            android:id="@+id/lav_star_quiz_result"
+            android:layout_width="230dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="-30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- result subtitle -->
+        <Constraint
+            android:id="@+id/tv_subtitle_quiz_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/lav_star_quiz_result"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:alpha="0"
+                android:visibility="invisible" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>
