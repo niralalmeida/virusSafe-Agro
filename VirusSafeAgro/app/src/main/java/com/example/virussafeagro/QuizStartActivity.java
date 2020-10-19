@@ -118,7 +118,7 @@ public class QuizStartActivity extends AppCompatActivity {
     }
 
     // control count down animation
-    private void showQuestion() {
+    public void showQuestion() {
         new Handler().postDelayed(() ->{
             // set view pager and adapter
             questionSlideAdapter = new QuestionSlideAdapter(this);
@@ -148,7 +148,7 @@ public class QuizStartActivity extends AppCompatActivity {
             // hide lottie
             countDownLottieAnimationView.setVisibility(View.GONE);
             // set activity background
-            this.containerMotionLayout.setBackgroundResource(R.color.colorPrimaryDarkBG);
+//            this.containerMotionLayout.setBackgroundResource(R.color.colorPrimaryDarkBG);
         },3000);
     }
 

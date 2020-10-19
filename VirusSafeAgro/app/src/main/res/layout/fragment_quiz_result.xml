@@ -65,7 +65,7 @@
         app:layout_constraintBottom_toTopOf="@id/nsv_overview_container_quiz_result"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:elevation="8dp"
+        app:elevation="8dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:background="@drawable/ripple_save_screenshot_quiz_result"
@@ -74,6 +74,7 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <!-- restul content -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_overview_container_quiz_result"
         android:layout_width="0dp"
@@ -90,6 +91,7 @@
             android:id="@+id/rl_overview_container_quiz_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:paddingTop="30dp"
@@ -330,6 +332,63 @@
                     android:textSize="18sp"/>
             </LinearLayout>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_virus_quiz_result"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="15dp"
+                app:cardBackgroundColor="@color/colorBlack"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp"
+                android:layout_below="@id/ll_taking_time_content_quiz_result" >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/img_virus_quiz_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/one"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_swipe_up_bg_virus_detail"/>
+                    <TextView
+                        android:id="@+id/tv_virus_full_name_quiz_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:text="TOMATO YELLOW LEAF CURL VIRUS"
+                        android:textStyle="bold"
+                        android:textSize="17sp"
+                        android:textColor="@color/colorWhite"/>
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- redo button -->
+            <Button
+                android:id="@+id/btn_redo_quiz_result"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/cv_virus_quiz_result"
+                android:elevation="8dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/ripple_redo_quiz_result"
+                android:text="redo this quiz"
+                android:textColor="@color/colorWhite"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
