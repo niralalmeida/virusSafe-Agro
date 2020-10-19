@@ -1,17 +1,25 @@
 package com.example.virussafeagro.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.animation.MyAnimationBox;
+import com.example.virussafeagro.uitilities.AppResources;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 
 public class FactorsFragment extends Fragment {
     private MainActivity mainActivity;
@@ -72,7 +80,17 @@ public class FactorsFragment extends Fragment {
     // cause
     private void setCauseTileOnClickListener() {
         this.causeRelativeLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+            TimingOfCauseFragment timingOfCauseFragment = new TimingOfCauseFragment();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                timingOfCauseFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(causeRelativeLayout, ViewCompat.getTransitionName(causeRelativeLayout))
+                    .replace(R.id.fl_fragments, timingOfCauseFragment)
+                    .addToBackStack(null)
+                    .commit();
+//            FragmentOperator.replaceFragment(requireActivity(), new TimingOfCauseFragment(), AppResources.FRAGMENT_TAG_TIMING);
         });
     }
 

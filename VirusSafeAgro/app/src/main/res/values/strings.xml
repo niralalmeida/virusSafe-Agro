@@ -2,7 +2,7 @@
     <!--  titles  -->
     <string name="app_name">virusSafe Agro</string>
     <string name="fragment_template">Template Page</string>
-    <string name="fragment_about">About virusSafe Agro</string>
+    <string name="fragment_about">App Info</string>
     <string name="fragment_calculator">Calculator</string>
     <string name="fragment_contact_us">Contact Us</string>
     <string name="fragment_control_strategies">Control Strategies</string>
@@ -14,16 +14,17 @@
     <string name="fragment_more">More</string>
     <string name="fragment_news">News</string>
     <string name="fragment_news_detail">News Content</string>
-    <string name="fragment_nutrient">Nutrient</string>
+    <string name="fragment_nutrient">Nutrient type</string>
     <string name="fragment_nutrient_detail">Nutrient Details</string>
     <string name="fragment_tweet">Tweets</string>
     <string name="fragment_updates">Future Updates</string>
     <string name="fragment_virus_check">Virus Check</string>
     <string name="fragment_virus_check_result">Virus Check Result</string>
     <string name="fragment_virus_detail">Virus Detail</string>
-    <string name="fragment_virus_info">Virus List</string>
+    <string name="fragment_virus_info">Virus Type</string>
     <string name="fragment_virus_quiz">Take Quiz</string>
     <string name="fragment_pesticide_store_map">Pesticide Map</string>
+    <string name="fragment_timing_of_cause">Timing</string>
 
     <!-- for on boarding  -->
     <string name="button_launch_app_boarding">Enter</string>
@@ -175,4 +176,10 @@
     <!-- transition name -->
     <string name="quiz_activity_transition_name">quiz</string>
     <string name="quiz_start_activity_transition_name">quiz_start</string>
+    <string name="timing_transition_name">timing</string>
+
+    <!-- timing -->
+    <string name="text_eb_timing">Early blight (EB) usually occurs during early to mid tomato growing season</string>
+    <string name="text_tssm_timing">Mites are favoured by hot dry weather</string>
+    <string name="text_note_timing">All other viruses can occur any time during the growing season</string>
 </resources>

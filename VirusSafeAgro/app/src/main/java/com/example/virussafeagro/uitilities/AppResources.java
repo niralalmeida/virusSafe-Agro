@@ -35,6 +35,7 @@ public class AppResources {
     public final static String FRAGMENT_TAG_INSIGHTS = "insights";
     public final static String FRAGMENT_TAG_LEARN = "learn";
     public final static String FRAGMENT_TAG_QUIZ = "quiz";
+    public final static String FRAGMENT_TAG_TIMING = "timing_of_cause";
 
 
     public static int getVirusPictureDrawableId(int virusId) {
