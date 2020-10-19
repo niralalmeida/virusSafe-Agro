@@ -385,6 +385,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:background="@drawable/ripple_redo_quiz_result"
+                android:transitionName="@string/quiz_start_activity_transition_name"
                 android:text="redo this quiz"
                 android:textColor="@color/colorWhite"
                 android:textSize="17sp"

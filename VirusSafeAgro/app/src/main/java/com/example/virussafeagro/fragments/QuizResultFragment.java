@@ -1,17 +1,23 @@
 package com.example.virussafeagro.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.virussafeagro.QuizActivity;
 import com.example.virussafeagro.QuizStartActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.animation.MyAnimationBox;
@@ -27,6 +33,8 @@ public class QuizResultFragment extends Fragment {
     private TextView timeOutCountTextView;
     private TextView quizTakingTimeMinTextView;
     private TextView quizTakingTimeSecTextView;
+    private CardView virusCardView;
+    private Button redoButton;
 
     @Nullable
     @Override
@@ -55,6 +63,9 @@ public class QuizResultFragment extends Fragment {
         this.showResultCount();
         // show quiz taking time
         this.showTakingTime();
+
+        // set redo button on click listener
+        this.setRedoButtonOnClickListener();
     }
 
     private void initializeViews(){
@@ -64,6 +75,8 @@ public class QuizResultFragment extends Fragment {
         this.timeOutCountTextView = view.findViewById(R.id.tv_time_out_count_quiz_result);
         this.quizTakingTimeMinTextView = view.findViewById(R.id.tv_min_time_quiz_result);
         this.quizTakingTimeSecTextView = view.findViewById(R.id.tv_sec_time_quiz_result);
+        this.virusCardView = view.findViewById(R.id.cv_virus_quiz_result);
+        this.redoButton = view.findViewById(R.id.btn_redo_quiz_result);
     }
 
     // show titles
@@ -97,5 +110,23 @@ public class QuizResultFragment extends Fragment {
         this.quizTakingTimeMinTextView.setText(minString);
         String secString = "" + (quizStartActivity.quizTakingTime - min * 60);
         this.quizTakingTimeSecTextView.setText(secString);
+    }
+
+    // set redo button on click listener
+    private void setRedoButtonOnClickListener(){
+        redoButton.setOnClickListener(redoButtonView -> {
+            // animation
+            QuizStartActivity.isQuizQuestionActivityClosed = true;
+
+            Intent intent = new Intent(this.quizStartActivity, QuizStartActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("currentVirusModel", this.quizStartActivity.getCurrentVirusModel());
+            intent.putExtras(bundle);
+
+            // animation
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this.quizStartActivity, this.redoButton, ViewCompat.getTransitionName(this.redoButton));
+            this.quizStartActivity.startActivity(intent, options.toBundle());
+            this.quizStartActivity.finish();
+        });
     }
 }
