@@ -123,12 +123,12 @@ public class ImageStorage {
 
                     @Override
                     public void onIOFailed(IOException exception) {
-                        Toast.makeText(activity, "Saved Failed", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(displayView, "Saved Failed", Snackbar.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onCreateDirFailed() {
-                        Toast.makeText(activity, "Folder Created Failed", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(displayView, "Folder Created Failed", Snackbar.LENGTH_SHORT).show();
                     }
                 });
     }

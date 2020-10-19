@@ -69,6 +69,13 @@ public class QuizResultFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // hide top progress
+        MyAnimationBox.configureTheAnimation(
+                this.quizStartActivity.getContainerMotionLayout(),
+                R.id.start_hide_progress,
+                R.id.end_hide_progress,
+                300);
+
         // show titles
         this.showResultTitles(1000);
         // show overview
@@ -172,6 +179,8 @@ public class QuizResultFragment extends Fragment {
             // hide the 2 bottom buttons
             this.redoButton.setVisibility(View.GONE);
             this.saveScreenshotButton.setVisibility(View.GONE);
+            // hide the close button
+            MyAnimationBox.configureTheAnimation(this.quizStartActivity.getContainerMotionLayout(), R.id.start_hide_close_button, R.id.end_hide_close_button, 100);
             // get nested scroll view bitmap
             this.quizResultScreenshotBitmap = ImageStorage.longScreenshotGetBitmapByView(this.quizResultNestedScrollView);
             // show the image
@@ -193,6 +202,8 @@ public class QuizResultFragment extends Fragment {
             // show the 2 bottom buttons
             this.redoButton.setVisibility(View.VISIBLE);
             this.saveScreenshotButton.setVisibility(View.VISIBLE);
+            // show the close button
+            MyAnimationBox.configureTheAnimation(this.quizStartActivity.getContainerMotionLayout(), R.id.end_hide_close_button, R.id.start_hide_close_button, 100);
             // hide the image
             MyAnimationBox.configureTheAnimation(this.containerMotionLayout, R.id.end_show_quiz_result_image, R.id.start_show_quiz_result_image, 300);
         });

@@ -44,36 +44,161 @@
 
 
 
-<!--    &lt;!&ndash; count down shrink start &ndash;&gt;-->
-<!--    <ConstraintSet android:id="@+id/start_count_down_shrink">-->
-<!--        &lt;!&ndash; count down &ndash;&gt;-->
-<!--        <Constraint-->
-<!--            android:id="@+id/rl_count_down_quiz_start"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent">-->
-<!--            <PropertySet-->
-<!--                android:alpha="0"/>-->
-<!--        </Constraint>-->
-<!--    </ConstraintSet>-->
 
-<!--    &lt;!&ndash; count down shrink end &ndash;&gt;-->
-<!--    <ConstraintSet android:id="@+id/end_count_down_shrink">-->
-<!--        &lt;!&ndash; count down &ndash;&gt;-->
-<!--        <Constraint-->
-<!--            android:id="@+id/rl_count_down_quiz_start"-->
-<!--            android:layout_width="130dp"-->
-<!--            android:layout_height="130dp"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent">-->
-<!--            <PropertySet-->
-<!--                android:alpha="1"/>-->
-<!--        </Constraint>-->
-<!--    </ConstraintSet>-->
+    <!-- hide progress start -->
+    <ConstraintSet android:id="@+id/start_hide_progress">
+        <!-- horizontal line 1 -->
+        <Constraint
+            android:id="@+id/v_top_horizontal_line1_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- progress ll -->
+        <Constraint
+            android:id="@+id/ll_quiz_progress_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/v_top_horizontal_line1_quiz_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- horizontal line 2 -->
+        <Constraint
+            android:id="@+id/v_top_horizontal_line2_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/ll_quiz_progress_quiz_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+    </ConstraintSet>
+
+    <!-- hide progress end -->
+    <ConstraintSet android:id="@+id/end_hide_progress">
+        <!-- horizontal line 1 -->
+        <Constraint
+            android:id="@+id/v_top_horizontal_line1_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- progress ll -->
+        <Constraint
+            android:id="@+id/ll_quiz_progress_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/v_top_horizontal_line1_quiz_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- horizontal line 2 -->
+        <Constraint
+            android:id="@+id/v_top_horizontal_line2_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/ll_quiz_progress_quiz_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+    </ConstraintSet>
+
+
+
+
+    <!-- hide close button start -->
+    <ConstraintSet android:id="@+id/start_hide_close_button">
+        <!-- horizontal line 1 -->
+        <Constraint
+            android:id="@+id/v_top_horizontal_line1_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- progress ll -->
+        <Constraint
+            android:id="@+id/ll_quiz_progress_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/v_top_horizontal_line1_quiz_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- horizontal line 2 -->
+        <Constraint
+            android:id="@+id/v_top_horizontal_line2_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/ll_quiz_progress_quiz_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- close button -->
+        <Constraint
+            android:id="@+id/imgbtn_close_quiz_start_activity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <PropertySet
+                android:visibility="visible" />
+        </Constraint>
+    </ConstraintSet>
+
+    <!-- chide close button end -->
+    <ConstraintSet android:id="@+id/end_hide_close_button">
+        <!-- horizontal line 1 -->
+        <Constraint
+            android:id="@+id/v_top_horizontal_line1_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- progress ll -->
+        <Constraint
+            android:id="@+id/ll_quiz_progress_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/v_top_horizontal_line1_quiz_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- horizontal line 2 -->
+        <Constraint
+            android:id="@+id/v_top_horizontal_line2_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/ll_quiz_progress_quiz_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- close button -->
+        <Constraint
+            android:id="@+id/imgbtn_close_quiz_start_activity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <PropertySet
+                android:visibility="invisible" />
+        </Constraint>
+    </ConstraintSet>
+
 
 </MotionScene>

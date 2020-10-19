@@ -164,6 +164,10 @@ public class QuizStartActivity extends AppCompatActivity {
         return quizTopProgressLinearLayout;
     }
 
+    public MotionLayout getContainerMotionLayout() {
+        return containerMotionLayout;
+    }
+
     public void closeOnClick(View v) {
         // animation
         isQuizQuestionActivityClosed = true;
