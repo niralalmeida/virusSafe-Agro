@@ -10,7 +10,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class NetworkConnectionToMLModel {
-    private static final String API_URL = "http://ec2-3-236-71-249.compute-1.amazonaws.com:5000/";
+    private static final String VIRUS_API_URL = "http://ec2-34-202-148-91.compute-1.amazonaws.com:5000/";
+    private static final String TOMATO_API_URL = "http://ec2-34-202-148-91.compute-1.amazonaws.com:5000/object/";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private OkHttpClient okHttpClient;
@@ -27,7 +28,7 @@ public class NetworkConnectionToMLModel {
 
         RequestBody bodyForImage = RequestBody.create(uploadImageJson, JSON);
         Request requestForImage = new Request.Builder()
-                .url(API_URL)
+                .url(VIRUS_API_URL)
                 .post(bodyForImage)
                 .build();
         try {

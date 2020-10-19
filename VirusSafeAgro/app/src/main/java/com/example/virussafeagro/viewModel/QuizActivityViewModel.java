@@ -13,18 +13,19 @@ import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToAWSTomatoS3;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
 import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuizActivityViewModel extends ViewModel {
-    private FindVirusQuizQuestionsAsyncTask currentFindVirusQuizQuestionsAsyncTask;
-    private FindVirusQuizQuestionsImageURLAsyncTask currentFindVirusQuizQuestionsImageURLAsyncTask;
+    // connections
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
     private NetworkConnectionToAWSTomatoS3 networkConnectionToAWSTomatoS3;
-
+    // AsyncTasks
+    private FindVirusQuizQuestionsAsyncTask currentFindVirusQuizQuestionsAsyncTask;
+    private FindVirusQuizQuestionsImageURLAsyncTask currentFindVirusQuizQuestionsImageURLAsyncTask;
+    // live data
     private MutableLiveData<List<ChoiceQuestionModel>> quizQuestionModelListLD;
     private MutableLiveData<List<ChoiceQuestionModel>> quizQuestionModelListWithImageURLLD;
 
@@ -34,7 +35,8 @@ public class QuizActivityViewModel extends ViewModel {
             this.quizQuestionModelListLD = new MutableLiveData<>();
             this.quizQuestionModelListWithImageURLLD = new MutableLiveData<>();
             this.currentFindVirusQuizQuestionsAsyncTask = new FindVirusQuizQuestionsAsyncTask();
-        }
+            this.currentFindVirusQuizQuestionsImageURLAsyncTask = new FindVirusQuizQuestionsImageURLAsyncTask();
+    }
 
     public void setQuizQuestionModelListLD(List<ChoiceQuestionModel> quizQuestionModelList){
         this.quizQuestionModelListLD.setValue(quizQuestionModelList);
@@ -50,6 +52,7 @@ public class QuizActivityViewModel extends ViewModel {
         return this.quizQuestionModelListWithImageURLLD;
     }
 
+    // question list
     public void processFindingVirusQuizQuestions(int virusId) {
         try {
             currentFindVirusQuizQuestionsAsyncTask = new FindVirusQuizQuestionsAsyncTask();
@@ -93,7 +96,7 @@ public class QuizActivityViewModel extends ViewModel {
         return currentFindVirusQuizQuestionsAsyncTask;
     }
 
-
+    // question image URL
     public void processFindingVirusQuizQuestionsImageURL(int virusId) {
         try {
             currentFindVirusQuizQuestionsImageURLAsyncTask = new FindVirusQuizQuestionsImageURLAsyncTask();

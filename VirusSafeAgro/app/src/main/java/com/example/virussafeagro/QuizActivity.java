@@ -73,7 +73,7 @@ public class QuizActivity extends AppCompatActivity {
     public final static int QUESTION_COUNT = 5;
 
     private boolean isStartButtonClicked;
-    public boolean isImageURLGet;
+    public static boolean isImageURLGet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +140,7 @@ public class QuizActivity extends AppCompatActivity {
     private void findVirusQuizQuestionsFromDB() {
         choiceQuestionModelList = new ArrayList<>();
         choiceQuestionModelFinalList = new ArrayList<>();
+        isImageURLGet = false;
         quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
     }
 
@@ -151,7 +152,7 @@ public class QuizActivity extends AppCompatActivity {
             // get final list
             choiceQuestionModelFinalList = getRandomFinalChoiceQuestionModelList();
             // start processing the finding question list With Image URL process
-            findVirusQuizQuestionsWithImageURLFromDB();
+            findVirusQuizQuestionsWithImageURLFromS3();
             // when the "open quiz paper" button shows
             if (loadQuestionProgressBar.getVisibility() == View.VISIBLE){
                 // hide the progress bar if it is shown
@@ -174,7 +175,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     // start processing the finding question list With Image URL process
-    private void findVirusQuizQuestionsWithImageURLFromDB(){
+    private void findVirusQuizQuestionsWithImageURLFromS3(){
         quizActivityViewModel.processFindingVirusQuizQuestionsImageURL(currentVirusModel.getVirusId());
     }
 

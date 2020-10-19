@@ -36,11 +36,25 @@ public class NetworkConnectionToAWSTomatoS3 {
         return resultText;
     }
 
-    public Bitmap getImageFromURL(String rawImageURL){
+    public Bitmap getImageFromURLold(String rawImageURL){
         int index = rawImageURL.indexOf("/QUESTION");
         StringBuilder stringBuilder = new StringBuilder(rawImageURL);
         stringBuilder.insert(index, "+");
         final String IMAGE_URL = stringBuilder.toString();
+        Request request = new Request.Builder().url(IMAGE_URL).build();
+        Bitmap bitmap = null;
+        try{
+            Response response = this.okHttpClient.newCall(request).execute();
+            InputStream resultStream = Objects.requireNonNull(response.body()).byteStream();
+            bitmap = BitmapFactory.decodeStream(resultStream);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    public Bitmap getImageFromURL(String rawImageURL){
+        final String IMAGE_URL = rawImageURL.replace(" ", "%20");
         Request request = new Request.Builder().url(IMAGE_URL).build();
         Bitmap bitmap = null;
         try{

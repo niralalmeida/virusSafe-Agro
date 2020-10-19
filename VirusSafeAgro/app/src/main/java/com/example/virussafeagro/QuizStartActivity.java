@@ -3,6 +3,8 @@ package com.example.virussafeagro;
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
@@ -17,16 +19,22 @@ import android.widget.LinearLayout;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.virussafeagro.adapters.QuestionSlideAdapter;
 import com.example.virussafeagro.animation.ZoomOutPageTransformer;
+import com.example.virussafeagro.fragments.QuizQuestionFragment;
 import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.uitilities.DataConverter;
+import com.example.virussafeagro.viewModel.QuizActivityViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Objects;
 
 public class QuizStartActivity extends AppCompatActivity {
+    private QuizStartActivity quizStartActivity = this;
     // data
     private VirusModel currentVirusModel;
     public static List<ChoiceQuestionModel> choiceQuestionModelFinalList; // 5 questions
+    private QuizActivityViewModel quizActivityViewModel;
 
     // views
     private MotionLayout containerMotionLayout;
@@ -59,6 +67,8 @@ public class QuizStartActivity extends AppCompatActivity {
 
         // initialize data
         this.initializeData();
+        // initialize VirusQuizQuestion ViewModel
+        this.initializeVirusQuizQuestionViewModel();
         // initialize views
         this.initializeViews();
 
@@ -66,6 +76,9 @@ public class QuizStartActivity extends AppCompatActivity {
         this.configureTopQuizProgressLinearLayout();
         // start count down
         this.showQuestion();
+
+        // set observer for observing VirusQuizQuestionWithImageURLArrayLD
+        this.observeVirusQuizQuestionWithImageURLArrayLD();
     }
 
     public VirusModel getCurrentVirusModel() {
@@ -81,6 +94,10 @@ public class QuizStartActivity extends AppCompatActivity {
     private void initializeData() {
         choiceQuestionModelFinalList = QuizActivity.choiceQuestionModelFinalList;
         quizResultArray = new int[QuizActivity.QUESTION_COUNT];
+    }
+
+    private void initializeVirusQuizQuestionViewModel() {
+        this.quizActivityViewModel = new ViewModelProvider(this).get(QuizActivityViewModel.class);
     }
 
     private void initializeViews() {
@@ -173,5 +190,25 @@ public class QuizStartActivity extends AppCompatActivity {
         isQuizQuestionActivityClosed = true;
         this.finish();
         this.overridePendingTransition(0, R.anim.activity_slide_out_top);
+    }
+
+    // set observer for observing VirusQuizQuestionWithImageURLArrayLD
+    private void observeVirusQuizQuestionWithImageURLArrayLD() {
+        this.quizActivityViewModel.getQuizQuestionModelListWithImageURLLD().observe(this, resultQuizQuestionWithImageURLModelList -> {
+            QuizActivity.isImageURLGet = true;
+
+            if (questionViewPager2.getAdapter() != null){
+                int currentFragmentPosition = questionViewPager2.getCurrentItem();
+                if (getSupportFragmentManager().findFragmentByTag("f" + currentFragmentPosition) instanceof QuizQuestionFragment) {
+                    QuizQuestionFragment currentFragment = (QuizQuestionFragment)getSupportFragmentManager().findFragmentByTag("f" + currentFragmentPosition);
+                    Picasso.get()
+                            .load(currentFragment.getCurrentChoiceQuestionModel().getImageURLList().get(0))
+                            .placeholder(R.drawable.default_tomato)
+                            .resize(DataConverter.dip2px(quizStartActivity, 600), DataConverter.dip2px(quizStartActivity, 300))
+                            .centerCrop()
+                            .into(currentFragment.getQuestionImageView());
+                }
+            }
+        });
     }
 }

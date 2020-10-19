@@ -34,6 +34,7 @@ import com.example.virussafeagro.models.ChoiceQuestionModel;
 import com.example.virussafeagro.uitilities.DataComparison;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.DragYRelativeLayout;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +59,8 @@ public class QuizQuestionFragment extends Fragment {
     private TextView questionNoTextView;
     private com.uncopt.android.widget.text.justify.JustifiedTextView questionTextView;
     private com.uncopt.android.widget.text.justify.JustifiedTextView questionForLayoutTextView;
+    private CardView questionImageCardView;
+    private ImageView questionImageView;
     private CardView optionACardView;
     private CardView optionBCardView;
     private CardView optionCCardView;
@@ -170,6 +173,8 @@ public class QuizQuestionFragment extends Fragment {
         this.questionNoTextView = view.findViewById(R.id.tv_no_quiz_question_fragment);
         this.questionTextView = view.findViewById(R.id.tv_question_quiz_question_fragment);
         this.questionForLayoutTextView = view.findViewById(R.id.tv_question_for_layout_quiz_question_fragment);
+        this.questionImageCardView = view.findViewById(R.id.cv_virus_quiz_question_fragment);
+        this.questionImageView = view.findViewById(R.id.img_virus_quiz_question_fragment);
         this.optionACardView = view.findViewById(R.id.cv_option_a_quiz_question_fragment);
         this.optionBCardView = view.findViewById(R.id.cv_option_b_quiz_question_fragment);
         this.optionCCardView = view.findViewById(R.id.cv_option_c_quiz_question_fragment);
@@ -453,6 +458,15 @@ public class QuizQuestionFragment extends Fragment {
 
     // show question
     private void showQuestion() {
+        // show question image
+        if ((currentChoiceQuestionModel.getImageURLList() != null) && (!currentChoiceQuestionModel.getImageURLList().isEmpty())){
+            Picasso.get()
+                    .load(currentChoiceQuestionModel.getImageURLList().get(0))
+                    .placeholder(R.drawable.default_tomato)
+                    .resize(DataConverter.dip2px(quizStartActivity,600), DataConverter.dip2px(quizStartActivity,300))
+                    .centerCrop()
+                    .into(questionImageView);
+        }
         // show question no
         String questionNoString = "Question " + this.questionNo;
         this.questionNoTextView.setText(questionNoString);
@@ -982,5 +996,13 @@ public class QuizQuestionFragment extends Fragment {
             submitButton.setText("Finish");
         }
         submitButton.setVisibility(View.VISIBLE);
+    }
+
+    public ChoiceQuestionModel getCurrentChoiceQuestionModel() {
+        return currentChoiceQuestionModel;
+    }
+
+    public ImageView getQuestionImageView() {
+        return questionImageView;
     }
 }

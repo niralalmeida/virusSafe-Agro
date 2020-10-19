@@ -147,7 +147,11 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
                     }
                 }
             }
-            userAnswerStringBuilder.deleteCharAt(userAnswerStringBuilder.length() - 1);
+            if (userAnswerStringBuilder.length() != 0) {
+                userAnswerStringBuilder.deleteCharAt(userAnswerStringBuilder.length() - 1);
+            } else {
+                userAnswerStringBuilder.append("You did not answer");
+            }
             viewHolder.userAnswersTextView.setText(userAnswerStringBuilder.toString());
         }
 
