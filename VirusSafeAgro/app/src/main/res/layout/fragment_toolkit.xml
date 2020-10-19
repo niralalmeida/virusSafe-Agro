@@ -137,7 +137,7 @@
                                 android:layout_height="40dp"
                                 android:layout_gravity="center"
                                 android:tint="@color/colorBlack"
-                                android:src="@drawable/ic_photo_analysis"/>
+                                android:src="@drawable/ic_detect_leaf"/>
 
                         </LinearLayout>
 
