@@ -188,6 +188,8 @@
     <string name="virus_transition_name">virus</string>
     <string name="nutrient_transition_name">nutrient</string>
     <string name="tomato_tip_transition_name">tomato_tip</string>
+    <string name="chemical_control_transition_name">chemical_control</string>
+    <string name="non_chemical_control_transition_name">non_chemical_control</string>
 
     <!-- timing -->
     <string name="text_eb_timing">Early blight (EB) usually occurs during early to mid tomato growing season</string>
@@ -211,4 +213,34 @@
     <string name="text_6_tomato_tip">• Should be watered regularly\n• The plant may lose fruit in dry period\n• Base of the plant should be deeply watered\n• Avoid planting the foliage</string>
     <string name="text_7_tomato_tip">• Plants should be feed regularly with organic fertilisers</string>
     <string name="text_8_tomato_tip">• Mulching helps to keep the water in\n• It keeps the weeds out</string>
+
+    <!-- chemical control -->
+    <string name="text_1_title_control">ToMV</string>
+    <string name="text_2_title_control">TS</string>
+    <string name="text_3_title_control">BST</string>
+    <string name="text_4_title_control">TYLCV</string>
+    <string name="text_5_title_control">LB</string>
+    <string name="text_6_title_control">FF</string>
+    <string name="text_7_title_control">EB</string>
+    <string name="text_8_title_control">TSSM</string>
+    <string name="text_9_title_control">SLS</string>
+    <string name="text_1_chemical_control">No chemical controls available</string>
+    <string name="text_2_chemical_control">• Chemical products used: Mancozeb, copper oxychloride, chlorothalonil\n• Plants should be treated when the first spots are seen\n• Sprayed at 10–14 days interval for three-four weeks\n• Should be sprayed on both sides of the leaves</string>
+    <string name="text_3_chemical_control">• Chemical products used: Copper fungicides or Copper plus mancozeb\n• Sprayed at 7–10 days interval in the field\n• Spray early when plants are young</string>
+    <string name="text_4_chemical_control">• Silverleaf whiteflies can be bought under control using potent chemicals</string>
+    <string name="text_5_chemical_control">• Preventive sprays: Copper product, chlorothalonil, mancozeb\n• Systemic products such as strobilurin, dimethomorth, cymoxanil, and metalaxyl should be used</string>
+    <string name="text_6_chemical_control">• Chemical products which can be used: Mancozeb, copper oxychloride, chlorothalonil\n• Plants should be treated when yellow spots are visible\n• The leaves should be sprayed at a 10–14-day intervals\n• Use fungicides to give adequate control</string>
+    <string name="text_7_chemical_control">• Fungicides include: Mancozeb, Maneb, Chlorothalonil, Copper (Kocide), Penthiopyrad, Boscalid, Pyraclostrobin\n• Sungicides should be applied at the fruit and reapplied every 7–14 days</string>
+    <string name="text_8_chemical_control">• Miticide spray should be applied if mites are present on 50% of the leaves\n• Insecticides should be applied only as needed\n• Spraying chemicals to plants should be avoided in hot weathers as they may cause chemical injuries</string>
+    <string name="text_9_chemical_control">• Spray copper oxychloride\n• Use fungicidal sprays\n• Chemicals: Maneb, Chlorothalonil\n• Chemicals must be applied at 7–10-day intervals</string>
+    <!-- non chemical control -->
+    <string name="text_1_non_chemical_control">• Remove plants with symptoms Promptly to prevent the spread of the virus to nearby healthy plants\n• On handling infected plants, it’s necessary to wash tools and hands in hot soapy water\n• Tools should be sterilised using a disinfectant (Virkon S)\n• Avoid growing new plants in close proximity if you suspect your plants are infected</string>
+    <string name="text_2_non_chemical_control">• Remove debris of old plants at the end of growing season\n• Avoid planting in the areas where diseased plants where located in the past years\n• Plants should be grown in sunlight with proper air circulation\n• Avoid crowding of plants</string>
+    <string name="text_3_non_chemical_control">• Grow plants from infection free-seeds\n• Purchase high quality seeds\n• Use hot water treatment to kill bacteria in seeds\n• Remove crop debris at the end of the growing season\n• Disinfect pruners and tools by dipping in commercial sanitizer</string>
+    <string name="text_4_non_chemical_control">• Manage flies\n• Remove old crop debris and destroy them</string>
+    <string name="text_5_non_chemical_control">• Rotate crops, avoid planting tomato plants on same land\n• Destroy infected plants\n• Maintain spacing between plants to ensure air movement\n• Remove branches from lower parts of plants</string>
+    <string name="text_6_non_chemical_control">• Burn or dig remains of diseased plants\n• Diseased leaves should be removed\n• Ventilation between leaves can be improved by using pruning practice</string>
+    <string name="text_7_non_chemical_control">• Destroy diseased plants\n• Use pathogen free-seed\n• Blight remains active for a year, so it is recommended to rotate crops\n• Avoid overcrowding of plants so that air can pass through the leaves\n• Water the soil instead of plants</string>
+    <string name="text_8_non_chemical_control">• Avoid weedy fields\n• Avoid over-fertilising </string>
+    <string name="text_9_non_chemical_control">• Remove plants with symptoms promptly and destroy infected areas\n• Use crop rotation\n• Use disease-free seeds\n• Overhead watering should be avoided\n• Enough room should be provided for air circulation</string>
 </resources>

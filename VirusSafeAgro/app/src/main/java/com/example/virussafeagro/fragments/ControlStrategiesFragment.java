@@ -1,6 +1,8 @@
 package com.example.virussafeagro.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
@@ -72,14 +75,32 @@ public class ControlStrategiesFragment extends Fragment {
     // chemical
     private void setChemicalTileOnClickListener() {
         this.chemicalRelativeLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+            VirusInfoListFragment virusInfoListFragment = new VirusInfoListFragment();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                virusInfoListFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(chemicalRelativeLayout, ViewCompat.getTransitionName(chemicalRelativeLayout))
+                    .replace(R.id.fl_fragments, virusInfoListFragment)
+                    .addToBackStack(null)
+                    .commit();
         });
     }
 
     // non-chemical
     private void setNonChemicalTileOnClickListener() {
         this.nonChemicalRelativeLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+            VirusInfoListFragment virusInfoListFragment = new VirusInfoListFragment();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                virusInfoListFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(nonChemicalRelativeLayout, ViewCompat.getTransitionName(nonChemicalRelativeLayout))
+                    .replace(R.id.fl_fragments, virusInfoListFragment)
+                    .addToBackStack(null)
+                    .commit();
         });
     }
 
