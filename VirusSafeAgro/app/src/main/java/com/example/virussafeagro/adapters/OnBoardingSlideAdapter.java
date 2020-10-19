@@ -40,10 +40,10 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
     };
     // String description Arrays
     public static String[] slide_descriptions = {
-        "Upload the image of your tomato plant to check if it is infected or not.",
-        "Read about virus and nutrient deficiencies in tomato plants.",
-        "Streaming of latest news updates in the field of agriculture.",
-        "Environmental conditions and causes of viral diseases in tomato plants.\nChemical and non-chemical strategies to control the spread of virus"
+        "Let’s detect viruses in tomato plants by uploading a snap of a tomato leaf.",
+        "One-stop to know about viruses, nutrient deficiencies, and tips to grow tomato plants.",
+        "Know about the causes, prevention, control strategies, pesticide stores, and much more.",
+        "Check your knowledge, read about the news updates, and tweets in the farming industry."
     };
 
     public OnBoardingSlideAdapter(Context context) {

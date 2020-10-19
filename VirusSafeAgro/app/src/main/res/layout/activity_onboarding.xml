@@ -19,6 +19,16 @@
             android:scaleType="centerCrop"
             android:src="@drawable/on_boarding_bg4" />
 
+        <ImageView
+            android:id="@+id/img_logo_hide_slide_boarding"
+            android:visibility="visible"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/onboarding_logo"/>
+
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/slide_view_pager_boarding"
