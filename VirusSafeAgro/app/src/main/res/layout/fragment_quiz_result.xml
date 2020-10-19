@@ -57,257 +57,285 @@
         android:textSize="25sp"
         android:textColor="@color/colorWhite" />
 
-    <RelativeLayout
-        android:id="@+id/rl_overview_container_quiz_result"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+    <Button
+        android:id="@+id/btn_save_screenshot_quiz_result"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toTopOf="@id/nsv_overview_container_quiz_result"
+        app:layout_constraintBottom_toTopOf="@id/nsv_overview_container_quiz_result"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="8dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:paddingTop="22dp"
-        android:paddingBottom="22dp"
+        android:background="@drawable/ripple_save_screenshot_quiz_result"
+        android:text="save screenshot"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_overview_container_quiz_result"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:elevation="8dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/shape_overview_bg_quiz_result">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- your quiz result title -->
-        <TextView
-            android:id="@+id/tv_grade_title_quiz_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:text="Your quiz result:"
-            android:textColor="@color/colorBlack"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-        <!-- your quiz result content -->
-        <LinearLayout
-            android:id="@+id/ll_grades_quiz_result"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/tv_grade_title_quiz_result"
-            android:layout_marginTop="10dp"
+        <RelativeLayout
+            android:id="@+id/rl_overview_container_quiz_result"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="22dp"
+            android:background="@drawable/shape_overview_bg_quiz_result">
 
-            <!-- correct -->
-            <RelativeLayout
-                android:layout_width="0dp"
+            <!-- your quiz result title -->
+            <TextView
+                android:id="@+id/tv_grade_title_quiz_result"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:id="@+id/ll_right_count_quiz_result"
-                    android:layout_width="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:text="Your quiz result:"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <!-- your quiz result content -->
+            <LinearLayout
+                android:id="@+id/ll_grades_quiz_result"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tv_grade_title_quiz_result"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- correct -->
+                <RelativeLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:tint="@color/rightAnswer"
-                        android:src="@drawable/ic_right_circle_black_50dp"/>
-                    <TextView
-                        android:id="@+id/tv_right_count_quiz_result"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_right_count_quiz_result"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="3"
-                        android:textColor="@color/rightAnswer"
-                        android:textStyle="bold"
-                        android:textSize="23sp"/>
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:tint="@color/rightAnswer"
+                            android:src="@drawable/ic_right_circle_black_50dp"/>
+                        <TextView
+                            android:id="@+id/tv_right_count_quiz_result"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="3"
+                            android:textColor="@color/rightAnswer"
+                            android:textStyle="bold"
+                            android:textSize="23sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="  / 5"
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold"
+                            android:textSize="23sp"/>
+                    </LinearLayout>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="  / 5"
-                        android:textColor="@color/colorBlack"
+                        android:layout_below="@id/ll_right_count_quiz_result"
+                        android:layout_centerHorizontal="true"
+                        android:text="Correct"
                         android:textStyle="bold"
-                        android:textSize="23sp"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
+                        android:textColor="#60000000"/>
+                </RelativeLayout>
+                <!-- line -->
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#30000000" />
+
+                <!-- wrong -->
+                <RelativeLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ll_right_count_quiz_result"
-                    android:layout_centerHorizontal="true"
-                    android:text="Correct"
-                    android:textStyle="bold"
-                    android:textColor="#60000000"/>
-            </RelativeLayout>
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_wrong_count_quiz_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:tint="@color/wrongAnswer"
+                            android:src="@drawable/ic_wrong_circle_black_50dp"/>
+                        <TextView
+                            android:id="@+id/tv_wrong_count_quiz_result"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="1"
+                            android:textColor="@color/wrongAnswer"
+                            android:textStyle="bold"
+                            android:textSize="23sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="  / 5"
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold"
+                            android:textSize="23sp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ll_wrong_count_quiz_result"
+                        android:layout_centerHorizontal="true"
+                        android:text="Wrong"
+                        android:textStyle="bold"
+                        android:textColor="#60000000"/>
+                </RelativeLayout>
+                <!-- line -->
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#30000000" />
+
+                <!-- time out -->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_time_out_count_quiz_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:tint="@color/colorBlack"
+                            android:src="@drawable/ic_time_out"/>
+                        <TextView
+                            android:id="@+id/tv_time_out_count_quiz_result"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="1"
+                            android:textColor="@color/wrongAnswer"
+                            android:textStyle="bold"
+                            android:textSize="23sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="  / 5"
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold"
+                            android:textSize="23sp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ll_time_out_count_quiz_result"
+                        android:layout_centerHorizontal="true"
+                        android:text="Time Out"
+                        android:textStyle="bold"
+                        android:textColor="#60000000"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
             <!-- line -->
             <View
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
+                android:id="@+id/v_horizontal_line_quiz_result"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/ll_grades_quiz_result"
                 android:background="#30000000" />
 
-            <!-- wrong -->
-            <RelativeLayout
-                android:layout_width="0dp"
+            <!-- your quiz taking time title -->
+            <TextView
+                android:id="@+id/tv_taking_time_title_quiz_result"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:id="@+id/ll_wrong_count_quiz_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:tint="@color/wrongAnswer"
-                        android:src="@drawable/ic_wrong_circle_black_50dp"/>
-                    <TextView
-                        android:id="@+id/tv_wrong_count_quiz_result"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="1"
-                        android:textColor="@color/wrongAnswer"
-                        android:textStyle="bold"
-                        android:textSize="23sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="  / 5"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold"
-                        android:textSize="23sp"/>
-                </LinearLayout>
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/v_horizontal_line_quiz_result"
+                android:layout_marginTop="10dp"
+                android:text="Your quiz taking time:"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <!-- your quiz taking time content -->
+            <LinearLayout
+                android:id="@+id/ll_taking_time_content_quiz_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_taking_time_title_quiz_result"
+                android:layout_centerHorizontal="true"
+                android:gravity="start"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <!-- min -->
                 <TextView
+                    android:id="@+id/tv_min_time_quiz_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ll_wrong_count_quiz_result"
-                    android:layout_centerHorizontal="true"
-                    android:text="Wrong"
+                    android:text="2"
+                    android:textColor="@color/colorBlack"
                     android:textStyle="bold"
-                    android:textColor="#60000000"/>
-            </RelativeLayout>
-            <!-- line -->
-            <View
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
-                android:background="#30000000" />
-
-            <!-- time out -->
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:id="@+id/ll_time_out_count_quiz_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:tint="@color/colorBlack"
-                        android:src="@drawable/ic_time_out"/>
-                    <TextView
-                        android:id="@+id/tv_time_out_count_quiz_result"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="1"
-                        android:textColor="@color/wrongAnswer"
-                        android:textStyle="bold"
-                        android:textSize="23sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="  / 5"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold"
-                        android:textSize="23sp"/>
-                </LinearLayout>
+                    android:textSize="25sp"/>
                 <TextView
+                    android:id="@+id/tv_min_time_unit_quiz_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ll_time_out_count_quiz_result"
-                    android:layout_centerHorizontal="true"
-                    android:text="Time Out"
+                    android:text=" min"
+                    android:textColor="@color/colorBlack"
                     android:textStyle="bold"
-                    android:textColor="#60000000"/>
-            </RelativeLayout>
+                    android:textSize="18sp"/>
+                <!-- sec -->
+                <TextView
+                    android:id="@+id/tv_sec_time_quiz_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="30"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    android:textSize="25sp"/>
+                <TextView
+                    android:id="@+id/tv_sec_time_unit_quiz_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" s"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+            </LinearLayout>
 
-        </LinearLayout>
 
-        <!-- line -->
-        <View
-            android:id="@+id/v_horizontal_line_quiz_result"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/ll_grades_quiz_result"
-            android:background="#30000000" />
+        </RelativeLayout>
 
-        <!-- your quiz taking time title -->
-        <TextView
-            android:id="@+id/tv_taking_time_title_quiz_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/v_horizontal_line_quiz_result"
-            android:layout_marginTop="10dp"
-            android:text="Your quiz taking time:"
-            android:textColor="@color/colorBlack"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-        <!-- your quiz taking time content -->
-        <LinearLayout
-            android:id="@+id/ll_taking_time_content_quiz_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_taking_time_title_quiz_result"
-            android:layout_centerHorizontal="true"
-            android:gravity="start"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-            <!-- min -->
-            <TextView
-                android:id="@+id/tv_min_time_quiz_result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                android:textSize="25sp"/>
-            <TextView
-                android:id="@+id/tv_min_time_unit_quiz_result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" min"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
-            <!-- sec -->
-            <TextView
-                android:id="@+id/tv_sec_time_quiz_result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="30"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                android:textSize="25sp"/>
-            <TextView
-                android:id="@+id/tv_sec_time_unit_quiz_result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" s"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
-        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    </RelativeLayout>
+
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
 
