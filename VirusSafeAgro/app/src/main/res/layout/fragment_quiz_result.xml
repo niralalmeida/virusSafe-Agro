@@ -77,27 +77,52 @@
             android:layout_marginBottom="30dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:paddingTop="30dp"
+            android:paddingTop="20dp"
             android:paddingBottom="22dp"
             android:background="@drawable/shape_overview_bg_quiz_result">
+
+            <!-- quiz result overview title -->
+            <TextView
+                android:id="@+id/tv_overview_title_quiz_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="Your Quiz Result"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <!-- line 1 -->
+            <View
+                android:id="@+id/v_horizontal_line1_quiz_result"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/tv_overview_title_quiz_result"
+                android:background="#30000000" />
 
             <!-- your quiz result title -->
             <TextView
                 android:id="@+id/tv_grade_title_quiz_result"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:text="Your quiz result:"
+                android:layout_below="@id/v_horizontal_line1_quiz_result"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:text="Your Quiz Result"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp"
                 android:textStyle="bold" />
+
             <!-- your quiz result content -->
             <LinearLayout
                 android:id="@+id/ll_grades_quiz_result"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/tv_grade_title_quiz_result"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -246,9 +271,9 @@
 
             </LinearLayout>
 
-            <!-- line -->
+            <!-- line 2 -->
             <View
-                android:id="@+id/v_horizontal_line_quiz_result"
+                android:id="@+id/v_horizontal_line2_quiz_result"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="10dp"
@@ -261,9 +286,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/v_horizontal_line_quiz_result"
-                android:layout_marginTop="10dp"
-                android:text="Your quiz taking time:"
+                android:layout_below="@+id/v_horizontal_line2_quiz_result"
+                android:layout_marginTop="20dp"
+                android:text="Quiz Taking Time"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -276,7 +301,7 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="start"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
                 <!-- min -->
                 <TextView
@@ -320,7 +345,7 @@
                 android:id="@+id/cv_virus_quiz_result"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 app:cardBackgroundColor="@color/colorBlack"
                 app:cardCornerRadius="6dp"
                 app:cardElevation="5dp"
@@ -359,7 +384,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_question_list_quiz_result"
                 android:layout_below="@id/cv_virus_quiz_result"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical" />
@@ -397,9 +422,9 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:background="@drawable/ripple_save_screenshot_quiz_result"
-                android:text="save screenshot"
+                android:text="get result screenshot"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

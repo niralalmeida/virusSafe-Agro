@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +41,8 @@ public class QuizResultFragment extends Fragment {
     private TextView quizTakingTimeSecTextView;
     private CardView virusCardView;
     private Button redoButton;
+    private Button saveScreenshotButton;
+    private NestedScrollView quizResultNestedScrollView;
 
     @Nullable
     @Override
@@ -73,6 +76,8 @@ public class QuizResultFragment extends Fragment {
 
         // set redo button on click listener
         this.setRedoButtonOnClickListener();
+        // set save screenshot button on click listener
+        this.setSaveScreenshotButtonOnClickListener();
     }
 
     private void initializeViews(){
@@ -84,6 +89,8 @@ public class QuizResultFragment extends Fragment {
         this.quizTakingTimeSecTextView = view.findViewById(R.id.tv_sec_time_quiz_result);
         this.virusCardView = view.findViewById(R.id.cv_virus_quiz_result);
         this.redoButton = view.findViewById(R.id.btn_redo_quiz_result);
+        this.saveScreenshotButton = view.findViewById(R.id.btn_save_screenshot_quiz_result);
+        this.quizResultNestedScrollView = view.findViewById(R.id.nsv_overview_container_quiz_result);
     }
 
     // show titles
@@ -132,7 +139,7 @@ public class QuizResultFragment extends Fragment {
 
     // set redo button on click listener
     private void setRedoButtonOnClickListener(){
-        redoButton.setOnClickListener(redoButtonView -> {
+        this.redoButton.setOnClickListener(redoButtonView -> {
             // animation
             QuizStartActivity.isQuizQuestionActivityClosed = true;
 
@@ -145,6 +152,13 @@ public class QuizResultFragment extends Fragment {
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this.quizStartActivity, this.redoButton, ViewCompat.getTransitionName(this.redoButton));
             this.quizStartActivity.startActivity(intent, options.toBundle());
             this.quizStartActivity.finish();
+        });
+    }
+
+    // set save screenshot button on click listener
+    private void setSaveScreenshotButtonOnClickListener() {
+        this.saveScreenshotButton.setOnClickListener(saveScreenshotButtonView ->{
+
         });
     }
 }
