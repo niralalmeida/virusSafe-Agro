@@ -47,15 +47,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
-        <!-- result overview nsv -->
+        <!-- result overview rl -->
         <Constraint
-            android:id="@+id/nsv_overview_container_quiz_result"
+            android:id="@+id/rl_overview_container_quiz_result"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lav_star_quiz_result"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
+<!--        app:layout_constraintTop_toBottomOf="@id/lav_star_quiz_result"-->
     </ConstraintSet>
 
     <!-- show quiz result title end -->
@@ -90,9 +91,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
-        <!-- result overview nsv -->
+        <!-- result overview rl -->
         <Constraint
-            android:id="@+id/nsv_overview_container_quiz_result"
+            android:id="@+id/rl_overview_container_quiz_result"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="parent"
@@ -138,9 +139,9 @@
                 android:alpha="1"
                 android:visibility="visible" />
         </Constraint>
-        <!-- result overview nsv -->
+        <!-- result overview rl -->
         <Constraint
-            android:id="@+id/nsv_overview_container_quiz_result"
+            android:id="@+id/rl_overview_container_quiz_result"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="parent"
@@ -182,11 +183,13 @@
                 android:alpha="0"
                 android:visibility="invisible" />
         </Constraint>
-        <!-- result overview nsv -->
+        <!-- result overview rl -->
         <Constraint
-            android:id="@+id/nsv_overview_container_quiz_result"
+            android:id="@+id/rl_overview_container_quiz_result"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             app:layout_constraintTop_toBottomOf="@id/lav_star_quiz_result"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">

@@ -38,6 +38,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     // motion layout
     implementation 'com.android.support.constraint:constraint-layout:2.0.2'
+    // coordinator layout
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 
     // androidx.test
     def androidx_test = "1.1.0"

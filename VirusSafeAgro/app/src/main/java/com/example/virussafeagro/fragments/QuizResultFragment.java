@@ -32,8 +32,6 @@ public class QuizResultFragment extends Fragment {
         this.quizStartActivity = (QuizStartActivity)requireActivity();
         // initialize Views
         this.initializeViews();
-        // hide the top progress bar
-        this.quizStartActivity.getQuizTopProgressLinearLayout().setVisibility(View.GONE);
 
         return view;
     }
