@@ -40,7 +40,10 @@ public class QuizStartActivity extends AppCompatActivity {
     // tools
     public static final int NUM_PAGES = QuizActivity.QUESTION_COUNT;
     public static int currentQuestionNo = -1;
-    public static int[] quizResultArray; // 0 -> not reach; 1 -> right; 2 -> wrong
+    private int[] quizResultArray; // 0 -> not reach; 1 -> right; 2 -> wrong
+    public int rightCount;
+    public int wrongCount;
+    public int timeOutCount;
     public static boolean isQuizQuestionActivityClosed;
 
     @Override
@@ -152,7 +155,7 @@ public class QuizStartActivity extends AppCompatActivity {
         return questionViewPager2;
     }
 
-    public static int[] getQuizResultArray() {
+    public int[] getQuizResultArray() {
         return quizResultArray;
     }
 

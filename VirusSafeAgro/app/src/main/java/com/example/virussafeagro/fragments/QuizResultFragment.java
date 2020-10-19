@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,9 @@ public class QuizResultFragment extends Fragment {
 
     // views
     private MotionLayout containerMotionLayout;
+    private TextView rightCountTextView;
+    private TextView wrongCountTextView;
+    private TextView timeOutCountTextView;
 
     @Nullable
     @Override
@@ -44,22 +48,38 @@ public class QuizResultFragment extends Fragment {
         this.showResultTitles(1000);
         // show overview
         this.showResultOverview(2800);
+        // show Result Count
+        this.showResultCount();
     }
 
     private void initializeViews(){
         this.containerMotionLayout = view.findViewById(R.id.ml_container_quiz_result);
+        this.rightCountTextView = view.findViewById(R.id.tv_right_count_quiz_result);
+        this.wrongCountTextView = view.findViewById(R.id.tv_wrong_count_quiz_result);
+        this.timeOutCountTextView = view.findViewById(R.id.tv_time_out_count_quiz_result);
     }
 
+    // show titles
     private void showResultTitles(int duration) {
         new Handler().postDelayed(() -> {
             MyAnimationBox.configureTheAnimation(this.containerMotionLayout, R.id.start_show_quiz_result_title, R.id.end_show_quiz_result_title, 300);
         }, duration);
     }
 
+    // show overview
     private void showResultOverview(int duration) {
         new Handler().postDelayed(() -> {
-
             MyAnimationBox.configureTheAnimation(this.containerMotionLayout, R.id.start_show_quiz_result_overview, R.id.end_show_quiz_result_overview, 300);
         }, duration);
+    }
+
+    // show Result Count
+    private void showResultCount() {
+        String rightCountString = "" + quizStartActivity.rightCount;
+        this.rightCountTextView.setText(rightCountString);
+        String wrongCountString = "" + quizStartActivity.wrongCount;
+        this.wrongCountTextView.setText(wrongCountString);
+        String timeOutCountString = "" + quizStartActivity.timeOutCount;
+        this.timeOutCountTextView.setText(timeOutCountString);
     }
 }

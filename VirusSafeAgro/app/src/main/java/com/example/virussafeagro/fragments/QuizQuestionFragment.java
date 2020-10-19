@@ -424,6 +424,7 @@ public class QuizQuestionFragment extends Fragment {
 
             @Override
             public void onFinish() {
+                quizStartActivity.timeOutCount += 1;
                 // set user answer
                 List<String> timeOutUserAnswerList = new ArrayList<>();
                 timeOutUserAnswerList.add("Z");
@@ -600,6 +601,11 @@ public class QuizQuestionFragment extends Fragment {
             currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
             // check Single Choice Question Answer
             isAnswerRight = checkSingleChoiceQuestionAnswer(currentOptionNoString);
+            if (isAnswerRight){
+                quizStartActivity.rightCount += 1;
+            } else {
+                quizStartActivity.wrongCount += 1;
+            }
             // show result style for single
             new Handler().postDelayed(() -> {
                 showResultStyleForSingle();
@@ -629,6 +635,11 @@ public class QuizQuestionFragment extends Fragment {
             currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
             // check Single Choice Question Answer
             isAnswerRight = checkSingleChoiceQuestionAnswer(currentOptionNoString);
+            if (isAnswerRight){
+                quizStartActivity.rightCount += 1;
+            } else {
+                quizStartActivity.wrongCount += 1;
+            }
             // show result style for single
             new Handler().postDelayed(() -> {
                 showResultStyleForSingle();
@@ -696,6 +707,11 @@ public class QuizQuestionFragment extends Fragment {
                 currentChoiceQuestionModel.setUserAnswerList(userAnswerList);
                 // check multiple Choice Question Answer
                 isAnswerRight = checkMultipleChoiceQuestionAnswer();
+                if (isAnswerRight){
+                    quizStartActivity.rightCount += 1;
+                } else {
+                    quizStartActivity.wrongCount += 1;
+                }
                 // show the result style
                 new Handler().postDelayed(this::showResultStyleForMultiple, 500);
                 // change the button to "next"
@@ -860,11 +876,11 @@ public class QuizQuestionFragment extends Fragment {
         int currentPageArrayIndex = 2 * (questionNo - 1);
         if (isAnswered && isAnswerRight){
             // right
-            QuizStartActivity.quizResultArray[questionNo - 1] = 1;
+            quizStartActivity.getQuizResultArray()[questionNo - 1] = 1;
             quizStartActivity.getQuizTopProgressLinearLayout().getChildAt(currentPageArrayIndex).setBackgroundResource(R.color.rightAnswer);
         } else {
             // wrong
-            QuizStartActivity.quizResultArray[questionNo - 1] = 2;
+            quizStartActivity.getQuizResultArray()[questionNo - 1] = 2;
             quizStartActivity.getQuizTopProgressLinearLayout().getChildAt(currentPageArrayIndex).setBackgroundResource(R.color.wrongAnswer);
         }
 
