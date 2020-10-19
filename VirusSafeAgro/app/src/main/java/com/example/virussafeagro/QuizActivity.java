@@ -72,6 +72,9 @@ public class QuizActivity extends AppCompatActivity {
     public static String currentPageName;
     public final static int QUESTION_COUNT = 5;
 
+    private boolean isStartButtonClicked;
+    public boolean isImageURLGet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +96,14 @@ public class QuizActivity extends AppCompatActivity {
         // set observer for observing VirusQuizQuestionArrayLD
         this.observeVirusQuizQuestionArrayLD();
 
+        // set observer for observing VirusQuizQuestionWithImageURLArrayLD
+        this.observeVirusQuizQuestionWithImageURLArrayLD();
+
         // show activity views
         this.showActivityViews();
+
+        // test
+        System.out.println("yyyyyyyeeeessssss");
     }
 
     private void initializeVariablesAndData() {
@@ -131,7 +140,7 @@ public class QuizActivity extends AppCompatActivity {
     private void findVirusQuizQuestionsFromDB() {
         choiceQuestionModelList = new ArrayList<>();
         choiceQuestionModelFinalList = new ArrayList<>();
-        this.quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
+        quizActivityViewModel.processFindingVirusQuizQuestions(currentVirusModel.getVirusId());
     }
 
     // observe VirusQuizQuestionArray live data
@@ -140,7 +149,9 @@ public class QuizActivity extends AppCompatActivity {
             // set the question model list
             choiceQuestionModelList = resultQuizQuestionModelList;
             // get final list
-            choiceQuestionModelFinalList = getFinalChoiceQuestionModelList();
+            choiceQuestionModelFinalList = getRandomFinalChoiceQuestionModelList();
+            // start processing the finding question list With Image URL process
+            findVirusQuizQuestionsWithImageURLFromDB();
             // when the "open quiz paper" button shows
             if (loadQuestionProgressBar.getVisibility() == View.VISIBLE){
                 // hide the progress bar if it is shown
@@ -162,8 +173,20 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
-//////////////////////////////// test //////////////////////////////////////////////////////
-    private List<ChoiceQuestionModel> getFinalChoiceQuestionModelList() {
+    // start processing the finding question list With Image URL process
+    private void findVirusQuizQuestionsWithImageURLFromDB(){
+        quizActivityViewModel.processFindingVirusQuizQuestionsImageURL(currentVirusModel.getVirusId());
+    }
+
+    // set observer for observing VirusQuizQuestionWithImageURLArrayLD
+    private void observeVirusQuizQuestionWithImageURLArrayLD() {
+        this.quizActivityViewModel.getQuizQuestionModelListWithImageURLLD().observe(this, resultQuizQuestionWithImageURLModelList -> {
+            isImageURLGet = true;
+        });
+    }
+
+//////////////////////////////// test random final list //////////////////////////////////////////////////////
+    private List<ChoiceQuestionModel> getRandomFinalChoiceQuestionModelList() {
         List<ChoiceQuestionModel> finalList = choiceQuestionModelList;
         return finalList;
     }
@@ -181,6 +204,10 @@ public class QuizActivity extends AppCompatActivity {
 
     public void beginnerOnClick(View v){
         if (!showEnvelopeButton.getText().toString().equals(BUTTON_NAME_OPEN_QUIZ)) {
+            // get final list
+            if (!choiceQuestionModelList.isEmpty()) {
+                choiceQuestionModelFinalList = getRandomFinalChoiceQuestionModelList();
+            }
             // set the current page identification
             currentPageName = BUTTON_NAME_SHOW_ENVELOPE;
             // move beginner Button + hide intermediate Button
@@ -211,6 +238,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void startQuizOnClick(View v){
+        isStartButtonClicked = true;
+
         Intent intent = new Intent(QuizActivity.this, QuizStartActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("currentVirusModel", currentVirusModel);
@@ -366,12 +395,23 @@ public class QuizActivity extends AppCompatActivity {
         f.cancel(true);
     }
 
+    // cancel the Current Finding Virus Quiz Questions Image URL AsyncTask
+    private void cancelCurrentFindVirusQuizQuestionsImageURLAsyncTask() {
+        // cancel the AsyncTask
+        QuizActivityViewModel.FindVirusQuizQuestionsImageURLAsyncTask f = this.quizActivityViewModel.getCurrentFindVirusQuizQuestionsImageURLAsyncTask();
+        f.cancel(true);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         // cancel the Current FindVirusQuizQuestionsAsyncTask
         this.cancelCurrentFindVirusQuizQuestionsAsyncTask();
-//        // clear the question list
-//        choiceQuestionModelList = null;
+        // cancel the Current Finding Virus Quiz Questions Image URL AsyncTask
+        if (!isStartButtonClicked){
+            this.cancelCurrentFindVirusQuizQuestionsImageURLAsyncTask();
+        }
+        // remove the observer
+        this.quizActivityViewModel.getQuizQuestionModelListWithImageURLLD().removeObservers(this);
     }
 }

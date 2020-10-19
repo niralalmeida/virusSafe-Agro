@@ -41,19 +41,10 @@ public class NetworkConnectionToAWSTomatoS3 {
         StringBuilder stringBuilder = new StringBuilder(rawImageURL);
         stringBuilder.insert(index, "+");
         final String IMAGE_URL = stringBuilder.toString();
-
-        // test
-//        System.out.println("URL --->" + IMAGE_URL);
-
         Request request = new Request.Builder().url(IMAGE_URL).build();
         Bitmap bitmap = null;
         try{
             Response response = this.okHttpClient.newCall(request).execute();
-
-            //test
-//            String t = response.body().string();
-//            System.out.println("response body {{{" + t + "}}}");
-
             InputStream resultStream = Objects.requireNonNull(response.body()).byteStream();
             bitmap = BitmapFactory.decodeStream(resultStream);
         } catch (Exception e){

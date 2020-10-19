@@ -38,7 +38,7 @@ public class MyJsonParser {
     public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
         List<VirusModel> virusModelInfoList = new ArrayList<>();
         // check network connection
-        if (resultText.isEmpty()){
+        if (resultText.isEmpty()) {
             VirusModel virusModel = new VirusModel(CONNECTION_ERROR_MESSAGE);
             virusModelInfoList.add(virusModel);
         } else {
@@ -55,7 +55,7 @@ public class MyJsonParser {
                     // description
                     JSONArray virusDescriptionJSONArray = virusJsonObject.getJSONArray("description");
                     List<VirusDescriptionModel> virusDescriptionModelList = new ArrayList<>();
-                    for (int di = 0; di < virusDescriptionJSONArray.length(); di++){
+                    for (int di = 0; di < virusDescriptionJSONArray.length(); di++) {
                         JSONObject virusDescriptionJSONObject = virusDescriptionJSONArray.getJSONObject(di);
                         VirusDescriptionModel virusDescriptionModel = new VirusDescriptionModel();
                         virusDescriptionModel.setDesId(virusDescriptionJSONObject.getInt("desId"));
@@ -66,7 +66,7 @@ public class MyJsonParser {
                     // symptom
                     JSONArray virusSymptomJSONArray = virusJsonObject.getJSONArray("symptom");
                     List<VirusSymptomModel> virusSymptomModelList = new ArrayList<>();
-                    for (int di = 0; di < virusSymptomJSONArray.length(); di++){
+                    for (int di = 0; di < virusSymptomJSONArray.length(); di++) {
                         JSONObject virusSymptomJSONObject = virusSymptomJSONArray.getJSONObject(di);
                         VirusSymptomModel virusSymptomModel = new VirusSymptomModel();
                         virusSymptomModel.setSymId(virusSymptomJSONObject.getInt("symId"));
@@ -78,7 +78,7 @@ public class MyJsonParser {
                     // cause
                     JSONArray virusCauseJSONArray = virusJsonObject.getJSONArray("cause");
                     List<VirusCauseModel> virusCauseModelList = new ArrayList<>();
-                    for (int di = 0; di < virusCauseJSONArray.length(); di++){
+                    for (int di = 0; di < virusCauseJSONArray.length(); di++) {
                         JSONObject virusCauseJSONObject = virusCauseJSONArray.getJSONObject(di);
                         VirusCauseModel virusCauseModel = new VirusCauseModel();
                         virusCauseModel.setCauseId(virusCauseJSONObject.getInt("causeId"));
@@ -90,7 +90,7 @@ public class MyJsonParser {
                     // prevention
                     JSONArray virusPreventionJSONArray = virusJsonObject.getJSONArray("prevention");
                     List<VirusPreventionModel> virusPreventionModelList = new ArrayList<>();
-                    for (int di = 0; di < virusPreventionJSONArray.length(); di++){
+                    for (int di = 0; di < virusPreventionJSONArray.length(); di++) {
                         JSONObject virusPreventionJSONObject = virusPreventionJSONArray.getJSONObject(di);
                         VirusPreventionModel virusPreventionModel = new VirusPreventionModel();
                         virusPreventionModel.setPreId(virusPreventionJSONObject.getInt("preId"));
@@ -108,10 +108,10 @@ public class MyJsonParser {
     }
 
     // get data to store questions into question model list
-    public static List<ChoiceQuestionModel> choiceQuestionModelListJsonParser(String resultText) throws JSONException{
+    public static List<ChoiceQuestionModel> choiceQuestionModelListJsonParser(String resultText) throws JSONException {
         List<ChoiceQuestionModel> quizQuestionModelList = new ArrayList<>();
         // check network connection
-        if (resultText.isEmpty()){
+        if (resultText.isEmpty()) {
             ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(CONNECTION_ERROR_MESSAGE);
             quizQuestionModelList.add(choiceQuestionModel);
         } else {
@@ -157,9 +157,9 @@ public class MyJsonParser {
     }
 
     // get data to store question options into question model list
-    public static List<ChoiceOptionModel> choiceOptionListJsonParser(String resultText) throws JSONException{
+    public static List<ChoiceOptionModel> choiceOptionListJsonParser(String resultText) throws JSONException {
         List<ChoiceOptionModel> optionModelList = new ArrayList<>();
-        if(!resultText.equals("[]")){
+        if (!resultText.equals("[]")) {
             JSONArray optionListJsonArray = new JSONArray(resultText);
             int arrayLength = optionListJsonArray.length();
             for (int i = 0; i < arrayLength; i++) {
@@ -189,9 +189,9 @@ public class MyJsonParser {
         return optionModelList;
     }
 
-    public static String questionImageJsonParser(String resultText) throws JSONException{
+    public static String questionImageJsonParser(String resultText) throws JSONException {
         String imageString = "";
-        if(!resultText.equals("[]")){
+        if (!resultText.equals("[]")) {
             JSONArray imageResultJsonArray = new JSONArray(resultText);
             JSONObject imageResultJsonObject = imageResultJsonArray.getJSONObject(0);
             imageString = imageResultJsonObject.getString("choiceQuestionImageBinaryCode");
@@ -199,9 +199,9 @@ public class MyJsonParser {
         return imageString;
     }
 
-    public static String optionImageJsonParser(String resultText) throws JSONException{
+    public static String optionImageJsonParser(String resultText) throws JSONException {
         String imageString = "";
-        if(!resultText.equals("[]")){
+        if (!resultText.equals("[]")) {
             JSONArray imageResultJsonArray = new JSONArray(resultText);
             JSONObject imageResultJsonObject = imageResultJsonArray.getJSONObject(0);
             imageString = imageResultJsonObject.getString("choiceOptionImageBinaryCode");
@@ -210,16 +210,14 @@ public class MyJsonParser {
     }
 
     // get data to store question images into question model list
-    public static List<ChoiceQuestionModel> choiceQuestionModelListForImageJsonParser(String resultText, List<ChoiceQuestionModel> quizQuestionModelList) throws JSONException{
-        // test
-        System.out.println("result text" + resultText);
+    public static List<ChoiceQuestionModel> choiceQuestionModelListForImageJsonParser(String resultText, List<ChoiceQuestionModel> quizQuestionModelList) throws JSONException {
         // check network connection
-        if (resultText.isEmpty()){
+        if (resultText.isEmpty()) {
             // add a new question model into the list and set the message into it
             ChoiceQuestionModel choiceQuestionModel = new ChoiceQuestionModel(CONNECTION_ERROR_MESSAGE);
             quizQuestionModelList.add(choiceQuestionModel);
         } else {
-            if (resultText.substring(0,1).equals("{") && (!resultText.equals("{}"))) {
+            if (resultText.substring(0, 1).equals("{") && (!resultText.equals("{}"))) {
                 // get result Json Object
                 JSONObject resultJsonObject = new JSONObject(resultText);
                 // check "QUESTION 1" to "QUESTION 5" keys
@@ -234,9 +232,9 @@ public class MyJsonParser {
                             // get question json object keys
                             Iterator<String> questionKeys = questionJsonObject.keys();
                             // check "question" and "options" key
-                            while (questionKeys.hasNext()){
+                            while (questionKeys.hasNext()) {
                                 String questionKeyString = questionKeys.next();
-                                if (questionKeyString.equals("question")){ // find "question" key
+                                if (questionKeyString.equals("question")) { // find "question" key
                                     // get question image json array
                                     JSONArray questionImageJsonArray = questionJsonObject.getJSONArray("question");
                                     // get question image URLs
@@ -247,7 +245,7 @@ public class MyJsonParser {
                                     }
                                     // store the URL list for each question model
                                     quizQuestionModelList.get(questionNo - 1).setImageURLList(questionImageURLs);
-                                } else if (questionKeyString.equals("options")){ // find "options" key
+                                } else if (questionKeyString.equals("options")) { // find "options" key
                                     // get option image json array
                                     JSONArray optionImageJsonArray = questionJsonObject.getJSONArray("options");
                                     // get option image URLs
@@ -266,14 +264,12 @@ public class MyJsonParser {
                 }
             }
         }
-        //
-        System.out.println("");
         return quizQuestionModelList;
     }
 
     public static String imageCheckFeedbackJsonParser(String resultText) throws JSONException {
         String feedBack = "";
-        if(!resultText.equals("[]")){
+        if (!resultText.equals("[]")) {
             JSONObject predictionJsonObject = new JSONObject(resultText);
             Iterator<String> keysIterator = predictionJsonObject.keys();
             if (keysIterator.next().equals("prediction")) {
@@ -288,7 +284,7 @@ public class MyJsonParser {
     public static List<NutrientModel> nutrientListJsonParser(String resultText) throws JSONException {
         List<NutrientModel> nutrientModelList = new ArrayList<>();
         // check network connection
-        if (resultText.isEmpty()){
+        if (resultText.isEmpty()) {
             NutrientModel nutrientModel = new NutrientModel(CONNECTION_ERROR_MESSAGE);
             nutrientModelList.add(nutrientModel);
         } else {
@@ -304,7 +300,7 @@ public class MyJsonParser {
                     // symptom
                     JSONArray nutrientSymptomJSONArray = nutrientJsonObject.getJSONArray("symptom");
                     List<NutrientSymptomModel> nutrientSymptomModelList = new ArrayList<>();
-                    for (int di = 0; di < nutrientSymptomJSONArray.length(); di++){
+                    for (int di = 0; di < nutrientSymptomJSONArray.length(); di++) {
                         JSONObject nutrientSymptomJSONObject = nutrientSymptomJSONArray.getJSONObject(di);
                         NutrientSymptomModel nutrientSymptomModel = new NutrientSymptomModel();
                         nutrientSymptomModel.setSymId(nutrientSymptomJSONObject.getInt("symId"));
@@ -316,7 +312,7 @@ public class MyJsonParser {
                     // reason
                     JSONArray nutrientReasonJSONArray = nutrientJsonObject.getJSONArray("reason");
                     List<NutrientReasonModel> nutrientReasonModelList = new ArrayList<>();
-                    for (int di = 0; di < nutrientReasonJSONArray.length(); di++){
+                    for (int di = 0; di < nutrientReasonJSONArray.length(); di++) {
                         JSONObject nutrientReasonJSONObject = nutrientReasonJSONArray.getJSONObject(di);
                         NutrientReasonModel nutrientReasonModel = new NutrientReasonModel();
                         nutrientReasonModel.setReasonId(nutrientReasonJSONObject.getInt("reasonId"));
@@ -327,7 +323,7 @@ public class MyJsonParser {
                     // factor
                     JSONArray nutrientFactorJSONArray = nutrientJsonObject.getJSONArray("factor");
                     List<NutrientFactorModel> nutrientFactorModelList = new ArrayList<>();
-                    for (int di = 0; di < nutrientFactorJSONArray.length(); di++){
+                    for (int di = 0; di < nutrientFactorJSONArray.length(); di++) {
                         JSONObject nutrientFactorJSONObject = nutrientFactorJSONArray.getJSONObject(di);
                         NutrientFactorModel nutrientFactorModel = new NutrientFactorModel();
                         nutrientFactorModel.setFactorId(nutrientFactorJSONObject.getInt("factorId"));
@@ -338,7 +334,7 @@ public class MyJsonParser {
                     // method
                     JSONArray nutrientCorrectionMethodJSONArray = nutrientJsonObject.getJSONArray("method");
                     List<NutrientCorrectionMethodModel> nutrientCorrectionMethodModelList = new ArrayList<>();
-                    for (int di = 0; di < nutrientCorrectionMethodJSONArray.length(); di++){
+                    for (int di = 0; di < nutrientCorrectionMethodJSONArray.length(); di++) {
                         JSONObject nutrientCorrectionMethodJSONObject = nutrientCorrectionMethodJSONArray.getJSONObject(di);
                         NutrientCorrectionMethodModel nutrientCorrectionMethodModel = new NutrientCorrectionMethodModel();
                         nutrientCorrectionMethodModel.setMethodId(nutrientCorrectionMethodJSONObject.getInt("methodId"));
@@ -357,7 +353,7 @@ public class MyJsonParser {
     public static List<NewsModel> newsListJsonParser(String resultText) throws JSONException {
         List<NewsModel> newsModelList = new ArrayList<>();
         // check network connection
-        if (resultText.isEmpty()){
+        if (resultText.isEmpty()) {
             NewsModel newsModel = new NewsModel(CONNECTION_ERROR_MESSAGE);
             newsModelList.add(newsModel);
         } else {
@@ -446,16 +442,16 @@ public class MyJsonParser {
                                                 newsModel.setNewsSnippet(newsSnippet); // snippet
                                                 newsModel.setNewsURL(newsURL); // URL
                                             }
-                                        } else if (pageMapKeyString.equals("cse_image")){
+                                        } else if (pageMapKeyString.equals("cse_image")) {
                                             // find "cse_image" key
                                             // get "cse_image" json array and object
                                             JSONArray cseImageJsonArray = pageMapJsonObject.getJSONArray("cse_image");
                                             JSONObject cseImageJsonObject = cseImageJsonArray.getJSONObject(0);
                                             // check "src" key
                                             Iterator<String> cseImageKeys = cseImageJsonObject.keys();
-                                            while(cseImageKeys.hasNext()){
+                                            while (cseImageKeys.hasNext()) {
                                                 // find "src" key
-                                                if (cseImageKeys.next().equals("src")){
+                                                if (cseImageKeys.next().equals("src")) {
                                                     // image URL
                                                     String imageURL = cseImageJsonObject.getString("src");
                                                     newsModel.setNewsImageURL(imageURL);
@@ -471,9 +467,9 @@ public class MyJsonParser {
                             // add the news model into the list
                             if (newsModel.getNewsTitle() != null) {
                                 boolean isExist = false;
-                                for (NewsModel n : newsModelList){
+                                for (NewsModel n : newsModelList) {
                                     if (n.getNewsSnippet().equals(newsModel.getNewsSnippet())
-                                    || n.getNewsTitle().equals(newsModel.getNewsTitle())){
+                                            || n.getNewsTitle().equals(newsModel.getNewsTitle())) {
                                         isExist = true;
                                     }
                                 }
@@ -490,9 +486,9 @@ public class MyJsonParser {
         return newsModelList;
     }
 
-    public static List<String> newsArticleBodyHTMLParser(String resultText){
+    public static List<String> newsArticleBodyHTMLParser(String resultText) {
         List<String> newsArticleBody = new ArrayList<>();
-        if (resultText.substring(0,15).equals("<!DOCTYPE html>")){
+        if (resultText.substring(0, 15).equals("<!DOCTYPE html>")) {
             Document doc = Jsoup.parse(resultText);
             Element div = doc.select("div[itemprop=articleBody]").get(0);
             Elements articleParagraphList = div.select("p[class=story-paragraph]");
@@ -510,7 +506,7 @@ public class MyJsonParser {
     public static List<TweetModel> tweetListJsonParser(String resultText) throws JSONException {
         List<TweetModel> tweetModelList = new ArrayList<>();
         // check network connection
-        if (resultText.isEmpty()){
+        if (resultText.isEmpty()) {
             TweetModel tweetModel = new TweetModel(CONNECTION_ERROR_MESSAGE);
             tweetModelList.add(tweetModel);
         } else {
@@ -601,8 +597,8 @@ public class MyJsonParser {
                             // add the tweet model into the list
                             if (tweetModel.getTweetContent() != null) {
                                 boolean isExist = false;
-                                for (TweetModel n : tweetModelList){
-                                    if (n.getTweetContent().equals(tweetModel.getTweetContent())){
+                                for (TweetModel n : tweetModelList) {
+                                    if (n.getTweetContent().equals(tweetModel.getTweetContent())) {
                                         isExist = true;
                                     }
                                 }
@@ -619,22 +615,22 @@ public class MyJsonParser {
         return tweetModelList;
     }
 
-    public static List<PesticideStoreModel> pesticideStoreListParser(String resultText) throws JSONException{
+    public static List<PesticideStoreModel> pesticideStoreListParser(String resultText) throws JSONException {
         List<PesticideStoreModel> pesticideStoreModelList = new ArrayList<>();
         // check network connection
-        if (resultText.isEmpty() || (!resultText.substring(0, 1).equals("{"))){
+        if (resultText.isEmpty() || (!resultText.substring(0, 1).equals("{"))) {
             PesticideStoreModel pesticideStoreModel = new PesticideStoreModel(CONNECTION_ERROR_MESSAGE);
             pesticideStoreModelList.add(pesticideStoreModel);
         } else {
             JSONObject resultTextJsonObject = new JSONObject(resultText);
             String resultStatus = resultTextJsonObject.getString("status");
             // check API result status
-            if (resultStatus.equals("OK")){
+            if (resultStatus.equals("OK")) {
                 JSONArray resultListJSONArray = resultTextJsonObject.getJSONArray("results");
 
                 // get all pesticide store item results
                 int listSize = resultListJSONArray.length();
-                for (int i = 0; i < listSize; i++){
+                for (int i = 0; i < listSize; i++) {
                     // get a pesticide store JSONObject
                     JSONObject pesticideStoreJsonObject = resultListJSONArray.getJSONObject(i);
                     // create a pesticide store model
@@ -677,7 +673,7 @@ public class MyJsonParser {
                     }
 
                     // set attributes for pesticide store model
-                    if (hasBusinessStatus && hasGeometry && hasName){
+                    if (hasBusinessStatus && hasGeometry && hasName) {
                         // business status
                         String businessStatus = pesticideStoreJsonObject.getString("business_status").replace("_", " ");
                         pesticideStoreModel.setBusinessStatus(businessStatus);
@@ -695,7 +691,7 @@ public class MyJsonParser {
                         pesticideStoreModel.setStoreName(storeName);
 
                         // rating + rating count
-                        if (hasRating && hasUserRatingsTotal){
+                        if (hasRating && hasUserRatingsTotal) {
                             // rating
                             double rating = pesticideStoreJsonObject.getDouble("rating");
                             pesticideStoreModel.setRating(rating);
@@ -705,10 +701,10 @@ public class MyJsonParser {
                         }
 
                         // store types
-                        if (hasTypes){
+                        if (hasTypes) {
                             List<String> storeTypeList = new ArrayList<>();
                             JSONArray typesJSONArray = pesticideStoreJsonObject.getJSONArray("types");
-                            for (int typesIndex = 0; typesIndex < typesJSONArray.length(); typesIndex++){
+                            for (int typesIndex = 0; typesIndex < typesJSONArray.length(); typesIndex++) {
                                 String type = typesJSONArray.getString(typesIndex).replace("_", " ");
                                 storeTypeList.add(type);
                             }
@@ -716,7 +712,7 @@ public class MyJsonParser {
                         }
 
                         // is open now
-                        if (hasOpeningHours){
+                        if (hasOpeningHours) {
                             JSONObject openingHoursJSONObject = pesticideStoreJsonObject.getJSONObject("opening_hours");
                             // get all keys of opening hours
                             Iterator<String> openingHoursKeys = openingHoursJSONObject.keys();
@@ -742,6 +738,7 @@ public class MyJsonParser {
                 pesticideStoreModelList.add(pesticideStoreModel);
             }
         }
-            return pesticideStoreModelList;
+        return pesticideStoreModelList;
     }
+
 }
