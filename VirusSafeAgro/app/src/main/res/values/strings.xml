@@ -5,7 +5,7 @@
     <string name="fragment_about">App Info</string>
     <string name="fragment_calculator">Calculator</string>
     <string name="fragment_contact_us">Contact Us</string>
-    <string name="fragment_control_strategies">Control Strategies</string>
+    <string name="fragment_control_strategies">Strategies</string>
     <string name="fragment_disclaimer">Disclaimer</string>
     <string name="fragment_factor">Factors</string>
     <string name="fragment_toolkit">Toolkit</string>
@@ -19,13 +19,15 @@
     <string name="fragment_tweet">Tweets</string>
     <string name="fragment_updates">Future Updates</string>
     <string name="fragment_virus_check">Virus Check</string>
-    <string name="fragment_virus_check_result">Virus Check Result</string>
+    <string name="fragment_virus_check_result">Detect Result</string>
     <string name="fragment_virus_detail">Virus Detail</string>
     <string name="fragment_virus_info">Virus Type</string>
     <string name="fragment_virus_quiz">Take Quiz</string>
     <string name="fragment_pesticide_store_map">Pesticide Map</string>
     <string name="fragment_timing_of_cause">Timing</string>
-    <string name="fragment_tomato_tip">Tomato Tips</string>
+    <string name="fragment_tomato_tip">Growing Tips</string>
+    <string name="fragment_chemical_control">Chemical</string>
+    <string name="fragment_non_chemical_control">Non Chemical</string>
 
     <!-- for on boarding  -->
     <string name="button_launch_app_boarding">Enter</string>

@@ -75,14 +75,14 @@ public class ControlStrategiesFragment extends Fragment {
     // chemical
     private void setChemicalTileOnClickListener() {
         this.chemicalRelativeLayout.setOnClickListener(llView -> {
-            VirusInfoListFragment virusInfoListFragment = new VirusInfoListFragment();
+            ChemicalControlFragment chemicalControlFragment = new ChemicalControlFragment();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                virusInfoListFragment.setSharedElementEnterTransition(
+                chemicalControlFragment.setSharedElementEnterTransition(
                         TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
             }
             mainActivity.getSupportFragmentManager().beginTransaction()
                     .addSharedElement(chemicalRelativeLayout, ViewCompat.getTransitionName(chemicalRelativeLayout))
-                    .replace(R.id.fl_fragments, virusInfoListFragment)
+                    .replace(R.id.fl_fragments, chemicalControlFragment)
                     .addToBackStack(null)
                     .commit();
         });

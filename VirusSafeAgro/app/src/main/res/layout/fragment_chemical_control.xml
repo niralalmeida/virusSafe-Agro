@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsv_container_chemical_control"
+    android:clipChildren="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ChemicalControlFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ml_container_chemical_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="35dp"
+        android:transitionName="@string/chemical_control_transition_name">
+
+        <!-- card1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_1_chemical_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/colorPrimaryTile"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cc_1_tomv"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_1_title_control"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite" />
+                    <ImageButton
+                        android:id="@+id/imgbtn_card1_chemical_control"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/arrow_down"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/v_horizontal_line1_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_card1_hide_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="30dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_1_chemical_control"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- card2 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_2_chemical_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_1_chemical_control"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/colorPrimaryTile"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cc_2_ts"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_2_title_control"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite" />
+
+                    <ImageButton
+                        android:id="@+id/imgbtn_card2_chemical_control"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/arrow_down"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/v_horizontal_line2_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_card2_hide_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="30dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_2_chemical_control"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- card3 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_3_chemical_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_2_chemical_control"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/colorPrimaryTile"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cc_3_bst"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_3_title_control"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite" />
+
+                    <ImageButton
+                        android:id="@+id/imgbtn_card3_chemical_control"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/arrow_down"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/v_horizontal_line3_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_card3_hide_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="30dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_3_chemical_control"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- card4 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_4_chemical_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_3_chemical_control"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/colorPrimaryTile"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cc_4_tylcv"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_4_title_control"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite" />
+
+                    <ImageButton
+                        android:id="@+id/imgbtn_card4_chemical_control"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/arrow_down"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/v_horizontal_line4_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_card4_hide_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="30dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_4_chemical_control"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- card5 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_5_chemical_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_4_chemical_control"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/colorPrimaryTile"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cc_5_lb"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_5_title_control"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite" />
+
+                    <ImageButton
+                        android:id="@+id/imgbtn_card5_chemical_control"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/arrow_down"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/v_horizontal_line5_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_card5_hide_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="30dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_5_chemical_control"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- card6 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_6_chemical_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_5_chemical_control"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/colorPrimaryTile"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cc_6_ff"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_6_title_control"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite" />
+
+                    <ImageButton
+                        android:id="@+id/imgbtn_card6_chemical_control"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/arrow_down"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/v_horizontal_line6_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_card6_hide_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="30dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_6_chemical_control"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- card7 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_7_chemical_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_6_chemical_control"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/colorPrimaryTile"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cc_7_eb"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_7_title_control"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite" />
+
+                    <ImageButton
+                        android:id="@+id/imgbtn_card7_chemical_control"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/arrow_down"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/v_horizontal_line7_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_card7_hide_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="30dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_7_chemical_control"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- card8 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_8_chemical_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_7_chemical_control"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/colorPrimaryTile"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cc_8_tssm"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_8_title_control"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite" />
+
+                    <ImageButton
+                        android:id="@+id/imgbtn_card8_chemical_control"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/arrow_down"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/v_horizontal_line8_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_card8_hide_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="30dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_8_chemical_control"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- card9 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_9_chemical_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_8_chemical_control"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/colorPrimaryTile"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cc_9_sls"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_9_title_control"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite" />
+
+                    <ImageButton
+                        android:id="@+id/imgbtn_card9_chemical_control"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/arrow_down"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/v_horizontal_line9_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_card9_hide_chemical_control"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="30dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/text_9_chemical_control"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
