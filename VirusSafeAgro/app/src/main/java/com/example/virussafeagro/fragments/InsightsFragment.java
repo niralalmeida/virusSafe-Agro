@@ -43,6 +43,8 @@ public class InsightsFragment extends Fragment {
         this.mainActivity.getTitleTextView().setText(R.string.fragment_insights);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // set tip
+        this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_INSIGHTS);
 
         // initialize Views
         this.initializeViews();

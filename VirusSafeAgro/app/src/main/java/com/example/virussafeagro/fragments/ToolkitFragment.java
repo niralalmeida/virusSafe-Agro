@@ -49,6 +49,8 @@ public class ToolkitFragment extends Fragment {
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
         // pop all fragment in the stack
         FragmentOperator.popAllFragmentsInStack(getChildFragmentManager());
+        // set tip
+        this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_TOOLKIT);
 
         // initialize Views
         this.initializeViews();

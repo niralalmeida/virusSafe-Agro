@@ -1,5 +1,6 @@
 package com.example.virussafeagro.uitilities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -17,19 +18,19 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class DragYRelativeLayout extends RelativeLayout {
     private boolean isSwipeImage;
-    private FragmentActivity fragmentActivity;
+    private MainActivity mainActivity;
     private BottomNavigationViewEx bottomNavigationViewEx;
 
     private int mLastY;
 
-    public void setFragmentActivityAndBottomNavigationViewEx(boolean isSwipeImage, FragmentActivity fragmentActivity, BottomNavigationViewEx bottomNavigationViewEx) {
+    public void setFragmentActivityAndBottomNavigationView(boolean isSwipeImage, MainActivity mainActivity, BottomNavigationViewEx bottomNavigationViewEx) {
         this.isSwipeImage = isSwipeImage;
-        this.fragmentActivity = fragmentActivity;
+        this.mainActivity = mainActivity;
         this.bottomNavigationViewEx = bottomNavigationViewEx;
     }
 
-    public void setFragmentActivityAndBottomNavigationViewEx(FragmentActivity fragmentActivity) {
-        this.fragmentActivity = fragmentActivity;
+    public void setMainActivity(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
     }
 
     public DragYRelativeLayout(Context context) {
@@ -70,14 +71,15 @@ public class DragYRelativeLayout extends RelativeLayout {
             case MotionEvent.ACTION_UP: // when leaving
                 if (this.getVisibility() == VISIBLE) {
                     MyAnimationBox.runSlideOutAnimationToTop(this, 500);
+                    mainActivity.setTipButton(false);
                 }
-                if (fragmentActivity instanceof MainActivity) {
-                    new Handler().postDelayed(() -> {
-                        Toolbar toolbar = ((MainActivity) fragmentActivity).getToolbar();
-                        MyAnimationBox.runFadeInAnimation(toolbar, 500);
-                        this.setVisibility(View.GONE);
-                    }, 600);
-                }
+//                if (fragmentActivity instanceof MainActivity) {
+//                    new Handler().postDelayed(() -> {
+//                        Toolbar toolbar = ((MainActivity) fragmentActivity).getToolbar();
+//                        MyAnimationBox.runFadeInAnimation(toolbar, 500);
+//                        this.setVisibility(View.GONE);
+//                    }, 600);
+//                }
         }
         return true;
     }

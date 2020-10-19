@@ -23,6 +23,7 @@ import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.MapInfoWindowAdapter;
 import com.example.virussafeagro.models.PesticideStoreModel;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.viewModel.PesticideStoreMapViewModel;
@@ -77,6 +78,8 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
         this.mainActivity.getTitleTextView().setText(R.string.fragment_pesticide_store_map);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity) requireActivity());
+        // set tip
+        this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_PESTICIDE_STORES);
 
         // initialize PesticideStoreMapViewModel
         this.initializePesticideStoreMapViewModel();

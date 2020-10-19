@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -88,28 +89,569 @@
         android:id="@+id/drl_tip_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorDarkForeground"
         android:elevation="7dp"
         android:visibility="gone"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/ll_tip_app"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_tile_container_tip_app"
-            android:padding="15dp"
-            android:orientation="vertical">
+            android:scrollbars="vertical"
+            android:scrollbarThumbVertical="@android:color/white">
 
-            <TextView
-                android:id="@+id/tv_tip_app"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorSubTitle"
-                android:text="- ooosdfa\n- tips tsdfaesfsdf \n- sdfasdfasdf"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+                android:paddingTop="15dp"
+                android:paddingBottom="20dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <!-- home page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_home_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- app info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="App Info"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_home_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <!-- Virus detection -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Virus Detection"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_virus_detection_home_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <!-- Learn -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Learn"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_learn_home_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <!-- toolkit -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Toolkit"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_toolkit_home_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Learn page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_learn_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- learn info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Learn"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_learn_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <!-- Virus types -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Virus Types"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_virus_type_learn_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <!-- Nutrient deficiencies -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Nutrient Deficiencies"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_nutrient_learn_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <!-- toolkit -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Tomato Growing Tips"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_tomato_tip_learn_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- virus list page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_virus_list_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- virus list info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Virus Type"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_virus_list_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- nutrient page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_nutrient_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- Nutrient deficiencies info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Nutrient Deficiencies"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_nutrient_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- tomato growing tips page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_tomato_tip_list_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- tomato growing tips info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Tomato Growing Tips"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_tomato_tip_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Toolkit page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_toolkit_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- virus list info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Toolkit"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_toolkit_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Control strategies page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_control_strategies_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- virus list info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Control Strategies"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_control_strategy_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- factors page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_factors_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- virus list info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Factors"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_factor_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- insight page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_insight_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- insight info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Insight"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_insight_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- map page -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_map_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <!-- virus list info -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:text="Pesticide Store Map"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_container_tip"
+                        android:orientation="vertical">
+
+                        <com.uncopt.android.widget.text.justify.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/text_map_tip"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </com.example.virussafeagro.uitilities.DragYRelativeLayout>
 

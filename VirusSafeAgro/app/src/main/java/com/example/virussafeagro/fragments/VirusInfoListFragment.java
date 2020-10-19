@@ -71,6 +71,8 @@ public class VirusInfoListFragment extends Fragment {
         this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_info);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // set tip
+        this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_VIRUS_INFO);
 
         // initialize views
         this.initializeViews();

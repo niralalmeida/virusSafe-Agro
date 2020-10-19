@@ -52,6 +52,7 @@ import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
     private MainActivity mainActivity = this;
@@ -87,6 +88,18 @@ public class MainActivity extends AppCompatActivity {
     
     // app tips
     private DragYRelativeLayout tipDragYRelativeLayout;
+    // all tips views
+    private LinearLayout homeLinearLayout;
+    private LinearLayout learnLinearLayout;
+    private LinearLayout virusListLinearLayout;
+    private LinearLayout nutrientLinearLayout;
+    private LinearLayout tomatoGrowTipLinearLayout;
+    private LinearLayout toolkitLinearLayout;
+    private LinearLayout controlLinearLayout;
+    private LinearLayout factorLinearLayout;
+    private LinearLayout insightLinearLayout;
+    private LinearLayout mapLinearLayout;
+
     // app lottie animation
     private RelativeLayout animationImageRelativeLayout;
 
@@ -142,6 +155,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
+        // tips
+        this.homeLinearLayout = findViewById(R.id.ll_home_tip);
+        this.learnLinearLayout = findViewById(R.id.ll_learn_tip);
+        this.virusListLinearLayout = findViewById(R.id.ll_virus_list_tip);
+        this.nutrientLinearLayout = findViewById(R.id.ll_nutrient_tip);
+        this.tomatoGrowTipLinearLayout = findViewById(R.id.ll_tomato_tip_list_tip);
+        this.toolkitLinearLayout = findViewById(R.id.ll_toolkit_tip);
+        this.controlLinearLayout = findViewById(R.id.ll_control_strategies_tip);
+        this.factorLinearLayout = findViewById(R.id.ll_factors_tip);
+        this.insightLinearLayout = findViewById(R.id.ll_insight_tip);
+        this.mapLinearLayout = findViewById(R.id.ll_map_tip);
         // initialize background image
         this.toolbar = findViewById(R.id.toolbar);
         this.toolbarAllViewsRelativeLayout = findViewById(R.id.rl_all_views_toolbar);
@@ -207,6 +231,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayAllMainActivityViews() {
+        // tip
+        this.showTipByPage(AppResources.ACTIVITY_TAG_HOME);
         // configure toolbar
         this.configureToolbar();
         // show or not top action bar (back button + title)
@@ -235,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
     private void configureToolbar() {
         setSupportActionBar(this.toolbar);
         // tip
-        this.tipDragYRelativeLayout.setFragmentActivityAndBottomNavigationViewEx(this);
+        this.tipDragYRelativeLayout.setMainActivity(this);
         this.setTipOnClickListener();
         // more
         this.setMoreOnClickListener();
@@ -286,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
             // set activated
             tipRelativeLayout.setActivated(true);
             // change bg
-            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorDarkBackground));
+            tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorDarkForeground));
         } else {
             tipRelativeLayout.setActivated(false);
             tipRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkTheme));
@@ -714,5 +740,57 @@ public class MainActivity extends AppCompatActivity {
     public void showVirusCheckFragment() {
         VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
         virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+    }
+
+    public void showTipByPage(String fragmentTag) {
+        // hide all pages
+        this.hideAllTipViews();
+        switch (fragmentTag){
+            case AppResources.ACTIVITY_TAG_HOME:
+                this.homeLinearLayout.setVisibility(View.VISIBLE);
+                break;
+            case AppResources.FRAGMENT_TAG_LEARN:
+                this.learnLinearLayout.setVisibility(View.VISIBLE);
+                break;
+            case AppResources.FRAGMENT_TAG_VIRUS_INFO:
+                this.virusListLinearLayout.setVisibility(View.VISIBLE);
+                break;
+            case AppResources.FRAGMENT_TAG_NUTRIENT:
+                this.nutrientLinearLayout.setVisibility(View.VISIBLE);
+                break;
+            case AppResources.FRAGMENT_TAG_TOMATO_GROWING_TIP:
+                this.tomatoGrowTipLinearLayout.setVisibility(View.VISIBLE);
+                break;
+            case AppResources.FRAGMENT_TAG_TOOLKIT:
+                this.toolkitLinearLayout.setVisibility(View.VISIBLE);
+                break;
+            case AppResources.FRAGMENT_TAG_CONTROL_STRATEGIES:
+                this.controlLinearLayout.setVisibility(View.VISIBLE);
+                break;
+            case AppResources.FRAGMENT_TAG_FACTORS:
+                this.factorLinearLayout.setVisibility(View.VISIBLE);
+                break;
+            case AppResources.FRAGMENT_TAG_INSIGHTS:
+                this.insightLinearLayout.setVisibility(View.VISIBLE);
+                break;
+            case AppResources.FRAGMENT_TAG_PESTICIDE_STORES:
+                this.mapLinearLayout.setVisibility(View.VISIBLE);
+                break;
+
+        }
+    }
+
+    private void hideAllTipViews() {
+        // tips
+        this.homeLinearLayout.setVisibility(View.GONE);
+        this.learnLinearLayout.setVisibility(View.GONE);
+        this.virusListLinearLayout.setVisibility(View.GONE);
+        this.nutrientLinearLayout.setVisibility(View.GONE);
+        this.tomatoGrowTipLinearLayout.setVisibility(View.GONE);
+        this.toolkitLinearLayout.setVisibility(View.GONE);
+        this.controlLinearLayout.setVisibility(View.GONE);
+        this.factorLinearLayout.setVisibility(View.GONE);
+        this.insightLinearLayout.setVisibility(View.GONE);
+        this.mapLinearLayout.setVisibility(View.GONE);
     }
 }

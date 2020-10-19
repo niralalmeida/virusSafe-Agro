@@ -44,6 +44,8 @@ public class LearnFragment extends Fragment {
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
         // pop all fragment in the stack
         FragmentOperator.popAllFragmentsInStack(getChildFragmentManager());
+        // set tip
+        this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_LEARN);
 
         // initialize Views
         this.initializeViews();

@@ -15,12 +15,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.AppResources;
 
 public class ControlStrategiesFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
 
-    private RelativeLayout allViewsRelativeLayout;
     private RelativeLayout chemicalRelativeLayout;
     private RelativeLayout nonChemicalRelativeLayout;
 
@@ -39,6 +39,8 @@ public class ControlStrategiesFragment extends Fragment {
         this.mainActivity.getTitleTextView().setText(R.string.fragment_control_strategies);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // set tip
+        this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_CONTROL_STRATEGIES);
 
         // initialize Views
         this.initializeViews();
@@ -60,7 +62,6 @@ public class ControlStrategiesFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_control);
         this.chemicalRelativeLayout = view.findViewById(R.id.rl_chemical_control);
         this.nonChemicalRelativeLayout = view.findViewById(R.id.rl_non_chemical_control);
     }

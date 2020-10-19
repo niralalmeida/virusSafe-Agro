@@ -245,4 +245,34 @@
     <string name="text_7_non_chemical_control">• Destroy diseased plants\n• Use pathogen free-seed\n• Blight remains active for a year, so it is recommended to rotate crops\n• Avoid overcrowding of plants so that air can pass through the leaves\n• Water the soil instead of plants</string>
     <string name="text_8_non_chemical_control">• Avoid weedy fields\n• Avoid over-fertilising </string>
     <string name="text_9_non_chemical_control">• Remove plants with symptoms promptly and destroy infected areas\n• Use crop rotation\n• Use disease-free seeds\n• Overhead watering should be avoided\n• Enough room should be provided for air circulation</string>
+
+    <!-- tip -->
+    <!-- tip - home -->
+    <string name="text_home_tip">VirusSafe Agro provides three main features-namely virus detection, learn, and toolkit.</string>
+    <string name="text_virus_detection_home_tip">• The virus in tomato leaves can be detected by using this feature.\n• The user can either click and upload the image for testing or can upload an image of a tomato leaf from the gallery.\n• On uploading the image, the user will get immediate feedback on whether the plant is infected or not.\n• The user gets to know the virus name by which the plant is infected.</string>
+    <string name="text_learn_home_tip">• Learn provides rich textual content regarding virus types, nutrient deficiencies, and tips to grow tomato plants in Victoria.\n• The user can know about the nine kinds of viruses, eleven nutrient deficiencies along with their description, symptoms, causes, and a photo gallery of infected leaves.\n• They can check their knowledge on readings by attempting a Quiz.</string>
+    <string name="text_toolkit_home_tip">• This feature is a smorgasbord for users to know about the strategies to control viruses, to locate nearby pesticide stores, learn environmental factors leading to virus spread, capability to count tomatoes on the plant as well as an option to differentiate between good and damaged tomato fruits.\n• Lastly, it provides updates about happenings in the farming industry.</string>
+    <!-- tip - learn -->
+    <string name="text_learn_tip">• The Learn functionality in virusSafe Agro provides rich textual content related to viruses, nutrient deficiencies, and tips to grow tomato plants in Victoria.</string>
+    <string name="text_virus_type_learn_tip">• This functionality provides content related to nine types of viruses in tomato plants.\n• It provides description, symptoms, causes along with the photo gallery of infected leaves.\n• After reading the content, there is a Quiz functionality to check users understanding.</string>
+    <string name="text_nutrient_learn_tip">• This functionality provides content related to eleven types of viruses in tomato plants.\n• It provides symptoms, reasons, factors, and correction methods to treat nutrient deficient plants.</string>
+    <string name="text_tomato_tip_learn_tip">• Know about best time to grow, harvest, sow tomato seeds in Victoria, and much  more.</string>
+    <!-- tip - virus list  -->
+    <string name="text_virus_list_tip">• There are nine types of viruses in tomato plants.\n• Each tile represents a different virus and provides a description, symptoms, causes, and photo gallery of infected leaves related to each virus.\n• After reading the content, there is a Quiz functionality to check the users understanding.\n• Users can find virus content quickly by using the search option.</string>
+    <!-- tip - nutrient -->
+    <string name="text_nutrient_tip">• There are eleven types of nutrient deficiencies in tomato plants.\n• Each tile represents a different nutrient deficiency and provides symptoms , factors, and correction methods to treat nutrient deficient plants.\n• Users can find nutrient deficiency content quickly by using the search option.</string>
+    <!-- tip - tomato tip -->
+    <string name="text_tomato_tip_tip">• Know about best time to grow, harvest, sow tomato seeds in Victoria, and much more.</string>
+    <!-- tip - toolkit -->
+    <string name="text_toolkit_tip">• This feature is a smorgasbord for users to know about the strategies to control viruses, to locate nearby pesticide stores, learn environmental factors leading to virus spread, capability to count tomatoes on the plant as well as an option to differentiate between good and damaged tomato fruits.\n• Lastly, it provides updates about happenings in the farming industry.</string>
+    <!-- tip - control strategy -->
+    <string name="text_control_strategy_tip">• Each virus can be controlled using chemical and non-chemical control strategies.\n• Find more about how the viruses can be treated/controlled at an earlier stage so that losses can be minimised.\n• Each virus type has different chemical and non-chemical ways to control the virus.</string>
+    <!-- tip - factor -->
+    <string name="text_factor_tip">• Factors provides two options-namely timing of cause and environmental conditions.\n• Timing of cause gives information about seasons in which the virus is most likely to infect the plants.\n• Environmental conditions provide information related to conditions that favour viruses in tomato plants.</string>
+    <!-- tip - insight -->
+    <string name="text_insight_tip">• The insights screen provides two options-namely News and Tweets.\n• Using the News functionality, the users can read about the happenings in the agricultural industry.\n• Tweets functionality allows the users to read tweets posted by people about farming.</string>
+    <!-- tip - map -->
+    <string name="text_map_tip">• The map shows nearby pesticide stores based on user’s location.\n• Users can easily navigate to the pesticide store using the directions option.\n• The user’s current location is denoted by a Tomato icon.\n• If the pesticide shop is closed the Spray icon is highlight by grey color else, is highlighted by purple color.</string>
+
+
 </resources>

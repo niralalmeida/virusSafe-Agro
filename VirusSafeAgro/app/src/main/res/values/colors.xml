@@ -23,6 +23,7 @@
     <color name="colorAccent">#69B4AC</color>
 <!--    <color name="colorDarkBackground">#707B7C</color>-->
     <color name="colorDarkBackground">#515A5A</color>
+    <color name="colorDarkForeground">#2E2E2E</color>
 
     <!-- for OnBoarding Screen -->
     <color name="colorWhite">#FFFFFF</color>

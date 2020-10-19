@@ -24,7 +24,6 @@ public class TimingOfCauseFragment extends Fragment {
     private View view;
 
     // views
-    private MotionLayout containerMotionLayout;
     private ImageButton card1ImageButton;
     private ImageButton card2ImageButton;
     private View line1View;
@@ -67,7 +66,6 @@ public class TimingOfCauseFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.containerMotionLayout = view.findViewById(R.id.ml_container_timing);
         this.card1ImageButton = view.findViewById(R.id.imgbtn_card1_timing);
         this.card2ImageButton = view.findViewById(R.id.imgbtn_card2_timing);
         this.line1View = view.findViewById(R.id.v_horizontal_line1_timing);
@@ -83,13 +81,11 @@ public class TimingOfCauseFragment extends Fragment {
                 line1View.setVisibility(View.GONE);
                 card1hideRelativeLayout.setVisibility(View.GONE);
                 card1ImageButton.setImageResource(R.drawable.arrow_down);
-//                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_card, R.id.end_show_card, 500);
             } else {
                 isCard1Open = true;
                 line1View.setVisibility(View.VISIBLE);
                 card1hideRelativeLayout.setVisibility(View.VISIBLE);
                 card1ImageButton.setImageResource(R.drawable.arrow_up);
-//                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_card, R.id.end_show_card, 500);
             }
         });
 
@@ -99,13 +95,11 @@ public class TimingOfCauseFragment extends Fragment {
                 line2View.setVisibility(View.GONE);
                 card2hideRelativeLayout.setVisibility(View.GONE);
                 card2ImageButton.setImageResource(R.drawable.arrow_down);
-//                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_card, R.id.end_show_card, 500);
             } else {
                 isCard2Open = true;
                 line2View.setVisibility(View.VISIBLE);
                 card2hideRelativeLayout.setVisibility(View.VISIBLE);
                 card2ImageButton.setImageResource(R.drawable.arrow_up);
-//                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_card, R.id.end_show_card, 500);
             }
         });
     }

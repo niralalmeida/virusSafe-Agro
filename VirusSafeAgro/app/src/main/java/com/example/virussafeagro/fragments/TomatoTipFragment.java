@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.AppResources;
 
 public class TomatoTipFragment extends Fragment {
     private MainActivity mainActivity;
@@ -69,6 +70,8 @@ public class TomatoTipFragment extends Fragment {
         this.mainActivity.getTitleTextView().setText(R.string.fragment_tomato_tip);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity) requireActivity());
+        // set tip
+        this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_TOMATO_GROWING_TIP);
 
         // initialize Views
         this.initializeViews();

@@ -11,6 +11,7 @@ public class AppResources {
     public final static int COlOR_RESULT_ITEM_RIGHT_BG = Color.rgb(212, 239, 223 );
     public final static int COlOR_RESULT_ITEM_WRONG_BG = Color.rgb(250, 219, 216);
 
+    public final static String ACTIVITY_TAG_HOME = "home";
     public final static String FRAGMENT_TAG_TOOLKIT = "toolkit";
     public final static String FRAGMENT_TAG_VIRUS_INFO = "virus_info";
     public final static String FRAGMENT_TAG_VIRUS_CHECK = "virus_check";
@@ -36,6 +37,7 @@ public class AppResources {
     public final static String FRAGMENT_TAG_LEARN = "learn";
     public final static String FRAGMENT_TAG_QUIZ = "quiz";
     public final static String FRAGMENT_TAG_TIMING = "timing_of_cause";
+    public final static String FRAGMENT_TAG_TOMATO_GROWING_TIP = "tomato_tip";
 
 
     public static int getVirusPictureDrawableId(int virusId) {

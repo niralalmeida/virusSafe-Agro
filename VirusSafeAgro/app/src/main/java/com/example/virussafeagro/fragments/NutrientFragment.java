@@ -64,6 +64,8 @@ public class NutrientFragment extends Fragment {
 //        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
+        // set tip
+        this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_NUTRIENT);
 
         // initialize views
         this.initializeViews();
