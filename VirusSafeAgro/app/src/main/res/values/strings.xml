@@ -177,9 +177,19 @@
     <string name="quiz_activity_transition_name">quiz</string>
     <string name="quiz_start_activity_transition_name">quiz_start</string>
     <string name="timing_transition_name">timing</string>
+    <string name="ec_transition_name">ec</string>
 
     <!-- timing -->
     <string name="text_eb_timing">Early blight (EB) usually occurs during early to mid tomato growing season</string>
     <string name="text_tssm_timing">Mites are favoured by hot dry weather</string>
     <string name="text_note_timing">All other viruses can occur any time during the growing season</string>
+
+    <!-- ec -->
+    <string name="text_note_ec">There are no such environmental conditions that give rise to SLS, TYLC, LB, and Ff viruses in tomato plants.</string>
+    <string name="text_1_ec">• High temperature\n• Day length\n• Intensity of light\n• Plant age at the time of infection</string>
+    <string name="text_2_ec">• Moderate temperatures\n• High moisture</string>
+    <string name="text_3_ec">• High temperatures\n• High humidity\n• Overhead irrigation\n• Frequent rainfall</string>
+    <string name="text_4_ec">• Occurs in any type of weather\n• Favours damp conditions\n• Strikes after heavy rainfall\n• Moderate to warm temperatures</string>
+    <string name="text_5_ec">• Mites are favoured by hot dry weather
+</string>
 </resources>

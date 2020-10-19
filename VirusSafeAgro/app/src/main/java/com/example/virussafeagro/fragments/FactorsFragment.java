@@ -90,14 +90,22 @@ public class FactorsFragment extends Fragment {
                     .replace(R.id.fl_fragments, timingOfCauseFragment)
                     .addToBackStack(null)
                     .commit();
-//            FragmentOperator.replaceFragment(requireActivity(), new TimingOfCauseFragment(), AppResources.FRAGMENT_TAG_TIMING);
         });
     }
 
     // environmental conditions
     private void setEnvironmentalConditionsTileOnClickListener() {
         this.environmentalConditionsRelativeLayout.setOnClickListener(llView -> {
-//            FragmentOperator.replaceFragment(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
+            EnvironmentConditionFragment environmentConditionFragment = new EnvironmentConditionFragment();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                environmentConditionFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(environmentalConditionsRelativeLayout, ViewCompat.getTransitionName(environmentalConditionsRelativeLayout))
+                    .replace(R.id.fl_fragments, environmentConditionFragment)
+                    .addToBackStack(null)
+                    .commit();
         });
     }
 
