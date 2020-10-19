@@ -25,6 +25,8 @@ public class QuizResultFragment extends Fragment {
     private TextView rightCountTextView;
     private TextView wrongCountTextView;
     private TextView timeOutCountTextView;
+    private TextView quizTakingTimeMinTextView;
+    private TextView quizTakingTimeSecTextView;
 
     @Nullable
     @Override
@@ -48,8 +50,11 @@ public class QuizResultFragment extends Fragment {
         this.showResultTitles(1000);
         // show overview
         this.showResultOverview(2800);
+
         // show Result Count
         this.showResultCount();
+        // show quiz taking time
+        this.showTakingTime();
     }
 
     private void initializeViews(){
@@ -57,6 +62,8 @@ public class QuizResultFragment extends Fragment {
         this.rightCountTextView = view.findViewById(R.id.tv_right_count_quiz_result);
         this.wrongCountTextView = view.findViewById(R.id.tv_wrong_count_quiz_result);
         this.timeOutCountTextView = view.findViewById(R.id.tv_time_out_count_quiz_result);
+        this.quizTakingTimeMinTextView = view.findViewById(R.id.tv_min_time_quiz_result);
+        this.quizTakingTimeSecTextView = view.findViewById(R.id.tv_sec_time_quiz_result);
     }
 
     // show titles
@@ -81,5 +88,14 @@ public class QuizResultFragment extends Fragment {
         this.wrongCountTextView.setText(wrongCountString);
         String timeOutCountString = "" + quizStartActivity.timeOutCount;
         this.timeOutCountTextView.setText(timeOutCountString);
+    }
+
+    // show quiz taking time
+    private void showTakingTime() {
+        int min = quizStartActivity.quizTakingTime / 60;
+        String minString = "" + min;
+        this.quizTakingTimeMinTextView.setText(minString);
+        String secString = "" + (quizStartActivity.quizTakingTime - min * 60);
+        this.quizTakingTimeSecTextView.setText(secString);
     }
 }

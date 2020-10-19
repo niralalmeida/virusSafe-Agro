@@ -44,6 +44,7 @@ public class QuizStartActivity extends AppCompatActivity {
     public int rightCount;
     public int wrongCount;
     public int timeOutCount;
+    public int quizTakingTime;
     public static boolean isQuizQuestionActivityClosed;
 
     @Override

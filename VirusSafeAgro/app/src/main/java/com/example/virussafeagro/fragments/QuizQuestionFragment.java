@@ -419,11 +419,16 @@ public class QuizQuestionFragment extends Fragment {
                     cancel();
                     doQuestionProgressBar.setVisibility(View.INVISIBLE);
                     doQuestionTextView.setVisibility(View.INVISIBLE);
+                    // add quiz taking time
+                    quizStartActivity.quizTakingTime += (timeForCountDown - currentTime);
                 }
             }
 
             @Override
             public void onFinish() {
+                // add quiz taking time
+                quizStartActivity.quizTakingTime += (timeForCountDown);
+                // set time out count
                 quizStartActivity.timeOutCount += 1;
                 // set user answer
                 List<String> timeOutUserAnswerList = new ArrayList<>();
