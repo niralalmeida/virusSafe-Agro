@@ -57,7 +57,7 @@
         android:textSize="25sp"
         android:textColor="@color/colorWhite" />
 
-    <!-- restul content -->
+    <!-- result content -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_overview_container_quiz_result"
         android:layout_width="0dp"
@@ -422,7 +422,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:background="@drawable/ripple_save_screenshot_quiz_result"
-                android:text="get result screenshot"
+                android:text="save result screenshot"
                 android:textColor="@color/colorWhite"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -431,7 +431,25 @@
 
     </androidx.core.widget.NestedScrollView>
 
-
+    <LinearLayout
+        android:id="@+id/ll_nsv_image_quiz_result"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="20dp"
+        android:gravity="center_horizontal"
+        android:background="@color/colorPrimaryDarkTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/img_nsv_quiz_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerInside"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
 

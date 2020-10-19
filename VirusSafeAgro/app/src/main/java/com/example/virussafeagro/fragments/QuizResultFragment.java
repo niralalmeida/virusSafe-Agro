@@ -1,12 +1,15 @@
 package com.example.virussafeagro.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,16 +24,18 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.virussafeagro.QuizActivity;
 import com.example.virussafeagro.QuizStartActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.ListQuizResultAdapter;
-import com.example.virussafeagro.adapters.QuizQuestionSlideAdapter;
 import com.example.virussafeagro.animation.MyAnimationBox;
+import com.example.virussafeagro.uitilities.ImageStorage;
 
 public class QuizResultFragment extends Fragment {
     private QuizStartActivity quizStartActivity;
     private View view;
+
+    // data
+    private Bitmap quizResultScreenshotBitmap;
 
     // views
     private MotionLayout containerMotionLayout;
@@ -43,6 +48,8 @@ public class QuizResultFragment extends Fragment {
     private Button redoButton;
     private Button saveScreenshotButton;
     private NestedScrollView quizResultNestedScrollView;
+    private LinearLayout quizResultNSVImageLinearLayout;
+    private ImageView quizResultNSVImageImageView;
 
     @Nullable
     @Override
@@ -78,6 +85,8 @@ public class QuizResultFragment extends Fragment {
         this.setRedoButtonOnClickListener();
         // set save screenshot button on click listener
         this.setSaveScreenshotButtonOnClickListener();
+        // set screenshot image on click listener
+        this.setScreenshotImageOnClickListener();
     }
 
     private void initializeViews(){
@@ -91,6 +100,8 @@ public class QuizResultFragment extends Fragment {
         this.redoButton = view.findViewById(R.id.btn_redo_quiz_result);
         this.saveScreenshotButton = view.findViewById(R.id.btn_save_screenshot_quiz_result);
         this.quizResultNestedScrollView = view.findViewById(R.id.nsv_overview_container_quiz_result);
+        this.quizResultNSVImageLinearLayout = view.findViewById(R.id.ll_nsv_image_quiz_result);
+        this.quizResultNSVImageImageView = view.findViewById(R.id.img_nsv_quiz_result);
     }
 
     // show titles
@@ -158,7 +169,33 @@ public class QuizResultFragment extends Fragment {
     // set save screenshot button on click listener
     private void setSaveScreenshotButtonOnClickListener() {
         this.saveScreenshotButton.setOnClickListener(saveScreenshotButtonView ->{
-
+            // hide the 2 bottom buttons
+            this.redoButton.setVisibility(View.GONE);
+            this.saveScreenshotButton.setVisibility(View.GONE);
+            // get nested scroll view bitmap
+            this.quizResultScreenshotBitmap = ImageStorage.longScreenshotGetBitmapByView(this.quizResultNestedScrollView);
+            // show the image
+            this.quizResultNSVImageImageView.setImageBitmap(this.quizResultScreenshotBitmap);
+            MyAnimationBox.configureTheAnimation(this.containerMotionLayout, R.id.start_show_quiz_result_image, R.id.end_show_quiz_result_image, 300);
+            // save the image
+            ImageStorage.saveImage(
+                    this.quizStartActivity,
+                    this.quizResultScreenshotBitmap,
+                    "Quiz Result Screenshot",
+                    "quiz",
+                    this.containerMotionLayout);
         });
     }
+
+    // set screenshot image on click listener
+    private void setScreenshotImageOnClickListener(){
+        this.quizResultNSVImageLinearLayout.setOnClickListener(llView -> {
+            // show the 2 bottom buttons
+            this.redoButton.setVisibility(View.VISIBLE);
+            this.saveScreenshotButton.setVisibility(View.VISIBLE);
+            // hide the image
+            MyAnimationBox.configureTheAnimation(this.containerMotionLayout, R.id.end_show_quiz_result_image, R.id.start_show_quiz_result_image, 300);
+        });
+    }
+
 }

@@ -34,6 +34,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.airbnb.lottie.utils.Utils;
 import com.example.virussafeagro.LaunchActivity;
 import com.example.virussafeagro.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.huantansheng.easyphotos.EasyPhotos;
 import com.huantansheng.easyphotos.utils.bitmap.SaveBitmapCallBack;
 
@@ -108,7 +109,7 @@ public class ImageStorage {
     }
 
     // save the image
-    public static void saveImage(Activity activity, Bitmap bitmap, String folderName, String fileNamePrefix) {
+    public static void saveImage(Activity activity, Bitmap bitmap, String folderName, String fileNamePrefix, View displayView) {
         EasyPhotos.saveBitmapToDir(
                 activity,
                 Environment.DIRECTORY_PICTURES + File.separator + folderName,
@@ -117,7 +118,7 @@ public class ImageStorage {
                 new SaveBitmapCallBack() {
                     @Override
                     public void onSuccess(File file) {
-                        Toast.makeText(activity, "Image Saved Successfully", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(displayView, "Image Saved In \"" + folderName + "\" album", Snackbar.LENGTH_SHORT).show();
                     }
 
                     @Override
