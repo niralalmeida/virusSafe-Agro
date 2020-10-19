@@ -36,16 +36,19 @@
     <string name="fragment_virus_multiple_choice">Multiple Choice Questions</string>
 
     <!--  subtitles - More  -->
-    <string name="fragment_t1_app_description_more">About virusSafe Phone App</string>
+    <string name="fragment_t1_app_description_more">App Info</string>
     <string name="fragment_t2_updates_more">Future Updates</string>
     <string name="fragment_t3_contact_more">Disclaimer</string>
     <string name="fragment_t4_disclaimer_more">Contact Us</string>
     <!--  contents - About App  -->
-    <string name="fragment_c1_app_description_about">
-        Viruses in tomato plants cause humongous damages in Victoria, which results in massive losses. virusSafe Agro aims to inculcate awareness among the farmers at an earlier age by providing an educational platform and ways to mitigate the risk of loss of their cultivation from viruses.
-        \n \nvirusSafe Agro is designed for people who are new to farming and wish to take tomato cultivation as their profession. It serves as an educational platform by providing information about the nine types of viruses in tomato plants, their description, symptoms, causes, prevention strategies. The user also has an option to check his knowledge about the content related to viruses.
-        \n \nThis app offers you a new way of uploading a picture of a tomato plant to check if it is infected or not. On uploading the picture, the user gets instant feedback on whether the plant is infected or not.
+    <string name="fragment_about_app_info">
+        Unfamiliar with the virus name which is infecting your tomato plant? Want to detect the virus at an earlier stage or learn about viruses and nutrient deficiencies in tomato plants? virusSafe Agro helps you to detect the virus along with control strategies which helps you to treat the plants thus minimising the chances of losses and damages.
     </string>
+    <string name="fragment_about_app_feature">
+        • Instantly detect a virus by which the plant is infected\n• Learn more about viruses and nutrient deficiencies in tomato plants\n• Get suggestions for treating infected plants using the chemical and non-chemical control strategies\n• Tips to grow tomato plants in Victoria\n• Know about the happenings in the agriculture industry\n• Locate pesticide stores in your vicinity\n• Easy-to-use interface with an info guide on what each screen offers\n
+    </string>
+    <string name="fragment_about_app_future_update">This app will contact a feature to detect virus on tomato fruits and a way to tackle it. Also, revisions will be made based on users feedback.</string>
+
     <string name="fragment_c2_updates_about">The app will contain a feature to check nutrient deficiency in tomato plants and way to tackle it, and revisions based on user feedback.</string>
     <string name="fragment_c4_contact_about">We are open to feedback about this application.</string>
     <string name="email_title">E-mail: </string>

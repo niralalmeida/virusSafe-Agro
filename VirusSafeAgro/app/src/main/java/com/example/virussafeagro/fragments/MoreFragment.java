@@ -21,9 +21,7 @@ public class MoreFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
 
-    private LinearLayout allViewLinearLayout;
     private LinearLayout aboutAppLinearLayout;
-    private LinearLayout updatesLinearLayout;
     private LinearLayout disclaimerLinearLayout;
     private LinearLayout contactUsLinearLayout;
 
@@ -63,16 +61,13 @@ public class MoreFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_more);
         this.aboutAppLinearLayout = view.findViewById(R.id.ll_about_app_more);
-        this.updatesLinearLayout = view.findViewById(R.id.ll_updates_more);
         this.disclaimerLinearLayout = view.findViewById(R.id.ll_disclaimer_more);
         this.contactUsLinearLayout = view.findViewById(R.id.ll_contact_us_more);
     }
 
     private void allTilesOnClickListener() {
         setAboutAppLinearLayoutOnClickListener();
-        setUpdatesLinearLayoutOnClickListener();
         setDisclaimerLinearLayoutOnClickListener();
         setContactUsLinearLayoutOnClickListener();
     }
@@ -80,12 +75,6 @@ public class MoreFragment extends Fragment {
     private void setAboutAppLinearLayoutOnClickListener() {
         this.aboutAppLinearLayout.setOnClickListener(view -> {
             FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new AboutAppFragment(), AppResources.FRAGMENT_TAG_ABOUT_APP);
-        });
-    }
-
-    private void setUpdatesLinearLayoutOnClickListener() {
-        this.updatesLinearLayout.setOnClickListener(view -> {
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new UpdatesFragment(), AppResources.FRAGMENT_TAG_UPDATES);
         });
     }
 

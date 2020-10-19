@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="40dp"
-    android:paddingBottom="20dp"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:scrollbars="vertical"
     android:scrollbarThumbVertical="@android:color/white"
-    android:background="@drawable/shape_more_fragment_bg_main"
-    tools:context=".fragments.AboutAppFragment" >
+    tools:context=".fragments.AboutAppFragment">
+
+<!--    android:layout_marginBottom="40dp"-->
+<!--    android:paddingBottom="20dp"-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -20,27 +20,106 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="20dp"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/img_aus_map_about_app"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/map" />
+            <!-- image -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp">
 
+                <ImageView
+                    android:id="@+id/img_aus_map_about_app"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/about_app_logo" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- app info -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="App Info"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:padding="20dp"
+                android:background="@drawable/shape_more_fragment_bg_main"
                 android:orientation="vertical">
 
                 <com.uncopt.android.widget.text.justify.JustifiedTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="8dp"
-                    android:text="@string/fragment_c1_app_description_about"
+                    android:text="@string/fragment_about_app_info"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <!-- app key feature -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="Key Features:"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="20dp"
+                android:background="@drawable/shape_more_fragment_bg_main"
+                android:orientation="vertical">
+
+                <com.uncopt.android.widget.text.justify.JustifiedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8dp"
+                    android:text="@string/fragment_about_app_feature"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <!-- update -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="Future Updates"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="20dp"
+                android:background="@drawable/shape_more_fragment_bg_main"
+                android:orientation="vertical">
+
+                <com.uncopt.android.widget.text.justify.JustifiedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8dp"
+                    android:text="@string/fragment_about_app_future_update"
                     android:textColor="@color/colorWhite"
                     android:textSize="15sp" />
 

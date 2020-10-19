@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
             // set activated
             moreRelativeLayout.setActivated(true);
             // change bg
-            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorBlack));
+            moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkBG));
             // change image tint color
 //            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_checked);
 //            moreImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
