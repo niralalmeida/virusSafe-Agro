@@ -16,10 +16,15 @@ import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.virussafeagro.QuizActivity;
 import com.example.virussafeagro.QuizStartActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.adapters.ListQuizResultAdapter;
+import com.example.virussafeagro.adapters.QuizQuestionSlideAdapter;
 import com.example.virussafeagro.animation.MyAnimationBox;
 
 public class QuizResultFragment extends Fragment {
@@ -63,6 +68,8 @@ public class QuizResultFragment extends Fragment {
         this.showResultCount();
         // show quiz taking time
         this.showTakingTime();
+        // show Question List
+        this.showQuestionList();
 
         // set redo button on click listener
         this.setRedoButtonOnClickListener();
@@ -110,6 +117,17 @@ public class QuizResultFragment extends Fragment {
         this.quizTakingTimeMinTextView.setText(minString);
         String secString = "" + (quizStartActivity.quizTakingTime - min * 60);
         this.quizTakingTimeSecTextView.setText(secString);
+    }
+
+    // show question list
+    private void showQuestionList() {
+        // show the recycler view
+        ListQuizResultAdapter listQuizResultAdapter = new ListQuizResultAdapter(QuizStartActivity.choiceQuestionModelFinalList, requireActivity());
+        RecyclerView recyclerViewForQuizResult = view.findViewById(R.id.rv_question_list_quiz_result);
+        recyclerViewForQuizResult.addItemDecoration(new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
+        recyclerViewForQuizResult.setAdapter(listQuizResultAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity());
+        recyclerViewForQuizResult.setLayoutManager(layoutManager);
     }
 
     // set redo button on click listener

@@ -1,7 +1,9 @@
 package com.example.virussafeagro.adapters;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,23 +35,25 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public CardView quizResultCardView;
+        public LinearLayout quizResultLinearLayout;
         public ImageView questionMarkImageVew;
         public TextView questionNoTextView;
-        public TextView questionContentTextView;
-        public ImageView questionImageView;
+        public com.uncopt.android.widget.text.justify.JustifiedTextView questionContentTextView;
+//        public ImageView questionImageView;
         public TextView userAnswersTextView;
         public LinearLayout correctAnswerLinearLayout;
         public TextView correctAnswersTextView;
-        public TextView explanationTextView;
+        public com.uncopt.android.widget.text.justify.JustifiedTextView explanationTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             this.quizResultCardView = itemView.findViewById(R.id.cv_each_quiz_result_final);
+            this.quizResultLinearLayout = itemView.findViewById(R.id.ll_each_quiz_result_final);
             this.questionMarkImageVew = itemView.findViewById(R.id.img_question_mark_quiz_result_final);
             this.questionNoTextView = itemView.findViewById(R.id.tv_question_no_quiz_result_final);
             this.questionContentTextView = itemView.findViewById(R.id.tv_question_content_quiz_result_final);
-            this.questionImageView = itemView.findViewById(R.id.img_question_quiz_result_final);
+//            this.questionImageView = itemView.findViewById(R.id.img_question_quiz_result_final);
             this.userAnswersTextView = itemView.findViewById(R.id.tv_user_answer_quiz_result_final);
             this.correctAnswerLinearLayout = itemView.findViewById(R.id.ll_correct_answer_quiz_result_final);
             this.correctAnswersTextView = itemView.findViewById(R.id.tv_correct_answer_quiz_result_final);
@@ -74,11 +78,20 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
         // question mark and background color
         if (DataComparison.checkTwoListHaveSameItems(choiceQuestionModel.getUserAnswerList(), choiceQuestionModel.getCorrectAnswerList())){
             viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_right_circle_black_50dp);
+            ColorStateList colorStateList = ContextCompat.getColorStateList(fragmentActivity, R.color.rightAnswerLight);
+            viewHolder.questionMarkImageVew.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            viewHolder.questionMarkImageVew.setImageTintList(colorStateList);
+            viewHolder.questionMarkImageVew.setVisibility(View.VISIBLE);
             viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.rightAnswerLight));
             viewHolder.correctAnswerLinearLayout.setVisibility(View.GONE);
         } else {
             viewHolder.questionMarkImageVew.setImageResource(R.drawable.ic_wrong_circle_black_50dp);
+            ColorStateList colorStateList = ContextCompat.getColorStateList(fragmentActivity, R.color.wrongAnswerLight);
+            viewHolder.questionMarkImageVew.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+            viewHolder.questionMarkImageVew.setImageTintList(colorStateList);
+            viewHolder.questionMarkImageVew.setVisibility(View.VISIBLE);
             viewHolder.quizResultCardView.setCardBackgroundColor(ContextCompat.getColor(fragmentActivity, R.color.wrongAnswerLight));
+//            viewHolder.quizResultLinearLayout.setBackgroundResource(R.drawable.shape_question_item_wrong_bg_quiz_result);
             // correct answer
             StringBuilder correctAnswerStringBuilder = new StringBuilder();
             // get correct answer content by the label
@@ -95,19 +108,19 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
         }
 
         // question no
-        String questionNoString = "Q" + (position + 1) + " - ";
+        String questionNoString = "Q" + (position + 1);
         viewHolder.questionNoTextView.setText(questionNoString);
 
         // question content
         viewHolder.questionContentTextView.setText(choiceQuestionModel.getChoiceQuestionContent());
 
         // question image
-        List<Bitmap> questionImageList = choiceQuestionModel.getChoiceQuestionImageList();
-        if (questionImageList != null && questionImageList.size() != 0 && (questionImageList.get(0) != null)){
-            // just one image can be shown for now
-            viewHolder.questionImageView.setImageBitmap(questionImageList.get(0));
-            viewHolder.questionImageView.setVisibility(View.VISIBLE);
-        }
+//        List<Bitmap> questionImageList = choiceQuestionModel.getChoiceQuestionImageList();
+//        if (questionImageList != null && questionImageList.size() != 0 && (questionImageList.get(0) != null)){
+//            // just one image can be shown for now
+//            viewHolder.questionImageView.setImageBitmap(questionImageList.get(0));
+//            viewHolder.questionImageView.setVisibility(View.VISIBLE);
+//        }
 
         // user answer
         StringBuilder userAnswerStringBuilder = new StringBuilder();

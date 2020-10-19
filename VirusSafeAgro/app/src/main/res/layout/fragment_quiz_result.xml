@@ -57,23 +57,6 @@
         android:textSize="25sp"
         android:textColor="@color/colorWhite" />
 
-    <Button
-        android:id="@+id/btn_save_screenshot_quiz_result"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        app:layout_constraintTop_toTopOf="@id/nsv_overview_container_quiz_result"
-        app:layout_constraintBottom_toTopOf="@id/nsv_overview_container_quiz_result"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:elevation="8dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:background="@drawable/ripple_save_screenshot_quiz_result"
-        android:text="save screenshot"
-        android:textColor="@color/colorWhite"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
     <!-- restul content -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_overview_container_quiz_result"
@@ -332,6 +315,7 @@
                     android:textSize="18sp"/>
             </LinearLayout>
 
+            <!-- virus card -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_virus_quiz_result"
                 android:layout_width="match_parent"
@@ -369,19 +353,28 @@
                         android:textColor="@color/colorWhite"/>
                 </RelativeLayout>
 
-
             </androidx.cardview.widget.CardView>
+
+            <!-- quiz questions -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_question_list_quiz_result"
+                android:layout_below="@id/cv_virus_quiz_result"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical" />
 
             <!-- redo button -->
             <Button
                 android:id="@+id/btn_redo_quiz_result"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_alignStart="@id/btn_save_screenshot_quiz_result"
+                android:layout_alignEnd="@id/btn_save_screenshot_quiz_result"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@id/cv_virus_quiz_result"
-                android:elevation="8dp"
+                android:layout_below="@id/rv_question_list_quiz_result"
+                android:elevation="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:background="@drawable/ripple_redo_quiz_result"
@@ -389,6 +382,24 @@
                 android:text="redo this quiz"
                 android:textColor="@color/colorWhite"
                 android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- save screenshot -->
+            <Button
+                android:id="@+id/btn_save_screenshot_quiz_result"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/btn_redo_quiz_result"
+                app:elevation="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/ripple_save_screenshot_quiz_result"
+                android:text="save screenshot"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

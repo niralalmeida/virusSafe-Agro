@@ -13,10 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
         android:padding="10dp"
-        card_view:cardBackgroundColor="@color/rightAnswerLight"
+        card_view:cardBackgroundColor="@color/colorWhite"
         card_view:cardCornerRadius="15dp">
 
         <LinearLayout
+            android:id="@+id/ll_each_quiz_result_final"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
@@ -33,9 +34,12 @@
 
                 <ImageView
                     android:id="@+id/img_question_mark_quiz_result_final"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:padding="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="2dp"
+                    android:background="@drawable/shape_question_icon_bg_quiz_result"
+                    android:tint="@color/colorWhite"
                     android:src="@drawable/ic_right_circle_white_50dp"/>
 
                 <TextView
@@ -43,16 +47,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
                     android:textSize="20sp"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold"
-                    android:text="Q# - " />
+                    android:text="Q#" />
 
-                <TextView
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:alpha="0.3"
+                    android:background="@color/colorWhite" />
+
+                <com.uncopt.android.widget.text.justify.JustifiedTextView
                     android:id="@+id/tv_question_content_quiz_result_final"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textSize="15sp"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold"
@@ -61,29 +78,27 @@
             </LinearLayout>
 
             <!-- question image -->
-            <ImageView
-                android:id="@+id/img_question_quiz_result_final"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/default_leaf"
-                android:visibility="gone"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/img_question_quiz_result_final"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:layout_marginStart="50dp"-->
+<!--                android:layout_marginEnd="50dp"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:src="@drawable/default_leaf"-->
+<!--                android:visibility="gone"/>-->
 
             <View
                 android:id="@+id/v_line_quiz_result_final"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:alpha="0.3"
-                android:background="@color/colorTransparentWhiteForText"
+                android:background="@color/colorWhite"
                 android:layout_gravity="center_horizontal" />
 
             <!-- user answer -->
@@ -100,8 +115,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:text="your answer : "
-                    android:textColor="#85000000"
+                    android:text="YOUR ANSWER : "
+                    android:textColor="@color/colorWhite"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -131,8 +146,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:text="correct answer : "
-                    android:textColor="#85000000"
+                    android:text="CORRECT ANSWER : "
+                    android:textColor="@color/colorWhite"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -159,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="EXPLANATION : "
-                    android:textColor="#85000000"
+                    android:textColor="@color/colorWhite"
                     android:textSize="13sp"
                     android:textStyle="bold"/>
 
@@ -172,7 +187,7 @@
                 android:layout_marginEnd="50dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.uncopt.android.widget.text.justify.JustifiedTextView
                     android:id="@+id/tv_explanation_quiz_result_final"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -184,7 +199,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
     </androidx.cardview.widget.CardView>
 
