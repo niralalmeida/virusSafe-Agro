@@ -91,14 +91,14 @@ public class ControlStrategiesFragment extends Fragment {
     // non-chemical
     private void setNonChemicalTileOnClickListener() {
         this.nonChemicalRelativeLayout.setOnClickListener(llView -> {
-            VirusInfoListFragment virusInfoListFragment = new VirusInfoListFragment();
+            NonChemicalControlFragment nonChemicalControlFragment = new NonChemicalControlFragment();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                virusInfoListFragment.setSharedElementEnterTransition(
+                nonChemicalControlFragment.setSharedElementEnterTransition(
                         TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
             }
             mainActivity.getSupportFragmentManager().beginTransaction()
                     .addSharedElement(nonChemicalRelativeLayout, ViewCompat.getTransitionName(nonChemicalRelativeLayout))
-                    .replace(R.id.fl_fragments, virusInfoListFragment)
+                    .replace(R.id.fl_fragments, nonChemicalControlFragment)
                     .addToBackStack(null)
                     .commit();
         });
