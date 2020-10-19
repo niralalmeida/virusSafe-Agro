@@ -63,17 +63,34 @@
                     android:alpha="0.3"
                     android:background="@color/colorWhite" />
 
-                <com.uncopt.android.widget.text.justify.JustifiedTextView
-                    android:id="@+id/tv_question_content_quiz_result_final"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold"
-                    android:text="This is the question content. This is the question content" />
+                    android:orientation="vertical" >
+
+                    <com.uncopt.android.widget.text.justify.JustifiedTextView
+                        android:id="@+id/tv_question_content_quiz_result_final"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorBlack"
+                        android:textStyle="bold"
+                        android:text="This is the question content. This is the question content" />
+
+                    <TextView
+                        android:id="@+id/tv_options_quiz_result_final"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="13sp"
+                        android:textColor="@color/colorBlack"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -96,8 +113,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@color/colorWhite"
                 android:layout_gravity="center_horizontal" />
 

@@ -39,6 +39,7 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
         public ImageView questionMarkImageVew;
         public TextView questionNoTextView;
         public com.uncopt.android.widget.text.justify.JustifiedTextView questionContentTextView;
+        public TextView optionsTextView;
 //        public ImageView questionImageView;
         public TextView userAnswersTextView;
         public LinearLayout correctAnswerLinearLayout;
@@ -53,6 +54,7 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
             this.questionMarkImageVew = itemView.findViewById(R.id.img_question_mark_quiz_result_final);
             this.questionNoTextView = itemView.findViewById(R.id.tv_question_no_quiz_result_final);
             this.questionContentTextView = itemView.findViewById(R.id.tv_question_content_quiz_result_final);
+            this.optionsTextView = itemView.findViewById(R.id.tv_options_quiz_result_final);
 //            this.questionImageView = itemView.findViewById(R.id.img_question_quiz_result_final);
             this.userAnswersTextView = itemView.findViewById(R.id.tv_user_answer_quiz_result_final);
             this.correctAnswerLinearLayout = itemView.findViewById(R.id.ll_correct_answer_quiz_result_final);
@@ -114,6 +116,17 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
         // question content
         viewHolder.questionContentTextView.setText(choiceQuestionModel.getChoiceQuestionContent());
 
+        // options
+        StringBuilder optionsStringBuilder = new StringBuilder();
+        for (ChoiceOptionModel choiceOptionModel : choiceQuestionModel.getChoiceQuestionOptionList()){
+            if (choiceQuestionModel.getChoiceQuestionOptionList().indexOf(choiceOptionModel) != (choiceQuestionModel.getChoiceQuestionOptionList().size() - 1)) {
+                optionsStringBuilder.append(choiceOptionModel.getChoiceOptionLabel()).append(". ").append(choiceOptionModel.getChoiceOptionContent()).append("\n");
+            } else {
+                optionsStringBuilder.append(choiceOptionModel.getChoiceOptionLabel()).append(". ").append(choiceOptionModel.getChoiceOptionContent());
+            }
+        }
+        viewHolder.optionsTextView.setText(optionsStringBuilder.toString());
+
         // question image
 //        List<Bitmap> questionImageList = choiceQuestionModel.getChoiceQuestionImageList();
 //        if (questionImageList != null && questionImageList.size() != 0 && (questionImageList.get(0) != null)){
@@ -122,7 +135,7 @@ public class ListQuizResultAdapter extends RecyclerView.Adapter<ListQuizResultAd
 //            viewHolder.questionImageView.setVisibility(View.VISIBLE);
 //        }
 
-        // user answer
+        // options + user answer
         StringBuilder userAnswerStringBuilder = new StringBuilder();
             // get user answer content by the label
         if(choiceQuestionModel.getUserAnswerList() != null){
