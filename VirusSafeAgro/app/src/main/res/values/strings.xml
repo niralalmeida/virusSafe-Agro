@@ -107,8 +107,8 @@
     <string name="text_sub_title_for_others_learn">Other Knowledge</string>
     <string name="text_sub_title_for_main_functions_toolkit">Main Functions</string>
     <string name="text_sub_title_for_other_functions_toolkit">Other Functions</string>
-    <string name="text_title_virus_learn">VIRUS</string>
-    <string name="text_content_virus_learn">There are 9 types of viruses in tomato plants. Tap on the tile to learn something about them.</string>
+    <string name="text_title_virus_learn">VIRUS TYPE</string>
+    <string name="text_content_virus_learn">There are 9 types of viruses in tomato plants. Tap on the tile to learn more about them.</string>
     <string name="text_title_nutrient_learn">NUTRIENT DEFICIENCIES</string>
     <string name="text_content_nutrient_learn">There are 11 types of nutrient deficiencies in tomato plants. Tap on the tile to read about the nutrient deficiencies in tomato plants.</string>
     <string name="text_title_tomato_growth_tip_learn">TOMATO GROWING TIPS</string>
