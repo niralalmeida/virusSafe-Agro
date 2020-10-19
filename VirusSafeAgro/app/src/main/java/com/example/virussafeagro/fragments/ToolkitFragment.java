@@ -1,6 +1,8 @@
 package com.example.virussafeagro.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
@@ -114,28 +117,68 @@ public class ToolkitFragment extends Fragment {
     // control strategies
     private void setControlStrategiesOnClickListener() {
         this.controlStrategiesLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new ControlStrategiesFragment(), AppResources.FRAGMENT_TAG_CONTROL_STRATEGIES);
+            ControlStrategiesFragment controlStrategiesFragment = new ControlStrategiesFragment();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                controlStrategiesFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(controlStrategiesLinearLayout, ViewCompat.getTransitionName(controlStrategiesLinearLayout))
+                    .replace(R.id.fl_fragments, controlStrategiesFragment)
+                    .addToBackStack(null)
+                    .commit();
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new ControlStrategiesFragment(), AppResources.FRAGMENT_TAG_CONTROL_STRATEGIES);
         });
     }
 
     // pesticide stores
     private void setPesticideStoresTileOnClickListener() {
         this.pesticideStoresLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new PesticideStoreMapFragment(), AppResources.FRAGMENT_TAG_PESTICIDE_STORES);
+            PesticideStoreMapFragment pesticideStoreMapFragment = new PesticideStoreMapFragment();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                pesticideStoreMapFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(pesticideStoresLinearLayout, ViewCompat.getTransitionName(pesticideStoresLinearLayout))
+                    .replace(R.id.fl_fragments, pesticideStoreMapFragment)
+                    .addToBackStack(null)
+                    .commit();
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new PesticideStoreMapFragment(), AppResources.FRAGMENT_TAG_PESTICIDE_STORES);
         });
     }
 
     // factors
     private void setFactorsTileOnClickListener() {
         this.factorsLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new FactorsFragment(), AppResources.FRAGMENT_TAG_FACTORS);
+            FactorsFragment factorsFragment = new FactorsFragment();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                factorsFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(factorsLinearLayout, ViewCompat.getTransitionName(factorsLinearLayout))
+                    .replace(R.id.fl_fragments, factorsFragment)
+                    .addToBackStack(null)
+                    .commit();
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new FactorsFragment(), AppResources.FRAGMENT_TAG_FACTORS);
         });
     }
 
     // insights
     private void setInsightsTileOnClickListener() {
         this.insightsLinearLayout.setOnClickListener(llView -> {
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new InsightsFragment(), AppResources.FRAGMENT_TAG_INSIGHTS);
+            InsightsFragment insightsFragment = new InsightsFragment();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                insightsFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(insightsLinearLayout, ViewCompat.getTransitionName(insightsLinearLayout))
+                    .replace(R.id.fl_fragments, insightsFragment)
+                    .addToBackStack(null)
+                    .commit();
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new InsightsFragment(), AppResources.FRAGMENT_TAG_INSIGHTS);
         });
     }
 

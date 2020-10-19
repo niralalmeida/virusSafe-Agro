@@ -1,13 +1,17 @@
 package com.example.virussafeagro.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
@@ -82,7 +86,17 @@ public class InsightsFragment extends Fragment {
             bundle.putBoolean("fromInsights", true);
             NewsFragment newsFragment = new NewsFragment();
             newsFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), newsFragment, AppResources.FRAGMENT_TAG_NEWS_LIST);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                newsFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            ImageView newsIconImageView = view.findViewById(R.id.img_icon_news);
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(newsIconImageView, ViewCompat.getTransitionName(newsIconImageView))
+                    .replace(R.id.fl_fragments, newsFragment)
+                    .addToBackStack(null)
+                    .commit();
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), newsFragment, AppResources.FRAGMENT_TAG_NEWS_LIST);
         });
     }
 
@@ -93,7 +107,17 @@ public class InsightsFragment extends Fragment {
             bundle.putBoolean("fromInsights", true);
             TweetFragment tweetFragment = new TweetFragment();
             tweetFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), tweetFragment, AppResources.FRAGMENT_TAG_TWEET_LIST);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                tweetFragment.setSharedElementEnterTransition(
+                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+            }
+            ImageView tweetsIconImageView = view.findViewById(R.id.img_icon_tweets);
+            mainActivity.getSupportFragmentManager().beginTransaction()
+                    .addSharedElement(tweetsIconImageView, ViewCompat.getTransitionName(tweetsIconImageView))
+                    .replace(R.id.fl_fragments, tweetFragment)
+                    .addToBackStack(null)
+                    .commit();
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), tweetFragment, AppResources.FRAGMENT_TAG_TWEET_LIST);
         });
     }
 

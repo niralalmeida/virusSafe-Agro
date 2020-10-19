@@ -8,6 +8,7 @@
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/map_widget"
+        android:transitionName="@string/map_transition_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +12,7 @@
         android:id="@+id/rl_all_views_insights"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:transitionName="@string/insight_transition_name"
         android:padding="15dp">
 
         <!-- news -->
@@ -45,10 +47,12 @@
                 android:layout_height="75dp">
 
                 <ImageView
+                    android:id="@+id/img_icon_news"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
+                    android:transitionName="@string/news_transition_name"
                     android:tint="@color/iconInsightNews"
                     android:src="@drawable/news"/>
 
@@ -103,10 +107,12 @@
                 android:layout_height="75dp">
 
                 <ImageView
+                    android:id="@+id/img_icon_tweets"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
+                    android:transitionName="@string/tweets_transition_name"
                     android:tint="@color/iconInsightTweets"
                     android:src="@drawable/twitter"/>
 

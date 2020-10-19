@@ -176,8 +176,14 @@
     <!-- transition name -->
     <string name="quiz_activity_transition_name">quiz</string>
     <string name="quiz_start_activity_transition_name">quiz_start</string>
+    <string name="factor_transition_name">factor</string>
     <string name="timing_transition_name">timing</string>
     <string name="ec_transition_name">ec</string>
+    <string name="insight_transition_name">insight</string>
+    <string name="map_transition_name">map</string>
+    <string name="control_transition_name">control</string>
+    <string name="news_transition_name">news</string>
+    <string name="tweets_transition_name">tweets</string>
 
     <!-- timing -->
     <string name="text_eb_timing">Early blight (EB) usually occurs during early to mid tomato growing season</string>
