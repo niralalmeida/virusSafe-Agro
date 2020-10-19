@@ -11,6 +11,7 @@
         android:id="@+id/ll_list_nutrient_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:transitionName="@string/nutrient_transition_name"
         android:padding="10dp"
         android:orientation="vertical">
 

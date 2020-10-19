@@ -25,6 +25,7 @@
     <string name="fragment_virus_quiz">Take Quiz</string>
     <string name="fragment_pesticide_store_map">Pesticide Map</string>
     <string name="fragment_timing_of_cause">Timing</string>
+    <string name="fragment_tomato_tip">Tomato Tips</string>
 
     <!-- for on boarding  -->
     <string name="button_launch_app_boarding">Enter</string>
@@ -184,6 +185,9 @@
     <string name="control_transition_name">control</string>
     <string name="news_transition_name">news</string>
     <string name="tweets_transition_name">tweets</string>
+    <string name="virus_transition_name">virus</string>
+    <string name="nutrient_transition_name">nutrient</string>
+    <string name="tomato_tip_transition_name">tomato_tip</string>
 
     <!-- timing -->
     <string name="text_eb_timing">Early blight (EB) usually occurs during early to mid tomato growing season</string>
@@ -196,6 +200,15 @@
     <string name="text_2_ec">• Moderate temperatures\n• High moisture</string>
     <string name="text_3_ec">• High temperatures\n• High humidity\n• Overhead irrigation\n• Frequent rainfall</string>
     <string name="text_4_ec">• Occurs in any type of weather\n• Favours damp conditions\n• Strikes after heavy rainfall\n• Moderate to warm temperatures</string>
-    <string name="text_5_ec">• Mites are favoured by hot dry weather
-</string>
+    <string name="text_5_ec">• Mites are favoured by hot dry weather</string>
+
+    <!-- tomato tip -->
+    <string name="text_1_tomato_tip">• Plant from August</string>
+    <string name="text_2_tomato_tip">• Harvest until end of March</string>
+    <string name="text_3_tomato_tip">• Requires partial-full sun\n• Recommended to have shade during hottest Victorian summer days</string>
+    <string name="text_4_tomato_tip">• Recommended to use sheep manure as tomatoes are considered to be heavy feeders.</string>
+    <string name="text_5_tomato_tip">• Seeds can be sown in the start of November to December.</string>
+    <string name="text_6_tomato_tip">• Should be watered regularly\n• The plant may lose fruit in dry period\n• Base of the plant should be deeply watered\n• Avoid planting the foliage</string>
+    <string name="text_7_tomato_tip">• Plants should be feed regularly with organic fertilisers</string>
+    <string name="text_8_tomato_tip">• Mulching helps to keep the water in\n• It keeps the weeds out</string>
 </resources>
