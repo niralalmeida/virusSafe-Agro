@@ -12,7 +12,6 @@ connection = pymysql.connect(endpoint, user=username, passwd=password, db=databa
 
 
 def lambda_handler(event, context):
-
     # 1. get data from MySql database
     cursor = connection.cursor()
     cursor.execute('SELECT * from nutrient')
