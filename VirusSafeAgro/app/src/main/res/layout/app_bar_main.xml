@@ -84,7 +84,6 @@
                     <!-- take quiz -->
                     <RelativeLayout
                         android:id="@+id/rl_quiz_toolbar"
-                        android:visibility="gone"
                         android:background="@drawable/ripple_btn_green_bg_toolbar"
                         android:layout_width="65dp"
                         android:layout_height="match_parent">
@@ -93,6 +92,7 @@
                             android:id="@+id/btn_quiz_toolbar"
                             android:layout_width="55dp"
                             android:layout_height="30dp"
+                            android:visibility="gone"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
                             android:background="@drawable/ripple_quiz_button_toolbar"

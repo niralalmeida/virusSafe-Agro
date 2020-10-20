@@ -21,6 +21,7 @@
     <string name="fragment_virus_check">Virus Check</string>
     <string name="fragment_virus_check_result">Detect Result</string>
     <string name="fragment_virus_detail">Virus Detail</string>
+    <string name="fragment_virus_detail_new">Virus Detail</string>
     <string name="fragment_virus_info">Virus Type</string>
     <string name="fragment_virus_quiz">Take Quiz</string>
     <string name="fragment_pesticide_store_map">Pesticide Map</string>
@@ -192,6 +193,7 @@
     <string name="tomato_tip_transition_name">tomato_tip</string>
     <string name="chemical_control_transition_name">chemical_control</string>
     <string name="non_chemical_control_transition_name">non_chemical_control</string>
+    <string name="virus_detail_new_transition_name">virus_detail_new</string>
 
     <!-- timing -->
     <string name="text_eb_timing">Early blight (EB) usually occurs during early to mid tomato growing season</string>

@@ -7,11 +7,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +48,6 @@ public class VirusInfoListFragment extends Fragment {
 
     private VirusInfoListViewModel virusInfoListViewModel;
 //    private SharedPreferenceProcess spp;
-    private List<VirusModel> virusModelInfoList;
 
     private LinearLayout processBarLinearLayout;
     private LinearLayout networkErrorLinearLayout;
@@ -76,13 +78,14 @@ public class VirusInfoListFragment extends Fragment {
 
         // initialize views
         this.initializeViews();
-        this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.virusGridViewLinearLayout.setVisibility(View.GONE);
 
         // set menu selected item
         if (!this.mainActivity.isLearnIconClicked()) {
             this.mainActivity.setLearnButton(true);
         }
+
+        // initialize view model
+        this.initializeVirusInfoViewModel();
 
         return this.view;
     }
@@ -91,39 +94,16 @@ public class VirusInfoListFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // initialize virus list
-        virusModelInfoList = new ArrayList<>();
-        // initialize view model
-        this.initializeVirusInfoViewModel();
-        // initialize SharedPreferenceProcess
-//        this.initializeSharedPreferenceProcess();
-
-//        if (spp.getVirusModelListFromSP().get(0).getVirusFullName().isEmpty()) {
+        if (MainActivity.virusModelInfoList.isEmpty()) {
             // find virus info list in new Thread
-        this.findVirusInfoListFromDB();
-//        } else {
-//            GetVirusModelListFromSPAsyncTask getVirusModelListFromSPAsyncTask = new GetVirusModelListFromSPAsyncTask();
-//            getVirusModelListFromSPAsyncTask.execute();
-//        }
-
-        // observe VirusModel Info List Live Data
-        this.observeVirusInfoListLD();
+            this.findVirusInfoListFromDB();
+            // observe VirusModel Info List Live Data
+            this.observeVirusInfoListLD();
+        } else {
+            // show the virus list
+            displayVirusCardList();
+        }
     }
-
-//    private class GetVirusModelListFromSPAsyncTask extends AsyncTask<Void, Void, Void> {
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//            // get the virus list from spp
-//            virusModelInfoList = spp.getVirusModelListFromSP();
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//            // show the virus list
-//            displayVirusCardList();
-//        }
-//    }
 
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
@@ -138,11 +118,9 @@ public class VirusInfoListFragment extends Fragment {
         this.virusInfoListViewModel.initiateSharedPreferenceProcess(requireContext());
     }
 
-    //    private void initializeSharedPreferenceProcess() {
-//        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireContext());
-//    }
-
     private void findVirusInfoListFromDB() {
+        this.processBarLinearLayout.setVisibility(View.VISIBLE);
+        this.virusGridViewLinearLayout.setVisibility(View.GONE);
         this.virusInfoListViewModel.processFindingVirusInfoList();
     }
 
@@ -155,8 +133,8 @@ public class VirusInfoListFragment extends Fragment {
                     // show network error image
                     MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);
                 } else {
-                    virusModelInfoList.clear();
-                    virusModelInfoList = resultVirusInfoList;
+                    MainActivity.virusModelInfoList.clear();
+                    MainActivity.virusModelInfoList = resultVirusInfoList;
 
                     // show the virus list
                     displayVirusCardList();
@@ -171,10 +149,10 @@ public class VirusInfoListFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(virusGridViewLinearLayout, 1000);
 
         // show grid view
-        gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), virusModelInfoList);
+        gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), MainActivity.virusModelInfoList);
         virusGridView.setAdapter(gridVirusInfoAdapter);
         // set GridView Item VirusCard Click Listener
-        setGridViewItemVirusCardClickListener(virusModelInfoList);
+        setGridViewItemVirusCardClickListener(MainActivity.virusModelInfoList);
 
         // display search function
         mainActivity.displaySearch();
@@ -205,11 +183,11 @@ public class VirusInfoListFragment extends Fragment {
     private void displayVirusModelListBySearching(String searchInput) {
         List<VirusModel> searchedVirusModelList = new ArrayList<>();
         if (!searchInput.isEmpty()) {
-            List<String> VirusStringInfoList = DataConverter.virusModelInfoListToVirusStringInfoList(virusModelInfoList);
+            List<String> VirusStringInfoList = DataConverter.virusModelInfoListToVirusStringInfoList(MainActivity.virusModelInfoList);
             for (String VirusString : VirusStringInfoList) {
                 if (VirusString.toLowerCase().contains(searchInput.toLowerCase())) {
                     int virusId = Integer.parseInt(VirusString.substring(0, 1));
-                    for (VirusModel virusModel : virusModelInfoList) {
+                    for (VirusModel virusModel : MainActivity.virusModelInfoList) {
                         if (virusModel.getVirusId() == virusId) {
                             searchedVirusModelList.add(virusModel);
                             break;
@@ -218,7 +196,7 @@ public class VirusInfoListFragment extends Fragment {
                 }
             }
         } else {
-            searchedVirusModelList = virusModelInfoList;
+            searchedVirusModelList = MainActivity.virusModelInfoList;
         }
         // show grid view
         gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), searchedVirusModelList);
@@ -233,6 +211,21 @@ public class VirusInfoListFragment extends Fragment {
             Bundle bundle = new Bundle();
             VirusModel currentVirusModel = virusModelListForListener.get(position);
             bundle.putParcelable("currentVirusModel", currentVirusModel);
+
+//            VirusDetailNewFragment virusDetailNewFragment = new VirusDetailNewFragment();
+//            virusDetailNewFragment.setArguments(bundle);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                virusDetailNewFragment.setSharedElementEnterTransition(
+//                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+//            }
+//            CardView virusCardView = virusGridView.getChildAt(position).findViewById(R.id.cv_virus_info_list);
+//            mainActivity.getSupportFragmentManager().beginTransaction()
+//                    .addSharedElement(virusCardView, ViewCompat.getTransitionName(virusCardView))
+//                    .replace(R.id.fl_fragments, virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW)
+//                    .addToBackStack(null)
+//                    .commit();
+
+
             VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
             virusDetailFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
@@ -246,9 +239,10 @@ public class VirusInfoListFragment extends Fragment {
         VirusInfoListViewModel.FindVirusInfoListAsyncTask findVirusInfoListAsyncTask = this.virusInfoListViewModel.getCurrentFindVirusInfoListAsyncTask();
         findVirusInfoListAsyncTask.cancel(true);
 
-        super.onPause();
         this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
         this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
+
+        super.onPause();
 
         // hide keyboard
         KeyboardToggleUtils.hideKeyboard(mainActivity);

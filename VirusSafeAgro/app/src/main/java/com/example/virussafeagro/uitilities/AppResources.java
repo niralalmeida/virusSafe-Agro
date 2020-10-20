@@ -23,6 +23,7 @@ public class AppResources {
     public final static String FRAGMENT_TAG_DISCLAIMER = "disclaimer";
     public final static String FRAGMENT_TAG_CONTACT_US = "contact_us";
     public final static String FRAGMENT_TAG_VIRUS_DETAIL = "virus_detail";
+    public final static String FRAGMENT_TAG_VIRUS_DETAIL_NEW = "virus_detail_new";
     public final static String FRAGMENT_TAG_NUTRIENT_DETAIL = "nutrient_detail";
     public final static String FRAGMENT_TAG_VIRUS_QUIZ_QUESTION = "virus_quiz_question";
     public final static String FRAGMENT_TAG_VIRUS_QUIZ_RESULT = "virus_quiz_result";

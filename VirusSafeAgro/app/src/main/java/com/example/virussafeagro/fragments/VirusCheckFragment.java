@@ -36,14 +36,19 @@ import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.animation.MyAnimationBox;
+import com.example.virussafeagro.uitilities.GlideEngine;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.huantansheng.easyphotos.EasyPhotos;
+import com.huantansheng.easyphotos.models.album.entity.Photo;
 import com.mindorks.paracamera.Camera;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -54,6 +59,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private MainActivity mainActivity;
     private View view;
     private Camera camera;
+    private List<Photo> photosSelected = new ArrayList<>();
 
     // bottom sheet views
     private BottomSheetBehavior<FrameLayout> behavior;
@@ -77,7 +83,8 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private boolean isUploadImageButtonClicked;
 
     private final int RESULT_OK = -1;
-    public final int REQUEST_OPEN_CAMERA = Camera.REQUEST_TAKE_PHOTO;
+//    public final int REQUEST_OPEN_CAMERA = Camera.REQUEST_TAKE_PHOTO;
+    public final int REQUEST_OPEN_CAMERA = 1234;
     public final static int REQUEST_CHOOSE_GALLERY = 5678;
 
     public VirusCheckFragment() {
@@ -210,8 +217,18 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private void setCameraButtonOnClickListener() {
         this.cameraLinearLayout.setOnClickListener(view -> {
             // open camera
-            openCamera();
+//            openCamera();
+            startNewCamera();
         });
+    }
+
+    private void startNewCamera() {
+//        EasyPhotos.createAlbum(this, true, GlideEngine.getInstance())
+//                .setFileProviderAuthority("com.example.virussafeagro")
+//                .start(REQUEST_OPEN_CAMERA);
+        EasyPhotos.createCamera(this)
+                .setFileProviderAuthority("com.example.virussafeagro")
+                .start(REQUEST_OPEN_CAMERA);
     }
 
     private void openCamera() {
@@ -244,13 +261,24 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         // for camera result
-        if (requestCode == Camera.REQUEST_TAKE_PHOTO) {
-            Bitmap bitmap = camera.getCameraBitmap();
-            if (bitmap != null) {
-                this.uploadImageImageView.setImageBitmap(bitmap);
-            } else {
-                Toast.makeText(requireActivity(), "Picture not taken!", Toast.LENGTH_SHORT).show();
-            }
+        if (requestCode == REQUEST_OPEN_CAMERA) {
+            ArrayList<Photo> resultPhotos = data.getParcelableArrayListExtra(EasyPhotos.RESULT_PHOTOS);
+            photosSelected.clear();
+            assert resultPhotos != null;
+            photosSelected.addAll(resultPhotos);
+
+            String imagePath = photosSelected.get(0).path;
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath,bmOptions);
+//            bitmap = Bitmap.createScaledBitmap(bitmap,parent.getWidth(),parent.getHeight(),true);
+            this.uploadImageImageView.setImageBitmap(bitmap);
+
+//            Bitmap bitmap = camera.getCameraBitmap();
+//            if (bitmap != null) {
+//                this.uploadImageImageView.setImageBitmap(bitmap);
+//            } else {
+//                Toast.makeText(requireActivity(), "Picture not taken!", Toast.LENGTH_SHORT).show();
+//            }
         }
         // for album result
         if(requestCode == REQUEST_CHOOSE_GALLERY){

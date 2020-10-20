@@ -11,6 +11,7 @@ import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -43,6 +44,7 @@ import com.example.virussafeagro.fragments.VirusCheckResultFragment;
 import com.example.virussafeagro.fragments.VirusDetailFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizQuestionFragment;
+import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
@@ -54,12 +56,18 @@ import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private MainActivity mainActivity = this;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private boolean isFromPasswordActivity;
     private boolean isFromOnBoardingActivity;
     private SharedPreferenceProcess spp;
+
+    // data
+    public static List<VirusModel> virusModelInfoList;
 
     // toolbar
     private Toolbar toolbar;
@@ -81,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout moreRelativeLayout;
     private ImageView moreImageView;
     // toolbar - quiz
-    private RelativeLayout quizRelativeLayout;
     private Button quizButton;
 //    private View lineView2;
 //    private View lineView3;
@@ -122,8 +129,9 @@ public class MainActivity extends AppCompatActivity {
     public static int TOOLBAR_BACK_BUTTON_WIDTH;
     public static int TOOLBAR_SEARCH_BUTTON_WIDTH;
     public static int TOOLBAR_SEARCH_CLOSE_BUTTON_WIDTH;
-    public static int TOOLBAR_TIP_MORE_BUTTONS_WIDTH;
-    public static int TOOLBAR_SEARCH_EDIT_AND_CLOSE;
+    public static int TOOLBAR_QUIZ_TIP_MORE_BUTTONS_WIDTH;
+    public static int TOOLBAR_TIP_MORE_BUTTONS_LOCATION_LEFT;
+    public static int TOOLBAR_TIP_MORE_BUTTONS_LOCATION_RIGHT;
 
     // request and result code
     public static final int PASSWORD_REQUEST_CODE = 9;
@@ -142,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
         // set app password
         AppAuthentication.setAppPassword(this);
 
+        // initialize virus list
+        virusModelInfoList = new ArrayList<>();
         // initialize Views
         this.initializeViews();
         // initialize SharedPreferenceProcess
@@ -180,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
         this.tipRelativeLayout = findViewById(R.id.rl_tip_toolbar);
         this.moreRelativeLayout = findViewById(R.id.rl_more_toolbar);
         this.moreImageView = findViewById(R.id.img_more_toolbar);
-        this.quizRelativeLayout = findViewById(R.id.rl_quiz_toolbar);
         this.quizButton = findViewById(R.id.btn_quiz_toolbar);
         this.floatingActionButton = findViewById(R.id.fab);
         this.tipDragYRelativeLayout = findViewById(R.id.drl_tip_app);
@@ -197,7 +206,15 @@ public class MainActivity extends AppCompatActivity {
         TOOLBAR_BACK_BUTTON_WIDTH = DataConverter.dip2px(this, 40);
         TOOLBAR_SEARCH_BUTTON_WIDTH = DataConverter.dip2px(this, 55);
         TOOLBAR_SEARCH_CLOSE_BUTTON_WIDTH = DataConverter.dip2px(this, 50);
-        TOOLBAR_TIP_MORE_BUTTONS_WIDTH = DataConverter.dip2px(this, 85);
+        TOOLBAR_QUIZ_TIP_MORE_BUTTONS_WIDTH = DataConverter.dip2px(this, 150);
+
+        WindowManager manager = this.getWindowManager();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        manager.getDefaultDisplay().getMetrics(outMetrics);
+        int width = outMetrics.widthPixels;
+
+        TOOLBAR_TIP_MORE_BUTTONS_LOCATION_RIGHT = width - TOOLBAR_QUIZ_TIP_MORE_BUTTONS_WIDTH;
+        TOOLBAR_TIP_MORE_BUTTONS_LOCATION_LEFT = width - TOOLBAR_SEARCH_BUTTON_WIDTH - TOOLBAR_QUIZ_TIP_MORE_BUTTONS_WIDTH;
     }
 
     private void initializeSharedPreferenceProcess() {
@@ -352,10 +369,6 @@ public class MainActivity extends AppCompatActivity {
         return doSearchEditText;
     }
 
-    public RelativeLayout getQuizRelativeLayout() {
-        return quizRelativeLayout;
-    }
-
     public Button getQuizButton() {
         return quizButton;
     }
@@ -414,7 +427,7 @@ public class MainActivity extends AppCompatActivity {
         MyAnimationBox.runSlideInAnimationFromRight(
                 this.topButtonsLinearLayout,
                 this.topButtonsLinearLayout.getX(),
-                this.toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_SEARCH_BUTTON_WIDTH - this.topButtonsLinearLayout.getWidth(),
+                TOOLBAR_TIP_MORE_BUTTONS_LOCATION_LEFT,//- this.topButtonsLinearLayout.getWidth()
                 duration);
     }
 
@@ -423,19 +436,24 @@ public class MainActivity extends AppCompatActivity {
         if (FROM_VIRUS_INFO_PAGE || FROM_NUTRIENT_PAGE) {
             FROM_VIRUS_INFO_PAGE = false;
             FROM_NUTRIENT_PAGE = false;
-            if (AppResources.FRAGMENT_TAG_VIRUS_DETAIL.equals(fragmentTag)) {
-                MyAnimationBox.runSlideInAnimationFromRight(
-                        this.topButtonsLinearLayout,
-                        this.topButtonsLinearLayout.getX(),
-                        this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
-                        duration);
-            } else {// hide search button -> move to right
-                MyAnimationBox.runSlideInAnimationFromRight(
-                        this.topButtonsLinearLayout,
-                        this.topButtonsLinearLayout.getX(),
-                        this.toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_TIP_MORE_BUTTONS_WIDTH - DataConverter.dip2px(mainActivity,10),
-                        duration);
-            }
+            MyAnimationBox.runSlideInAnimationFromRight(
+                    this.topButtonsLinearLayout,
+                    this.topButtonsLinearLayout.getX(),
+                    TOOLBAR_TIP_MORE_BUTTONS_LOCATION_RIGHT,
+                    duration);
+//            if (AppResources.FRAGMENT_TAG_VIRUS_DETAIL.equals(fragmentTag)) {
+//                MyAnimationBox.runSlideInAnimationFromRight(
+//                        this.topButtonsLinearLayout,
+//                        this.topButtonsLinearLayout.getX(),
+//                        this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
+//                        duration);
+//            } else {// hide search button -> move to right
+//                MyAnimationBox.runSlideInAnimationFromRight(
+//                        this.topButtonsLinearLayout,
+//                        this.topButtonsLinearLayout.getX(),
+//                        this.toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_TIP_MORE_BUTTONS_WIDTH - DataConverter.dip2px(mainActivity,10),
+//                        duration);
+//            }
         }
     }
 

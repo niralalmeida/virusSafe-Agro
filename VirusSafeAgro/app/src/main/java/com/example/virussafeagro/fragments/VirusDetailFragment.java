@@ -62,7 +62,6 @@ public class VirusDetailFragment extends Fragment {
     private LinearLayout middleContentLinearLayout;
     private TextView middleContentTextView;
     // bottom quiz button views
-    private RelativeLayout takeQuizRelativeLayout;
     private Button quizButton;
 
     // coordinate
@@ -86,7 +85,7 @@ public class VirusDetailFragment extends Fragment {
         // initialize views
         this.initializeViews();
         // show quiz button in toolbar
-        this.takeQuizRelativeLayout.setVisibility(View.VISIBLE);
+        this.quizButton.setVisibility(View.VISIBLE);
 
         // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();
@@ -113,7 +112,7 @@ public class VirusDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(this.virusDetailLinearLayout, 1000);
         // move calculator and more to right
         // show quiz button
-        MyAnimationBox.runFadeInAnimation(this.takeQuizRelativeLayout, 500);
+        MyAnimationBox.runFadeInAnimation(this.quizButton, 500);
         new Handler().postDelayed(()->{
             this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
         },500);
@@ -144,7 +143,6 @@ public class VirusDetailFragment extends Fragment {
         this.middleContentNestedScrollView = view.findViewById(R.id.nsv_middle_content_virus_detail);
         this.middleContentLinearLayout= view.findViewById(R.id.ll_middle_content_virus_detail);
         this.middleContentTextView = view.findViewById(R.id.tv_middle_content_virus_detail);
-        this.takeQuizRelativeLayout = this.mainActivity.getQuizRelativeLayout();
         this.quizButton = this.mainActivity.getQuizButton();
     }
 
@@ -340,7 +338,7 @@ public class VirusDetailFragment extends Fragment {
     public void onPause() {
         super.onPause();
         // hide quiz button
-        this.takeQuizRelativeLayout.setVisibility(View.GONE);
+        this.quizButton.setVisibility(View.GONE);
         this.isVirusDetailsShown = false;
 
         this.mainActivity.setLearnButton(false);
