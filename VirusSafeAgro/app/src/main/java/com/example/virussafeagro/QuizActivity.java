@@ -346,7 +346,7 @@ public class QuizActivity extends AppCompatActivity {
     public void closeOnClick(View v) {
         // animation
         this.finish();
-        this.overridePendingTransition(0, R.anim.activity_slide_out_top);
+//        this.overridePendingTransition(0, R.anim.activity_slide_out_top);
     }
 
     public void backOnClick(View v){

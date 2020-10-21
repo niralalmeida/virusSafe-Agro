@@ -189,7 +189,7 @@ public class QuizStartActivity extends AppCompatActivity {
         // animation
         isQuizQuestionActivityClosed = true;
         this.finish();
-        this.overridePendingTransition(0, R.anim.activity_slide_out_top);
+//        this.overridePendingTransition(0, R.anim.activity_slide_out_top);
     }
 
     // set observer for observing VirusQuizQuestionWithImageURLArrayLD

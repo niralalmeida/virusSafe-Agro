@@ -5,10 +5,11 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/img_virus_detail_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/default_tomato"
-        android:transitionName="@string/virus_detail_new_transition_name"
+        android:transitionName="@string/quiz_activity_transition_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

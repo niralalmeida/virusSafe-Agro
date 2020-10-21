@@ -112,10 +112,10 @@ public class VirusDetailFragment extends Fragment {
         MyAnimationBox.runFadeInAnimation(this.virusDetailLinearLayout, 1000);
         // move calculator and more to right
         // show quiz button
-        MyAnimationBox.runFadeInAnimation(this.quizButton, 500);
+        MyAnimationBox.runFadeInAnimation(this.quizButton, 200);
         new Handler().postDelayed(()->{
             this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
-        },500);
+        },200);
         MyAnimationBox.runRepeatedAnimationBottomToTop(this.swipeUpImageView, 1000);
         this.showVirusDetails();
 
