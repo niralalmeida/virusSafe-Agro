@@ -239,12 +239,12 @@ public class MainActivity extends AppCompatActivity {
 
 ////////////////////////////////////////////////// -- Pass word -- /////////////////////////////////////////////////////
     private void checkAuthentication() {
-        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())) {
-            // set authentication as "no"
-            AppAuthentication.setAuthenticationAsNo(this);
-            // check the authentication --> show the PasswordActivity
-            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity), 600);
-        }
+//        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())) {
+//            // set authentication as "no"
+//            AppAuthentication.setAuthenticationAsNo(this);
+//            // check the authentication --> show the PasswordActivity
+//            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity), 600);
+//        }
     }
 
     private void displayAllMainActivityViews() {
@@ -765,6 +765,7 @@ public class MainActivity extends AppCompatActivity {
         this.hideAllTipViews();
         switch (fragmentTag){
             case AppResources.ACTIVITY_TAG_HOME:
+            case AppResources.FRAGMENT_TAG_MORE:
                 this.homeLinearLayout.setVisibility(View.VISIBLE);
                 break;
             case AppResources.FRAGMENT_TAG_LEARN:

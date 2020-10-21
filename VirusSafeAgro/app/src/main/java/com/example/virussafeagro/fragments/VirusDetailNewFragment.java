@@ -77,7 +77,7 @@ public class VirusDetailNewFragment extends Fragment {
 
     private void initializeViews() {
         this.quizButton = this.mainActivity.getQuizButton();
-        this.virusPictureImageView = view.findViewById(R.id.img_virus_detail_new);
+        this.virusPictureImageView = view.findViewById(R.id.img_picture_virus_detail_new);
     }
 
     private void setTakeQuizButtonOnClickListener() {

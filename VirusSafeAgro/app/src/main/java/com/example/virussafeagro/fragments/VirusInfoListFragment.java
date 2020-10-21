@@ -14,12 +14,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.virussafeagro.MainActivity;
@@ -44,6 +48,7 @@ import java.util.List;
  */
 public class VirusInfoListFragment extends Fragment {
     private MainActivity mainActivity;
+    private VirusInfoListFragment virusInfoListFragment;
     private View view;
 
     private VirusInfoListViewModel virusInfoListViewModel;
@@ -69,6 +74,7 @@ public class VirusInfoListFragment extends Fragment {
 
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
+        this.virusInfoListFragment = this;
         // set title
         this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_info);
         // show back button
@@ -146,7 +152,8 @@ public class VirusInfoListFragment extends Fragment {
     private void displayVirusCardList() {
         // set recycler view linear layout visible and process bar invisible
         processBarLinearLayout.setVisibility(View.GONE);
-        MyAnimationBox.runFadeInAnimation(virusGridViewLinearLayout, 1000);
+        virusGridViewLinearLayout.setVisibility(View.VISIBLE);
+//        MyAnimationBox.runFadeInAnimation(virusGridViewLinearLayout, 1000);
 
         // show grid view
         gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), MainActivity.virusModelInfoList);
@@ -212,23 +219,58 @@ public class VirusInfoListFragment extends Fragment {
             VirusModel currentVirusModel = virusModelListForListener.get(position);
             bundle.putParcelable("currentVirusModel", currentVirusModel);
 
-//            VirusDetailNewFragment virusDetailNewFragment = new VirusDetailNewFragment();
-//            virusDetailNewFragment.setArguments(bundle);
+            VirusDetailNewFragment virusDetailNewFragment = new VirusDetailNewFragment();
+            virusDetailNewFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW);
+
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                virusDetailNewFragment.setSharedElementEnterTransition(
-//                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+////                virusDetailNewFragment.setSharedElementEnterTransition(
+////                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+//                // Inflate transitions to apply
+//                Transition changeTransform = TransitionInflater.from(mainActivity).
+//                        inflateTransition(R.transition.change_image_transform);
+//                Transition moveTransform = TransitionInflater.from(mainActivity).
+//                        inflateTransition(android.R.transition.move);
+//
+//                // fragment 1 - Setup exit transition on first fragment
+//                virusInfoListFragment.setSharedElementReturnTransition(changeTransform);
+//                virusInfoListFragment.setExitTransition(moveTransform);
+//                // fragment 2 - Setup enter transition on second fragment
+//                virusDetailNewFragment.setSharedElementEnterTransition(changeTransform);
+//                virusDetailNewFragment.setEnterTransition(moveTransform);
 //            }
-//            CardView virusCardView = virusGridView.getChildAt(position).findViewById(R.id.cv_virus_info_list);
+//
+//            // test
+//            System.out.println("position [ " + position + " ]" );
+//
+//            // element 1
+//            RelativeLayout itemRelativeLayout = (RelativeLayout)virusGridView.getChildAt(position);
+//            // element 2 - image
+//            LinearLayout itemImageLinearLayout = (LinearLayout) itemRelativeLayout.getChildAt(0);
+//            CardView itemImageCardView = (CardView) itemImageLinearLayout.getChildAt(0);
+//            ImageView itemImageView = (ImageView) itemImageCardView.getChildAt(0);
+//            // element 3 - text
+//            LinearLayout itemTextLinearLayout = (LinearLayout) itemRelativeLayout.getChildAt(1);
+//            LinearLayout itemTextLinearLayoutSub = (LinearLayout) itemTextLinearLayout.getChildAt(0);
+//            TextView itemVirusNameTextView = (TextView) itemTextLinearLayoutSub.getChildAt(0);
+//
+//            itemVirusNameTextView.setText("hoy");
+
 //            mainActivity.getSupportFragmentManager().beginTransaction()
-//                    .addSharedElement(virusCardView, ViewCompat.getTransitionName(virusCardView))
+//                    .setReorderingAllowed(true)
+//                    .addSharedElement(itemImageView, itemImageView.getTransitionName())
+//                    .addSharedElement(virusGridView, ViewCompat.getTransitionName(virusGridView))
+//                    .addSharedElement(itemRelativeLayout, ViewCompat.getTransitionName(itemRelativeLayout))
+//                    .addSharedElement(itemVirusNameTextView, ViewCompat.getTransitionName(itemVirusNameTextView))
 //                    .replace(R.id.fl_fragments, virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW)
 //                    .addToBackStack(null)
 //                    .commit();
 
 
-            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
-            virusDetailFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
+
+//            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
+//            virusDetailFragment.setArguments(bundle);
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
         });
     }
 

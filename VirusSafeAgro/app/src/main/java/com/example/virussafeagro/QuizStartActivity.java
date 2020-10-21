@@ -188,7 +188,7 @@ public class QuizStartActivity extends AppCompatActivity {
     public void closeOnClick(View v) {
         // animation
         isQuizQuestionActivityClosed = true;
-        this.finish();
+        this.supportFinishAfterTransition();
 //        this.overridePendingTransition(0, R.anim.activity_slide_out_top);
     }
 

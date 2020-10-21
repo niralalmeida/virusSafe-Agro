@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:transitionName="@string/virus_detail_new_transition_name"
     android:background="@color/colorPrimaryDarkBG"
     tools:context=".fragments.VirusInfoListFragment">
 

@@ -417,7 +417,7 @@ public class QuizQuestionFragment extends Fragment {
                     doQuestionTextView.setText(counterNoString);
                     // change the count text color
                     if (currentTime == 31){
-                        doQuestionTextView.setTextColor(getResources().getColor(R.color.colorBlack));
+                        doQuestionTextView.setTextColor(quizStartActivity.getResources().getColor(R.color.colorBlack));
                     }
                 } else {
                     // stop counter
@@ -496,12 +496,12 @@ public class QuizQuestionFragment extends Fragment {
         }
         // set option card background
         if (QuizActivity.currentPageName.equals(QuizActivity.BUTTON_NAME_SHOW_ENVELOPE)){
-            optionACardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
-            optionBCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
-            optionCCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
-            optionDCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
-            optionECardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
-            optionFCardView.setCardBackgroundColor(getResources().getColor(R.color.btn_show_envelope_bg));
+            optionACardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_show_envelope_bg));
+            optionBCardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_show_envelope_bg));
+            optionCCardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_show_envelope_bg));
+            optionDCardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_show_envelope_bg));
+            optionECardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_show_envelope_bg));
+            optionFCardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_show_envelope_bg));
             optionANoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
             optionBNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
             optionCNoTextView.setBackgroundResource(R.drawable.shape_beginner_option_no_quiz_question_fragment);
@@ -602,7 +602,7 @@ public class QuizQuestionFragment extends Fragment {
             // set card view style
             for (CardView cardView : optionCardViewList){
                 if (!cardView.equals(currentCardView)) {
-                    cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
+                    cardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_option_bg_checked));
                 }
                 cardView.setClickable(false);
             }
@@ -644,7 +644,7 @@ public class QuizQuestionFragment extends Fragment {
             // set card view style
             for (CardView cardView : optionCardViewList){
                 if (!optionLabelCardViewBoxMap.get(currentOptionNoString).equals(cardView)){
-                    cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
+                    cardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_option_bg_checked));
                 }
                 cardView.setClickable(false);
             }
@@ -837,7 +837,7 @@ public class QuizQuestionFragment extends Fragment {
         // disable all tiles
         for (CardView cardView : optionCardViewList){
             if (!currentChoiceQuestionModel.getUserAnswerList().contains(optionCardViewLabelMap.get(cardView))) {
-                cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
+                cardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_option_bg_checked));
             }
             cardView.setClickable(false);
         }
@@ -933,7 +933,7 @@ public class QuizQuestionFragment extends Fragment {
         }
         // disable all tiles
         for (CardView cardView : optionCardViewList){
-            cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
+            cardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_option_bg_checked));
             cardView.setClickable(false);
         }
         // show answers
@@ -973,7 +973,7 @@ public class QuizQuestionFragment extends Fragment {
         }
         // disable all tiles
         for (CardView cardView : optionCardViewList){
-            cardView.setCardBackgroundColor(getResources().getColor(R.color.btn_option_bg_checked));
+            cardView.setCardBackgroundColor(quizStartActivity.getResources().getColor(R.color.btn_option_bg_checked));
             cardView.setClickable(false);
         }
         // show correct answers

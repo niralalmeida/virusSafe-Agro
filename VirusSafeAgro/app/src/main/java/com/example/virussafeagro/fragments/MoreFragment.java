@@ -42,6 +42,8 @@ public class MoreFragment extends Fragment {
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
         // set more button
         this.mainActivity.setMoreButton(true);
+        // set tip
+        this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_MORE);
 
         // initialize Views
         this.initializeViews();
