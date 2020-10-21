@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ public class VirusCheckResultFragment extends Fragment {
     private String resultCheckFeedback;
     private VirusModel resultVirusModel;
 
-    private LinearLayout allViewLinearLayout;
+    private RelativeLayout allViewRelativeLayout;
     private ImageView uploadedImageImageView;
     private LinearLayout imageCheckErrorFeedbackLinearLayout;
     private LinearLayout imageCheckHealthyFeedbackLinearLayout;
@@ -123,7 +124,7 @@ public class VirusCheckResultFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_virus_check_result);
+        this.allViewRelativeLayout = view.findViewById(R.id.rl_all_view_virus_check_result);
         this.uploadedImageImageView = view.findViewById(R.id.img_upload_check_result);
         this.imageCheckErrorFeedbackLinearLayout = view.findViewById(R.id.ll_error_feedback_image_check);
         this.imageCheckHealthyFeedbackLinearLayout = view.findViewById(R.id.ll_healthy_feedback_image_check);
@@ -134,7 +135,7 @@ public class VirusCheckResultFragment extends Fragment {
     }
 
     private void showAllViews() {
-        MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
+        MyAnimationBox.runFadeInAnimation(allViewRelativeLayout, 1000);
     }
 
     private void initializeSharedPreference() {

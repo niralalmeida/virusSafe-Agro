@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/ll_all_view_virus_check_result"
+    <RelativeLayout
+        android:id="@+id/rl_all_view_virus_check_result"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/img_upload_check_result"
@@ -17,12 +17,15 @@
             android:layout_height="300dp" />
 
         <RelativeLayout
+            android:layout_alignStart="@id/img_upload_check_result"
+            android:layout_alignEnd="@id/img_upload_check_result"
+            android:layout_below="@id/img_upload_check_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <RelativeLayout
                 android:id="@+id/rl_result_messages_virus_result"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true">
@@ -33,10 +36,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/shape_tile_text_container"
+                    android:background="@drawable/shape_tile_wrong_text_container_check_result"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
@@ -48,13 +49,13 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:textStyle="bold"
-                        android:textColor="@color/wrongAnswer"
+                        android:textColor="@color/colorWhite"
                         android:text="[ Error Message ]" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/wrongAnswer"
+                        android:textColor="@color/colorWhite"
                         android:text="It's not a tomato leaf image! Please try again!"
                         android:textStyle="bold"/>
 
@@ -66,10 +67,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/shape_tile_text_container"
+                    android:background="@drawable/shape_tile_healthy_text_container_check_result"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
@@ -80,7 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/text_healthy_virus_check_result"
-                        android:textColor="@color/rightAnswer"
+                        android:textColor="@color/colorWhite"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -91,10 +90,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/shape_tile_text_container"
+                    android:background="@drawable/shape_tile_ill_text_container_check_result"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
@@ -111,10 +108,12 @@
 
                     <TextView
                         android:id="@+id/tv_ill_feedback_image_check"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="@color/wrongAnswer"
+                        android:gravity="start"
+                        android:layout_gravity="start"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="25sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -166,7 +165,7 @@
 
         </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 

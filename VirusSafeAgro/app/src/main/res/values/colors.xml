@@ -140,6 +140,11 @@
     <color name="btn_bg_e_option">#2E86C1</color>
     <color name="btn_bg_f_option">#2E86C1</color>
 
+    <!-- check -->
+    <color name="bg_healthy_check">#00695c</color>
+    <color name="bg_ill_check">#C0392B</color>
+    <color name="bg_error_check">#000</color>
+
 <!--    <color name="btn_bg_a_option">#2B69C8</color>-->
 <!--    <color name="btn_bg_b_option">#CE3542</color>-->
 <!--    <color name="btn_bg_c_option">#458528</color>-->
