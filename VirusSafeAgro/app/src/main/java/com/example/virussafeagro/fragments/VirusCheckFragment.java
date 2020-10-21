@@ -33,10 +33,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.uitilities.AppResources;
-import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.animation.MyAnimationBox;
-import com.example.virussafeagro.uitilities.GlideEngine;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -44,7 +42,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.huantansheng.easyphotos.EasyPhotos;
 import com.huantansheng.easyphotos.models.album.entity.Photo;
-import com.mindorks.paracamera.Camera;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -58,7 +55,6 @@ import java.util.Objects;
 public class VirusCheckFragment extends BottomSheetDialogFragment {
     private MainActivity mainActivity;
     private View view;
-    private Camera camera;
     private List<Photo> photosSelected = new ArrayList<>();
     private Bitmap uploadImageBitmap;
 
@@ -162,9 +158,6 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         // set uploadImageButton on click listener
         this.setUploadImageButtonOnClickListener();
 
-        // observe checkFeedback live data
-        this.observeCheckFeedbackLD();
-
         return this.view;
     }
 
@@ -179,6 +172,9 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        // observe checkFeedback live data
+        this.observeCheckFeedbackLD();
     }
 
     private void initializeViews() {
@@ -222,33 +218,14 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private void setCameraButtonOnClickListener() {
         this.cameraLinearLayout.setOnClickListener(view -> {
             // open camera
-//            openCamera();
-            startNewCamera();
+//            startNewCamera();
         });
     }
 
     private void startNewCamera() {
-//        EasyPhotos.createAlbum(this, true, GlideEngine.getInstance())
-//                .setFileProviderAuthority("com.example.virussafeagro")
-//                .start(REQUEST_OPEN_CAMERA);
         EasyPhotos.createCamera(this)
                 .setFileProviderAuthority("com.example.virussafeagro")
                 .start(REQUEST_OPEN_CAMERA);
-    }
-
-    private void openCamera() {
-        camera = new Camera.Builder()
-                .setDirectory("pics")
-                .setName("ali_" + System.currentTimeMillis())
-                .setImageFormat(Camera.IMAGE_JPEG)
-                .setCompression(75)
-                .setImageHeight(1000)
-                .build(this);
-        try {
-            camera.takePicture();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void setSelectImageButtonOnClickListener() {
@@ -308,7 +285,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         }
 
         // display the image and upload button
-        if (requestCode == Camera.REQUEST_TAKE_PHOTO || requestCode == REQUEST_CHOOSE_GALLERY){
+        if (requestCode == REQUEST_OPEN_CAMERA || requestCode == REQUEST_CHOOSE_GALLERY){
             uploadImageImageView.setVisibility(View.VISIBLE);
             uploadImageButtonRelativeLayout.setVisibility(View.VISIBLE);
             imageFormatTipTextView.setVisibility(View.GONE);
@@ -384,7 +361,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 //            System.out.println(" result ----> [" + r + "]");
             System.out.println(" result ----> [" + uploadImageJsonStatic + "]");
             // test
-            Toast.makeText(mainActivity, "uploadImageJsonStatic ----> <" + uploadImageJsonStatic +">\nresult string ----> [\" + r +\"]", Toast.LENGTH_LONG).show();
+            Toast.makeText(mainActivity, "uploadImageJsonStatic ----> <" + uploadImageJsonStatic +">\nresult string ----> [ " + r + " ]", Toast.LENGTH_LONG).show();
 
             if (isUploadImageButtonClicked) {
                 // test
