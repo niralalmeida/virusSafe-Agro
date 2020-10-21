@@ -60,6 +60,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private View view;
     private Camera camera;
     private List<Photo> photosSelected = new ArrayList<>();
+    private Bitmap uploadImageBitmap;
 
     // bottom sheet views
     private BottomSheetBehavior<FrameLayout> behavior;
@@ -86,6 +87,10 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 //    public final int REQUEST_OPEN_CAMERA = Camera.REQUEST_TAKE_PHOTO;
     public final int REQUEST_OPEN_CAMERA = 1234;
     public final static int REQUEST_CHOOSE_GALLERY = 5678;
+
+
+    public static String r;
+    public static String uploadImageJsonStatic;
 
     public VirusCheckFragment() {
     }
@@ -137,21 +142,6 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         // initialize views
         this.initializeViews();
 
-        return this.view;
-    }
-
-    protected int getPeekHeight() {
-//        int peekHeight = getResources().getDisplayMetrics().heightPixels;
-        int peekHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
-//        int peekHeight = virusCheckRelativeLayout.getMinimumHeight();
-//        return peekHeight - peekHeight / 5;
-        return peekHeight;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        
         // initialize SharedPreference
         this.initializeSharedPreference();
 
@@ -174,6 +164,21 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
         // observe checkFeedback live data
         this.observeCheckFeedbackLD();
+
+        return this.view;
+    }
+
+    protected int getPeekHeight() {
+//        int peekHeight = getResources().getDisplayMetrics().heightPixels;
+        int peekHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+//        int peekHeight = virusCheckRelativeLayout.getMinimumHeight();
+//        return peekHeight - peekHeight / 5;
+        return peekHeight;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private void initializeViews() {
@@ -269,9 +274,9 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
             String imagePath = photosSelected.get(0).path;
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            Bitmap bitmap = BitmapFactory.decodeFile(imagePath,bmOptions);
+            uploadImageBitmap = BitmapFactory.decodeFile(imagePath,bmOptions);
 //            bitmap = Bitmap.createScaledBitmap(bitmap,parent.getWidth(),parent.getHeight(),true);
-            this.uploadImageImageView.setImageBitmap(bitmap);
+            this.uploadImageImageView.setImageBitmap(uploadImageBitmap);
 
 //            Bitmap bitmap = camera.getCameraBitmap();
 //            if (bitmap != null) {
@@ -288,8 +293,8 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
                     Log.e("uri", uri.toString());
                     ContentResolver cr = requireActivity().getContentResolver();
                     try {
-                        Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
-                        this.uploadImageImageView.setImageBitmap(bitmap);
+                        uploadImageBitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                        this.uploadImageImageView.setImageBitmap(uploadImageBitmap);
                     } catch (FileNotFoundException e) {
                         Toast.makeText(requireActivity(), "The image file you select is corrupted! Please choose another one!!", Toast.LENGTH_SHORT).show();
                         Log.e("Exception", e.getMessage(), e);
@@ -325,21 +330,30 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         this.uploadImageButton.setOnClickListener(view -> {
             // set isUploadImageButtonClicked true
             isUploadImageButtonClicked = true;
-            // get uploadImageImageView BitmapDrawable
-            BitmapDrawable uploadImageImageViewBitmapDrawable = (BitmapDrawable) this.uploadImageImageView.getDrawable();
-            // check the uploadImageImageView is same as the default leaf image
-            if (!DataConverter.isSameImage(uploadImageImageViewBitmapDrawable, requireActivity(), R.drawable.default_leaf)) {
-                // hide this virus check page and show the process bar
-                this.allVirusCheckLinearLayout.setVisibility(View.GONE);
-                this.titleLinearLayout.setVisibility(View.GONE);
-                this.uploadingProgressBarRelativeLayout.setVisibility(View.VISIBLE);
-                // save the image into SharedPreference
-                Bitmap uploadImageBitmap = uploadImageImageViewBitmapDrawable.getBitmap();
-                PutCurrentVirusCheckImageAsyncTask putCurrentVirusCheckImageAsyncTask = new PutCurrentVirusCheckImageAsyncTask();
-                putCurrentVirusCheckImageAsyncTask.execute(uploadImageBitmap);
-            } else {
-                Toast.makeText(requireActivity(), "Please take a photo or select a tomato leaf image by album", Toast.LENGTH_SHORT).show();
-            }
+
+            // hide this virus check page and show the process bar
+            this.allVirusCheckLinearLayout.setVisibility(View.GONE);
+            this.titleLinearLayout.setVisibility(View.GONE);
+            this.uploadingProgressBarRelativeLayout.setVisibility(View.VISIBLE);
+            // save the image into SharedPreference
+            PutCurrentVirusCheckImageAsyncTask putCurrentVirusCheckImageAsyncTask = new PutCurrentVirusCheckImageAsyncTask();
+            putCurrentVirusCheckImageAsyncTask.execute(uploadImageBitmap);
+
+//            // get uploadImageImageView BitmapDrawable
+//            BitmapDrawable uploadImageImageViewBitmapDrawable = (BitmapDrawable) this.uploadImageImageView.getDrawable();
+//            // check the uploadImageImageView is same as the default leaf image
+//            if (!DataConverter.isSameImage(uploadImageImageViewBitmapDrawable, requireActivity(), R.drawable.default_leaf)) {
+//                // hide this virus check page and show the process bar
+//                this.allVirusCheckLinearLayout.setVisibility(View.GONE);
+//                this.titleLinearLayout.setVisibility(View.GONE);
+//                this.uploadingProgressBarRelativeLayout.setVisibility(View.VISIBLE);
+//                // save the image into SharedPreference
+//                Bitmap uploadImageBitmap = uploadImageImageViewBitmapDrawable.getBitmap();
+//                PutCurrentVirusCheckImageAsyncTask putCurrentVirusCheckImageAsyncTask = new PutCurrentVirusCheckImageAsyncTask();
+//                putCurrentVirusCheckImageAsyncTask.execute(uploadImageBitmap);
+//            } else {
+//                Toast.makeText(requireActivity(), "Please take a photo or select a tomato leaf image by album", Toast.LENGTH_SHORT).show();
+//            }
         });
     }
 
@@ -360,12 +374,18 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
     private void uploadTomatoImage() {
         // get the bitmap of the image and start to upload it to waiting for the ML model result
-        Bitmap uploadImageBitmap = ((BitmapDrawable) this.uploadImageImageView.getDrawable()).getBitmap();
         this.virusCheckViewModel.processUploadingTomatoImage(uploadImageBitmap);
     }
 
     private void observeCheckFeedbackLD() {
         this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
+
+            // test
+//            System.out.println(" result ----> [" + r + "]");
+            System.out.println(" result ----> [" + uploadImageJsonStatic + "]");
+            // test
+            Toast.makeText(mainActivity, "uploadImageJsonStatic ----> <" + uploadImageJsonStatic +">\nresult string ----> [\" + r +\"]", Toast.LENGTH_LONG).show();
+
             if (isUploadImageButtonClicked) {
                 // test
 //                new Handler().postDelayed(() -> {

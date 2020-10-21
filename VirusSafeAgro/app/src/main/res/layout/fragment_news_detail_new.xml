@@ -9,51 +9,225 @@
     tools:context=".fragments.NewsDetailFragment">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="wrap_content">
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/colorPrimaryDark"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!-- news image -->
             <ImageView
+                android:id="@+id/img_news_detail_new"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/default_image"
                 android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:src="@drawable/agriculture"
                 app:layout_collapseParallaxMultiplier="0.9"
                 app:layout_collapseMode="parallax"/>
+
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbar_news_detail_new"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:layout_collapseMode="pin"/>
+                android:layout_height="wrap_content"
+                android:outlineProvider="bounds"
+                app:contentInsetStart="0dp"
+                android:minHeight="50dp"
+                app:layout_collapseMode="pin">
+                <!-- title + author + time -->
+                <LinearLayout
+                    android:visibility="visible"
+                    android:id="@+id/ll_top_text_bg_news_detail_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/shape_title_gradient_container_news_detail"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_top_text_news_detail_new"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- title -->
+                        <LinearLayout
+                            android:id="@+id/ll_top_title_news_detail_new"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_title_news_detail_new"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="30sp"
+                                android:textStyle="bold"
+                                android:text="XXXX XXXX"/>
+
+                        </LinearLayout>
+
+                        <!-- author -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/author"
+                                android:textSize="13sp"
+                                android:text="Article By - "/>
+
+                            <TextView
+                                android:id="@+id/tv_author_news_detail_new"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/author"
+                                android:textSize="13sp"
+                                android:text="Hoy"/>
+
+                        </LinearLayout>
+
+                        <!-- h-line -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@color/top_line"/>
+
+                        <!-- time -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/author"
+                                android:textSize="13sp"
+                                android:text="Posted "/>
+
+                            <TextView
+                                android:id="@+id/tv_posted_time_ago_news_detail_new"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/author"
+                                android:textSize="13sp"
+                                android:text="3 hours ago"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/author"
+                                android:textSize="13sp"
+                                android:text="@string/dot_with_space"/>
+
+                            <TextView
+                                android:id="@+id/tv_time_news_detail_new"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/author"
+                                android:textSize="13sp"
+                                android:text="2 May 2020, 10:30"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/nsv_article_news_detail_new"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <RelativeLayout
+        <!-- snippet + article -->
+        <LinearLayout
+            android:id="@+id/ll_body_news_detail_new"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/img_picture_virus_detail_new"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/default_tomato"
-                android:layout_centerHorizontal="true" />
-            <TextView
-                android:id="@+id/tv"
-                android:layout_below="@id/img_picture_virus_detail_new"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="30sp"
-                android:text="a\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\n"
-                android:gravity="center_horizontal"/>
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="vertical">
 
+            <!-- snippet -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <!-- v - line -->
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:alpha="0.3"
+                    android:background="@color/colorTransparentWhiteForText"
+                    android:layout_gravity="center_vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:paddingBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.uncopt.android.widget.text.justify.JustifiedTextView
+                        android:id="@+id/tv_snippet_news_detail_new"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/author"
+                        android:textSize="18sp"
+                        android:text="xxxx xxxx xxxx"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- article body -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.uncopt.android.widget.text.justify.JustifiedTextView
+                    android:id="@+id/tv_article_body_news_detail_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:text="xxxx xxxx xxxx xxxx xxxx xxxx"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

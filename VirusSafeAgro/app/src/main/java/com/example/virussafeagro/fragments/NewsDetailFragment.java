@@ -36,27 +36,29 @@ public class NewsDetailFragment extends Fragment {
     private NewsModel currentNewsModel;
     private NewsDetailViewModel newsDetailViewModel;
 
-    private LinearLayout allViewLinearLayout;
+    // views
+//    private LinearLayout allViewLinearLayout;
     // top
-    private RelativeLayout topRelativeLayout;
+//    private RelativeLayout topRelativeLayout;
     private ImageView newsImageView;
-    private LinearLayout topTextBGLinearLayout;
-    private LinearLayout topTitleLinearLayout;
+//    private LinearLayout topTextBGLinearLayout;
+//    private LinearLayout topTitleLinearLayout;
     private TextView newsTitleTextView;
     private TextView newsAuthorTextView;
     private TextView newsPostedTimeAgoTextView;
     private TextView newsTimeTextView;
     // article
-    private NestedScrollView newsArticleNestedScrollView;
+//    private NestedScrollView newsArticleNestedScrollView;
+    private LinearLayout newsBodyLinearLayout;
     private com.uncopt.android.widget.text.justify.JustifiedTextView newsSnippetTextView;
     private com.uncopt.android.widget.text.justify.JustifiedTextView newsArticleBodyTextView;
 
     // for gesture
-    private boolean isNewsDetailViewShown;
-    private int originalImageHeight;
-    private float startY;
-    private float currentY;
-    private boolean isImageFolded;
+//    private boolean isNewsDetailViewShown;
+//    private int originalImageHeight;
+//    private float startY;
+//    private float currentY;
+//    private boolean isImageFolded;
 
     public NewsDetailFragment() {
     }
@@ -65,7 +67,7 @@ public class NewsDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
-        this.view = inflater.inflate(R.layout.fragment_news_detail, container, false);
+        this.view = inflater.inflate(R.layout.fragment_news_detail_new, container, false);
 
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
@@ -83,7 +85,7 @@ public class NewsDetailFragment extends Fragment {
         this.initializeNewsDetailViewModel();
         // initialize Views
         this.initializeViews();
-        this.allViewLinearLayout.setVisibility(View.GONE);
+//        this.allViewLinearLayout.setVisibility(View.GONE);
 
         // set menu selected item
         if (!this.mainActivity.isToolkitIconClicked()) {
@@ -103,22 +105,23 @@ public class NewsDetailFragment extends Fragment {
         // observe NewsArticleBody live data
         this.observeNewsArticleBodyLD();
         // set gesture listener
-        this.setGestureListener();
+//        this.setGestureListener();
     }
 
     private void initializeViews() {
-        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news_detail);
-        this.topRelativeLayout = view.findViewById(R.id.rl_top_news_detail);
-        this.newsImageView = view.findViewById(R.id.img_top_pic_virus_detail);
-        this.topTextBGLinearLayout = view.findViewById(R.id.ll_top_text_bg_news_detail);
-        this.topTitleLinearLayout = view.findViewById(R.id.ll_top_title_news_detail);
-        this.newsTitleTextView = view.findViewById(R.id.tv_title_news_detail);
-        this.newsAuthorTextView = view.findViewById(R.id.tv_author_news_detail);
-        this.newsPostedTimeAgoTextView = view.findViewById(R.id.tv_posted_time_ago_news_detail);
-        this.newsTimeTextView = view.findViewById(R.id.tv_time_news_detail);
-        this.newsArticleNestedScrollView = view.findViewById(R.id.nsv_article_news_detail);
-        this.newsSnippetTextView = view.findViewById(R.id.tv_snippet_news_detail);
-        this.newsArticleBodyTextView = view.findViewById(R.id.tv_article_body_news_detail);
+//        this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news_detail);
+//        this.topRelativeLayout = view.findViewById(R.id.rl_top_news_detail_new);
+        this.newsImageView = view.findViewById(R.id.img_news_detail_new);
+//        this.topTextBGLinearLayout = view.findViewById(R.id.ll_top_text_bg_news_detail_new);
+//        this.topTitleLinearLayout = view.findViewById(R.id.ll_top_title_news_detail_new);
+        this.newsTitleTextView = view.findViewById(R.id.tv_title_news_detail_new);
+        this.newsAuthorTextView = view.findViewById(R.id.tv_author_news_detail_new);
+        this.newsPostedTimeAgoTextView = view.findViewById(R.id.tv_posted_time_ago_news_detail_new);
+        this.newsTimeTextView = view.findViewById(R.id.tv_time_news_detail_new);
+//        this.newsArticleNestedScrollView = view.findViewById(R.id.nsv_article_news_detail_new);
+        this.newsBodyLinearLayout = view.findViewById(R.id.ll_body_news_detail_new);
+        this.newsSnippetTextView = view.findViewById(R.id.tv_snippet_news_detail_new);
+        this.newsArticleBodyTextView = view.findViewById(R.id.tv_article_body_news_detail_new);
     }
 
     private void initializeNewsDetailViewModel() {
@@ -137,7 +140,7 @@ public class NewsDetailFragment extends Fragment {
                 // show news article body
                 showNewsContent();
                 // show news views
-                showNewsViews();
+//                showNewsViews();
             }
         });
     }
@@ -145,11 +148,11 @@ public class NewsDetailFragment extends Fragment {
 
     // show News Views
     private void showNewsViews() {
-        MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
+//        MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
         new Handler().postDelayed(() -> {
-            isNewsDetailViewShown = true;
-            originalImageHeight = newsImageView.getHeight();
-            topRelativeLayout.setActivated(true);
+//            isNewsDetailViewShown = true;
+//            originalImageHeight = newsImageView.getHeight();
+//            topRelativeLayout.setActivated(true);
         }, 1100);
     }
 
@@ -180,88 +183,91 @@ public class NewsDetailFragment extends Fragment {
             newsArticleBodyStringBuilder.append(newsParagraph).append("\n\n");
         }
         newsArticleBodyTextView.setText(newsArticleBodyStringBuilder.toString());
+
+        // show the body
+        MyAnimationBox.runFadeInAnimation(newsBodyLinearLayout, 500);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @SuppressLint("ClickableViewAccessibility")
-    private void setGestureListener() {
-        // listen to nested scroll view --> fold the image
-        newsArticleNestedScrollView.setOnScrollChangeListener((View.OnScrollChangeListener) (nestedScrollView, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            if (isNewsDetailViewShown){
-                // check swipe up
-                if (!isImageFolded){
-                    if (newsImageView.getHeight() > topTitleLinearLayout.getBottom()) {
-                        if (topTextBGLinearLayout.getVisibility() == View.GONE){
-                            MyAnimationBox.runSlideInAnimationFromTop(topTextBGLinearLayout, 100);
-                            new Handler().postDelayed(() -> {
-                                MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 30f, 22f, 130);
-                            }, 80);
-                            new Handler().postDelayed(() -> {
-                                MyAnimationBox.runFoldViewAnimationByHeight(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 130);
-                            }, 190);
-                            new Handler().postDelayed(() -> {
-                                isImageFolded = true;
-                                topRelativeLayout.setClickable(false);
-                            }, 300);
-                        } else {
-                            MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 30f, 22f, 130);
-                            new Handler().postDelayed(() -> {
-                                MyAnimationBox.runFoldViewAnimationByHeight(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 130);
-                            }, 110);
-
-                            new Handler().postDelayed(() -> {
-                                isImageFolded = true;
-                                topRelativeLayout.setClickable(false);
-                            }, 220);
-                        }
-                    }
-                }
-            }
-        });
-
-        // listen to view --> unfold and show the image again
-        view.setOnTouchListener((v, event) -> {
-            if (isImageFolded) {
-                // when press
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    startY = event.getY();
-                }
-                // when move up
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    currentY = event.getY();
-
-                    if (startY < newsImageView.getHeight() && currentY >= startY){
-                        isImageFolded = false;
-                        topRelativeLayout.setClickable(true);
-                        topRelativeLayout.setActivated(true);
-                        MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 22f, 30f, 200);
-                        MyAnimationBox.runFoldViewAnimationByHeight(newsImageView, newsImageView.getHeight(), originalImageHeight, 200);
-                    }
-                }
-            }
-            return true;
-        });
-
-        // listen to the image on click listener
-        topRelativeLayout.setOnClickListener(topView -> {
-            if (!isImageFolded) {
-                if (topView.isActivated()){
-                    // uncover the image
-                    topView.setActivated(false);
-                    MyAnimationBox.runSlideOutAnimationToTop(topTextBGLinearLayout, 200);
-                } else {
-                    // cover the image
-                    topView.setActivated(true);
-                    MyAnimationBox.runSlideInAnimationFromTop(topTextBGLinearLayout, 200);
-                }
-            }
-        });
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.M)
+//    @SuppressLint("ClickableViewAccessibility")
+//    private void setGestureListener() {
+//        // listen to nested scroll view --> fold the image
+//        newsArticleNestedScrollView.setOnScrollChangeListener((View.OnScrollChangeListener) (nestedScrollView, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+//            if (isNewsDetailViewShown){
+//                // check swipe up
+//                if (!isImageFolded){
+//                    if (newsImageView.getHeight() > topTitleLinearLayout.getBottom()) {
+//                        if (topTextBGLinearLayout.getVisibility() == View.GONE){
+//                            MyAnimationBox.runSlideInAnimationFromTop(topTextBGLinearLayout, 100);
+//                            new Handler().postDelayed(() -> {
+//                                MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 30f, 22f, 130);
+//                            }, 80);
+//                            new Handler().postDelayed(() -> {
+//                                MyAnimationBox.runFoldViewAnimationByHeight(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 130);
+//                            }, 190);
+//                            new Handler().postDelayed(() -> {
+//                                isImageFolded = true;
+//                                topRelativeLayout.setClickable(false);
+//                            }, 300);
+//                        } else {
+//                            MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 30f, 22f, 130);
+//                            new Handler().postDelayed(() -> {
+//                                MyAnimationBox.runFoldViewAnimationByHeight(newsImageView, newsImageView.getHeight(), topTitleLinearLayout.getBottom(), 130);
+//                            }, 110);
+//
+//                            new Handler().postDelayed(() -> {
+//                                isImageFolded = true;
+//                                topRelativeLayout.setClickable(false);
+//                            }, 220);
+//                        }
+//                    }
+//                }
+//            }
+//        });
+//
+//        // listen to view --> unfold and show the image again
+//        view.setOnTouchListener((v, event) -> {
+//            if (isImageFolded) {
+//                // when press
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    startY = event.getY();
+//                }
+//                // when move up
+//                if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    currentY = event.getY();
+//
+//                    if (startY < newsImageView.getHeight() && currentY >= startY){
+//                        isImageFolded = false;
+//                        topRelativeLayout.setClickable(true);
+//                        topRelativeLayout.setActivated(true);
+//                        MyAnimationBox.runChangeViewSizeAnimation(newsTitleTextView, 22f, 30f, 200);
+//                        MyAnimationBox.runFoldViewAnimationByHeight(newsImageView, newsImageView.getHeight(), originalImageHeight, 200);
+//                    }
+//                }
+//            }
+//            return true;
+//        });
+//
+//        // listen to the image on click listener
+//        topRelativeLayout.setOnClickListener(topView -> {
+//            if (!isImageFolded) {
+//                if (topView.isActivated()){
+//                    // uncover the image
+//                    topView.setActivated(false);
+//                    MyAnimationBox.runSlideOutAnimationToTop(topTextBGLinearLayout, 200);
+//                } else {
+//                    // cover the image
+//                    topView.setActivated(true);
+//                    MyAnimationBox.runSlideInAnimationFromTop(topTextBGLinearLayout, 200);
+//                }
+//            }
+//        });
+//    }
 
     @Override
     public void onPause() {
         super.onPause();
-        this.allViewLinearLayout.setVisibility(View.GONE);
+//        this.allViewLinearLayout.setVisibility(View.GONE);
 
         this.newsDetailViewModel.getNewsArticleBodyLD().removeObservers(getViewLifecycleOwner());
         this.newsDetailViewModel.setNewsArticleBodyLD(new ArrayList<>());

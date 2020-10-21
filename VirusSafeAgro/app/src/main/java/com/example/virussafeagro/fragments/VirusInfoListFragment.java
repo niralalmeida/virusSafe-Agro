@@ -219,9 +219,9 @@ public class VirusInfoListFragment extends Fragment {
             VirusModel currentVirusModel = virusModelListForListener.get(position);
             bundle.putParcelable("currentVirusModel", currentVirusModel);
 
-            VirusDetailNewFragment virusDetailNewFragment = new VirusDetailNewFragment();
-            virusDetailNewFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW);
+//            VirusDetailNewFragment virusDetailNewFragment = new VirusDetailNewFragment();
+//            virusDetailNewFragment.setArguments(bundle);
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW);
 
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 ////                virusDetailNewFragment.setSharedElementEnterTransition(
@@ -268,9 +268,9 @@ public class VirusInfoListFragment extends Fragment {
 
 
 
-//            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
-//            virusDetailFragment.setArguments(bundle);
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
+            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
+            virusDetailFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
         });
     }
 
