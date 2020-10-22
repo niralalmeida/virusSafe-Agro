@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -52,11 +53,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//import pl.aprilapps.easyphotopicker.ChooserType;
-//import pl.aprilapps.easyphotopicker.DefaultCallback;
-//import pl.aprilapps.easyphotopicker.EasyImage;
-//import pl.aprilapps.easyphotopicker.MediaFile;
-//import pl.aprilapps.easyphotopicker.MediaSource;
 
 /**
  * Fragment for uploading tomato pictures to identify whether they are infected by some viruses

@@ -35,7 +35,8 @@ public class FragmentOperator {
     public static void replaceFragmentWithSlideFromTopAnimation(FragmentActivity fragmentActivity, Fragment nextFragment, String fragmentTag){
         FragmentTransaction fragmentTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter_from_top, 0, 0, R.anim.exit_to_top);
-        fragmentTransaction.replace(R.id.fl_fragments, nextFragment, fragmentTag)
+        fragmentTransaction
+                .replace(R.id.fl_fragments, nextFragment, fragmentTag)
                 .addToBackStack(null)
                 .commit();
     }

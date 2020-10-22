@@ -3,14 +3,18 @@ package com.example.virussafeagro;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
@@ -22,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.virussafeagro.fragments.AboutAppFragment;
 import com.example.virussafeagro.fragments.ContactUsFragment;
@@ -54,7 +59,6 @@ import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -695,12 +699,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         floatingActionButton.setOnClickListener(v -> {
+//            if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null
+//                || (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof VirusCheckFragment))) {
+//                showVirusCheckFragment();
+//                if (toolbar.getVisibility() == View.GONE) {
+//                    new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
+//                }
+//            }
+
             if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null
                 || (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof VirusCheckFragment))) {
                 showVirusCheckFragment();
-                if (toolbar.getVisibility() == View.GONE) {
-                    new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
-                }
             }
         });
     }
@@ -756,8 +765,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showVirusCheckFragment() {
-        VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
-        virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+//        VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
+//        virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+
+
     }
 
     public void showTipByPage(String fragmentTag) {

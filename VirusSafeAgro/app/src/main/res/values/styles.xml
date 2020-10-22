@@ -74,5 +74,4 @@
         <!-- Customize your theme here. -->
         <item name="android:textSize">13sp</item>
     </style>
-
 </resources>

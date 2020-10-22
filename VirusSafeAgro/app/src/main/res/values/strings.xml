@@ -157,9 +157,6 @@
     <!-- general tool -->
     <string name="dot_with_space">&#160;•&#160;</string>
 
-    <!-- FAB -->
-    <string name="transition_name_fab_main">fab_transition_name</string>
-
     <!-- pesticide store map -->
     <string name="text_location_permission_title">Location Permission</string>
     <string name="text_location_permission_content">Dear user, the location service should be open if you want to try our map for showing your nearest pesticide stores location.</string>
@@ -196,6 +193,7 @@
     <string name="virus_detail_new_transition_name">virus_detail_new</string>
     <string name="virus_detail_new_image_transition_name">virus_detail_new_image</string>
     <string name="virus_detail_new_text_transition_name">virus_detail_new_text</string>
+    <string name="fab_transition_name">fab</string>
 
     <!-- timing -->
     <string name="text_eb_timing">Early blight (EB) usually occurs during early to mid tomato growing season</string>
