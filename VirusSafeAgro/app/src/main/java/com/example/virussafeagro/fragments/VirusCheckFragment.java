@@ -1,5 +1,6 @@
 package com.example.virussafeagro.fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,6 +40,7 @@ import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.VirusCheckViewModel;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -48,6 +52,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//import pl.aprilapps.easyphotopicker.ChooserType;
+//import pl.aprilapps.easyphotopicker.DefaultCallback;
+//import pl.aprilapps.easyphotopicker.EasyImage;
+//import pl.aprilapps.easyphotopicker.MediaFile;
+//import pl.aprilapps.easyphotopicker.MediaSource;
+
 /**
  * Fragment for uploading tomato pictures to identify whether they are infected by some viruses
  * @author Haoyu Yang
@@ -55,8 +65,8 @@ import java.util.Objects;
 public class VirusCheckFragment extends BottomSheetDialogFragment {
     private MainActivity mainActivity;
     private View view;
-    private List<Photo> photosSelected = new ArrayList<>();
     private Bitmap uploadImageBitmap;
+//    private EasyImage easyImage;
 
     // bottom sheet views
     private BottomSheetBehavior<FrameLayout> behavior;
@@ -83,10 +93,6 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 //    public final int REQUEST_OPEN_CAMERA = Camera.REQUEST_TAKE_PHOTO;
     public final int REQUEST_OPEN_CAMERA = 1234;
     public final static int REQUEST_CHOOSE_GALLERY = 5678;
-
-
-    public static String r;
-    public static String uploadImageJsonStatic;
 
     public VirusCheckFragment() {
     }
@@ -218,13 +224,17 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private void setCameraButtonOnClickListener() {
         this.cameraLinearLayout.setOnClickListener(view -> {
             // open camera
-//            startNewCamera();
+            startNewCamera();
         });
     }
 
     private void startNewCamera() {
-        EasyPhotos.createCamera(this)
-                .setFileProviderAuthority("com.example.virussafeagro")
+//        EasyPhotos.createCamera(this)
+//                .setFileProviderAuthority("com.example.virussafeagro")
+//                .start(REQUEST_OPEN_CAMERA);
+
+        ImagePicker.Companion.with(this)
+                .cameraOnly()
                 .start(REQUEST_OPEN_CAMERA);
     }
 
@@ -242,32 +252,38 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // for camera result
-        if (requestCode == REQUEST_OPEN_CAMERA) {
-            ArrayList<Photo> resultPhotos = data.getParcelableArrayListExtra(EasyPhotos.RESULT_PHOTOS);
-            photosSelected.clear();
-            assert resultPhotos != null;
-            photosSelected.addAll(resultPhotos);
-
-            String imagePath = photosSelected.get(0).path;
+        if (requestCode == REQUEST_OPEN_CAMERA){ //Image Uri will not be null for RESULT_OK
+            String imagePath = ImagePicker.Companion.getFilePath(data);
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             uploadImageBitmap = BitmapFactory.decodeFile(imagePath,bmOptions);
-//            bitmap = Bitmap.createScaledBitmap(bitmap,parent.getWidth(),parent.getHeight(),true);
             this.uploadImageImageView.setImageBitmap(uploadImageBitmap);
 
-//            Bitmap bitmap = camera.getCameraBitmap();
-//            if (bitmap != null) {
-//                this.uploadImageImageView.setImageBitmap(bitmap);
-//            } else {
-//                Toast.makeText(requireActivity(), "Picture not taken!", Toast.LENGTH_SHORT).show();
-//            }
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(mainActivity,ImagePicker.RESULT_ERROR + "", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(mainActivity, "Task Cancelled", Toast.LENGTH_SHORT).show();
         }
+
+        // for camera result
+//        if (requestCode == REQUEST_OPEN_CAMERA) {
+//            if (data != null) {
+//                ArrayList<Photo> resultPhotos = data.getParcelableArrayListExtra(EasyPhotos.RESULT_PHOTOS);
+//
+//                assert resultPhotos != null;
+//                String imagePath = resultPhotos.get(0).path;
+//                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+//                uploadImageBitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
+//                this.uploadImageImageView.setImageBitmap(uploadImageBitmap);
+//            } else {
+//                Toast.makeText(mainActivity, "Image is not token!", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+
         // for album result
         if(requestCode == REQUEST_CHOOSE_GALLERY){
             if (data != null) {
                 if (!data.toString().equals("Intent {  }") && resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    Log.e("uri", uri.toString());
                     ContentResolver cr = requireActivity().getContentResolver();
                     try {
                         uploadImageBitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
@@ -356,13 +372,6 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
     private void observeCheckFeedbackLD() {
         this.virusCheckViewModel.getCheckFeedbackLD().observe(getViewLifecycleOwner(), resultCheckFeedback -> {
-
-            // test
-//            System.out.println(" result ----> [" + r + "]");
-            System.out.println(" result ----> [" + uploadImageJsonStatic + "]");
-            // test
-            Toast.makeText(mainActivity, "uploadImageJsonStatic ----> <" + uploadImageJsonStatic +">\nresult string ----> [ " + r + " ]", Toast.LENGTH_LONG).show();
-
             if (isUploadImageButtonClicked) {
                 // test
 //                new Handler().postDelayed(() -> {

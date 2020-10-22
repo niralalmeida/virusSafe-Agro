@@ -15,21 +15,18 @@ public class NetworkConnectionToMLModel {
     private static final String TOMATO_API_URL = "http://ec2-34-202-148-91.compute-1.amazonaws.com:5000/object/";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-//    private OkHttpClient okHttpClient;
+    private OkHttpClient okHttpClient;
 
     public NetworkConnectionToMLModel() {
-//        this.okHttpClient = new OkHttpClient();
+        this.okHttpClient = new OkHttpClient();
     }
 
-    public static String getImageCheckFeedback(ImageObject imageObject) {
-        OkHttpClient okHttpClient = new OkHttpClient();
+    public String getImageCheckFeedback(ImageObject imageObject) {
+        okHttpClient = new OkHttpClient();
         String resultText = "";
 
         Gson gson = new Gson();
         String uploadImageJson = gson.toJson(imageObject);
-
-//        String bitmapString = imageObject.getImage();
-//        String uploadImageJson = "{\"image\":\"" + bitmapString + "\"}";
 
         RequestBody bodyForImage = RequestBody.create(uploadImageJson, JSON);
         Request requestForImage = new Request.Builder()
@@ -42,8 +39,6 @@ public class NetworkConnectionToMLModel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        VirusCheckFragment.uploadImageJsonStatic = uploadImageJson;
-        VirusCheckFragment.r = resultText;
         return resultText;
     }
 }

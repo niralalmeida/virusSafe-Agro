@@ -37,6 +37,8 @@ import com.example.virussafeagro.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.huantansheng.easyphotos.EasyPhotos;
 import com.huantansheng.easyphotos.utils.bitmap.SaveBitmapCallBack;
+//import com.huantansheng.easyphotos.EasyPhotos;
+//import com.huantansheng.easyphotos.utils.bitmap.SaveBitmapCallBack;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -134,10 +136,10 @@ public class ImageStorage {
     }
 
     // normal
-    public static Bitmap screenshotGetBitmapByView(View view) {
-        Bitmap bitmap = EasyPhotos.createBitmapFromView(view);
-        return bitmap;
-    }
+//    public static Bitmap screenshotGetBitmapByView(View view) {
+//        Bitmap bitmap = EasyPhotos.createBitmapFromView(view);
+//        return bitmap;
+//    }
 
     // get the long screenshot
     public static Bitmap longScreenshotGetBitmapByView(NestedScrollView scrollView) {
@@ -157,39 +159,39 @@ public class ImageStorage {
     }
 
 
-    public static Bitmap getBitmapFromView(Activity activity, View view) {
-        if (view == null) return null;
-        Bitmap bitmap;
-        // request convert
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // get the location of the layout
-            final int[] location = new int[2];
-            view.getLocationInWindow(location);
-            // prepare a bitmap object for draw the copied zone into it
-            bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888, true);
-            PixelCopy.request(activity.getWindow(),
-                    new Rect(location[0], location[1], location[0] + view.getWidth(), location[1] + view.getHeight()),
-                    bitmap, copyResult -> {
-                        // if successful
-                        if (copyResult == PixelCopy.SUCCESS) {
-                            // save the image
-//                            saveImageOld(activity, bitmap, "virus");
-                        }
-                    }, new Handler(Looper.getMainLooper()));
-        } else {
-            view.setDrawingCacheEnabled(true);
-            view.buildDrawingCache();
-            view.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
-                    View.MeasureSpec.makeMeasureSpec(view.getHeight(), View.MeasureSpec.EXACTLY));
-            view.layout((int) view.getX(), (int) view.getY(),
-                    (int) view.getX() + view.getMeasuredWidth(), (int) view.getY() + view.getMeasuredWidth());
-            bitmap = Bitmap.createBitmap(view.getDrawingCache(),
-                    0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-            view.setDrawingCacheEnabled(false);
-            view.destroyDrawingCache();
-        }
-        return bitmap;
-    }
+//    public static Bitmap getBitmapFromView(Activity activity, View view) {
+//        if (view == null) return null;
+//        Bitmap bitmap;
+//        // request convert
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            // get the location of the layout
+//            final int[] location = new int[2];
+//            view.getLocationInWindow(location);
+//            // prepare a bitmap object for draw the copied zone into it
+//            bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888, true);
+//            PixelCopy.request(activity.getWindow(),
+//                    new Rect(location[0], location[1], location[0] + view.getWidth(), location[1] + view.getHeight()),
+//                    bitmap, copyResult -> {
+//                        // if successful
+//                        if (copyResult == PixelCopy.SUCCESS) {
+//                            // save the image
+////                            saveImageOld(activity, bitmap, "virus");
+//                        }
+//                    }, new Handler(Looper.getMainLooper()));
+//        } else {
+//            view.setDrawingCacheEnabled(true);
+//            view.buildDrawingCache();
+//            view.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
+//                    View.MeasureSpec.makeMeasureSpec(view.getHeight(), View.MeasureSpec.EXACTLY));
+//            view.layout((int) view.getX(), (int) view.getY(),
+//                    (int) view.getX() + view.getMeasuredWidth(), (int) view.getY() + view.getMeasuredWidth());
+//            bitmap = Bitmap.createBitmap(view.getDrawingCache(),
+//                    0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+//            view.setDrawingCacheEnabled(false);
+//            view.destroyDrawingCache();
+//        }
+//        return bitmap;
+//    }
 
 
 }

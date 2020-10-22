@@ -152,4 +152,10 @@
 <!--    <color name="btn_bg_e_option">#D35400</color>-->
 <!--    <color name="btn_bg_f_option">#607D3C98</color>-->
 
+
+    <!-- camera colors  -->
+    <color name="ucrop_color_toolbar">#00695c</color>
+    <color name="ucrop_color_statusbar">#00695c</color>
+    <color name="ucrop_color_widget_active">#00695c</color>
+
 </resources>

@@ -16,7 +16,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -24,8 +24,8 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
-
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -90,10 +90,13 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.2.0'
 
     // image tools
-    implementation 'com.github.HuanTanSheng:EasyPhotos:3.0.6'
+
     implementation 'com.squareup.picasso:picasso:2.71828' // picasso
-        // glide
-//    implementation 'com.github.bumptech.glide:glide:4.11.0'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // camera
+    implementation 'com.github.HuanTanSheng:EasyPhotos:3.0.6'
+//    implementation 'com.github.dhaval2404:imagepicker:1.7.5'
+//    implementation 'com.github.jkwiecien:EasyImage:3.0.4'
+    implementation 'com.github.dhaval2404:imagepicker:1.7.5'
 
 }
