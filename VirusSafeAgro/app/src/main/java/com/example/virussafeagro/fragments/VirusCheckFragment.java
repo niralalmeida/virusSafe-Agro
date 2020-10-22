@@ -136,8 +136,6 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 
         // get main activity
         this.mainActivity = (MainActivity)getActivity();
-        // set title
-//        this.mainActivity.getTitleTextView().setText(R.string.fragment_virus_check);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
 
@@ -241,10 +239,14 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     private void setSelectImageButtonOnClickListener() {
         this.selectImageLinearLayout.setOnClickListener(view -> {
             // open album
-            Intent intent=new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(intent, REQUEST_CHOOSE_GALLERY);
+//            Intent intent=new Intent();
+//            intent.setType("image/*");
+//            intent.setAction(Intent.ACTION_GET_CONTENT);
+//            startActivityForResult(intent, REQUEST_CHOOSE_GALLERY);
+
+            ImagePicker.Companion.with(this)
+                    .galleryOnly()	//User can only select image from Gallery
+                    .start(REQUEST_CHOOSE_GALLERY);	//Default Request Code is ImagePicker.REQUEST_CODE
         });
     }
 
@@ -252,7 +254,7 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_OPEN_CAMERA){ //Image Uri will not be null for RESULT_OK
+        if (requestCode == REQUEST_OPEN_CAMERA || requestCode == REQUEST_CHOOSE_GALLERY){ //Image Uri will not be null for RESULT_OK
             String imagePath = ImagePicker.Companion.getFilePath(data);
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             uploadImageBitmap = BitmapFactory.decodeFile(imagePath,bmOptions);
@@ -280,25 +282,25 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
 //        }
 
         // for album result
-        if(requestCode == REQUEST_CHOOSE_GALLERY){
-            if (data != null) {
-                if (!data.toString().equals("Intent {  }") && resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    ContentResolver cr = requireActivity().getContentResolver();
-                    try {
-                        uploadImageBitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
-                        this.uploadImageImageView.setImageBitmap(uploadImageBitmap);
-                    } catch (FileNotFoundException e) {
-                        Toast.makeText(requireActivity(), "The image file you select is corrupted! Please choose another one!!", Toast.LENGTH_SHORT).show();
-                        Log.e("Exception", e.getMessage(), e);
-                    }
-                } else {
-                    Log.i("VirusCheck", "operation error");
-                }
-            } else {
-                Toast.makeText(mainActivity, "Not Select an Image", Toast.LENGTH_SHORT).show();
-            }
-        }
+//        if(requestCode == REQUEST_CHOOSE_GALLERY){
+//            if (data != null) {
+//                if (!data.toString().equals("Intent {  }") && resultCode == RESULT_OK) {
+//                    Uri uri = data.getData();
+//                    ContentResolver cr = requireActivity().getContentResolver();
+//                    try {
+//                        uploadImageBitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+//                        this.uploadImageImageView.setImageBitmap(uploadImageBitmap);
+//                    } catch (FileNotFoundException e) {
+//                        Toast.makeText(requireActivity(), "The image file you select is corrupted! Please choose another one!!", Toast.LENGTH_SHORT).show();
+//                        Log.e("Exception", e.getMessage(), e);
+//                    }
+//                } else {
+//                    Log.i("VirusCheck", "operation error");
+//                }
+//            } else {
+//                Toast.makeText(mainActivity, "Not Select an Image", Toast.LENGTH_SHORT).show();
+//            }
+//        }
 
         // display the image and upload button
         if (requestCode == REQUEST_OPEN_CAMERA || requestCode == REQUEST_CHOOSE_GALLERY){

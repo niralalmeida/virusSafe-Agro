@@ -154,8 +154,8 @@
 
 
     <!-- camera colors  -->
-    <color name="ucrop_color_toolbar">#00695c</color>
-    <color name="ucrop_color_statusbar">#00695c</color>
-    <color name="ucrop_color_widget_active">#00695c</color>
+<!--    <color name="ucrop_color_toolbar">#00695c</color>-->
+<!--    <color name="ucrop_color_statusbar">#00695c</color>-->
+<!--    <color name="ucrop_color_widget_active">#00695c</color>-->
 
 </resources>
