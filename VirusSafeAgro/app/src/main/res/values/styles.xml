@@ -74,4 +74,12 @@
         <!-- Customize your theme here. -->
         <item name="android:textSize">13sp</item>
     </style>
+
+
+    <!-- for bottom sheet activity -->
+    <style name="AppTheme.Translucent" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 </resources>

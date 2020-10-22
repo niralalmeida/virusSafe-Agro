@@ -277,4 +277,7 @@
     <string name="text_map_tip">• The map shows nearby pesticide stores based on user’s location.\n• Users can easily navigate to the pesticide store using the directions option.\n• The user’s current location is denoted by a Tomato icon.\n• If the pesticide shop is closed the Spray icon is highlight by grey color else, is highlighted by purple color.</string>
 
 
+    <!-- detect activity -->
+    <string name="filter_title_item">detect_activity</string>
+
 </resources>

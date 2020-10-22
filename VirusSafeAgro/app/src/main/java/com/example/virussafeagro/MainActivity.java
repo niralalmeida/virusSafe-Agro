@@ -2,6 +2,7 @@ package com.example.virussafeagro;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
@@ -768,6 +769,13 @@ public class MainActivity extends AppCompatActivity {
 //        VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
 //        virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
 
+        Intent intent = new Intent(mainActivity, DetectActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelable("currentVirusModel", currentVirusModel);
+//        intent.putExtras(bundle);
+        // animation
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.floatingActionButton, ViewCompat.getTransitionName(this.floatingActionButton));
+        startActivity(intent, options.toBundle());
 
     }
 

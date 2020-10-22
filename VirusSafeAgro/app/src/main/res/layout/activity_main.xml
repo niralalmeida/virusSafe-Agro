@@ -124,7 +124,7 @@
         android:tint="@color/colorBlack"
         android:src="@drawable/ic_detect_leaf"
         app:borderWidth="5dp"
-        android:backgroundTint="#69B588"
+        android:backgroundTint="@color/colorPrimaryMainButtonBg"
         app:backgroundTint="@color/bar_bg_bottom_bar"
         app:rippleColor="@color/ripple_fab"
         app:elevation="20dp"

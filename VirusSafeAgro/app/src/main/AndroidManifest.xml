@@ -20,24 +20,23 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-<!--        <provider-->
-<!--            android:name="androidx.core.content.FileProvider"-->
-<!--            android:authorities="com.example.virussafeagro"-->
-<!--            android:exported="false"-->
-<!--            android:grantUriPermissions="true">-->
-<!--            <meta-data-->
-<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                android:resource="@xml/file_paths_public" />-->
-<!--        </provider>-->
-
-    <!--
+        <!-- <provider -->
+        <!-- android:name="androidx.core.content.FileProvider" -->
+        <!-- android:authorities="com.example.virussafeagro" -->
+        <!-- android:exported="false" -->
+        <!-- android:grantUriPermissions="true"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.support.FILE_PROVIDER_PATHS" -->
+        <!-- android:resource="@xml/file_paths_public" /> -->
+        <!-- </provider> -->
+        <!--
          The API key for Google Maps-based APIs is defined as a string resource.
          (See the file "res/values/google_maps_api.xml").
          Note that the API key is linked to the encryption key used to sign the APK.
          You need a different API key for each encryption key, including the release key that is used to
          sign the APK for publishing.
          You can define the keys for the debug and release targets in src/debug/ and src/release/.
-    -->
+        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" /> <!-- LaunchActivity -->
@@ -71,6 +70,21 @@
             android:name=".QuizStartActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DetectActivity"
+            android:theme="@style/AppTheme.Translucent">
+            <intent-filter android:label="@string/filter_title_item" >
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="news.ycombinator.com"
+                    android:pathPrefix="/user"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
