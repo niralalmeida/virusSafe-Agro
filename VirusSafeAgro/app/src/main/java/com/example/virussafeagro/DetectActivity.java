@@ -233,7 +233,8 @@ public class DetectActivity extends AppCompatActivity {
 //        Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
 //        startActivityForResult(getImageByCamera, REQUEST_OPEN_CAMERA);
 
-        
+        Intent intent = new Intent(DetectActivity.this, CameraActivity.class);
+        startActivity(intent);
 
     }
 

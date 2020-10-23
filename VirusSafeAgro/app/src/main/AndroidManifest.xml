@@ -8,9 +8,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- location permission for map -->
     <!-- 2 providers' permission -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- only location permission by network -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- camera -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- camera -->
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -22,15 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <!-- <provider -->
-        <!-- android:name="androidx.core.content.FileProvider" -->
-        <!-- android:authorities="com.example.virussafeagro" -->
-        <!-- android:exported="false" -->
-        <!-- android:grantUriPermissions="true"> -->
-        <!-- <meta-data -->
-        <!-- android:name="android.support.FILE_PROVIDER_PATHS" -->
-        <!-- android:resource="@xml/file_paths_public" /> -->
-        <!-- </provider> -->
+
         <!--
          The API key for Google Maps-based APIs is defined as a string resource.
          (See the file "res/values/google_maps_api.xml").
@@ -87,6 +79,10 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CameraActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
