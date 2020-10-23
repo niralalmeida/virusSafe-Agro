@@ -96,6 +96,7 @@
                     <!-- camera -->
                     <LinearLayout
                         android:id="@+id/ll_camera"
+                        android:transitionName="@string/camera_fab_transition_name"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

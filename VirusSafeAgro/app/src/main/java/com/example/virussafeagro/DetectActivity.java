@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -233,8 +235,11 @@ public class DetectActivity extends AppCompatActivity {
 //        Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
 //        startActivityForResult(getImageByCamera, REQUEST_OPEN_CAMERA);
 
+
         Intent intent = new Intent(DetectActivity.this, CameraActivity.class);
-        startActivity(intent);
+        // animation
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.cameraLinearLayout, ViewCompat.getTransitionName(this.cameraLinearLayout));
+        startActivity(intent, options.toBundle());
 
     }
 

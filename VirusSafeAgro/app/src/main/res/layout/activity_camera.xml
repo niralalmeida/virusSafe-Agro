@@ -21,4 +21,24 @@
             android:layout_height="match_parent"/>
     </FrameLayout>
 
+    <!-- FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/camera_fab"
+        android:transitionName="@string/camera_fab_transition_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabElevation="10dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:tint="@color/colorBlack"
+        android:src="@drawable/ic_detect_leaf"
+        android:backgroundTint="@color/colorPrimaryMainButtonBg"
+        app:rippleColor="@color/ripple_fab"
+        app:elevation="20dp"
+        app:maxImageSize="40dp"
+        app:fabCustomSize="75dp"
+        app:pressedTranslationZ="10dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
