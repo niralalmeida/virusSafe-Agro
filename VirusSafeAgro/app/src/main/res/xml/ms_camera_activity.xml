@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition app:duration="300"
+        app:constraintSetEnd="@id/end_show_camera_image"
+        app:constraintSetStart="@id/start_show_camera_image">
+    </Transition>
+
+    <!-- show camera image start -->
+    <ConstraintSet android:id="@+id/start_show_camera_image">
+        <!-- camera preview frame layout -->
+        <Constraint
+            android:id="@+id/container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:elevation="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="visible"/>
+        </Constraint>
+        <!-- image rl -->
+        <Constraint
+            android:id="@+id/rl_camera_image_camera_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- camera fab -->
+        <Constraint
+            android:id="@+id/camera_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="50dp"
+            app:fabCustomSize="100dp">
+        </Constraint>
+    </ConstraintSet>
+
+    <!-- show camera image end -->
+    <ConstraintSet android:id="@+id/end_show_camera_image">
+        <!-- camera preview frame layout -->
+        <Constraint
+            android:id="@+id/container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:elevation="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- image rl -->
+        <Constraint
+            android:id="@+id/rl_camera_image_camera_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- camera fab -->
+        <Constraint
+            android:id="@+id/camera_fab"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="35dp"
+            app:fabCustomSize="70dp">
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>

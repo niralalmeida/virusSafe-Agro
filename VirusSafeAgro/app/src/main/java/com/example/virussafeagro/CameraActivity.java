@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.CameraX;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
@@ -11,6 +12,7 @@ import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
@@ -20,6 +22,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -29,9 +33,13 @@ import android.util.Log;
 import android.util.Size;
 import android.view.OrientationEventListener;
 import android.view.Surface;
+import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.ImageStorage;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -46,8 +54,11 @@ public class CameraActivity extends AppCompatActivity {
     private CameraActivity cameraActivity;
 
     // views
+    private MotionLayout containerMotionLayout;
+    private FrameLayout containerFrameLayout;
     private PreviewView previewView;
     private FloatingActionButton cameraFAB;
+    private ImageView cameraImageView;
 
     // camera tools
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
@@ -56,7 +67,8 @@ public class CameraActivity extends AppCompatActivity {
     private CameraSelector cameraSelector;
     private Camera camera;
     private ImageCapture imageCapture;
-    private String outputFilePath;
+    private String imagePath;
+    private Uri savedUri;
     private Bitmap cameraBitmap;
 
     @Override
@@ -75,8 +87,11 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
+        this.containerFrameLayout = findViewById(R.id.container);
+        this.containerMotionLayout = findViewById(R.id.ml_camera_activity);
         this.previewView = findViewById(R.id.previewView);
         this.cameraFAB = findViewById(R.id.camera_fab);
+        this.cameraImageView = findViewById(R.id.img_camera_image_camera_activity);
     }
 
     // initialize Camera
@@ -119,28 +134,6 @@ public class CameraActivity extends AppCompatActivity {
         this.imageCapture = new ImageCapture.Builder()
                         .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
                         .build();
-
-        OrientationEventListener orientationEventListener = new OrientationEventListener(this) {
-            @Override
-            public void onOrientationChanged(int orientation) {
-                int rotation;
-
-                // Monitors orientation values to determine the target rotation value
-                if (orientation >= 45 && orientation < 135) {
-                    rotation = Surface.ROTATION_270;
-                } else if (orientation >= 135 && orientation < 225) {
-                    rotation = Surface.ROTATION_180;
-                } else if (orientation >= 225 && orientation < 315) {
-                    rotation = Surface.ROTATION_90;
-                } else {
-                    rotation = Surface.ROTATION_0;
-                }
-
-                imageCapture.setTargetRotation(rotation);
-            }
-        };
-        orientationEventListener.enable();
-
         this.camera = cameraProvider.bindToLifecycle(this, cameraSelector, imageCapture, preview);
     }
 
@@ -153,9 +146,10 @@ public class CameraActivity extends AppCompatActivity {
             imageCapture.takePicture(outputFileOptions, getMainExecutor(), new ImageCapture.OnImageSavedCallback() {
                 @Override
                 public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                    Uri savedUri = outputFileResults.getSavedUri();
+                    savedUri = outputFileResults.getSavedUri();
                     if(savedUri == null){
                         savedUri = Uri.fromFile(file);
+                        imagePath = savedUri.getPath();
                     }
                     ContentResolver cr = cameraActivity.getContentResolver();
                     try {
@@ -164,8 +158,12 @@ public class CameraActivity extends AppCompatActivity {
                         Toast.makeText(cameraActivity, "Catch Image fail!!", Toast.LENGTH_SHORT).show();
                     }
 
-                    ImageStorage.saveImage(cameraActivity, cameraBitmap, "Virus Camera", "virus_camera", previewView);
+                    // set rotation
+                    configureRotation();
 
+                    cameraImageView.setImageBitmap(cameraBitmap);
+                    MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_camera_image, R.id.end_show_camera_image, 200);
+                    //ImageStorage.saveImage(cameraActivity, cameraBitmap, "Virus Camera", "virus_camera", previewView);
                 }
 
                 @Override
@@ -174,5 +172,46 @@ public class CameraActivity extends AppCompatActivity {
                 }
             });
         });
+    }
+
+    private void configureRotation() {
+        int orientation = -1;
+        try {
+            ExifInterface ei = new ExifInterface(imagePath);
+            orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_UNDEFINED);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        switch(orientation) {
+
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                cameraBitmap = rotateImage(cameraBitmap, 90);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                cameraBitmap = rotateImage(cameraBitmap, 180);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                cameraBitmap = rotateImage(cameraBitmap, 270);
+                break;
+
+            case ExifInterface.ORIENTATION_NORMAL:
+            default:
+        }
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
+    }
+
+    public void retake(View v) {
+        cameraImageView.setImageBitmap(null);
+        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_camera_image, R.id.start_show_camera_image, 200);
     }
 }
