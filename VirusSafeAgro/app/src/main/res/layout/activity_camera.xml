@@ -29,7 +29,7 @@
     <!-- FAB -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/camera_fab"
-        android:transitionName="@string/camera_fab_transition_name"
+        android:transitionName="@string/fab_transition_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fabElevation="10dp"

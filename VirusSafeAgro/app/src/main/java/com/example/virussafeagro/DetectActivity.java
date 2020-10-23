@@ -3,6 +3,7 @@ package com.example.virussafeagro;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
@@ -49,13 +50,9 @@ public class DetectActivity extends AppCompatActivity {
     private FrameLayout bottomSheetFrameLayout;
     private MotionLayout containerMotionLayout;
     private ImageButton closeButtonImageButton;
-    private LinearLayout twoButtonsLinearLayout;
-    private LinearLayout cameraLinearLayout;
-    private LinearLayout galleryLinearLayout;
+    private CardView cameraCardView;
     private ImageView cameraImageView;
     private TextView cameraTextView;
-    private ImageView galleryImageView;
-    private TextView galleryTextView;
     private com.airbnb.lottie.LottieAnimationView swipeUpLottie;
     private ImageView uploadImageView;
     private Button uploadButton;
@@ -89,13 +86,9 @@ public class DetectActivity extends AppCompatActivity {
         this.bottomSheetFrameLayout = findViewById(R.id.fl_bottom_sheet);
         this.containerMotionLayout = findViewById(R.id.ml_detect_activity);
         this.closeButtonImageButton = findViewById(R.id.btn_close_detect_activity);
-        this.twoButtonsLinearLayout = findViewById(R.id.ll_2_buttons_detect);
-        this.cameraLinearLayout = findViewById(R.id.ll_camera);
-        this.galleryLinearLayout = findViewById(R.id.ll_gallery);
+        this.cameraCardView = findViewById(R.id.cv_camera_button_detect);
         this.cameraImageView = findViewById(R.id.img_camera_detect_activity);
         this.cameraTextView = findViewById(R.id.tv_camera_detect_activity);
-        this.galleryImageView = findViewById(R.id.img_gallery_detect_activity);
-        this.galleryTextView = findViewById(R.id.tv_gallery_detect_activity);
         this.swipeUpLottie = findViewById(R.id.lav_swipe_up_detect_activity);
         this.uploadImageView = findViewById(R.id.img_upload_detect_activity);
         this.uploadButton = findViewById(R.id.btn_upload_image_detect_activity);
@@ -123,12 +116,6 @@ public class DetectActivity extends AppCompatActivity {
                         // hide button image and text
                         cameraImageView.setVisibility(View.INVISIBLE);
                         cameraTextView.setVisibility(View.INVISIBLE);
-                        galleryImageView.setVisibility(View.INVISIBLE);
-                        galleryTextView.setVisibility(View.INVISIBLE);
-                        // add space between the 2 buttons
-                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) galleryLinearLayout.getLayoutParams();
-                        layoutParams.setMarginStart(0);
-                        galleryLinearLayout.setLayoutParams(layoutParams);
                         // finish this activity
                         supportFinishAfterTransition();
                         break;
@@ -181,10 +168,6 @@ public class DetectActivity extends AppCompatActivity {
     private void showTitleAndButton() {
         // show the buttons
         new Handler().postDelayed(()->{
-            // add space between the 2 buttons
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) galleryLinearLayout.getLayoutParams();
-            layoutParams.setMarginStart(5);
-            galleryLinearLayout.setLayoutParams(layoutParams);
 
             MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_detect_button, R.id.end_show_detect_button, 200);
         }, 300);
@@ -198,8 +181,6 @@ public class DetectActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             cameraImageView.setVisibility(View.VISIBLE);
             cameraTextView.setVisibility(View.VISIBLE);
-            galleryImageView.setVisibility(View.VISIBLE);
-            galleryTextView.setVisibility(View.VISIBLE);
         }, 700);
     }
 
@@ -208,21 +189,12 @@ public class DetectActivity extends AppCompatActivity {
         // hide button image and text
         cameraImageView.setVisibility(View.INVISIBLE);
         cameraTextView.setVisibility(View.INVISIBLE);
-        galleryImageView.setVisibility(View.INVISIBLE);
-        galleryTextView.setVisibility(View.INVISIBLE);
         // hide text
         MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_detect_text, R.id.start_show_detect_text, 200);
         // hide the buttons
         new Handler().postDelayed(()->{
             MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_detect_button, R.id.start_show_detect_button, 200);
         }, 200);
-
-        new Handler().postDelayed(()->{
-            // add space between the 2 buttons
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) galleryLinearLayout.getLayoutParams();
-            layoutParams.setMarginStart(0);
-            galleryLinearLayout.setLayoutParams(layoutParams);
-        }, 400);
     }
 
     // camera button onclick
@@ -235,19 +207,14 @@ public class DetectActivity extends AppCompatActivity {
 //        Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
 //        startActivityForResult(getImageByCamera, REQUEST_OPEN_CAMERA);
 
-
-        Intent intent = new Intent(DetectActivity.this, CameraActivity.class);
-        // animation
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.cameraLinearLayout, ViewCompat.getTransitionName(this.cameraLinearLayout));
-        startActivity(intent, options.toBundle());
-
-    }
-
-    // gallery button onclick
-    public void openGallery(View v) {
-        ImagePicker.Companion.with(this)
-                .galleryOnly()	//User can only select image from Gallery
-                .start(REQUEST_CHOOSE_GALLERY);	//Default Request Code is ImagePicker.REQUEST_CODE
+        hideTitleAndButton();
+        new Handler().postDelayed(()->{
+            Intent intent = new Intent(DetectActivity.this, CameraActivity.class);
+            // animation
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.cameraCardView, ViewCompat.getTransitionName(this.cameraCardView));
+            startActivity(intent, options.toBundle());
+        }, 400);
+        
     }
 
     @Override
@@ -271,9 +238,6 @@ public class DetectActivity extends AppCompatActivity {
             if (this.bottomSheetBehavior.getPeekHeight() == DataConverter.dip2px(this, 250)) {
                 this.bottomSheetBehavior.setPeekHeight(DataConverter.dip2px(this, 350), true);
             }
-//            MyAnimationBox.configureTheAnimation(this.containerMotionLayout, R.id.);
-//            uploadImageButtonRelativeLayout.setVisibility(View.VISIBLE);
-//            imageFormatTipTextView.setVisibility(View.GONE);
 
         }
     }
