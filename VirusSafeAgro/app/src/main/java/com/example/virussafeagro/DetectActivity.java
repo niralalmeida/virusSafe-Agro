@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.ChangeBounds;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -21,9 +22,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.virussafeagro.animation.MyAnimationBox;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 public class DetectActivity extends AppCompatActivity {
+    // tools
+    private BottomSheetBehavior bottomSheetBehavior;
     //views
     private View outsideTouchView;
     private FrameLayout bottomSheetFrameLayout;
@@ -36,6 +40,7 @@ public class DetectActivity extends AppCompatActivity {
     private TextView cameraTextView;
     private ImageView galleryImageView;
     private TextView galleryTextView;
+    private com.airbnb.lottie.LottieAnimationView swipeUpLottie;
     private ImageView uploadImageView;
     private Button uploadButton;
 
@@ -43,10 +48,15 @@ public class DetectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(100);
+        getWindow().setSharedElementEnterTransition(bounds);
         setContentView(R.layout.activity_detect);
 
         // initialize Views
         this.initializeViews();
+        // initialize bottom sheet behavior
+        this.initializeBehavior();
         // set Outside TouchView On Touch Listener
         this.setOutsideTouchViewOnTouchListener();
         // set CloseButton OnClickListener
@@ -68,8 +78,13 @@ public class DetectActivity extends AppCompatActivity {
         this.cameraTextView = findViewById(R.id.tv_camera_detect_activity);
         this.galleryImageView = findViewById(R.id.img_gallery_detect_activity);
         this.galleryTextView = findViewById(R.id.tv_gallery_detect_activity);
+        this.swipeUpLottie = findViewById(R.id.lav_swipe_up_detect_activity);
         this.uploadImageView = findViewById(R.id.img_upload_detect_activity);
         this.uploadButton = findViewById(R.id.btn_upload_image_detect_activity);
+    }
+
+    private void initializeBehavior() {
+        this.bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetFrameLayout);
     }
 
     // bottom sheet state change listener
@@ -82,9 +97,7 @@ public class DetectActivity extends AppCompatActivity {
                 supportFinishAfterTransition();
             }, 550);
         });
-        BottomSheetBehavior
-                .from(bottomSheetFrameLayout)
-                .addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+        this.bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
                     @Override
                     public void onStateChanged(@NonNull View bottomSheet, int newState) {
                         switch (newState) {
@@ -103,9 +116,11 @@ public class DetectActivity extends AppCompatActivity {
                                 break;
                             case BottomSheetBehavior.STATE_EXPANDED:
                                 setStatusBarDim(false);
+                                swipeUpLottie.pauseAnimation();
                                 break;
                             default:
                                 setStatusBarDim(true);
+                                swipeUpLottie.resumeAnimation();
                                 break;
                         }
                     }
@@ -146,16 +161,16 @@ public class DetectActivity extends AppCompatActivity {
         new Handler().postDelayed(()->{
             // add space between the 2 buttons
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) galleryLinearLayout.getLayoutParams();
-            layoutParams.setMarginStart(3);
+            layoutParams.setMarginStart(5);
             galleryLinearLayout.setLayoutParams(layoutParams);
 
-            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_detect_button, R.id.end_show_detect_button, 300);
-        }, 800);
+            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_detect_button, R.id.end_show_detect_button, 200);
+        }, 300);
 
         // show text
         new Handler().postDelayed(() -> {
             MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_detect_text, R.id.end_show_detect_text, 200);
-        }, 1100);
+        }, 500);
 
         // show button image and text
         new Handler().postDelayed(() -> {
@@ -163,7 +178,7 @@ public class DetectActivity extends AppCompatActivity {
             cameraTextView.setVisibility(View.VISIBLE);
             galleryImageView.setVisibility(View.VISIBLE);
             galleryTextView.setVisibility(View.VISIBLE);
-        }, 1300);
+        }, 700);
     }
 
     // hide the title and 2 buttons
@@ -177,7 +192,7 @@ public class DetectActivity extends AppCompatActivity {
         MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_detect_text, R.id.start_show_detect_text, 200);
         // hide the buttons
         new Handler().postDelayed(()->{
-            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_detect_button, R.id.start_show_detect_button, 300);
+            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_detect_button, R.id.start_show_detect_button, 200);
         }, 200);
 
         new Handler().postDelayed(()->{
@@ -185,7 +200,18 @@ public class DetectActivity extends AppCompatActivity {
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) galleryLinearLayout.getLayoutParams();
             layoutParams.setMarginStart(0);
             galleryLinearLayout.setLayoutParams(layoutParams);
-        }, 500);
+        }, 400);
     }
+
+    // camera button onclick
+    public void openCamera(View v) {
+//        this.bottomSheetBehavior.setPeekHeight(DataConverter.dip2px(this, 300), true);
+    }
+
+    // gallery button onclick
+    public void openGallery(View v) {
+
+    }
+    
 
 }
