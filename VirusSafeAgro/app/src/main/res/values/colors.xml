@@ -9,6 +9,7 @@
     <color name="colorPrimaryLight">#69B4AC</color>
 <!--    <color name="colorPrimaryLight">#0d9488</color>-->
     <color name="colorPrimaryDarkBG">#121212</color>
+    <color name="colorPrimaryLightBG">#C2C2C2</color>
     <color name="colorPrimaryDarkTheme">#1E1E1E</color>
     <color name="colorPrimaryTitle">#E2E2E2</color>
     <color name="colorPrimarySubTitle">#E0E0E0</color>

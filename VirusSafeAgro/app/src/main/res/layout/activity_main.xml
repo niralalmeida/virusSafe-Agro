@@ -25,22 +25,23 @@
         android:id="@+id/ll_bottom_bar"
         android:layout_alignParentBottom="true"
         android:elevation="20dp"
+        android:background="@drawable/shape_bottom_bar_bg_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="60dp">
 
         <!-- learn -->
         <RelativeLayout
             android:id="@+id/rl_learn_bottom_bar"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:background="@drawable/ripple_btn_item_bottom_bar">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="100dp"
@@ -48,8 +49,8 @@
 
                 <ImageView
                     android:id="@+id/img_learn_bottom_bar"
-                    android:layout_width="33dp"
-                    android:layout_height="33dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
                     android:tint="@color/item_not_checked"
                     android:background="@android:color/transparent"
@@ -58,7 +59,7 @@
                 <TextView
                     android:id="@+id/tv_learn_bottom_bar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="15dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="2dp"
                     android:textColor="@color/item_not_checked"
@@ -74,14 +75,14 @@
             android:id="@+id/rl_toolkit_bottom_bar"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:background="@drawable/ripple_btn_item_bottom_bar">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="100dp"
@@ -89,8 +90,8 @@
 
                 <ImageView
                     android:id="@+id/img_toolkit_bottom_bar"
-                    android:layout_width="33dp"
-                    android:layout_height="33dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
                     android:tint="@color/item_not_checked"
                     android:background="@android:color/transparent"
@@ -99,7 +100,7 @@
                 <TextView
                     android:id="@+id/tv_toolkit_bottom_bar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="15dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="2dp"
                     android:textColor="@color/item_not_checked"
@@ -118,18 +119,17 @@
         android:transitionName="@string/fab_transition_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@id/ll_bottom_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:tint="@color/colorBlack"
         android:src="@drawable/ic_detect_leaf"
-        app:borderWidth="5dp"
         android:backgroundTint="@color/colorPrimaryMainButtonBg"
         app:backgroundTint="@color/bar_bg_bottom_bar"
         app:rippleColor="@color/ripple_fab"
         app:elevation="20dp"
         app:maxImageSize="40dp"
-        app:fabCustomSize="80dp"
+        app:fabCustomSize="75dp"
         app:pressedTranslationZ="10dp"/>
 
 <!--    app:borderWidth="8dp"-->
