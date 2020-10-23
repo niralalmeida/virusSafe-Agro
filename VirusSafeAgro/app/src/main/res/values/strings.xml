@@ -69,7 +69,7 @@
     <string name="menu_ic_more">MORE</string>
     <string name="menu_ic_search">SEARCH</string>
 
-    <!-- home -->
+    <!-- toolkit -->
     <string name="text_description_title_toolkit">Welcome to VirusSafe Agro</string>
     <string name="text_description_content_toolkit">This app aims to provide an easy reference to diagnose virus in tomato plants and a care guide for farmers in Victoria who are new to farming.</string>
     <string name="text_description_read_more_toolkit">Read More &gt;</string>
@@ -87,7 +87,7 @@
     <string name="text_factors_2_toolkit">VIRUS SPREAD</string>
     <string name="text_news_toolkit">News</string>
     <string name="text_tweets_toolkit">Tweets</string>
-    <string name="text_virus_check_toolkit">Check</string>
+    <string name="text_virus_check_toolkit">Detect</string>
     <string name="text_virus_info_toolkit">Learn</string>
 
     <!-- control strategy -->

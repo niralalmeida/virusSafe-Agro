@@ -1,24 +1,17 @@
 package com.example.virussafeagro.fragments;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -29,7 +22,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
@@ -45,12 +37,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.huantansheng.easyphotos.EasyPhotos;
-import com.huantansheng.easyphotos.models.album.entity.Photo;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -181,11 +168,11 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
         this.isUploadImageButtonClicked = false;
         this.titleLinearLayout = view.findViewById(R.id.ll_choose_image_title_virus_check);
         this.closeButtonRelativeLayout = view.findViewById(R.id.rl_close_button_virus_check);
-        this.cameraLinearLayout = view.findViewById(R.id.ll_camera);
+        this.cameraLinearLayout = view.findViewById(R.id.ll_camera_check);
         this.selectImageLinearLayout = view.findViewById(R.id.ll_select_image);
         this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
         this.uploadImageButtonRelativeLayout = view.findViewById(R.id.rl_upload_image_button_virus_check);
-        this.uploadImageButton = view.findViewById(R.id.btn_upload_image);
+        this.uploadImageButton = view.findViewById(R.id.btn_upload_image_check);
         this.allVirusCheckLinearLayout = view.findViewById(R.id.ll_all_virus_check);
         this.uploadingProgressBarRelativeLayout = view.findViewById(R.id.rl_process_bar_virus_check);
         this.virusCheckRelativeLayout = view.findViewById(R.id.rl_virus_check);

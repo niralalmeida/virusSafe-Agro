@@ -766,13 +766,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showVirusCheckFragment() {
-        VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
-        virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
+//        VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
+//        virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
 
-//        Intent intent = new Intent(mainActivity, DetectActivity.class);
-//        // animation
-//        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.floatingActionButton, ViewCompat.getTransitionName(this.floatingActionButton));
-//        startActivity(intent, options.toBundle());
+        Intent intent = new Intent(mainActivity, DetectActivity.class);
+        // animation
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.floatingActionButton, ViewCompat.getTransitionName(this.floatingActionButton));
+        startActivity(intent, options.toBundle());
 
     }
 
