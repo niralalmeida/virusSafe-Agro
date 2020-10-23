@@ -4,9 +4,16 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,14 +27,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.DataConverter;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class DetectActivity extends AppCompatActivity {
+    private DetectActivity detectActivity;
     // tools
     private BottomSheetBehavior bottomSheetBehavior;
+    public final int REQUEST_OPEN_CAMERA = 1234;
+    public final static int REQUEST_CHOOSE_GALLERY = 5678;
+    private Bitmap uploadImageBitmap;
     //views
     private View outsideTouchView;
     private FrameLayout bottomSheetFrameLayout;
@@ -53,6 +67,8 @@ public class DetectActivity extends AppCompatActivity {
         getWindow().setSharedElementEnterTransition(bounds);
         setContentView(R.layout.activity_detect);
 
+        // set activity
+        this.detectActivity = this;
         // initialize Views
         this.initializeViews();
         // initialize bottom sheet behavior
@@ -98,38 +114,42 @@ public class DetectActivity extends AppCompatActivity {
             }, 550);
         });
         this.bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-                    @Override
-                    public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                        switch (newState) {
-                            case BottomSheetBehavior.STATE_HIDDEN:
-                                // hide button image and text
-                                cameraImageView.setVisibility(View.INVISIBLE);
-                                cameraTextView.setVisibility(View.INVISIBLE);
-                                galleryImageView.setVisibility(View.INVISIBLE);
-                                galleryTextView.setVisibility(View.INVISIBLE);
-                                // add space between the 2 buttons
-                                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) galleryLinearLayout.getLayoutParams();
-                                layoutParams.setMarginStart(0);
-                                galleryLinearLayout.setLayoutParams(layoutParams);
-                                // finish this activity
-                                supportFinishAfterTransition();
-                                break;
-                            case BottomSheetBehavior.STATE_EXPANDED:
-                                setStatusBarDim(false);
-                                swipeUpLottie.pauseAnimation();
-                                break;
-                            default:
-                                setStatusBarDim(true);
-                                swipeUpLottie.resumeAnimation();
-                                break;
-                        }
-                    }
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        // hide button image and text
+                        cameraImageView.setVisibility(View.INVISIBLE);
+                        cameraTextView.setVisibility(View.INVISIBLE);
+                        galleryImageView.setVisibility(View.INVISIBLE);
+                        galleryTextView.setVisibility(View.INVISIBLE);
+                        // add space between the 2 buttons
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) galleryLinearLayout.getLayoutParams();
+                        layoutParams.setMarginStart(0);
+                        galleryLinearLayout.setLayoutParams(layoutParams);
+                        // finish this activity
+                        supportFinishAfterTransition();
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        setStatusBarDim(false);
+                        // pause and hide lottie
+                        swipeUpLottie.pauseAnimation();
+                        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_swipe_up, R.id.end_swipe_up, 200);
+                        break;
+                    default:
+                        setStatusBarDim(true);
+                        // resume and show lottie
+                        swipeUpLottie.resumeAnimation();
+                        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_swipe_up, R.id.start_swipe_up, 200);
+                        break;
+                }
+            }
 
-                    @Override
-                    public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                        // no op
-                    }
-                });
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                // no op
+            }
+        });
     }
 
     private void setStatusBarDim(boolean dim) {
@@ -205,13 +225,51 @@ public class DetectActivity extends AppCompatActivity {
 
     // camera button onclick
     public void openCamera(View v) {
-//        this.bottomSheetBehavior.setPeekHeight(DataConverter.dip2px(this, 300), true);
+//        ImagePicker.Companion.with(this)
+//                .cameraOnly()
+//                .start(REQUEST_OPEN_CAMERA);
+
+        // intent way
+//        Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
+//        startActivityForResult(getImageByCamera, REQUEST_OPEN_CAMERA);
+
+        
+
     }
 
     // gallery button onclick
     public void openGallery(View v) {
-
+        ImagePicker.Companion.with(this)
+                .galleryOnly()	//User can only select image from Gallery
+                .start(REQUEST_CHOOSE_GALLERY);	//Default Request Code is ImagePicker.REQUEST_CODE
     }
-    
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_OPEN_CAMERA || requestCode == REQUEST_CHOOSE_GALLERY){ //Image Uri will not be null for RESULT_OK
+            String imagePath = ImagePicker.Companion.getFilePath(data);
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            uploadImageBitmap = BitmapFactory.decodeFile(imagePath,bmOptions);
+            this.uploadImageView.setImageBitmap(uploadImageBitmap);
+
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(detectActivity,ImagePicker.RESULT_ERROR + "", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(detectActivity, "Task Cancelled", Toast.LENGTH_SHORT).show();
+        }
+
+        if (requestCode == REQUEST_OPEN_CAMERA || requestCode == REQUEST_CHOOSE_GALLERY){
+            // set the bottom sheet peek height
+            if (this.bottomSheetBehavior.getPeekHeight() == DataConverter.dip2px(this, 250)) {
+                this.bottomSheetBehavior.setPeekHeight(DataConverter.dip2px(this, 350), true);
+            }
+//            MyAnimationBox.configureTheAnimation(this.containerMotionLayout, R.id.);
+//            uploadImageButtonRelativeLayout.setVisibility(View.VISIBLE);
+//            imageFormatTipTextView.setVisibility(View.GONE);
+
+        }
+    }
 
 }

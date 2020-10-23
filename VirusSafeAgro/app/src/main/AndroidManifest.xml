@@ -9,6 +9,9 @@
     <!-- 2 providers' permission -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- only location permission by network -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- camera -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +22,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
         <!-- <provider -->
         <!-- android:name="androidx.core.content.FileProvider" -->
         <!-- android:authorities="com.example.virussafeagro" -->
@@ -73,7 +75,7 @@
         <activity
             android:name=".DetectActivity"
             android:theme="@style/AppTheme.Translucent">
-            <intent-filter android:label="@string/filter_title_item" >
+            <intent-filter android:label="@string/filter_title_item">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />

@@ -18,7 +18,7 @@
     <FrameLayout
         android:id="@+id/fl_bottom_sheet"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        app:behavior_peekHeight="200dp"
+        app:behavior_peekHeight="250dp"
         android:elevation="5dp"
         app:behavior_hideable="true"
         android:layout_width="match_parent"
@@ -71,9 +71,9 @@
                 app:layout_constraintTop_toBottomOf="@id/v_swipe_tip_detect_activity"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="@color/colorBlack"
-                android:text="Select a Tomato Leaf" />
+                android:textSize="23sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Select a Tomato Leaf Image" />
 
             <!-- 2 buttons -->
             <androidx.cardview.widget.CardView
@@ -153,33 +153,32 @@
 
             </androidx.cardview.widget.CardView>
 
+            <!-- image format tip -->
+            <TextView
+                android:id="@+id/tv_image_format_tip_detect_activity"
+                android:visibility="visible"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/cv_2_buttons_detect"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Accepted image format: .jpeg, .jpg" />
+
             <!-- swipe up lottie -->
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lav_swipe_up_detect_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/cv_2_buttons_detect"
+                app:layout_constraintTop_toBottomOf="@id/tv_image_format_tip_detect_activity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:lottie_fileName="swipeUp.json"
                 android:hardwareAccelerated="true"
                 app:lottie_loop="true"
                 app:lottie_autoPlay="true" />
-
-            <!-- image format tip -->
-<!--            <TextView-->
-<!--                android:id="@+id/tv_image_format_tip_detect_activity"-->
-<!--                android:visibility="gone"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/ll_2_buttons_detect"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:textColor="@color/colorBlack"-->
-<!--                android:text="Accepted image format: .jpeg, .jpg" />-->
 
             <!-- image -->
             <ImageView
