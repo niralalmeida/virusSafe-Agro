@@ -53,7 +53,7 @@ public class DetectActivity extends AppCompatActivity {
     private CardView cameraCardView;
     private ImageView cameraImageView;
     private TextView cameraTextView;
-    private com.airbnb.lottie.LottieAnimationView swipeUpLottie;
+//    private com.airbnb.lottie.LottieAnimationView swipeUpLottie;
     private ImageView uploadImageView;
     private Button uploadButton;
 
@@ -94,7 +94,7 @@ public class DetectActivity extends AppCompatActivity {
         this.cameraCardView = findViewById(R.id.cv_camera_button_detect);
         this.cameraImageView = findViewById(R.id.img_camera_detect_activity);
         this.cameraTextView = findViewById(R.id.tv_camera_detect_activity);
-        this.swipeUpLottie = findViewById(R.id.lav_swipe_up_detect_activity);
+//        this.swipeUpLottie = findViewById(R.id.lav_swipe_up_detect_activity);
         this.uploadImageView = findViewById(R.id.img_upload_detect_activity);
         this.uploadButton = findViewById(R.id.btn_upload_image_detect_activity);
     }
@@ -127,13 +127,13 @@ public class DetectActivity extends AppCompatActivity {
                     case BottomSheetBehavior.STATE_EXPANDED:
                         setStatusBarDim(false);
                         // pause and hide lottie
-                        swipeUpLottie.pauseAnimation();
+//                        swipeUpLottie.pauseAnimation();
                         MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_swipe_up, R.id.end_swipe_up, 200);
                         break;
                     default:
                         setStatusBarDim(true);
                         // resume and show lottie
-                        swipeUpLottie.resumeAnimation();
+//                        swipeUpLottie.resumeAnimation();
                         MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_swipe_up, R.id.start_swipe_up, 200);
                         break;
                 }

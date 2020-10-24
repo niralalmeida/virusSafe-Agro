@@ -1,175 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ml_camera_activity"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDarkBG"
-    tools:showPaths="true"
-    app:layoutDescription="@xml/ms_camera_activity"
     tools:context=".CameraActivity">
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:elevation="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="0dp" />
 
-        <androidx.camera.view.PreviewView
-            android:id="@+id/previewView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:elevation="0dp" />
-    </FrameLayout>
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/ml_camera_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:showPaths="true"
+        app:layoutDescription="@xml/ms_camera_activity">
 
-<!--    <View-->
-<!--        android:id="@+id/v_bottom_bg_camera_activity"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="4dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/v_camera_frame_bottom_left"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:background="@drawable/shape_swipe_up_bg_virus_detail" />-->
-
-    <!-- top left -->
-    <ImageView
-        android:id="@+id/v_camera_frame_top_left"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:elevation="3dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginStart="40dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/shape_camera_frame_top_left" />
-    <!-- top right -->
-    <ImageView
-        android:id="@+id/v_camera_frame_top_right"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:elevation="3dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/shape_camera_frame_top_right" />
-    <!-- bottom left -->
-    <ImageView
-        android:id="@+id/v_camera_frame_bottom_left"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:elevation="3dp"
-        android:layout_marginBottom="200dp"
-        android:layout_marginStart="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/shape_camera_frame_bottom_left" />
-    <!-- bottom right -->
-    <ImageView
-        android:id="@+id/v_camera_frame_bottom_right"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:elevation="3dp"
-        android:layout_marginBottom="200dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/shape_camera_frame_bottom_right" />
-
-    <!-- close button -->
-    <ImageButton
-        android:id="@+id/btn_close_camera_activity"
-        android:layout_alignEnd="@id/nsv_all_view_detect_activity"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:onClick="closeCamera"
-        android:padding="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="false"
-        android:elevation="10dp"
-        android:background="@drawable/shape_btn_bg_close_activity"
-        android:tint="@color/colorWhite"
-        android:src="@drawable/ic_wrong_circle_black_50dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
-
-    <!-- camera button -->
-    <ImageButton
-        android:id="@+id/imgbtn_camera_activity"
-        android:transitionName="@string/fab_transition_name"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:padding="15dp"
-        android:layout_marginBottom="10dp"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="false"
-        app:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/shape_btn_bg_camera_activity"
-        android:tint="@color/colorPrimaryMainButtonBg"
-        android:src="@drawable/ic_camera_black_100dp" />
-
-    <!-- gallery/retake button -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_gallery_retake_camera_activity"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:onClick="retake"
-        app:cardElevation="10dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintTop_toBottomOf="@id/v_camera_frame_bottom_left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/imgbtn_camera_activity">
+        <!-- top left -->
         <ImageView
-            android:id="@+id/img_gallery_retake_camera_activity"
+            android:id="@+id/v_camera_frame_top_left"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:elevation="3dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/shape_camera_frame_top_left" />
+        <!-- top right -->
+        <ImageView
+            android:id="@+id/v_camera_frame_top_right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:elevation="3dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/shape_camera_frame_top_right" />
+        <!-- bottom left -->
+        <ImageView
+            android:id="@+id/v_camera_frame_bottom_left"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:elevation="3dp"
+            android:layout_marginBottom="200dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/shape_camera_frame_bottom_left" />
+        <!-- bottom right -->
+        <ImageView
+            android:id="@+id/v_camera_frame_bottom_right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:elevation="3dp"
+            android:layout_marginBottom="200dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/shape_camera_frame_bottom_right" />
+
+        <!-- close button -->
+        <ImageButton
+            android:id="@+id/btn_close_camera_activity"
+            android:layout_alignEnd="@id/nsv_all_view_detect_activity"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:adjustViewBounds="false"
+            android:elevation="10dp"
+            android:background="@drawable/shape_btn_bg_close_activity"
             android:tint="@color/colorWhite"
-            android:src="@drawable/ic_gallery" />
-    </androidx.cardview.widget.CardView>
-    <!-- gallery/retake button text -->
-    <TextView
-        android:id="@+id/tv_gallery_retake_camera_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="10dp"
-        app:layout_constraintTop_toBottomOf="@id/cv_gallery_retake_camera_activity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/imgbtn_camera_activity"
-        android:text="photos"
-        android:textColor="@color/colorWhite"/>
+            android:src="@drawable/ic_wrong_circle_black_50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
 
-    <!-- image view -->
-    <RelativeLayout
-        android:id="@+id/rl_camera_image_camera_activity"
-        android:elevation="3dp"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/img_camera_image_camera_activity"
+        <!-- camera button -->
+        <ImageButton
+            android:id="@+id/imgbtn_camera_activity"
+            android:transitionName="@string/fab_transition_name"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:padding="15dp"
+            android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:adjustViewBounds="false"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/shape_btn_bg_camera_activity"
+            android:tint="@color/colorPrimaryMainButtonBg"
+            android:src="@drawable/ic_camera_black_100dp" />
 
-    </RelativeLayout>
+        <!-- gallery/retake button -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_gallery_retake_camera_activity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="5dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:layout_constraintTop_toBottomOf="@id/v_camera_frame_bottom_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgbtn_camera_activity">
+            <ImageView
+                android:id="@+id/img_gallery_retake_camera_activity"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:tint="@color/colorWhite"
+                android:src="@drawable/ic_gallery" />
+        </androidx.cardview.widget.CardView>
+        <!-- gallery/retake button text -->
+        <TextView
+            android:id="@+id/tv_gallery_retake_camera_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_gallery_retake_camera_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgbtn_camera_activity"
+            android:text="photos"
+            android:textColor="@color/colorWhite"/>
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+        <!-- image view -->
+        <RelativeLayout
+            android:id="@+id/rl_camera_image_camera_activity"
+            android:elevation="3dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/img_camera_image_camera_activity"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+</FrameLayout>

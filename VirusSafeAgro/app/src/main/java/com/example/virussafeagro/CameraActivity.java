@@ -12,6 +12,7 @@ import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
@@ -43,6 +44,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.virussafeagro.animation.MyAnimationBox;
@@ -65,6 +67,10 @@ public class CameraActivity extends AppCompatActivity {
     private PreviewView previewView;
     private ImageButton cameraImageButton;
     private ImageView cameraImageView;
+    private ImageButton closeImageButton;
+    private CardView galleryRetakeCardView;
+    private ImageView galleryRetakeImageView;
+    private TextView galleryRetakeTextView;
 
     // camera tools
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
@@ -76,6 +82,9 @@ public class CameraActivity extends AppCompatActivity {
     private String imagePath;
     private Uri savedUri;
     private Bitmap cameraBitmap;
+
+    // tools
+    private boolean isRetakeShown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,15 +101,22 @@ public class CameraActivity extends AppCompatActivity {
         this.initializeCamera();
         // set camera button on click
         this.setCameraButtonOnClickListener();
+        // set close button on click
+        this.setCloseImageButtonOnClickListener();
+        // set gallery/retake button on click
+        this.setGalleryRetakeCardViewOnClickListener();
     }
 
     private void initializeViews() {
         this.containerFrameLayout = findViewById(R.id.container);
         this.containerMotionLayout = findViewById(R.id.ml_camera_activity);
         this.previewView = findViewById(R.id.previewView);
-//        this.cameraFAB = findViewById(R.id.camera_fab);
         this.cameraImageButton = findViewById(R.id.imgbtn_camera_activity);
         this.cameraImageView = findViewById(R.id.img_camera_image_camera_activity);
+        this.closeImageButton = findViewById(R.id.btn_close_camera_activity);
+        this.galleryRetakeCardView = findViewById(R.id.cv_gallery_retake_camera_activity);
+        this.galleryRetakeImageView = findViewById(R.id.img_gallery_retake_camera_activity);
+        this.galleryRetakeTextView = findViewById(R.id.tv_gallery_retake_camera_activity);
     }
 
     // initialize Camera
@@ -149,14 +165,25 @@ public class CameraActivity extends AppCompatActivity {
     // set camera button on click
     private void setCameraButtonOnClickListener() {
         this.cameraImageButton.setOnClickListener(v -> {
-            // make camera button rotate
-            makeCameraButtonRotate();
+            // take photo
+            if (!isRetakeShown) {
+                // make camera button rotate
+                makeCameraButtonRotate();
+                // set retake button
+                isRetakeShown = true;
+                // change the card image
+                galleryRetakeImageView.setImageResource(R.drawable.ic_redo);
+                // change the card text
+                galleryRetakeTextView.setText("Redo");
 
-            new Handler().postDelayed(() -> {
-                cameraImageButton.clearAnimation();
-                takePhoto();
-            }, 200);
+                new Handler().postDelayed(() -> {
+                    cameraImageButton.clearAnimation();
+                    takePhoto();
+                }, 200);
+            } // do analysis
+            else {
 
+            }
         });
     }
 
@@ -244,13 +271,26 @@ public class CameraActivity extends AppCompatActivity {
                 matrix, true);
     }
 
-    public void retake(View v) {
-        cameraImageView.setImageBitmap(null);
-        cameraImageButton.setImageResource(R.drawable.ic_camera_black_100dp);
-        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_camera_image, R.id.start_show_camera_image, 200);
+    public void setGalleryRetakeCardViewOnClickListener() {
+        this.galleryRetakeCardView.setOnClickListener(v ->{
+            // back to the camera page
+            if (isRetakeShown){
+                isRetakeShown = false;
+                // change the card image
+                galleryRetakeImageView.setImageResource(R.drawable.ic_gallery);
+                // change the card text
+                galleryRetakeTextView.setText("Photos");
+                // retake
+                cameraImageView.setImageBitmap(null);
+                cameraImageButton.setImageResource(R.drawable.ic_camera_black_100dp);
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_camera_image, R.id.start_show_camera_image, 200);
+            }
+        });
     }
 
-    public void closeCamera(View v) {
-        supportFinishAfterTransition();
+    public void setCloseImageButtonOnClickListener() {
+        this.closeImageButton.setOnClickListener(v -> {
+            supportFinishAfterTransition();
+        });
     }
 }
