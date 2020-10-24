@@ -72,6 +72,9 @@ public class CameraActivity extends AppCompatActivity {
     private CardView galleryRetakeCardView;
     private ImageView galleryRetakeImageView;
     private TextView galleryRetakeTextView;
+    private CardView tipOpenCameraCardView;
+    private ImageView tipOpenCameraImageView;
+    private TextView tipOpenCameraTextView;
 
     // camera tools
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
@@ -86,6 +89,7 @@ public class CameraActivity extends AppCompatActivity {
 
     // tools
     private boolean isRetakeShown;
+    private boolean isOpenCameraShown;
     private boolean isCameraImageShown;
     public final static int REQUEST_CHOOSE_GALLERY = 5678;
 
@@ -111,6 +115,8 @@ public class CameraActivity extends AppCompatActivity {
         this.setCloseImageButtonOnClickListener();
         // set gallery/retake button on click
         this.setGalleryRetakeCardViewOnClickListener();
+        // set tip/open camera button on click
+        this.setTipOpenCameraCardViewOnClickListener();
     }
 
     private void initializeViews() {
@@ -123,6 +129,9 @@ public class CameraActivity extends AppCompatActivity {
         this.galleryRetakeCardView = findViewById(R.id.cv_gallery_retake_camera_activity);
         this.galleryRetakeImageView = findViewById(R.id.img_gallery_retake_camera_activity);
         this.galleryRetakeTextView = findViewById(R.id.tv_gallery_retake_camera_activity);
+        this.tipOpenCameraCardView = findViewById(R.id.cv_tip_open_camera_activity);
+        this.tipOpenCameraImageView = findViewById(R.id.img_tip_open_camera_activity);
+        this.tipOpenCameraTextView = findViewById(R.id.tv_tip_open_camera_activity);
     }
 
     // initialize Camera
@@ -280,6 +289,7 @@ public class CameraActivity extends AppCompatActivity {
                 matrix, true);
     }
 
+    // set gallery/retake button on click
     public void setGalleryRetakeCardViewOnClickListener() {
         this.galleryRetakeCardView.setOnClickListener(v ->{
             // back to the camera page
@@ -305,6 +315,29 @@ public class CameraActivity extends AppCompatActivity {
         });
     }
 
+    // set tip/open camera button on click
+    public void setTipOpenCameraCardViewOnClickListener() {
+        this.tipOpenCameraCardView.setOnClickListener(v -> {
+            // open tip page
+            if (!isOpenCameraShown){
+
+            } // back to camera page
+            else {
+                // set the photos button
+                isOpenCameraShown = false;
+                isCameraImageShown = false;
+                tipOpenCameraImageView.setImageResource(R.drawable.tip_i);
+                tipOpenCameraTextView.setText("Tips");
+                // show preview
+                previewView.setVisibility(View.VISIBLE);
+                // retake
+                cameraImageView.setImageBitmap(null);
+                cameraImageButton.setImageResource(R.drawable.ic_camera_black_100dp);
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_camera_image, R.id.start_show_camera_image, 200);
+            }
+        });
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -316,6 +349,10 @@ public class CameraActivity extends AppCompatActivity {
             // set tint
             cameraImageButton.setImageResource(R.drawable.ic_right_circle_black_50dp);
             isCameraImageShown = true;
+            // show the open camera button
+            isOpenCameraShown = true;
+            tipOpenCameraImageView.setImageResource(R.drawable.ic_add_a_photo_white);
+            tipOpenCameraTextView.setText("Camera");
             // show the image
             cameraImageView.setImageBitmap(cameraBitmap);
             previewView.setVisibility(View.INVISIBLE);
@@ -327,6 +364,7 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    // set close button on click
     public void setCloseImageButtonOnClickListener() {
         this.closeImageButton.setOnClickListener(v -> {
             supportFinishAfterTransition();

@@ -2,6 +2,7 @@ package com.example.virussafeagro;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
@@ -34,15 +35,19 @@ import android.widget.Toast;
 
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.DataConverter;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import org.jetbrains.annotations.NotNull;
 
 public class DetectActivity extends AppCompatActivity {
     private DetectActivity detectActivity;
     // tools
     private BottomSheetBehavior bottomSheetBehavior;
     private Bitmap uploadImageBitmap;
+    private static final int PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE = 99;
     //views
     private View outsideTouchView;
     private FrameLayout bottomSheetFrameLayout;
@@ -51,7 +56,6 @@ public class DetectActivity extends AppCompatActivity {
     private CardView cameraCardView;
     private ImageView cameraImageView;
     private TextView cameraTextView;
-//    private com.airbnb.lottie.LottieAnimationView swipeUpLottie;
     private ImageView uploadImageView;
     private Button uploadButton;
 
@@ -201,7 +205,8 @@ public class DetectActivity extends AppCompatActivity {
     }
 
     // camera button onclick
-    public void openCamera(View v) {
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void openCameraOnClick(View v) {
 //        ImagePicker.Companion.with(this)
 //                .cameraOnly()
 //                .start(REQUEST_OPEN_CAMERA);
@@ -210,6 +215,11 @@ public class DetectActivity extends AppCompatActivity {
 //        Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
 //        startActivityForResult(getImageByCamera, REQUEST_OPEN_CAMERA);
 
+        this.checkCameraPermissions();
+
+    }
+
+    private void startCamera() {
         hideTitleAndButton();
         new Handler().postDelayed(()->{
             Intent intent = new Intent(DetectActivity.this, CameraActivity.class);
@@ -217,7 +227,42 @@ public class DetectActivity extends AppCompatActivity {
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.cameraCardView, ViewCompat.getTransitionName(this.cameraCardView));
             startActivity(intent, options.toBundle());
         }, 400);
+    }
 
+    // ask for getting user's current location permission
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void checkCameraPermissions() {
+        if (ActivityCompat.checkSelfPermission(detectActivity, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(detectActivity, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(detectActivity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(
+                    new String[]{
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                    PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE);
+
+        } else { // grant the permission
+            // start camera activity
+            startCamera();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults){
+        if (requestCode == PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(
+                        detectActivity,
+                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    // start camera activity
+                    startCamera();
+                }
+            } else {
+                Toast.makeText(detectActivity, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 }
