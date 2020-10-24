@@ -42,8 +42,6 @@ public class DetectActivity extends AppCompatActivity {
     private DetectActivity detectActivity;
     // tools
     private BottomSheetBehavior bottomSheetBehavior;
-    public final int REQUEST_OPEN_CAMERA = 1234;
-    public final static int REQUEST_CHOOSE_GALLERY = 5678;
     private Bitmap uploadImageBitmap;
     //views
     private View outsideTouchView;
@@ -220,31 +218,6 @@ public class DetectActivity extends AppCompatActivity {
             startActivity(intent, options.toBundle());
         }, 400);
 
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_OPEN_CAMERA || requestCode == REQUEST_CHOOSE_GALLERY){ //Image Uri will not be null for RESULT_OK
-            String imagePath = ImagePicker.Companion.getFilePath(data);
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            uploadImageBitmap = BitmapFactory.decodeFile(imagePath,bmOptions);
-            this.uploadImageView.setImageBitmap(uploadImageBitmap);
-
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(detectActivity,ImagePicker.RESULT_ERROR + "", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(detectActivity, "Task Cancelled", Toast.LENGTH_SHORT).show();
-        }
-
-        if (requestCode == REQUEST_OPEN_CAMERA || requestCode == REQUEST_CHOOSE_GALLERY){
-            // set the bottom sheet peek height
-            if (this.bottomSheetBehavior.getPeekHeight() == DataConverter.dip2px(this, 250)) {
-                this.bottomSheetBehavior.setPeekHeight(DataConverter.dip2px(this, 350), true);
-            }
-
-        }
     }
 
 }

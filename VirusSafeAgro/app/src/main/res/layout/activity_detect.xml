@@ -87,15 +87,15 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_choose_image_title_detect_activity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:cardBackgroundColor="@color/colorPrimaryLightBG"
+                app:cardBackgroundColor="@color/colorPrimaryMainButtonBg"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="200dp">
                 <!-- camera -->
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/rl_camera_button"
+                    android:id="@+id/cl_camera_button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/ripple_btn_camera_detect"
+                    android:background="@android:color/transparent"
                     android:padding="10dp">
                     <ImageView
                         android:id="@+id/img_camera_detect_activity"
@@ -122,7 +122,7 @@
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold"
                         android:textSize="20sp"
-                        android:text="Take A Tomato Leaf Photo"/>
+                        android:text="Take A Leaf Photo"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 

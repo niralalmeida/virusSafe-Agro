@@ -31,6 +31,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.transition.ChangeBounds;
 import android.util.Log;
 import android.util.Size;
 import android.view.OrientationEventListener;
@@ -85,10 +86,15 @@ public class CameraActivity extends AppCompatActivity {
 
     // tools
     private boolean isRetakeShown;
+    private boolean isCameraImageShown;
+    public final static int REQUEST_CHOOSE_GALLERY = 5678;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(100);
+        getWindow().setSharedElementEnterTransition(bounds);
         setContentView(R.layout.activity_camera);
         // hide top status bar
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -166,11 +172,12 @@ public class CameraActivity extends AppCompatActivity {
     private void setCameraButtonOnClickListener() {
         this.cameraImageButton.setOnClickListener(v -> {
             // take photo
-            if (!isRetakeShown) {
+            if (!isCameraImageShown) {
                 // make camera button rotate
                 makeCameraButtonRotate();
                 // set retake button
                 isRetakeShown = true;
+                isCameraImageShown = true;
                 // change the card image
                 galleryRetakeImageView.setImageResource(R.drawable.ic_redo);
                 // change the card text
@@ -222,8 +229,10 @@ public class CameraActivity extends AppCompatActivity {
                 // set rotation
                 configureRotation();
                 // set tint
-                cameraImageView.setImageBitmap(cameraBitmap);
                 cameraImageButton.setImageResource(R.drawable.ic_right_circle_black_50dp);
+                // show the image
+                previewView.setVisibility(View.INVISIBLE);
+                cameraImageView.setImageBitmap(cameraBitmap);
                 MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_camera_image, R.id.end_show_camera_image, 200);
                 //ImageStorage.saveImage(cameraActivity, cameraBitmap, "Virus Camera", "virus_camera", previewView);
             }
@@ -276,6 +285,9 @@ public class CameraActivity extends AppCompatActivity {
             // back to the camera page
             if (isRetakeShown){
                 isRetakeShown = false;
+                isCameraImageShown = false;
+                // show preview
+                previewView.setVisibility(View.VISIBLE);
                 // change the card image
                 galleryRetakeImageView.setImageResource(R.drawable.ic_gallery);
                 // change the card text
@@ -284,8 +296,35 @@ public class CameraActivity extends AppCompatActivity {
                 cameraImageView.setImageBitmap(null);
                 cameraImageButton.setImageResource(R.drawable.ic_camera_black_100dp);
                 MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_camera_image, R.id.start_show_camera_image, 200);
+            } // open gallery
+            else {
+                ImagePicker.Companion.with(this)
+                        .galleryOnly()	//User can only select image from Gallery
+                        .start(REQUEST_CHOOSE_GALLERY);	//Default Request Code is ImagePicker.REQUEST_CODE
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CHOOSE_GALLERY) { //Image Uri will not be null for RESULT_OK
+            String imagePath = ImagePicker.Companion.getFilePath(data);
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            cameraBitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
+            // set tint
+            cameraImageButton.setImageResource(R.drawable.ic_right_circle_black_50dp);
+            isCameraImageShown = true;
+            // show the image
+            cameraImageView.setImageBitmap(cameraBitmap);
+            previewView.setVisibility(View.INVISIBLE);
+            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_camera_image, R.id.end_show_camera_image, 200);
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(cameraActivity, ImagePicker.RESULT_ERROR + "", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(cameraActivity, "Task Cancelled", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void setCloseImageButtonOnClickListener() {
