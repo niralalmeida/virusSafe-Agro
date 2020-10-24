@@ -346,17 +346,21 @@ public class CameraActivity extends AppCompatActivity {
             String imagePath = ImagePicker.Companion.getFilePath(data);
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             cameraBitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
-            // set tint
-            cameraImageButton.setImageResource(R.drawable.ic_right_circle_black_50dp);
-            isCameraImageShown = true;
-            // show the open camera button
-            isOpenCameraShown = true;
-            tipOpenCameraImageView.setImageResource(R.drawable.ic_add_a_photo_white);
-            tipOpenCameraTextView.setText("Camera");
-            // show the image
-            cameraImageView.setImageBitmap(cameraBitmap);
-            previewView.setVisibility(View.INVISIBLE);
-            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_camera_image, R.id.end_show_camera_image, 200);
+            if (cameraBitmap != null) {
+                // set tint
+                cameraImageButton.setImageResource(R.drawable.ic_right_circle_black_50dp);
+                isCameraImageShown = true;
+                // show the open camera button
+                isOpenCameraShown = true;
+                tipOpenCameraImageView.setImageResource(R.drawable.ic_add_a_photo_white);
+                tipOpenCameraTextView.setText("Camera");
+                // show the image
+                cameraImageView.setImageBitmap(cameraBitmap);
+                previewView.setVisibility(View.INVISIBLE);
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_camera_image, R.id.end_show_camera_image, 200);
+            } else {
+                Toast.makeText(cameraActivity, "Image not Selected", Toast.LENGTH_SHORT).show();
+            }
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
             Toast.makeText(cameraActivity, ImagePicker.RESULT_ERROR + "", Toast.LENGTH_SHORT).show();
         } else {
