@@ -76,6 +76,11 @@ public class DetectActivity extends AppCompatActivity {
         this.setOutsideTouchViewOnTouchListener();
         // set CloseButton OnClickListener
         this.setCloseButtonOnClickListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         // show the title and 2 buttons
         this.showTitleAndButton();
@@ -214,7 +219,7 @@ public class DetectActivity extends AppCompatActivity {
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.cameraCardView, ViewCompat.getTransitionName(this.cameraCardView));
             startActivity(intent, options.toBundle());
         }, 400);
-        
+
     }
 
     @Override

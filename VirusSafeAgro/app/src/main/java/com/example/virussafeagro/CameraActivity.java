@@ -29,13 +29,19 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Size;
 import android.view.OrientationEventListener;
 import android.view.Surface;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.webkit.MimeTypeMap;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -57,7 +63,7 @@ public class CameraActivity extends AppCompatActivity {
     private MotionLayout containerMotionLayout;
     private FrameLayout containerFrameLayout;
     private PreviewView previewView;
-    private FloatingActionButton cameraFAB;
+    private ImageButton cameraImageButton;
     private ImageView cameraImageView;
 
     // camera tools
@@ -75,6 +81,8 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        // hide top status bar
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set activity
         this.cameraActivity = this;
         // initialize views
@@ -90,7 +98,8 @@ public class CameraActivity extends AppCompatActivity {
         this.containerFrameLayout = findViewById(R.id.container);
         this.containerMotionLayout = findViewById(R.id.ml_camera_activity);
         this.previewView = findViewById(R.id.previewView);
-        this.cameraFAB = findViewById(R.id.camera_fab);
+//        this.cameraFAB = findViewById(R.id.camera_fab);
+        this.cameraImageButton = findViewById(R.id.imgbtn_camera_activity);
         this.cameraImageView = findViewById(R.id.img_camera_image_camera_activity);
     }
 
@@ -139,38 +148,63 @@ public class CameraActivity extends AppCompatActivity {
 
     // set camera button on click
     private void setCameraButtonOnClickListener() {
-        this.cameraFAB.setOnClickListener(v -> {
-            File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath(),
-                    System.currentTimeMillis() + ".jpeg");
-            ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(file).build();
-            imageCapture.takePicture(outputFileOptions, getMainExecutor(), new ImageCapture.OnImageSavedCallback() {
-                @Override
-                public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                    savedUri = outputFileResults.getSavedUri();
-                    if(savedUri == null){
-                        savedUri = Uri.fromFile(file);
-                        imagePath = savedUri.getPath();
-                    }
-                    ContentResolver cr = cameraActivity.getContentResolver();
-                    try {
-                        cameraBitmap = BitmapFactory.decodeStream(cr.openInputStream(savedUri));
-                    } catch (FileNotFoundException e) {
-                        Toast.makeText(cameraActivity, "Catch Image fail!!", Toast.LENGTH_SHORT).show();
-                    }
+        this.cameraImageButton.setOnClickListener(v -> {
+            // make camera button rotate
+            makeCameraButtonRotate();
 
-                    // set rotation
-                    configureRotation();
+            new Handler().postDelayed(() -> {
+                cameraImageButton.clearAnimation();
+                takePhoto();
+            }, 200);
 
-                    cameraImageView.setImageBitmap(cameraBitmap);
-                    MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_camera_image, R.id.end_show_camera_image, 200);
-                    //ImageStorage.saveImage(cameraActivity, cameraBitmap, "Virus Camera", "virus_camera", previewView);
+        });
+    }
+
+    private void makeCameraButtonRotate() {
+        Animation rotate = AnimationUtils.loadAnimation(this, R.anim.btn_rotate_camera);
+        LinearInterpolator lin = new LinearInterpolator();
+        rotate.setInterpolator(lin);
+
+        if (rotate != null) {
+            cameraImageButton.startAnimation(rotate);
+        }  else {
+            cameraImageButton.setAnimation(rotate);
+            cameraImageButton.startAnimation(rotate);
+        }
+    }
+
+    private void takePhoto() {
+        File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath(),
+                System.currentTimeMillis() + ".jpeg");
+        ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(file).build();
+        imageCapture.takePicture(outputFileOptions, getMainExecutor(), new ImageCapture.OnImageSavedCallback() {
+            @Override
+            public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                savedUri = outputFileResults.getSavedUri();
+                if(savedUri == null){
+                    savedUri = Uri.fromFile(file);
+                    imagePath = savedUri.getPath();
+                }
+                ContentResolver cr = cameraActivity.getContentResolver();
+                try {
+                    cameraBitmap = BitmapFactory.decodeStream(cr.openInputStream(savedUri));
+                } catch (FileNotFoundException e) {
+                    Toast.makeText(cameraActivity, "Catch Image fail!!", Toast.LENGTH_SHORT).show();
                 }
 
-                @Override
-                public void onError(@NonNull ImageCaptureException exception) {
+                // set rotation
+                configureRotation();
+                // set tint
+                cameraImageView.setImageBitmap(cameraBitmap);
+                cameraImageButton.setImageResource(R.drawable.ic_right_circle_black_50dp);
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_camera_image, R.id.end_show_camera_image, 200);
+                //ImageStorage.saveImage(cameraActivity, cameraBitmap, "Virus Camera", "virus_camera", previewView);
+            }
+
+            @Override
+            public void onError(@NonNull ImageCaptureException exception) {
 //                    Log.e(TAG, "Photo capture failed: "+exception.getMessage(), exception);
-                }
-            });
+            }
         });
     }
 
@@ -212,6 +246,11 @@ public class CameraActivity extends AppCompatActivity {
 
     public void retake(View v) {
         cameraImageView.setImageBitmap(null);
+        cameraImageButton.setImageResource(R.drawable.ic_camera_black_100dp);
         MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_camera_image, R.id.start_show_camera_image, 200);
+    }
+
+    public void closeCamera(View v) {
+        supportFinishAfterTransition();
     }
 }
