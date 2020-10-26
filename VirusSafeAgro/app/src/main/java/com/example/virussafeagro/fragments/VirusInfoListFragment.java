@@ -1,6 +1,7 @@
 package com.example.virussafeagro.fragments;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -51,7 +52,9 @@ public class VirusInfoListFragment extends Fragment {
     private VirusInfoListFragment virusInfoListFragment;
     private View view;
 
+    // data
     private VirusInfoListViewModel virusInfoListViewModel;
+    public static Bitmap currentVirusImageBitmap;
 //    private SharedPreferenceProcess spp;
 
     private LinearLayout processBarLinearLayout;
@@ -99,6 +102,8 @@ public class VirusInfoListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        currentVirusImageBitmap = null;
 
         if (MainActivity.virusModelInfoList.isEmpty()) {
             // find virus info list in new Thread
@@ -219,9 +224,13 @@ public class VirusInfoListFragment extends Fragment {
             VirusModel currentVirusModel = virusModelListForListener.get(position);
             bundle.putParcelable("currentVirusModel", currentVirusModel);
 
-//            VirusDetailNewFragment virusDetailNewFragment = new VirusDetailNewFragment();
-//            virusDetailNewFragment.setArguments(bundle);
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW);
+            // set image
+            int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(currentVirusModel.getVirusId());
+            currentVirusImageBitmap = BitmapFactory.decodeResource(mainActivity.getResources(), virusPictureDrawableId);
+
+            VirusDetailNewFragment virusDetailNewFragment = new VirusDetailNewFragment();
+            virusDetailNewFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW);
 
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 ////                virusDetailNewFragment.setSharedElementEnterTransition(
@@ -268,9 +277,9 @@ public class VirusInfoListFragment extends Fragment {
 
 
 
-            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
-            virusDetailFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
+//            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
+//            virusDetailFragment.setArguments(bundle);
+//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
         });
     }
 

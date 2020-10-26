@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class VirusSymptomModel implements Parcelable {
     private int symId;
     private String symContent;
-    private String symObjectType;
+    private String symObjectType; // l-leaves
 
     public VirusSymptomModel() {
     }

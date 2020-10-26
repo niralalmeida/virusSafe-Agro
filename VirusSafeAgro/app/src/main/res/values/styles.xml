@@ -67,12 +67,14 @@
 
     <style name="expendText" parent="TextAppearance.AppCompat.Title">
         <!-- Customize your theme here. -->
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 
     <style name="collapse" parent="TextAppearance.AppCompat.Title">
         <!-- Customize your theme here. -->
         <item name="android:textSize">13sp</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 
 
@@ -82,4 +84,5 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
 </resources>
