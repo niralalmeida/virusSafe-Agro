@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.fragments.AboutAppFragment;
 import com.example.virussafeagro.fragments.ContactUsFragment;
@@ -58,6 +59,7 @@ import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
+import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     // data
     public static List<VirusModel> virusModelInfoList;
+    private VirusInfoListViewModel virusInfoListViewModel;
 
     // toolbar
     private Toolbar toolbar;
@@ -160,6 +163,10 @@ public class MainActivity extends AppCompatActivity {
         this.initializeViews();
         // initialize SharedPreferenceProcess
         this.initializeSharedPreferenceProcess();
+        // initialize VirusInfoViewModel
+        this.initializeVirusInfoViewModel();
+        // search data by API
+        this.getDataFromAPI();
 
         // check whether OnBoardingActivity is first show
         if (this.spp.getOnBoardingIsFirstShow()) {
@@ -223,6 +230,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeSharedPreferenceProcess() {
         this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(this);
+    }
+
+    private void initializeVirusInfoViewModel() {
+        this.virusInfoListViewModel = new ViewModelProvider(mainActivity).get(VirusInfoListViewModel.class);
+        this.virusInfoListViewModel.initiateSharedPreferenceProcess(mainActivity);
+    }
+
+    private void getDataFromAPI() {
+        // find virus info list in new Thread
+        this.findVirusInfoListFromDBAndObserveVirusInfoListLD();
+    }
+
+    private void findVirusInfoListFromDBAndObserveVirusInfoListLD() {
+        this.virusInfoListViewModel.processFindingVirusInfoList();
+        this.virusInfoListViewModel.getVirusInfoListLD().observe(mainActivity, resultVirusInfoList -> {
+            if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
+                virusModelInfoList.clear();
+                virusModelInfoList = resultVirusInfoList;
+            }
+        });
     }
 
     private void showOnBoardingScreen() {

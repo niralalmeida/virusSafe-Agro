@@ -106,8 +106,9 @@ public class VirusInfoListFragment extends Fragment {
         currentVirusImageBitmap = null;
 
         if (MainActivity.virusModelInfoList.isEmpty()) {
-            // find virus info list in new Thread
-            this.findVirusInfoListFromDB();
+            // wait for virus info list in new Thread
+            this.processBarLinearLayout.setVisibility(View.VISIBLE);
+            this.virusGridViewLinearLayout.setVisibility(View.GONE);
             // observe VirusModel Info List Live Data
             this.observeVirusInfoListLD();
         } else {
@@ -127,12 +128,6 @@ public class VirusInfoListFragment extends Fragment {
     private void initializeVirusInfoViewModel() {
         this.virusInfoListViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoListViewModel.class);
         this.virusInfoListViewModel.initiateSharedPreferenceProcess(requireContext());
-    }
-
-    private void findVirusInfoListFromDB() {
-        this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.virusGridViewLinearLayout.setVisibility(View.GONE);
-        this.virusInfoListViewModel.processFindingVirusInfoList();
     }
 
     private void observeVirusInfoListLD() {
