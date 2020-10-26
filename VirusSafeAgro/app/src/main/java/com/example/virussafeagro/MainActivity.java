@@ -44,7 +44,6 @@ import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.TweetFragment;
-import com.example.virussafeagro.fragments.UpdatesFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusCheckResultFragment;
 import com.example.virussafeagro.fragments.VirusDetailFragment;
@@ -313,16 +312,20 @@ public class MainActivity extends AppCompatActivity {
             Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
             if ((foundFragment instanceof MoreFragment) ||
                 (foundFragment instanceof AboutAppFragment) ||
-                (foundFragment instanceof UpdatesFragment) ||
                 (foundFragment instanceof DisclaimerFragment) ||
                 (foundFragment instanceof ContactUsFragment)
                 ){
                 FragmentOperator.backToLastFragment(this);
-
+                if (foundFragment instanceof MoreFragment){
+                    // show the animation
+                    new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(animationImageRelativeLayout, 700), 200);
+                }
             }
             else {
                 // add new MoreFragment
                 new Handler().postDelayed(() -> {
+                    // hide the main animation
+                    hideTheLottieAnimationView();
                     FragmentOperator.replaceFragmentWithSlideFromTopAnimation(this, new MoreFragment(), AppResources.FRAGMENT_TAG_MORE);
                 }, 200);
             }
