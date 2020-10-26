@@ -44,10 +44,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class DetectActivity extends AppCompatActivity {
     private DetectActivity detectActivity;
+    // data
+    public static Bitmap uploadImageBitmap;
     // tools
     private BottomSheetBehavior bottomSheetBehavior;
-    private Bitmap uploadImageBitmap;
     private static final int PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE = 99;
+    public static boolean hasDetectRequest;
     //views
     private View outsideTouchView;
     private FrameLayout bottomSheetFrameLayout;
@@ -58,7 +60,6 @@ public class DetectActivity extends AppCompatActivity {
     private TextView cameraTextView;
     private ImageView uploadImageView;
     private Button uploadButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,9 @@ public class DetectActivity extends AppCompatActivity {
         super.onResume();
 
         // show the title and 2 buttons
-        this.showTitleAndButton();
+        int delayDuration = this.showTitleAndButtonAndReturnDuration();
+        // control the display
+        this.controlDisplay(delayDuration);
     }
 
     private void initializeViews() {
@@ -96,8 +99,7 @@ public class DetectActivity extends AppCompatActivity {
         this.cameraCardView = findViewById(R.id.cv_camera_button_detect);
         this.cameraImageView = findViewById(R.id.img_camera_detect_activity);
         this.cameraTextView = findViewById(R.id.tv_camera_detect_activity);
-//        this.swipeUpLottie = findViewById(R.id.lav_swipe_up_detect_activity);
-        this.uploadImageView = findViewById(R.id.img_upload_detect_activity);
+        this.uploadImageView = findViewById(R.id.img_leaf_for_scanning_detect_activity);
         this.uploadButton = findViewById(R.id.btn_upload_image_detect_activity);
     }
 
@@ -128,15 +130,9 @@ public class DetectActivity extends AppCompatActivity {
                         break;
                     case BottomSheetBehavior.STATE_EXPANDED:
                         setStatusBarDim(false);
-                        // pause and hide lottie
-//                        swipeUpLottie.pauseAnimation();
-                        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_swipe_up, R.id.end_swipe_up, 200);
                         break;
                     default:
                         setStatusBarDim(true);
-                        // resume and show lottie
-//                        swipeUpLottie.resumeAnimation();
-                        MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_swipe_up, R.id.start_swipe_up, 200);
                         break;
                 }
             }
@@ -171,8 +167,35 @@ public class DetectActivity extends AppCompatActivity {
         });
     }
 
+    // set display according to the tasks
+    private void controlDisplay(int delayDuration) {
+        if(hasDetectRequest) {
+            hasDetectRequest = false;
+            // enable scrollable
+            this.bottomSheetBehavior.setDraggable(true);
+            new Handler().postDelayed(() -> {
+                // show the upload image view
+                uploadImageView.setImageBitmap(uploadImageBitmap);
+                // expand the sheet and show the analyse animation
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }, delayDuration);
+
+            // test
+            new Handler().postDelayed(() -> {
+                uploadImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_detect_result, R.id.end_show_detect_result, 300);
+            }, delayDuration+2000);
+        } else {
+            uploadImageBitmap = null;
+            // disable scrollable
+            this.bottomSheetBehavior.setDraggable(false);
+            // show the animation
+            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_detect_result, R.id.start_show_detect_result, 300);
+        }
+    }
+
     // show the title and 2 buttons
-    private void showTitleAndButton() {
+    private int showTitleAndButtonAndReturnDuration() {
         // show the buttons
         new Handler().postDelayed(()->{
 
@@ -189,6 +212,8 @@ public class DetectActivity extends AppCompatActivity {
             cameraImageView.setVisibility(View.VISIBLE);
             cameraTextView.setVisibility(View.VISIBLE);
         }, 700);
+
+        return 700;
     }
 
     // hide the title and 2 buttons

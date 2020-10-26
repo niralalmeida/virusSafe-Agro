@@ -201,7 +201,11 @@ public class CameraActivity extends AppCompatActivity {
                 }, 200);
             } // do analysis
             else {
-
+                DetectActivity.uploadImageBitmap = cameraBitmap;
+                // set detect request boolean
+                DetectActivity.hasDetectRequest = true;
+                // close the camera
+                supportFinishAfterTransition();
             }
         });
     }

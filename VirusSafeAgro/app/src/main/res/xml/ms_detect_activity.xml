@@ -78,30 +78,43 @@
             <PropertySet
                 android:visibility="invisible" />
         </Constraint>
-        <!-- swipe up lottie -->
+        <!-- scanning card -->
         <Constraint
-            android:id="@+id/lav_swipe_up_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:id="@+id/lav_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w 1:1"
+            android:layout_margin="50dp"
             app:layout_constraintTop_toBottomOf="@id/tv_image_format_tip_detect_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
             <PropertySet
                 android:visibility="visible" />
         </Constraint>
-        <!-- image format tip -->
-<!--        <Constraint-->
-<!--            android:id="@+id/tv_image_format_tip_detect_activity"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/cv_2_buttons_detect"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content">-->
-<!--            <PropertySet-->
-<!--                android:visibility="invisible" />-->
-<!--        </Constraint>-->
+        <!-- scanning leaf image -->
+        <Constraint
+            android:id="@+id/img_leaf_for_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
+            android:layout_margin="100dp">
+        </Constraint>
+        <!-- results nsv -->
+        <Constraint
+            android:id="@+id/nsv_all_view_detect_activity"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+        </Constraint>
     </ConstraintSet>
 
     <!-- show detect buttons end -->
@@ -151,40 +164,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
-        <!-- upload image -->
+        <!-- scanning card -->
         <Constraint
-            android:id="@+id/img_upload_check"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@id/cv_camera_button_detect"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- upload button -->
-        <Constraint
-            android:id="@+id/btn_upload_image_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/img_upload_check"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- swipe up lottie -->
-        <Constraint
-            android:id="@+id/lav_swipe_up_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:id="@+id/lav_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w 1:1"
+            android:layout_margin="50dp"
             app:layout_constraintTop_toBottomOf="@id/tv_image_format_tip_detect_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
             <PropertySet
                 android:visibility="visible" />
+        </Constraint>
+        <!-- scanning leaf image -->
+        <Constraint
+            android:id="@+id/img_leaf_for_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
+            android:layout_margin="100dp">
+        </Constraint>
+        <!-- results nsv -->
+        <Constraint
+            android:id="@+id/nsv_all_view_detect_activity"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
         </Constraint>
     </ConstraintSet>
 
@@ -238,40 +253,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
-        <!-- upload image -->
+        <!-- scanning card -->
         <Constraint
-            android:id="@+id/img_upload_check"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@id/cv_camera_button_detect"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- upload button -->
-        <Constraint
-            android:id="@+id/btn_upload_image_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/img_upload_check"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- swipe up lottie -->
-        <Constraint
-            android:id="@+id/lav_swipe_up_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:id="@+id/lav_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w 1:1"
+            android:layout_margin="50dp"
             app:layout_constraintTop_toBottomOf="@id/tv_image_format_tip_detect_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
             <PropertySet
                 android:visibility="visible" />
+        </Constraint>
+        <!-- scanning leaf image -->
+        <Constraint
+            android:id="@+id/img_leaf_for_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
+            android:layout_margin="100dp">
+        </Constraint>
+        <!-- results nsv -->
+        <Constraint
+            android:id="@+id/nsv_all_view_detect_activity"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
         </Constraint>
     </ConstraintSet>
 
@@ -323,48 +340,50 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
-        <!-- upload image -->
+        <!-- scanning card -->
         <Constraint
-            android:id="@+id/img_upload_check"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@id/cv_camera_button_detect"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- upload button -->
-        <Constraint
-            android:id="@+id/btn_upload_image_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/img_upload_check"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- swipe up lottie -->
-        <Constraint
-            android:id="@+id/lav_swipe_up_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:id="@+id/lav_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w 1:1"
+            android:layout_margin="50dp"
             app:layout_constraintTop_toBottomOf="@id/tv_image_format_tip_detect_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
             <PropertySet
                 android:visibility="visible" />
+        </Constraint>
+        <!-- scanning leaf image -->
+        <Constraint
+            android:id="@+id/img_leaf_for_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
+            android:layout_margin="100dp">
+        </Constraint>
+        <!-- results nsv -->
+        <Constraint
+            android:id="@+id/nsv_all_view_detect_activity"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
         </Constraint>
     </ConstraintSet>
 
 
 
 
-    <!-- swipe up start -->
-    <ConstraintSet android:id="@+id/start_swipe_up">
+    <!-- show detect result start -->
+    <ConstraintSet android:id="@+id/start_show_detect_result">
         <!-- container motion layout -->
         <Constraint
             android:id="@+id/ml_detect_activity"
@@ -410,45 +429,47 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
-        <!-- upload image -->
+        <!-- scanning card -->
         <Constraint
-            android:id="@+id/img_upload_check"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@id/cv_camera_button_detect"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- upload button -->
-        <Constraint
-            android:id="@+id/btn_upload_image_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/img_upload_check"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- swipe up lottie -->
-        <Constraint
-            android:id="@+id/lav_swipe_up_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:id="@+id/lav_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w 1:1"
+            android:layout_margin="50dp"
             app:layout_constraintTop_toBottomOf="@id/tv_image_format_tip_detect_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
             <PropertySet
                 android:visibility="visible" />
         </Constraint>
+        <!-- scanning leaf image -->
+        <Constraint
+            android:id="@+id/img_leaf_for_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
+            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
+            android:layout_margin="100dp">
+        </Constraint>
+        <!-- results nsv -->
+        <Constraint
+            android:id="@+id/nsv_all_view_detect_activity"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+        </Constraint>
     </ConstraintSet>
 
-    <!-- swipe up end -->
-    <ConstraintSet android:id="@+id/end_swipe_up">
+    <!-- show detect result end -->
+    <ConstraintSet android:id="@+id/end_show_detect_result">
         <!-- container motion layout -->
         <Constraint
             android:id="@+id/ml_detect_activity"
@@ -494,40 +515,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
-        <!-- upload image -->
+        <!-- scanning card -->
         <Constraint
-            android:id="@+id/img_upload_check"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@id/cv_camera_button_detect"
+            android:id="@+id/lav_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w 1:1"
+            android:layout_margin="50dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_image_format_tip_detect_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
             <PropertySet
                 android:visibility="invisible" />
         </Constraint>
-        <!-- upload button -->
+        <!-- scanning leaf image -->
         <Constraint
-            android:id="@+id/btn_upload_image_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/img_upload_check"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- swipe up lottie -->
-        <Constraint
-            android:id="@+id/lav_swipe_up_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:id="@+id/img_leaf_for_scanning_detect_activity"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@id/tv_image_format_tip_detect_activity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
+        </Constraint>
+        <!-- results nsv -->
+        <Constraint
+            android:id="@+id/nsv_all_view_detect_activity"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintTop_toBottomOf="@id/img_leaf_for_scanning_detect_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
         </Constraint>
     </ConstraintSet>
 
