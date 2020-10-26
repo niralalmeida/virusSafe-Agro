@@ -19,6 +19,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,8 +35,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.virussafeagro.animation.MyAnimationBox;
+import com.example.virussafeagro.models.ImageObject;
+import com.example.virussafeagro.networkConnection.NetworkConnectionToMLModel;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+import com.example.virussafeagro.uitilities.MyJsonParser;
+import com.example.virussafeagro.viewModel.VirusCheckViewModel;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -45,11 +50,14 @@ import org.jetbrains.annotations.NotNull;
 public class DetectActivity extends AppCompatActivity {
     private DetectActivity detectActivity;
     // data
+    private NetworkConnectionToMLModel networkConnectionToMLModel;
     public static Bitmap uploadImageBitmap;
+    private DetectActivity.GettingTomatoImageCheckFeedbackAsyncTask gettingTomatoImageCheckFeedbackAsyncTask;
     // tools
     private BottomSheetBehavior bottomSheetBehavior;
     private static final int PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE = 99;
     public static boolean hasDetectRequest;
+    public boolean isResultShow;
     //views
     private View outsideTouchView;
     private FrameLayout bottomSheetFrameLayout;
@@ -59,7 +67,9 @@ public class DetectActivity extends AppCompatActivity {
     private ImageView cameraImageView;
     private TextView cameraTextView;
     private ImageView uploadImageView;
-    private Button uploadButton;
+    private LinearLayout resultLinearLayout;
+    private TextView resultTextView;
+    private TextView illTitleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +83,8 @@ public class DetectActivity extends AppCompatActivity {
         this.detectActivity = this;
         // initialize Views
         this.initializeViews();
+        // initialize data
+        this.initializeData();
         // initialize bottom sheet behavior
         this.initializeBehavior();
         // set Outside TouchView On Touch Listener
@@ -87,8 +99,8 @@ public class DetectActivity extends AppCompatActivity {
 
         // show the title and 2 buttons
         int delayDuration = this.showTitleAndButtonAndReturnDuration();
-        // control the display
-        this.controlDisplay(delayDuration);
+        // control the detect
+        this.controlDetect(delayDuration);
     }
 
     private void initializeViews() {
@@ -100,7 +112,14 @@ public class DetectActivity extends AppCompatActivity {
         this.cameraImageView = findViewById(R.id.img_camera_detect_activity);
         this.cameraTextView = findViewById(R.id.tv_camera_detect_activity);
         this.uploadImageView = findViewById(R.id.img_leaf_for_scanning_detect_activity);
-        this.uploadButton = findViewById(R.id.btn_upload_image_detect_activity);
+        this.resultLinearLayout = findViewById(R.id.ll_feedback_detect_activity);
+        this.resultTextView = findViewById(R.id.tv_feedback_detect_activity);
+        this.illTitleTextView = findViewById(R.id.tv_ill_title_detect_activity);
+    }
+
+    private void initializeData() {
+        networkConnectionToMLModel = new NetworkConnectionToMLModel();
+        gettingTomatoImageCheckFeedbackAsyncTask = new DetectActivity.GettingTomatoImageCheckFeedbackAsyncTask();
     }
 
     private void initializeBehavior() {
@@ -112,10 +131,14 @@ public class DetectActivity extends AppCompatActivity {
         this.bottomSheetFrameLayout.setOnClickListener(v -> {
         });
         this.outsideTouchView.setOnClickListener(v -> {
-            hideTitleAndButton();
+            // collapse the sheet and show the analyse animation
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            new Handler().postDelayed(()->{
+                hideTitleAndButton();
+            }, 200);
             new Handler().postDelayed(()->{
                 supportFinishAfterTransition();
-            }, 550);
+            }, 600);
         });
         this.bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -160,17 +183,25 @@ public class DetectActivity extends AppCompatActivity {
 
     private void setCloseButtonOnClickListener() {
         this.closeButtonImageButton.setOnClickListener(v ->{
-            hideTitleAndButton();
+            // collapse the sheet and show the analyse animation
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            new Handler().postDelayed(()->{
+                hideTitleAndButton();
+            }, 200);
             new Handler().postDelayed(()->{
                 supportFinishAfterTransition();
-            }, 550);
+            }, 600);
         });
     }
 
     // set display according to the tasks
-    private void controlDisplay(int delayDuration) {
+    private void controlDetect(int delayDuration) {
+        // set the image
         if(hasDetectRequest) {
             hasDetectRequest = false;
+            isResultShow = true;
+            // show the animation
+            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_detect_result, R.id.start_show_detect_result, 300);
             // enable scrollable
             this.bottomSheetBehavior.setDraggable(true);
             new Handler().postDelayed(() -> {
@@ -178,19 +209,70 @@ public class DetectActivity extends AppCompatActivity {
                 uploadImageView.setImageBitmap(uploadImageBitmap);
                 // expand the sheet and show the analyse animation
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                // upload the image and do the detect
+                uploadImageAndDoDetecting();
             }, delayDuration);
-
-            // test
-            new Handler().postDelayed(() -> {
-                uploadImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_detect_result, R.id.end_show_detect_result, 300);
-            }, delayDuration+2000);
         } else {
-            uploadImageBitmap = null;
             // disable scrollable
             this.bottomSheetBehavior.setDraggable(false);
-            // show the animation
-            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_detect_result, R.id.start_show_detect_result, 300);
+            // hide the upload image view
+            uploadImageView.setImageBitmap(null);
+            uploadImageBitmap = null;
+            if (isResultShow){
+                isResultShow = false;
+                // collapse the sheet and show the analyse animation
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+        }
+    }
+
+    // upload the image and do the detect
+    private void uploadImageAndDoDetecting(){
+        gettingTomatoImageCheckFeedbackAsyncTask = new GettingTomatoImageCheckFeedbackAsyncTask();
+        gettingTomatoImageCheckFeedbackAsyncTask.execute(uploadImageBitmap);
+    }
+    // AsyncTask for detecting
+    private class GettingTomatoImageCheckFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
+        @Override
+        protected String doInBackground(Bitmap... bitmaps) {
+            String feedback = "";
+            Bitmap uploadImageBitmap = bitmaps[0];
+            String uploadImageBitmapString = DataConverter.bitmapToStringConverter(uploadImageBitmap);
+            ImageObject imageObject = new ImageObject(uploadImageBitmapString);
+            try {
+                String rawFeedback = networkConnectionToMLModel.getImageCheckFeedback(imageObject);
+                feedback = MyJsonParser.imageCheckFeedbackJsonParser(rawFeedback);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+//            feedback = "Tomato_Mosaic_Virus";
+//            feedback = "json error";
+//            feedback = "healthy";
+
+            return feedback;
+        }
+
+        @Override
+        protected void onPostExecute(String resultCheckFeedback) {
+            // show the result image
+            MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_detect_result, R.id.end_show_detect_result, 300);
+            new Handler().postDelayed(() -> {
+                uploadImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                // show the result
+                if (resultCheckFeedback.equals("json error")){
+                    resultLinearLayout.setBackgroundResource(R.drawable.shape_tile_wrong_text_container_check_result);
+                    resultTextView.setText(getResources().getText(R.string.text_result_error));
+                } else if (resultCheckFeedback.equals("healthy")){
+                    resultLinearLayout.setBackgroundResource(R.drawable.shape_tile_healthy_text_container_check_result);
+                    resultTextView.setText(getResources().getText(R.string.text_result_healthy));
+                } else {
+                    resultLinearLayout.setBackgroundResource(R.drawable.shape_tile_ill_text_container_check_result);
+                    illTitleTextView.setVisibility(View.VISIBLE);
+                    String virusString = resultCheckFeedback.replace("_", " ");
+                    resultTextView.setText(virusString);
+                }
+            }, 100);
         }
     }
 
@@ -241,17 +323,25 @@ public class DetectActivity extends AppCompatActivity {
 //        startActivityForResult(getImageByCamera, REQUEST_OPEN_CAMERA);
 
         this.checkCameraPermissions();
-
     }
 
     private void startCamera() {
-        hideTitleAndButton();
+        if (isResultShow){
+            uploadImageBitmap = null;
+            uploadImageView.setImageBitmap(null);
+            // collapse the sheet and show the analyse animation
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            isResultShow = false;
+        }
+        new Handler().postDelayed(()->{
+            hideTitleAndButton();
+        }, 200);
         new Handler().postDelayed(()->{
             Intent intent = new Intent(DetectActivity.this, CameraActivity.class);
             // animation
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.cameraCardView, ViewCompat.getTransitionName(this.cameraCardView));
             startActivity(intent, options.toBundle());
-        }, 400);
+        }, 600);
     }
 
     // ask for getting user's current location permission

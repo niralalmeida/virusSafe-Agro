@@ -55,29 +55,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </Constraint>
-        <!-- upload image -->
-        <Constraint
-            android:id="@+id/img_upload_check"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@id/cv_camera_button_detect"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
-        <!-- upload button -->
-        <Constraint
-            android:id="@+id/btn_upload_image_detect_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/img_upload_check"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <PropertySet
-                android:visibility="invisible" />
-        </Constraint>
         <!-- scanning card -->
         <Constraint
             android:id="@+id/lav_scanning_detect_activity"
@@ -95,13 +72,12 @@
         <!-- scanning leaf image -->
         <Constraint
             android:id="@+id/img_leaf_for_scanning_detect_activity"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
             app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
             app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
-            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
-            android:layout_margin="100dp">
+            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity">
         </Constraint>
         <!-- results nsv -->
         <Constraint
@@ -181,13 +157,12 @@
         <!-- scanning leaf image -->
         <Constraint
             android:id="@+id/img_leaf_for_scanning_detect_activity"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
             app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
             app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
-            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
-            android:layout_margin="100dp">
+            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity">
         </Constraint>
         <!-- results nsv -->
         <Constraint
@@ -270,13 +245,12 @@
         <!-- scanning leaf image -->
         <Constraint
             android:id="@+id/img_leaf_for_scanning_detect_activity"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
             app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
             app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
-            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
-            android:layout_margin="100dp">
+            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity">
         </Constraint>
         <!-- results nsv -->
         <Constraint
@@ -356,15 +330,14 @@
         </Constraint>
         <!-- scanning leaf image -->
         <Constraint
-            android:id="@+id/img_leaf_for_scanning_detect_activity"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
-            app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
-            app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
-            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
-            android:layout_margin="100dp">
-        </Constraint>
+        android:id="@+id/img_leaf_for_scanning_detect_activity"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
+        app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
+        app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
+        app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity">
+    </Constraint>
         <!-- results nsv -->
         <Constraint
             android:id="@+id/nsv_all_view_detect_activity"
@@ -446,13 +419,12 @@
         <!-- scanning leaf image -->
         <Constraint
             android:id="@+id/img_leaf_for_scanning_detect_activity"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_constraintTop_toTopOf="@id/lav_scanning_detect_activity"
             app:layout_constraintBottom_toBottomOf="@id/lav_scanning_detect_activity"
             app:layout_constraintStart_toStartOf="@id/lav_scanning_detect_activity"
-            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity"
-            android:layout_margin="100dp">
+            app:layout_constraintEnd_toEndOf="@id/lav_scanning_detect_activity">
         </Constraint>
         <!-- results nsv -->
         <Constraint
