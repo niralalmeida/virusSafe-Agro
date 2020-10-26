@@ -203,21 +203,21 @@
 
     <!-- ec -->
     <string name="text_note_ec">There are no such environmental conditions that give rise to SLS, TYLC, LB, and Ff viruses in tomato plants.</string>
-    <string name="text_1_ec">• High temperature\n• Day length\n• Intensity of light\n• Plant age at the time of infection</string>
+    <string name="text_1_ec">• High temperature\n• Day length: The day length (number of hours the plant is exposed to the sun) informs the plants about the seasons\n• Stage of infection: Plant age at the time of infection</string>
     <string name="text_2_ec">• Moderate temperatures\n• High moisture</string>
     <string name="text_3_ec">• High temperatures\n• High humidity\n• Overhead irrigation\n• Frequent rainfall</string>
     <string name="text_4_ec">• Occurs in any type of weather\n• Favours damp conditions\n• Strikes after heavy rainfall\n• Moderate to warm temperatures</string>
     <string name="text_5_ec">• Mites are favoured by hot dry weather</string>
 
     <!-- tomato tip -->
-    <string name="text_1_tomato_tip">• Plant from August</string>
-    <string name="text_2_tomato_tip">• Harvest until end of March</string>
+    <string name="text_1_tomato_tip">• Seedlings should be planted when the chances of frost vanishes\n• The soil temperature during planting should be 18&#8211;20 degrees\n• Plant from August\n• There should be enough protection from strong winds\n• The soil should be prepared with the help of organic matter before planting\n• If the plant requires staking, it should be planted 1 metre apart\n• Traditional way of planting is between AFL Grand Final and the Melbourne Cup</string>
+    <string name="text_2_tomato_tip">• Harvest until end of March\n• The best time to harvest the tomatoes is when the tomatoes reaches the breaker stage, i.e., ½ green and ½ pink</string>
     <string name="text_3_tomato_tip">• Requires partial-full sun\n• Recommended to have shade during hottest Victorian summer days</string>
     <string name="text_4_tomato_tip">• Recommended to use sheep manure as tomatoes are considered to be heavy feeders.</string>
     <string name="text_5_tomato_tip">• Seeds can be sown in the start of November to December.</string>
     <string name="text_6_tomato_tip">• Should be watered regularly\n• The plant may lose fruit in dry period\n• Base of the plant should be deeply watered\n• Avoid planting the foliage</string>
-    <string name="text_7_tomato_tip">• Plants should be feed regularly with organic fertilisers</string>
-    <string name="text_8_tomato_tip">• Mulching helps to keep the water in\n• It keeps the weeds out</string>
+    <string name="text_7_tomato_tip">• Plants should be feed regularly with organic fertilisers\n• Feeding the plants throughout the season results in beautiful yield</string>
+    <string name="text_8_tomato_tip">• Mulching helps to keep the water in\n• It keeps the weeds out\n•  Mulching keeps the roots cool</string>
 
     <!-- chemical control -->
     <string name="text_1_title_control">ToMV</string>
