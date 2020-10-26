@@ -165,18 +165,18 @@ public class VirusCheckFragment extends BottomSheetDialogFragment {
     }
 
     private void initializeViews() {
-        this.isUploadImageButtonClicked = false;
-        this.titleLinearLayout = view.findViewById(R.id.ll_choose_image_title_virus_check);
-        this.closeButtonRelativeLayout = view.findViewById(R.id.rl_close_button_virus_check);
-        this.cameraLinearLayout = view.findViewById(R.id.ll_camera_check);
-        this.selectImageLinearLayout = view.findViewById(R.id.ll_select_image);
-        this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
-        this.uploadImageButtonRelativeLayout = view.findViewById(R.id.rl_upload_image_button_virus_check);
-        this.uploadImageButton = view.findViewById(R.id.btn_upload_image_check);
-        this.allVirusCheckLinearLayout = view.findViewById(R.id.ll_all_virus_check);
-        this.uploadingProgressBarRelativeLayout = view.findViewById(R.id.rl_process_bar_virus_check);
-        this.virusCheckRelativeLayout = view.findViewById(R.id.rl_virus_check);
-        this.imageFormatTipTextView = view.findViewById(R.id.tv_image_format_tip_virus_check);
+//        this.isUploadImageButtonClicked = false;
+//        this.titleLinearLayout = view.findViewById(R.id.ll_choose_image_title_virus_check);
+//        this.closeButtonRelativeLayout = view.findViewById(R.id.rl_close_button_virus_check);
+//        this.cameraLinearLayout = view.findViewById(R.id.ll_camera_check);
+//        this.selectImageLinearLayout = view.findViewById(R.id.ll_select_image);
+//        this.uploadImageImageView = view.findViewById(R.id.img_upload_check);
+//        this.uploadImageButtonRelativeLayout = view.findViewById(R.id.rl_upload_image_button_virus_check);
+//        this.uploadImageButton = view.findViewById(R.id.btn_upload_image_check);
+//        this.allVirusCheckLinearLayout = view.findViewById(R.id.ll_all_virus_check);
+//        this.uploadingProgressBarRelativeLayout = view.findViewById(R.id.rl_process_bar_virus_check);
+//        this.virusCheckRelativeLayout = view.findViewById(R.id.rl_virus_check);
+//        this.imageFormatTipTextView = view.findViewById(R.id.tv_image_format_tip_virus_check);
 
         // set the height of the progress bar
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)this.uploadingProgressBarRelativeLayout.getLayoutParams();

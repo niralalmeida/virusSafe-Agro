@@ -168,7 +168,7 @@
             app:layout_constraintTop_toBottomOf="@id/cv_tip_open_camera_activity"
             app:layout_constraintStart_toEndOf="@id/imgbtn_camera_activity"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Tips"
+            android:text="Instructions"
             android:textColor="@color/colorWhite"/>
 
         <!-- image view -->

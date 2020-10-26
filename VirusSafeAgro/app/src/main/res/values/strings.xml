@@ -280,5 +280,8 @@
 
     <!-- detect activity -->
     <string name="filter_title_item">detect_activity</string>
+    <string name="text_title_instruction">Tips For Taking Pictures</string>
+    <string name="text_tip1_instruction">1. Avoid dark and blurry images by focusing on the leaf, which is suspected to be infected.</string>
+    <string name="text_tip2_instruction">2. Make sure the leaves of the tomato plant are clear, avoid getting too close.</string>
 
 </resources>

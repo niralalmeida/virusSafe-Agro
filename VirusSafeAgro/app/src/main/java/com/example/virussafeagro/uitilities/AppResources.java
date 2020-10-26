@@ -15,6 +15,7 @@ public class AppResources {
     public final static String FRAGMENT_TAG_TOOLKIT = "toolkit";
     public final static String FRAGMENT_TAG_VIRUS_INFO = "virus_info";
     public final static String FRAGMENT_TAG_VIRUS_CHECK = "virus_check";
+    public final static String FRAGMENT_TAG_DETECT = "virus_detect";
     public final static String FRAGMENT_TAG_VIRUS_QUIZ = "virus_quiz";
     public final static String FRAGMENT_TAG_NUTRIENT = "nutrient";
     public final static String FRAGMENT_TAG_MORE = "more";

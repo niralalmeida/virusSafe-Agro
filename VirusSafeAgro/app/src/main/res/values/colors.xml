@@ -91,7 +91,10 @@
     <!-- virus check -->
     <color name="bottomSheetBG">#474747</color>
     <color name="swipe_tip_view">#474747</color>
-<!--    <color name="swipe_tip_view">#808B96</color>-->
+    <!-- virus detect -->
+    <color name="bg_detect_instruction">#2C2C2C</color>
+    <color name="card_bg_detect_instruction">#474747</color>
+
 
     <!-- map -->
     <color name="text_rating">#90ffffff</color>

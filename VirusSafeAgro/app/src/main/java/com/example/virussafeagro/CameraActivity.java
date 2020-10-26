@@ -49,6 +49,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.virussafeagro.animation.MyAnimationBox;
+import com.example.virussafeagro.fragments.DetectInstructionsFragment;
+import com.example.virussafeagro.fragments.VirusCheckFragment;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.ImageStorage;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -320,14 +323,15 @@ public class CameraActivity extends AppCompatActivity {
         this.tipOpenCameraCardView.setOnClickListener(v -> {
             // open tip page
             if (!isOpenCameraShown){
-
+                DetectInstructionsFragment detectInstructionsFragment = new DetectInstructionsFragment();
+                detectInstructionsFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_DETECT);
             } // back to camera page
             else {
                 // set the photos button
                 isOpenCameraShown = false;
                 isCameraImageShown = false;
                 tipOpenCameraImageView.setImageResource(R.drawable.tip_i);
-                tipOpenCameraTextView.setText("Tips");
+                tipOpenCameraTextView.setText("Instructions");
                 // show preview
                 previewView.setVisibility(View.VISIBLE);
                 // retake
