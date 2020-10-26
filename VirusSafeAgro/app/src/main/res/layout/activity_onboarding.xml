@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OnBoardingActivity">
 
-    <RelativeLayout
-        android:id="@+id/rl_on_boarding"
+    <ImageView
+        android:id="@+id/img_background_boarding"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/on_boarding_bg4" />
 
-        <ImageView
-            android:id="@+id/img_background_boarding"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/on_boarding_bg4" />
-
-        <ImageView
-            android:id="@+id/img_logo_hide_slide_boarding"
-            android:visibility="visible"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/onboarding_logo"/>
+    <ImageView
+        android:id="@+id/img_logo_hide_slide_boarding"
+        android:visibility="visible"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cv_icon_boarding_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/onboarding_logo"/>
 
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/slide_view_pager_boarding"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/slide_view_pager_boarding"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
 
 <!--        <ImageView-->
 <!--            android:id="@+id/img_logo_boarding"-->
@@ -43,67 +43,86 @@
 <!--            android:layout_marginTop="40dp"-->
 <!--            android:layout_marginBottom="20dp"-->
 <!--            android:src="@drawable/onboarding_logo"/>-->
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:visibility="invisible"
+        android:id="@+id/cv_icon_boarding_layout"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        app:layout_constraintTop_toTopOf="parent"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        card_view:cardElevation="4dp"
+        card_view:cardCornerRadius="10dp">
 
-        <Button
-            android:id="@+id/btn_skip_boarding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:textColor="@color/colorWhite"
-            android:text="skip"
-            android:textSize="17sp"
-            android:background="@android:color/transparent"/>
-
-        <TextView
-            android:id="@+id/tv_swipe_boarding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/img_icon_boarding_layout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
             android:layout_centerHorizontal="true"
-            android:layout_above="@id/btn_back_boarding"
-            android:layout_marginBottom="40dp"
-            android:textColor="@color/colorWhite"
-            android:text="@string/text_swipe_boarding"
-            android:visibility="visible"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/screen_1_easy_virus_detection" />
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_skip_boarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/colorWhite"
+        android:text="skip"
+        android:textSize="17sp"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/tv_swipe_boarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/ll_dot_button_boarding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="40dp"
+        android:textColor="@color/colorWhite"
+        android:text="@string/text_swipe_boarding"
+        android:visibility="visible"/>
 
 
-        <LinearLayout
-            android:id="@+id/ll_dot_button_boarding"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignTop="@id/btn_back_boarding"
-            android:layout_alignBottom="@id/btn_back_boarding"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/ll_dot_button_boarding"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toEndOf="@id/btn_back_boarding"
+        app:layout_constraintEnd_toStartOf="@id/btn_next_boarding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_back_boarding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:textColor="@color/colorWhite"
-            android:visibility="visible"
-            android:background="@android:color/transparent"
-            android:layout_toStartOf="@id/ll_dot_button_boarding" />
+    <Button
+        android:id="@+id/btn_back_boarding"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/colorWhite"
+        android:visibility="visible"
+        android:background="@android:color/transparent"
+        android:layout_toStartOf="@id/ll_dot_button_boarding" />
 
-        <Button
-            android:id="@+id/btn_next_boarding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:textColor="@color/colorWhite"
-            android:background="@android:color/transparent"
-            android:layout_toEndOf="@id/ll_dot_button_boarding" />
+    <Button
+        android:id="@+id/btn_next_boarding"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/colorWhite"
+        android:background="@android:color/transparent"
+        android:layout_toEndOf="@id/ll_dot_button_boarding" />
 
-    </RelativeLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

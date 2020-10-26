@@ -20,7 +20,7 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
     private View view;
 
     private ImageView slideImageView;
-    private TextView slideHeadingTextView;
+//    private TextView slideHeadingTextView;
     private TextView slideDescriptionTextView;
     private Button launchAppButton;
 
@@ -77,14 +77,14 @@ public class OnBoardingSlideAdapter extends PagerAdapter {
 
     private void initiateViews() {
         this.slideImageView = view.findViewById(R.id.img_icon_slide_boarding);
-        this.slideHeadingTextView = view.findViewById(R.id.tv_heading_slide_boarding);
+//        this.slideHeadingTextView = view.findViewById(R.id.tv_heading_slide_boarding);
         this.slideDescriptionTextView = view.findViewById(R.id.tv_description_slide_boarding);
         this.launchAppButton = view.findViewById(R.id.btn_launch_app_boarding);
     }
 
     private void setContentOfViewsByPosition(int position) {
         this.slideImageView.setImageResource(slide_images[position]);
-        this.slideHeadingTextView.setText(slide_headings[position]);
+//        this.slideHeadingTextView.setText(slide_headings[position]);
         this.slideDescriptionTextView.setText(slide_descriptions[position]);
         if (position == slide_headings.length - 1){
             this.launchAppButton.setVisibility(View.VISIBLE);
