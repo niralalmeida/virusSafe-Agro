@@ -50,6 +50,7 @@ import com.example.virussafeagro.fragments.VirusCheckResultFragment;
 import com.example.virussafeagro.fragments.VirusDetailFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizQuestionFragment;
+import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppAuthentication;
 import com.example.virussafeagro.uitilities.AppResources;
@@ -59,6 +60,7 @@ import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
+import com.example.virussafeagro.viewModel.NutrientViewModel;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -75,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
     // data
     public static List<VirusModel> virusModelInfoList;
     private VirusInfoListViewModel virusInfoListViewModel;
+    public static List<NutrientModel> nutrientModelList;
+    private NutrientViewModel nutrientViewModel;
 
     // toolbar
     private Toolbar toolbar;
@@ -97,9 +101,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView moreImageView;
     // toolbar - quiz
     private Button quizButton;
-//    private View lineView2;
-//    private View lineView3;
-    
+
     // app tips
     private DragYRelativeLayout tipDragYRelativeLayout;
     // all tips views
@@ -157,14 +159,15 @@ public class MainActivity extends AppCompatActivity {
         // set app password
         AppAuthentication.setAppPassword(this);
 
-        // initialize virus list
+        // initialize virus,nutrient list
         virusModelInfoList = new ArrayList<>();
+        nutrientModelList = new ArrayList<>();
         // initialize Views
         this.initializeViews();
         // initialize SharedPreferenceProcess
         this.initializeSharedPreferenceProcess();
         // initialize VirusInfoViewModel
-        this.initializeVirusInfoViewModel();
+        this.initializeViewModels();
         // search data by API
         this.getDataFromAPI();
 
@@ -232,14 +235,16 @@ public class MainActivity extends AppCompatActivity {
         this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(this);
     }
 
-    private void initializeVirusInfoViewModel() {
+    private void initializeViewModels() {
         this.virusInfoListViewModel = new ViewModelProvider(mainActivity).get(VirusInfoListViewModel.class);
-        this.virusInfoListViewModel.initiateSharedPreferenceProcess(mainActivity);
+        this.nutrientViewModel = new ViewModelProvider(mainActivity).get(NutrientViewModel.class);
     }
 
     private void getDataFromAPI() {
         // find virus info list in new Thread
         this.findVirusInfoListFromDBAndObserveVirusInfoListLD();
+        // find nutrient list in new Thread
+        this.findNutrientListFromDBAndObserveNutrientListLD();
     }
 
     private void findVirusInfoListFromDBAndObserveVirusInfoListLD() {
@@ -248,6 +253,16 @@ public class MainActivity extends AppCompatActivity {
             if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
                 virusModelInfoList.clear();
                 virusModelInfoList = resultVirusInfoList;
+            }
+        });
+    }
+
+    private void findNutrientListFromDBAndObserveNutrientListLD() {
+        this.nutrientViewModel.processFindingNutrientList();
+        this.nutrientViewModel.getNutrientListLD().observe(mainActivity, resultNutrientList -> {
+            if ((resultNutrientList != null) && (resultNutrientList.size() != 0)) {
+                nutrientModelList.clear();
+                nutrientModelList = resultNutrientList;
             }
         });
     }

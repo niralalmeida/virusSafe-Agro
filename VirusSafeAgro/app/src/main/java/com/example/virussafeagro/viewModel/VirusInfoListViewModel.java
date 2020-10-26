@@ -18,7 +18,6 @@ import java.util.List;
 public class VirusInfoListViewModel extends ViewModel {
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
     private FindVirusInfoListAsyncTask currentFindVirusInfoListAsyncTask;
-    private SharedPreferenceProcess spp;
 
     private MutableLiveData<List<VirusModel>> virusInfoListLD;
 
@@ -26,10 +25,6 @@ public class VirusInfoListViewModel extends ViewModel {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
         this.virusInfoListLD = new MutableLiveData<>();
         this.currentFindVirusInfoListAsyncTask = new FindVirusInfoListAsyncTask();
-    }
-
-    public void initiateSharedPreferenceProcess(Context context) {
-        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(context);
     }
 
     // for live data

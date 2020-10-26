@@ -34,10 +34,10 @@ public class NutrientFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
 
+    // data
     private NutrientViewModel nutrientViewModel;
-//    private SharedPreferenceProcess spp;
-    private List<NutrientModel> nutrientModelList;
-//
+
+    // views
     private LinearLayout processBarLinearLayout;
     private LinearLayout networkErrorLinearLayout;
     private LinearLayout nutrientsGridViewLinearLayout;
@@ -69,8 +69,6 @@ public class NutrientFragment extends Fragment {
 
         // initialize views
         this.initializeViews();
-        this.processBarLinearLayout.setVisibility(View.VISIBLE);
-        this.nutrientsGridViewLinearLayout.setVisibility(View.GONE);
 
         // set menu selected item
         if (!this.mainActivity.isLearnIconClicked()) {
@@ -84,42 +82,21 @@ public class NutrientFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-//        // initialize nutrient list
-        nutrientModelList = new ArrayList<>();
         // initialize view model
         this.initializeNutrientViewModel();
         // find virus info list in new Thread
-        this.findNutrientListFromDB();
+        if (MainActivity.nutrientModelList.isEmpty()) {
+            // show progress bar
+            this.processBarLinearLayout.setVisibility(View.VISIBLE);
+            this.nutrientsGridViewLinearLayout.setVisibility(View.GONE);
+            // observe NutrientModel  List Live Data
+            this.observeNutrientListLD();
+        } else {
+            // show the virus list
+            this.displayNutrientsCardList();
+        }
 
-//        // initialize SharedPreferenceProcess
-//        this.initializeSharedPreferenceProcess();
-//
-//        if (spp.getNutrientModelListFromSP().get(0).getNutrientFullName().isEmpty()) {
-//            // find virus info list in new Thread
-//            this.findNutrientListFromDB();
-//        } else {
-//            NutrientListFragment.GetNutrientModelListFromSPAsyncTask getNutrientModelListFromSPAsyncTask = new NutrientListFragment.GetNutrientModelListFromSPAsyncTask();
-//            getNutrientModelListFromSPAsyncTask.execute();
-//        }
-//
-        // observe NutrientModel  List Live Data
-        this.observeNutrientListLD();
     }
-
-//    private class GetNutrientModelListFromSPAsyncTask extends AsyncTask<Void, Void, Void> {
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//            // get the virus list from spp
-//            virusModelList = spp.getNutrientModelListFromSP();
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//            // show the virus list
-//            displayNutrientCardList();
-//        }
-//    }
 
     private void initializeViews() {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_nutrient);
@@ -131,32 +108,19 @@ public class NutrientFragment extends Fragment {
 
     private void initializeNutrientViewModel() {
         this.nutrientViewModel = new ViewModelProvider(requireActivity()).get(NutrientViewModel.class);
-//        this.nutrientViewModel.initiateSharedPreferenceProcess(requireContext());
-    }
-
-//    private void initializeSharedPreferenceProcess() {
-//        this.spp = SharedPreferenceProcess.getSharedPreferenceProcessInstance(requireContext());
-//    }
-
-    private void findNutrientListFromDB() {
-        this.nutrientViewModel.processFindingNutrientList();
     }
 
     private void observeNutrientListLD() {
         this.nutrientViewModel.getNutrientListLD().observe(getViewLifecycleOwner(), resultNutrientList -> {
             if ((resultNutrientList != null) && (resultNutrientList.size() != 0)) {
-                // hide progress bar
-                processBarLinearLayout.setVisibility(View.GONE);
                 // check network connection
                 if (resultNutrientList.get(0).getNutrientName().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
                     // show network error image
                     MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);
                 } else {
-                    nutrientModelList.clear();
-                    nutrientModelList = resultNutrientList;
-                    //set recycler view linear layout visible
-                    MyAnimationBox.runFadeInAnimation(nutrientsGridViewLinearLayout, 1000);
+                    MainActivity.nutrientModelList.clear();
+                    MainActivity.nutrientModelList = resultNutrientList;
                     // show the virus list
                     displayNutrientsCardList();
                 }
@@ -165,11 +129,14 @@ public class NutrientFragment extends Fragment {
     }
 
     private void displayNutrientsCardList() {
+        // show progress bar
+        this.processBarLinearLayout.setVisibility(View.GONE);
+        this.nutrientsGridViewLinearLayout.setVisibility(View.VISIBLE);
         // show grid view
-        gridNutrientAdapter = new GridNutrientAdapter(requireActivity(), nutrientModelList);
+        gridNutrientAdapter = new GridNutrientAdapter(requireActivity(), MainActivity.nutrientModelList);
         nutrientsGridView.setAdapter(gridNutrientAdapter);
         // set GridView Item NutrientCard Click Listener
-        setGridViewItemNutrientCardClickListener(nutrientModelList);
+        setGridViewItemNutrientCardClickListener(MainActivity.nutrientModelList);
 
         // display search function
         mainActivity.displaySearch();
@@ -200,7 +167,7 @@ public class NutrientFragment extends Fragment {
     private void displayNutrientModelListBySearching(String searchInput) {
         List<NutrientModel> searchedNutrientModelList = new ArrayList<>();
         if (!searchInput.isEmpty()) {
-            List<String> nutrientStringInfoList = DataConverter.nutrientModelListToNutrientStringList(nutrientModelList);
+            List<String> nutrientStringInfoList = DataConverter.nutrientModelListToNutrientStringList(MainActivity.nutrientModelList);
             for (String nutrientString : nutrientStringInfoList) {
                 int nutrientId;
                 if (nutrientString.toLowerCase().contains(searchInput.toLowerCase())) {
@@ -209,7 +176,7 @@ public class NutrientFragment extends Fragment {
                     } else {
                         nutrientId = Integer.parseInt(nutrientString.substring(0, 2));
                     }
-                    for (NutrientModel nutrientModel : nutrientModelList) {
+                    for (NutrientModel nutrientModel : MainActivity.nutrientModelList) {
                         if (nutrientModel.getNutrientId() == nutrientId) {
                             searchedNutrientModelList.add(nutrientModel);
                             break;
@@ -218,7 +185,7 @@ public class NutrientFragment extends Fragment {
                 }
             }
         } else {
-            searchedNutrientModelList = nutrientModelList;
+            searchedNutrientModelList = MainActivity.nutrientModelList;
         }
         // show grid view
         gridNutrientAdapter = new GridNutrientAdapter(requireActivity(), searchedNutrientModelList);

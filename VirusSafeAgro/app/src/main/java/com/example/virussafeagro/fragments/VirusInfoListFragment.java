@@ -55,7 +55,6 @@ public class VirusInfoListFragment extends Fragment {
     // data
     private VirusInfoListViewModel virusInfoListViewModel;
     public static Bitmap currentVirusImageBitmap;
-//    private SharedPreferenceProcess spp;
 
     private LinearLayout processBarLinearLayout;
     private LinearLayout networkErrorLinearLayout;
@@ -127,7 +126,6 @@ public class VirusInfoListFragment extends Fragment {
 
     private void initializeVirusInfoViewModel() {
         this.virusInfoListViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoListViewModel.class);
-        this.virusInfoListViewModel.initiateSharedPreferenceProcess(requireContext());
     }
 
     private void observeVirusInfoListLD() {
@@ -153,7 +151,6 @@ public class VirusInfoListFragment extends Fragment {
         // set recycler view linear layout visible and process bar invisible
         processBarLinearLayout.setVisibility(View.GONE);
         virusGridViewLinearLayout.setVisibility(View.VISIBLE);
-//        MyAnimationBox.runFadeInAnimation(virusGridViewLinearLayout, 1000);
 
         // show grid view
         gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), MainActivity.virusModelInfoList);
