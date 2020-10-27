@@ -168,8 +168,8 @@ public class MainActivity extends AppCompatActivity {
         this.initializeSharedPreferenceProcess();
         // initialize VirusInfoViewModel
         this.initializeViewModels();
-        // search data by API
-        this.getDataFromAPI();
+        // prepare data by API
+        this.prepareDataFromAPI();
 
         // check whether OnBoardingActivity is first show
         if (this.spp.getOnBoardingIsFirstShow()) {
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
         this.nutrientViewModel = new ViewModelProvider(mainActivity).get(NutrientViewModel.class);
     }
 
-    private void getDataFromAPI() {
+    private void prepareDataFromAPI() {
         // find virus info list in new Thread
         this.findVirusInfoListFromDBAndObserveVirusInfoListLD();
         // find nutrient list in new Thread

@@ -193,7 +193,7 @@ public class CameraActivity extends AppCompatActivity {
                 // change the card image
                 galleryRetakeImageView.setImageResource(R.drawable.ic_redo);
                 // change the card text
-                galleryRetakeTextView.setText("Redo");
+                galleryRetakeTextView.setText("Retake");
 
                 new Handler().postDelayed(() -> {
                     cameraImageButton.clearAnimation();
