@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.adapters.GridVirusInfoAdapter;
+import com.example.virussafeagro.adapters.ListImageGalleryAdapter;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
@@ -257,6 +258,8 @@ public class VirusInfoListFragment extends Fragment {
 //
 //            itemVirusNameTextView.setText("hoy");
 
+//            ListImageGalleryAdapter.ViewHolder itemViewHolder = (ListImageGalleryAdapter.ViewHolder) recyclerViewForVirusImageResult.findViewHolderForAdapterPosition(position);
+//            GridVirusInfoAdapter.ViewHolder itemViewHolder = (ListImageGalleryAdapter.ViewHolder) recyclerViewForVirusImageResult.findViewHolderForAdapterPosition(position);
 //            mainActivity.getSupportFragmentManager().beginTransaction()
 //                    .setReorderingAllowed(true)
 //                    .addSharedElement(itemImageView, itemImageView.getTransitionName())

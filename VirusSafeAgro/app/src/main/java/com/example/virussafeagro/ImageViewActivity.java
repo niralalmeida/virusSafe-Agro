@@ -2,15 +2,19 @@ package com.example.virussafeagro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
 import android.view.WindowManager;
-
-import com.example.virussafeagro.fragments.VirusInfoListFragment;
-import com.github.chrisbanes.photoview.PhotoView;
+import android.widget.ImageView;
 
 public class ImageViewActivity extends AppCompatActivity {
     private ImageViewActivity imageViewActivity;
+
+    // data
+    public static Bitmap currentImageBitmap;
+    // views
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +28,35 @@ public class ImageViewActivity extends AppCompatActivity {
         // set activity
         this.imageViewActivity = this;
 
+        // initialize Views
+        this.initializeViews();
 
-        PhotoView photoView = findViewById(R.id.photo_view);
-        photoView.setImageBitmap(VirusInfoListFragment.currentVirusImageBitmap);
+        // show image
+        this.showImage();
+
+        // set image on click
+        this.setImageOnClickListener();
+    }
+
+    private void initializeViews() {
+        this.imageView = findViewById(R.id.img_image_view_activity);
+    }
+
+    // set and show image
+    private void showImage() {
+        this.imageView.setImageBitmap(currentImageBitmap);
+    }
+
+    // set Image On Click Listener
+    private void setImageOnClickListener() {
+        this.imageView.setOnClickListener(pv -> {
+            supportFinishAfterTransition();
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        currentImageBitmap = null;
     }
 }

@@ -1,13 +1,19 @@
 package com.example.virussafeagro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
 import android.view.View;
@@ -16,13 +22,12 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.virussafeagro.adapters.ListImageGalleryAdapter;
 import com.example.virussafeagro.adapters.ListQuizResultAdapter;
 import com.example.virussafeagro.fragments.VirusDetailNewFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
-import com.example.virussafeagro.uitilities.DataConverter;
-import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
@@ -37,6 +42,11 @@ public class GalleryActivity extends AppCompatActivity {
     private androidx.appcompat.widget.Toolbar galleryTitleToolbar;
     private ImageButton closeImageButton;
     private ImageView virusImageView;
+
+    // gallery list
+    private ListImageGalleryAdapter listImageGalleryAdapter;
+    private RecyclerView recyclerViewForVirusImageResult;
+    private GridLayoutManager gridLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,20 +99,40 @@ public class GalleryActivity extends AppCompatActivity {
     private void showImageGridList() {
         List<String> virusImageURLStringList = VirusDetailNewFragment.currentVirusModel.getVirusPictureURLList();
         if (!virusImageURLStringList.isEmpty()) {
-            // show the recycler view
-            ListImageGalleryAdapter listImageGalleryAdapter = new ListImageGalleryAdapter(virusImageURLStringList, this);
-            RecyclerView recyclerViewForVirusImageResult = findViewById(R.id.rv_image_gallery);
+            // show the recycler view with grid layout manager
+            this.listImageGalleryAdapter = new ListImageGalleryAdapter(virusImageURLStringList, this);
+            this.recyclerViewForVirusImageResult = findViewById(R.id.rv_image_gallery);
             int numberOfColumns = 3;
-            recyclerViewForVirusImageResult.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-            recyclerViewForVirusImageResult.setAdapter(listImageGalleryAdapter);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, numberOfColumns);
-            recyclerViewForVirusImageResult.setLayoutManager(gridLayoutManager);
-
-//            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-//            recyclerViewForVirusImageResult.setLayoutManager(layoutManager);
+            this.recyclerViewForVirusImageResult.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+            this.recyclerViewForVirusImageResult.setAdapter(this.listImageGalleryAdapter);
+            this.gridLayoutManager = new GridLayoutManager(this, numberOfColumns);
+            this.recyclerViewForVirusImageResult.setLayoutManager(this.gridLayoutManager);
+            // set On Image Card Item Click Listener
+            this.setOnImageCardItemClickListener();
         } else {
 
         }
+    }
+
+    // set On Image Card Item Click Listener
+    private void setOnImageCardItemClickListener() {
+        this.listImageGalleryAdapter.setOnImageCardClickListener(position -> {
+            ListImageGalleryAdapter.ViewHolder itemViewHolder = (ListImageGalleryAdapter.ViewHolder) recyclerViewForVirusImageResult.findViewHolderForAdapterPosition(position);
+            CardView itemImageCardView = itemViewHolder.virusImageCardView;
+            ImageView itemImageView = itemViewHolder.virusImageView;
+            BitmapDrawable itemImageBitmapDrawable = (BitmapDrawable) itemImageView.getDrawable();
+            Bitmap itemImageBitmap = itemImageBitmapDrawable.getBitmap();
+            if (itemImageBitmap != null){
+                ImageViewActivity.currentImageBitmap = itemImageBitmap;
+                // open the image view activity
+                Intent intent = new Intent(galleryActivity, ImageViewActivity.class);
+                // animation
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(galleryActivity, itemImageCardView, ViewCompat.getTransitionName(itemImageCardView));
+                galleryActivity.startActivity(intent, options.toBundle());
+            } else {
+                Toast.makeText(galleryActivity, "Cannot get the image!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setCloseButtonOnClickListener() {

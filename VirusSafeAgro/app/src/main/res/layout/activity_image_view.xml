@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDarkBG"
     tools:context=".ImageViewActivity">
 
-    <com.github.chrisbanes.photoview.PhotoView
-        android:id="@+id/photo_view"
+    <ImageView
+        android:id="@+id/img_image_view_activity"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

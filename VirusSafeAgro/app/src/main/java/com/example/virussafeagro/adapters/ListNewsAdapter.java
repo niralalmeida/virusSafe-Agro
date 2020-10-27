@@ -27,7 +27,7 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ViewHo
     public ListNewsAdapter(List<NewsModel> newsModelList, FragmentActivity fragmentActivity) {
         this.newsModelList = newsModelList;
         this.fragmentActivity = fragmentActivity;
-        }
+    }
 
     public interface NewsTileClickListener{
         void onNewsTileClick(int position);
