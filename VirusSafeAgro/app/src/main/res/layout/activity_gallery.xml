@@ -20,7 +20,7 @@
             android:id="@+id/collapsingToolbarLayout_image_gallery"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/colorDarkForeground"
+            app:contentScrim="@color/colorBlack"
             app:collapsedTitleGravity="start"
             app:titleEnabled="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -38,6 +38,7 @@
                 android:id="@+id/toolbar_image_gallery"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:layout_marginBottom="15dp"
                 app:layout_collapseMode="pin"
                 app:expandedTitleMarginEnd="10dp"
                 app:expandedTitleMarginStart="10dp"
@@ -67,13 +68,15 @@
         android:id="@+id/scrollView_image_gallery"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
+        android:layout_marginTop="-15dp"
+        android:background="@drawable/shape_image_gallery_content_bg"
+        app:elevation="15dp"
+        android:paddingTop="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:paddingBottom="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <RelativeLayout
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
