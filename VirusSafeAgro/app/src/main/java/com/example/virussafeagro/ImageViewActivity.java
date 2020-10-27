@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
+import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import com.example.virussafeagro.animation.MyAnimationBox;
 
 public class ImageViewActivity extends AppCompatActivity {
     private ImageViewActivity imageViewActivity;
@@ -15,6 +18,9 @@ public class ImageViewActivity extends AppCompatActivity {
     public static Bitmap currentImageBitmap;
     // views
     private ImageView imageView;
+    // tools
+    private int lastX; // on touch x
+    private int lastY; // on touch y
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +40,6 @@ public class ImageViewActivity extends AppCompatActivity {
         // show image
         this.showImage();
 
-        // set image on click
-        this.setImageOnClickListener();
     }
 
     private void initializeViews() {
@@ -47,11 +51,22 @@ public class ImageViewActivity extends AppCompatActivity {
         this.imageView.setImageBitmap(currentImageBitmap);
     }
 
-    // set Image On Click Listener
-    private void setImageOnClickListener() {
-        this.imageView.setOnClickListener(pv -> {
-            supportFinishAfterTransition();
-        });
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                lastX = x;
+                lastY = y;
+                break;
+            case MotionEvent.ACTION_UP:
+                if(x == lastX && y == lastY){
+                    supportFinishAfterTransition();
+                }
+                break;
+        }
+        return true;
     }
 
     @Override
