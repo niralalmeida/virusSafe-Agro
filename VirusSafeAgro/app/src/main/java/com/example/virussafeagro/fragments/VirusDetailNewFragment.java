@@ -23,6 +23,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.airbnb.lottie.L;
+import com.example.virussafeagro.GalleryActivity;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.QuizActivity;
 import com.example.virussafeagro.R;
@@ -33,6 +34,7 @@ import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.models.VirusSymptomModel;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.robertlevonyan.views.customfloatingactionbutton.FloatingActionLayout;
 
 public class VirusDetailNewFragment extends Fragment {
     private MainActivity mainActivity;
@@ -59,6 +61,8 @@ public class VirusDetailNewFragment extends Fragment {
     private LinearLayout virusCauseTimingItemsLinearLayout;
     private LinearLayout virusCauseECItemsLinearLayout;
     private LinearLayout virusCauseInfectionItemsLinearLayout;
+    private FloatingActionLayout virusGalleryFloatingActionLayout;
+
 
     @Nullable
     @Override
@@ -100,6 +104,8 @@ public class VirusDetailNewFragment extends Fragment {
 
         // set take quiz button on click listener
         this.setTakeQuizButtonOnClickListener();
+        // set VirusGalleryFAB On Click Listener
+        this.setVirusGalleryFABOnClickListener();
         // show quiz button
         MyAnimationBox.runFadeInAnimation(this.quizButton, 200);
         new Handler().postDelayed(()->{
@@ -127,6 +133,7 @@ public class VirusDetailNewFragment extends Fragment {
         this.virusCauseTimingItemsLinearLayout = view.findViewById(R.id.ll_cause_timing_items_virus_detail);
         this.virusCauseECItemsLinearLayout = view.findViewById(R.id.ll_cause_ec_items_virus_detail);
         this.virusCauseInfectionItemsLinearLayout = view.findViewById(R.id.ll_cause_infection_items_virus_detail);
+        this.virusGalleryFloatingActionLayout = view.findViewById(R.id.fabl_gallery_virus_detail);
     }
 
     private void showViews() {
@@ -361,6 +368,13 @@ public class VirusDetailNewFragment extends Fragment {
             // animation
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, virusPictureImageView, ViewCompat.getTransitionName(virusPictureImageView));
             mainActivity.startActivity(intent, options.toBundle());
+        });
+    }
+
+    private void setVirusGalleryFABOnClickListener() {
+        this.virusGalleryFloatingActionLayout.setOnClickListener(fabView ->{
+            Intent intent = new Intent(mainActivity, GalleryActivity.class);
+            mainActivity.startActivity(intent);
         });
     }
 

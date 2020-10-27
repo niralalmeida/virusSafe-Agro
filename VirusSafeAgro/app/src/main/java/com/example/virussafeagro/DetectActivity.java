@@ -58,6 +58,7 @@ public class DetectActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE = 99;
     public static boolean hasDetectRequest;
     public boolean isResultShow;
+    private int delayDuration;
     //views
     private View outsideTouchView;
     private FrameLayout bottomSheetFrameLayout;
@@ -91,14 +92,15 @@ public class DetectActivity extends AppCompatActivity {
         this.setOutsideTouchViewOnTouchListener();
         // set CloseButton OnClickListener
         this.setCloseButtonOnClickListener();
+
+        // show the title and 2 buttons
+        delayDuration = this.showTitleAndButtonAndReturnDuration();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        // show the title and 2 buttons
-        int delayDuration = this.showTitleAndButtonAndReturnDuration();
         // control the detect
         this.controlDetect(delayDuration);
     }

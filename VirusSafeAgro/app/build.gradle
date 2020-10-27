@@ -90,8 +90,8 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.2.0'
 
     // image tools
-
     implementation 'com.squareup.picasso:picasso:2.71828' // picasso
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0' //zoom the image
 
     // camera
     implementation 'com.github.HuanTanSheng:EasyPhotos:3.0.6'
