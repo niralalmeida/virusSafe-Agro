@@ -150,6 +150,8 @@
     <color name="bg_ill_check">#C0392B</color>
     <color name="bg_error_check">#000</color>
 
+    <color name="bg_cart_image_gallery">#515A5A</color>
+
 <!--    <color name="btn_bg_a_option">#2B69C8</color>-->
 <!--    <color name="btn_bg_b_option">#CE3542</color>-->
 <!--    <color name="btn_bg_c_option">#458528</color>-->
