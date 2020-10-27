@@ -3,19 +3,25 @@ package com.example.virussafeagro;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.virussafeagro.adapters.ListImageGalleryAdapter;
 import com.example.virussafeagro.adapters.ListQuizResultAdapter;
 import com.example.virussafeagro.fragments.VirusDetailNewFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
+import com.example.virussafeagro.uitilities.DataConverter;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -86,10 +92,14 @@ public class GalleryActivity extends AppCompatActivity {
             // show the recycler view
             ListImageGalleryAdapter listImageGalleryAdapter = new ListImageGalleryAdapter(virusImageURLStringList, this);
             RecyclerView recyclerViewForVirusImageResult = findViewById(R.id.rv_image_gallery);
-            recyclerViewForVirusImageResult.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+            int numberOfColumns = 3;
+            recyclerViewForVirusImageResult.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
             recyclerViewForVirusImageResult.setAdapter(listImageGalleryAdapter);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-            recyclerViewForVirusImageResult.setLayoutManager(layoutManager);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, numberOfColumns);
+            recyclerViewForVirusImageResult.setLayoutManager(gridLayoutManager);
+
+//            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+//            recyclerViewForVirusImageResult.setLayoutManager(layoutManager);
         } else {
 
         }
