@@ -16,11 +16,14 @@ public class VirusModel implements Parcelable {
     private List<VirusPreventionModel> virusPreventionModelList;
     private List<String> virusPictureURLList;
     private List<Bitmap> virusPictureBitmapList;
-
-//    private String description;
-//    private String symptoms;
-//    private String causes;
-//    private String prevention;
+    private String virusChemicalControlImageURLString;
+    private Bitmap virusChemicalControlImageBitmap;
+    private String virusNonChemicalControlImageURLString;
+    private Bitmap virusNonChemicalControlImageBitmap;
+    private String virusSymptomLeafImageURLString;
+    private Bitmap virusSymptomLeafImageBitmap;
+    private String virusSymptomFruitImageURLString;
+    private Bitmap virusSymptomFruitImageBitmap;
 
     public VirusModel() {
     }
@@ -41,6 +44,26 @@ public class VirusModel implements Parcelable {
         this.virusPictureBitmapList = virusPictureBitmapList;
     }
 
+    public VirusModel(int virusId, String virusFullName, String virusAbbreviation, List<VirusDescriptionModel> virusDescriptionModelList, List<VirusSymptomModel> virusSymptomModelList, List<VirusCauseModel> virusCauseModelList, List<VirusPreventionModel> virusPreventionModelList, List<String> virusPictureURLList, List<Bitmap> virusPictureBitmapList, String virusChemicalControlImageURLString, Bitmap virusChemicalControlImageBitmap, String virusNonChemicalControlImageURLString, Bitmap virusNonChemicalControlImageBitmap, String virusSymptomLeafImageURLString, Bitmap virusSymptomLeafImageBitmap, String virusSymptomFruitImageURLString, Bitmap virusSymptomFruitImageBitmap) {
+        this.virusId = virusId;
+        this.virusFullName = virusFullName;
+        this.virusAbbreviation = virusAbbreviation;
+        this.virusDescriptionModelList = virusDescriptionModelList;
+        this.virusSymptomModelList = virusSymptomModelList;
+        this.virusCauseModelList = virusCauseModelList;
+        this.virusPreventionModelList = virusPreventionModelList;
+        this.virusPictureURLList = virusPictureURLList;
+        this.virusPictureBitmapList = virusPictureBitmapList;
+        this.virusChemicalControlImageURLString = virusChemicalControlImageURLString;
+        this.virusChemicalControlImageBitmap = virusChemicalControlImageBitmap;
+        this.virusNonChemicalControlImageURLString = virusNonChemicalControlImageURLString;
+        this.virusNonChemicalControlImageBitmap = virusNonChemicalControlImageBitmap;
+        this.virusSymptomLeafImageURLString = virusSymptomLeafImageURLString;
+        this.virusSymptomLeafImageBitmap = virusSymptomLeafImageBitmap;
+        this.virusSymptomFruitImageURLString = virusSymptomFruitImageURLString;
+        this.virusSymptomFruitImageBitmap = virusSymptomFruitImageBitmap;
+    }
+
     protected VirusModel(Parcel in) {
         virusId = in.readInt();
         virusFullName = in.readString();
@@ -51,6 +74,14 @@ public class VirusModel implements Parcelable {
         virusPreventionModelList = in.createTypedArrayList(VirusPreventionModel.CREATOR);
         virusPictureURLList = in.createStringArrayList();
         virusPictureBitmapList = in.createTypedArrayList(Bitmap.CREATOR);
+        virusChemicalControlImageURLString = in.readString();
+        virusChemicalControlImageBitmap = in.readParcelable(Bitmap.class.getClassLoader());
+        virusNonChemicalControlImageURLString = in.readString();
+        virusNonChemicalControlImageBitmap = in.readParcelable(Bitmap.class.getClassLoader());
+        virusSymptomLeafImageURLString = in.readString();
+        virusSymptomLeafImageBitmap = in.readParcelable(Bitmap.class.getClassLoader());
+        virusSymptomFruitImageURLString = in.readString();
+        virusSymptomFruitImageBitmap = in.readParcelable(Bitmap.class.getClassLoader());
     }
 
     @Override
@@ -64,6 +95,14 @@ public class VirusModel implements Parcelable {
         dest.writeTypedList(virusPreventionModelList);
         dest.writeStringList(virusPictureURLList);
         dest.writeTypedList(virusPictureBitmapList);
+        dest.writeString(virusChemicalControlImageURLString);
+        dest.writeParcelable(virusChemicalControlImageBitmap, flags);
+        dest.writeString(virusNonChemicalControlImageURLString);
+        dest.writeParcelable(virusNonChemicalControlImageBitmap, flags);
+        dest.writeString(virusSymptomLeafImageURLString);
+        dest.writeParcelable(virusSymptomLeafImageBitmap, flags);
+        dest.writeString(virusSymptomFruitImageURLString);
+        dest.writeParcelable(virusSymptomFruitImageBitmap, flags);
     }
 
     @Override
@@ -153,5 +192,69 @@ public class VirusModel implements Parcelable {
 
     public void setVirusPictureBitmapList(List<Bitmap> virusPictureBitmapList) {
         this.virusPictureBitmapList = virusPictureBitmapList;
+    }
+
+    public String getVirusChemicalControlImageURLString() {
+        return virusChemicalControlImageURLString;
+    }
+
+    public void setVirusChemicalControlImageURLString(String virusChemicalControlImageURLString) {
+        this.virusChemicalControlImageURLString = virusChemicalControlImageURLString;
+    }
+
+    public Bitmap getVirusChemicalControlImageBitmap() {
+        return virusChemicalControlImageBitmap;
+    }
+
+    public void setVirusChemicalControlImageBitmap(Bitmap virusChemicalControlImageBitmap) {
+        this.virusChemicalControlImageBitmap = virusChemicalControlImageBitmap;
+    }
+
+    public String getVirusNonChemicalControlImageURLString() {
+        return virusNonChemicalControlImageURLString;
+    }
+
+    public void setVirusNonChemicalControlImageURLString(String virusNonChemicalControlImageURLString) {
+        this.virusNonChemicalControlImageURLString = virusNonChemicalControlImageURLString;
+    }
+
+    public Bitmap getVirusNonChemicalControlImageBitmap() {
+        return virusNonChemicalControlImageBitmap;
+    }
+
+    public void setVirusNonChemicalControlImageBitmap(Bitmap virusNonChemicalControlImageBitmap) {
+        this.virusNonChemicalControlImageBitmap = virusNonChemicalControlImageBitmap;
+    }
+
+    public String getVirusSymptomLeafImageURLString() {
+        return virusSymptomLeafImageURLString;
+    }
+
+    public void setVirusSymptomLeafImageURLString(String virusSymptomLeafImageURLString) {
+        this.virusSymptomLeafImageURLString = virusSymptomLeafImageURLString;
+    }
+
+    public Bitmap getVirusSymptomLeafImageBitmap() {
+        return virusSymptomLeafImageBitmap;
+    }
+
+    public void setVirusSymptomLeafImageBitmap(Bitmap virusSymptomLeafImageBitmap) {
+        this.virusSymptomLeafImageBitmap = virusSymptomLeafImageBitmap;
+    }
+
+    public String getVirusSymptomFruitImageURLString() {
+        return virusSymptomFruitImageURLString;
+    }
+
+    public void setVirusSymptomFruitImageURLString(String virusSymptomFruitImageURLString) {
+        this.virusSymptomFruitImageURLString = virusSymptomFruitImageURLString;
+    }
+
+    public Bitmap getVirusSymptomFruitImageBitmap() {
+        return virusSymptomFruitImageBitmap;
+    }
+
+    public void setVirusSymptomFruitImageBitmap(Bitmap virusSymptomFruitImageBitmap) {
+        this.virusSymptomFruitImageBitmap = virusSymptomFruitImageBitmap;
     }
 }

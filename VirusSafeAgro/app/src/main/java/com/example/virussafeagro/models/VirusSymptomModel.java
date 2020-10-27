@@ -1,5 +1,6 @@
 package com.example.virussafeagro.models;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -7,6 +8,7 @@ public class VirusSymptomModel implements Parcelable {
     private int symId;
     private String symContent;
     private String symObjectType; // l-leaves
+
 
     public VirusSymptomModel() {
     }

@@ -2,6 +2,9 @@ package com.example.virussafeagro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.transition.ChangeBounds;
@@ -9,11 +12,15 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.virussafeagro.adapters.ListImageGalleryAdapter;
+import com.example.virussafeagro.adapters.ListQuizResultAdapter;
 import com.example.virussafeagro.fragments.VirusDetailNewFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import java.util.List;
 
 public class GalleryActivity extends AppCompatActivity {
     private GalleryActivity galleryActivity;
@@ -42,7 +49,8 @@ public class GalleryActivity extends AppCompatActivity {
 
         // show Initial Views
         this.showInitialViews();
-
+        // show Image Grid List
+        this.showImageGridList();
         // set close button on click
         this.setCloseButtonOnClickListener();
     }
@@ -69,6 +77,22 @@ public class GalleryActivity extends AppCompatActivity {
         this.virusImageView.setImageBitmap(VirusInfoListFragment.currentVirusImageBitmap);
         // set virus abbreviation title
         this.galleryTitleToolbar.setTitle(VirusDetailNewFragment.currentVirusModel.getVirusAbbreviation());
+    }
+
+    // show gallery image grid list
+    private void showImageGridList() {
+        List<String> virusImageURLStringList = VirusDetailNewFragment.currentVirusModel.getVirusPictureURLList();
+        if (!virusImageURLStringList.isEmpty()) {
+            // show the recycler view
+            ListImageGalleryAdapter listImageGalleryAdapter = new ListImageGalleryAdapter(virusImageURLStringList, this);
+            RecyclerView recyclerViewForVirusImageResult = findViewById(R.id.rv_image_gallery);
+            recyclerViewForVirusImageResult.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+            recyclerViewForVirusImageResult.setAdapter(listImageGalleryAdapter);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+            recyclerViewForVirusImageResult.setLayoutManager(layoutManager);
+        } else {
+
+        }
     }
 
     private void setCloseButtonOnClickListener() {

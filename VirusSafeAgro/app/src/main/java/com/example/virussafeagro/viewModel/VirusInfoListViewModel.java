@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.virussafeagro.models.VirusModel;
+import com.example.virussafeagro.networkConnection.NetworkConnectionToAWSTomatoS3;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
 import com.example.virussafeagro.uitilities.MyJsonParser;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
@@ -17,12 +18,14 @@ import java.util.List;
 
 public class VirusInfoListViewModel extends ViewModel {
     private NetworkConnectionToTomatoVirusDB networkConnectionToTomatoVirusDB;
+    private NetworkConnectionToAWSTomatoS3 networkConnectionToAWSTomatoS3;
     private FindVirusInfoListAsyncTask currentFindVirusInfoListAsyncTask;
 
     private MutableLiveData<List<VirusModel>> virusInfoListLD;
 
     public VirusInfoListViewModel() {
         this.networkConnectionToTomatoVirusDB = new NetworkConnectionToTomatoVirusDB();
+        this.networkConnectionToAWSTomatoS3 = new NetworkConnectionToAWSTomatoS3();
         this.virusInfoListLD = new MutableLiveData<>();
         this.currentFindVirusInfoListAsyncTask = new FindVirusInfoListAsyncTask();
     }
@@ -54,14 +57,18 @@ public class VirusInfoListViewModel extends ViewModel {
             try {
                 String resultText = networkConnectionToTomatoVirusDB.getAllVirus();
                 virusModelInfoList = MyJsonParser.virusInfoListJsonParser(resultText);
+                // check network connection
+                if (!virusModelInfoList.get(0).getVirusFullName().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                    // get the virus image URLs
+                    for (VirusModel virusModel : virusModelInfoList) {
+                        String resultTextForURL = networkConnectionToAWSTomatoS3.getVirusImagesByVirusId(virusModel.getVirusId());
+                        virusModel = MyJsonParser.virusImageURLIntoVirusModelJsonParser(resultTextForURL, virusModel);
+                    }
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            // check network connection
-//            if (!virusModelInfoList.get(0).getVirusDescription().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
-//                // save virus list into spp
-//                spp.saveVirusInfoList(virusModelInfoList);
-//            }
+
             return virusModelInfoList;
         }
 

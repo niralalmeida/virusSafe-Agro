@@ -107,6 +107,41 @@ public class MyJsonParser {
         return virusModelInfoList;
     }
 
+    public static VirusModel virusImageURLIntoVirusModelJsonParser(String resultText, VirusModel virusModel) throws JSONException {
+        if (!resultText.equals("{}")){
+            // get result json object
+            JSONObject resultJsonObject = new JSONObject(resultText);
+            // chemical control image URL
+            String chemicalControlImageURLString = resultJsonObject.getString("chemical_control_image");
+            virusModel.setVirusChemicalControlImageURLString(chemicalControlImageURLString);
+            // non chemical control image URL
+            String nonChemicalControlImageURLString = resultJsonObject.getString("non_chemical_control_image");
+            virusModel.setVirusNonChemicalControlImageURLString(nonChemicalControlImageURLString);
+            // symptoms image URLs
+            JSONArray symptomImageURLJSONArray = resultJsonObject.getJSONArray("symptoms_image");
+            for (int i = 0; i < symptomImageURLJSONArray.length(); i++) {
+                JSONObject symptomItemJsonObject = symptomImageURLJSONArray.getJSONObject(i);
+                String symptomItemTypeString = symptomItemJsonObject.getString("type");
+                String imageURLString = symptomItemJsonObject.getString("image_url");
+                if (symptomItemTypeString.equals("leaf")){
+                    virusModel.setVirusSymptomLeafImageURLString(imageURLString);
+                } else if (symptomItemTypeString.equals("fruit")){
+                    virusModel.setVirusSymptomFruitImageURLString(imageURLString);
+                }
+            }
+            // virus gallery image URLs
+            JSONArray galleryImageURLJSONArray = resultJsonObject.getJSONArray("gallery_images");
+            List<String> virusPictureURLList = new ArrayList<>();
+            for (int i = 0; i < galleryImageURLJSONArray.length(); i++) {
+                JSONObject galleryItemJsonObject = galleryImageURLJSONArray.getJSONObject(i);
+                String imageURLString = galleryItemJsonObject.getString("image_url");
+                virusPictureURLList.add(imageURLString);
+            }
+            virusModel.setVirusPictureURLList(virusPictureURLList);
+        }
+        return virusModel;
+    }
+
     // get data to store questions into question model list
     public static List<ChoiceQuestionModel> choiceQuestionModelListJsonParser(String resultText) throws JSONException {
         List<ChoiceQuestionModel> quizQuestionModelList = new ArrayList<>();

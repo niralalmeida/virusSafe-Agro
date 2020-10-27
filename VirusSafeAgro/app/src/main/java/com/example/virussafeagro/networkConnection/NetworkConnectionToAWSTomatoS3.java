@@ -36,6 +36,21 @@ public class NetworkConnectionToAWSTomatoS3 {
         return resultText;
     }
 
+    // get all Question Images by virus name(id in parameter)
+    public String getVirusImagesByVirusId(int virusId) {
+        String resultText = "";
+        final String API_URL = "https://yj9j6kulfe.execute-api.us-east-2.amazonaws.com/v1/uimages?virus_id=";
+        String searchURL = API_URL + virusId; // id in parameter
+        Request request = new Request.Builder().url(searchURL).build();
+        try {
+            Response response = this.okHttpClient.newCall(request).execute();
+            resultText = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultText;
+    }
+
     public Bitmap getImageFromURLold(String rawImageURL){
         int index = rawImageURL.indexOf("/QUESTION");
         StringBuilder stringBuilder = new StringBuilder(rawImageURL);
