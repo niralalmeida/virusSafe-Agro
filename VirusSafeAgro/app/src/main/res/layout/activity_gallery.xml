@@ -13,6 +13,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/abl_virus_title_image_gallery"
         android:transitionName="@string/image_gallery_transition_name"
+        app:elevation="10dp"
         android:layout_width="match_parent"
         android:layout_height="250dp">
         <com.google.android.material.appbar.CollapsingToolbarLayout

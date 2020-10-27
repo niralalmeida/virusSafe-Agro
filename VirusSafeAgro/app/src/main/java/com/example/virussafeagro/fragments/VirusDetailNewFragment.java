@@ -104,6 +104,10 @@ public class VirusDetailNewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        // show the fab
+        if (virusGalleryFloatingActionLayout.getVisibility() == View.GONE){
+            MyAnimationBox.runFadeInAnimation(virusGalleryFloatingActionLayout, 200);
+        }
 
         // set take quiz button on click listener
         this.setTakeQuizButtonOnClickListener();
@@ -377,6 +381,9 @@ public class VirusDetailNewFragment extends Fragment {
 
     private void setVirusGalleryFABOnClickListener() {
         this.virusGalleryFloatingActionLayout.setOnClickListener(fabView ->{
+            // hide the fab
+            MyAnimationBox.runFadeOutAnimation(fabView, 150);
+            // open the gallery activity
             Intent intent = new Intent(mainActivity, GalleryActivity.class);
             // animation
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, titleAppBarLayout, ViewCompat.getTransitionName(titleAppBarLayout));
