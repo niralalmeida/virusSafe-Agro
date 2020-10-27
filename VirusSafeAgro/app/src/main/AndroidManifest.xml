@@ -86,7 +86,11 @@
         <activity
             android:name=".GalleryActivity"
             android:screenOrientation="fullSensor"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ImageViewActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

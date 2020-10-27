@@ -26,6 +26,7 @@ import com.airbnb.lottie.L;
 import com.example.virussafeagro.GalleryActivity;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.QuizActivity;
+import com.example.virussafeagro.QuizStartActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.models.VirusCauseModel;
@@ -33,16 +34,18 @@ import com.example.virussafeagro.models.VirusDescriptionModel;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.models.VirusSymptomModel;
 import com.example.virussafeagro.uitilities.DataConverter;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.robertlevonyan.views.customfloatingactionbutton.FloatingActionLayout;
 
 public class VirusDetailNewFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
-    private VirusModel currentVirusModel;
+    public static VirusModel currentVirusModel;
 
     // views
     private Button quizButton;
+    private com.google.android.material.appbar.AppBarLayout titleAppBarLayout;
     private ImageView virusPictureImageView;
     private CollapsingToolbarLayout virusDetailCollapsingToolbarLayout;
     private androidx.appcompat.widget.Toolbar virusDetailToolbar;
@@ -85,7 +88,7 @@ public class VirusDetailNewFragment extends Fragment {
         // get passed bundle and the VirusModel within it
         Bundle bundle = getArguments();
         assert bundle != null;
-        this.currentVirusModel = bundle.getParcelable("currentVirusModel");
+        currentVirusModel = bundle.getParcelable("currentVirusModel");
 
         // set menu selected item
         if (!this.mainActivity.isLearnIconClicked()) {
@@ -115,6 +118,7 @@ public class VirusDetailNewFragment extends Fragment {
 
     private void initializeViews() {
         this.quizButton = this.mainActivity.getQuizButton();
+        this.titleAppBarLayout = view.findViewById(R.id.abl_virus_title_virus_detail);
         this.virusPictureImageView = view.findViewById(R.id.img_virus_detail_new);
         this.virusDetailCollapsingToolbarLayout = view.findViewById(R.id.collapsingToolbarLayout_virus_detail);
         this.virusDetailToolbar = view.findViewById(R.id.toolbar_virus_detail);
@@ -139,7 +143,7 @@ public class VirusDetailNewFragment extends Fragment {
     private void showViews() {
         // set image view
         this.virusPictureImageView.setImageBitmap(VirusInfoListFragment.currentVirusImageBitmap);
-        // set virusDetailCollapsingToolbarLayout
+        // set virusDetailCollapsingToolbarLayout title color
         this.virusDetailCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.colorWhite));
         this.virusDetailCollapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.colorWhite));
         // set title -- virus abb
@@ -374,7 +378,9 @@ public class VirusDetailNewFragment extends Fragment {
     private void setVirusGalleryFABOnClickListener() {
         this.virusGalleryFloatingActionLayout.setOnClickListener(fabView ->{
             Intent intent = new Intent(mainActivity, GalleryActivity.class);
-            mainActivity.startActivity(intent);
+            // animation
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, titleAppBarLayout, ViewCompat.getTransitionName(titleAppBarLayout));
+            mainActivity.startActivity(intent, options.toBundle());
         });
     }
 

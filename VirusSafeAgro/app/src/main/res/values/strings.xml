@@ -195,6 +195,8 @@
     <string name="virus_detail_new_text_transition_name">virus_detail_new_text</string>
     <string name="fab_transition_name">fab</string>
     <string name="camera_fab_transition_name">camera_fab</string>
+    <string name="image_gallery_transition_name">image_gallery</string>
+    <string name="image_view_transition_name">image_view</string>
 
     <!-- timing -->
     <string name="text_eb_timing">Early blight (EB) usually occurs during early to mid tomato growing season</string>

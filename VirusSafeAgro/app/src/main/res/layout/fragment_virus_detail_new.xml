@@ -7,8 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDarkBG"
-    tools:context=".fragments.FactorsFragment">
+    tools:context=".fragments.VirusDetailNewFragment">
 
+    <!-- gallery fab -->
     <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionLayout
         android:id="@+id/fabl_gallery_virus_detail"
         android:layout_width="wrap_content"
@@ -55,8 +56,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.robertlevonyan.views.customfloatingactionbutton.FloatingActionLayout>
 
+    <!-- title -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/abl_virus_title_virus_detail"
+        android:transitionName="@string/image_gallery_transition_name"
         android:layout_width="match_parent"
         android:layout_height="250dp">
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -89,6 +92,7 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- content -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView_virus_detail"
         android:layout_width="match_parent"
@@ -101,7 +105,7 @@
         <RelativeLayout
             android:padding="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
