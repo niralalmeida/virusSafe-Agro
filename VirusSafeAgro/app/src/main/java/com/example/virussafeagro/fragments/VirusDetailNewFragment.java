@@ -37,6 +37,7 @@ import com.example.virussafeagro.uitilities.DataConverter;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.robertlevonyan.views.customfloatingactionbutton.FloatingActionLayout;
+import com.squareup.picasso.Picasso;
 
 public class VirusDetailNewFragment extends Fragment {
     private MainActivity mainActivity;
@@ -65,6 +66,8 @@ public class VirusDetailNewFragment extends Fragment {
     private LinearLayout virusCauseECItemsLinearLayout;
     private LinearLayout virusCauseInfectionItemsLinearLayout;
     private FloatingActionLayout virusGalleryFloatingActionLayout;
+    private ImageView virusSymptomLeafImageView;
+    private ImageView virusSymptomFruitImageView;
 
 
     @Nullable
@@ -142,6 +145,8 @@ public class VirusDetailNewFragment extends Fragment {
         this.virusCauseECItemsLinearLayout = view.findViewById(R.id.ll_cause_ec_items_virus_detail);
         this.virusCauseInfectionItemsLinearLayout = view.findViewById(R.id.ll_cause_infection_items_virus_detail);
         this.virusGalleryFloatingActionLayout = view.findViewById(R.id.fabl_gallery_virus_detail);
+        this.virusSymptomLeafImageView = view.findViewById(R.id.img_symptom_leaves_virus_detail);
+        this.virusSymptomFruitImageView = view.findViewById(R.id.img_symptom_fruit_virus_detail);
     }
 
     private void showViews() {
@@ -185,6 +190,24 @@ public class VirusDetailNewFragment extends Fragment {
             horizontalLinearLayout.addView(descriptionTextView);
         }
 
+        // virus symptom image - leaf
+//        Picasso.get()
+//                .load(currentVirusModel.getVirusSymptomLeafImageURLString())
+//                .placeholder(R.color.)
+//                .resize(
+//                        DataConverter.dip2px(activity, 400),
+//                        DataConverter.dip2px(activity, 400))
+//                .centerCrop()
+//                .into(viewHolder.virusImageView);
+//        // virus symptom image - fruit
+//        Picasso.get()
+//                .load(virusPictureURLString)
+//                .placeholder(R.color.bg_cart_image_gallery)
+//                .resize(
+//                        DataConverter.dip2px(activity, 400),
+//                        DataConverter.dip2px(activity, 400))
+//                .centerCrop()
+//                .into(viewHolder.virusImageView);
         // virus symptom
         for(VirusSymptomModel virusSymptomModel : currentVirusModel.getVirusSymptomModelList()){
             // show linear layout

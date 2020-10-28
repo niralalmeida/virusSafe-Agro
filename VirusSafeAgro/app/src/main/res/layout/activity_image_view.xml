@@ -8,7 +8,7 @@
     android:background="@color/colorPrimaryDarkBG"
     tools:context=".ImageViewActivity">
 
-    <ImageView
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/img_image_view_activity"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

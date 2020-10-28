@@ -10,16 +10,18 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.github.chrisbanes.photoview.PhotoView;
+
 public class ImageViewActivity extends AppCompatActivity {
     private ImageViewActivity imageViewActivity;
 
     // data
     public static Bitmap currentImageBitmap;
     // views
-    private ImageView imageView;
+    private PhotoView imageView;
     // tools
-    private int lastX; // on touch x
-    private int lastY; // on touch y
+//    private int lastX; // on touch x
+//    private int lastY; // on touch y
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
