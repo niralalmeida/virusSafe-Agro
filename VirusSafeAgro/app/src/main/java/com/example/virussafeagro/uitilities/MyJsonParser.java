@@ -10,6 +10,7 @@ import com.example.virussafeagro.models.NutrientModel;
 import com.example.virussafeagro.models.NutrientReasonModel;
 import com.example.virussafeagro.models.NutrientSymptomModel;
 import com.example.virussafeagro.models.PesticideStoreModel;
+import com.example.virussafeagro.models.TomatoFruitDetectResultModel;
 import com.example.virussafeagro.models.TweetModel;
 import com.example.virussafeagro.models.VirusCauseModel;
 import com.example.virussafeagro.models.VirusDescriptionModel;
@@ -316,18 +317,23 @@ public class MyJsonParser {
         return feedBack;
     }
 
-    public static String tomatoImageCheckFeedbackJsonParser(String resultText) throws JSONException {
-        String feedBack = "";
-//        if (!resultText.equals("[]")) {
-//            JSONObject predictionJsonObject = new JSONObject(resultText);
-//            Iterator<String> keysIterator = predictionJsonObject.keys();
-//            if (keysIterator.next().equals("prediction")) {
-//                feedBack = predictionJsonObject.getString("prediction");
-//            } else {
-//                feedBack = "json error";
-//            }
-//        }
-        return feedBack;
+    public static TomatoFruitDetectResultModel tomatoImageCheckFeedbackJsonParser(String resultText) throws JSONException {
+        TomatoFruitDetectResultModel tomatoFruitDetectResultModel = new TomatoFruitDetectResultModel();
+        if (!resultText.equals("{}") && resultText.contains("{")) {
+            JSONObject tomatoDetectJsonObject = new JSONObject(resultText);
+            Iterator<String> keysIterator = tomatoDetectJsonObject.keys();
+            while(keysIterator.hasNext()){
+                String keyName = keysIterator.next();
+                if (keyName.equals("message")) {
+                    return null;
+                } else if (keyName.equals("count")) {
+                    tomatoFruitDetectResultModel.setTomatoCount(tomatoDetectJsonObject.getInt("count"));
+                } else if (keyName.equals("image")) {
+                    tomatoFruitDetectResultModel.setTomatoDetectResultImageStringURL(tomatoDetectJsonObject.getString("image"));
+                }
+            }
+        }
+        return tomatoFruitDetectResultModel;
     }
 
     public static List<NutrientModel> nutrientListJsonParser(String resultText) throws JSONException {
