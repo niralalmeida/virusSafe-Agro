@@ -1,9 +1,12 @@
 package com.example.virussafeagro.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +19,13 @@ import com.example.virussafeagro.uitilities.AppResources;
 public class ContactUsFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
+
+    // data
+    public final static String[] OUR_EMAIL = new String[]{"virusSafeAgro@gmail.com"};
+
+    // views
+    private TextView emailTextView;
+
 
     public ContactUsFragment() {
     }
@@ -37,7 +47,27 @@ public class ContactUsFragment extends Fragment {
         // set tip
         this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_MORE);
 
+        // set Email TextView On Click Listener
+        this.setEmailTextViewOnClickListener();
+
         return view;
+    }
+
+    private void setEmailTextViewOnClickListener() {
+        this.emailTextView = view.findViewById(R.id.tv_our_email_contact_us);
+        this.emailTextView.setOnClickListener(etv -> {
+            sendEmail();
+        });
+    }
+
+    private void sendEmail() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, OUR_EMAIL);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "About virusSafe-Agro");
+        if (intent.resolveActivity(mainActivity.getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     @Override
