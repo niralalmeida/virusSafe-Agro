@@ -47,6 +47,7 @@ public class ToolkitFragment extends Fragment {
     private LinearLayout insightsLinearLayout;
     // tools
     private static final int PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE = 99;
+    private static final int PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE = 66;
 
     public ToolkitFragment() {
     }
@@ -152,22 +153,6 @@ public class ToolkitFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults){
-        if (requestCode == PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (ContextCompat.checkSelfPermission(
-                        mainActivity,
-                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                    // start camera activity
-                    openCameraForTomatoDetect();
-                }
-            } else {
-                Toast.makeText(mainActivity, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
     private void openCameraForTomatoDetect() {
         Intent intent = new Intent(mainActivity, TomatoCameraActivity.class);
         mainActivity.startActivity(intent);
@@ -202,17 +187,68 @@ public class ToolkitFragment extends Fragment {
     // pesticide stores
     private void setPesticideStoresTileOnClickListener() {
         this.pesticideStoresLinearLayout.setOnClickListener(llView -> {
-            PesticideStoreMapFragment pesticideStoreMapFragment = new PesticideStoreMapFragment();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                pesticideStoreMapFragment.setSharedElementEnterTransition(
-                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
-            }
-            mainActivity.getSupportFragmentManager().beginTransaction()
-                    .addSharedElement(pesticideStoresLinearLayout, ViewCompat.getTransitionName(pesticideStoresLinearLayout))
-                    .replace(R.id.fl_fragments, pesticideStoreMapFragment)
-                    .addToBackStack(null)
-                    .commit();
+            checkLocationPermission();
         });
+    }
+
+    // ask for getting user's current location permission
+    private void checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(
+                    new String[]{
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE);
+
+        } else { // grant the permission
+            // get and listen user current location
+            // open Pesticide Store Map
+            openPesticideStoreMap();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults){
+        if (requestCode == PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(
+                        mainActivity,
+                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    // start camera activity
+                    openCameraForTomatoDetect();
+                }
+            } else {
+                Toast.makeText(mainActivity, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (requestCode == PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(
+                        mainActivity,
+                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    // open Pesticide Store Map
+                    openPesticideStoreMap();
+                }
+            } else {
+                Toast.makeText(mainActivity, "Location Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    // open Pesticide Store Map
+    private void openPesticideStoreMap() {
+        PesticideStoreMapFragment pesticideStoreMapFragment = new PesticideStoreMapFragment();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            pesticideStoreMapFragment.setSharedElementEnterTransition(
+                    TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+        }
+        mainActivity.getSupportFragmentManager().beginTransaction()
+                .addSharedElement(pesticideStoresLinearLayout, ViewCompat.getTransitionName(pesticideStoresLinearLayout))
+                .replace(R.id.fl_fragments, pesticideStoreMapFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     // factors

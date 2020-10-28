@@ -57,7 +57,6 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     private String provider;
     private LatLng userLocationLatLng;
 
-    private static final int PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE = 99;
     public static final String USER_MARKER_NAME_FOR_HASH_MAP = "Current Location";
 
     // for pesticide store location
@@ -112,8 +111,10 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap myMap) {
         this.googleMap = myMap;
-        // ask for location permission and show the user location if getting permission
-        this.checkLocationPermission();
+        // get and listen user current location
+        getUserCurrentLocation();
+        // show user current location in the map
+        showUserLocation();
     }
 
     private void initializePesticideStoreMapViewModel() {
@@ -148,46 +149,6 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
             }
         }
     };
-
-    // ask for getting user's current location permission
-    private void checkLocationPermission() {
-        if (ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                    requestPermissions(
-                            new String[]{
-                                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                                    android.Manifest.permission.ACCESS_FINE_LOCATION},
-                            PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE);
-
-        } else { // grant the permission
-            // get and listen user current location
-            getUserCurrentLocation();
-            // show user current location in the map
-            showUserLocation();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults){
-        if (requestCode == PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (ContextCompat.checkSelfPermission(
-                        mainActivity,
-                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-                    // get and listen user current location
-                    getUserCurrentLocation();
-                    // show user current location in the map
-                    showUserLocation();
-                }
-            } else {
-                Toast.makeText(mainActivity, "Location Permission Denied", Toast.LENGTH_SHORT).show();
-                // close this page
-                FragmentOperator.backToLastFragment(mainActivity);
-            }
-        }
-    }
 
     // get user current location
     private void getUserCurrentLocation() {
