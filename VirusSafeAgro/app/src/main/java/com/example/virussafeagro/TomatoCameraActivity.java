@@ -206,7 +206,7 @@ public class TomatoCameraActivity extends AppCompatActivity {
                 // stop the camera
                 tomatoCameraProvider.unbindAll();
 
-
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_run_scan_tomato_image, R.id.end_run_scan_tomato_image, 200);
             }
         });
     }
