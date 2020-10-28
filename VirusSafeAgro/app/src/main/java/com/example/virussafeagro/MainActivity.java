@@ -245,6 +245,10 @@ public class MainActivity extends AppCompatActivity {
         return virusInfoListViewModel;
     }
 
+    public NutrientViewModel getNutrientViewModel() {
+        return nutrientViewModel;
+    }
+
     private void prepareDataFromAPI() {
         // find virus info list in new Thread
         this.findVirusInfoListFromDBAndObserveVirusInfoListLD();
@@ -258,12 +262,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void findNutrientListFromDBAndObserveNutrientListLD() {
         nutrientViewModel.processFindingNutrientList();
-        nutrientViewModel.getNutrientListLD().observe(mainActivity, resultNutrientList -> {
-            if ((resultNutrientList != null) && (resultNutrientList.size() != 0)) {
-                nutrientModelList.clear();
-                nutrientModelList = resultNutrientList;
-            }
-        });
     }
 
     private void showOnBoardingScreen() {
@@ -625,22 +623,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        FragmentOperator.backToLastFragment(this);
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    @Override
-//    public void onBackPressed() {
-//        int count = getSupportFragmentManager().getBackStackEntryCount();
-//        if (count == 0) {
-//            super.onBackPressed();
-//        } else {
-//            FragmentOperator.backToLastFragment(this);
-//        }
-//    }
 
     private void initializeMyBottomBar() {
         this.setBottomNavigationViewExItemOnSelectedListener();
