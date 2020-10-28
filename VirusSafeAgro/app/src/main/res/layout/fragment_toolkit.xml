@@ -233,7 +233,7 @@
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
                                     android:tint="@color/iconControlStrategy"
-                                    android:src="@drawable/chemistry"/>
+                                    android:src="@drawable/puzzle2"/>
 
                             </LinearLayout>
 

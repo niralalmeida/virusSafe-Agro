@@ -52,8 +52,7 @@
                     android:layout_height="45dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:tint="@color/iconControlStrategySub"
-                    android:src="@drawable/chemistry"/>
+                    android:src="@drawable/chemistry1"/>
             </RelativeLayout>
 
             <TextView
@@ -110,8 +109,7 @@
                     android:layout_height="45dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:tint="@color/iconControlStrategySub"
-                    android:src="@drawable/chemistry"/>
+                    android:src="@drawable/chemistry1"/>
 
                 <ImageView
                     android:layout_width="75dp"

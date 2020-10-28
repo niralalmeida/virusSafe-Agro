@@ -26,7 +26,7 @@
     <string name="fragment_virus_info">Virus Type</string>
     <string name="fragment_virus_quiz">Take Quiz</string>
     <string name="fragment_pesticide_store_map">Pesticide Map</string>
-    <string name="fragment_timing_of_cause">Timing</string>
+    <string name="fragment_timing_of_cause">Season</string>
     <string name="fragment_tomato_tip">Growing Tips</string>
     <string name="fragment_chemical_control">Chemical</string>
     <string name="fragment_non_chemical_control">Non Chemical</string>
@@ -99,7 +99,7 @@
     <string name="text_content_non_chemical_control">Tap on the tile to know about the organic ways to control the virus spread.</string>
 
     <!-- factors -->
-    <string name="text_title_cause_factors">TIMING OF CAUSE</string>
+    <string name="text_title_cause_factors">SEASON</string>
     <string name="text_content_cause_factors">Tap on the tile to read about the causes that gives rise to the spread of virus.</string>
     <string name="text_title_environmental_conditions_factors">ENVIRONMENTAL CONDITIONS</string>
     <string name="text_content_environmental_conditions_factors">Tap on the tile to know about the environmental conditions that fuel up the virus spread.</string>

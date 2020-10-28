@@ -49,12 +49,11 @@
 
                 <ImageView
                     android:id="@+id/icon_timing_factor"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:tint="@color/iconFactorHand"
-                    android:src="@drawable/hand"/>
+                    android:src="@drawable/season"/>
             </RelativeLayout>
 
             <TextView
@@ -111,8 +110,7 @@
                     android:layout_height="45dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:tint="@color/iconFactor"
-                    android:src="@drawable/weather"/>
+                    android:src="@drawable/weather_ec2"/>
 
             </RelativeLayout>
 
