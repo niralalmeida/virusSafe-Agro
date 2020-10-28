@@ -70,7 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="start"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -108,7 +108,7 @@
 
                 </LinearLayout>
 
-                <!-- virus check -->
+                <!-- virus detect -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -152,6 +152,57 @@
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:text="@string/text_virus_check_toolkit"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- tomato detect -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_tomato_detect_toolkit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_gravity="end"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/ll_tomato_detect_icon_toolkit"
+                            android:transitionName="@string/tomato_detect_transition_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ripple_btn_main_functions_toolkit"
+                            android:gravity="center"
+                            android:outlineProvider="bounds"
+                            android:elevation="10dp"
+                            android:padding="13dp"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center"
+                                android:tint="@color/colorBlack"
+                                android:src="@drawable/tomato_detect"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorWhite"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:text="@string/text_tomato_detect_toolkit"/>
 
                     </LinearLayout>
 

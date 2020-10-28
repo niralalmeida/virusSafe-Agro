@@ -1,5 +1,6 @@
 package com.example.virussafeagro.fragments;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.TransitionInflater;
@@ -11,11 +12,14 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.virussafeagro.DetectActivity;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.TomatoCameraActivity;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 
@@ -25,6 +29,8 @@ public class ToolkitFragment extends Fragment {
 
     // top
     private LinearLayout virusCheckLinearLayout;
+    private LinearLayout tomatoDetectLinearLayout;
+    private LinearLayout tomatoDetectIconLinearLayout;
     private LinearLayout learnLinearLayout;
     // middle
     private LinearLayout controlStrategiesLinearLayout;
@@ -76,6 +82,8 @@ public class ToolkitFragment extends Fragment {
 
     private void initializeViews() {
         this.virusCheckLinearLayout = view.findViewById(R.id.ll_virus_check_toolkit);
+        this.tomatoDetectLinearLayout = view.findViewById(R.id.ll_tomato_detect_toolkit);
+        this.tomatoDetectIconLinearLayout = view.findViewById(R.id.ll_tomato_detect_icon_toolkit);
         this.learnLinearLayout = view.findViewById(R.id.ll_learn_toolkit);
         this.controlStrategiesLinearLayout = view.findViewById(R.id.ll_control_strategies_toolkit);
         this.pesticideStoresLinearLayout = view.findViewById(R.id.ll_pesticide_store_toolkit);
@@ -87,6 +95,8 @@ public class ToolkitFragment extends Fragment {
 
         // virus check
         this.setVirusCheckTileOnClickListener();
+        // tomato detect
+        this.setTomatoDetectTileOnClickListener();
         // virus info
         this.setLearnTileOnClickListener();
 
@@ -105,6 +115,20 @@ public class ToolkitFragment extends Fragment {
         this.virusCheckLinearLayout.setOnClickListener(llView -> {
             mainActivity.showVirusCheckFragment();
         });
+    }
+
+    // [menu] tomato detect
+    private void setTomatoDetectTileOnClickListener() {
+        this.tomatoDetectLinearLayout.setOnClickListener(llView -> {
+            openCameraForTomatoDetect();
+        });
+    }
+
+    private void openCameraForTomatoDetect() {
+        Intent intent = new Intent(mainActivity, TomatoCameraActivity.class);
+        // animation
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, this.tomatoDetectIconLinearLayout, ViewCompat.getTransitionName(this.tomatoDetectIconLinearLayout));
+        startActivity(intent, options.toBundle());
     }
 
     // [menu] learn
@@ -129,7 +153,6 @@ public class ToolkitFragment extends Fragment {
                     .replace(R.id.fl_fragments, controlStrategiesFragment)
                     .addToBackStack(null)
                     .commit();
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new ControlStrategiesFragment(), AppResources.FRAGMENT_TAG_CONTROL_STRATEGIES);
         });
     }
 
@@ -146,7 +169,6 @@ public class ToolkitFragment extends Fragment {
                     .replace(R.id.fl_fragments, pesticideStoreMapFragment)
                     .addToBackStack(null)
                     .commit();
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new PesticideStoreMapFragment(), AppResources.FRAGMENT_TAG_PESTICIDE_STORES);
         });
     }
 
