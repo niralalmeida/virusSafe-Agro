@@ -1,6 +1,8 @@
 package com.example.virussafeagro.fragments;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.TransitionInflater;
@@ -9,10 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
@@ -22,6 +28,8 @@ import com.example.virussafeagro.R;
 import com.example.virussafeagro.TomatoCameraActivity;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.FragmentOperator;
+
+import org.jetbrains.annotations.NotNull;
 
 public class ToolkitFragment extends Fragment {
     private MainActivity mainActivity;
@@ -37,10 +45,13 @@ public class ToolkitFragment extends Fragment {
     private LinearLayout pesticideStoresLinearLayout;
     private LinearLayout factorsLinearLayout;
     private LinearLayout insightsLinearLayout;
+    // tools
+    private static final int PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE = 99;
 
     public ToolkitFragment() {
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -86,6 +97,7 @@ public class ToolkitFragment extends Fragment {
         this.insightsLinearLayout = view.findViewById(R.id.ll_insights_toolkit);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void allTilesOnClickListener() {
 
         // virus check
@@ -113,19 +125,53 @@ public class ToolkitFragment extends Fragment {
     }
 
     // [menu] tomato detect
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void setTomatoDetectTileOnClickListener() {
         this.tomatoDetectLinearLayout.setOnClickListener(llView -> {
-            openCameraForTomatoDetect();
+            checkCameraPermissions();
         });
+    }
+
+    // ask for getting user's current location permission
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void checkCameraPermissions() {
+        if (ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(
+                    new String[]{
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                    PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE);
+
+        } else { // grant the permission
+            // start camera activity
+            openCameraForTomatoDetect();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults){
+        if (requestCode == PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(
+                        mainActivity,
+                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    // start camera activity
+                    openCameraForTomatoDetect();
+                }
+            } else {
+                Toast.makeText(mainActivity, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void openCameraForTomatoDetect() {
         Intent intent = new Intent(mainActivity, TomatoCameraActivity.class);
         mainActivity.startActivity(intent);
         mainActivity.overridePendingTransition(R.anim.activity_slide_in_top, 0);
-        // animation
-//        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, this.tomatoDetectIconLinearLayout, ViewCompat.getTransitionName(this.tomatoDetectIconLinearLayout));
-//        startActivity(intent, options.toBundle());
     }
 
     // [menu] learn

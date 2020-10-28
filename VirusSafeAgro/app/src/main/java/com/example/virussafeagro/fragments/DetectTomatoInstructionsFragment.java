@@ -67,8 +67,6 @@ public class DetectTomatoInstructionsFragment extends BottomSheetDialogFragment 
 
     protected int getPeekHeight() {
         int peekHeight = getResources().getDisplayMetrics().heightPixels;
-//        int peekHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
-//        int peekHeight = virusCheckRelativeLayout.getMinimumHeight();
         return peekHeight - peekHeight / 8;
     }
 

@@ -89,7 +89,7 @@
     <string name="text_news_toolkit">News</string>
     <string name="text_tweets_toolkit">Tweets</string>
     <string name="text_virus_check_toolkit">Virus Detect</string>
-    <string name="text_tomato_detect_toolkit">Tomato Detect</string>
+    <string name="text_tomato_detect_toolkit">Quality Detect</string>
     <string name="text_virus_info_toolkit">Learn</string>
 
     <!-- control strategy -->
@@ -288,6 +288,8 @@
     <string name="text_title_instruction">Tips For Tomato Leaf Picture</string>
     <string name="text_tip1_instruction">1. Avoid dark and blurry images by focusing on the leaf, which is suspected to be infected.</string>
     <string name="text_tip2_instruction">2. Make sure the leaves of the tomato plant are clear, avoid getting too close.</string>
+    <string name="text_tip3_instruction">1. Click and upload a clear image of a tomato plant for counting the number of tomato fruits. Avoid getting too close to the fruit.</string>
+    <string name="text_tip4_instruction">2. Click and upload an image of a tomato or a bunch of tomatoes to check their quality (good or damaged). Avoid getting too close to the fruit.</string>
     <string name="text_result_error">It is not a tomato leaf image! Please try again!</string>
     <string name="text_result_healthy">Your tomato is healthy!</string>
     <string name="text_result_ill">Your tomato is infected by:</string>

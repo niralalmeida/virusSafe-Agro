@@ -27,24 +27,6 @@
             android:paddingBottom="40dp"
             android:orientation="vertical">
 
-            <!-- sub title : main functions -->
-<!--            <RelativeLayout-->
-<!--                android:id="@+id/rl_virus_sub_title_learn"-->
-<!--                android:layout_marginTop="15dp"-->
-<!--                android:layout_marginBottom="5dp"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textColor="@color/colorSubTitle"-->
-<!--                    android:textSize="13sp"-->
-<!--                    android:text="@string/text_sub_title_for_main_functions_toolkit"/>-->
-
-<!--            </RelativeLayout>-->
-
             <!-- top tile -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -209,24 +191,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <!-- sub title : nutrient knowledge -->
-<!--            <RelativeLayout-->
-<!--                android:id="@+id/rl_nutrient_sub_title_learn"-->
-<!--                android:paddingTop="15dp"-->
-<!--                android:paddingBottom="5dp"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textColor="@color/colorSubTitle"-->
-<!--                    android:textSize="13sp"-->
-<!--                    android:text="@string/text_sub_title_for_other_functions_toolkit"/>-->
-
-<!--            </RelativeLayout>-->
 
             <!-- control strategies + pesticide store -->
             <LinearLayout
