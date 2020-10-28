@@ -126,9 +126,11 @@ public class ToolkitFragment extends Fragment {
 
     private void openCameraForTomatoDetect() {
         Intent intent = new Intent(mainActivity, TomatoCameraActivity.class);
+        mainActivity.startActivity(intent);
+        mainActivity.overridePendingTransition(R.anim.activity_slide_in_top, 0);
         // animation
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, this.tomatoDetectIconLinearLayout, ViewCompat.getTransitionName(this.tomatoDetectIconLinearLayout));
-        startActivity(intent, options.toBundle());
+//        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mainActivity, this.tomatoDetectIconLinearLayout, ViewCompat.getTransitionName(this.tomatoDetectIconLinearLayout));
+//        startActivity(intent, options.toBundle());
     }
 
     // [menu] learn

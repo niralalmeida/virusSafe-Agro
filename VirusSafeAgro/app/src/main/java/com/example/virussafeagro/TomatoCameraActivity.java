@@ -50,6 +50,7 @@ import android.widget.Toast;
 
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.fragments.DetectInstructionsFragment;
+import com.example.virussafeagro.fragments.DetectTomatoInstructionsFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.ImageStorage;
@@ -202,15 +203,10 @@ public class TomatoCameraActivity extends AppCompatActivity {
             }
             // do analysis
             else {
-//                DetectActivity.uploadImageBitmap = tomatoCameraBitmap;
-//                // set detect request boolean
-//                DetectActivity.hasDetectRequest = true;
-
                 // stop the camera
                 tomatoCameraProvider.unbindAll();
 
-                // close the tomatoCamera
-                supportFinishAfterTransition();
+
             }
         });
     }
@@ -332,8 +328,8 @@ public class TomatoCameraActivity extends AppCompatActivity {
         this.tipOpenTomatoCameraCardView.setOnClickListener(v -> {
             // open tip page
             if (!isOpenTomatoCameraShown){
-                DetectInstructionsFragment detectInstructionsFragment = new DetectInstructionsFragment();
-                detectInstructionsFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_DETECT);
+                DetectTomatoInstructionsFragment detectTomatoInstructionsFragment = new DetectTomatoInstructionsFragment();
+                detectTomatoInstructionsFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_TOMATO_DETECT);
             } // back to camera page
             else {
                 // set the photos button
@@ -384,7 +380,9 @@ public class TomatoCameraActivity extends AppCompatActivity {
     // set close button on click
     public void setCloseImageButtonOnClickListener() {
         this.closeImageButton.setOnClickListener(v -> {
-            supportFinishAfterTransition();
+//            supportFinishAfterTransition();
+            finish();
+            overridePendingTransition(0, R.anim.activity_slide_out_top);
         });
     }
 }

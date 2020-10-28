@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.example.virussafeagro.CameraActivity;
+import com.example.virussafeagro.TomatoCameraActivity;
+import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -22,14 +24,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.Objects;
 
-public class DetectInstructionsFragment extends BottomSheetDialogFragment {
-    private CameraActivity cameraActivity;
+public class DetectTomatoInstructionsFragment extends BottomSheetDialogFragment {
+    private TomatoCameraActivity cameraActivity;
     private View view;
 
     // bottom sheet tools
     private BottomSheetBehavior<FrameLayout> behavior;
 
-    public DetectInstructionsFragment() {
+    public DetectTomatoInstructionsFragment() {
     }
 
     @NonNull
@@ -74,10 +76,10 @@ public class DetectInstructionsFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the View for this fragment
-        this.view = inflater.inflate(R.layout.fragment_virus_detect, container, false);
+        this.view = inflater.inflate(R.layout.fragment_tomato_detect_instruction, container, false);
 
         // get camera activity
-        this.cameraActivity = (CameraActivity) getActivity();
+        this.cameraActivity = (TomatoCameraActivity) getActivity();
 
         return this.view;
     }
