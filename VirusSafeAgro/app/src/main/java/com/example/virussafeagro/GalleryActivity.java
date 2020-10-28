@@ -31,6 +31,7 @@ import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GalleryActivity extends AppCompatActivity {
@@ -117,13 +118,15 @@ public class GalleryActivity extends AppCompatActivity {
     // set On Image Card Item Click Listener
     private void setOnImageCardItemClickListener() {
         this.listImageGalleryAdapter.setOnImageCardClickListener(position -> {
-            ListImageGalleryAdapter.ViewHolder itemViewHolder = (ListImageGalleryAdapter.ViewHolder) recyclerViewForVirusImageResult.findViewHolderForAdapterPosition(position);
-            CardView itemImageCardView = itemViewHolder.virusImageCardView;
-            ImageView itemImageView = itemViewHolder.virusImageView;
-            BitmapDrawable itemImageBitmapDrawable = (BitmapDrawable) itemImageView.getDrawable();
-            Bitmap itemImageBitmap = itemImageBitmapDrawable.getBitmap();
-            if (itemImageBitmap != null){
-                ImageViewActivity.currentImageBitmap = itemImageBitmap;
+            // get current item view holder
+            ListImageGalleryAdapter.ViewHolder currentItemViewHolder = (ListImageGalleryAdapter.ViewHolder) recyclerViewForVirusImageResult.findViewHolderForAdapterPosition(position);
+            CardView itemImageCardView = currentItemViewHolder.virusImageCardView;
+            ImageView currentItemImageView = currentItemViewHolder.virusImageView;
+            BitmapDrawable currentItemImageBitmapDrawable = (BitmapDrawable) currentItemImageView.getDrawable();
+            Bitmap currentImageBitmap = currentItemImageBitmapDrawable.getBitmap();
+            // set current image bitmap
+            ImageViewActivity.currentImageBitmap = currentImageBitmap;
+            if (currentImageBitmap != null){
                 // open the image view activity
                 Intent intent = new Intent(galleryActivity, ImageViewActivity.class);
                 // animation

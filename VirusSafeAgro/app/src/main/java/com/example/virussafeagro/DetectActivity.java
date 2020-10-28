@@ -93,14 +93,14 @@ public class DetectActivity extends AppCompatActivity {
         // set CloseButton OnClickListener
         this.setCloseButtonOnClickListener();
 
-        // show the title and 2 buttons
-        delayDuration = this.showTitleAndButtonAndReturnDuration();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
+        // show the title and 2 buttons
+        delayDuration = this.showTitleAndButtonAndReturnDuration();
         // control the detect
         this.controlDetect(delayDuration);
     }
