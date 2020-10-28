@@ -160,7 +160,13 @@ public class VirusInfoListFragment extends Fragment {
         setGridViewItemVirusCardClickListener(MainActivity.virusModelInfoList);
 
         // display search function
-        mainActivity.displaySearch();
+        if (!MainActivity.isLearnOrToolkitIconClickedFromLearnStacks) {
+            mainActivity.displaySearch();
+            // test
+            System.out.println("[[[ show ]]]]]");
+        } else {
+            MainActivity.isLearnOrToolkitIconClickedFromLearnStacks = false;
+        }
         // set SearchEditText On Change Listener
         setSearchEditOnTextChangeListener();
     }

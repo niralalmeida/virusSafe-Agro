@@ -55,18 +55,13 @@ public class LearnFragment extends Fragment {
             this.mainActivity.setLearnButton(true);
         }
 
-        return this.view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
         // move Calculator And More To Right
         this.mainActivity.moveTipAndMoreToRight(getTag(), 200);
 
         // control all tiles on click listeners
         this.allTilesOnClickListener();
+
+        return this.view;
     }
 
     private void initializeViews() {

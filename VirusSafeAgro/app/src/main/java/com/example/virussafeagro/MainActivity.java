@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean FROM_VIRUS_INFO_PAGE;
     public static boolean FROM_NUTRIENT_PAGE;
+    public static boolean isLearnOrToolkitIconClickedFromLearnStacks;
 
     public static int TOOLBAR_BACK_BUTTON_WIDTH;
     public static int TOOLBAR_SEARCH_BUTTON_WIDTH;
@@ -524,6 +525,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public RelativeLayout getAllSearchViewRelativeLayout() {
+        return allSearchViewRelativeLayout;
+    }
+
     // set search button on click listener
     public void setSearchOnClickListener() {
         this.searchButtonRelativeLayout.setOnClickListener(v -> {
@@ -670,6 +675,9 @@ public class MainActivity extends AppCompatActivity {
                         (foundFragment instanceof NutrientDetailFragment)
                     ){
 
+                if (foundFragment instanceof VirusDetailNewFragment) {
+                    isLearnOrToolkitIconClickedFromLearnStacks = true;
+                }
                 // pop All Fragments In Stack
                 FragmentOperator.popAllFragmentsInStackExceptLearnToolkit(fragmentManager);
 
@@ -724,7 +732,8 @@ public class MainActivity extends AppCompatActivity {
                 FragmentOperator.popAllFragmentsInStackExceptLearnToolkit(fragmentManager);
 
             }
-            else if (foundFragment instanceof MoreFragment) { // is more fragment --> hide more fragment, show "toolkit"
+            // is more fragment --> hide more fragment, show "toolkit"
+            else if (foundFragment instanceof MoreFragment) {
 
                 // hide more fragment
                 FragmentOperator.backToLastFragment(mainActivity);
@@ -736,6 +745,9 @@ public class MainActivity extends AppCompatActivity {
                 }, 200);
             }
             else {
+                if (foundFragment instanceof VirusDetailNewFragment) {
+                    isLearnOrToolkitIconClickedFromLearnStacks = true;
+                }
                 // hide the fragment
                 FragmentOperator.popAllFragmentsInStack(fragmentManager);
                 new Handler().postDelayed(() -> {
@@ -745,14 +757,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         floatingActionButton.setOnClickListener(v -> {
-//            if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null
-//                || (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof VirusCheckFragment))) {
-//                showVirusCheckFragment();
-//                if (toolbar.getVisibility() == View.GONE) {
-//                    new Handler().postDelayed(() -> MyAnimationBox.runFadeInAnimation(toolbar, 500), 550);
-//                }
-//            }
-
             if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null
                 || (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof VirusCheckFragment))) {
                 showVirusCheckFragment();
