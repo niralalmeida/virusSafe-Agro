@@ -209,7 +209,7 @@
                         <ImageView
                             android:id="@+id/img_symptom_leaves_virus_detail"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/tomato_leaf"
+                            android:background="@color/image_default_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                     </androidx.cardview.widget.CardView>
@@ -267,7 +267,7 @@
                         <ImageView
                             android:id="@+id/img_symptom_fruit_virus_detail"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/tomato_fruit"
+                            android:background="@color/image_default_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                     </androidx.cardview.widget.CardView>

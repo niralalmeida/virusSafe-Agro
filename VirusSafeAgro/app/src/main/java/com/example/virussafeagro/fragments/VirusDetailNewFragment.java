@@ -191,23 +191,23 @@ public class VirusDetailNewFragment extends Fragment {
         }
 
         // virus symptom image - leaf
-//        Picasso.get()
-//                .load(currentVirusModel.getVirusSymptomLeafImageURLString())
-//                .placeholder(R.color.)
-//                .resize(
-//                        DataConverter.dip2px(activity, 400),
-//                        DataConverter.dip2px(activity, 400))
-//                .centerCrop()
-//                .into(viewHolder.virusImageView);
-//        // virus symptom image - fruit
-//        Picasso.get()
-//                .load(virusPictureURLString)
-//                .placeholder(R.color.bg_cart_image_gallery)
-//                .resize(
-//                        DataConverter.dip2px(activity, 400),
-//                        DataConverter.dip2px(activity, 400))
-//                .centerCrop()
-//                .into(viewHolder.virusImageView);
+        Picasso.get()
+                .load(currentVirusModel.getVirusSymptomLeafImageURLString())
+                .placeholder(R.drawable.tomato_leaf)
+                .resize(
+                        DataConverter.dip2px(mainActivity, 200),
+                        DataConverter.dip2px(mainActivity, 200))
+                .centerCrop()
+                .into(virusSymptomLeafImageView);
+        // virus symptom image - fruit
+        Picasso.get()
+                .load(currentVirusModel.getVirusSymptomFruitImageURLString())
+                .placeholder(R.drawable.tomato_fruit)
+                .resize(
+                        DataConverter.dip2px(mainActivity, 200),
+                        DataConverter.dip2px(mainActivity, 200))
+                .centerCrop()
+                .into(virusSymptomFruitImageView);
         // virus symptom
         for(VirusSymptomModel virusSymptomModel : currentVirusModel.getVirusSymptomModelList()){
             // show linear layout
