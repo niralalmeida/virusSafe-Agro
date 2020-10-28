@@ -47,7 +47,7 @@ import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.TweetFragment;
 import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusCheckResultFragment;
-import com.example.virussafeagro.fragments.VirusDetailFragment;
+import com.example.virussafeagro.fragments.VirusDetailNewFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizQuestionFragment;
 import com.example.virussafeagro.models.NutrientModel;
@@ -664,7 +664,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else if( // is sub-fragment of "learn" --> hide all fragment in stack to right, show "learn"
                         (foundFragment instanceof VirusInfoListFragment) ||
-                        (foundFragment instanceof VirusDetailFragment) ||
+                        (foundFragment instanceof VirusDetailNewFragment) ||
                         (foundFragment instanceof VirusQuizQuestionFragment) ||
                         (foundFragment instanceof NutrientFragment) ||
                         (foundFragment instanceof NutrientDetailFragment)

@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_virus_detail"
-    android:orientation="vertical"
-    tools:context=".fragments.VirusDetailFragment">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_virus_detail"

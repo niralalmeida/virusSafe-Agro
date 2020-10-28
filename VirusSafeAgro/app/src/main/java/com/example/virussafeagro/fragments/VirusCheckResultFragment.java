@@ -200,9 +200,6 @@ public class VirusCheckResultFragment extends Fragment {
                 bundle.putParcelable("currentVirusModel", resultVirusModel);
                 // store the message for "prevention" in the bundle
                 bundle.putString("prevention", "yes");
-                VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
-                virusDetailFragment.setArguments(bundle);
-                FragmentOperator.replaceFragment(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
             } else {
                 String errorMessage = "The result virus is not in the virus list!";
                 Toast.makeText(requireActivity(), errorMessage, Toast.LENGTH_SHORT).show();

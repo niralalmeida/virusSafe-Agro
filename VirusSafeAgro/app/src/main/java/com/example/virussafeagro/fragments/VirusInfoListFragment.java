@@ -225,56 +225,6 @@ public class VirusInfoListFragment extends Fragment {
             virusDetailNewFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW);
 
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-////                virusDetailNewFragment.setSharedElementEnterTransition(
-////                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
-//                // Inflate transitions to apply
-//                Transition changeTransform = TransitionInflater.from(mainActivity).
-//                        inflateTransition(R.transition.change_image_transform);
-//                Transition moveTransform = TransitionInflater.from(mainActivity).
-//                        inflateTransition(android.R.transition.move);
-//
-//                // fragment 1 - Setup exit transition on first fragment
-//                virusInfoListFragment.setSharedElementReturnTransition(changeTransform);
-//                virusInfoListFragment.setExitTransition(moveTransform);
-//                // fragment 2 - Setup enter transition on second fragment
-//                virusDetailNewFragment.setSharedElementEnterTransition(changeTransform);
-//                virusDetailNewFragment.setEnterTransition(moveTransform);
-//            }
-//
-//            // test
-//            System.out.println("position [ " + position + " ]" );
-//
-//            // element 1
-//            RelativeLayout itemRelativeLayout = (RelativeLayout)virusGridView.getChildAt(position);
-//            // element 2 - image
-//            LinearLayout itemImageLinearLayout = (LinearLayout) itemRelativeLayout.getChildAt(0);
-//            CardView itemImageCardView = (CardView) itemImageLinearLayout.getChildAt(0);
-//            ImageView itemImageView = (ImageView) itemImageCardView.getChildAt(0);
-//            // element 3 - text
-//            LinearLayout itemTextLinearLayout = (LinearLayout) itemRelativeLayout.getChildAt(1);
-//            LinearLayout itemTextLinearLayoutSub = (LinearLayout) itemTextLinearLayout.getChildAt(0);
-//            TextView itemVirusNameTextView = (TextView) itemTextLinearLayoutSub.getChildAt(0);
-//
-//            itemVirusNameTextView.setText("hoy");
-
-//            ListImageGalleryAdapter.ViewHolder itemViewHolder = (ListImageGalleryAdapter.ViewHolder) recyclerViewForVirusImageResult.findViewHolderForAdapterPosition(position);
-//            GridVirusInfoAdapter.ViewHolder itemViewHolder = (ListImageGalleryAdapter.ViewHolder) recyclerViewForVirusImageResult.findViewHolderForAdapterPosition(position);
-//            mainActivity.getSupportFragmentManager().beginTransaction()
-//                    .setReorderingAllowed(true)
-//                    .addSharedElement(itemImageView, itemImageView.getTransitionName())
-//                    .addSharedElement(virusGridView, ViewCompat.getTransitionName(virusGridView))
-//                    .addSharedElement(itemRelativeLayout, ViewCompat.getTransitionName(itemRelativeLayout))
-//                    .addSharedElement(itemVirusNameTextView, ViewCompat.getTransitionName(itemVirusNameTextView))
-//                    .replace(R.id.fl_fragments, virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW)
-//                    .addToBackStack(null)
-//                    .commit();
-
-
-
-//            VirusDetailFragment virusDetailFragment = new VirusDetailFragment();
-//            virusDetailFragment.setArguments(bundle);
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL);
         });
     }
 
