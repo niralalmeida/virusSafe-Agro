@@ -39,7 +39,7 @@ public class ListImageGalleryAdapter extends RecyclerView.Adapter<ListImageGalle
         this.imageCardClickListener = imageCardClickListener;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         public CardView virusImageCardView;
         public ImageView virusImageView;
 
@@ -57,7 +57,7 @@ public class ListImageGalleryAdapter extends RecyclerView.Adapter<ListImageGalle
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View virusImageView = inflater.inflate(R.layout.recycler_view_item_image_gallery, parent, false);
-        ListImageGalleryAdapter.ViewHolder viewHolder = new ListImageGalleryAdapter.ViewHolder(virusImageView);
+        ListImageGalleryAdapter.ViewHolder viewHolder = new ViewHolder(virusImageView);
         return viewHolder;
     }
 

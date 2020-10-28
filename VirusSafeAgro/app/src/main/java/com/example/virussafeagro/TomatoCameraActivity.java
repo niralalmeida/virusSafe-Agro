@@ -69,6 +69,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.huantansheng.easyphotos.ui.PreviewActivity;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -273,8 +274,8 @@ public class TomatoCameraActivity extends AppCompatActivity {
             }
             // something wrong with the ML model
             else {
-                resumeCamera();
-                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_tomato_detect_result, R.id.start_show_tomato_camera_image, 200);
+                Toast.makeText(tomatoCameraActivity, "Something wrong with the server!", Toast.LENGTH_SHORT).show();
+                MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_tomato_detect_result, R.id.end_show_tomato_camera_image, 200);
             }
         }
     }
@@ -300,9 +301,25 @@ public class TomatoCameraActivity extends AppCompatActivity {
         tomatoCameraImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         // show the result image
         Picasso.get()
-                .load(resultTomatoFruitDetectResultModel.getTomatoDetectResultImageStringURL())
-                .placeholder(R.color.bg_cart_image_gallery)
-                .into(tomatoCameraImageView);
+            .load(resultTomatoFruitDetectResultModel.getTomatoDetectResultImageStringURL())
+            .resize(
+                    DataConverter.dip2px(tomatoCameraActivity, 300),
+                    DataConverter.dip2px(tomatoCameraActivity, 300)
+            )
+            .placeholder(R.color.bg_cart_image_gallery)
+            .into(tomatoCameraImageView, new Callback() {
+                @Override
+                public void onSuccess() {
+                    isTomatoImageResultBitmapLoaded = true;
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    Toast.makeText(tomatoCameraActivity, "Fail to load the result image", Toast.LENGTH_SHORT).show();
+                    tomatoCameraImageView.setImageBitmap(tomatoCameraBitmap);
+                }
+            });
+
         // set count result text
         String tomatoCountResultString = "" + resultTomatoFruitDetectResultModel.getTomatoCount();
         tomatoCountResultTextView.setText(tomatoCountResultString);
@@ -318,12 +335,10 @@ public class TomatoCameraActivity extends AppCompatActivity {
     // set TomatoCameraImageView On Click Listener
     private void setTomatoCameraImageViewOnClickListener() {
         tomatoCameraImageView.setOnClickListener(tciv ->{
-            // get current item view holder
-            BitmapDrawable tomatoCameraImageBitmapBitmapDrawable = (BitmapDrawable) tomatoCameraImageView.getDrawable();
-            Bitmap tomatoCameraImageBitmap = tomatoCameraImageBitmapBitmapDrawable.getBitmap();
-            if (tomatoCameraImageBitmap != null) {
+            if (isTomatoImageResultBitmapLoaded){
+                BitmapDrawable tomatoCameraImageBitmapBitmapDrawable = (BitmapDrawable) tomatoCameraImageView.getDrawable();
                 // set tomato image bitmap
-                ImageViewActivity.currentImageBitmap = tomatoCameraImageBitmap;
+                ImageViewActivity.currentImageBitmap = tomatoCameraImageBitmapBitmapDrawable.getBitmap();
                 // open the image view activity
                 Intent intent = new Intent(tomatoCameraActivity, ImageViewActivity.class);
                 // animation
@@ -384,7 +399,8 @@ public class TomatoCameraActivity extends AppCompatActivity {
                 previewView.setVisibility(View.INVISIBLE);
                 tomatoCameraImageView.setImageBitmap(tomatoCameraBitmap);
                 MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_tomato_camera_image, R.id.end_show_tomato_camera_image, 200);
-                //ImageStorage.saveImage(tomatoCameraActivity, tomatoCameraBitmap, "Virus Camera", "virus_tomato_camera", previewView);
+                // stop the camera
+                tomatoCameraProvider.unbindAll();
             }
 
             @Override
@@ -435,17 +451,7 @@ public class TomatoCameraActivity extends AppCompatActivity {
         this.galleryRetakeCardView.setOnClickListener(v ->{
             // back to the tomatoCamera page
             if (isRetakeShown){
-                isRetakeShown = false;
-                isTomatoCameraImageShown = false;
-                // show preview
-                previewView.setVisibility(View.VISIBLE);
-                // change the card image
-                galleryRetakeImageView.setImageResource(R.drawable.ic_gallery);
-                // change the card text
-                galleryRetakeTextView.setText("Photos");
-                // retake
-                tomatoCameraImageView.setImageBitmap(null);
-                tomatoCameraImageButton.setImageResource(R.drawable.ic_camera_black_100dp);
+                resumeCamera();
                 MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_tomato_camera_image, R.id.start_show_tomato_camera_image, 200);
             }
             // open gallery
@@ -466,6 +472,8 @@ public class TomatoCameraActivity extends AppCompatActivity {
                 detectTomatoInstructionsFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_TOMATO_DETECT);
             } // back to camera page
             else {
+                // bind camera again
+                tomatoCamera = tomatoCameraProvider.bindToLifecycle(tomatoCameraActivity, tomatoCameraSelector, imageCapture, preview);
                 // set the photos button
                 isOpenTomatoCameraShown = false;
                 isTomatoCameraImageShown = false;
