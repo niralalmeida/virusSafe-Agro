@@ -12,7 +12,7 @@ import okhttp3.Response;
 
 public class NetworkConnectionToMLModel {
     private static final String VIRUS_API_URL = "http://ec2-34-202-148-91.compute-1.amazonaws.com:5000/";
-    private static final String TOMATO_API_URL = "http://ec2-34-202-148-91.compute-1.amazonaws.com:5000/object/";
+    private static final String TOMATO_API_URL = "http://ec2-34-202-148-91.compute-1.amazonaws.com:5000/object";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private OkHttpClient okHttpClient;
@@ -31,6 +31,27 @@ public class NetworkConnectionToMLModel {
         RequestBody bodyForImage = RequestBody.create(uploadImageJson, JSON);
         Request requestForImage = new Request.Builder()
                 .url(VIRUS_API_URL)
+                .post(bodyForImage)
+                .build();
+        try {
+            Response responseForImage = okHttpClient.newCall(requestForImage).execute();
+            resultText = responseForImage.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultText;
+    }
+
+    public String getTomatoImageCheckFeedback(ImageObject imageObject) {
+        okHttpClient = new OkHttpClient();
+        String resultText = "";
+
+        Gson gson = new Gson();
+        String uploadImageJson = gson.toJson(imageObject);
+
+        RequestBody bodyForImage = RequestBody.create(uploadImageJson, JSON);
+        Request requestForImage = new Request.Builder()
+                .url(TOMATO_API_URL)
                 .post(bodyForImage)
                 .build();
         try {

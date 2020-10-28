@@ -306,7 +306,7 @@
 
 
 
-    <!-- run scan tomato image end -->
+    <!-- run scan tomato image start -->
     <ConstraintSet android:id="@+id/start_run_scan_tomato_image">
         <!-- camera preview frame layout -->
         <Constraint
@@ -551,6 +551,305 @@
             app:layout_constraintEnd_toEndOf="parent">
             <PropertySet
                 android:visibility="visible"/>
+        </Constraint>
+        <!-- left button -->
+        <Constraint
+            android:id="@+id/cv_gallery_retake_tomato_camera_activity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintTop_toBottomOf="@id/v_tomato_camera_frame_bottom_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgbtn_tomato_camera_activity">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- left text -->
+        <Constraint
+            android:id="@+id/tv_gallery_retake_tomato_camera_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cv_gallery_retake_tomato_camera_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgbtn_tomato_camera_activity">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- right button -->
+        <Constraint
+            android:id="@+id/cv_tip_open_tomato_camera_activity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintTop_toBottomOf="@id/v_tomato_camera_frame_bottom_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgbtn_tomato_camera_activity"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- right text -->
+        <Constraint
+            android:id="@+id/tv_tip_open_tomato_camera_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cv_tip_open_tomato_camera_activity"
+            app:layout_constraintStart_toEndOf="@id/imgbtn_tomato_camera_activity"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+    </ConstraintSet>
+
+
+
+
+    <!-- show tomato detect result start -->
+    <ConstraintSet android:id="@+id/start_show_tomato_detect_result">
+        <!-- camera preview frame layout -->
+        <Constraint
+            android:id="@+id/container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:elevation="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- camera frame 1 -->
+        <Constraint
+            android:id="@+id/v_tomato_camera_frame_top_left"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- camera frame 2 -->
+        <Constraint
+            android:id="@+id/v_tomato_camera_frame_top_right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- camera frame 3 -->
+        <Constraint
+            android:id="@+id/v_tomato_camera_frame_bottom_left"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="200dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- camera frame 4 -->
+        <Constraint
+            android:id="@+id/v_tomato_camera_frame_bottom_right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="200dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- image rl -->
+        <Constraint
+            android:id="@+id/img_tomato_camera_image_tomato_camera_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_close_tomato_camera_activity"
+            app:layout_constraintBottom_toTopOf="@id/imgbtn_tomato_camera_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- camera fab -->
+        <Constraint
+            android:id="@+id/imgbtn_tomato_camera_activity"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- tomato image scan lottie -->
+        <Constraint
+            android:id="@+id/lav_scan_tomato_image_tomato_camera_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_close_tomato_camera_activity"
+            app:layout_constraintBottom_toTopOf="@id/imgbtn_tomato_camera_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="visible"/>
+        </Constraint>
+        <!-- left button -->
+        <Constraint
+            android:id="@+id/cv_gallery_retake_tomato_camera_activity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintTop_toBottomOf="@id/v_tomato_camera_frame_bottom_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgbtn_tomato_camera_activity">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- left text -->
+        <Constraint
+            android:id="@+id/tv_gallery_retake_tomato_camera_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cv_gallery_retake_tomato_camera_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgbtn_tomato_camera_activity">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- right button -->
+        <Constraint
+            android:id="@+id/cv_tip_open_tomato_camera_activity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintTop_toBottomOf="@id/v_tomato_camera_frame_bottom_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgbtn_tomato_camera_activity"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- right text -->
+        <Constraint
+            android:id="@+id/tv_tip_open_tomato_camera_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cv_tip_open_tomato_camera_activity"
+            app:layout_constraintStart_toEndOf="@id/imgbtn_tomato_camera_activity"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+    </ConstraintSet>
+
+    <!-- show tomato detect result end -->
+    <ConstraintSet android:id="@+id/end_show_tomato_detect_result">
+        <!-- camera preview frame layout -->
+        <Constraint
+            android:id="@+id/container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:elevation="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- camera frame 1 -->
+        <Constraint
+            android:id="@+id/v_tomato_camera_frame_top_left"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- camera frame 2 -->
+        <Constraint
+            android:id="@+id/v_tomato_camera_frame_top_right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- camera frame 3 -->
+        <Constraint
+            android:id="@+id/v_tomato_camera_frame_bottom_left"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="200dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- camera frame 4 -->
+        <Constraint
+            android:id="@+id/v_tomato_camera_frame_bottom_right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="200dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- image rl -->
+        <Constraint
+            android:id="@+id/img_tomato_camera_image_tomato_camera_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintTop_toBottomOf="@id/btn_close_tomato_camera_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        </Constraint>
+        <!-- camera fab -->
+        <Constraint
+            android:id="@+id/imgbtn_tomato_camera_activity"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
+        </Constraint>
+        <!-- tomato image scan lottie -->
+        <Constraint
+            android:id="@+id/lav_scan_tomato_image_tomato_camera_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_close_tomato_camera_activity"
+            app:layout_constraintBottom_toTopOf="@id/imgbtn_tomato_camera_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <PropertySet
+                android:visibility="invisible"/>
         </Constraint>
         <!-- left button -->
         <Constraint

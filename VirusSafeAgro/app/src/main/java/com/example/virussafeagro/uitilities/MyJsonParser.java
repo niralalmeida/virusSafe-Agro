@@ -316,6 +316,20 @@ public class MyJsonParser {
         return feedBack;
     }
 
+    public static String tomatoImageCheckFeedbackJsonParser(String resultText) throws JSONException {
+        String feedBack = "";
+//        if (!resultText.equals("[]")) {
+//            JSONObject predictionJsonObject = new JSONObject(resultText);
+//            Iterator<String> keysIterator = predictionJsonObject.keys();
+//            if (keysIterator.next().equals("prediction")) {
+//                feedBack = predictionJsonObject.getString("prediction");
+//            } else {
+//                feedBack = "json error";
+//            }
+//        }
+        return feedBack;
+    }
+
     public static List<NutrientModel> nutrientListJsonParser(String resultText) throws JSONException {
         List<NutrientModel> nutrientModelList = new ArrayList<>();
         // check network connection
