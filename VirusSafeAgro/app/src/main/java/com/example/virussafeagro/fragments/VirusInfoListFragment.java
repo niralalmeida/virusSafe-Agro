@@ -54,7 +54,6 @@ public class VirusInfoListFragment extends Fragment {
     private View view;
 
     // data
-    private VirusInfoListViewModel virusInfoListViewModel;
     public static Bitmap currentVirusImageBitmap;
 
     private LinearLayout processBarLinearLayout;
@@ -93,18 +92,7 @@ public class VirusInfoListFragment extends Fragment {
             this.mainActivity.setLearnButton(true);
         }
 
-        // initialize view model
-        this.initializeVirusInfoViewModel();
-
-        return this.view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        currentVirusImageBitmap = null;
-
+        // show the virus grid list
         if (MainActivity.virusModelInfoList.isEmpty()) {
             // wait for virus info list in new Thread
             this.processBarLinearLayout.setVisibility(View.VISIBLE);
@@ -115,6 +103,16 @@ public class VirusInfoListFragment extends Fragment {
             // show the virus list
             displayVirusCardList();
         }
+
+        return this.view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        currentVirusImageBitmap = null;
+
     }
 
     private void initializeViews() {
@@ -125,25 +123,11 @@ public class VirusInfoListFragment extends Fragment {
         this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
     }
 
-    private void initializeVirusInfoViewModel() {
-        this.virusInfoListViewModel = new ViewModelProvider(requireActivity()).get(VirusInfoListViewModel.class);
-    }
-
     private void observeVirusInfoListLD() {
-        this.virusInfoListViewModel.getVirusInfoListLD().observe(getViewLifecycleOwner(), resultVirusInfoList -> {
-            if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
-                // check network connection
-                if (resultVirusInfoList.get(0).getVirusFullName().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
-                    Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
-                    // show network error image
-                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 1000);
-                } else {
-                    MainActivity.virusModelInfoList.clear();
-                    MainActivity.virusModelInfoList = resultVirusInfoList;
-
-                    // show the virus list
-                    displayVirusCardList();
-                }
+        mainActivity.getVirusInfoListViewModel().getVirusInfoListLD().observe(mainActivity, resultVirusInfoList -> {
+            if (!MainActivity.virusModelInfoList.isEmpty()) {
+                // show the virus list
+                displayVirusCardList();
             }
         });
     }
@@ -151,7 +135,7 @@ public class VirusInfoListFragment extends Fragment {
     private void displayVirusCardList() {
         // set recycler view linear layout visible and process bar invisible
         processBarLinearLayout.setVisibility(View.GONE);
-        virusGridViewLinearLayout.setVisibility(View.VISIBLE);
+        MyAnimationBox.runFadeInAnimation(virusGridViewLinearLayout, 200);
 
         // show grid view
         gridVirusInfoAdapter = new GridVirusInfoAdapter(requireActivity(), MainActivity.virusModelInfoList);
@@ -162,8 +146,6 @@ public class VirusInfoListFragment extends Fragment {
         // display search function
         if (!MainActivity.isLearnOrToolkitIconClickedFromLearnStacks) {
             mainActivity.displaySearch();
-            // test
-            System.out.println("[[[ show ]]]]]");
         } else {
             MainActivity.isLearnOrToolkitIconClickedFromLearnStacks = false;
         }
@@ -236,13 +218,6 @@ public class VirusInfoListFragment extends Fragment {
 
     @Override
     public void onPause() {
-
-        // cancel the AsyncTask
-        VirusInfoListViewModel.FindVirusInfoListAsyncTask findVirusInfoListAsyncTask = this.virusInfoListViewModel.getCurrentFindVirusInfoListAsyncTask();
-        findVirusInfoListAsyncTask.cancel(true);
-
-        this.virusInfoListViewModel.getVirusInfoListLD().removeObservers(requireActivity());
-        this.virusInfoListViewModel.setVirusInfoListLD(new ArrayList<>());
 
         super.onPause();
 

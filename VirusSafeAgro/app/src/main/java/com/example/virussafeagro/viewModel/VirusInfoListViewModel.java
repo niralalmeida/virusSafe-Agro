@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToAWSTomatoS3;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToTomatoVirusDB;
@@ -53,14 +54,14 @@ public class VirusInfoListViewModel extends ViewModel {
             if (isCancelled()){
                 return null;
             }
-            List<VirusModel> virusModelInfoList = new ArrayList<>();
+//            List<VirusModel> virusModelInfoList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToTomatoVirusDB.getAllVirus();
-                virusModelInfoList = MyJsonParser.virusInfoListJsonParser(resultText);
+                MainActivity.virusModelInfoList = MyJsonParser.virusInfoListJsonParser(resultText);
                 // check network connection
-                if (!virusModelInfoList.get(0).getVirusFullName().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                if (!MainActivity.virusModelInfoList.get(0).getVirusFullName().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     // get the virus image URLs
-                    for (VirusModel virusModel : virusModelInfoList) {
+                    for (VirusModel virusModel : MainActivity.virusModelInfoList) {
                         String resultTextForURL = networkConnectionToAWSTomatoS3.getVirusImagesByVirusId(virusModel.getVirusId());
                         virusModel = MyJsonParser.virusImageURLIntoVirusModelJsonParser(resultTextForURL, virusModel);
                     }
@@ -68,8 +69,7 @@ public class VirusInfoListViewModel extends ViewModel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            return virusModelInfoList;
+            return MainActivity.virusModelInfoList;
         }
 
         @Override
@@ -78,7 +78,10 @@ public class VirusInfoListViewModel extends ViewModel {
         }
     }
 
-    public FindVirusInfoListAsyncTask getCurrentFindVirusInfoListAsyncTask() {
-        return currentFindVirusInfoListAsyncTask;
+    @Override
+    protected void onCleared()
+    {
+        super.onCleared();
+        virusInfoListLD = null;
     }
 }

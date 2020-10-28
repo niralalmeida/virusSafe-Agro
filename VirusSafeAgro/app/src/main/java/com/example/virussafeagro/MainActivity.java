@@ -241,6 +241,10 @@ public class MainActivity extends AppCompatActivity {
         this.nutrientViewModel = new ViewModelProvider(mainActivity).get(NutrientViewModel.class);
     }
 
+    public VirusInfoListViewModel getVirusInfoListViewModel() {
+        return virusInfoListViewModel;
+    }
+
     private void prepareDataFromAPI() {
         // find virus info list in new Thread
         this.findVirusInfoListFromDBAndObserveVirusInfoListLD();
@@ -249,18 +253,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void findVirusInfoListFromDBAndObserveVirusInfoListLD() {
-        this.virusInfoListViewModel.processFindingVirusInfoList();
-        this.virusInfoListViewModel.getVirusInfoListLD().observe(mainActivity, resultVirusInfoList -> {
-            if ((resultVirusInfoList != null) && (resultVirusInfoList.size() != 0)) {
-                virusModelInfoList.clear();
-                virusModelInfoList = resultVirusInfoList;
-            }
-        });
+        virusInfoListViewModel.processFindingVirusInfoList();
     }
 
     private void findNutrientListFromDBAndObserveNutrientListLD() {
-        this.nutrientViewModel.processFindingNutrientList();
-        this.nutrientViewModel.getNutrientListLD().observe(mainActivity, resultNutrientList -> {
+        nutrientViewModel.processFindingNutrientList();
+        nutrientViewModel.getNutrientListLD().observe(mainActivity, resultNutrientList -> {
             if ((resultNutrientList != null) && (resultNutrientList.size() != 0)) {
                 nutrientModelList.clear();
                 nutrientModelList = resultNutrientList;
