@@ -39,6 +39,7 @@ import com.example.virussafeagro.fragments.InsightsFragment;
 import com.example.virussafeagro.fragments.NewsDetailFragment;
 import com.example.virussafeagro.fragments.NewsFragment;
 import com.example.virussafeagro.fragments.NutrientDetailFragment;
+import com.example.virussafeagro.fragments.NutrientDetailNewFragment;
 import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.PesticideStoreMapFragment;
 import com.example.virussafeagro.fragments.ToolkitFragment;
@@ -652,10 +653,10 @@ public class MainActivity extends AppCompatActivity {
                         (foundFragment instanceof VirusDetailNewFragment) ||
                         (foundFragment instanceof VirusQuizQuestionFragment) ||
                         (foundFragment instanceof NutrientFragment) ||
-                        (foundFragment instanceof NutrientDetailFragment)
+                        (foundFragment instanceof NutrientDetailNewFragment)
                     ){
 
-                if ((foundFragment instanceof VirusDetailNewFragment) || (foundFragment instanceof NutrientDetailFragment)) {
+                if ((foundFragment instanceof VirusDetailNewFragment) || (foundFragment instanceof NutrientDetailNewFragment)) {
                     isLearnOrToolkitIconClickedFromLearnStacks = true;
                 }
                 // pop All Fragments In Stack
@@ -725,7 +726,7 @@ public class MainActivity extends AppCompatActivity {
                 }, 200);
             }
             else {
-                if ((foundFragment instanceof VirusDetailNewFragment) || (foundFragment instanceof NutrientDetailFragment)) {
+                if ((foundFragment instanceof VirusDetailNewFragment) || (foundFragment instanceof NutrientDetailNewFragment)) {
                     isLearnOrToolkitIconClickedFromLearnStacks = true;
                 }
                 // hide the fragment

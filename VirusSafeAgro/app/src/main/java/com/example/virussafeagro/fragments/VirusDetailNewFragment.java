@@ -50,7 +50,6 @@ public class VirusDetailNewFragment extends Fragment {
     private ImageView virusPictureImageView;
     private CollapsingToolbarLayout virusDetailCollapsingToolbarLayout;
     private androidx.appcompat.widget.Toolbar virusDetailToolbar;
-    private NestedScrollView virusDetailNestedScrollView;
     private TextView virusFullNameTextView;
     private LinearLayout virusDescriptionLinearLayout;
     private LinearLayout virusSymptomLeafLinearLayout;
@@ -129,7 +128,6 @@ public class VirusDetailNewFragment extends Fragment {
         this.virusPictureImageView = view.findViewById(R.id.img_virus_detail_new);
         this.virusDetailCollapsingToolbarLayout = view.findViewById(R.id.collapsingToolbarLayout_virus_detail);
         this.virusDetailToolbar = view.findViewById(R.id.toolbar_virus_detail);
-        this.virusDetailNestedScrollView = view.findViewById(R.id.scrollView_virus_detail);
         this.virusFullNameTextView = view.findViewById(R.id.tv_full_name_virus_detail);
         this.virusDescriptionLinearLayout = view.findViewById(R.id.ll_description_virus_detail);
         this.virusSymptomLeafLinearLayout = view.findViewById(R.id.ll_symptom_leaves_virus_detail);
@@ -179,8 +177,10 @@ public class VirusDetailNewFragment extends Fragment {
             horizontalLinearLayout.addView(pointView);
             LinearLayout.LayoutParams pointLayoutParams = (LinearLayout.LayoutParams) pointView.getLayoutParams();
             pointLayoutParams.setMarginEnd(DataConverter.dip2px(mainActivity,20));
-            pointLayoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-            pointLayoutParams.width = DataConverter.dip2px(mainActivity, 5);
+            pointLayoutParams.height = 20;
+            pointLayoutParams.width = 20;
+//            pointLayoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+//            pointLayoutParams.width = DataConverter.dip2px(mainActivity, 5);
             pointView.setLayoutParams(pointLayoutParams);
             // set description
             TextView descriptionTextView = new TextView(mainActivity);

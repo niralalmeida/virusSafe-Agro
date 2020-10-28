@@ -1,5 +1,7 @@
 package com.example.virussafeagro.fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,6 +38,7 @@ public class NutrientFragment extends Fragment {
 
     // data
     private NutrientViewModel nutrientViewModel;
+    public static Bitmap currentNutrientImageBitmap;
 
     // views
     private LinearLayout processBarLinearLayout;
@@ -73,13 +76,6 @@ public class NutrientFragment extends Fragment {
             this.mainActivity.setLearnButton(true);
         }
 
-        return this.view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
         // initialize view model
         this.initializeNutrientViewModel();
         // find virus info list in new Thread
@@ -93,6 +89,15 @@ public class NutrientFragment extends Fragment {
             // show the virus list
             this.displayNutrientsCardList();
         }
+
+        return this.view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        currentNutrientImageBitmap = null;
 
     }
 
@@ -193,9 +198,14 @@ public class NutrientFragment extends Fragment {
             Bundle bundle = new Bundle();
             NutrientModel currentNutrientModel = nutrientModelListForListener.get(position);
             bundle.putParcelable("currentNutrientModel", currentNutrientModel);
-            NutrientDetailFragment nutrientDetailFragment = new NutrientDetailFragment();
-            nutrientDetailFragment.setArguments(bundle);
-            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), nutrientDetailFragment, AppResources.FRAGMENT_TAG_NUTRIENT_DETAIL);
+
+            // set image
+            int nutrientPictureDrawableId = AppResources.getNutrientPictureDrawableId(currentNutrientModel.getNutrientId());
+            currentNutrientImageBitmap = BitmapFactory.decodeResource(mainActivity.getResources(), nutrientPictureDrawableId);
+            
+            NutrientDetailNewFragment nutrientDetailNewFragment = new NutrientDetailNewFragment();
+            nutrientDetailNewFragment.setArguments(bundle);
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), nutrientDetailNewFragment, AppResources.FRAGMENT_TAG_NUTRIENT_DETAIL_NEW);
         });
     }
 

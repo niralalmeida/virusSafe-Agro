@@ -15,7 +15,8 @@
     <string name="fragment_news">News</string>
     <string name="fragment_news_detail">News Content</string>
     <string name="fragment_nutrient">Nutrient type</string>
-    <string name="fragment_nutrient_detail">Nutrient Details</string>
+    <string name="fragment_nutrient_detail">Nutrient Detail</string>
+    <string name="fragment_nutrient_detail_new">Nutrient Detail</string>
     <string name="fragment_tweet">Tweets</string>
     <string name="fragment_updates">Future Updates</string>
     <string name="fragment_virus_check">Virus Check</string>
