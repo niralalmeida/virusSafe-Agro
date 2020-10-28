@@ -60,8 +60,6 @@ public class NutrientFragment extends Fragment {
         this.mainActivity = (MainActivity)getActivity();
         // set title
         this.mainActivity.getTitleTextView().setText(R.string.fragment_nutrient);
-        // show search button
-//        this.mainActivity.getOpenSearchLinearLayout().setVisibility(View.VISIBLE);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
         // set tip
@@ -139,7 +137,11 @@ public class NutrientFragment extends Fragment {
         setGridViewItemNutrientCardClickListener(MainActivity.nutrientModelList);
 
         // display search function
-        mainActivity.displaySearch();
+        if (!MainActivity.isLearnOrToolkitIconClickedFromLearnStacks) {
+            mainActivity.displaySearch();
+        } else {
+            MainActivity.isLearnOrToolkitIconClickedFromLearnStacks = false;
+        }
         // set SearchEditText On Change Listener
         setSearchEditOnTextChangeListener();
     }

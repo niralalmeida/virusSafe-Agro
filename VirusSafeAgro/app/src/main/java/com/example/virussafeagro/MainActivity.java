@@ -673,7 +673,7 @@ public class MainActivity extends AppCompatActivity {
                         (foundFragment instanceof NutrientDetailFragment)
                     ){
 
-                if (foundFragment instanceof VirusDetailNewFragment) {
+                if ((foundFragment instanceof VirusDetailNewFragment) || (foundFragment instanceof NutrientDetailFragment)) {
                     isLearnOrToolkitIconClickedFromLearnStacks = true;
                 }
                 // pop All Fragments In Stack
@@ -743,7 +743,7 @@ public class MainActivity extends AppCompatActivity {
                 }, 200);
             }
             else {
-                if (foundFragment instanceof VirusDetailNewFragment) {
+                if ((foundFragment instanceof VirusDetailNewFragment) || (foundFragment instanceof NutrientDetailFragment)) {
                     isLearnOrToolkitIconClickedFromLearnStacks = true;
                 }
                 // hide the fragment
