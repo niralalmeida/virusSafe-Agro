@@ -32,7 +32,9 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GalleryActivity extends AppCompatActivity {
     private GalleryActivity galleryActivity;
@@ -49,6 +51,9 @@ public class GalleryActivity extends AppCompatActivity {
     private RecyclerView recyclerViewForVirusImageResult;
     private GridLayoutManager gridLayoutManager;
 
+    // tools
+    public Map<ImageView, Boolean> imageViewBooleanMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +68,8 @@ public class GalleryActivity extends AppCompatActivity {
 
         // initialize Views
         this.initializeViews();
+        // initialize data
+        this.initializeData();
 
         // show Initial Views
         this.showInitialViews();
@@ -78,6 +85,10 @@ public class GalleryActivity extends AppCompatActivity {
         this.galleryTitleToolbar = findViewById(R.id.toolbar_image_gallery);
         this.closeImageButton = findViewById(R.id.imgbtn_close_image_gallery);
         this.virusImageView = findViewById(R.id.img_image_gallery);
+    }
+
+    private void initializeData(){
+        this.imageViewBooleanMap = new HashMap<>();
     }
 
     // show Initial Views
@@ -122,18 +133,23 @@ public class GalleryActivity extends AppCompatActivity {
             ListImageGalleryAdapter.ViewHolder currentItemViewHolder = (ListImageGalleryAdapter.ViewHolder) recyclerViewForVirusImageResult.findViewHolderForAdapterPosition(position);
             CardView itemImageCardView = currentItemViewHolder.virusImageCardView;
             ImageView currentItemImageView = currentItemViewHolder.virusImageView;
-            BitmapDrawable currentItemImageBitmapDrawable = (BitmapDrawable) currentItemImageView.getDrawable();
-            Bitmap currentImageBitmap = currentItemImageBitmapDrawable.getBitmap();
-            // set current image bitmap
-            ImageViewActivity.currentImageBitmap = currentImageBitmap;
-            if (currentImageBitmap != null){
-                // open the image view activity
-                Intent intent = new Intent(galleryActivity, ImageViewActivity.class);
-                // animation
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(galleryActivity, itemImageCardView, ViewCompat.getTransitionName(itemImageCardView));
-                galleryActivity.startActivity(intent, options.toBundle());
+            Boolean isImageLoaded = imageViewBooleanMap.get(currentItemImageView);
+            if (isImageLoaded != null) {
+                BitmapDrawable currentItemImageBitmapDrawable = (BitmapDrawable) currentItemImageView.getDrawable();
+                Bitmap currentImageBitmap = currentItemImageBitmapDrawable.getBitmap();
+                // set current image bitmap
+                ImageViewActivity.currentImageBitmap = currentImageBitmap;
+                if (isImageLoaded) {
+                    // open the image view activity
+                    Intent intent = new Intent(galleryActivity, ImageViewActivity.class);
+                    // animation
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(galleryActivity, itemImageCardView, ViewCompat.getTransitionName(itemImageCardView));
+                    galleryActivity.startActivity(intent, options.toBundle());
+                } else {
+                    Toast.makeText(galleryActivity, "Cannot get the image!", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(galleryActivity, "Cannot get the image!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(galleryActivity, "Image is loading...", Toast.LENGTH_SHORT).show();
             }
         });
     }

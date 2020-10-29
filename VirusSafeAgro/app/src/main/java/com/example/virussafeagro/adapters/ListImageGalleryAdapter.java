@@ -10,25 +10,28 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.virussafeagro.GalleryActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.uitilities.DataConverter;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ListImageGalleryAdapter extends RecyclerView.Adapter<ListImageGalleryAdapter.ViewHolder> {
     private List<String> virusPictureURLList;
-    private Activity activity;
+    private GalleryActivity galleryActivity;
     private ListImageGalleryAdapter.ImageCardClickListener imageCardClickListener;
 
-    public ListImageGalleryAdapter(List<String> virusPictureURLList, Activity activity) {
+    public ListImageGalleryAdapter(List<String> virusPictureURLList, GalleryActivity galleryActivity) {
         this.virusPictureURLList = virusPictureURLList;
-        this.activity = activity;
+        this.galleryActivity = galleryActivity;
     }
 
     // image card item on click listener interface
@@ -70,10 +73,21 @@ public class ListImageGalleryAdapter extends RecyclerView.Adapter<ListImageGalle
                 .load(virusPictureURLString)
                 .placeholder(R.color.bg_cart_image_gallery)
                 .resize(
-                        DataConverter.dip2px(activity, 400),
-                        DataConverter.dip2px(activity, 400))
+                        DataConverter.dip2px(galleryActivity, 400),
+                        DataConverter.dip2px(galleryActivity, 400))
                 .centerCrop()
-                .into(viewHolder.virusImageView);
+                .into(viewHolder.virusImageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        galleryActivity.imageViewBooleanMap.put(viewHolder.virusImageView, true);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        viewHolder.virusImageView.setImageResource(R.drawable.error);
+                        galleryActivity.imageViewBooleanMap.put(viewHolder.virusImageView, false);
+                    }
+                });
 
         // image card on click listener
         viewHolder.virusImageCardView.setOnClickListener(v -> imageCardClickListener.onImageCardClick(position));
