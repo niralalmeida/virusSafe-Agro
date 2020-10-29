@@ -1,11 +1,16 @@
+# endpoint = 'tomato-virus-1.chavbdc9w8gh.us-east-1.rds.amazonaws.com'
+# username = 'hoyyang'
+# password = 'tomatovirus123'
+# database_name = 'tomatovirus_mysql_db'
+
 import pymysql
 import json
 
 # Configuration values:
-endpoint = 'tomato-virus-1.chavbdc9w8gh.us-east-1.rds.amazonaws.com'
-username = 'hoyyang'
-password = 'tomatovirus123'
-database_name = 'tomatovirus_mysql_db'
+endpoint = 'aws-ta24app.cdefctsnfvmv.us-east-1.rds.amazonaws.com'
+username = 'admin'
+password = 'ta24app123'
+database_name = 'Ta24app_db'
 
 # Connection
 connection = pymysql.connect(endpoint, user=username, passwd=password, db=database_name)
