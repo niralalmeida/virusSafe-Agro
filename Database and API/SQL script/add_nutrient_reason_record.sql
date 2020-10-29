@@ -62,7 +62,7 @@ INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUE
 INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUES 
 (
     9,
-    "Difference is it begins in younger leaves as it is not mobile as nitrogen within the plant",
+    "Difference is it begins in younger leaves it is not mobile as nitrogen in the plant",
     4
 );
 
@@ -108,13 +108,6 @@ INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUE
 INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUES 
 (
     15,
-    "Alkaline soil",
-    8
-);
-
-INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUES 
-(
-    16,
     "Alkaline compost or mulch",
     8
 );
@@ -122,14 +115,14 @@ INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUE
 -- nutrient 9 --
 INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUES 
 (
-    17,
+    16,
     "Caused by over liming the soil",
     9
 );
 
 INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUES 
 (
-    18,
+    17,
     "Extreme environmental conditions",
     9
 );
@@ -137,7 +130,7 @@ INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUE
 -- nutrient 10 --
 INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUES 
 (
-    19,
+    18,
     "Water deficiency",
     10
 );
@@ -145,7 +138,7 @@ INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUE
 -- nutrient 11 --
 INSERT INTO nutrientreason (reason_id, reason_content, reason_nutrient_id) VALUES 
 (
-    20,
+    19,
     "Water deficiency",
     11
 );

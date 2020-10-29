@@ -62,7 +62,7 @@ INSERT INTO nutrientcorrectionmethod (method_id, method_content, method_nutrient
 INSERT INTO nutrientcorrectionmethod (method_id, method_content, method_nutrient_id) VALUES 
 (
     9,
-    "Past history of the field should be considered when taking fertilizer recommendations",
+    "Past history of the field should be considered when making fertilizer recommendations",
     5
 );
 
@@ -84,7 +84,7 @@ INSERT INTO nutrientcorrectionmethod (method_id, method_content, method_nutrient
 INSERT INTO nutrientcorrectionmethod (method_id, method_content, method_nutrient_id) VALUES 
 (
     12,
-    "Composted organic matter should be added to the soil as a longterm solution",
+    "Composted organic matter should be added to the soil as a long-term solution",
     6
 );
 

@@ -1,5 +1,5 @@
 
--- nutrient 1 --
+-- nutrient 1 ZINC--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     1,
@@ -19,7 +19,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     3,
-    "Old leaves display and orange brown chlorosis",
+    "Old leaves display and orange-brown chlorosis",
     "l",
     1
 );
@@ -40,11 +40,11 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
     1
 );
 
--- nutrient 2 --
+-- nutrient 2 MAGNESIUM--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     6,
-    "Interveinal chlorosis (mottled appearance) develops starting from older leaves then progressively spreading to the younger leaves",
+    "Older leaves are the first to develop a mottled appearance which then spreads to fresher, newer leaves",
     "l",
     2
 );
@@ -52,7 +52,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     7,
-    "Leaf midrib remains green",
+    "The midrib of the leaf remains green in color",
     "l",
     2
 );
@@ -60,7 +60,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     8,
-    "Interveinal tissue becomes necrotic",
+    "Yellow-brown blotches are found on the older leaves",
     "l",
     2
 );
@@ -68,24 +68,16 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     9,
-    "Old leaves have yellow/brow n blotches",
+    "The leaves usually fall",
     "l",
     2
 );
 
+
+-- nutrient 3 POTASSIUM--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     10,
-    "Leaf fall",
-    "l",
-    2
-);
-
-
--- nutrient 3 --
-INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
-(
-    11,
     "Older leaves turn yellow/light brown, roll inwards and downwards",
     "l",
     3
@@ -93,7 +85,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    12,
+    11,
     "Symptoms tend to begin on the older leaves and spread on the younger ones as the disorder becomes severe.",
     "l",
     3
@@ -101,16 +93,16 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    13,
+    12,
     "Puffiness",
     "f",
     3
 );
 
--- nutrient 4 --
+-- nutrient 4 SULPHUR--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    14,
+    13,
     "Old leaves turn light green",
     "l",
     4
@@ -118,8 +110,16 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
+    14,
+    "Younger leaves develop chlorosis first which then spreads to the older leaves.",
+    "l",
+    4
+);
+
+INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
+(
     15,
-    "Chlorosis starts from younger leaves and moves to the older leaves",
+    "Leaves are often erect and twisted",
     "l",
     4
 );
@@ -127,7 +127,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     16,
-    "Erect and twisted leaves",
+    "Reddish color is often obtained at the bottom of the leaves",
     "l",
     4
 );
@@ -135,23 +135,15 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     17,
-    "Reddish color is often obtained underneath the leaves",
-    "l",
-    4
-);
-
-INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
-(
-    18,
     "Turn pinkish purple",
     "s",
     4
 );
 
--- nutrient 5 --
+-- nutrient 5 PHOSPHORUS--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    19,
+    18,
     "Grow slowly with dull green color",
     "l",
     5
@@ -159,8 +151,16 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
+    19,
+    "The bottom surface of the leaf turns reddish-purple over time.",
+    "l",
+    5
+);
+
+INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
+(
     20,
-    "Underside of the leaves turn reddishpurple over time",
+    "Older leaves are the first to get affected",
     "l",
     5
 );
@@ -168,14 +168,6 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     21,
-    "Old leaves are affected first",
-    "l",
-    5
-);
-
-INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
-(
-    22,
     "Leaves have blue/green tint and fall off ",
     "l",
     5
@@ -183,24 +175,24 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    23,
+    22,
     "Small and often late fruit",
     "f",
     5
 );
 
--- nutrient 6 --
+-- nutrient 6 NITROGEN--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    24,
-    "Young leaves turn yellowishgreen while the old leaves turn chlorotic",
+    23,
+    "Young leaves turn yellowish-green while the old leaves turn chlorotic",
     "l",
     6
 );
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    25,
+    24,
     "Plant loses its leaves",
     "l",
     6
@@ -208,7 +200,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    26,
+    25,
     "Slow plant growth",
     "t",
     6
@@ -216,7 +208,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    27,
+    26,
     "Plant is stunted",
     "t",
     6
@@ -224,16 +216,16 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    28,
+    27,
     "Stems and veins appear purple in color",
     "t",
     6
 );
 
--- nutrient 7 --
+-- nutrient 7 MANGANESE--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    29,
+    28,
     "Interveinal chlorosis is developed on young leaves",
     "l",
     7
@@ -241,17 +233,25 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    30,
+    29,
     "Midrib leaf remains green",
     "l",
     7
 );
 
--- nutrient 8 --
+-- nutrient 8 IRON--
+INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
+(
+    30,
+    "After iron chlorosis, the young leaves appear yellow in color",
+    "l",
+    8
+);
+
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     31,
-    "Development of interveinal chlorosis which is followed by yellowing on young leaves",
+    "Green color is easily seen in the midrib area of the leaf",
     "l",
     8
 );
@@ -259,23 +259,15 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     32,
-    "Midrib of the leaf remains green",
+    "Leaves appear white due to deficiencies",
     "l",
     8
 );
 
+-- nutrient 9 BORON--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
     33,
-    "Severe deficiency causes the leaves to turn white",
-    "l",
-    8
-);
-
--- nutrient 9 --
-INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
-(
-    34,
     "Old leaves turn yellow in appearance",
     "l",
     9
@@ -283,7 +275,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    35,
+    34,
     "Corky areas",
     "f",
     9
@@ -291,7 +283,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    36,
+    35,
     "Are brittle and often break",
     "p",
     9
@@ -299,16 +291,16 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    37,
+    36,
     "Short and thickened necrotic tips",
     "r",
     9
 );
 
--- nutrient 10 --
+-- nutrient 10 CALCIUM--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    38,
+    37,
     "Distorted and yellow foliage developed on leaves",
     "l",
     10
@@ -316,7 +308,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    39,
+    38,
     "Leaves lacks color",
     "l",
     10
@@ -324,7 +316,7 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    40,
+    39,
     "Leaves curls inwards",
     "l",
     10
@@ -332,24 +324,24 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    41,
-    "Development of blossomend rot on fruit",
+    40,
+    "Usually rots are developed on the fruits",
     "f",
     10
 );
 
--- nutrient 11 --
+-- nutrient 11 COPPER--
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    42,
-    "Young leaves turn bluish green",
+    41,
+    "Young leaves turn bluish-green",
     "l",
     11
 );
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    43,
+    42,
     "Leaves and petioles curl upwards",
     "l",
     11
@@ -357,8 +349,8 @@ INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_
 
 INSERT INTO nutrientsymptom (sym_id, sym_content, sym_object_type, sym_nutrient_id) VALUES 
 (
-    44,
-    "Chlorotic and stunted plants",
+    43,
+    "Stunted and Chlorotic plants",
     "t",
     11
 );

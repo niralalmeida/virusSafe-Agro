@@ -177,7 +177,7 @@ INSERT INTO nutrientfactor (factor_id, factor_content, factor_nutrient_id) VALUE
 INSERT INTO nutrientfactor (factor_id, factor_content, factor_nutrient_id) VALUES 
 (
     25,
-    "Soils with high copper, manganese, and zinc",
+    "Soils with high manganese, copper, and zinc make the situation worse",
     8
 );
 
@@ -228,7 +228,7 @@ INSERT INTO nutrientfactor (factor_id, factor_content, factor_nutrient_id) VALUE
 INSERT INTO nutrientfactor (factor_id, factor_content, factor_nutrient_id) VALUES 
 (
     32,
-    "Drought conditions",
+    "Deficiency is made worse by drought conditions",
     10
 );
 

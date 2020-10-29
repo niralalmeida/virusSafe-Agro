@@ -92,7 +92,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     12,
-    "Difficult to identify target spot on tomato fruit in early stage",
+    "Difficult to identify target spots on tomato fruit in early stage",
     "f",
     2
 );
@@ -109,7 +109,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     14,
-    "Leaves have small (<1/8 inch), brown, circular spots encircling a yellow halo",
+    "Small,brownish circular spots are observed on the leaves",
     "l",
     3
 );
@@ -117,7 +117,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     15,
-    "Sunken upper leaf surface",
+    "The upper leaf surface is sunken",
     "l",
     3
 );
@@ -125,7 +125,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     16,
-    "pots are about 3 mm and usually found on tips and margins of leaves",
+    "The spots are found on margins and tips of leaves, which are usually 3mm in size",
     "a",
     3
 );
@@ -216,7 +216,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     27,
-    "Black or brown irregular shape spots, which grow rapidly forming a white cottony growth",
+    "Black or brown asymmetrical shape spots, which grow quickly forming a white cottony texture growth",
     "l",
     5
 );
@@ -224,7 +224,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     28,
-    "Rapid growth of spots and patches on leaves with a furry white growth on the underside",
+    "Rapid growth of the spots and patches on leaves with a furry white growth on the bottom",
     "a",
     5
 );
@@ -232,7 +232,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     29,
-    "Water soaked appearance in leaf, stem, and fruit lesions",
+    "Water-soaked appearance in leaf, stem, and fruit lesions",
     "a",
     5
 );
@@ -249,7 +249,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     31,
-    "Pale green or yellowish spots on the upper leaf surface",
+    "Pale yellow and green spots are visible on the upper leaf surface",
     "l",
     6
 );
@@ -257,7 +257,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     32,
-    "Olive, green mold is visible on the lower leaf surface",
+    "Irregular patches and dried leaves",
     "l",
     6
 );
@@ -265,31 +265,16 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     33,
-    "Yellow spots",
+    "Green mold is easily seen on the lower end of the leaf",
     "a",
     6
 );
+
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
     34,
-    "Irregular patches",
-    "a",
-    6
-);
-
-INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
-(
-    35,
-    "Dried leaves",
-    "a",
-    6
-);
-
-INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
-(
-    36,
-    "Dark,leathery, rot at the stem ends are the common symptoms seen on fruits",
+    "Dark leathery rot is present on the stem ends",
     "f",
     6
 );
@@ -297,7 +282,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 -- virus 7 --
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    37,
+    35,
     "Small dark spots are observed near the ground of the plant",
     "l",
     7
@@ -305,39 +290,32 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
+    36,
+    "Brownish round spots are observed on leaves, which grow up to half- inch in diameter",
+    "l",
+    7
+);
+
+INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
+(
+    37,
+    "Diseased leaves turn brown and fall off",
+    "l",
+    7
+);
+
+INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
+(
     38,
-    "Round and brown leaf spots, which grows up to half inch in diameter",
-    "l",
-    7
-);
-
-INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
-(
-    39,
-    "Infected leaves turn brown and fall off",
-    "l",
-    7
-);
-
-INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
-(
-    40,
-    "Dry brown areas with dark brown concentric circles",
+    "Black leathery spots are observed on fruits",
     "a",
     7
 );
 
-INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
-(
-    41,
-    "Leathery and black spots on fruits",
-    "f",
-    7
-);
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    42,
+    39,
     "Infected fruit often falls off the plant",
     "f",
     7
@@ -346,15 +324,15 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 -- virus 8 --
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    43,
-    "Yellow mottled or stippled areas can be found on underside of leaves",
+    40,
+    "Yellow mottled or stippled areas can be found on the bottom of the leaves",
     "l",
     8
 );
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    44,
+    41,
     "Damage can first be observed at the leaf veins",
     "l",
     8
@@ -362,7 +340,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    45,
+    42,
     "Distorted leaves",
     "l",
     8
@@ -370,7 +348,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    46,
+    43,
     "Whitening or spotting of leaves",
     "l",
     8
@@ -378,16 +356,16 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    47,
-    "The feeding of mites on plant cells leads to extensive damage to leaves, fruits and flower",
+    44,
+    "Extensive damage to leaves, fruits, and the flower is caused when mites feed on plant cells",
     "a",
     8
 );
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    48,
-    "Leaves turn yellow and drop",
+    45,
+    "The leaves drop after they turn yellow",
     "a",
     8
 );
@@ -395,7 +373,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 -- virus 9 --
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    49,
+    46,
     "Lower leaves are affected first, later it moves up the plant",
     "l",
     9
@@ -403,7 +381,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    50,
+    47,
     "The spots are smaller in size (1/16 to 18 inches)",
     "l",
     9
@@ -411,7 +389,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    51,
+    48,
     "Diameter of spots is 1.6 to 3.2 mm in diameter",
     "l",
     9
@@ -419,7 +397,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    52,
+    49,
     "Usually occurs in older leaves",
     "l",
     9
@@ -427,7 +405,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    53,
+    50,
     "May also appear on blossoms, calyxes, and stems",
     "l",
     9
@@ -435,7 +413,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    54,
+    51,
     "Leaves appear yellow, then brown and eventually fall off",
     "a",
     9
@@ -443,7 +421,7 @@ INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VA
 
 INSERT INTO virussymptom (sym_id, sym_content, sym_object_type, sym_virus_id) VALUES 
 (
-    55,
+    52,
     "The virus rarely affects fruits",
     "f",
     9

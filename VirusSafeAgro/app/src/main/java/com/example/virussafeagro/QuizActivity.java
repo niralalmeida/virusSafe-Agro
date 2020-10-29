@@ -188,7 +188,9 @@ public class QuizActivity extends AppCompatActivity {
 
 //////////////////////////////// test random final list //////////////////////////////////////////////////////
     private List<ChoiceQuestionModel> getRandomFinalChoiceQuestionModelList() {
-        List<ChoiceQuestionModel> finalList = choiceQuestionModelList;
+//        List<ChoiceQuestionModel> finalList = choiceQuestionModelList;
+        List<ChoiceQuestionModel> finalList = new ArrayList<>();
+
         return finalList;
     }
 

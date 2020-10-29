@@ -68,14 +68,6 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
     9,
-    "Remove branches from lower part of the plants for better airflow",
-    "n",
-    2
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    10,
     "Chemical products used:Mancozeb;copper oxychloride;chlorothalonil",
     "c",
     2
@@ -83,8 +75,16 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
+    10,
+    "Plants should be treated when the first spots are seen",
+    "c",
+    2
+);
+
+INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
+(
     11,
-    "Plants should be treated when the first spots are seen and should be sprayed at 10-14 days interval for three-four weeks",
+    "Sprayed at 10-14 days interval for three-four weeks",
     "c",
     2
 );
@@ -125,22 +125,6 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
     16,
-    "Avoid high pressure sprays",
-    "n",
-    3
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    17,
-    "Rotate between crops",
-    "n",
-    3
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    18,
     "Remove crop debris at the end of the growing season",
     "n",
     3
@@ -148,39 +132,34 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    19,
+    17,
     "Disinfect pruners and tools by dipping in commercial sanitizer",
     "n",
+    3
+);
+
+
+
+INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
+(
+    18,
+    "Chemical products used: Copper fungicides or Copper plus mancozeb",
+    "c",
+    3
+);
+
+
+INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
+(
+    19,
+    "Sprayed at 7-10 days interval in the field",
+    "c",
     3
 );
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
     20,
-    "Copper fungicides or",
-    "c",
-    3
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    21,
-    "Copper plus mancozeb",
-    "c",
-    3
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    22,
-    "Chemicals should be sprayed at 7-10 days interval in the field",
-    "c",
-    3
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    23,
     "Spray early when plants are young",
     "c",
     3
@@ -189,7 +168,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 -- virus 4 --
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    24,
+    21,
     "Manage flies",
     "n",
     4
@@ -197,7 +176,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    25,
+    22,
     "Remove old crop debris and destroy them",
     "n",
     4
@@ -205,7 +184,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    26,
+    23,
     "Silverleaf whiteflies can be bought under control using potent chemicals",
     "c",
     4
@@ -214,7 +193,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 -- virus 5 --
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    27,
+    24,
     "Rotate crops, avoid planting tomato plants on same land",
     "n",
     5
@@ -222,8 +201,33 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
+    25,
+    "Destroy infected plants",
+    "n",
+    5
+);
+
+INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
+(
+    26,
+    "Maintain spacing between plants to ensure air movement",
+    "n",
+    5
+);
+
+INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
+(
+    27,
+    "Remove branches from lower parts of plants",
+    "n",
+    5
+);
+
+
+INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
+(
     28,
-    "Expensive fungicides should be used to maintain control",
+    "Preventive sprays: Copper product, chlorothalonil, mancozeb",
     "c",
     5
 );
@@ -231,39 +235,16 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
     29,
-    "Spray plants with fungicides if unsure about the symptoms, Preventive sprays should be used before symptoms are seen",
-    "c",
-    5
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    30,
-    "Preventive sprays:Copper product;Chlorothalonil;Mancozeb",
-    "c",
-    5
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    31,
-    "Systemic products such as strobilurin, dimethomorth, cymoxanil,and metalaxyl",
+    "Systemic products such as strobilurin, dimethomorth, cymoxanil, and metalaxyl should be used",
     "c",
     5
 );
 
 -- virus 6 --
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    32,
-    "Remove infected lower leaves",
-    "n",
-    6
-);
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    33,
+    30,
     "Burn or dig remains of infected plants",
     "n",
     6
@@ -271,23 +252,23 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    34,
-    "Pruning to increase ventilation",
+    31,
+    "Diseased leaves should be removed",
     "n",
     6
 );
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    35,
-    "Use fungicides to give adequate control",
-    "c",
+    32,
+    "Ventilation between leaves can be improved by using pruning practice",
+    "n",
     6
 );
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    36,
+    33,
     "Chemical products which can be used:Mancozeb;Copper oxychloride;Chlorothalonil",
     "c",
     6
@@ -295,16 +276,24 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    37,
-    "Treatment should start when yellow spots are seen",
+    34,
+    "Plants should be treated when yellow spots are visible",
     "c",
     6
 );
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    38,
-    "The leaves should be sprayed at an 10-14 day intervals",
+    35,
+    "The leaves should be sprayed at a 10-14-day intervals",
+    "c",
+    6
+);
+
+INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
+(
+    36,
+    "Use fungicides to give adequate control",
     "c",
     6
 );
@@ -312,8 +301,24 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 -- virus 7 --
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
+    37,
+    "Destroy diseased plants",
+    "n",
+    7
+);
+
+INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
+(
+    38,
+    "Use pathogen free-seed",
+    "n",
+    7
+);
+
+INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
+(
     39,
-    "Use pathogen free seed",
+    "Blight remains active for a year, so it is recommended to rotate crops",
     "n",
     7
 );
@@ -321,7 +326,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
     40,
-    "Blight remains active for a year, so it isrecommended to rotate crops",
+    "Avoid overcrowding of plants so that air can pass through the leaves",
     "n",
     7
 );
@@ -329,7 +334,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
     41,
-    "Avoid overcrowding of plants so that air can pass through the leaves and keep them dry",
+    "Water the soil instead of plants",
     "n",
     7
 );
@@ -337,31 +342,15 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
     42,
-    "Water the spoil and not the plants",
-    "n",
-    7
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    43,
-    "Destroy infected plants",
-    "n",
-    7
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    44,
-    "Use effective fungicides",
+    "Fungicides include: Mancozeb, Maneb, Chlorothalonil, Copper (Kocide), Penthiopyrad, Boscalid, Pyraclostrobin",
     "c",
     7
 );
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    45,
-    "Fungicides include:Mancozeb;Maneb;Chlorothalonil;Copper (Kocide);Penthiopyrad;Boscalid;Pyraclostrobin",
+    43,
+    "Fungicides should be applied at the fruit and reapplied every 7-14 days",
     "c",
     7
 );
@@ -369,7 +358,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 -- virus 8 --
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    46,
+    44,
     "Avoid weedy fields",
     "n",
     8
@@ -377,7 +366,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    47,
+    45,
     "Avoid over fertilising",
     "n",
     8
@@ -385,7 +374,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    48,
+    46,
     "Miticide spray should be applied if mites are present on 50% of the leaves",
     "c",
     8
@@ -393,7 +382,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    49,
+    47,
     "Insecticides should be applied only as needed",
     "c",
     8
@@ -401,40 +390,17 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    50,
-    "Usage of pesticides is recommended, which will have minimal impact on useful insects",
+    48,
+    "Spraying chemicals to plants should be avoided in hot weathers as they may cause chemical injuries",
     "c",
     8
 );
 
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    51,
-    "Chemical application should be done at the undersides of the leaves",
-    "c",
-    8
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    52,
-    "One effective application of chemical is sufficient",
-    "c",
-    8
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    53,
-    "Spraying chemicals to plants should be  avoided in hot weathers as they may cause chemical injuries",
-    "c",
-    8
-);
 
 -- virus 9 --
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    54,
+    49,
     "Remove plants with symptoms promptly and destroy infected areas",
     "n",
     9
@@ -442,7 +408,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    55,
+    50,
     "Use crop rotation",
     "n",
     9
@@ -450,7 +416,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    56,
+    51,
     "Use disease free seeds",
     "n",
     9
@@ -458,7 +424,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    57,
+    52,
     "Overhead watering should be avoided",
     "n",
     9
@@ -466,7 +432,7 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    58,
+    53,
     "Enough room should be provided for air circulation",
     "n",
     9
@@ -474,23 +440,15 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    59,
-    "Best to plant tomatoes in different location each other",
-    "n",
-    9
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    60,
-    "The plant can be protected by spraying copper oxychloride",
+    54,
+    "Spray copper oxychloride",
     "c",
     9
 );
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    61,
+    55,
     "Use fungicidal sprays",
     "c",
     9
@@ -498,24 +456,16 @@ INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    62,
-    "The infected leaves will not be protected by fungicides, but they will protect new leaves from becoming infected",
+    56,
+    "Chemicals: Maneb, Chlorothalonil",
     "c",
     9
 );
 
 INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
 (
-    63,
-    "For effective results the chemicals must be applied at 7-10 day intervals",
-    "c",
-    9
-);
-
-INSERT INTO virusprevention (pre_id, pre_content, pre_type, pre_virus_id) VALUES 
-(
-    64,
-    "Most commonly used chemicals:Maneb;Chlorothalonil",
+    57,
+    "Chemicals must be applied at 7-10-day intervals",
     "c",
     9
 );
