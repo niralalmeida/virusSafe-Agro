@@ -35,6 +35,8 @@ public class MyJsonParser {
     public final static String CONNECTION_ERROR_MESSAGE = "Fail to connect to the server! Something wrong with the network!";
     public static String PLACE_API_ERROR_MESSAGE = "Fail to get the pesticide result! Something wrong with the Google service!\nThe status code is \"";
 
+    public final static String SERVER_STOP_MESSAGE = "server stop";
+
     // get data to store viruses into virus model list
     public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
         List<VirusModel> virusModelInfoList = new ArrayList<>();
@@ -332,6 +334,8 @@ public class MyJsonParser {
                     tomatoFruitDetectResultModel.setTomatoDetectResultImageStringURL(tomatoDetectJsonObject.getString("image"));
                 }
             }
+        } else {
+            tomatoFruitDetectResultModel.setTomatoDetectResultImageStringURL(SERVER_STOP_MESSAGE);
         }
         return tomatoFruitDetectResultModel;
     }

@@ -269,8 +269,21 @@ public class TomatoCameraActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(TomatoFruitDetectResultModel resultTomatoFruitDetectResultModel) {
             if (resultTomatoFruitDetectResultModel != null) {
-                // set image type
-                showDetectTomatoImageResult(resultTomatoFruitDetectResultModel);
+                if (!resultTomatoFruitDetectResultModel.getTomatoDetectResultImageStringURL().equals(MyJsonParser.SERVER_STOP_MESSAGE)) {
+                    // show the results
+                    showDetectTomatoImageResult(resultTomatoFruitDetectResultModel);
+                }
+                // server stops working
+                else {
+                    // set image
+                    tomatoCameraImageView.setImageResource(R.drawable.error);
+                    // set error result text
+                    tomatoCountResultTextView.setText("Server stopped");
+                    // move the image top
+                    MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_tomato_detect_result, R.id.end_show_tomato_detect_result, 200);
+                    // set RetakeCameraInResultCardView On Click Listener
+                    setRetakeCameraInResultCardViewOnClickListener();
+                }
             }
             // something wrong with the ML model
             else {

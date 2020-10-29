@@ -134,7 +134,7 @@
             app:layout_constraintTop_toBottomOf="@id/cv_gallery_retake_tomato_camera_activity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imgbtn_tomato_camera_activity"
-            android:text="photos"
+            android:text="Photos"
             android:textColor="@color/colorWhite"/>
 
         <!-- tip/open camera button -->
