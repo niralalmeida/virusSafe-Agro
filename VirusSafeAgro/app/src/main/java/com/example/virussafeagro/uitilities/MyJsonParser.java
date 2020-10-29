@@ -36,6 +36,7 @@ public class MyJsonParser {
     public static String PLACE_API_ERROR_MESSAGE = "Fail to get the pesticide result! Something wrong with the Google service!\nThe status code is \"";
 
     public final static String SERVER_STOP_MESSAGE = "server stop";
+    public final static String WRONG_IMAGE = "wrong image";
 
     // get data to store viruses into virus model list
     public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
@@ -307,11 +308,16 @@ public class MyJsonParser {
 
     public static String imageCheckFeedbackJsonParser(String resultText) throws JSONException {
         String feedBack = "";
-        if (!resultText.equals("[]")) {
+        if (resultText.equals("[]") || resultText.equals("")) {
+            feedBack = SERVER_STOP_MESSAGE;
+        } else {
             JSONObject predictionJsonObject = new JSONObject(resultText);
             Iterator<String> keysIterator = predictionJsonObject.keys();
-            if (keysIterator.next().equals("prediction")) {
+            String keyName = keysIterator.next();
+            if (keyName.equals("prediction")) {
                 feedBack = predictionJsonObject.getString("prediction");
+            } else if (keyName.equals("Response") || keyName.equals("Message")){
+                feedBack = WRONG_IMAGE;
             } else {
                 feedBack = "json error";
             }

@@ -68,9 +68,10 @@ public class DetectActivity extends AppCompatActivity {
     private ImageView cameraImageView;
     private TextView cameraTextView;
     private ImageView uploadImageView;
-    private LinearLayout resultLinearLayout;
     private TextView resultTextView;
     private TextView illTitleTextView;
+    private View resultTagView;
+    private CardView resultCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,9 +115,10 @@ public class DetectActivity extends AppCompatActivity {
         this.cameraImageView = findViewById(R.id.img_camera_detect_activity);
         this.cameraTextView = findViewById(R.id.tv_camera_detect_activity);
         this.uploadImageView = findViewById(R.id.img_leaf_for_scanning_detect_activity);
-        this.resultLinearLayout = findViewById(R.id.ll_feedback_detect_activity);
         this.resultTextView = findViewById(R.id.tv_feedback_detect_activity);
         this.illTitleTextView = findViewById(R.id.tv_ill_title_detect_activity);
+        this.resultTagView = findViewById(R.id.v_tag_feedback_detect_activity);
+        this.resultCardView = findViewById(R.id.cv_feedback_detect_activity);
     }
 
     private void initializeData() {
@@ -262,14 +264,18 @@ public class DetectActivity extends AppCompatActivity {
             new Handler().postDelayed(() -> {
                 uploadImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 // show the result
-                if (resultCheckFeedback.equals("json error")){
-                    resultLinearLayout.setBackgroundResource(R.drawable.shape_tile_wrong_text_container_check_result);
+                if (resultCheckFeedback.equals("json error") || resultCheckFeedback.equals(MyJsonParser.WRONG_IMAGE)){
+                    resultTagView.setBackgroundResource(R.color.wrongAnswer);
                     resultTextView.setText(getResources().getText(R.string.text_result_error));
-                } else if (resultCheckFeedback.equals("healthy")){
-                    resultLinearLayout.setBackgroundResource(R.drawable.shape_tile_healthy_text_container_check_result);
+                } else if (resultCheckFeedback.equals(MyJsonParser.SERVER_STOP_MESSAGE)){
+                    resultTagView.setBackgroundResource(R.color.colorBlack);
+                    resultCardView.setCardBackgroundColor(getResources().getColor(R.color.colorBlack));
+                    resultTextView.setText("The server has been stopped!");
+                }else if (resultCheckFeedback.equals("healthy")){
+                    resultTagView.setBackgroundResource(R.color.colorPrimaryDark);
                     resultTextView.setText(getResources().getText(R.string.text_result_healthy));
                 } else {
-                    resultLinearLayout.setBackgroundResource(R.drawable.shape_tile_ill_text_container_check_result);
+                    resultTagView.setBackgroundResource(R.color.iconVirus);
                     illTitleTextView.setVisibility(View.VISIBLE);
                     String virusString = resultCheckFeedback.replace("_", " ");
                     resultTextView.setText(virusString);

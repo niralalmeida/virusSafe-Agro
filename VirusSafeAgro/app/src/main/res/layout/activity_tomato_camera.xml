@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:clipChildren="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDarkBG"
@@ -70,7 +71,6 @@
         <!-- close button -->
         <ImageButton
             android:id="@+id/btn_close_tomato_camera_activity"
-            android:layout_alignEnd="@id/nsv_all_view_detect_activity"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:padding="10dp"
@@ -327,7 +327,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="15dp"
                 android:orientation="horizontal">
@@ -336,6 +335,7 @@
                     android:id="@+id/tv_good_count_title_tomato_detect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/tv_good_count_no_tomato_detect"
                     app:layout_constraintStart_toStartOf="parent"
@@ -348,6 +348,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -361,6 +362,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
                     app:layout_constraintTop_toBottomOf="@id/tv_good_count_no_tomato_detect"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -380,7 +382,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-
         <!-- bad result -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_bad_result_tomato_detect"
@@ -399,7 +400,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="15dp"
                 android:orientation="horizontal">
@@ -408,6 +408,7 @@
                     android:id="@+id/tv_bad_count_title_tomato_detect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/tv_bad_count_no_tomato_detect"
                     app:layout_constraintStart_toStartOf="parent"
@@ -420,6 +421,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -432,6 +434,7 @@
                     android:id="@+id/tv_bad_count_percentage_tomato_detect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     app:layout_constraintTop_toBottomOf="@id/tv_bad_count_no_tomato_detect"
                     app:layout_constraintBottom_toBottomOf="parent"
