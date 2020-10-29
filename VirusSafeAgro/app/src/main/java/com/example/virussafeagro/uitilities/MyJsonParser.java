@@ -330,6 +330,14 @@ public class MyJsonParser {
                     return null;
                 } else if (keyName.equals("count")) {
                     tomatoFruitDetectResultModel.setTomatoCount(tomatoDetectJsonObject.getInt("count"));
+                } else if (keyName.equals("bad_count")) {
+                    tomatoFruitDetectResultModel.setBadCount(tomatoDetectJsonObject.getInt("bad_count"));
+                } else if (keyName.equals("bad_percentage")) {
+                    tomatoFruitDetectResultModel.setBadCountPercentage(tomatoDetectJsonObject.getInt("bad_percentage"));
+                } else if (keyName.equals("good_count")) {
+                    tomatoFruitDetectResultModel.setGoodCount(tomatoDetectJsonObject.getInt("good_count"));
+                } else if (keyName.equals("good_percentage")) {
+                    tomatoFruitDetectResultModel.setGoodCountPercentage(tomatoDetectJsonObject.getInt("good_percentage"));
                 } else if (keyName.equals("image")) {
                     tomatoFruitDetectResultModel.setTomatoDetectResultImageStringURL(tomatoDetectJsonObject.getString("image"));
                 }
