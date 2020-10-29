@@ -254,17 +254,27 @@ public class ToolkitFragment extends Fragment {
     // factors
     private void setFactorsTileOnClickListener() {
         this.factorsLinearLayout.setOnClickListener(llView -> {
-            FactorsFragment factorsFragment = new FactorsFragment();
+//            FactorsFragment factorsFragment = new FactorsFragment();
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                factorsFragment.setSharedElementEnterTransition(
+//                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+//            }
+//            mainActivity.getSupportFragmentManager().beginTransaction()
+//                    .addSharedElement(factorsLinearLayout, ViewCompat.getTransitionName(factorsLinearLayout))
+//                    .replace(R.id.fl_fragments, factorsFragment)
+//                    .addToBackStack(null)
+//                    .commit();
+
+            EnvironmentConditionFragment environmentConditionFragment = new EnvironmentConditionFragment();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                factorsFragment.setSharedElementEnterTransition(
+                environmentConditionFragment.setSharedElementEnterTransition(
                         TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
             }
             mainActivity.getSupportFragmentManager().beginTransaction()
                     .addSharedElement(factorsLinearLayout, ViewCompat.getTransitionName(factorsLinearLayout))
-                    .replace(R.id.fl_fragments, factorsFragment)
+                    .replace(R.id.fl_fragments, environmentConditionFragment)
                     .addToBackStack(null)
                     .commit();
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new FactorsFragment(), AppResources.FRAGMENT_TAG_FACTORS);
         });
     }
 

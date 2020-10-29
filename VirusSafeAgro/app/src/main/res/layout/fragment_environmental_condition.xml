@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="35dp"
-        android:transitionName="@string/ec_transition_name">
+        android:layout_marginBottom="50dp"
+        android:transitionName="@string/factor_transition_name">
 
         <!-- card1 -->
         <androidx.cardview.widget.CardView

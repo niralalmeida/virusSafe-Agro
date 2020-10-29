@@ -27,6 +27,7 @@
     <string name="fragment_virus_quiz">Take Quiz</string>
     <string name="fragment_pesticide_store_map">Pesticide Map</string>
     <string name="fragment_timing_of_cause">Season</string>
+    <string name="fragment_ec">Factors</string>
     <string name="fragment_tomato_tip">Growing Tips</string>
     <string name="fragment_chemical_control">Chemical</string>
     <string name="fragment_non_chemical_control">Non Chemical</string>

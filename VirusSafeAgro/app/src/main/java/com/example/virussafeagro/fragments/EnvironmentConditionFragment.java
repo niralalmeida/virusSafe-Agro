@@ -55,7 +55,7 @@ public class EnvironmentConditionFragment extends Fragment {
         // get main activity
         this.mainActivity = (MainActivity) getActivity();
         // set title
-        this.mainActivity.getTitleTextView().setText(R.string.fragment_timing_of_cause);
+        this.mainActivity.getTitleTextView().setText(R.string.fragment_ec);
         // show back button
         MainActivity.showTopBarBackButton((MainActivity) requireActivity());
 
