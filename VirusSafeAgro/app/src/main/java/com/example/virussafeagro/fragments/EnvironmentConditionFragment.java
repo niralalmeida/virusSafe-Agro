@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
+import com.example.virussafeagro.uitilities.FragmentOperator;
 
 public class EnvironmentConditionFragment extends Fragment {
     private MainActivity mainActivity;
@@ -35,6 +37,7 @@ public class EnvironmentConditionFragment extends Fragment {
     private RelativeLayout card3hideRelativeLayout;
     private RelativeLayout card4hideRelativeLayout;
     private RelativeLayout card5hideRelativeLayout;
+    private Button controlStrategyButton;
 
     // tools
     private boolean isCard1Open;
@@ -71,6 +74,9 @@ public class EnvironmentConditionFragment extends Fragment {
 
         // show all cards
         this.setCardButtonOnClickListeners();
+
+        // set ControlStrategyButton On Click Listener
+        this.setControlStrategyButtonOnClickListener();
     }
 
     private void initializeViews() {
@@ -89,8 +95,10 @@ public class EnvironmentConditionFragment extends Fragment {
         this.card3hideRelativeLayout = view.findViewById(R.id.rl_card3_hide_ec);
         this.card4hideRelativeLayout = view.findViewById(R.id.rl_card4_hide_ec);
         this.card5hideRelativeLayout = view.findViewById(R.id.rl_card5_hide_ec);
+        this.controlStrategyButton = view.findViewById(R.id.btn_control_strategy_ec);
     }
 
+    // set CardButton On Click Listeners
     private void setCardButtonOnClickListeners() {
         // card 1
         this.card1ImageButton.setOnClickListener(card1ImageButtonView -> {
@@ -165,6 +173,16 @@ public class EnvironmentConditionFragment extends Fragment {
                 card5hideRelativeLayout.setVisibility(View.VISIBLE);
                 card5ImageButton.setImageResource(R.drawable.arrow_up);
             }
+        });
+    }
+
+    // set ControlStrategyButton On Click Listener
+    private void setControlStrategyButtonOnClickListener() {
+        this.controlStrategyButton.setOnClickListener(csb -> {
+            // set opening the control strategy page request
+            ToolkitFragment.hasOpeningControlStrategyRequest = true;
+            // back to toolkit page
+            FragmentOperator.backToLastFragment(mainActivity);
         });
     }
 }

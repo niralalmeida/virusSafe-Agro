@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,7 @@ public class ToolkitFragment extends Fragment {
     // tools
     private static final int PERMISSIONS_REQUEST_CAMERA_REQUEST_CODE = 99;
     private static final int PERMISSIONS_REQUEST_LOCATION_REQUEST_CODE = 66;
+    public static boolean hasOpeningControlStrategyRequest;
 
     public ToolkitFragment() {
     }
@@ -85,6 +87,18 @@ public class ToolkitFragment extends Fragment {
         this.allTilesOnClickListener();
 
         return this.view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(hasOpeningControlStrategyRequest){
+            hasOpeningControlStrategyRequest = false;
+            new Handler().postDelayed(() -> {
+                openControlStrategiesPage();
+            }, 500);
+        }
     }
 
     private void initializeViews() {
@@ -171,17 +185,21 @@ public class ToolkitFragment extends Fragment {
     // control strategies
     private void setControlStrategiesOnClickListener() {
         this.controlStrategiesLinearLayout.setOnClickListener(llView -> {
-            ControlStrategiesFragment controlStrategiesFragment = new ControlStrategiesFragment();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                controlStrategiesFragment.setSharedElementEnterTransition(
-                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
-            }
-            mainActivity.getSupportFragmentManager().beginTransaction()
-                    .addSharedElement(controlStrategiesLinearLayout, ViewCompat.getTransitionName(controlStrategiesLinearLayout))
-                    .replace(R.id.fl_fragments, controlStrategiesFragment)
-                    .addToBackStack(null)
-                    .commit();
+            openControlStrategiesPage();
         });
+    }
+
+    private void openControlStrategiesPage() {
+        ControlStrategiesFragment controlStrategiesFragment = new ControlStrategiesFragment();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            controlStrategiesFragment.setSharedElementEnterTransition(
+                    TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+        }
+        mainActivity.getSupportFragmentManager().beginTransaction()
+                .addSharedElement(controlStrategiesLinearLayout, ViewCompat.getTransitionName(controlStrategiesLinearLayout))
+                .replace(R.id.fl_fragments, controlStrategiesFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     // pesticide stores
@@ -254,16 +272,6 @@ public class ToolkitFragment extends Fragment {
     // factors
     private void setFactorsTileOnClickListener() {
         this.factorsLinearLayout.setOnClickListener(llView -> {
-//            FactorsFragment factorsFragment = new FactorsFragment();
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                factorsFragment.setSharedElementEnterTransition(
-//                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
-//            }
-//            mainActivity.getSupportFragmentManager().beginTransaction()
-//                    .addSharedElement(factorsLinearLayout, ViewCompat.getTransitionName(factorsLinearLayout))
-//                    .replace(R.id.fl_fragments, factorsFragment)
-//                    .addToBackStack(null)
-//                    .commit();
 
             EnvironmentConditionFragment environmentConditionFragment = new EnvironmentConditionFragment();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

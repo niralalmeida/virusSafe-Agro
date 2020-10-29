@@ -393,7 +393,7 @@
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
                                     android:tint="@color/iconFactor"
-                                    android:src="@drawable/weather"/>
+                                    android:src="@drawable/weather_ec2"/>
 
                             </LinearLayout>
 

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="80dp"
         android:transitionName="@string/factor_transition_name">
 
         <!-- card1 -->
@@ -480,6 +480,24 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="15sp"/>
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_control_strategy_ec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toBottomOf="@id/rl_note_ec"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:background="@drawable/ripple_btn_control_strategies_ec"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Control Strategies" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
