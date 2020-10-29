@@ -173,11 +173,11 @@ public class MyJsonParser {
                     List<String> correctAnswerList = new ArrayList<>();
                     if (choiceQuestionTypeLetter.equals("s")) { // single choice
                         choiceQuestionType = "single";
-                        correctAnswerList.add(answer);
+                        correctAnswerList.add(answer.toUpperCase());
                     } else { // multiple choice
                         for (int k = 0; k < answer.length(); k++) {
                             String answerItem = answer.substring(k, k + 1);
-                            correctAnswerList.add(answerItem);
+                            correctAnswerList.add(answerItem.toUpperCase());
                         }
                         choiceQuestionType = "multiple";
                     }
@@ -259,12 +259,12 @@ public class MyJsonParser {
             if (resultText.substring(0, 1).equals("{") && (!resultText.equals("{}"))) {
                 // get result Json Object
                 JSONObject resultJsonObject = new JSONObject(resultText);
-                // check "QUESTION 1" to "QUESTION 5" keys
+                // check "QUESTION 1" to "QUESTION 10" keys
                 Iterator<String> resultKeys = resultJsonObject.keys();
                 while (resultKeys.hasNext()) {
                     String resultKeyString = resultKeys.next();
                     // find questions' keys
-                    for (int questionNo = 1; questionNo <= 5; questionNo++) {
+                    for (int questionNo = 1; questionNo <= 10; questionNo++) {
                         if (resultKeyString.equals("QUESTION " + questionNo)) {
                             // get question json object
                             JSONObject questionJsonObject = resultJsonObject.getJSONObject("QUESTION " + questionNo);

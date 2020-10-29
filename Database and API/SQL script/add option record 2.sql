@@ -131,7 +131,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     156,
     'a',
     'Corynespora cassiicola',
-    6
+    16
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -139,7 +139,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     157,
     'b',
     'Alternaria tomatophila',
-    6
+    16
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -147,7 +147,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     158,
     'c',
     'Phytophthora infestans',
-    6
+    16
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -155,7 +155,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     159,
     'd',
     'Septoria lycopersici',
-    6
+    16
 );
 
  --     -VIRUS 2: QUESTION 7 --      --  
@@ -165,7 +165,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     160,
     'a',
     'Fruit spot',
-    7
+    17
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -173,7 +173,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     269,
     'b',
     'Leaf spot',
-    7
+    17
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -181,7 +181,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     161,
     'c',
     'Stem spot',
-    7
+    17
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -189,7 +189,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     162,
     'd',
     'None of the above',
-    7
+    17
 );
 
  --     -VIRUS 2: QUESTION 8 --      --  
@@ -199,7 +199,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     163,
     'a',
     'True',
-    8
+    18
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -207,7 +207,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     164,
     'b',
     'False',
-    8
+    18
 );
 
  --     -VIRUS 2: QUESTION 9 --      --  
@@ -217,7 +217,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     165,
     'a',
     'True',
-    9
+    19
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -225,7 +225,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     166,
     'b',
     'False',
-    9
+    19
 );
 
  --     -VIRUS 2: QUESTION 10 --      --  
@@ -235,7 +235,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     167,
     'a',
     'True',
-    10
+    20
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -243,7 +243,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     168,
     'b',
     'False',
-    10
+    20
 );
 
  --           -VIRUS 3: BACTERIAL SPOT  --          --  
@@ -255,7 +255,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     169,
     'a',
     'True',
-    6
+    26
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -263,7 +263,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     170,
     'b',
     'False',
-    6
+    26
 );
 
 
@@ -274,7 +274,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     171,
     'a',
     'Xanthomonas vesicatoria',
-    7
+    27
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -282,7 +282,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     172,
     'b',
     'Alternaria tomatophila',
-    7
+    27
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -290,7 +290,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     173,
     'c',
     'Phytophthora infestans',
-    7
+    27
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -298,7 +298,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     174,
     'd',
     'Septoria lycopersici',
-    7
+    27
 );
 
  --     -VIRUS 3: QUESTION 8 --      --  
@@ -308,7 +308,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     175,
     'a',
     'True',
-    8
+    28
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -316,7 +316,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     176,
     'b',
     'False',
-    8
+    28
 );
 
  --     -VIRUS 3: QUESTION 9 --      --  
@@ -326,7 +326,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     177,
     'a',
     'Hot water treatment',
-    9
+    29
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -334,7 +334,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     178,
     'b',
     'Cold water treatment',
-    9
+    29
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -342,7 +342,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     179,
     'c',
     'None of the above',
-    9
+    29
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -350,7 +350,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     180,
     'd',
     'Both a and b',
-    9
+    29
 );
 
 
@@ -362,7 +362,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     181,
     'a',
     'True',
-    10
+    30
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -370,7 +370,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     182,
     'b',
     'False',
-    10
+    30
 );
 
  --           -VIRUS 4: Tomato yellow leaf curl virus  --          --  
@@ -382,7 +382,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     183,
     'a',
     'True',
-    6
+    36
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -390,7 +390,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     184,
     'b',
     'False',
-    6
+    36
 );
 
 
@@ -401,7 +401,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     185,
     'a',
     '23-24 days',
-    7
+    37
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -409,7 +409,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     186,
     'b',
     '10-21 days',
-    7
+    37
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -417,7 +417,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     187,
     'c',
     '25-26 days',
-    7
+    37
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -425,7 +425,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     188,
     'd',
     'None of the above',
-    7
+    37
 );
 
  --     -VIRUS 4: QUESTION 8 --      --  
@@ -435,7 +435,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     189,
     'a',
     'True',
-    8
+    38
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -443,7 +443,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     190,
     'b',
     'False',
-    8
+    38
 );
 
  --     -VIRUS 4: QUESTION 9 --      --  
@@ -453,7 +453,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     191,
     'a',
     'True',
-    9
+    39
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -461,7 +461,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     192,
     'b',
     'False',
-    9
+    39
 );
 
 
@@ -472,7 +472,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     193,
     'a',
     'TYLCV',
-    10
+    40
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -480,7 +480,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     194,
     'b',
     'TYCLV',
-    10
+    40
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -488,7 +488,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     195,
     'c',
     'TYC',
-    10
+    40
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -496,7 +496,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     196,
     'd',
     'None of the above',
-    10
+    40
 );
 
  --           -VIRUS 5: Late Blight --          --  
@@ -508,7 +508,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     197,
     'a',
     'Phytophthora Infestans',
-    6
+    46
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -516,7 +516,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     198,
     'b',
     'Virgaviridae',
-    6
+    46
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -524,7 +524,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     199,
     'c',
     'Alternaria tomatophila',
-    6
+    46
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -532,7 +532,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     200,
     'd',
     'Septoria lycopersici',
-    6
+    46
 );
 
  --     -VIRUS 5: QUESTION 7 --      --  
@@ -542,7 +542,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     201,
     'a',
     'Strobilurin',
-    7
+    47
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -550,7 +550,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     202,
     'b',
     'Dimethomorth',
-    7
+    47
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -558,7 +558,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     203,
     'c',
     'Cymoxanil and Metalaxyl',
-    7
+    47
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -566,7 +566,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     204,
     'd',
     'All of the above',
-    7
+    47
 );
 
  --     -VIRUS 5: QUESTION 8 --      --  
@@ -576,7 +576,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     205,
     'a',
     'True',
-    8
+    48
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -584,7 +584,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     206,
     'b',
     'False',
-    8
+    48
 );
 
  --     -VIRUS 5: QUESTION 9 --      --  
@@ -594,7 +594,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     207,
     'a',
     'True',
-    9
+    49
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -602,7 +602,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     208,
     'b',
     'False',
-    9
+    49
 );
 
  --     -VIRUS 5: QUESTION 10 --      --  
@@ -612,7 +612,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     209,
     'a',
     'True',
-    10
+    50
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -620,7 +620,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     210,
     'b',
     'False',
-    10
+    50
 );
 
 
@@ -633,7 +633,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     211,
     'a',
     'Passalora fulva',
-    6
+    56
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -641,7 +641,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     212,
     'b',
     'Alternaria tomatophila',
-    6
+    56
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -649,7 +649,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     213,
     'c',
     'Phytophthora infestans',
-    6
+    56
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -657,7 +657,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     214,
     'd',
     'Septoria lycopersici',
-    6
+    56
 );
 
  --     -VIRUS 6: QUESTION 7 --      --  
@@ -667,7 +667,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     215,
     'a',
     'True',
-    7
+    57
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -675,7 +675,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     216,
     'b',
     'False',
-    7
+    57
 );
 
 
@@ -686,7 +686,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     217,
     'a',
     'Pruning',
-    8
+    58
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -694,7 +694,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     218,
     'b',
     'Mulching',
-    8
+    58
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -702,7 +702,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     219,
     'c',
     'None of the above',
-    8
+    58
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -710,7 +710,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     220,
     'd',
     'All of the above',
-    8
+    58
 );
 
  --     -VIRUS 6: QUESTION 9 --      --  
@@ -720,7 +720,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     221,
     'a',
     'True',
-    9
+    59
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -728,7 +728,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     222,
     'b',
     'False',
-    9
+    59
 );
 
  --     -VIRUS 6: QUESTION 10 --      --  
@@ -738,7 +738,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     223,
     'a',
     'Remove infected leaves',
-    10
+    60
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -746,7 +746,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     224,
     'b',
     'Burn infected plants',
-    10
+    60
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -754,7 +754,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     225,
     'c',
     'Improve ventilation between leaves',
-    10
+    60
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -762,7 +762,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     226,
     'd',
     'All of the above',
-    10
+    60
 );
 
  --           -VIRUS 7: Early Blight  --          --  
@@ -774,7 +774,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     227,
     'a',
     'Alternaria solani',
-    6
+    66
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -782,7 +782,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     228,
     'b',
     'Alternaria tomatophila',
-    6
+    66
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -790,7 +790,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     229,
     'c',
     'Phytophthora infestans',
-    6
+    66
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -798,7 +798,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     230,
     'd',
     'Septoria lycopersici',
-    6
+    66
 );
 
  --     -VIRUS 7: QUESTION 7 --      --  
@@ -808,7 +808,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     231,
     'a',
     'Infected seedlings',
-    7
+    67
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -816,7 +816,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     232,
     'b',
     'Diseased debris',
-    7
+    67
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -824,7 +824,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     233,
     'c',
     'All of the above',
-    7
+    67
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -832,7 +832,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     234,
     'd',
     'None of the above',
-    7
+    67
 );
 
  --     -VIRUS 7: QUESTION 8 --      --  
@@ -842,7 +842,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     235,
     'a',
     'Use of pathogen-free seeds',
-    8
+    68
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -850,7 +850,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     236,
     'b',
     'Avoiding overcrowding of plants',
-    8
+    68
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -858,7 +858,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     237,
     'c',
     'Destroying diseased plants',
-    8
+    68
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -866,7 +866,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     238,
     'd',
     'All of the above',
-    8
+    68
 );
 
  --     -VIRUS 7: QUESTION 9 --      --  
@@ -876,7 +876,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     239,
     'a',
     'True',
-    9
+    69
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -884,7 +884,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     240,
     'b',
     'False',
-    9
+    69
 );
 
  --     -VIRUS 7: QUESTION 10 --      --  
@@ -894,7 +894,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     241,
     'a',
     'True',
-    10
+    70
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -902,7 +902,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     242,
     'b',
     'False',
-    10
+    70
 );
 
  --           -VIRUS 8: Two spotted spider mites --          --  
@@ -914,7 +914,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     243,
     'a',
     'Tetranychus urticae',
-    6
+    76
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -922,7 +922,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     244,
     'b',
     'Alternaria tomatophila',
-    6
+    76
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -930,7 +930,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     245,
     'c',
     'Phytophthora infestans',
-    6
+    76
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -938,7 +938,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     246,
     'd',
     'Septoria lycopersici',
-    6
+    76
 );
 
  --     -VIRUS 8: QUESTION 7 --      --  
@@ -948,7 +948,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     247,
     'a',
     'True',
-    7
+    77
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -956,7 +956,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     248,
     'b',
     'False',
-    7
+    77
 );
 
 
@@ -967,7 +967,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     249,
     'a',
     'True',
-    8
+    78
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -975,7 +975,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     250,
     'b',
     'False',
-    8
+    78
 );
 
  --     -VIRUS 8: QUESTION 9 --      --  
@@ -985,7 +985,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     251,
     'a',
     'True',
-    9
+    79
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -993,7 +993,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     252,
     'b',
     'False',
-    9
+    79
 );
 
  --     -VIRUS 8: QUESTION 10 --      --  
@@ -1003,7 +1003,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     253,
     'a',
     'Stippled areas',
-    10
+    80
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1011,7 +1011,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     254,
     'b',
     'Damaged leaf veins',
-    10
+    80
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1019,7 +1019,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     255,
     'c',
     'Whitening and spotting',
-    10
+    80
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1027,7 +1027,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     256,
     'd',
     'All of the above',
-    10
+    80
 );
 
  --           -VIRUS 9: Septoria leaf spot --          --  
@@ -1039,7 +1039,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     257,
     'a',
     'Septoria blight',
-    6
+    86
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1047,7 +1047,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     258,
     'b',
     'Septoria spot',
-    6
+    86
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1055,7 +1055,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     259,
     'c',
     'Leaf spot',
-    6
+    86
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1063,7 +1063,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     260,
     'd',
     'None of the above',
-    6
+    86
 );
 
  --     -VIRUS 9: QUESTION 7 --      --  
@@ -1073,7 +1073,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     261,
     'a',
     'True',
-    7
+    87
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1081,7 +1081,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     262,
     'b',
     'False',
-    7
+    87
 );
 
 
@@ -1092,7 +1092,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     263,
     'a',
     'True',
-    8
+    88
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1100,7 +1100,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     264,
     'b',
     'False',
-    8
+    88
 );
 
  --     -VIRUS 9: QUESTION 9 --      --  
@@ -1110,7 +1110,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     265,
     'a',
     'True',
-    9
+    89
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1118,7 +1118,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     266,
     'b',
     'False',
-    9
+    89
 );
 
  --     -VIRUS 9: QUESTION 10 --      --  
@@ -1128,7 +1128,7 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     267,
     'a',
     'True',
-    10
+    90
 );
 
 INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_content, choice_option_question_id) VaLUES 
@@ -1136,6 +1136,6 @@ INSERT INTO choiceoption (choice_option_id, choice_option_label, choice_option_c
     268,
     'b',
     'False',
-    10
+    90
 );
 

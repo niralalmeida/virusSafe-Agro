@@ -21,7 +21,8 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllVirus() {
         String resultText = "";
-        final String API_URL = "https://5cu3hhvh8d.execute-api.us-east-1.amazonaws.com/virusStage/virusresource";
+//        final String API_URL = "https://5cu3hhvh8d.execute-api.us-east-1.amazonaws.com/virusStage/virusresource";
+        final String API_URL = "https://8vvd2wj552.execute-api.us-east-1.amazonaws.com/virusStage/virusresource";
         Request request = new Request.Builder().url(API_URL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();
@@ -34,7 +35,8 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllQuestions(int virusId) {
         String resultText = "";
-        final String API_URL = "https://my077qg7q1.execute-api.us-east-1.amazonaws.com/choiceQuestionStage/choicequestionresource?virusId=";
+//        final String API_URL = "https://my077qg7q1.execute-api.us-east-1.amazonaws.com/choiceQuestionStage/choicequestionresource?virusId=";
+        final String API_URL = "https://3ai49mjpnl.execute-api.us-east-1.amazonaws.com/choiceQuestionStage/choicequestionresource?virusId=";
         String searchURL = API_URL + virusId;
         Request request = new Request.Builder().url(searchURL).build();
         try {
@@ -48,7 +50,8 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllOptions(int choiceQuestionId) {
         String resultText = "";
-        final String API_URL = "https://vhknvesdne.execute-api.us-east-1.amazonaws.com/choiceOptionStage/choiceoptionresource/?choiceQuestionId=";
+//        final String API_URL = "https://vhknvesdne.execute-api.us-east-1.amazonaws.com/choiceOptionStage/choiceoptionresource/?choiceQuestionId=";
+        final String API_URL = "https://fi61819g5i.execute-api.us-east-1.amazonaws.com/choiceOptionStage/choiceoptionresource?choiceQuestionId=";
         String searchURL = API_URL + choiceQuestionId;
         Request request = new Request.Builder().url(searchURL).build();
         try {
@@ -90,7 +93,8 @@ public class NetworkConnectionToTomatoVirusDB {
 
     public String getAllNutrients() {
         String resultText = "";
-        final String API_URL = "https://l0j2i6t18a.execute-api.us-east-1.amazonaws.com/nutrientStage/nutrientresource";
+//        final String API_URL = "https://l0j2i6t18a.execute-api.us-east-1.amazonaws.com/nutrientStage/nutrientresource";
+        final String API_URL = "https://d6ic4ie3i6.execute-api.us-east-1.amazonaws.com/nutrientStage/nutrientresource";
         Request request = new Request.Builder().url(API_URL).build();
         try {
             Response response = this.okHttpClient.newCall(request).execute();

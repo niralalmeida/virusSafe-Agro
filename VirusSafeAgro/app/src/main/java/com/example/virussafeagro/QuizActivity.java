@@ -35,6 +35,7 @@ import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.viewModel.QuizActivityViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -186,11 +187,14 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
-//////////////////////////////// test random final list //////////////////////////////////////////////////////
     private List<ChoiceQuestionModel> getRandomFinalChoiceQuestionModelList() {
-//        List<ChoiceQuestionModel> finalList = choiceQuestionModelList;
         List<ChoiceQuestionModel> finalList = new ArrayList<>();
-
+        // shuffle the original list
+        Collections.shuffle(choiceQuestionModelList);
+        // add top 5 items into finalList
+        for (int i = 0; i < 5; i++){
+            finalList.add(choiceQuestionModelList.get(i));
+        }
         return finalList;
     }
 

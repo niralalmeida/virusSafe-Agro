@@ -62,46 +62,46 @@ public class VirusQuizQuestionViewModel extends ViewModel {
             }
             List<ChoiceQuestionModel> quizQuestionModelList = new ArrayList<>();
             int virusId = integers[0];
-            try {
-                String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
-                quizQuestionModelList = MyJsonParser.choiceQuestionModelListJsonParser(resultTextForQuestions);
-                // check network connection
-                if (!quizQuestionModelList.get(0).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
-                    // find options for choice questions
-                    for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
-                        // [ RDS ] find images for questions
-                        String questionImageJsonResult = networkConnectionToTomatoVirusDB.getQuestionsImage(choiceQuestionModel.getChoiceQuestionId());
-                        String questionImageString = MyJsonParser.questionImageJsonParser(questionImageJsonResult);
-                        Bitmap questionImageBitmap = DataConverter.stringToBitmapConverter(questionImageString);
-                        List<Bitmap> questionImageList = new ArrayList<>();
-                        questionImageList.add(questionImageBitmap);
-                        choiceQuestionModel.setChoiceQuestionImageList(questionImageList);
-
-                        // find options
-                        String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
-                        List<ChoiceOptionModel> optionModelList = MyJsonParser.choiceOptionListJsonParser(resultTextForOptions);
-
-                        // [ RDS ] find images for options
-                        for (ChoiceOptionModel choiceOptionModel : optionModelList) {
-                            String optionImageJsonResult = networkConnectionToTomatoVirusDB.getOptionsImage(choiceOptionModel.getChoiceOptionId());
-                            String optionImageString = MyJsonParser.optionImageJsonParser(optionImageJsonResult);
-                            Bitmap optionImageBitmap = DataConverter.stringToBitmapConverter(optionImageString);
-                            choiceOptionModel.setChoiceOptionImage(optionImageBitmap);
-                        }
-                        // get progress no
-                        int questionId =  choiceQuestionModel.getChoiceQuestionId();
-                        int progressNo =  questionId > 5 ? questionId % 5 : questionId;
-                        if (progressNo == 0){
-                            progressNo = 5;
-                        }
-
-                        // set the option list into question model
-                        choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
-
-                        // set progress bar
-                        progressBar.setProgress(progressNo);
-                    }
-                }
+//            try {
+//                String resultTextForQuestions = networkConnectionToTomatoVirusDB.getAllQuestions(virusId);
+//                quizQuestionModelList = MyJsonParser.choiceQuestionModelListJsonParser(resultTextForQuestions);
+//                // check network connection
+//                if (!quizQuestionModelList.get(0).getChoiceQuestionType().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+//                    // find options for choice questions
+//                    for (ChoiceQuestionModel choiceQuestionModel : quizQuestionModelList) {
+//                        // [ RDS ] find images for questions
+//                        String questionImageJsonResult = networkConnectionToTomatoVirusDB.getQuestionsImage(choiceQuestionModel.getChoiceQuestionId());
+//                        String questionImageString = MyJsonParser.questionImageJsonParser(questionImageJsonResult);
+//                        Bitmap questionImageBitmap = DataConverter.stringToBitmapConverter(questionImageString);
+//                        List<Bitmap> questionImageList = new ArrayList<>();
+//                        questionImageList.add(questionImageBitmap);
+//                        choiceQuestionModel.setChoiceQuestionImageList(questionImageList);
+//
+//                        // find options
+//                        String resultTextForOptions = networkConnectionToTomatoVirusDB.getAllOptions(choiceQuestionModel.getChoiceQuestionId());
+//                        List<ChoiceOptionModel> optionModelList = MyJsonParser.choiceOptionListJsonParser(resultTextForOptions);
+//
+//                        // [ RDS ] find images for options
+//                        for (ChoiceOptionModel choiceOptionModel : optionModelList) {
+//                            String optionImageJsonResult = networkConnectionToTomatoVirusDB.getOptionsImage(choiceOptionModel.getChoiceOptionId());
+//                            String optionImageString = MyJsonParser.optionImageJsonParser(optionImageJsonResult);
+//                            Bitmap optionImageBitmap = DataConverter.stringToBitmapConverter(optionImageString);
+//                            choiceOptionModel.setChoiceOptionImage(optionImageBitmap);
+//                        }
+//                        // get progress no
+//                        int questionId =  choiceQuestionModel.getChoiceQuestionId();
+//                        int progressNo =  questionId > 5 ? questionId % 5 : questionId;
+//                        if (progressNo == 0){
+//                            progressNo = 5;
+//                        }
+//
+//                        // set the option list into question model
+//                        choiceQuestionModel.setChoiceQuestionOptionList(optionModelList);
+//
+//                        // set progress bar
+//                        progressBar.setProgress(progressNo);
+//                    }
+//                }
 
 //                {
 //                    // get images URLs by S3 API
@@ -144,9 +144,9 @@ public class VirusQuizQuestionViewModel extends ViewModel {
 //                    }
 //                }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             return quizQuestionModelList;
         }
 

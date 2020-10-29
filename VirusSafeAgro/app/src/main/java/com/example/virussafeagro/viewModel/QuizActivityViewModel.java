@@ -117,7 +117,7 @@ public class QuizActivityViewModel extends ViewModel {
                 // get all questions image URL
                 String virusIdForS3API = AppResources.getVirusIdForS3API(virusId);
                 String resultTextForQuestions = networkConnectionToAWSTomatoS3.getAllQuestionImages(virusIdForS3API);
-                quizQuestionModelListWithImageURL = MyJsonParser.choiceQuestionModelListForImageJsonParser(resultTextForQuestions, quizQuestionModelListWithImageURL);
+//                quizQuestionModelListWithImageURL = MyJsonParser.choiceQuestionModelListForImageJsonParser(resultTextForQuestions, quizQuestionModelListWithImageURL);
             } catch (Exception e) {
                 e.printStackTrace();
             }
