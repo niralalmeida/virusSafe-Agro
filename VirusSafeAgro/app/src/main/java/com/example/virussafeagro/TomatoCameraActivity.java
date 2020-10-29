@@ -99,6 +99,10 @@ public class TomatoCameraActivity extends AppCompatActivity {
     private TextView tipOpenTomatoCameraTextView;
     private CardView retakeCameraInResultCardView;
     private TextView tomatoCountResultTextView;
+    private TextView tomatoGoodNoResultTextView;
+    private TextView tomatoGoodPercentageResultTextView;
+    private TextView tomatoBadNoResultTextView;
+    private TextView tomatoBadPercentageResultTextView;
 
     // tomatoCamera tools
     private ListenableFuture<ProcessCameraProvider> tomatoCameraProviderFuture;
@@ -161,6 +165,10 @@ public class TomatoCameraActivity extends AppCompatActivity {
         this.tipOpenTomatoCameraTextView = findViewById(R.id.tv_tip_open_tomato_camera_activity);
         this.retakeCameraInResultCardView = findViewById(R.id.cv_big_retake_button_tomato_detect);
         this.tomatoCountResultTextView = findViewById(R.id.tv_count_result_tomato_detect);
+        this.tomatoGoodNoResultTextView = findViewById(R.id.tv_good_count_no_tomato_detect);
+        this.tomatoGoodPercentageResultTextView = findViewById(R.id.tv_good_count_percentage_tomato_detect);
+        this.tomatoBadNoResultTextView = findViewById(R.id.tv_bad_count_no_tomato_detect);
+        this.tomatoBadPercentageResultTextView = findViewById(R.id.tv_bad_count_percentage_tomato_detect);
     }
 
     private void initializeData() {
@@ -336,6 +344,16 @@ public class TomatoCameraActivity extends AppCompatActivity {
         // set count result text
         String tomatoCountResultString = "" + resultTomatoFruitDetectResultModel.getTomatoCount();
         tomatoCountResultTextView.setText(tomatoCountResultString);
+        // set good result text
+        String goodResultNoString = "" + resultTomatoFruitDetectResultModel.getGoodCount();
+        tomatoGoodNoResultTextView.setText(goodResultNoString);
+        String goodResultPercentageString = resultTomatoFruitDetectResultModel.getGoodCountPercentage() + "% of total";
+        tomatoGoodPercentageResultTextView.setText(goodResultPercentageString);
+        // set bad result text
+        String badResultNoString = "" + resultTomatoFruitDetectResultModel.getBadCount();
+        tomatoBadNoResultTextView.setText(badResultNoString);
+        String badResultPercentageString = resultTomatoFruitDetectResultModel.getBadCountPercentage() + "% of total";
+        tomatoBadPercentageResultTextView.setText(badResultPercentageString);
         // move the image top
         MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_tomato_detect_result, R.id.end_show_tomato_detect_result, 200);
 
