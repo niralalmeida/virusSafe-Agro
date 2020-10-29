@@ -93,8 +93,18 @@ public class ToolkitFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // handle opening control strategy request from ec
         if(hasOpeningControlStrategyRequest){
             hasOpeningControlStrategyRequest = false;
+            new Handler().postDelayed(() -> {
+                openControlStrategiesPage();
+            }, 500);
+        }
+
+        // handle opening control strategy request from detect activity
+        if (MainActivity.hasControlStrategyRequest) {
+            MainActivity.hasControlStrategyRequest = false;
+
             new Handler().postDelayed(() -> {
                 openControlStrategiesPage();
             }, 500);

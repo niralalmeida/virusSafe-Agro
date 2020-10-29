@@ -36,7 +36,9 @@ import android.widget.Toast;
 
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.models.ImageObject;
+import com.example.virussafeagro.models.VirusModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToMLModel;
+import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.DataConverter;
 import com.example.virussafeagro.uitilities.FragmentOperator;
 import com.example.virussafeagro.uitilities.MyJsonParser;
@@ -72,6 +74,8 @@ public class DetectActivity extends AppCompatActivity {
     private TextView illTitleTextView;
     private View resultTagView;
     private CardView resultCardView;
+    private CardView virusButton;
+    private CardView controlButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +123,8 @@ public class DetectActivity extends AppCompatActivity {
         this.illTitleTextView = findViewById(R.id.tv_ill_title_detect_activity);
         this.resultTagView = findViewById(R.id.v_tag_feedback_detect_activity);
         this.resultCardView = findViewById(R.id.cv_feedback_detect_activity);
+        this.virusButton = findViewById(R.id.cv_virus_button_detect_activity);
+        this.controlButton = findViewById(R.id.cv_control_button_detect_activity);
     }
 
     private void initializeData() {
@@ -250,7 +256,7 @@ public class DetectActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-//            feedback = "Tomato_Mosaic_Virus";
+//            feedback = "Spider_mites Two-spotted_spider_mite";
 //            feedback = "json error";
 //            feedback = "healthy";
 
@@ -275,13 +281,64 @@ public class DetectActivity extends AppCompatActivity {
                     resultTagView.setBackgroundResource(R.color.colorPrimaryDark);
                     resultTextView.setText(getResources().getText(R.string.text_result_healthy));
                 } else {
+                    // set tag color
                     resultTagView.setBackgroundResource(R.color.iconVirus);
+                    // show virus result title
                     illTitleTextView.setVisibility(View.VISIBLE);
+                    // set virus name
                     String virusString = resultCheckFeedback.replace("_", " ");
                     resultTextView.setText(virusString);
+
+                    // virus button
+                    MyAnimationBox.runFadeInAnimation(virusButton, 200);
+                    // get virus id
+                    int resultVirusId = AppResources.getVirusIdByNameForML(resultCheckFeedback);
+                    // set VirusButton On Click Listener
+                    setVirusButtonOnClickListener(resultVirusId);
+
+                    // control button
+                    MyAnimationBox.runFadeInAnimation(controlButton, 200);
+                    // set ControlButton On Click Listener
+                    setControlButtonOnClickListener();
                 }
             }, 100);
         }
+    }
+
+    // set VirusButton On Click Listener
+    private void setVirusButtonOnClickListener(int resultVirusId) {
+        virusButton.setOnClickListener(vb -> {
+            if (!MainActivity.virusModelInfoList.isEmpty()){
+                for (VirusModel virusModel : MainActivity.virusModelInfoList) {
+                    if (virusModel.getVirusId() == resultVirusId){
+                        MainActivity.requestedVirusModel = virusModel;
+                        // collapse the sheet and show the analyse animation
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        new Handler().postDelayed(()->{
+                            hideTitleAndButton();
+                        }, 200);
+                        new Handler().postDelayed(()->{
+                            supportFinishAfterTransition();
+                        }, 600);
+                    }
+                }
+            }
+        });
+    }
+
+    // set ControlButton On Click Listener
+    private void setControlButtonOnClickListener() {
+        controlButton.setOnClickListener(cb ->{
+            MainActivity.hasControlStrategyRequest = true;
+            // collapse the sheet and show the analyse animation
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            new Handler().postDelayed(()->{
+                hideTitleAndButton();
+            }, 200);
+            new Handler().postDelayed(()->{
+                supportFinishAfterTransition();
+            }, 600);
+        });
     }
 
     // show the title and 2 buttons

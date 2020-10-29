@@ -119,34 +119,34 @@ public class AppResources {
         return nutrientDrawablePictureResource;
     }
 
-    public static int getVirusIdByVirusFullName(String virusFullName) {
+    public static int getVirusIdByNameForML(String virusFullName) {
         int virusId = 0;
         switch (virusFullName) {
-            case "TOMATO MOSAIC VIRUS":
+            case "Tomato_mosaic_virus":
                 virusId = 1;
                 break;
-            case "TARGET SPOT":
+            case "Target_Spot":
                 virusId = 2;
                 break;
-            case "BACTERIAL SPOT":
+            case "Bacterial_spot":
                 virusId = 3;
                 break;
-            case "TOMATO YELLOW LEAF CURL VIRUS":
+            case "Tomato_Yellow_Leaf_Curl_Virus":
                 virusId = 4;
                 break;
-            case "LATE BLIGHT":
+            case "Late_blight":
                 virusId = 5;
                 break;
-            case "LEAF MOLD":
+            case "Leaf_Mold":
                 virusId = 6;
                 break;
-            case "EARLY BLIGHT":
+            case "Early_blight":
                 virusId = 7;
                 break;
-            case "TWO-SPOTTED SPIDER MITE":
+            case "Spider_mites Two-spotted_spider_mite":
                 virusId = 8;
                 break;
-            case "SEPTORIA LEAF SPOT":
+            case "Septoria_leaf_spot":
                 virusId = 9;
                 break;
         }

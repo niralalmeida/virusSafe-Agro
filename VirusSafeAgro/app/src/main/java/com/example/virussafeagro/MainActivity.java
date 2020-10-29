@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
@@ -151,6 +152,9 @@ public class MainActivity extends AppCompatActivity {
     public static final int ON_BOARDING_REQUEST_CODE = 6;
     public static final int ON_BOARDING_RESULT_OK = 42;
 
+    public static VirusModel requestedVirusModel;
+    public static boolean hasControlStrategyRequest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -279,6 +283,38 @@ public class MainActivity extends AppCompatActivity {
 
         // check authentication
         this.checkAuthentication();
+
+        // handle virus view request
+        if (requestedVirusModel != null){
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("currentVirusModel", requestedVirusModel);
+
+            // set image
+            int virusPictureDrawableId = AppResources.getVirusPictureDrawableId(requestedVirusModel.getVirusId());
+            VirusInfoListFragment.currentVirusImageBitmap = BitmapFactory.decodeResource(mainActivity.getResources(), virusPictureDrawableId);
+
+            VirusDetailNewFragment virusDetailNewFragment = new VirusDetailNewFragment();
+            virusDetailNewFragment.setArguments(bundle);
+            new Handler().postDelayed(() -> {
+                FragmentOperator.replaceFragmentWithSlideFromRightAnimation(mainActivity, virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW);
+            }, 300);
+            requestedVirusModel = null;
+        }
+
+
+        // handle control strategy request
+        if (hasControlStrategyRequest){
+            // get the current fragment
+            Fragment foundFragment = fragmentManager.findFragmentById(R.id.fl_fragments);
+            if ((foundFragment instanceof VirusDetailNewFragment) || (foundFragment instanceof NutrientDetailNewFragment)) {
+                isLearnOrToolkitIconClickedFromLearnStacks = true;
+            }
+            // hide the fragment
+            FragmentOperator.popAllFragmentsInStack(fragmentManager);
+            new Handler().postDelayed(() -> {
+                FragmentOperator.replaceFragmentWithSlideFromBottomAnimation(mainActivity, new ToolkitFragment(), AppResources.FRAGMENT_TAG_TOOLKIT);
+            }, 200);
+        }
     }
 
 ////////////////////////////////////////////////// -- Pass word -- /////////////////////////////////////////////////////
