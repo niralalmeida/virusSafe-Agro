@@ -170,7 +170,7 @@
                 android:layout_margin="100dp"
                 android:src="@drawable/leaf_for_scanning" />
 
-            <!-- main content -->
+            <!-- result content -->
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nsv_all_view_detect_activity"
                 android:layout_marginTop="10dp"

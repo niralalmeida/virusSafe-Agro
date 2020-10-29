@@ -362,6 +362,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             else {
+                if ((foundFragment instanceof VirusDetailNewFragment) || (foundFragment instanceof NutrientDetailNewFragment)) {
+                    isLearnOrToolkitIconClickedFromLearnStacks = true;
+                }
                 // add new MoreFragment
                 new Handler().postDelayed(() -> {
                     // hide the main animation
