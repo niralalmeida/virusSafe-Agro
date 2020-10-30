@@ -214,7 +214,15 @@ public class TomatoCameraActivity extends AppCompatActivity {
         this.imageCapture = new ImageCapture.Builder()
                 .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
                 .build();
+        this.bindCamera();
+    }
+
+    private void bindCamera() {
         this.tomatoCamera = tomatoCameraProvider.bindToLifecycle(this, tomatoCameraSelector, imageCapture, preview);
+    }
+
+    private void unbindCamera() {
+        tomatoCameraProvider.unbindAll();
     }
 
     // set tomatoCamera button on click
@@ -486,6 +494,9 @@ public class TomatoCameraActivity extends AppCompatActivity {
             }
             // open gallery
             else {
+                // unbind camera
+                unbindCamera();
+                // open gallery
                 ImagePicker.Companion.with(this)
                         .galleryOnly()	//User can only select image from Gallery
                         .start(REQUEST_CHOOSE_GALLERY);	//Default Request Code is ImagePicker.REQUEST_CODE
@@ -500,10 +511,11 @@ public class TomatoCameraActivity extends AppCompatActivity {
             if (!isOpenTomatoCameraShown){
                 DetectTomatoInstructionsFragment detectTomatoInstructionsFragment = new DetectTomatoInstructionsFragment();
                 detectTomatoInstructionsFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_TOMATO_DETECT);
-            } // back to camera page
+            }
+            // back to camera page
             else {
                 // bind camera again
-                tomatoCamera = tomatoCameraProvider.bindToLifecycle(tomatoCameraActivity, tomatoCameraSelector, imageCapture, preview);
+                bindCamera();
                 // set the photos button
                 isOpenTomatoCameraShown = false;
                 isTomatoCameraImageShown = false;

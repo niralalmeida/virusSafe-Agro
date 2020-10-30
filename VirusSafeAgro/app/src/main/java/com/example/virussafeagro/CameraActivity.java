@@ -4,18 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
-import androidx.camera.core.CameraX;
-import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
-import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleOwner;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -176,7 +172,15 @@ public class CameraActivity extends AppCompatActivity {
         this.imageCapture = new ImageCapture.Builder()
                         .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
                         .build();
+        bindCamera();
+    }
+
+    private void bindCamera() {
         this.camera = cameraProvider.bindToLifecycle(this, cameraSelector, imageCapture, preview);
+    }
+
+    private void unbindCamera() {
+        cameraProvider.unbindAll();
     }
 
     // set camera button on click
@@ -198,7 +202,8 @@ public class CameraActivity extends AppCompatActivity {
                     cameraImageButton.clearAnimation();
                     takePhoto();
                 }, 200);
-            } // do analysis
+            }
+            // do analysis
             else {
                 DetectActivity.uploadImageBitmap = cameraBitmap;
                 // set detect request boolean
@@ -249,7 +254,8 @@ public class CameraActivity extends AppCompatActivity {
                 previewView.setVisibility(View.INVISIBLE);
                 cameraImageView.setImageBitmap(cameraBitmap);
                 MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.start_show_camera_image, R.id.end_show_camera_image, 200);
-                //ImageStorage.saveImage(cameraActivity, cameraBitmap, "Virus Camera", "virus_camera", previewView);
+                // unbind camera
+                unbindCamera();
             }
 
             @Override
@@ -300,6 +306,8 @@ public class CameraActivity extends AppCompatActivity {
         this.galleryRetakeCardView.setOnClickListener(v ->{
             // back to the camera page
             if (isRetakeShown){
+                // rebind camera
+                bindCamera();
                 isRetakeShown = false;
                 isCameraImageShown = false;
                 // show preview
@@ -312,8 +320,12 @@ public class CameraActivity extends AppCompatActivity {
                 cameraImageView.setImageBitmap(null);
                 cameraImageButton.setImageResource(R.drawable.ic_camera_black_100dp);
                 MyAnimationBox.configureTheAnimation(containerMotionLayout, R.id.end_show_camera_image, R.id.start_show_camera_image, 200);
-            } // open gallery
+            }
+            // open gallery
             else {
+                // unbind camera
+                unbindCamera();
+                // open the gallery
                 ImagePicker.Companion.with(this)
                         .galleryOnly()	//User can only select image from Gallery
                         .start(REQUEST_CHOOSE_GALLERY);	//Default Request Code is ImagePicker.REQUEST_CODE
@@ -328,8 +340,11 @@ public class CameraActivity extends AppCompatActivity {
             if (!isOpenCameraShown){
                 DetectInstructionsFragment detectInstructionsFragment = new DetectInstructionsFragment();
                 detectInstructionsFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_DETECT);
-            } // back to camera page
+            }
+            // back to camera page
             else {
+                // rebind the camera
+                bindCamera();
                 // set the photos button
                 isOpenCameraShown = false;
                 isCameraImageShown = false;
