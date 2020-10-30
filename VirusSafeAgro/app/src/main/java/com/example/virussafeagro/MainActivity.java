@@ -42,7 +42,6 @@ import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.TweetFragment;
-import com.example.virussafeagro.fragments.VirusCheckResultFragment;
 import com.example.virussafeagro.fragments.VirusDetailNewFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
 import com.example.virussafeagro.fragments.VirusQuizQuestionFragment;
@@ -625,12 +624,10 @@ public class MainActivity extends AppCompatActivity {
 
         boolean isToolkitFragment = currentVisibleFragment instanceof ToolkitFragment;
         boolean isLearnFragment = currentVisibleFragment instanceof LearnFragment;
-        boolean isVirusCheckResultFragment = currentVisibleFragment instanceof VirusCheckResultFragment;
         boolean isMoreFragment = currentVisibleFragment instanceof MoreFragment;
         if ((currentVisibleFragment == null)
             || isToolkitFragment
             || isLearnFragment
-            || isVirusCheckResultFragment
             || isMoreFragment ){
 //            Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 //            Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
