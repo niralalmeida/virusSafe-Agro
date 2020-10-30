@@ -50,7 +50,6 @@ import android.widget.Toast;
 
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.fragments.DetectInstructionsFragment;
-import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.uitilities.AppResources;
 import com.example.virussafeagro.uitilities.ImageStorage;
 import com.github.dhaval2404.imagepicker.ImagePicker;

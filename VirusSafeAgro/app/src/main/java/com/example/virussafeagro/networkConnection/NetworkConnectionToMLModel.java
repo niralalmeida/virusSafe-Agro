@@ -1,6 +1,5 @@
 package com.example.virussafeagro.networkConnection;
 
-import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.models.ImageObject;
 import com.google.gson.Gson;
 

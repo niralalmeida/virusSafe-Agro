@@ -57,7 +57,6 @@ import com.example.virussafeagro.adapters.ListImageGalleryAdapter;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.fragments.DetectInstructionsFragment;
 import com.example.virussafeagro.fragments.DetectTomatoInstructionsFragment;
-import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.models.ImageObject;
 import com.example.virussafeagro.models.TomatoFruitDetectResultModel;
 import com.example.virussafeagro.networkConnection.NetworkConnectionToMLModel;

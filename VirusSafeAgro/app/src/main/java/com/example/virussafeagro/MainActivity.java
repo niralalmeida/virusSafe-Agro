@@ -12,11 +12,8 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
@@ -28,7 +25,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.virussafeagro.fragments.AboutAppFragment;
@@ -39,7 +35,6 @@ import com.example.virussafeagro.fragments.FactorsFragment;
 import com.example.virussafeagro.fragments.InsightsFragment;
 import com.example.virussafeagro.fragments.NewsDetailFragment;
 import com.example.virussafeagro.fragments.NewsFragment;
-import com.example.virussafeagro.fragments.NutrientDetailFragment;
 import com.example.virussafeagro.fragments.NutrientDetailNewFragment;
 import com.example.virussafeagro.fragments.NutrientFragment;
 import com.example.virussafeagro.fragments.PesticideStoreMapFragment;
@@ -47,7 +42,6 @@ import com.example.virussafeagro.fragments.ToolkitFragment;
 import com.example.virussafeagro.fragments.LearnFragment;
 import com.example.virussafeagro.fragments.MoreFragment;
 import com.example.virussafeagro.fragments.TweetFragment;
-import com.example.virussafeagro.fragments.VirusCheckFragment;
 import com.example.virussafeagro.fragments.VirusCheckResultFragment;
 import com.example.virussafeagro.fragments.VirusDetailNewFragment;
 import com.example.virussafeagro.fragments.VirusInfoListFragment;
@@ -777,10 +771,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         floatingActionButton.setOnClickListener(v -> {
-            if (fragmentManager.findFragmentByTag(AppResources.FRAGMENT_TAG_VIRUS_CHECK) == null
-                || (!(fragmentManager.findFragmentById(R.id.fl_fragments) instanceof VirusCheckFragment))) {
-                showVirusCheckFragment();
-            }
+            showVirusDetectActivity();
         });
     }
 
@@ -834,15 +825,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void showVirusCheckFragment() {
-//        VirusCheckFragment virusCheckFragment = new VirusCheckFragment();
-//        virusCheckFragment.show(getSupportFragmentManager(), AppResources.FRAGMENT_TAG_VIRUS_CHECK);
-
+    public void showVirusDetectActivity() {
         Intent intent = new Intent(mainActivity, DetectActivity.class);
         // animation
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.floatingActionButton, ViewCompat.getTransitionName(this.floatingActionButton));
         startActivity(intent, options.toBundle());
-
     }
 
     public void showTipByPage(String fragmentTag) {
