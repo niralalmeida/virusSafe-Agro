@@ -44,7 +44,6 @@ public class NutrientViewModel extends ViewModel {
             e.printStackTrace();
         }
     }
-
     public class FindNutrientListAsyncTask extends AsyncTask<Void, Void, List<NutrientModel>> {
         @Override
         protected List<NutrientModel> doInBackground(Void... voids) {

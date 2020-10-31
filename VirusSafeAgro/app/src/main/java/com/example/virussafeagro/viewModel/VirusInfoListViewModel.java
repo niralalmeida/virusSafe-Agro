@@ -54,12 +54,11 @@ public class VirusInfoListViewModel extends ViewModel {
             if (isCancelled()){
                 return null;
             }
-//            List<VirusModel> virusModelInfoList = new ArrayList<>();
             try {
                 String resultText = networkConnectionToTomatoVirusDB.getAllVirus();
                 MainActivity.virusModelInfoList = MyJsonParser.virusInfoListJsonParser(resultText);
                 // check network connection
-                if (!MainActivity.virusModelInfoList.get(0).getVirusFullName().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
+                if (!MyJsonParser.isVirusInfoListTaskFailed) {
                     // get the virus image URLs
                     for (VirusModel virusModel : MainActivity.virusModelInfoList) {
                         String resultTextForURL = networkConnectionToAWSTomatoS3.getVirusImagesByVirusId(virusModel.getVirusId());
@@ -76,6 +75,11 @@ public class VirusInfoListViewModel extends ViewModel {
         protected void onPostExecute(List<VirusModel> resultVirusModelInfoList) {
             setVirusInfoListLD(resultVirusModelInfoList);
         }
+    }
+
+    // get currentFindVirusInfoListAsyncTask
+    public FindVirusInfoListAsyncTask getCurrentFindVirusInfoListAsyncTask() {
+        return currentFindVirusInfoListAsyncTask;
     }
 
     @Override

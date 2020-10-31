@@ -9,10 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.transition.Transition;
@@ -99,6 +101,18 @@ public class VirusInfoListFragment extends Fragment {
             this.virusGridViewLinearLayout.setVisibility(View.GONE);
             // observe VirusModel Info List Live Data
             this.observeVirusInfoListLD();
+            // wait 15 sec then cancel the task if it fails
+            new Handler().postDelayed(() -> {
+                if(MainActivity.virusModelInfoList.isEmpty()){
+                    // cancel the async task
+                    mainActivity.cancelCurrentFindVirusInfoListAsyncTask();
+                    // show the error Toast
+                    Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
+                    // show the error image
+                    processBarLinearLayout.setVisibility(View.GONE);
+                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 300);
+                }
+            }, 15000);
         } else {
             // show the virus list
             displayVirusCardList();
@@ -110,9 +124,7 @@ public class VirusInfoListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         currentVirusImageBitmap = null;
-
     }
 
     private void initializeViews() {
@@ -125,7 +137,7 @@ public class VirusInfoListFragment extends Fragment {
 
     private void observeVirusInfoListLD() {
         mainActivity.getVirusInfoListViewModel().getVirusInfoListLD().observe(mainActivity, resultVirusInfoList -> {
-            if (!MainActivity.virusModelInfoList.isEmpty()) {
+            if (!(MyJsonParser.isVirusInfoListTaskFailed || MainActivity.virusModelInfoList.isEmpty())) {
                 // show the virus list
                 displayVirusCardList();
             }

@@ -38,13 +38,16 @@ public class MyJsonParser {
     public final static String SERVER_STOP_MESSAGE = "server stop";
     public final static String WRONG_IMAGE = "wrong image";
 
+    public static boolean isVirusInfoListTaskFailed;
+    public static boolean isNutrientListTaskFailed;
+
     // get data to store viruses into virus model list
     public static List<VirusModel> virusInfoListJsonParser(String resultText) throws JSONException {
         List<VirusModel> virusModelInfoList = new ArrayList<>();
         // check network connection
         if (resultText.isEmpty()) {
-            VirusModel virusModel = new VirusModel(CONNECTION_ERROR_MESSAGE);
-            virusModelInfoList.add(virusModel);
+            isVirusInfoListTaskFailed = true;
+            return new ArrayList<>();
         } else {
             if (!resultText.equals("[]")) {
                 JSONArray virusInfoListJsonArray = new JSONArray(resultText);
@@ -213,15 +216,8 @@ public class MyJsonParser {
                 // option label
                 String choiceOptionLabel = optionJsonObject.getString("choiceOptionLabel").toUpperCase();
 
-//                // test - image base64-bitmap
-//                String imageBase64 = optionJsonObject.getString("choiceOptionImageBinaryCode");
-//                // test
-//                Bitmap bitmap = DataConverter.stringToBitmapConverter(imageBase64);
-
                 // create a ChoiceOptionModel and add it into the optionModelList
                 ChoiceOptionModel choiceOption = new ChoiceOptionModel(optionId, choiceOptionLabel, choiceOptionContent);
-                // test
-//                choiceOption.setChoiceOptionImage(bitmap);
                 optionModelList.add(choiceOption);
             }
         }
@@ -358,8 +354,8 @@ public class MyJsonParser {
         List<NutrientModel> nutrientModelList = new ArrayList<>();
         // check network connection
         if (resultText.isEmpty()) {
-            NutrientModel nutrientModel = new NutrientModel(CONNECTION_ERROR_MESSAGE);
-            nutrientModelList.add(nutrientModel);
+            isNutrientListTaskFailed = true;
+            return new ArrayList<>();
         } else {
             if (!resultText.equals("[]")) {
                 JSONArray nutrientInfoListJsonArray = new JSONArray(resultText);

@@ -56,6 +56,7 @@ import com.example.virussafeagro.uitilities.KeyboardToggleUtils;
 import com.example.virussafeagro.animation.MyAnimationBox;
 import com.example.virussafeagro.uitilities.SharedPreferenceProcess;
 import com.example.virussafeagro.viewModel.NutrientViewModel;
+import com.example.virussafeagro.viewModel.QuizActivityViewModel;
 import com.example.virussafeagro.viewModel.VirusInfoListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -117,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
     // bottom bar
     private FloatingActionButton floatingActionButton;
     // bottom bar - custom
-    private LinearLayout bottomBarLinearLayout;
     private RelativeLayout learnRelativeLayout; // learn
     private ImageView learnImageView;
     private TextView learnTextView;
@@ -208,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
         this.tipDragYRelativeLayout = findViewById(R.id.drl_tip_app);
         this.animationImageRelativeLayout = findViewById(R.id.rl_animation_image_main);
         // bottom bar
-        this.bottomBarLinearLayout = findViewById(R.id.ll_bottom_bar);
         this.learnRelativeLayout = findViewById(R.id.rl_learn_bottom_bar);
         this.learnImageView = findViewById(R.id.img_learn_bottom_bar);
         this.learnTextView = findViewById(R.id.tv_learn_bottom_bar);
@@ -254,12 +253,27 @@ public class MainActivity extends AppCompatActivity {
         this.findNutrientListFromDBAndObserveNutrientListLD();
     }
 
-    private void findVirusInfoListFromDBAndObserveVirusInfoListLD() {
+    // find virus info list
+    public void findVirusInfoListFromDBAndObserveVirusInfoListLD() {
         virusInfoListViewModel.processFindingVirusInfoList();
     }
 
-    private void findNutrientListFromDBAndObserveNutrientListLD() {
+    // cancel the Current Finding Virus Info List AsyncTask
+    public void cancelCurrentFindVirusInfoListAsyncTask() {
+        // cancel the AsyncTask
+        VirusInfoListViewModel.FindVirusInfoListAsyncTask f = this.virusInfoListViewModel.getCurrentFindVirusInfoListAsyncTask();
+        f.cancel(true);
+    }
+
+    // find nutrient list
+    public void findNutrientListFromDBAndObserveNutrientListLD() {
         nutrientViewModel.processFindingNutrientList();
+    }
+    // cancel the Current Finding Nutrient Info List AsyncTask
+    public void cancelCurrentFindNutrientListAsyncTask() {
+        // cancel the AsyncTask
+        NutrientViewModel.FindNutrientListAsyncTask f = this.nutrientViewModel.getCurrentFindNutrientListAsyncTask();
+        f.cancel(true);
     }
 
     private void showOnBoardingScreen() {
@@ -312,12 +326,12 @@ public class MainActivity extends AppCompatActivity {
 
 ////////////////////////////////////////////////// -- Pass word -- /////////////////////////////////////////////////////
     private void checkAuthentication() {
-        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())) {
-            // set authentication as "no"
-            AppAuthentication.setAuthenticationAsNo(this);
-            // check the authentication --> show the PasswordActivity
-            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity), 600);
-        }
+//        if ((!this.isFromPasswordActivity) && (!this.isFromOnBoardingActivity) && (!this.spp.getOnBoardingIsFirstShow())) {
+//            // set authentication as "no"
+//            AppAuthentication.setAuthenticationAsNo(this);
+//            // check the authentication --> show the PasswordActivity
+//            new Handler().postDelayed(() -> AppAuthentication.checkAuthentication(mainActivity), 600);
+//        }
     }
 
     private void displayAllMainActivityViews() {
@@ -430,15 +444,7 @@ public class MainActivity extends AppCompatActivity {
             moreRelativeLayout.setActivated(false);
             // change bg
             moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkTheme));
-            // change image tint color
-//            ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.colorWhite);
-//            moreImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
-//            moreImageView.setImageTintList(colorStateList);
         }
-    }
-
-    public Toolbar getToolbar() {
-        return toolbar;
     }
 
     public TextView getTitleTextView() {
@@ -521,19 +527,6 @@ public class MainActivity extends AppCompatActivity {
                     this.topButtonsLinearLayout.getX(),
                     TOOLBAR_TIP_MORE_BUTTONS_LOCATION_RIGHT,
                     duration);
-//            if (AppResources.FRAGMENT_TAG_VIRUS_DETAIL.equals(fragmentTag)) {
-//                MyAnimationBox.runSlideInAnimationFromRight(
-//                        this.topButtonsLinearLayout,
-//                        this.topButtonsLinearLayout.getX(),
-//                        this.toolbarAllViewsRelativeLayout.getWidth() - this.topButtonsLinearLayout.getWidth(),
-//                        duration);
-//            } else {// hide search button -> move to right
-//                MyAnimationBox.runSlideInAnimationFromRight(
-//                        this.topButtonsLinearLayout,
-//                        this.topButtonsLinearLayout.getX(),
-//                        this.toolbarAllViewsRelativeLayout.getWidth() - TOOLBAR_TIP_MORE_BUTTONS_WIDTH - DataConverter.dip2px(mainActivity,10),
-//                        duration);
-//            }
         }
     }
 
@@ -629,8 +622,6 @@ public class MainActivity extends AppCompatActivity {
             || isToolkitFragment
             || isLearnFragment
             || isMoreFragment ){
-//            Objects.requireNonNull(mainActivity.getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
-//            Objects.requireNonNull(mainActivity.getSupportActionBar()).setHomeButtonEnabled(false);
 
             // hide back button
             if (mainActivity.backButtonRelativeLayout.getVisibility() != View.GONE){

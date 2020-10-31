@@ -3,6 +3,7 @@ package com.example.virussafeagro.fragments;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -85,6 +86,18 @@ public class NutrientFragment extends Fragment {
             this.nutrientsGridViewLinearLayout.setVisibility(View.GONE);
             // observe NutrientModel  List Live Data
             this.observeNutrientListLD();
+            // wait 15 sec then cancel the task if it fails
+            new Handler().postDelayed(() -> {
+                if(MainActivity.nutrientModelList.isEmpty()){
+                    // cancel the async task
+                    mainActivity.cancelCurrentFindNutrientListAsyncTask();
+                    // show the error Toast
+                    Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
+                    // show the error image
+                    processBarLinearLayout.setVisibility(View.GONE);
+                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 300);
+                }
+            }, 15000);
         } else {
             // show the virus list
             this.displayNutrientsCardList();
@@ -96,9 +109,7 @@ public class NutrientFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         currentNutrientImageBitmap = null;
-
     }
 
     private void initializeViews() {
@@ -115,7 +126,7 @@ public class NutrientFragment extends Fragment {
 
     private void observeNutrientListLD() {
         mainActivity.getNutrientViewModel().getNutrientListLD().observe(mainActivity, resultNutrientList -> {
-            if (!MainActivity.nutrientModelList.isEmpty()) {
+            if (!(MyJsonParser.isNutrientListTaskFailed || MainActivity.nutrientModelList.isEmpty())) {
                 // show the virus list
                 displayNutrientsCardList();
             }
