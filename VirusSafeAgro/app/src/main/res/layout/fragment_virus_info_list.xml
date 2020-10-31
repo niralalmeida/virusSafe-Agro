@@ -37,31 +37,46 @@
     </LinearLayout>
 
     <!-- network error -->
-    <LinearLayout
-        android:id="@+id/ll_fail_network_virus_info_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+    <RelativeLayout
+        android:id="@+id/rl_fail_network_virus_info_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:visibility="gone">
 
         <ImageView
-            android:layout_gravity="center_horizontal"
             android:src="@drawable/network_error"
+            android:layout_above="@id/tv_network_error_virus_info"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/tv_network_error_virus_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:textStyle="bold"
             android:textSize="30sp"
             android:textColor="@color/colorWhite"
             android:text="@string/network_error_text" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btn_reconnect_virus_info"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_network_error_virus_info"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple_btn_reconnect_virus_info"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Retry" />
+
+    </RelativeLayout>
 
     <!-- progress bar -->
     <LinearLayout

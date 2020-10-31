@@ -9,8 +9,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,7 +45,8 @@ public class NutrientFragment extends Fragment {
 
     // views
     private LinearLayout processBarLinearLayout;
-    private LinearLayout networkErrorLinearLayout;
+    private RelativeLayout networkErrorRelativeLayout;
+    private Button networkErrorRetryButton;
     private LinearLayout nutrientsGridViewLinearLayout;
     private GridView nutrientsGridView;
     private GridNutrientAdapter gridNutrientAdapter;
@@ -81,23 +84,51 @@ public class NutrientFragment extends Fragment {
         this.initializeNutrientViewModel();
         // find virus info list in new Thread
         if (MainActivity.nutrientModelList.isEmpty()) {
-            // show progress bar
-            this.processBarLinearLayout.setVisibility(View.VISIBLE);
-            this.nutrientsGridViewLinearLayout.setVisibility(View.GONE);
-            // observe NutrientModel  List Live Data
-            this.observeNutrientListLD();
-            // wait 15 sec then cancel the task if it fails
-            new Handler().postDelayed(() -> {
-                if(MainActivity.nutrientModelList.isEmpty()){
-                    // cancel the async task
-                    mainActivity.cancelCurrentFindNutrientListAsyncTask();
-                    // show the error Toast
-                    Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
-                    // show the error image
-                    processBarLinearLayout.setVisibility(View.GONE);
-                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 300);
-                }
-            }, 15000);
+            if (mainActivity.getNutrientViewModel().getCurrentFindNutrientListAsyncTask().isCancelled()){
+                // restart the task
+                mainActivity.findNutrientListFromDBAndObserveNutrientListLD();
+                // control the visibility
+                processBarLinearLayout.setVisibility(View.VISIBLE); // show progress bar
+                nutrientsGridViewLinearLayout.setVisibility(View.GONE); // hide grid
+                networkErrorRelativeLayout.setVisibility(View.GONE); // hide network error
+                // wait 15 sec then cancel the task if it fails
+                new Handler().postDelayed(() -> {
+                    if(MainActivity.nutrientModelList.isEmpty()){
+                        // cancel the async task
+                        mainActivity.cancelCurrentFindNutrientListAsyncTask();
+                        // show the error Toast
+                        Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
+                        // show the error image
+                        processBarLinearLayout.setVisibility(View.GONE);
+                        MyAnimationBox.runFadeInAnimation(networkErrorRelativeLayout, 300);
+                        // set retry button on click
+                        setRetryButtonOnClickListener();
+                    } else {
+                        // show the virus list
+                        displayNutrientsCardList();
+                    }
+                }, 15000);
+            } else {
+                // show progress bar
+                this.processBarLinearLayout.setVisibility(View.VISIBLE);
+                this.nutrientsGridViewLinearLayout.setVisibility(View.GONE);
+                // observe NutrientModel  List Live Data
+                this.observeNutrientListLD();
+                // wait 15 sec then cancel the task if it fails
+                new Handler().postDelayed(() -> {
+                    if (MainActivity.nutrientModelList.isEmpty()) {
+                        // cancel the async task
+                        mainActivity.cancelCurrentFindNutrientListAsyncTask();
+                        // show the error Toast
+                        Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
+                        // show the error image
+                        processBarLinearLayout.setVisibility(View.GONE);
+                        MyAnimationBox.runFadeInAnimation(networkErrorRelativeLayout, 300);
+                        // set retry button on click
+                        setRetryButtonOnClickListener();
+                    }
+                }, 15000);
+            }
         } else {
             // show the virus list
             this.displayNutrientsCardList();
@@ -116,7 +147,8 @@ public class NutrientFragment extends Fragment {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_nutrient);
         this.nutrientsGridViewLinearLayout = view.findViewById(R.id.ll_list_nutrient_list);
         this.nutrientsGridView = view.findViewById(R.id.gv_list_nutrient_list);
-        this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_nutrient);
+        this.networkErrorRelativeLayout = view.findViewById(R.id.rl_fail_network_nutrient);
+        this.networkErrorRetryButton = view.findViewById(R.id.btn_reconnect_nutrient);
         this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
     }
 
@@ -127,8 +159,10 @@ public class NutrientFragment extends Fragment {
     private void observeNutrientListLD() {
         mainActivity.getNutrientViewModel().getNutrientListLD().observe(mainActivity, resultNutrientList -> {
             if (!(MyJsonParser.isNutrientListTaskFailed || MainActivity.nutrientModelList.isEmpty())) {
-                // show the virus list
-                displayNutrientsCardList();
+                if (nutrientsGridViewLinearLayout.getVisibility() == View.GONE) {
+                    // show the virus list
+                    displayNutrientsCardList();
+                }
             }
         });
     }
@@ -217,6 +251,33 @@ public class NutrientFragment extends Fragment {
             NutrientDetailNewFragment nutrientDetailNewFragment = new NutrientDetailNewFragment();
             nutrientDetailNewFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), nutrientDetailNewFragment, AppResources.FRAGMENT_TAG_NUTRIENT_DETAIL_NEW);
+        });
+    }
+
+    // set retry button on click
+    private void setRetryButtonOnClickListener(){
+        this.networkErrorRetryButton.setOnClickListener(nv ->{
+            // restart the task
+            mainActivity.findNutrientListFromDBAndObserveNutrientListLD();
+            // control the visibility
+            processBarLinearLayout.setVisibility(View.VISIBLE); // show progress bar
+            nutrientsGridViewLinearLayout.setVisibility(View.GONE); // hide grid
+            networkErrorRelativeLayout.setVisibility(View.GONE); // hide network error
+            // wait 15 sec then cancel the task if it fails
+            new Handler().postDelayed(() -> {
+                if(MainActivity.nutrientModelList.isEmpty()){
+                    // cancel the async task
+                    mainActivity.cancelCurrentFindNutrientListAsyncTask();
+                    // show the error Toast
+                    Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
+                    // show the error image
+                    processBarLinearLayout.setVisibility(View.GONE);
+                    MyAnimationBox.runFadeInAnimation(networkErrorRelativeLayout, 300);
+                } else {
+                    // show the virus list
+                    displayNutrientsCardList();
+                }
+            }, 15000);
         });
     }
 

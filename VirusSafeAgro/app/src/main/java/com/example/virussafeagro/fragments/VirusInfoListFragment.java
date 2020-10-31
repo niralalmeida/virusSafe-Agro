@@ -22,6 +22,7 @@ import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,7 +60,8 @@ public class VirusInfoListFragment extends Fragment {
     public static Bitmap currentVirusImageBitmap;
 
     private LinearLayout processBarLinearLayout;
-    private LinearLayout networkErrorLinearLayout;
+    private RelativeLayout networkErrorRelativeLayout;
+    private Button networkErrorRetryButton;
     private LinearLayout virusGridViewLinearLayout;
     private GridView virusGridView;
     private GridVirusInfoAdapter gridVirusInfoAdapter;
@@ -85,34 +87,61 @@ public class VirusInfoListFragment extends Fragment {
         MainActivity.showTopBarBackButton((MainActivity)requireActivity());
         // set tip
         this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_VIRUS_INFO);
-
-        // initialize views
-        this.initializeViews();
-
         // set menu selected item
         if (!this.mainActivity.isLearnIconClicked()) {
             this.mainActivity.setLearnButton(true);
         }
 
+        // initialize views
+        this.initializeViews();
+
         // show the virus grid list
         if (MainActivity.virusModelInfoList.isEmpty()) {
-            // wait for virus info list in new Thread
-            this.processBarLinearLayout.setVisibility(View.VISIBLE);
-            this.virusGridViewLinearLayout.setVisibility(View.GONE);
-            // observe VirusModel Info List Live Data
-            this.observeVirusInfoListLD();
-            // wait 15 sec then cancel the task if it fails
-            new Handler().postDelayed(() -> {
-                if(MainActivity.virusModelInfoList.isEmpty()){
-                    // cancel the async task
-                    mainActivity.cancelCurrentFindVirusInfoListAsyncTask();
-                    // show the error Toast
-                    Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
-                    // show the error image
-                    processBarLinearLayout.setVisibility(View.GONE);
-                    MyAnimationBox.runFadeInAnimation(networkErrorLinearLayout, 300);
-                }
-            }, 15000);
+            if (mainActivity.getVirusInfoListViewModel().getCurrentFindVirusInfoListAsyncTask().isCancelled()){
+                // restart the task
+                mainActivity.findVirusInfoListFromDBAndObserveVirusInfoListLD();
+                // wait for virus info list in new Thread
+                processBarLinearLayout.setVisibility(View.VISIBLE);// show progress bar
+                virusGridViewLinearLayout.setVisibility(View.GONE);// hide grid
+                networkErrorRelativeLayout.setVisibility(View.GONE); // hide network error
+                // wait 15 sec then cancel the task if it fails
+                new Handler().postDelayed(() -> {
+                    if(MainActivity.virusModelInfoList.isEmpty()){
+                        // cancel the async task
+                        mainActivity.cancelCurrentFindVirusInfoListAsyncTask();
+                        // show the error Toast
+                        Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
+                        // show the error image
+                        processBarLinearLayout.setVisibility(View.GONE);
+                        MyAnimationBox.runFadeInAnimation(networkErrorRelativeLayout, 300);
+                        // set retry button on click
+                        setRetryButtonOnClickListener();
+                    } else {
+                        // show the virus list
+                        displayVirusCardList();
+                    }
+                }, 15000);
+            } else {
+                // wait for virus info list in new Thread
+                this.processBarLinearLayout.setVisibility(View.VISIBLE);
+                this.virusGridViewLinearLayout.setVisibility(View.GONE);
+                // observe VirusModel Info List Live Data
+                this.observeVirusInfoListLD();
+                // wait 15 sec then cancel the task if it fails
+                new Handler().postDelayed(() -> {
+                    if (MainActivity.virusModelInfoList.isEmpty()) {
+                        // cancel the async task
+                        mainActivity.cancelCurrentFindVirusInfoListAsyncTask();
+                        // show the error Toast
+                        Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
+                        // show the error image
+                        processBarLinearLayout.setVisibility(View.GONE);
+                        MyAnimationBox.runFadeInAnimation(networkErrorRelativeLayout, 300);
+                        // set retry button on click
+                        setRetryButtonOnClickListener();
+                    }
+                }, 15000);
+            }
         } else {
             // show the virus list
             displayVirusCardList();
@@ -131,15 +160,18 @@ public class VirusInfoListFragment extends Fragment {
         this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_virus_info);
         this.virusGridViewLinearLayout = view.findViewById(R.id.ll_list_virus_info_list);
         this.virusGridView = view.findViewById(R.id.gv_list_virus_info_list);
-        this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_virus_info_list);
+        this.networkErrorRelativeLayout = view.findViewById(R.id.rl_fail_network_virus_info_list);
+        this.networkErrorRetryButton = view.findViewById(R.id.btn_reconnect_virus_info);
         this.searchVirusEditText = this.mainActivity.getDoSearchEditText();
     }
 
     private void observeVirusInfoListLD() {
         mainActivity.getVirusInfoListViewModel().getVirusInfoListLD().observe(mainActivity, resultVirusInfoList -> {
             if (!(MyJsonParser.isVirusInfoListTaskFailed || MainActivity.virusModelInfoList.isEmpty())) {
-                // show the virus list
-                displayVirusCardList();
+                if(virusGridViewLinearLayout.getVisibility() == View.GONE) {
+                    // show the virus list
+                    displayVirusCardList();
+                }
             }
         });
     }
@@ -225,6 +257,33 @@ public class VirusInfoListFragment extends Fragment {
             virusDetailNewFragment.setArguments(bundle);
             FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), virusDetailNewFragment, AppResources.FRAGMENT_TAG_VIRUS_DETAIL_NEW);
 
+        });
+    }
+
+    // set retry button on click
+    private void setRetryButtonOnClickListener(){
+        this.networkErrorRetryButton.setOnClickListener(nv ->{
+            // restart the task
+            mainActivity.findVirusInfoListFromDBAndObserveVirusInfoListLD();
+            // wait for virus info list in new Thread
+            processBarLinearLayout.setVisibility(View.VISIBLE);// show progress bar
+            virusGridViewLinearLayout.setVisibility(View.GONE);// hide grid
+            networkErrorRelativeLayout.setVisibility(View.GONE); // hide network error
+            // wait 15 sec then cancel the task if it fails
+            new Handler().postDelayed(() -> {
+                if(MainActivity.virusModelInfoList.isEmpty()){
+                    // cancel the async task
+                    mainActivity.cancelCurrentFindVirusInfoListAsyncTask();
+                    // show the error Toast
+                    Toast.makeText(mainActivity, "Connection failed! Please check your network!", Toast.LENGTH_SHORT).show();
+                    // show the error image
+                    processBarLinearLayout.setVisibility(View.GONE);
+                    MyAnimationBox.runFadeInAnimation(networkErrorRelativeLayout, 300);
+                } else {
+                    // show the virus list
+                    displayVirusCardList();
+                }
+            }, 15000);
         });
     }
 

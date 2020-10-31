@@ -72,6 +72,10 @@ public class TomatoTipFragment extends Fragment {
         MainActivity.showTopBarBackButton((MainActivity) requireActivity());
         // set tip
         this.mainActivity.showTipByPage(AppResources.FRAGMENT_TAG_TOMATO_GROWING_TIP);
+        // set menu selected item
+        if (!this.mainActivity.isLearnIconClicked()) {
+            this.mainActivity.setLearnButton(true);
+        }
 
         // initialize Views
         this.initializeViews();
@@ -234,5 +238,12 @@ public class TomatoTipFragment extends Fragment {
                 card8ImageButton.setImageResource(R.drawable.arrow_up);
             }
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        this.mainActivity.setLearnButton(false);
     }
 }
