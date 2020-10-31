@@ -23,10 +23,8 @@ public class InsightsFragment extends Fragment {
     private MainActivity mainActivity;
     private View view;
 
-    private RelativeLayout allViewsRelativeLayout;
     private RelativeLayout newsRelativeLayout;
     private RelativeLayout tweetsRelativeLayout;
-//    private RelativeLayout videosRelativeLayout;
 
     public InsightsFragment() {
     }
@@ -66,10 +64,8 @@ public class InsightsFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.allViewsRelativeLayout = view.findViewById(R.id.rl_all_views_insights);
         this.newsRelativeLayout = view.findViewById(R.id.rl_news_insights);
         this.tweetsRelativeLayout = view.findViewById(R.id.rl_tweets_insights);
-//        this.videosRelativeLayout = view.findViewById(R.id.rl_videos_insights);
     }
 
     private void allTilesOnClickListener() {
@@ -77,8 +73,6 @@ public class InsightsFragment extends Fragment {
         this.setNewsTileOnClickListener();
         // tweets
         this.setTweetsTileOnClickListener();
-        // videos
-//        this.setVideosTileOnClickListener();
     }
 
     // news
@@ -88,17 +82,19 @@ public class InsightsFragment extends Fragment {
             bundle.putBoolean("fromInsights", true);
             NewsFragment newsFragment = new NewsFragment();
             newsFragment.setArguments(bundle);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                newsFragment.setSharedElementEnterTransition(
-                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
-            }
-            ImageView newsIconImageView = view.findViewById(R.id.img_icon_news);
-            mainActivity.getSupportFragmentManager().beginTransaction()
-                    .addSharedElement(newsIconImageView, ViewCompat.getTransitionName(newsIconImageView))
-                    .replace(R.id.fl_fragments, newsFragment)
-                    .addToBackStack(null)
-                    .commit();
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), newsFragment, AppResources.FRAGMENT_TAG_NEWS_LIST);
+
+            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), newsFragment, AppResources.FRAGMENT_TAG_NEWS_LIST);
+
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                newsFragment.setSharedElementEnterTransition(
+//                        TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+//            }
+//            ImageView newsIconImageView = view.findViewById(R.id.img_icon_news);
+//            mainActivity.getSupportFragmentManager().beginTransaction()
+//                    .addSharedElement(newsIconImageView, ViewCompat.getTransitionName(newsIconImageView))
+//                    .replace(R.id.fl_fragments, newsFragment)
+//                    .addToBackStack(null)
+//                    .commit();
         });
     }
 
@@ -119,16 +115,8 @@ public class InsightsFragment extends Fragment {
                     .replace(R.id.fl_fragments, tweetFragment)
                     .addToBackStack(null)
                     .commit();
-//            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), tweetFragment, AppResources.FRAGMENT_TAG_TWEET_LIST);
         });
     }
-
-    // videos
-//    private void setVideosTileOnClickListener() {
-//        this.videosRelativeLayout.setOnClickListener(llView -> {
-////            FragmentOperator.replaceFragmentWithSlideFromRightAnimation(requireActivity(), new NewsFragment(), AppResources.FRAGMENT_TAG_NEWS_LIST);
-//        });
-//    }
 
     @Override
     public void onPause() {

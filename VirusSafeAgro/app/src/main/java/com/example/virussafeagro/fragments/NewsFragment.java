@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -51,7 +52,7 @@ public class NewsFragment extends Fragment {
     private static List<NewsModel> newsModelList;
     private NewsViewModel newsViewModel;
 
-    private LinearLayout processBarLinearLayout;
+    private ConstraintLayout processBarConstraintLayout;
     private LinearLayout allViewLinearLayout;
     private LinearLayout networkErrorLinearLayout;
 
@@ -94,7 +95,7 @@ public class NewsFragment extends Fragment {
             // initialize Data
             this.initializeData();
             // show progress bar
-            this.processBarLinearLayout.setVisibility(View.VISIBLE);
+            this.processBarConstraintLayout.setVisibility(View.VISIBLE);
             this.allViewLinearLayout.setVisibility(View.GONE);
 
             // find News List by Google search API
@@ -131,7 +132,7 @@ public class NewsFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_news);
+        this.processBarConstraintLayout = view.findViewById(R.id.cl_process_bar_news);
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_news);
     }
@@ -154,7 +155,7 @@ public class NewsFragment extends Fragment {
         this.newsViewModel.getNewsListLD().observe(getViewLifecycleOwner(), resultNewsList -> {
             if ((resultNewsList != null) && (resultNewsList.size() != 0)) {
                 // hide process bar
-                processBarLinearLayout.setVisibility(View.GONE);
+                processBarConstraintLayout.setVisibility(View.GONE);
                 // check network connection
                 if (resultNewsList.get(0).getNewsSnippet().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();

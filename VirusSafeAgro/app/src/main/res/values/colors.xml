@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#6200EE</color>
-<!--    <color name="colorPrimaryDark">#148F77</color>-->
     <color name="colorPrimaryDark">#00695c</color>
-<!--    <color name="colorPrimaryDark">#074A44</color>-->
-<!--    <color name="colorPrimaryDark">#148F77</color>-->
-<!--    <color name="colorPrimaryDark">#03DAC5</color>-->
     <color name="colorPrimaryLight">#69B4AC</color>
-<!--    <color name="colorPrimaryLight">#0d9488</color>-->
     <color name="colorPrimaryDarkBG">#121212</color>
     <color name="colorPrimaryLightBG">#C2C2C2</color>
     <color name="colorPrimaryDarkTheme">#1E1E1E</color>
     <color name="colorPrimaryTitle">#E2E2E2</color>
     <color name="colorPrimarySubTitle">#E0E0E0</color>
-<!--    <color name="colorPrimaryMainButtonBg">#BB86FC</color>-->
-<!--    <color name="colorPrimaryMainButtonBg">#5DADE2</color>-->
     <color name="colorPrimaryMainButtonBg">#69B588</color>
     <color name="colorTomatoCameraButtonBg">#CE655A</color>
     <color name="colorPrimaryDescriptionContent">#A4A4A4</color>
     <color name="colorPrimarySearchHint">#C2C2C2</color>
-<!--    <color name="colorPrimaryTile">#353437</color>-->
     <color name="colorPrimaryTile">#2C2C2C</color>
-<!--    <color name="colorAccent">#03DAC5</color>-->
     <color name="colorAccent">#69B4AC</color>
-<!--    <color name="colorDarkBackground">#707B7C</color>-->
     <color name="colorDarkBackground">#515A5A</color>
     <color name="colorDarkForeground">#2E2E2E</color>
 
@@ -36,8 +26,6 @@
 
     <color name="moreTitleLane">#0d9488</color>
 
-<!--    <color name="rightAnswer">#2bb565</color>-->
-<!--    <color name="rightAnswerLight">#84B294</color>-->
     <color name="rightAnswer">#2E86C1</color>
     <color name="rightAnswerLight">#61bcfa</color>
     <color name="wrongAnswer">#C0392B</color>
@@ -57,7 +45,6 @@
     <color name="iconCheck">#2E86C1</color>
     <color name="iconControlStrategy">#E06857</color>
     <color name="iconControlStrategySub">#2E86C1</color>
-<!--    <color name="iconMap">#58D68D</color>-->
     <color name="iconMap">#148F77</color>
     <color name="iconFactor">#3498DB</color>
     <color name="iconFactorHand">#F0B27A</color>
@@ -87,7 +74,6 @@
     <color name="btnNotOnPress">#474747</color>
     <color name="etBorder">#1E1E1E</color>
     <color name="etFill">#000000</color>
-<!--    <color name="etFill">#373737</color>-->
 
     <!-- virus check -->
     <color name="bottomSheetBG">#474747</color>
@@ -106,14 +92,10 @@
     <color name="is_unknown">#2E86C1</color>
 
     <!-- bottom bar -->
-<!--    <color name="bar_bg_bottom_bar">#383838</color>-->
     <color name="bar_bg_bottom_bar">#fff</color>
     <color name="ripple_fab">#474747</color>
     <color name="btn_shadow">#808080</color>
-<!--    <color name="item_not_checked">#A5A5A5</color>-->
     <color name="item_not_checked">#919090</color>
-<!--    <color name="item_checked">#FFC107</color>-->
-<!--    <color name="item_checked">#69B4AC</color>-->
     <color name="item_checked">#69B588</color>
     <color name="item_not_checked_bg">#E1E1E1</color>
     <color name="item_checked_bg">#A5A5A5</color>
@@ -122,13 +104,8 @@
     <!-- quiz activity -->
     <color name="text_quiz_title">#00695c</color>
     <color name="btn_option_bg_checked">#474747</color>
-<!--    <color name="btn_show_envelope_bg">#2E86C1</color>-->
-<!--    <color name="btn_show_envelope_ripple_bg">#61bcfa</color>-->
     <color name="btn_show_envelope_bg">#00695c</color>
     <color name="btn_show_envelope_ripple_bg">#759A97</color>
-<!--    <color name="btn_intermediate_bg">#7D3C98</color>-->
-<!--    <color name="btn_intermediate_bg_checked">#c68cde</color>-->
-<!--    <color name="btn_intermediate_ripple_bg">#a04fc2</color>-->
     <color name="bg_envelope_light">#F8CC6E</color>
     <color name="bg_envelope_dark">#EEBA61</color>
     <color name="bg_envelope_bg">#D9A246</color>
@@ -153,18 +130,5 @@
 
     <color name="bg_cart_image_gallery">#515A5A</color>
     <color name="image_default_bg">#515A5A</color>
-
-<!--    <color name="btn_bg_a_option">#2B69C8</color>-->
-<!--    <color name="btn_bg_b_option">#CE3542</color>-->
-<!--    <color name="btn_bg_c_option">#458528</color>-->
-<!--    <color name="btn_bg_d_option">#D09F36</color>-->
-<!--    <color name="btn_bg_e_option">#D35400</color>-->
-<!--    <color name="btn_bg_f_option">#607D3C98</color>-->
-
-
-    <!-- camera colors  -->
-<!--    <color name="ucrop_color_toolbar">#00695c</color>-->
-<!--    <color name="ucrop_color_statusbar">#00695c</color>-->
-<!--    <color name="ucrop_color_widget_active">#00695c</color>-->
 
 </resources>
