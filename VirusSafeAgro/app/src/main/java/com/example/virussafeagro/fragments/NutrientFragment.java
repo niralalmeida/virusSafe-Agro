@@ -54,6 +54,11 @@ public class NutrientFragment extends Fragment {
     // search function
     private com.example.virussafeagro.uitilities.ExtendedEditText searchVirusEditText;
 
+    // tools
+    private Handler handler1;
+    private Handler handler2;
+    private Handler handler3;
+
     public NutrientFragment() {
     }
 
@@ -92,7 +97,8 @@ public class NutrientFragment extends Fragment {
                 nutrientsGridViewLinearLayout.setVisibility(View.GONE); // hide grid
                 networkErrorRelativeLayout.setVisibility(View.GONE); // hide network error
                 // wait 15 sec then cancel the task if it fails
-                new Handler().postDelayed(() -> {
+                handler1 = new Handler();
+                handler1.postDelayed(() -> {
                     if(MainActivity.nutrientModelList.isEmpty()){
                         // cancel the async task
                         mainActivity.cancelCurrentFindNutrientListAsyncTask();
@@ -115,7 +121,8 @@ public class NutrientFragment extends Fragment {
                 // observe NutrientModel  List Live Data
                 this.observeNutrientListLD();
                 // wait 15 sec then cancel the task if it fails
-                new Handler().postDelayed(() -> {
+                handler2 = new Handler();
+                handler2.postDelayed(() -> {
                     if (MainActivity.nutrientModelList.isEmpty()) {
                         // cancel the async task
                         mainActivity.cancelCurrentFindNutrientListAsyncTask();
@@ -264,7 +271,8 @@ public class NutrientFragment extends Fragment {
             nutrientsGridViewLinearLayout.setVisibility(View.GONE); // hide grid
             networkErrorRelativeLayout.setVisibility(View.GONE); // hide network error
             // wait 15 sec then cancel the task if it fails
-            new Handler().postDelayed(() -> {
+            handler3 = new Handler();
+            handler3.postDelayed(() -> {
                 if(MainActivity.nutrientModelList.isEmpty()){
                     // cancel the async task
                     mainActivity.cancelCurrentFindNutrientListAsyncTask();
@@ -300,6 +308,18 @@ public class NutrientFragment extends Fragment {
         // set from nutrient
         MainActivity.FROM_NUTRIENT_PAGE = true;
 
+        // set learn icon
         this.mainActivity.setLearnButton(false);
+
+        // stop the handlers
+        if (handler1 != null) {
+            handler1.removeCallbacksAndMessages(null);
+        }
+        if (handler2 != null) {
+            handler2.removeCallbacksAndMessages(null);
+        }
+        if (handler3 != null) {
+            handler3.removeCallbacksAndMessages(null);
+        }
     }
 }

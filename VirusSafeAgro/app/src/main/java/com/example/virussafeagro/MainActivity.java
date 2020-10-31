@@ -256,6 +256,13 @@ public class MainActivity extends AppCompatActivity {
     // find virus info list
     public void findVirusInfoListFromDBAndObserveVirusInfoListLD() {
         virusInfoListViewModel.processFindingVirusInfoList();
+        // wait 15 sec then cancel the task if it fails
+        new Handler().postDelayed(() -> {
+            if (virusModelInfoList.isEmpty()) {
+                // cancel the async task
+                cancelCurrentFindVirusInfoListAsyncTask();
+            }
+        },15000);
     }
 
     // cancel the Current Finding Virus Info List AsyncTask
@@ -268,6 +275,13 @@ public class MainActivity extends AppCompatActivity {
     // find nutrient list
     public void findNutrientListFromDBAndObserveNutrientListLD() {
         nutrientViewModel.processFindingNutrientList();
+        // wait 15 sec then cancel the task if it fails
+        new Handler().postDelayed(() -> {
+            if (nutrientModelList.isEmpty()) {
+                // cancel the async task
+                cancelCurrentFindNutrientListAsyncTask();
+            }
+        },15000);
     }
     // cancel the Current Finding Nutrient Info List AsyncTask
     public void cancelCurrentFindNutrientListAsyncTask() {
