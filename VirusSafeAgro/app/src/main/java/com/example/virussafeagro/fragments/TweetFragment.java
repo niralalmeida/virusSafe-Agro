@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -37,7 +38,7 @@ public class TweetFragment extends Fragment {
     private static List<TweetModel> tweetModelList;
     private TweetViewModel tweetViewModel;
 
-    private LinearLayout processBarLinearLayout;
+    private ConstraintLayout processBarConstraintLayout;
     private LinearLayout allViewLinearLayout;
     private LinearLayout networkErrorLinearLayout;
 
@@ -78,7 +79,7 @@ public class TweetFragment extends Fragment {
             // initialize Data
             this.initializeData();
             // show progress bar
-            this.processBarLinearLayout.setVisibility(View.VISIBLE);
+            this.processBarConstraintLayout.setVisibility(View.VISIBLE);
             this.allViewLinearLayout.setVisibility(View.GONE);
 
             // find Tweet List by Google search API
@@ -113,7 +114,7 @@ public class TweetFragment extends Fragment {
     }
 
     private void initializeViews() {
-        this.processBarLinearLayout = view.findViewById(R.id.ll_process_bar_tweet);
+        this.processBarConstraintLayout = view.findViewById(R.id.cl_process_bar_tweet);
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_tweet);
         this.networkErrorLinearLayout = view.findViewById(R.id.ll_fail_network_tweet);
     }
@@ -136,7 +137,7 @@ public class TweetFragment extends Fragment {
         this.tweetViewModel.getTweetListLD().observe(getViewLifecycleOwner(), resultTweetList -> {
             if ((resultTweetList != null) && (resultTweetList.size() != 0)) {
                 // hide process bar
-                processBarLinearLayout.setVisibility(View.GONE);
+                processBarConstraintLayout.setVisibility(View.GONE);
                 // check network connection
                 if (resultTweetList.get(0).getTweetContent().equals(MyJsonParser.CONNECTION_ERROR_MESSAGE)) {
                     Toast.makeText(requireActivity(),MyJsonParser.CONNECTION_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
