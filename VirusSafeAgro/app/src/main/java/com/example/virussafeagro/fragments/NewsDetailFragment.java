@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,6 +38,7 @@ public class NewsDetailFragment extends Fragment {
     private NewsDetailViewModel newsDetailViewModel;
 
     // views
+    private ConstraintLayout progressBarConstraintLayout;
     private LinearLayout allViewLinearLayout;
     // top
     private RelativeLayout topRelativeLayout;
@@ -100,6 +102,9 @@ public class NewsDetailFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // show loading lottie
+        this.progressBarConstraintLayout.setVisibility(View.VISIBLE);
+
         // find news article body
         this.findNewsArticleBody();
         // observe NewsArticleBody live data
@@ -109,6 +114,7 @@ public class NewsDetailFragment extends Fragment {
     }
 
     private void initializeViews() {
+        this.progressBarConstraintLayout = view.findViewById(R.id.cl_process_bar_news_detail);
         this.allViewLinearLayout = view.findViewById(R.id.ll_all_view_news_detail);
         this.topRelativeLayout = view.findViewById(R.id.rl_top_news_detail);
         this.newsImageView = view.findViewById(R.id.img_top_pic_virus_detail);
@@ -119,7 +125,6 @@ public class NewsDetailFragment extends Fragment {
         this.newsPostedTimeAgoTextView = view.findViewById(R.id.tv_posted_time_ago_news_detail);
         this.newsTimeTextView = view.findViewById(R.id.tv_time_news_detail);
         this.newsArticleNestedScrollView = view.findViewById(R.id.nsv_article_news_detail);
-//        this.newsBodyLinearLayout = view.findViewById(R.id.ll_body_news_detail);
         this.newsSnippetTextView = view.findViewById(R.id.tv_snippet_news_detail);
         this.newsArticleBodyTextView = view.findViewById(R.id.tv_article_body_news_detail);
     }
@@ -148,6 +153,7 @@ public class NewsDetailFragment extends Fragment {
 
     // show News Views
     private void showNewsViews() {
+        progressBarConstraintLayout.setVisibility(View.GONE);
         MyAnimationBox.runFadeInAnimation(allViewLinearLayout, 1000);
         new Handler().postDelayed(() -> {
             isNewsDetailViewShown = true;
