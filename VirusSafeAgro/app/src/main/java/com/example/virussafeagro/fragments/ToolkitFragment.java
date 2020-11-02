@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.virussafeagro.DetectActivity;
 import com.example.virussafeagro.MainActivity;
 import com.example.virussafeagro.R;
 import com.example.virussafeagro.TomatoCameraActivity;
@@ -142,7 +143,13 @@ public class ToolkitFragment extends Fragment {
     // [menu] virus check
     private void setVirusCheckTileOnClickListener() {
         this.virusCheckLinearLayout.setOnClickListener(llView -> {
-            mainActivity.showVirusDetectActivity();
+            if (!DetectActivity.active) {
+                DetectActivity.active = true;
+                //store The Last Page Type
+                mainActivity.storeTheLastPageType();
+                // show the virus detect activity
+                mainActivity.showVirusDetectActivity();
+            }
         });
     }
 

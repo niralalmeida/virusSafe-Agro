@@ -782,14 +782,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         floatingActionButton.setOnClickListener(v -> {
-            //store The Last Page Type
-            storeTheLastPageType();
-            // show the virus detect activity
-            showVirusDetectActivity();
+            if (!DetectActivity.active) {
+                DetectActivity.active = true;
+                //store The Last Page Type
+                storeTheLastPageType();
+                // show the virus detect activity
+                showVirusDetectActivity();
+            }
         });
     }
 
-    private void storeTheLastPageType() {
+    public void storeTheLastPageType() {
         if (isLearnIconClicked){
             currentPageType = LEARN;
         } else if (isToolkitIconClicked){

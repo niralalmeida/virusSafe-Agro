@@ -59,7 +59,7 @@ import java.util.concurrent.ExecutionException;
 
 public class CameraActivity extends AppCompatActivity {
     private CameraActivity cameraActivity;
-
+    public static boolean active = false;
     // views
     private MotionLayout containerMotionLayout;
     private FrameLayout containerFrameLayout;
@@ -115,6 +115,12 @@ public class CameraActivity extends AppCompatActivity {
         this.setGalleryRetakeCardViewOnClickListener();
         // set tip/open camera button on click
         this.setTipOpenCameraCardViewOnClickListener();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
     }
 
     private void initializeViews() {
@@ -395,5 +401,11 @@ public class CameraActivity extends AppCompatActivity {
         this.closeImageButton.setOnClickListener(v -> {
             supportFinishAfterTransition();
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        active = false;
     }
 }

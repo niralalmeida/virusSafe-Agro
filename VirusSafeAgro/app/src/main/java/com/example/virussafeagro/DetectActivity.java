@@ -51,6 +51,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DetectActivity extends AppCompatActivity {
     private DetectActivity detectActivity;
+    public static boolean active = false;
     // data
     private NetworkConnectionToMLModel networkConnectionToMLModel;
     public static Bitmap uploadImageBitmap;
@@ -98,6 +99,12 @@ public class DetectActivity extends AppCompatActivity {
         // set CloseButton OnClickListener
         this.setCloseButtonOnClickListener();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
     }
 
     @Override
@@ -382,18 +389,21 @@ public class DetectActivity extends AppCompatActivity {
 //        Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
 //        startActivityForResult(getImageByCamera, REQUEST_OPEN_CAMERA);
 
-        this.checkCameraPermissions();
+        if (!CameraActivity.active) {
+            CameraActivity.active = true;
+            this.checkCameraPermissions();
+        }
     }
 
     private void startCamera() {
-        if (isResultShow){
+        if (isResultShow) {
             uploadImageBitmap = null;
             uploadImageView.setImageBitmap(null);
             // collapse the sheet and show the analyse animation
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             isResultShow = false;
         }
-        new Handler().postDelayed(()->{
+        new Handler().postDelayed(() -> {
             // hide virus-infected results
             illTitleTextView.setVisibility(View.GONE);
             virusButton.setVisibility(View.GONE);
@@ -401,7 +411,7 @@ public class DetectActivity extends AppCompatActivity {
             // hide title and button for closing
             hideTitleAndButton();
         }, 200);
-        new Handler().postDelayed(()->{
+        new Handler().postDelayed(() -> {
             Intent intent = new Intent(DetectActivity.this, CameraActivity.class);
             // animation
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.cameraCardView, ViewCompat.getTransitionName(this.cameraCardView));
@@ -445,4 +455,9 @@ public class DetectActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        active = false;
+    }
 }
