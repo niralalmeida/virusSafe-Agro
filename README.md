@@ -138,6 +138,48 @@ http://0.0.0.0:5000/object/
 
 ## Explanation of application.py
 
+<img src="assets/import.jpeg" width="640" height="480" />
+
+We start by importing our required Python packages on **Lines 6-10**.
+
+### Tomato Leaf Virus Detection
+
+<img src="assets/tomatovirus.jpeg" width="640" height="480" />
+
+Class which is used for **Tomato Virus Detection**. 
+
+**Lines 17-18** is a GET function is someone hitting the api with GET Method.
+
+**Lines 19-54** is for POST function, **Lines 21-30** where it reads the image from the request body, checking whether the image is there or not, as a Edge case, and writing the the base64 string as an image that will be used for a model and if the image is not there in a body then run block **lines 52-54**.
+
+**Lines 32-51** where the multiple models are called for main use-case as well as edge-case
+**Line 32** called a model to check whether the given image is of leaves or not, **lines 33-41** if it is of leaf, and if it is not a leaf it will run block **lines 47-51**.
+**Line 34** called a model to check whether the given image is a tomato leaf or not, **lines 35-41** it is a tomato leaf, and if it is not a tomato leaf the run block **lines 42-46**.
+**Line 37** calls the main model to predict the types of virus on a leaf.
+
+### Tomato Object Detection
+
+<img src="assets/tomatodetection.jpeg" width="640" height="480" />
+
+We start by importing our required Python packages on **Lines 6-10**.
+
+Class which is used for **Tomato Object Detection**.
+
+**Lines 17-18** is a GET function is someone hitting the api with GET Method.
+
+**Lines 59-96** is for POST function, **Lines 60-69** where it reads the image from the request body, checking whether the image is there or not, as a Edge case and writing the the base64 string as an image that will be used for a model and if the image is not there in a body then run block **lines 94-96**.
+
+**Line 74** calls the function which will return the image with marked bonding boxes around tomatoes as well whether each tomato is good or bad.
+**Lines 76-82** Generate the random file name and call a function which will upload the final output on a AWS S3 bucket and make it publically accessible and return the link to access that image
+
+**Lines 74- 91** Creating the final response body and returning the response whose body contains 6 informations:
+
+- Image path
+- Total no. of tomatoes 
+- Total no of good tomatoes
+- Total no. of bad tomatoes
+- Percentage of good tomatoes
+- Percentage of bad tomatoes
 
 
 ## About our team
