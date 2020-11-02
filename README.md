@@ -138,7 +138,7 @@ http://0.0.0.0:5000/object/
 
 ## Explanation of application.py
 
-<img src="assets/import.jpeg" width="640" height="480" />
+<img src="assets/import.jpg" width="640" height="480" />
 
 We start by importing our required Python packages on **Lines 6-10**.
 
