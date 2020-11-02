@@ -148,6 +148,13 @@ public class MainActivity extends AppCompatActivity {
     public static VirusModel requestedVirusModel;
     public static boolean hasControlStrategyRequest;
 
+    // for restoring the final status when leaving the main activity
+    public static String currentPageType;
+    public final static String LEARN = "learn";
+    public final static String TOOLKIT = "toolkit";
+    public final static String MORE = "more";
+    public final static String MAIN = "main";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -305,6 +312,9 @@ public class MainActivity extends AppCompatActivity {
         // check authentication
         this.checkAuthentication();
 
+        // check and restore the last page icon status
+        this.restoreTheLastPageIcon();
+
         // handle virus view request
         if (requestedVirusModel != null){
             Bundle bundle = new Bundle();
@@ -321,7 +331,6 @@ public class MainActivity extends AppCompatActivity {
             }, 300);
             requestedVirusModel = null;
         }
-
 
         // handle control strategy request
         if (hasControlStrategyRequest){
@@ -773,8 +782,54 @@ public class MainActivity extends AppCompatActivity {
         });
 
         floatingActionButton.setOnClickListener(v -> {
+            //store The Last Page Type
+            storeTheLastPageType();
+            // show the virus detect activity
             showVirusDetectActivity();
         });
+    }
+
+    private void storeTheLastPageType() {
+        if (isLearnIconClicked){
+            currentPageType = LEARN;
+        } else if (isToolkitIconClicked){
+            currentPageType = TOOLKIT;
+        } else if (moreRelativeLayout.isActivated()){
+            currentPageType = MORE;
+        } else {
+            currentPageType = MAIN;
+        }
+    }
+
+    private void restoreTheLastPageIcon(){
+        if (currentPageType != null){
+            switch (currentPageType){
+                case LEARN:
+                    isLearnIconClicked = true;
+                    // change image tint color
+                    ColorStateList colorStateListForLearn = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_checked);
+                    learnImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+                    learnImageView.setImageTintList(colorStateListForLearn);
+                    // change the text color
+                    learnTextView.setTextColor(this.mainActivity.getResources().getColor(R.color.item_checked));
+                    break;
+                case TOOLKIT:
+                    isToolkitIconClicked = true;
+                    // change image tint color
+                    ColorStateList colorStateListForToolkit = ContextCompat.getColorStateList(getApplicationContext(), R.color.item_checked);
+                    toolkitImageView.setImageTintMode(PorterDuff.Mode.SRC_ATOP);
+                    toolkitImageView.setImageTintList(colorStateListForToolkit);
+                    // change the text color
+                    toolkitTextView.setTextColor(this.mainActivity.getResources().getColor(R.color.item_checked));
+                    break;
+                case MORE:
+                    // change bg
+                    moreRelativeLayout.setBackground(DataConverter.getDrawableById(mainActivity, R.color.colorPrimaryDarkBG));
+                    break;
+                case MAIN:
+                    break;
+            }
+        }
     }
 
     public boolean isLearnIconClicked() {

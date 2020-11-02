@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimaryDarkBG"
@@ -7,12 +8,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:alpha="0.3"-->
-<!--        android:src="@drawable/bg" />-->
 
     <include
         layout="@layout/app_bar_main"
@@ -131,7 +126,5 @@
         app:maxImageSize="40dp"
         app:fabCustomSize="75dp"
         app:pressedTranslationZ="10dp"/>
-
-<!--    app:borderWidth="8dp"-->
 
 </RelativeLayout>
