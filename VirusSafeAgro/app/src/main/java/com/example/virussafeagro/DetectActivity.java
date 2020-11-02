@@ -255,11 +255,6 @@ public class DetectActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-//            feedback = "Spider_mites Two-spotted_spider_mite";
-//            feedback = "json error";
-//            feedback = "healthy";
-
             return feedback;
         }
 
@@ -399,6 +394,11 @@ public class DetectActivity extends AppCompatActivity {
             isResultShow = false;
         }
         new Handler().postDelayed(()->{
+            // hide virus-infected results
+            illTitleTextView.setVisibility(View.GONE);
+            virusButton.setVisibility(View.GONE);
+            controlButton.setVisibility(View.GONE);
+            // hide title and button for closing
             hideTitleAndButton();
         }, 200);
         new Handler().postDelayed(()->{
