@@ -34,19 +34,103 @@ From Android Studio:
 
 ## Architecture
 ### System architecture:
-![System Architecture](https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/TA24-system%20architecture.png?token=ANAMHQSIQXSKNQMJOBW4QJS7MVW6K)
+![System Architecture](https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/TA24-system%20architecture.png?token=ANAMHQWXRLOMDDEBZI3KMGK7VGMJQ)
 The whole distributed system architecture for this Android App project is a **client-server architecture**.  The client endpoint, the App in an Android phone, holds all views and logic for handling data of displaying.  In this distributed system, there are several servers for holding persistent data and resources or calculating model.  And the client and servers deliver data by open API created by ourselves.  We build this application by using the following web services:
 1. **Machine Learning Model** - deployed on AWS with EC2
 2. **MySql Database** - deployed on AWS with RDS (APIs are built by Lambda function and API Gateway in AWS)
 3. other **Web Service**
 
 ### Android application architecture
-![App Architecture](https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/App%20-%20android%20system%20structure.png?token=ANAMHQQCWOUVI3OBBIZPZZK7MVXAE)
+![App Architecture](https://raw.githubusercontent.com/hoyyang/virusSafe-Agro/master/design%20files/App%20-%20android%20system%20structure.png?token=ANAMHQUAJABPTGGS5X4VBLC7VGMLS)
 
 Within the client endpoint(Android App), there are different widgets for different pages and functions. For our project, there is **one activity**(current version) holding several **fragments**. One fragment holds one page.  And each fragment has a **ViewModel**, holding **live data**, mapping with it individually, which is for controlling the data interact with the remote server or other data storage tool. The interaction way for ViewModel and remote servers is **API**.
 
 
 ## Technology
+### Dependencies Used:
+```gradle
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // coordinator layout
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+
+    // androidx.test
+    def androidx_test = "1.1.0"
+    androidTestImplementation "androidx.test:runner:$androidx_test"
+    androidTestImplementation "androidx.test:core:$androidx_test"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+
+    // Material Design
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0-alpha03'
+
+    // view model and live data
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.2.0'
+    // connection by OkHTTP
+    implementation 'com.squareup.okhttp3:okhttp:4.5.0'
+    // GSON
+    implementation 'com.google.code.gson:gson:2.8.5'
+    // jsoup for parse HTML
+    implementation 'org.jsoup:jsoup:1.11.2'
+
+    // RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview-selection:1.1.0-rc03'
+    // CardView
+    implementation 'androidx.cardview:cardview:1.0.0'
+    // Text view for justify
+    implementation 'com.uncopt:android.justified:1.0'
+    // bottom navigation bar ex
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
+    // view pager
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
+
+    // Smart Refresh Layout
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    implementation 'com.scwang.smart:refresh-header-radar:2.0.1'
+    implementation 'com.scwang.smart:refresh-footer-ball:2.0.1'
+
+    // google map service
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+    // lottie animation
+    implementation 'com.airbnb.android:lottie:3.2.0'
+
+    // image tools
+    implementation 'com.squareup.picasso:picasso:2.71828' // picasso
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0' //zoom the image
+
+    // camera
+    implementation 'com.github.HuanTanSheng:EasyPhotos:3.0.6'
+    implementation 'com.github.dhaval2404:imagepicker:1.7.5'
+
+    // FAB
+    implementation 'com.robertlevonyan.view:CustomFloatingActionButton:2.1.0'
+
+
+    // official camera
+    // CameraX core library using the camera2 implementation
+    def camerax_version = "1.0.0-beta11"
+    // The following line is optional, as the core library is included indirectly by camera-camera2
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    // If you want to additionally use the CameraX Lifecycle library
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    // If you want to additionally use the CameraX View class
+    implementation "androidx.camera:camera-view:1.0.0-alpha18"
+    // If you want to additionally use the CameraX Extensions library
+    implementation "androidx.camera:camera-extensions:1.0.0-alpha18"
+}
+```
 ### Image classification:
 One of the functionalities of our application is to provide novice farmers with the capability to check the infection in tomato plants. For this purpose, we have built an image classification model using the following technology stack.
 - Tensorflow
