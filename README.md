@@ -77,62 +77,68 @@ Model is trained on 10,000 images belonging to following **10 classes**:
 - Tomato healthy
 - Septoria spot
 
-##### Requirements:
-* absl-py==0.9.0
-* aniso8601==8.0.0
-* astor==0.8.1
-* astroid==2.4.0
-* cachetools==4.1.0
-* certifi==2020.4.5.1
-* chardet==3.0.4
-* click==7.1.2
-* colorama==0.4.3
-* Flask==1.1.2
-* Flask-RESTful==0.3.8
-* gast==0.2.2
-* google-auth==1.14.1
-* google-auth-oauthlib==0.4.1
-* google-pasta==0.2.0
-* grpcio==1.28.1
-* h5py==2.10.0
-* idna==2.9
-* isort==4.3.21
-* itsdangerous==1.1.0
-* Jinja2==2.11.2
-* Keras==2.4.3
-* Keras-Applications==1.0.8
-* Keras-Preprocessing==1.1.0
-* lazy-object-proxy==1.4.3
-* Markdown==3.2.1
-* MarkupSafe==1.1.1
-* mccabe==0.6.1
-* numpy==1.18.3
-* oauthlib==3.1.0
-* opencv-python==4.2.0.34
-* opt-einsum==3.2.1
-* pandas==1.0.3
-* Pillow==7.2.0
-* protobuf==3.11.3
-* pyasn1==0.4.8
-* pyasn1-modules==0.2.8
-* pylint==2.5.0
-* python-dateutil==2.8.1
-* pytz==2020.1
-* PyYAML==5.3.1
-* requests==2.23.0
-* requests-oauthlib==1.3.0
-* rsa==4.0
-* scipy==1.4.1
-* six==1.14.0
-* tensorboard==2.1.1
-* tensorflow==2.1.0
-* tensorflow-estimator==2.1.0
-* termcolor==1.1.0
-* toml==0.10.0
-* typed-ast==1.4.1
-* urllib3==1.25.9
-* Werkzeug==1.0.1
-* wrapt==1.12.1
+## Setting up in Local Machine
+
+#### Step-1 
+Open a `terminal`, clone the `virusSafe-Agro` repository and go into the directory using the command `cd`.
+```bash
+git clone https://github.com/hoyyang/virusSafe-Agro.git
+
+cd DeepLearning-Application
+```
+
+#### Step-2
+Check `python-3` is installed then install `pip` manager for python-3 and install `virtual environment`.
+```bash
+#Checking python is installed
+python3 --version 
+
+#Installing pip manager
+sudo apt install python3-pip
+
+#Checking pip is installed for python3
+pip3 --version
+
+#Installing virtual environment
+sudo pip3 install virtualenv
+```
+
+#### Step-3
+Setting up `virtual environment`.
+```bash
+#Creating virtual environment
+virtualenv -p python3 venv
+
+#Activating the virtual environment venv
+source venv/bin/activate
+```
+
+#### Step-4
+Now we have to install all the dependencies using pip in our virtual environment from `requirements.txt`.
+Check `requirements.txt` to know what are all the dependencies used.
+```python
+pip3 install -r requirements.txt
+```
+
+#### Step-5
+Now we are going to run our application in our `localhost`
+```bash
+python application.py
+```
+
+#### Step-6
+API's will be available on the following URL's for the TomatoVirusDetection and TomatoObjectDetection.
+```bash
+# TomatoVirusDetection 
+http://0.0.0.0:5000/ 
+
+# TomatoObjectDetection
+http://0.0.0.0:5000/object/
+```
+
+## Explanation of application.py
+
+
 
 ## About our team
 ### TEAM NO.|TEAM NAME: TA24 | VIRUS DETECTORS
