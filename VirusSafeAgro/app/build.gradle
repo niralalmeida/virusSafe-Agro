@@ -31,13 +31,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    // motion layout
-//    implementation 'com.android.support.constraint:constraint-layout:2.0.2'
     // coordinator layout
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 
@@ -74,10 +72,6 @@ dependencies {
     // view pager
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
 
-    // twitter api
-//    implementation 'com.twitter.sdk.android:twitter:3.1.1'
-//    implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
-
     // Smart Refresh Layout
     implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'
     implementation 'com.scwang.smart:refresh-header-radar:2.0.1'
@@ -95,13 +89,10 @@ dependencies {
 
     // camera
     implementation 'com.github.HuanTanSheng:EasyPhotos:3.0.6'
-//    implementation 'com.github.dhaval2404:imagepicker:1.7.5'
-//    implementation 'com.github.jkwiecien:EasyImage:3.0.4'
     implementation 'com.github.dhaval2404:imagepicker:1.7.5'
 
     // FAB
     implementation 'com.robertlevonyan.view:CustomFloatingActionButton:2.1.0'
-//    implementation 'com.allattentionhere:fabulousfilter:0.0.5'
 
 
     // official camera
