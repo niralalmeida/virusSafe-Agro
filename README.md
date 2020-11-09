@@ -198,7 +198,7 @@ You can find all the models which we have used in the project at the following l
 
 [Model Location](https://drive.google.com/drive/folders/1a3v4f75JlAYB5IB6yHZw8KuhhozoPc9M?usp=sharing)
 
-### Android App Gradle Dependencies:
+## Android App Gradle Dependencies:
 ``` gradle
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
