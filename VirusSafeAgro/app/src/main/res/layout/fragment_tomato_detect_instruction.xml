@@ -42,7 +42,7 @@
         android:textColor="@color/colorWhite"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:text="@string/text_title_instruction"/>
+        android:text="@string/text_title_tomato_instruction"/>
 
     <!-- horizontal line -->
     <View

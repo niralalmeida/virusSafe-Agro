@@ -42,8 +42,24 @@ The whole distributed system architecture for this Android App project is a **cl
 ### Android application architecture
 Within the client endpoint(Android App), there are different widgets for different pages and functions. For our project, there is **one activity**(current version) holding several **fragments**. One fragment holds one page.  And each fragment has a **ViewModel**, holding **live data**, mapping with it individually, which is for controlling the data interact with the remote server or other data storage tool. The interaction way for ViewModel and remote servers is **API**.
 
+## Tools or Services Used
+|Software or Service|Purpose|
+|---|---|
+|Android studio|Front end development|
+|MySQLWorkBench|MySQL database manager|
+|Postman|API testing|
+|GitHub+GitKraken|Versioning|
+|AWS services|RDS: Database server|
+||EC2: Server instance|
+||S3: Media file storage|
+||API gateway + Lambda: API manager
+|Google APIs|Maps SDK for Android: Embed map widget|
+||Places API: Searching nearby places|
+||Custom Search API: Find news and tweets|
 
 ## Technology
+### Android Technology Description:
+The Android application development tool we used is "Android Studio" with the "Gradle" tool.  We used "Java" language to control the logic of our app and to interact with the data, and "XML" is used to display the UI.  For Android technologies, we used both the official and custom layouts and widgets.  In the official part, we used almost all layouts for satisfying the requirements of different pages, including FrameLayout, LinearLayout, RelativeLayout, ConstraintLayout, MotionLayout, CoordinatorLayout, AppBarLayout, GridLayout, and so on.  Besides, we also built some custom layouts like a draggable RelativeLayout for showing some extra information.  We used almost all the existing widgets for different display requirements. And there are also some custom widgets like a ViewPager that cannot be swiped.  There are also many other technologies, like animation technologies we chose are for view transition.  To implement a custom camera function, we embedded and configured the "CameraX".  GoogleMap is our map widget tool.  To share data among activities and fragments, we used ViewModel with LiveData.  To get an image bitmap from an image URL, we selected "Picasso".  And for managing API request and response, "OkHttp" and "GSON" are the two technologies we used.  In addition, we achieved event control and life cycle control. 
 ### Image classification:
 One of the functionalities of our application is to provide novice farmers with the capability to check the infection in tomato plants. For this purpose, we have built an image classification model using the following technology stack.
 - Tensorflow
@@ -182,6 +198,87 @@ You can find all the models which we have used in the project at the following l
 
 [Model Location](https://drive.google.com/drive/folders/1a3v4f75JlAYB5IB6yHZw8KuhhozoPc9M?usp=sharing)
 
+### Android App Gradle Dependencies:
+``` gradle
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // coordinator layout
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+
+    // androidx.test
+    def androidx_test = "1.1.0"
+    androidTestImplementation "androidx.test:runner:$androidx_test"
+    androidTestImplementation "androidx.test:core:$androidx_test"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+
+    // Material Design
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0-alpha03'
+
+    // view model and live data
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.2.0'
+    // connection by OkHTTP
+    implementation 'com.squareup.okhttp3:okhttp:4.5.0'
+    // GSON
+    implementation 'com.google.code.gson:gson:2.8.5'
+    // jsoup for parse HTML
+    implementation 'org.jsoup:jsoup:1.11.2'
+
+    // RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview-selection:1.1.0-rc03'
+    // CardView
+    implementation 'androidx.cardview:cardview:1.0.0'
+    // Text view for justify
+    implementation 'com.uncopt:android.justified:1.0'
+    // bottom navigation bar ex
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
+    // view pager
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
+
+    // Smart Refresh Layout
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    implementation 'com.scwang.smart:refresh-header-radar:2.0.1'
+    implementation 'com.scwang.smart:refresh-footer-ball:2.0.1'
+
+    // google map service
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+    // lottie animation
+    implementation 'com.airbnb.android:lottie:3.2.0'
+
+    // image tools
+    implementation 'com.squareup.picasso:picasso:2.71828' // picasso
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0' //zoom the image
+
+    // camera
+    implementation 'com.github.HuanTanSheng:EasyPhotos:3.0.6'
+    implementation 'com.github.dhaval2404:imagepicker:1.7.5'
+
+    // FAB
+    implementation 'com.robertlevonyan.view:CustomFloatingActionButton:2.1.0'
+
+    // official camera
+    // CameraX core library using the camera2 implementation
+    def camerax_version = "1.0.0-beta11"
+    // The following line is optional, as the core library is included indirectly by camera-camera2
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    // If you want to additionally use the CameraX Lifecycle library
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    // If you want to additionally use the CameraX View class
+    implementation "androidx.camera:camera-view:1.0.0-alpha18"
+    // If you want to additionally use the CameraX Extensions library
+    implementation "androidx.camera:camera-extensions:1.0.0-alpha18"
+```
 
 ## About our team
 ### TEAM NO.|TEAM NAME: TA24 | VIRUS DETECTORS
