@@ -35,6 +35,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -214,6 +215,9 @@ public class PesticideStoreMapFragment extends Fragment implements OnMapReadyCal
             PesticideStoreModel pesticideStoreModel = new PesticideStoreModel(USER_MARKER_NAME_FOR_HASH_MAP);
             pesticideStoreMarkerMap.put(userMarker, pesticideStoreModel);
             CameraPosition cameraPosition = new CameraPosition.Builder().target(userLocationLatLng).zoom(13).build();
+            googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            mainActivity, R.raw.map));
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         } else {
             Toast.makeText(requireActivity(), "Can not get your current address!!!", Toast.LENGTH_LONG).show();
